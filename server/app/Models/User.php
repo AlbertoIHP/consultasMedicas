@@ -4,18 +4,11 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @SWG\Definition(
  *      definition="User",
  *      required={""},
- *      @SWG\Property(
- *          property="Persona_rut",
- *          description="Persona_rut",
- *          type="string"
- *      ),
  *      @SWG\Property(
  *          property="email",
  *          description="email",
@@ -31,15 +24,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  *          description="Role_idRole",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="remember_token",
+ *          description="remember_token",
+ *          type="string"
  *      )
  * )
  */
-class User extends Authenticatable
+class User extends Model
 {
     use SoftDeletes;
 
     public $table = 'Usuario';
-
+    
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -48,9 +46,9 @@ class User extends Authenticatable
 
 
     public $fillable = [
-        'email',
         'password',
-        'Role_idRole'
+        'Role_idRole',
+        'remember_token'
     ];
 
     /**
@@ -59,10 +57,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'Persona_rut' => 'string',
         'email' => 'string',
         'password' => 'string',
-        'Role_idRole' => 'integer'
+        'Role_idRole' => 'integer',
+        'remember_token' => 'string'
     ];
 
     /**
@@ -71,16 +69,8 @@ class User extends Authenticatable
      * @var array
      */
     public static $rules = [
-
+        
     ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function persona()
-    {
-        return $this->belongsTo(\App\Models\Persona::class);
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -88,5 +78,13 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(\App\Models\Role::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function personas()
+    {
+        return $this->hasMany(\App\Models\Persona::class);
     }
 }

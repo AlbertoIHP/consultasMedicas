@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class FichaMedicaRepository
  * @package App\Repositories
- * @version October 8, 2017, 1:36 am UTC
+ * @version October 8, 2017, 6:56 am UTC
  *
  * @method FichaMedica findWithoutFail($id, $columns = ['*'])
  * @method FichaMedica find($id, $columns = ['*'])
@@ -20,7 +20,11 @@ class FichaMedicaRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'FichaMedicacol'
+        'nombre',
+        'Persona_rut',
+        'nombreResponsable',
+        'fechaCreacion',
+        'remember_token'
     ];
 
     /**

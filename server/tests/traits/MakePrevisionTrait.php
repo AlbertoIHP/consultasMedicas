@@ -42,7 +42,12 @@ trait MakePrevisionTrait
         $fake = Faker::create();
 
         return array_merge([
-            'descripcion' => $fake->word
+            'descripcion' => $fake->text,
+            'nombre' => $fake->word,
+            'remember_token' => $fake->word,
+            'created_at' => $fake->date('Y-m-d H:i:s'),
+            'updated_at' => $fake->date('Y-m-d H:i:s'),
+            'deleted_at' => $fake->date('Y-m-d H:i:s')
         ], $previsionFields);
     }
 }

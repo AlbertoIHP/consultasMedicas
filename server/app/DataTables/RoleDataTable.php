@@ -72,7 +72,8 @@ class RoleDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'name' => ['name' => 'name', 'data' => 'name']
+            'nombre' => ['name' => 'nombre', 'data' => 'nombre'],
+            'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
         ];
     }
 

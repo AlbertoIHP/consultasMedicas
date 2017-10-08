@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="DiagnosticoAtencion",
+ *      definition="HistorialFicha",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,29 +16,34 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="Atention_Cita_idCita",
- *          description="Atention_Cita_idCita",
+ *          property="fechaConsulta",
+ *          description="fechaConsulta",
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
+ *          property="informacionMedica",
+ *          description="informacionMedica",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="FichaMedica_id",
+ *          description="FichaMedica_id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="Diagnostico_idDiagnostico",
- *          description="Diagnostico_idDiagnostico",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="Observacion",
- *          description="Observacion",
+ *          property="habitos",
+ *          description="habitos",
  *          type="string"
  *      )
  * )
  */
-class DiagnosticoAtencion extends Model
+class HistorialFicha extends Model
 {
     use SoftDeletes;
 
-    public $table = 'Atention_has_Diagnostico';
+    public $table = 'Historial';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -48,9 +53,10 @@ class DiagnosticoAtencion extends Model
 
 
     public $fillable = [
-        'Atention_Cita_idCita',
-        'Diagnostico_idDiagnostico',
-        'Observacion'
+        'fechaConsulta',
+        'informacionMedica',
+        'FichaMedica_id',
+        'habitos'
     ];
 
     /**
@@ -60,9 +66,10 @@ class DiagnosticoAtencion extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'Atention_Cita_idCita' => 'integer',
-        'Diagnostico_idDiagnostico' => 'integer',
-        'Observacion' => 'string'
+        'fechaConsulta' => 'date',
+        'informacionMedica' => 'string',
+        'FichaMedica_id' => 'integer',
+        'habitos' => 'string'
     ];
 
     /**
@@ -77,8 +84,8 @@ class DiagnosticoAtencion extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function diagnostico()
+    public function fichaMedica()
     {
-        return $this->belongsTo(\App\Models\Diagnostico::class);
+        return $this->belongsTo(\App\Models\FichaMedica::class);
     }
 }

@@ -19,6 +19,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="descripcion",
  *          description="descripcion",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="nombre",
+ *          description="nombre",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="remember_token",
+ *          description="remember_token",
+ *          type="string"
  *      )
  * )
  */
@@ -36,7 +46,9 @@ class Prevision extends Model
 
 
     public $fillable = [
-        'descripcion'
+        'descripcion',
+        'nombre',
+        'remember_token'
     ];
 
     /**
@@ -46,7 +58,9 @@ class Prevision extends Model
      */
     protected $casts = [
         'idPrevision' => 'integer',
-        'descripcion' => 'string'
+        'descripcion' => 'string',
+        'nombre' => 'string',
+        'remember_token' => 'string'
     ];
 
     /**

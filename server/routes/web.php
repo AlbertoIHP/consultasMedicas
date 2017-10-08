@@ -67,3 +67,38 @@
 // Route::resource('viaAdministracionMedicamentos', 'ViaAdministracionMedicamentoController');
 //
 // Route::resource('recetaMedicamentos', 'RecetaMedicamentoController');
+
+
+Route::resource('historialFichas', 'HistorialFichaController');
+
+Route::resource('users', 'UserController');
+
+Route::resource('users', 'UserController');
+
+Route::resource('regions', 'RegionController');
+
+Route::resource('regions', 'RegionController');
+
+Route::resource('regions', 'RegionController');
+
+Route::resource('provincias', 'ProvinciaController');
+
+Route::resource('comunas', 'ComunaController');
+
+Route::resource('previsions', 'PrevisionController');
+
+Route::resource('previsionActuals', 'PrevisionActualController');
+
+Route::resource('roles', 'RoleController');
+
+Route::resource('users', 'UserController');
+
+Route::resource('personas', 'PersonaController');
+
+Route::resource('generos', 'GeneroController');
+
+Route::resource('fichaMedicas', 'FichaMedicaController');
+
+Route::resource('estadoCivils', 'EstadoCivilController');
+
+Route::resource('historialFichas', 'HistorialFichaController');

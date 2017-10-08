@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class RegionRepository
  * @package App\Repositories
- * @version October 8, 2017, 1:34 am UTC
+ * @version October 8, 2017, 6:53 am UTC
  *
  * @method Region findWithoutFail($id, $columns = ['*'])
  * @method Region find($id, $columns = ['*'])
@@ -20,7 +20,8 @@ class RegionRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'nombre'
+        'nombre',
+        'remember_token'
     ];
 
     /**

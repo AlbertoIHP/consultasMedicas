@@ -73,7 +73,8 @@ class EstadoCivilDataTable extends DataTable
     {
         return [
             'descripcion' => ['name' => 'descripcion', 'data' => 'descripcion'],
-            'nombre' => ['name' => 'nombre', 'data' => 'nombre']
+            'nombre' => ['name' => 'nombre', 'data' => 'nombre'],
+            'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
         ];
     }
 

@@ -72,8 +72,9 @@ class ComunaDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'idComuna' => ['name' => 'idComuna', 'data' => 'idComuna'],
-            'nombre' => ['name' => 'nombre', 'data' => 'nombre']
+            'Provincia_idProvincia' => ['name' => 'Provincia_idProvincia', 'data' => 'Provincia_idProvincia'],
+            'nombre' => ['name' => 'nombre', 'data' => 'nombre'],
+            'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
         ];
     }
 

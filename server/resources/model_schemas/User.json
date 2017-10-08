@@ -1,6 +1,6 @@
 [
     {
-        "name": "Persona_rut",
+        "name": "email",
         "dbType": "string",
         "htmlType": "text",
         "validations": null,
@@ -9,17 +9,6 @@
         "primary": true,
         "inForm": false,
         "inIndex": false
-    },
-    {
-        "name": "email",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": null,
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
     },
     {
         "name": "password",
@@ -44,8 +33,48 @@
         "inIndex": true
     },
     {
-        "type": "relation",
-        "relation": "mt1,Persona"
+        "name": "remember_token",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "created_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "deleted_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
     },
     {
         "type": "relation",
@@ -58,6 +87,10 @@
     {
         "type": "relation",
         "relation": "mtm,,Doctor"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,Persona"
     },
     {
         "type": "relation",

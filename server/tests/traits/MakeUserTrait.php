@@ -42,9 +42,12 @@ trait MakeUserTrait
         $fake = Faker::create();
 
         return array_merge([
-            'email' => $fake->word,
             'password' => $fake->word,
-            'Role_idRole' => $fake->randomDigitNotNull
+            'Role_idRole' => $fake->randomDigitNotNull,
+            'remember_token' => $fake->word,
+            'created_at' => $fake->date('Y-m-d H:i:s'),
+            'updated_at' => $fake->date('Y-m-d H:i:s'),
+            'deleted_at' => $fake->date('Y-m-d H:i:s')
         ], $userFields);
     }
 }

@@ -42,7 +42,14 @@ trait MakeFichaMedicaTrait
         $fake = Faker::create();
 
         return array_merge([
-            'FichaMedicacol' => $fake->word
+            'nombre' => $fake->word,
+            'Persona_rut' => $fake->word,
+            'nombreResponsable' => $fake->word,
+            'fechaCreacion' => $fake->word,
+            'remember_token' => $fake->word,
+            'created_at' => $fake->date('Y-m-d H:i:s'),
+            'updated_at' => $fake->date('Y-m-d H:i:s'),
+            'deleted_at' => $fake->date('Y-m-d H:i:s')
         ], $fichaMedicaFields);
     }
 }

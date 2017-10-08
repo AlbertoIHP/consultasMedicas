@@ -72,9 +72,10 @@ class PrevisionActualDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'Persona_rut' => ['name' => 'Persona_rut', 'data' => 'Persona_rut'],
             'fechaActualizacion' => ['name' => 'fechaActualizacion', 'data' => 'fechaActualizacion'],
-            'Prevision_idPrevision' => ['name' => 'Prevision_idPrevision', 'data' => 'Prevision_idPrevision']
+            'Prevision_idPrevision' => ['name' => 'Prevision_idPrevision', 'data' => 'Prevision_idPrevision'],
+            'Persona_rut' => ['name' => 'Persona_rut', 'data' => 'Persona_rut'],
+            'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
         ];
     }
 

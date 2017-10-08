@@ -28,24 +28,6 @@
     <p>{!! $persona->apellido2 !!}</p>
 </div>
 
-<!-- Tipo Field -->
-<div class="form-group">
-    {!! Form::label('tipo', 'Tipo:') !!}
-    <p>{!! $persona->tipo !!}</p>
-</div>
-
-<!-- Idregion Field -->
-<div class="form-group">
-    {!! Form::label('idRegion', 'Idregion:') !!}
-    <p>{!! $persona->idRegion !!}</p>
-</div>
-
-<!-- Idprovincia Field -->
-<div class="form-group">
-    {!! Form::label('idProvincia', 'Idprovincia:') !!}
-    <p>{!! $persona->idProvincia !!}</p>
-</div>
-
 <!-- Fono Casa Field -->
 <div class="form-group">
     {!! Form::label('fono_casa', 'Fono Casa:') !!}
@@ -70,27 +52,45 @@
     <p>{!! $persona->idGenero !!}</p>
 </div>
 
-<!-- Fichamedica Rut Field -->
+<!-- Estadocivil Idestado Field -->
 <div class="form-group">
-    {!! Form::label('FichaMedica_rut', 'Fichamedica Rut:') !!}
-    <p>{!! $persona->FichaMedica_rut !!}</p>
-</div>
-
-<!-- Estadocivil Idestadocivil Field -->
-<div class="form-group">
-    {!! Form::label('EstadoCivil_idEstadoCivil', 'Estadocivil Idestadocivil:') !!}
-    <p>{!! $persona->EstadoCivil_idEstadoCivil !!}</p>
-</div>
-
-<!-- Comuna Provincia Idprovincia Field -->
-<div class="form-group">
-    {!! Form::label('Comuna_Provincia_idProvincia', 'Comuna Provincia Idprovincia:') !!}
-    <p>{!! $persona->Comuna_Provincia_idProvincia !!}</p>
+    {!! Form::label('EstadoCivil_idEstado', 'Estadocivil Idestado:') !!}
+    <p>{!! $persona->EstadoCivil_idEstado !!}</p>
 </div>
 
 <!-- Comuna Idcomuna Field -->
 <div class="form-group">
     {!! Form::label('Comuna_idComuna', 'Comuna Idcomuna:') !!}
     <p>{!! $persona->Comuna_idComuna !!}</p>
+</div>
+
+<!-- Usuario Email Field -->
+<div class="form-group">
+    {!! Form::label('Usuario_email', 'Usuario Email:') !!}
+    <p>{!! $persona->Usuario_email !!}</p>
+</div>
+
+<!-- Remember Token Field -->
+<div class="form-group">
+    {!! Form::label('remember_token', 'Remember Token:') !!}
+    <p>{!! $persona->remember_token !!}</p>
+</div>
+
+<!-- Created At Field -->
+<div class="form-group">
+    {!! Form::label('created_at', 'Created At:') !!}
+    <p>{!! $persona->created_at !!}</p>
+</div>
+
+<!-- Updated At Field -->
+<div class="form-group">
+    {!! Form::label('updated_at', 'Updated At:') !!}
+    <p>{!! $persona->updated_at !!}</p>
+</div>
+
+<!-- Deleted At Field -->
+<div class="form-group">
+    {!! Form::label('deleted_at', 'Deleted At:') !!}
+    <p>{!! $persona->deleted_at !!}</p>
 </div>
 

@@ -42,8 +42,12 @@ trait MakeComunaTrait
         $fake = Faker::create();
 
         return array_merge([
-            'idComuna' => $fake->randomDigitNotNull,
-            'nombre' => $fake->word
+            'Provincia_idProvincia' => $fake->randomDigitNotNull,
+            'nombre' => $fake->word,
+            'remember_token' => $fake->word,
+            'created_at' => $fake->date('Y-m-d H:i:s'),
+            'updated_at' => $fake->date('Y-m-d H:i:s'),
+            'deleted_at' => $fake->date('Y-m-d H:i:s')
         ], $comunaFields);
     }
 }

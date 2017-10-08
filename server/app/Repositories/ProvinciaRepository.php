@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class ProvinciaRepository
  * @package App\Repositories
- * @version October 8, 2017, 1:35 am UTC
+ * @version October 8, 2017, 6:53 am UTC
  *
  * @method Provincia findWithoutFail($id, $columns = ['*'])
  * @method Provincia find($id, $columns = ['*'])
@@ -21,7 +21,8 @@ class ProvinciaRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'nombre',
-        'Region_idRegion'
+        'Region_idRegion',
+        'remember_token'
     ];
 
     /**

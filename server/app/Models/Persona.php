@@ -35,23 +35,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="tipo",
- *          description="tipo",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="idRegion",
- *          description="idRegion",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="idProvincia",
- *          description="idProvincia",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="fono_casa",
  *          description="fono_casa",
  *          type="string"
@@ -73,19 +56,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="FichaMedica_rut",
- *          description="FichaMedica_rut",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="EstadoCivil_idEstadoCivil",
- *          description="EstadoCivil_idEstadoCivil",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="Comuna_Provincia_idProvincia",
- *          description="Comuna_Provincia_idProvincia",
+ *          property="EstadoCivil_idEstado",
+ *          description="EstadoCivil_idEstado",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -94,6 +66,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="Comuna_idComuna",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="Usuario_email",
+ *          description="Usuario_email",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="remember_token",
+ *          description="remember_token",
+ *          type="string"
  *      )
  * )
  */
@@ -115,17 +97,14 @@ class Persona extends Model
         'nombre2',
         'apellido1',
         'apellido2',
-        'tipo',
-        'idRegion',
-        'idProvincia',
         'fono_casa',
         'fono_trabajo',
         'movil',
         'idGenero',
-        'FichaMedica_rut',
-        'EstadoCivil_idEstadoCivil',
-        'Comuna_Provincia_idProvincia',
-        'Comuna_idComuna'
+        'EstadoCivil_idEstado',
+        'Comuna_idComuna',
+        'Usuario_email',
+        'remember_token'
     ];
 
     /**
@@ -139,17 +118,14 @@ class Persona extends Model
         'nombre2' => 'string',
         'apellido1' => 'string',
         'apellido2' => 'string',
-        'tipo' => 'string',
-        'idRegion' => 'integer',
-        'idProvincia' => 'integer',
         'fono_casa' => 'string',
         'fono_trabajo' => 'string',
         'movil' => 'string',
         'idGenero' => 'integer',
-        'FichaMedica_rut' => 'string',
-        'EstadoCivil_idEstadoCivil' => 'integer',
-        'Comuna_Provincia_idProvincia' => 'integer',
-        'Comuna_idComuna' => 'integer'
+        'EstadoCivil_idEstado' => 'integer',
+        'Comuna_idComuna' => 'integer',
+        'Usuario_email' => 'string',
+        'remember_token' => 'string'
     ];
 
     /**
@@ -180,17 +156,17 @@ class Persona extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function fichaMedica()
+    public function genero()
     {
-        return $this->belongsTo(\App\Models\FichaMedica::class);
+        return $this->belongsTo(\App\Models\Genero::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function genero()
+    public function usuario()
     {
-        return $this->belongsTo(\App\Models\Genero::class);
+        return $this->belongsTo(\App\Models\Usuario::class);
     }
 
     /**
@@ -210,6 +186,14 @@ class Persona extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function fichaMedicas()
+    {
+        return $this->hasMany(\App\Models\FichaMedica::class);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
     public function previsions()
@@ -223,13 +207,5 @@ class Persona extends Model
     public function previsions()
     {
         return $this->belongsToMany(\App\Models\Prevision::class, 'PrevisionActual');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function roles()
-    {
-        return $this->belongsToMany(\App\Models\Role::class, 'Usuario');
     }
 }

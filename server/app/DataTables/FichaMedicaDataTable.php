@@ -72,7 +72,11 @@ class FichaMedicaDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'FichaMedicacol' => ['name' => 'FichaMedicacol', 'data' => 'FichaMedicacol']
+            'nombre' => ['name' => 'nombre', 'data' => 'nombre'],
+            'Persona_rut' => ['name' => 'Persona_rut', 'data' => 'Persona_rut'],
+            'nombreResponsable' => ['name' => 'nombreResponsable', 'data' => 'nombreResponsable'],
+            'fechaCreacion' => ['name' => 'fechaCreacion', 'data' => 'fechaCreacion'],
+            'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
         ];
     }
 

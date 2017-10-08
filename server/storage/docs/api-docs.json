@@ -6,603 +6,6 @@
     },
     "basePath": "/api/v1",
     "paths": {
-        "/atentions": {
-            "get": {
-                "tags": [
-                    "Atention"
-                ],
-                "summary": "Get a listing of the Atentions.",
-                "description": "Get all Atentions",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Atention"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Atention"
-                ],
-                "summary": "Store a newly created Atention in storage",
-                "description": "Store Atention",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "Atention that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/Atention"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Atention"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/atentions/{id}": {
-            "get": {
-                "tags": [
-                    "Atention"
-                ],
-                "summary": "Display the specified Atention",
-                "description": "Get Atention",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Atention",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Atention"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Atention"
-                ],
-                "summary": "Update the specified Atention in storage",
-                "description": "Update Atention",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Atention",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "Atention that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/Atention"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Atention"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Atention"
-                ],
-                "summary": "Remove the specified Atention from storage",
-                "description": "Delete Atention",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Atention",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/boxConsultas": {
-            "get": {
-                "tags": [
-                    "BoxConsulta"
-                ],
-                "summary": "Get a listing of the BoxConsultas.",
-                "description": "Get all BoxConsultas",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/BoxConsulta"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "BoxConsulta"
-                ],
-                "summary": "Store a newly created BoxConsulta in storage",
-                "description": "Store BoxConsulta",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "BoxConsulta that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/BoxConsulta"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/BoxConsulta"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/boxConsultas/{id}": {
-            "get": {
-                "tags": [
-                    "BoxConsulta"
-                ],
-                "summary": "Display the specified BoxConsulta",
-                "description": "Get BoxConsulta",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of BoxConsulta",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/BoxConsulta"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "BoxConsulta"
-                ],
-                "summary": "Update the specified BoxConsulta in storage",
-                "description": "Update BoxConsulta",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of BoxConsulta",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "BoxConsulta that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/BoxConsulta"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/BoxConsulta"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "BoxConsulta"
-                ],
-                "summary": "Remove the specified BoxConsulta from storage",
-                "description": "Delete BoxConsulta",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of BoxConsulta",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/citas": {
-            "get": {
-                "tags": [
-                    "Cita"
-                ],
-                "summary": "Get a listing of the Citas.",
-                "description": "Get all Citas",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Cita"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Cita"
-                ],
-                "summary": "Store a newly created Cita in storage",
-                "description": "Store Cita",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "Cita that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/Cita"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Cita"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/citas/{id}": {
-            "get": {
-                "tags": [
-                    "Cita"
-                ],
-                "summary": "Display the specified Cita",
-                "description": "Get Cita",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Cita",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Cita"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Cita"
-                ],
-                "summary": "Update the specified Cita in storage",
-                "description": "Update Cita",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Cita",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "Cita that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/Cita"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Cita"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Cita"
-                ],
-                "summary": "Remove the specified Cita from storage",
-                "description": "Delete Cita",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Cita",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
         "/comunas": {
             "get": {
                 "tags": [
@@ -777,802 +180,6 @@
                         "name": "id",
                         "in": "path",
                         "description": "id of Comuna",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/diagnosticos": {
-            "get": {
-                "tags": [
-                    "Diagnostico"
-                ],
-                "summary": "Get a listing of the Diagnosticos.",
-                "description": "Get all Diagnosticos",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Diagnostico"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Diagnostico"
-                ],
-                "summary": "Store a newly created Diagnostico in storage",
-                "description": "Store Diagnostico",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "Diagnostico that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/Diagnostico"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Diagnostico"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/diagnosticos/{id}": {
-            "get": {
-                "tags": [
-                    "Diagnostico"
-                ],
-                "summary": "Display the specified Diagnostico",
-                "description": "Get Diagnostico",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Diagnostico",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Diagnostico"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Diagnostico"
-                ],
-                "summary": "Update the specified Diagnostico in storage",
-                "description": "Update Diagnostico",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Diagnostico",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "Diagnostico that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/Diagnostico"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Diagnostico"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Diagnostico"
-                ],
-                "summary": "Remove the specified Diagnostico from storage",
-                "description": "Delete Diagnostico",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Diagnostico",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/diagnosticoAtencions": {
-            "get": {
-                "tags": [
-                    "DiagnosticoAtencion"
-                ],
-                "summary": "Get a listing of the DiagnosticoAtencions.",
-                "description": "Get all DiagnosticoAtencions",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/DiagnosticoAtencion"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "DiagnosticoAtencion"
-                ],
-                "summary": "Store a newly created DiagnosticoAtencion in storage",
-                "description": "Store DiagnosticoAtencion",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "DiagnosticoAtencion that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/DiagnosticoAtencion"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/DiagnosticoAtencion"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/diagnosticoAtencions/{id}": {
-            "get": {
-                "tags": [
-                    "DiagnosticoAtencion"
-                ],
-                "summary": "Display the specified DiagnosticoAtencion",
-                "description": "Get DiagnosticoAtencion",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of DiagnosticoAtencion",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/DiagnosticoAtencion"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "DiagnosticoAtencion"
-                ],
-                "summary": "Update the specified DiagnosticoAtencion in storage",
-                "description": "Update DiagnosticoAtencion",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of DiagnosticoAtencion",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "DiagnosticoAtencion that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/DiagnosticoAtencion"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/DiagnosticoAtencion"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "DiagnosticoAtencion"
-                ],
-                "summary": "Remove the specified DiagnosticoAtencion from storage",
-                "description": "Delete DiagnosticoAtencion",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of DiagnosticoAtencion",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/especialidads": {
-            "get": {
-                "tags": [
-                    "Especialidad"
-                ],
-                "summary": "Get a listing of the Especialidads.",
-                "description": "Get all Especialidads",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Especialidad"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Especialidad"
-                ],
-                "summary": "Store a newly created Especialidad in storage",
-                "description": "Store Especialidad",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "Especialidad that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/Especialidad"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Especialidad"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/especialidads/{id}": {
-            "get": {
-                "tags": [
-                    "Especialidad"
-                ],
-                "summary": "Display the specified Especialidad",
-                "description": "Get Especialidad",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Especialidad",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Especialidad"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Especialidad"
-                ],
-                "summary": "Update the specified Especialidad in storage",
-                "description": "Update Especialidad",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Especialidad",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "Especialidad that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/Especialidad"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Especialidad"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Especialidad"
-                ],
-                "summary": "Remove the specified Especialidad from storage",
-                "description": "Delete Especialidad",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Especialidad",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/estadoCitas": {
-            "get": {
-                "tags": [
-                    "EstadoCita"
-                ],
-                "summary": "Get a listing of the EstadoCitas.",
-                "description": "Get all EstadoCitas",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/EstadoCita"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "EstadoCita"
-                ],
-                "summary": "Store a newly created EstadoCita in storage",
-                "description": "Store EstadoCita",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "EstadoCita that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/EstadoCita"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/EstadoCita"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/estadoCitas/{id}": {
-            "get": {
-                "tags": [
-                    "EstadoCita"
-                ],
-                "summary": "Display the specified EstadoCita",
-                "description": "Get EstadoCita",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of EstadoCita",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/EstadoCita"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "EstadoCita"
-                ],
-                "summary": "Update the specified EstadoCita in storage",
-                "description": "Update EstadoCita",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of EstadoCita",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "EstadoCita that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/EstadoCita"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/EstadoCita"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "EstadoCita"
-                ],
-                "summary": "Remove the specified EstadoCita from storage",
-                "description": "Delete EstadoCita",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of EstadoCita",
                         "required": true,
                         "type": "integer"
                     }
@@ -2195,13 +802,13 @@
                 }
             }
         },
-        "/medicamentos": {
+        "/historialFichas": {
             "get": {
                 "tags": [
-                    "Medicamento"
+                    "HistorialFicha"
                 ],
-                "summary": "Get a listing of the Medicamentos.",
-                "description": "Get all Medicamentos",
+                "summary": "Get a listing of the HistorialFichas.",
+                "description": "Get all HistorialFichas",
                 "produces": [
                     "application/json"
                 ],
@@ -2216,7 +823,7 @@
                                 "data": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/Medicamento"
+                                        "$ref": "#/definitions/HistorialFicha"
                                     }
                                 },
                                 "message": {
@@ -2230,10 +837,10 @@
             },
             "post": {
                 "tags": [
-                    "Medicamento"
+                    "HistorialFicha"
                 ],
-                "summary": "Store a newly created Medicamento in storage",
-                "description": "Store Medicamento",
+                "summary": "Store a newly created HistorialFicha in storage",
+                "description": "Store HistorialFicha",
                 "produces": [
                     "application/json"
                 ],
@@ -2241,10 +848,10 @@
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "Medicamento that should be stored",
+                        "description": "HistorialFicha that should be stored",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/Medicamento"
+                            "$ref": "#/definitions/HistorialFicha"
                         }
                     }
                 ],
@@ -2257,7 +864,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/Medicamento"
+                                    "$ref": "#/definitions/HistorialFicha"
                                 },
                                 "message": {
                                     "type": "string"
@@ -2269,13 +876,13 @@
                 }
             }
         },
-        "/medicamentos/{id}": {
+        "/historialFichas/{id}": {
             "get": {
                 "tags": [
-                    "Medicamento"
+                    "HistorialFicha"
                 ],
-                "summary": "Display the specified Medicamento",
-                "description": "Get Medicamento",
+                "summary": "Display the specified HistorialFicha",
+                "description": "Get HistorialFicha",
                 "produces": [
                     "application/json"
                 ],
@@ -2283,7 +890,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of Medicamento",
+                        "description": "id of HistorialFicha",
                         "required": true,
                         "type": "integer"
                     }
@@ -2297,7 +904,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/Medicamento"
+                                    "$ref": "#/definitions/HistorialFicha"
                                 },
                                 "message": {
                                     "type": "string"
@@ -2310,10 +917,10 @@
             },
             "put": {
                 "tags": [
-                    "Medicamento"
+                    "HistorialFicha"
                 ],
-                "summary": "Update the specified Medicamento in storage",
-                "description": "Update Medicamento",
+                "summary": "Update the specified HistorialFicha in storage",
+                "description": "Update HistorialFicha",
                 "produces": [
                     "application/json"
                 ],
@@ -2321,17 +928,17 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of Medicamento",
+                        "description": "id of HistorialFicha",
                         "required": true,
                         "type": "integer"
                     },
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "Medicamento that should be updated",
+                        "description": "HistorialFicha that should be updated",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/Medicamento"
+                            "$ref": "#/definitions/HistorialFicha"
                         }
                     }
                 ],
@@ -2344,7 +951,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/Medicamento"
+                                    "$ref": "#/definitions/HistorialFicha"
                                 },
                                 "message": {
                                     "type": "string"
@@ -2357,10 +964,10 @@
             },
             "delete": {
                 "tags": [
-                    "Medicamento"
+                    "HistorialFicha"
                 ],
-                "summary": "Remove the specified Medicamento from storage",
-                "description": "Delete Medicamento",
+                "summary": "Remove the specified HistorialFicha from storage",
+                "description": "Delete HistorialFicha",
                 "produces": [
                     "application/json"
                 ],
@@ -2368,7 +975,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of Medicamento",
+                        "description": "id of HistorialFicha",
                         "required": true,
                         "type": "integer"
                     }
@@ -3190,404 +1797,6 @@
                 }
             }
         },
-        "/recetas": {
-            "get": {
-                "tags": [
-                    "Receta"
-                ],
-                "summary": "Get a listing of the Recetas.",
-                "description": "Get all Recetas",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Receta"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Receta"
-                ],
-                "summary": "Store a newly created Receta in storage",
-                "description": "Store Receta",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "Receta that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/Receta"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Receta"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/recetas/{id}": {
-            "get": {
-                "tags": [
-                    "Receta"
-                ],
-                "summary": "Display the specified Receta",
-                "description": "Get Receta",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Receta",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Receta"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Receta"
-                ],
-                "summary": "Update the specified Receta in storage",
-                "description": "Update Receta",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Receta",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "Receta that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/Receta"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Receta"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Receta"
-                ],
-                "summary": "Remove the specified Receta from storage",
-                "description": "Delete Receta",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Receta",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/recetaMedicamentos": {
-            "get": {
-                "tags": [
-                    "RecetaMedicamento"
-                ],
-                "summary": "Get a listing of the RecetaMedicamentos.",
-                "description": "Get all RecetaMedicamentos",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/RecetaMedicamento"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "RecetaMedicamento"
-                ],
-                "summary": "Store a newly created RecetaMedicamento in storage",
-                "description": "Store RecetaMedicamento",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "RecetaMedicamento that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/RecetaMedicamento"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/RecetaMedicamento"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/recetaMedicamentos/{id}": {
-            "get": {
-                "tags": [
-                    "RecetaMedicamento"
-                ],
-                "summary": "Display the specified RecetaMedicamento",
-                "description": "Get RecetaMedicamento",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of RecetaMedicamento",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/RecetaMedicamento"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "RecetaMedicamento"
-                ],
-                "summary": "Update the specified RecetaMedicamento in storage",
-                "description": "Update RecetaMedicamento",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of RecetaMedicamento",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "RecetaMedicamento that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/RecetaMedicamento"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/RecetaMedicamento"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "RecetaMedicamento"
-                ],
-                "summary": "Remove the specified RecetaMedicamento from storage",
-                "description": "Delete RecetaMedicamento",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of RecetaMedicamento",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
         "/regions": {
             "get": {
                 "tags": [
@@ -3986,205 +2195,6 @@
                 }
             }
         },
-        "/tipoBoxes": {
-            "get": {
-                "tags": [
-                    "TipoBox"
-                ],
-                "summary": "Get a listing of the TipoBoxes.",
-                "description": "Get all TipoBoxes",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/TipoBox"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "TipoBox"
-                ],
-                "summary": "Store a newly created TipoBox in storage",
-                "description": "Store TipoBox",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "TipoBox that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/TipoBox"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/TipoBox"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/tipoBoxes/{id}": {
-            "get": {
-                "tags": [
-                    "TipoBox"
-                ],
-                "summary": "Display the specified TipoBox",
-                "description": "Get TipoBox",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of TipoBox",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/TipoBox"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "TipoBox"
-                ],
-                "summary": "Update the specified TipoBox in storage",
-                "description": "Update TipoBox",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of TipoBox",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "TipoBox that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/TipoBox"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/TipoBox"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "TipoBox"
-                ],
-                "summary": "Remove the specified TipoBox from storage",
-                "description": "Delete TipoBox",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of TipoBox",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
         "/users": {
             "get": {
                 "tags": [
@@ -4383,376 +2393,30 @@
                     }
                 }
             }
-        },
-        "/viaAdministracionMedicamentos": {
-            "get": {
-                "tags": [
-                    "ViaAdministracionMedicamento"
-                ],
-                "summary": "Get a listing of the ViaAdministracionMedicamentos.",
-                "description": "Get all ViaAdministracionMedicamentos",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/ViaAdministracionMedicamento"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "ViaAdministracionMedicamento"
-                ],
-                "summary": "Store a newly created ViaAdministracionMedicamento in storage",
-                "description": "Store ViaAdministracionMedicamento",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "ViaAdministracionMedicamento that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/ViaAdministracionMedicamento"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/ViaAdministracionMedicamento"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/viaAdministracionMedicamentos/{id}": {
-            "get": {
-                "tags": [
-                    "ViaAdministracionMedicamento"
-                ],
-                "summary": "Display the specified ViaAdministracionMedicamento",
-                "description": "Get ViaAdministracionMedicamento",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of ViaAdministracionMedicamento",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/ViaAdministracionMedicamento"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "ViaAdministracionMedicamento"
-                ],
-                "summary": "Update the specified ViaAdministracionMedicamento in storage",
-                "description": "Update ViaAdministracionMedicamento",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of ViaAdministracionMedicamento",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "ViaAdministracionMedicamento that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/ViaAdministracionMedicamento"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/ViaAdministracionMedicamento"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "ViaAdministracionMedicamento"
-                ],
-                "summary": "Remove the specified ViaAdministracionMedicamento from storage",
-                "description": "Delete ViaAdministracionMedicamento",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of ViaAdministracionMedicamento",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
         }
     },
     "definitions": {
-        "Atention": {
-            "required": [
-                ""
-            ],
-            "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "Cita_idCita": {
-                    "description": "Cita_idCita",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "Doctor_rut": {
-                    "description": "Doctor_rut",
-                    "type": "string"
-                },
-                "BoxConsulta_idConsulta": {
-                    "description": "BoxConsulta_idConsulta",
-                    "type": "integer",
-                    "format": "int32"
-                }
-            }
-        },
-        "BoxConsulta": {
-            "required": [
-                ""
-            ],
-            "properties": {
-                "idConsulta": {
-                    "description": "idConsulta",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "ubicacion": {
-                    "description": "ubicacion",
-                    "type": "string"
-                },
-                "TipoBox_idTipoBox": {
-                    "description": "TipoBox_idTipoBox",
-                    "type": "integer",
-                    "format": "int32"
-                }
-            }
-        },
-        "Cita": {
-            "required": [
-                ""
-            ],
-            "properties": {
-                "idCita": {
-                    "description": "idCita",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "Consulta_idConsulta": {
-                    "description": "Consulta_idConsulta",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "Doctor_rut": {
-                    "description": "Doctor_rut",
-                    "type": "string"
-                },
-                "Persona_rut": {
-                    "description": "Persona_rut",
-                    "type": "string"
-                },
-                "EstadoCita_idEstadoCita": {
-                    "description": "EstadoCita_idEstadoCita",
-                    "type": "integer",
-                    "format": "int32"
-                }
-            }
-        },
         "Comuna": {
             "required": [
                 ""
             ],
             "properties": {
-                "Provincia_idProvincia": {
-                    "description": "Provincia_idProvincia",
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "idComuna": {
                     "description": "idComuna",
                     "type": "integer",
                     "format": "int32"
                 },
-                "nombre": {
-                    "description": "nombre",
-                    "type": "string"
-                }
-            }
-        },
-        "Diagnostico": {
-            "required": [
-                ""
-            ],
-            "properties": {
-                "idDiagnostico": {
-                    "description": "idDiagnostico",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "diagnostico": {
-                    "description": "diagnostico",
-                    "type": "string"
-                }
-            }
-        },
-        "DiagnosticoAtencion": {
-            "required": [
-                ""
-            ],
-            "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "Atention_Cita_idCita": {
-                    "description": "Atention_Cita_idCita",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "Diagnostico_idDiagnostico": {
-                    "description": "Diagnostico_idDiagnostico",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "Observacion": {
-                    "description": "Observacion",
-                    "type": "string"
-                }
-            }
-        },
-        "Especialidad": {
-            "required": [
-                ""
-            ],
-            "properties": {
-                "idEspecialidad": {
-                    "description": "idEspecialidad",
+                "Provincia_idProvincia": {
+                    "description": "Provincia_idProvincia",
                     "type": "integer",
                     "format": "int32"
                 },
                 "nombre": {
                     "description": "nombre",
                     "type": "string"
-                }
-            }
-        },
-        "EstadoCita": {
-            "required": [
-                ""
-            ],
-            "properties": {
-                "idEstadoCita": {
-                    "description": "idEstadoCita",
-                    "type": "integer",
-                    "format": "int32"
                 },
-                "estadoCita": {
-                    "description": "estadoCita",
+                "remember_token": {
+                    "description": "remember_token",
                     "type": "string"
                 }
             }
@@ -4774,6 +2438,10 @@
                 "nombre": {
                     "description": "nombre",
                     "type": "string"
+                },
+                "remember_token": {
+                    "description": "remember_token",
+                    "type": "string"
                 }
             }
         },
@@ -4782,12 +2450,30 @@
                 ""
             ],
             "properties": {
-                "rut": {
-                    "description": "rut",
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nombre": {
+                    "description": "nombre",
                     "type": "string"
                 },
-                "FichaMedicacol": {
-                    "description": "FichaMedicacol",
+                "Persona_rut": {
+                    "description": "Persona_rut",
+                    "type": "string"
+                },
+                "nombreResponsable": {
+                    "description": "nombreResponsable",
+                    "type": "string"
+                },
+                "fechaCreacion": {
+                    "description": "fechaCreacion",
+                    "type": "string",
+                    "format": "date"
+                },
+                "remember_token": {
+                    "description": "remember_token",
                     "type": "string"
                 }
             }
@@ -4809,25 +2495,39 @@
                 "nombre": {
                     "description": "nombre",
                     "type": "string"
+                },
+                "remember_token": {
+                    "description": "remember_token",
+                    "type": "string"
                 }
             }
         },
-        "Medicamento": {
+        "HistorialFicha": {
             "required": [
                 ""
             ],
             "properties": {
-                "idMedicamento": {
-                    "description": "idMedicamento",
+                "id": {
+                    "description": "id",
                     "type": "integer",
                     "format": "int32"
                 },
-                "nombrecomun": {
-                    "description": "nombrecomun",
+                "fechaConsulta": {
+                    "description": "fechaConsulta",
+                    "type": "string",
+                    "format": "date"
+                },
+                "informacionMedica": {
+                    "description": "informacionMedica",
                     "type": "string"
                 },
-                "nombrecientifico": {
-                    "description": "nombrecientifico",
+                "FichaMedica_id": {
+                    "description": "FichaMedica_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "habitos": {
+                    "description": "habitos",
                     "type": "string"
                 }
             }
@@ -4857,20 +2557,6 @@
                     "description": "apellido2",
                     "type": "string"
                 },
-                "tipo": {
-                    "description": "tipo",
-                    "type": "string"
-                },
-                "idRegion": {
-                    "description": "idRegion",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "idProvincia": {
-                    "description": "idProvincia",
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "fono_casa": {
                     "description": "fono_casa",
                     "type": "string"
@@ -4888,17 +2574,8 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "FichaMedica_rut": {
-                    "description": "FichaMedica_rut",
-                    "type": "string"
-                },
-                "EstadoCivil_idEstadoCivil": {
-                    "description": "EstadoCivil_idEstadoCivil",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "Comuna_Provincia_idProvincia": {
-                    "description": "Comuna_Provincia_idProvincia",
+                "EstadoCivil_idEstado": {
+                    "description": "EstadoCivil_idEstado",
                     "type": "integer",
                     "format": "int32"
                 },
@@ -4906,6 +2583,14 @@
                     "description": "Comuna_idComuna",
                     "type": "integer",
                     "format": "int32"
+                },
+                "Usuario_email": {
+                    "description": "Usuario_email",
+                    "type": "string"
+                },
+                "remember_token": {
+                    "description": "remember_token",
+                    "type": "string"
                 }
             }
         },
@@ -4922,6 +2607,14 @@
                 "descripcion": {
                     "description": "descripcion",
                     "type": "string"
+                },
+                "nombre": {
+                    "description": "nombre",
+                    "type": "string"
+                },
+                "remember_token": {
+                    "description": "remember_token",
+                    "type": "string"
                 }
             }
         },
@@ -4935,10 +2628,6 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "Persona_rut": {
-                    "description": "Persona_rut",
-                    "type": "string"
-                },
                 "fechaActualizacion": {
                     "description": "fechaActualizacion",
                     "type": "string",
@@ -4948,6 +2637,14 @@
                     "description": "Prevision_idPrevision",
                     "type": "integer",
                     "format": "int32"
+                },
+                "Persona_rut": {
+                    "description": "Persona_rut",
+                    "type": "string"
+                },
+                "remember_token": {
+                    "description": "remember_token",
+                    "type": "string"
                 }
             }
         },
@@ -4969,77 +2666,10 @@
                     "description": "Region_idRegion",
                     "type": "integer",
                     "format": "int32"
-                }
-            }
-        },
-        "Receta": {
-            "required": [
-                ""
-            ],
-            "properties": {
-                "idReceta": {
-                    "description": "idReceta",
-                    "type": "integer",
-                    "format": "int32"
                 },
-                "Recetacol": {
-                    "description": "Recetacol",
+                "remember_token": {
+                    "description": "remember_token",
                     "type": "string"
-                },
-                "Atention_Cita_idCita": {
-                    "description": "Atention_Cita_idCita",
-                    "type": "integer",
-                    "format": "int32"
-                }
-            }
-        },
-        "RecetaMedicamento": {
-            "required": [
-                ""
-            ],
-            "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "Receta_idReceta": {
-                    "description": "Receta_idReceta",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "Medicamento_idMedicamento": {
-                    "description": "Medicamento_idMedicamento",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "Receta_has_Medicamentocol": {
-                    "description": "Receta_has_Medicamentocol",
-                    "type": "string"
-                },
-                "dosis": {
-                    "description": "dosis",
-                    "type": "string"
-                },
-                "cantidad": {
-                    "description": "cantidad",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "tiempo": {
-                    "description": "tiempo",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "intervalo": {
-                    "description": "intervalo",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "ViaAdministracionMedicamento_idViaAdministracionMedicamento": {
-                    "description": "ViaAdministracionMedicamento_idViaAdministracionMedicamento",
-                    "type": "integer",
-                    "format": "int32"
                 }
             }
         },
@@ -5056,6 +2686,10 @@
                 "nombre": {
                     "description": "nombre",
                     "type": "string"
+                },
+                "remember_token": {
+                    "description": "remember_token",
+                    "type": "string"
                 }
             }
         },
@@ -5069,24 +2703,12 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "name": {
-                    "description": "name",
+                "nombre": {
+                    "description": "nombre",
                     "type": "string"
-                }
-            }
-        },
-        "TipoBox": {
-            "required": [
-                ""
-            ],
-            "properties": {
-                "idTipoBox": {
-                    "description": "idTipoBox",
-                    "type": "integer",
-                    "format": "int32"
                 },
-                "descripcion": {
-                    "description": "descripcion",
+                "remember_token": {
+                    "description": "remember_token",
                     "type": "string"
                 }
             }
@@ -5096,10 +2718,6 @@
                 ""
             ],
             "properties": {
-                "Persona_rut": {
-                    "description": "Persona_rut",
-                    "type": "string"
-                },
                 "email": {
                     "description": "email",
                     "type": "string"
@@ -5112,21 +2730,9 @@
                     "description": "Role_idRole",
                     "type": "integer",
                     "format": "int32"
-                }
-            }
-        },
-        "ViaAdministracionMedicamento": {
-            "required": [
-                ""
-            ],
-            "properties": {
-                "idViaAdministracionMedicamento": {
-                    "description": "idViaAdministracionMedicamento",
-                    "type": "integer",
-                    "format": "int32"
                 },
-                "descripcion": {
-                    "description": "descripcion",
+                "remember_token": {
+                    "description": "remember_token",
                     "type": "string"
                 }
             }

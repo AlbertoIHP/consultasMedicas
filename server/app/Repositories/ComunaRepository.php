@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class ComunaRepository
  * @package App\Repositories
- * @version October 8, 2017, 1:35 am UTC
+ * @version October 8, 2017, 6:56 am UTC
  *
  * @method Comuna findWithoutFail($id, $columns = ['*'])
  * @method Comuna find($id, $columns = ['*'])
@@ -20,8 +20,9 @@ class ComunaRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'idComuna',
-        'nombre'
+        'Provincia_idProvincia',
+        'nombre',
+        'remember_token'
     ];
 
     /**

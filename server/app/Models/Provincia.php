@@ -25,6 +25,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="Region_idRegion",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="remember_token",
+ *          description="remember_token",
+ *          type="string"
  *      )
  * )
  */
@@ -43,7 +48,8 @@ class Provincia extends Model
 
     public $fillable = [
         'nombre',
-        'Region_idRegion'
+        'Region_idRegion',
+        'remember_token'
     ];
 
     /**
@@ -54,7 +60,8 @@ class Provincia extends Model
     protected $casts = [
         'idProvincia' => 'integer',
         'nombre' => 'string',
-        'Region_idRegion' => 'integer'
+        'Region_idRegion' => 'integer',
+        'remember_token' => 'string'
     ];
 
     /**
@@ -75,10 +82,10 @@ class Provincia extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function comuna()
+    public function comunas()
     {
-        return $this->hasOne(\App\Models\Comuna::class);
+        return $this->hasMany(\App\Models\Comuna::class);
     }
 }

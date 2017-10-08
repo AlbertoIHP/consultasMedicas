@@ -16,8 +16,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="name",
- *          description="name",
+ *          property="nombre",
+ *          description="nombre",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="remember_token",
+ *          description="remember_token",
  *          type="string"
  *      )
  * )
@@ -36,7 +41,8 @@ class Role extends Model
 
 
     public $fillable = [
-        'name'
+        'nombre',
+        'remember_token'
     ];
 
     /**
@@ -46,7 +52,8 @@ class Role extends Model
      */
     protected $casts = [
         'idRole' => 'integer',
-        'name' => 'string'
+        'nombre' => 'string',
+        'remember_token' => 'string'
     ];
 
     /**
@@ -59,10 +66,10 @@ class Role extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function personas()
+    public function usuarios()
     {
-        return $this->belongsToMany(\App\Models\Persona::class, 'Usuario');
+        return $this->hasMany(\App\Models\Usuario::class);
     }
 }

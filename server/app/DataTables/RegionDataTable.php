@@ -72,7 +72,8 @@ class RegionDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'nombre' => ['name' => 'nombre', 'data' => 'nombre']
+            'nombre' => ['name' => 'nombre', 'data' => 'nombre'],
+            'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
         ];
     }
 

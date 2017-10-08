@@ -72,7 +72,9 @@ class PrevisionDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'descripcion' => ['name' => 'descripcion', 'data' => 'descripcion']
+            'descripcion' => ['name' => 'descripcion', 'data' => 'descripcion'],
+            'nombre' => ['name' => 'nombre', 'data' => 'nombre'],
+            'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
         ];
     }
 

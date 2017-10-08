@@ -10,20 +10,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      definition="Comuna",
  *      required={""},
  *      @SWG\Property(
- *          property="Provincia_idProvincia",
- *          description="Provincia_idProvincia",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="idComuna",
  *          description="idComuna",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="Provincia_idProvincia",
+ *          description="Provincia_idProvincia",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="nombre",
  *          description="nombre",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="remember_token",
+ *          description="remember_token",
  *          type="string"
  *      )
  * )
@@ -42,8 +47,9 @@ class Comuna extends Model
 
 
     public $fillable = [
-        'idComuna',
-        'nombre'
+        'Provincia_idProvincia',
+        'nombre',
+        'remember_token'
     ];
 
     /**
@@ -52,9 +58,10 @@ class Comuna extends Model
      * @var array
      */
     protected $casts = [
-        'Provincia_idProvincia' => 'integer',
         'idComuna' => 'integer',
-        'nombre' => 'string'
+        'Provincia_idProvincia' => 'integer',
+        'nombre' => 'string',
+        'remember_token' => 'string'
     ];
 
     /**

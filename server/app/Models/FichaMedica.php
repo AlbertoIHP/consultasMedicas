@@ -10,13 +10,35 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      definition="FichaMedica",
  *      required={""},
  *      @SWG\Property(
- *          property="rut",
- *          description="rut",
+ *          property="id",
+ *          description="id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="nombre",
+ *          description="nombre",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="FichaMedicacol",
- *          description="FichaMedicacol",
+ *          property="Persona_rut",
+ *          description="Persona_rut",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="nombreResponsable",
+ *          description="nombreResponsable",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="fechaCreacion",
+ *          description="fechaCreacion",
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
+ *          property="remember_token",
+ *          description="remember_token",
  *          type="string"
  *      )
  * )
@@ -35,7 +57,11 @@ class FichaMedica extends Model
 
 
     public $fillable = [
-        'FichaMedicacol'
+        'nombre',
+        'Persona_rut',
+        'nombreResponsable',
+        'fechaCreacion',
+        'remember_token'
     ];
 
     /**
@@ -44,8 +70,12 @@ class FichaMedica extends Model
      * @var array
      */
     protected $casts = [
-        'rut' => 'string',
-        'FichaMedicacol' => 'string'
+        'id' => 'integer',
+        'nombre' => 'string',
+        'Persona_rut' => 'string',
+        'nombreResponsable' => 'string',
+        'fechaCreacion' => 'date',
+        'remember_token' => 'string'
     ];
 
     /**
@@ -58,10 +88,18 @@ class FichaMedica extends Model
     ];
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function persona()
+    {
+        return $this->belongsTo(\App\Models\Persona::class);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function personas()
+    public function historials()
     {
-        return $this->hasMany(\App\Models\Persona::class);
+        return $this->hasMany(\App\Models\Historial::class);
     }
 }

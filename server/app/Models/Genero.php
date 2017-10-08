@@ -24,6 +24,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="nombre",
  *          description="nombre",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="remember_token",
+ *          description="remember_token",
+ *          type="string"
  *      )
  * )
  */
@@ -42,7 +47,8 @@ class Genero extends Model
 
     public $fillable = [
         'descripcion',
-        'nombre'
+        'nombre',
+        'remember_token'
     ];
 
     /**
@@ -53,7 +59,8 @@ class Genero extends Model
     protected $casts = [
         'idGenero' => 'integer',
         'descripcion' => 'string',
-        'nombre' => 'string'
+        'nombre' => 'string',
+        'remember_token' => 'string'
     ];
 
     /**

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateDiagnosticoAPIRequest;
-use App\Http\Requests\API\UpdateDiagnosticoAPIRequest;
-use App\Models\Diagnostico;
-use App\Repositories\DiagnosticoRepository;
+use App\Http\Requests\API\CreateHistorialFichaAPIRequest;
+use App\Http\Requests\API\UpdateHistorialFichaAPIRequest;
+use App\Models\HistorialFicha;
+use App\Repositories\HistorialFichaRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
@@ -13,18 +13,18 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 /**
- * Class DiagnosticoController
+ * Class HistorialFichaController
  * @package App\Http\Controllers\API
  */
 
-class DiagnosticoAPIController extends AppBaseController
+class HistorialFichaAPIController extends AppBaseController
 {
-    /** @var  DiagnosticoRepository */
-    private $diagnosticoRepository;
+    /** @var  HistorialFichaRepository */
+    private $historialFichaRepository;
 
-    public function __construct(DiagnosticoRepository $diagnosticoRepo)
+    public function __construct(HistorialFichaRepository $historialFichaRepo)
     {
-        $this->diagnosticoRepository = $diagnosticoRepo;
+        $this->historialFichaRepository = $historialFichaRepo;
     }
 
     /**
@@ -32,10 +32,10 @@ class DiagnosticoAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/diagnosticos",
-     *      summary="Get a listing of the Diagnosticos.",
-     *      tags={"Diagnostico"},
-     *      description="Get all Diagnosticos",
+     *      path="/historialFichas",
+     *      summary="Get a listing of the HistorialFichas.",
+     *      tags={"HistorialFicha"},
+     *      description="Get all HistorialFichas",
      *      produces={"application/json"},
      *      @SWG\Response(
      *          response=200,
@@ -49,7 +49,7 @@ class DiagnosticoAPIController extends AppBaseController
      *              @SWG\Property(
      *                  property="data",
      *                  type="array",
-     *                  @SWG\Items(ref="#/definitions/Diagnostico")
+     *                  @SWG\Items(ref="#/definitions/HistorialFicha")
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -61,29 +61,29 @@ class DiagnosticoAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->diagnosticoRepository->pushCriteria(new RequestCriteria($request));
-        $this->diagnosticoRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $diagnosticos = $this->diagnosticoRepository->all();
+        $this->historialFichaRepository->pushCriteria(new RequestCriteria($request));
+        $this->historialFichaRepository->pushCriteria(new LimitOffsetCriteria($request));
+        $historialFichas = $this->historialFichaRepository->all();
 
-        return $this->sendResponse($diagnosticos->toArray(), 'Diagnosticos retrieved successfully');
+        return $this->sendResponse($historialFichas->toArray(), 'Historial Fichas retrieved successfully');
     }
 
     /**
-     * @param CreateDiagnosticoAPIRequest $request
+     * @param CreateHistorialFichaAPIRequest $request
      * @return Response
      *
      * @SWG\Post(
-     *      path="/diagnosticos",
-     *      summary="Store a newly created Diagnostico in storage",
-     *      tags={"Diagnostico"},
-     *      description="Store Diagnostico",
+     *      path="/historialFichas",
+     *      summary="Store a newly created HistorialFicha in storage",
+     *      tags={"HistorialFicha"},
+     *      description="Store HistorialFicha",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="Diagnostico that should be stored",
+     *          description="HistorialFicha that should be stored",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/Diagnostico")
+     *          @SWG\Schema(ref="#/definitions/HistorialFicha")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -96,7 +96,7 @@ class DiagnosticoAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Diagnostico"
+     *                  ref="#/definitions/HistorialFicha"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -106,13 +106,13 @@ class DiagnosticoAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateDiagnosticoAPIRequest $request)
+    public function store(CreateHistorialFichaAPIRequest $request)
     {
         $input = $request->all();
 
-        $diagnosticos = $this->diagnosticoRepository->create($input);
+        $historialFichas = $this->historialFichaRepository->create($input);
 
-        return $this->sendResponse($diagnosticos->toArray(), 'Diagnostico saved successfully');
+        return $this->sendResponse($historialFichas->toArray(), 'Historial Ficha saved successfully');
     }
 
     /**
@@ -120,14 +120,14 @@ class DiagnosticoAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/diagnosticos/{id}",
-     *      summary="Display the specified Diagnostico",
-     *      tags={"Diagnostico"},
-     *      description="Get Diagnostico",
+     *      path="/historialFichas/{id}",
+     *      summary="Display the specified HistorialFicha",
+     *      tags={"HistorialFicha"},
+     *      description="Get HistorialFicha",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Diagnostico",
+     *          description="id of HistorialFicha",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -143,7 +143,7 @@ class DiagnosticoAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Diagnostico"
+     *                  ref="#/definitions/HistorialFicha"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -155,30 +155,30 @@ class DiagnosticoAPIController extends AppBaseController
      */
     public function show($id)
     {
-        /** @var Diagnostico $diagnostico */
-        $diagnostico = $this->diagnosticoRepository->findWithoutFail($id);
+        /** @var HistorialFicha $historialFicha */
+        $historialFicha = $this->historialFichaRepository->findWithoutFail($id);
 
-        if (empty($diagnostico)) {
-            return $this->sendError('Diagnostico not found');
+        if (empty($historialFicha)) {
+            return $this->sendError('Historial Ficha not found');
         }
 
-        return $this->sendResponse($diagnostico->toArray(), 'Diagnostico retrieved successfully');
+        return $this->sendResponse($historialFicha->toArray(), 'Historial Ficha retrieved successfully');
     }
 
     /**
      * @param int $id
-     * @param UpdateDiagnosticoAPIRequest $request
+     * @param UpdateHistorialFichaAPIRequest $request
      * @return Response
      *
      * @SWG\Put(
-     *      path="/diagnosticos/{id}",
-     *      summary="Update the specified Diagnostico in storage",
-     *      tags={"Diagnostico"},
-     *      description="Update Diagnostico",
+     *      path="/historialFichas/{id}",
+     *      summary="Update the specified HistorialFicha in storage",
+     *      tags={"HistorialFicha"},
+     *      description="Update HistorialFicha",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Diagnostico",
+     *          description="id of HistorialFicha",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -186,9 +186,9 @@ class DiagnosticoAPIController extends AppBaseController
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="Diagnostico that should be updated",
+     *          description="HistorialFicha that should be updated",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/Diagnostico")
+     *          @SWG\Schema(ref="#/definitions/HistorialFicha")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -201,7 +201,7 @@ class DiagnosticoAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Diagnostico"
+     *                  ref="#/definitions/HistorialFicha"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -211,20 +211,20 @@ class DiagnosticoAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateDiagnosticoAPIRequest $request)
+    public function update($id, UpdateHistorialFichaAPIRequest $request)
     {
         $input = $request->all();
 
-        /** @var Diagnostico $diagnostico */
-        $diagnostico = $this->diagnosticoRepository->findWithoutFail($id);
+        /** @var HistorialFicha $historialFicha */
+        $historialFicha = $this->historialFichaRepository->findWithoutFail($id);
 
-        if (empty($diagnostico)) {
-            return $this->sendError('Diagnostico not found');
+        if (empty($historialFicha)) {
+            return $this->sendError('Historial Ficha not found');
         }
 
-        $diagnostico = $this->diagnosticoRepository->update($input, $id);
+        $historialFicha = $this->historialFichaRepository->update($input, $id);
 
-        return $this->sendResponse($diagnostico->toArray(), 'Diagnostico updated successfully');
+        return $this->sendResponse($historialFicha->toArray(), 'HistorialFicha updated successfully');
     }
 
     /**
@@ -232,14 +232,14 @@ class DiagnosticoAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/diagnosticos/{id}",
-     *      summary="Remove the specified Diagnostico from storage",
-     *      tags={"Diagnostico"},
-     *      description="Delete Diagnostico",
+     *      path="/historialFichas/{id}",
+     *      summary="Remove the specified HistorialFicha from storage",
+     *      tags={"HistorialFicha"},
+     *      description="Delete HistorialFicha",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Diagnostico",
+     *          description="id of HistorialFicha",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -267,15 +267,15 @@ class DiagnosticoAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        /** @var Diagnostico $diagnostico */
-        $diagnostico = $this->diagnosticoRepository->findWithoutFail($id);
+        /** @var HistorialFicha $historialFicha */
+        $historialFicha = $this->historialFichaRepository->findWithoutFail($id);
 
-        if (empty($diagnostico)) {
-            return $this->sendError('Diagnostico not found');
+        if (empty($historialFicha)) {
+            return $this->sendError('Historial Ficha not found');
         }
 
-        $diagnostico->delete();
+        $historialFicha->delete();
 
-        return $this->sendResponse($id, 'Diagnostico deleted successfully');
+        return $this->sendResponse($id, 'Historial Ficha deleted successfully');
     }
 }

@@ -19,6 +19,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="nombre",
  *          description="nombre",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="remember_token",
+ *          description="remember_token",
+ *          type="string"
  *      )
  * )
  */
@@ -36,7 +41,8 @@ class Region extends Model
 
 
     public $fillable = [
-        'nombre'
+        'nombre',
+        'remember_token'
     ];
 
     /**
@@ -46,7 +52,8 @@ class Region extends Model
      */
     protected $casts = [
         'idRegion' => 'integer',
-        'nombre' => 'string'
+        'nombre' => 'string',
+        'remember_token' => 'string'
     ];
 
     /**

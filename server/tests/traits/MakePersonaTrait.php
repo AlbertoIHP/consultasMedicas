@@ -46,17 +46,17 @@ trait MakePersonaTrait
             'nombre2' => $fake->word,
             'apellido1' => $fake->word,
             'apellido2' => $fake->word,
-            'tipo' => $fake->word,
-            'idRegion' => $fake->randomDigitNotNull,
-            'idProvincia' => $fake->randomDigitNotNull,
             'fono_casa' => $fake->word,
             'fono_trabajo' => $fake->word,
             'movil' => $fake->word,
             'idGenero' => $fake->randomDigitNotNull,
-            'FichaMedica_rut' => $fake->word,
-            'EstadoCivil_idEstadoCivil' => $fake->randomDigitNotNull,
-            'Comuna_Provincia_idProvincia' => $fake->randomDigitNotNull,
-            'Comuna_idComuna' => $fake->randomDigitNotNull
+            'EstadoCivil_idEstado' => $fake->randomDigitNotNull,
+            'Comuna_idComuna' => $fake->randomDigitNotNull,
+            'Usuario_email' => $fake->word,
+            'remember_token' => $fake->word,
+            'created_at' => $fake->date('Y-m-d H:i:s'),
+            'updated_at' => $fake->date('Y-m-d H:i:s'),
+            'deleted_at' => $fake->date('Y-m-d H:i:s')
         ], $personaFields);
     }
 }

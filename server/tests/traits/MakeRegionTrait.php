@@ -42,7 +42,11 @@ trait MakeRegionTrait
         $fake = Faker::create();
 
         return array_merge([
-            'nombre' => $fake->word
+            'nombre' => $fake->word,
+            'remember_token' => $fake->word,
+            'created_at' => $fake->date('Y-m-d H:i:s'),
+            'updated_at' => $fake->date('Y-m-d H:i:s'),
+            'deleted_at' => $fake->date('Y-m-d H:i:s')
         ], $regionFields);
     }
 }

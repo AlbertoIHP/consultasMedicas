@@ -22,24 +22,6 @@
     {!! Form::text('apellido2', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Tipo Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('tipo', 'Tipo:') !!}
-    {!! Form::text('tipo', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Idregion Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idRegion', 'Idregion:') !!}
-    {!! Form::number('idRegion', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Idprovincia Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idProvincia', 'Idprovincia:') !!}
-    {!! Form::number('idProvincia', null, ['class' => 'form-control']) !!}
-</div>
-
 <!-- Fono Casa Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('fono_casa', 'Fono Casa:') !!}
@@ -64,28 +46,28 @@
     {!! Form::number('idGenero', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Fichamedica Rut Field -->
+<!-- Estadocivil Idestado Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('FichaMedica_rut', 'Fichamedica Rut:') !!}
-    {!! Form::text('FichaMedica_rut', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Estadocivil Idestadocivil Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('EstadoCivil_idEstadoCivil', 'Estadocivil Idestadocivil:') !!}
-    {!! Form::number('EstadoCivil_idEstadoCivil', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Comuna Provincia Idprovincia Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('Comuna_Provincia_idProvincia', 'Comuna Provincia Idprovincia:') !!}
-    {!! Form::number('Comuna_Provincia_idProvincia', null, ['class' => 'form-control']) !!}
+    {!! Form::label('EstadoCivil_idEstado', 'Estadocivil Idestado:') !!}
+    {!! Form::number('EstadoCivil_idEstado', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Comuna Idcomuna Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('Comuna_idComuna', 'Comuna Idcomuna:') !!}
     {!! Form::number('Comuna_idComuna', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Usuario Email Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('Usuario_email', 'Usuario Email:') !!}
+    {!! Form::text('Usuario_email', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Remember Token Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('remember_token', 'Remember Token:') !!}
+    {!! Form::text('remember_token', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
