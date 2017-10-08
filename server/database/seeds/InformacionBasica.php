@@ -2270,7 +2270,6 @@ class InformacionBasica extends Seeder
     ]);
 
     DB::table('Historial')->insert([
-      'nombre' => 'Jorge Ignacio Hochtetter Poza',
       'fechaConsulta' => Carbon::create('2017', '01', '01'),
       'habitos' => 'Ninguno',
       'InformacionMedica' => 'En esta consulta se detecto algo raro',
@@ -2278,7 +2277,6 @@ class InformacionBasica extends Seeder
     ]);
 
     DB::table('Historial')->insert([
-      'nombre' => 'Jorge Ignacio Hochtetter Poza',
       'fechaConsulta' => Carbon::create('2017', '02', '01'),
       'habitos' => 'Ninguno',
       'InformacionMedica' => 'En esta consulta se detecto algo raro',
@@ -2286,7 +2284,6 @@ class InformacionBasica extends Seeder
     ]);
 
     DB::table('Historial')->insert([
-      'nombre' => 'Jorge Ignacio Hochtetter Poza',
       'fechaConsulta' => Carbon::create('2017', '03', '01'),
       'habitos' => 'Ninguno',
       'InformacionMedica' => 'En esta consulta se detecto algo raro',
@@ -2294,7 +2291,6 @@ class InformacionBasica extends Seeder
     ]);
 
     DB::table('Historial')->insert([
-      'nombre' => 'Jorge Ignacio Hochtetter Poza',
       'fechaConsulta' => Carbon::create('2017', '04', '01'),
       'habitos' => 'Ninguno',
       'InformacionMedica' => 'En esta consulta se detecto algo raro',
