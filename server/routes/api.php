@@ -24,6 +24,9 @@ Route::group(['middleware' => ['cors','jwt.auth']], function(){
 
 Route::group(['middleware' => ['cors']], function(){
   Route::post('/login','AuthController@userAuth');
+  Route::get('/register/verify/{confirmationCode}', 'UserController@confirm')
+  Route::post('/v1/users', 'UserAPIController@store');
+  Route::post('v1/personas', 'PersonaAPIController@store');
 });
 
 
