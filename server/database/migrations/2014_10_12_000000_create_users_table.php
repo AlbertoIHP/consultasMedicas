@@ -13,12 +13,12 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        // Schema::table('Usuario', function (Blueprint $table) {
-        //     $table->rememberToken();
-        //     $table->timestamps();
-        //     $table->timestamp('deleted_at')->nullable();
-        //
-        // });
+        Schema::table('Usuario', function (Blueprint $table) {
+            $table->rememberToken();
+            $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
+
+        });
         Schema::table('Role', function (Blueprint $table) {
             $table->rememberToken();
             $table->timestamps();
