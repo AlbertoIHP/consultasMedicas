@@ -31,11 +31,11 @@ Route::resource('v1/users', 'UserAPIController');
 
 Route::resource('v1/roles', 'RoleAPIController');
 
-Route::resource('v1/estado_civils', 'EstadoCivilAPIController');
+Route::resource('v1/estadoCivils', 'EstadoCivilAPIController');
 
 Route::resource('v1/previsions', 'PrevisionAPIController');
 
-Route::resource('v1/prevision_actuals', 'PrevisionActualAPIController');
+Route::resource('v1/previsionActuals', 'PrevisionActualAPIController');
 
 Route::resource('v1/regions', 'RegionAPIController');
 
@@ -45,9 +45,9 @@ Route::resource('v1/comunas', 'ComunaAPIController');
 
 Route::resource('v1/generos', 'GeneroAPIController');
 
-Route::resource('v1/ficha_medicas', 'FichaMedicaAPIController');
+Route::resource('v1/fichaMedicas', 'FichaMedicaAPIController');
 
-Route::resource('v1/estado_citas', 'EstadoCitaAPIController');
+Route::resource('v1/estadoCitas', 'EstadoCitaAPIController');
 
 Route::resource('v1/citas', 'CitaAPIController');
 
@@ -59,16 +59,16 @@ Route::resource('v1/atentions', 'AtentionAPIController');
 
 Route::resource('v1/diagnosticos', 'DiagnosticoAPIController');
 
-Route::resource('v1/diagnostico_atencions', 'DiagnosticoAtencionAPIController');
+Route::resource('v1/diagnosticoAtencions', 'DiagnosticoAtencionAPIController');
 
-Route::resource('v1/box_consultas', 'BoxConsultaAPIController');
+Route::resource('v1/boxConsultas', 'BoxConsultaAPIController');
 
 Route::resource('v1/recetas', 'RecetaAPIController');
 
-Route::resource('v1/tipo_boxes', 'TipoBoxAPIController');
+Route::resource('v1/tipoBoxes', 'TipoBoxAPIController');
 
 Route::resource('v1/medicamentos', 'MedicamentoAPIController');
 
-Route::resource('v1/via_administracion_medicamentos', 'ViaAdministracionMedicamentoAPIController');
+Route::resource('v1/viaAdministracionMedicamentos', 'ViaAdministracionMedicamentoAPIController');
 
-Route::resource('v1/receta_medicamentos', 'RecetaMedicamentoAPIController');
+Route::resource('v1/recetaMedicamentos', 'RecetaMedicamentoAPIController');
