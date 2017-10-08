@@ -1,0 +1,133 @@
+[
+    {
+        "name": "id",
+        "dbType": "integer,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "Receta_idReceta",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "Medicamento_idMedicamento",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "Receta_has_Medicamentocol",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "dosis",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "cantidad",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "tiempo",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "intervalo",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "ViaAdministracionMedicamento_idViaAdministracionMedicamento",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Medicamento"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Recetum"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,ViaAdministracionMedicamento"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Atention_has_Diagnostico"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Doctor"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Persona_has_Prevision"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,PrevisionActual"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Usuario"
+    }
+]

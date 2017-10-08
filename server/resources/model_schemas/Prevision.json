@@ -1,0 +1,44 @@
+[
+    {
+        "name": "idPrevision",
+        "dbType": "integer,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "descripcion",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Atention_has_Diagnostico"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Doctor"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,Persona,Persona_has_Prevision"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,Persona,PrevisionActual"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Usuario"
+    }
+]

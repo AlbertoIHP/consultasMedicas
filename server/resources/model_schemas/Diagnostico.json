@@ -1,0 +1,44 @@
+[
+    {
+        "name": "idDiagnostico",
+        "dbType": "integer,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "diagnostico",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,AtentionHasDiagnostico"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Doctor"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Persona_has_Prevision"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,PrevisionActual"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Usuario"
+    }
+]

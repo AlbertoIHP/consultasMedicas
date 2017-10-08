@@ -1,0 +1,115 @@
+[
+    {
+        "name": "idCita",
+        "dbType": "integer,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "fecha",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "Consulta_idConsulta",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "Doctor_rut",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "Persona_rut",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "fechahora",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "EstadoCita_idEstadoCita",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,BoxConsultum"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,EstadoCitum"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Persona"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,Atention"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Atention_has_Diagnostico"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Doctor"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Persona_has_Prevision"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,PrevisionActual"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Usuario"
+    }
+]

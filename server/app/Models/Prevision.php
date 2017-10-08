@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Models;
+
+use Eloquent as Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+/**
+ * @SWG\Definition(
+ *      definition="Prevision",
+ *      required={""},
+ *      @SWG\Property(
+ *          property="idPrevision",
+ *          description="idPrevision",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="descripcion",
+ *          description="descripcion",
+ *          type="string"
+ *      )
+ * )
+ */
+class Prevision extends Model
+{
+    use SoftDeletes;
+
+    public $table = 'Prevision';
+    
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
+
+    protected $dates = ['deleted_at'];
+
+
+    public $fillable = [
+        'descripcion'
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'idPrevision' => 'integer',
+        'descripcion' => 'string'
+    ];
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function personas()
+    {
+        return $this->belongsToMany(\App\Models\Persona::class, 'Persona_has_Prevision');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function personas()
+    {
+        return $this->belongsToMany(\App\Models\Persona::class, 'PrevisionActual');
+    }
+}

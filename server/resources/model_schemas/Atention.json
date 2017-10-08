@@ -1,0 +1,74 @@
+[
+    {
+        "name": "id",
+        "dbType": "integer,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "Cita_idCita",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "Doctor_rut",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "BoxConsulta_idConsulta",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,BoxConsultum"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Citum"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Doctor"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Doctor"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Persona_has_Prevision"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,PrevisionActual"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Usuario"
+    }
+]
