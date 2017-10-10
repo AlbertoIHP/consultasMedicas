@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class HistorialFichaRepository
  * @package App\Repositories
- * @version October 8, 2017, 6:57 am UTC
+ * @version October 10, 2017, 2:37 pm UTC
  *
  * @method HistorialFicha findWithoutFail($id, $columns = ['*'])
  * @method HistorialFicha find($id, $columns = ['*'])
@@ -23,7 +23,9 @@ class HistorialFichaRepository extends BaseRepository
         'fechaConsulta',
         'informacionMedica',
         'FichaMedica_id',
-        'habitos'
+        'habitos',
+        'peso',
+        'estatura'
     ];
 
     /**

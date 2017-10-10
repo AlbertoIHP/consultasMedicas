@@ -19,6 +19,13 @@ class CreateUsersTable extends Migration
 			$table->timestamp('deleted_at')->nullable();
 
 		});
+
+    Schema::table('TipoSangre', function (Blueprint $table) {
+			$table->rememberToken();
+			$table->timestamps();
+			$table->timestamp('deleted_at')->nullable();
+
+		});
 		Schema::table('Role', function (Blueprint $table) {
 			$table->rememberToken();
 			$table->timestamps();

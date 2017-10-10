@@ -102,3 +102,11 @@ Route::resource('fichaMedicas', 'FichaMedicaController');
 Route::resource('estadoCivils', 'EstadoCivilController');
 
 Route::resource('historialFichas', 'HistorialFichaController');
+
+Route::resource('tipoSangres', 'TipoSangreController');
+
+Route::resource('historials', 'HistorialController');
+
+Route::resource('historialFichas', 'HistorialFichaController');
+
+Route::resource('fichaMedicas', 'FichaMedicaController');

@@ -36,6 +36,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="habitos",
  *          description="habitos",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="peso",
+ *          description="peso",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="estatura",
+ *          description="estatura",
+ *          type="string"
  *      )
  * )
  */
@@ -56,7 +66,9 @@ class HistorialFicha extends Model
         'fechaConsulta',
         'informacionMedica',
         'FichaMedica_id',
-        'habitos'
+        'habitos',
+        'peso',
+        'estatura'
     ];
 
     /**
@@ -69,7 +81,9 @@ class HistorialFicha extends Model
         'fechaConsulta' => 'date',
         'informacionMedica' => 'string',
         'FichaMedica_id' => 'integer',
-        'habitos' => 'string'
+        'habitos' => 'string',
+        'peso' => 'string',
+        'estatura' => 'string'
     ];
 
     /**

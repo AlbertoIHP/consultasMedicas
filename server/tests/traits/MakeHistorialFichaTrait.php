@@ -45,7 +45,9 @@ trait MakeHistorialFichaTrait
             'fechaConsulta' => $fake->word,
             'informacionMedica' => $fake->word,
             'FichaMedica_id' => $fake->randomDigitNotNull,
-            'habitos' => $fake->word
+            'habitos' => $fake->word,
+            'peso' => $fake->word,
+            'estatura' => $fake->word
         ], $historialFichaFields);
     }
 }

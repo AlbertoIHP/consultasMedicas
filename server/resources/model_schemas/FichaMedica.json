@@ -55,6 +55,39 @@
         "inIndex": true
     },
     {
+        "name": "pesoActual",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "estaturaActual",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "TipoSangre_id",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
         "name": "remember_token",
         "dbType": "string",
         "htmlType": "text",
@@ -104,11 +137,11 @@
     },
     {
         "type": "relation",
-        "relation": "mtm,,Atention_has_Diagnostico"
+        "relation": "mt1,TipoSangre"
     },
     {
         "type": "relation",
-        "relation": "mtm,,Doctor"
+        "relation": "mtm,,Atention_has_Diagnostico"
     },
     {
         "type": "relation",

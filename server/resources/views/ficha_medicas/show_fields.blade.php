@@ -28,6 +28,24 @@
     <p>{!! $fichaMedica->fechaCreacion !!}</p>
 </div>
 
+<!-- Pesoactual Field -->
+<div class="form-group">
+    {!! Form::label('pesoActual', 'Pesoactual:') !!}
+    <p>{!! $fichaMedica->pesoActual !!}</p>
+</div>
+
+<!-- Estaturaactual Field -->
+<div class="form-group">
+    {!! Form::label('estaturaActual', 'Estaturaactual:') !!}
+    <p>{!! $fichaMedica->estaturaActual !!}</p>
+</div>
+
+<!-- Tiposangre Id Field -->
+<div class="form-group">
+    {!! Form::label('TipoSangre_id', 'Tiposangre Id:') !!}
+    <p>{!! $fichaMedica->TipoSangre_id !!}</p>
+</div>
+
 <!-- Remember Token Field -->
 <div class="form-group">
     {!! Form::label('remember_token', 'Remember Token:') !!}

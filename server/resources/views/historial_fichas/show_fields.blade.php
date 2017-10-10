@@ -28,3 +28,15 @@
     <p>{!! $historialFicha->habitos !!}</p>
 </div>
 
+<!-- Peso Field -->
+<div class="form-group">
+    {!! Form::label('peso', 'Peso:') !!}
+    <p>{!! $historialFicha->peso !!}</p>
+</div>
+
+<!-- Estatura Field -->
+<div class="form-group">
+    {!! Form::label('estatura', 'Estatura:') !!}
+    <p>{!! $historialFicha->estatura !!}</p>
+</div>
+

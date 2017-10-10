@@ -76,6 +76,9 @@ class FichaMedicaDataTable extends DataTable
             'Persona_rut' => ['name' => 'Persona_rut', 'data' => 'Persona_rut'],
             'nombreResponsable' => ['name' => 'nombreResponsable', 'data' => 'nombreResponsable'],
             'fechaCreacion' => ['name' => 'fechaCreacion', 'data' => 'fechaCreacion'],
+            'pesoActual' => ['name' => 'pesoActual', 'data' => 'pesoActual'],
+            'estaturaActual' => ['name' => 'estaturaActual', 'data' => 'estaturaActual'],
+            'TipoSangre_id' => ['name' => 'TipoSangre_id', 'data' => 'TipoSangre_id'],
             'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
         ];
     }

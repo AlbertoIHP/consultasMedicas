@@ -162,3 +162,19 @@
     <a href="{!! route('historialFichas.index') !!}"><i class="fa fa-edit"></i><span>HistorialFichas</span></a>
 </li>
 
+<li class="{{ Request::is('tipoSangres*') ? 'active' : '' }}">
+    <a href="{!! route('tipoSangres.index') !!}"><i class="fa fa-edit"></i><span>TipoSangres</span></a>
+</li>
+
+<li class="{{ Request::is('historials*') ? 'active' : '' }}">
+    <a href="{!! route('historials.index') !!}"><i class="fa fa-edit"></i><span>Historials</span></a>
+</li>
+
+<li class="{{ Request::is('historialFichas*') ? 'active' : '' }}">
+    <a href="{!! route('historialFichas.index') !!}"><i class="fa fa-edit"></i><span>HistorialFichas</span></a>
+</li>
+
+<li class="{{ Request::is('fichaMedicas*') ? 'active' : '' }}">
+    <a href="{!! route('fichaMedicas.index') !!}"><i class="fa fa-edit"></i><span>FichaMedicas</span></a>
+</li>
+

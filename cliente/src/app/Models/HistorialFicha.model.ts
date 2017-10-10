@@ -4,4 +4,8 @@ export class HistorialFicha {
   informacionMedica: string;
   FichaMedica_id: number;
   habitos: string;
+  peso: string;
+  estatura: string;
+
+
 }

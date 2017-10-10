@@ -4,4 +4,9 @@ export class FichaMedica {
   Persona_rut: string;
   nombreResponsable: string;
   fechaCreacion: string;
+  pesoActual: string;
+  estaturaActual: string;
+  TipoSangre_id: number;
+
+
 }

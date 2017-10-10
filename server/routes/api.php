@@ -53,3 +53,6 @@ Route::resource('v1/fichaMedicas', 'FichaMedicaAPIController');
 Route::resource('v1/estadoCivils', 'EstadoCivilAPIController');
 
 Route::resource('v1/historialFichas', 'HistorialFichaAPIController');
+
+
+Route::resource('v1/tipoSangres', 'TipoSangreAPIController');

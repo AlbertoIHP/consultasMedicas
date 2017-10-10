@@ -22,6 +22,24 @@
     {!! Form::date('fechaCreacion', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Pesoactual Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('pesoActual', 'Pesoactual:') !!}
+    {!! Form::text('pesoActual', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Estaturaactual Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('estaturaActual', 'Estaturaactual:') !!}
+    {!! Form::text('estaturaActual', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Tiposangre Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('TipoSangre_id', 'Tiposangre Id:') !!}
+    {!! Form::number('TipoSangre_id', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Remember Token Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('remember_token', 'Remember Token:') !!}
