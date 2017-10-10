@@ -1,4 +1,20 @@
 //SERVICIOS
+import { ComunaService } from './Services/comuna/comuna.service';
+import { EstadocivilService } from './Services/estadocivil/estadocivil.service';
+import { FichamedicaService } from './Services/fichamedica/fichamedica.service';
+import { GeneroService } from './Services/genero/genero.service';
+import { HistorialfichaService } from './Services/historialficha/historialficha.service';
+import { PersonaService } from './Services/persona/persona.service';
+import { PrevisionService } from './Services/prevision/prevision.service';
+import { PrevisionactualService } from './Services/previsionactual/previsionactual.service';
+import { ProvinciaService } from './Services/provincia/provincia.service';
+import { RegionService } from './Services/region/region.service';
+import { RoleService } from './Services/role/role.service';
+import { UserService } from './Services/user/user.service';
+
+
+
+
 
 
 //MODULOS
@@ -37,7 +53,19 @@ import { LoginComponent } from './Components/login/login/login.component';
 
 	providers:
 	[
-	appRoutingProviders
+  	appRoutingProviders,
+    ComunaService,
+    EstadocivilService,
+    FichamedicaService,
+    GeneroService,
+    HistorialfichaService,
+    PersonaService,
+    PrevisionService,
+    PrevisionactualService,
+    ProvinciaService,
+    RegionService,
+    RoleService,
+    UserService
 	],
 
 	bootstrap:
