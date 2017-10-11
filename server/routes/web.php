@@ -110,3 +110,7 @@ Route::resource('historials', 'HistorialController');
 Route::resource('historialFichas', 'HistorialFichaController');
 
 Route::resource('fichaMedicas', 'FichaMedicaController');
+
+Route::resource('users', 'UserController');
+
+Route::resource('personas', 'PersonaController');

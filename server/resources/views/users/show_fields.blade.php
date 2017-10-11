@@ -16,6 +16,12 @@
     <p>{!! $user->Role_idRole !!}</p>
 </div>
 
+<!-- Persona Rut Field -->
+<div class="form-group">
+    {!! Form::label('Persona_rut', 'Persona Rut:') !!}
+    <p>{!! $user->Persona_rut !!}</p>
+</div>
+
 <!-- Remember Token Field -->
 <div class="form-group">
     {!! Form::label('remember_token', 'Remember Token:') !!}

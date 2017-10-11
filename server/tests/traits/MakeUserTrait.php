@@ -44,6 +44,7 @@ trait MakeUserTrait
         return array_merge([
             'password' => $fake->word,
             'Role_idRole' => $fake->randomDigitNotNull,
+            'Persona_rut' => $fake->word,
             'remember_token' => $fake->word,
             'created_at' => $fake->date('Y-m-d H:i:s'),
             'updated_at' => $fake->date('Y-m-d H:i:s'),

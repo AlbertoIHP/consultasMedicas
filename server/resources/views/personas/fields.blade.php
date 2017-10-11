@@ -58,12 +58,6 @@
     {!! Form::number('Comuna_idComuna', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Usuario Email Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('Usuario_email', 'Usuario Email:') !!}
-    {!! Form::text('Usuario_email', null, ['class' => 'form-control']) !!}
-</div>
-
 <!-- Remember Token Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('remember_token', 'Remember Token:') !!}

@@ -52,7 +52,6 @@ trait MakePersonaTrait
             'idGenero' => $fake->randomDigitNotNull,
             'EstadoCivil_idEstado' => $fake->randomDigitNotNull,
             'Comuna_idComuna' => $fake->randomDigitNotNull,
-            'Usuario_email' => $fake->word,
             'remember_token' => $fake->word,
             'created_at' => $fake->date('Y-m-d H:i:s'),
             'updated_at' => $fake->date('Y-m-d H:i:s'),

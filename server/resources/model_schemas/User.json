@@ -33,6 +33,17 @@
         "inIndex": true
     },
     {
+        "name": "Persona_rut",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
         "name": "remember_token",
         "dbType": "string",
         "htmlType": "text",
@@ -78,6 +89,10 @@
     },
     {
         "type": "relation",
+        "relation": "mt1,Persona"
+    },
+    {
+        "type": "relation",
         "relation": "mt1,Role"
     },
     {
@@ -86,11 +101,7 @@
     },
     {
         "type": "relation",
-        "relation": "mtm,,Doctor"
-    },
-    {
-        "type": "relation",
-        "relation": "1tm,Persona"
+        "relation": "mtm,,FichaMedica"
     },
     {
         "type": "relation",

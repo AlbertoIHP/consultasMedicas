@@ -56,3 +56,8 @@ Route::resource('v1/historialFichas', 'HistorialFichaAPIController');
 
 
 Route::resource('v1/tipoSangres', 'TipoSangreAPIController');
+
+
+Route::resource('users', 'UserAPIController');
+
+Route::resource('personas', 'PersonaAPIController');

@@ -68,11 +68,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="Usuario_email",
- *          description="Usuario_email",
- *          type="string"
- *      ),
- *      @SWG\Property(
  *          property="remember_token",
  *          description="remember_token",
  *          type="string"
@@ -103,7 +98,6 @@ class Persona extends Model
         'idGenero',
         'EstadoCivil_idEstado',
         'Comuna_idComuna',
-        'Usuario_email',
         'remember_token'
     ];
 
@@ -124,7 +118,6 @@ class Persona extends Model
         'idGenero' => 'integer',
         'EstadoCivil_idEstado' => 'integer',
         'Comuna_idComuna' => 'integer',
-        'Usuario_email' => 'string',
         'remember_token' => 'string'
     ];
 
@@ -159,14 +152,6 @@ class Persona extends Model
     public function genero()
     {
         return $this->belongsTo(\App\Models\Genero::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function usuario()
-    {
-        return $this->belongsTo(\App\Models\Usuario::class);
     }
 
     /**
@@ -207,5 +192,13 @@ class Persona extends Model
     public function previsions()
     {
         return $this->belongsToMany(\App\Models\Prevision::class, 'PrevisionActual');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function roles()
+    {
+        return $this->belongsToMany(\App\Models\Role::class, 'Usuario');
     }
 }

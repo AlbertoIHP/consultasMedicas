@@ -2156,35 +2156,6 @@ class InformacionBasica extends Seeder
 	'nombre' =>'Secretaría',
 	]);
 
-	DB::table('Usuario')->insert([
-	'email' =>'Jefatura@Jefatura.cl',
-	'password' => bcrypt('Jefatura'),
-	'Role_idRole' => 1,
-	]);
-
-	DB::table('Usuario')->insert([
-	'email' =>'Administrador@Administrador.cl',
-	'password' => bcrypt('Administrador'),
-	'Role_idRole' => 2,
-	]);
-
-	DB::table('Usuario')->insert([
-	'email' =>'Medico@Medico.cl',
-	'password' => bcrypt('Medico'),
-	'Role_idRole' => 3,
-	]);
-
-	DB::table('Usuario')->insert([
-	'email' =>'Paciente@Paciente.cl',
-	'password' => bcrypt('Paciente'),
-	'Role_idRole' => 4,
-	]);
-
-	DB::table('Usuario')->insert([
-	'email' =>'Secretaria@Secretaria.cl',
-	'password' => bcrypt('Secretaria'),
-	'Role_idRole' => 5,
-	]);
 
 	DB::table('Persona')->insert([
 	  'rut' => '19304736k',
@@ -2198,7 +2169,6 @@ class InformacionBasica extends Seeder
 	  'idGenero' => 2,
 	  'EstadoCivil_idEstado' => 4,
 	  'Comuna_idComuna'=> 10,
-	  'Usuario_email' => 'Jefatura@Jefatura.cl',
 	]);
 
 	DB::table('Persona')->insert([
@@ -2213,7 +2183,6 @@ class InformacionBasica extends Seeder
 	  'idGenero' => 2,
 	  'EstadoCivil_idEstado' => 2,
 	  'Comuna_idComuna'=> 5,
-	  'Usuario_email' => 'Administrador@Administrador.cl',
 	]);
 
 	DB::table('Persona')->insert([
@@ -2228,7 +2197,6 @@ class InformacionBasica extends Seeder
 	  'idGenero' => 2,
 	  'EstadoCivil_idEstado' => 3,
 	  'Comuna_idComuna'=> 15,
-	  'Usuario_email' => 'Medico@Medico.cl',
 	]);
 
 
@@ -2244,7 +2212,6 @@ class InformacionBasica extends Seeder
 	  'idGenero' => 2,
 	  'EstadoCivil_idEstado' => 4,
 	  'Comuna_idComuna'=> 7,
-	  'Usuario_email' => 'Paciente@Paciente.cl',
 	]);
 
 	DB::table('Persona')->insert([
@@ -2259,47 +2226,87 @@ class InformacionBasica extends Seeder
 	  'idGenero' => 2,
 	  'EstadoCivil_idEstado' => 1,
 	  'Comuna_idComuna'=> 13,
-	  'Usuario_email' => 'Secretaria@Secretaria.cl',
 	]);
+
+	DB::table('Usuario')->insert([
+		'email' =>'Jefatura@Jefatura.cl',
+		'password' => bcrypt('Jefatura'),
+		'Role_idRole' => 1,
+		'Persona_rut' => '19304736k',
+	]);
+
+	DB::table('Usuario')->insert([
+		'email' =>'Administrador@Administrador.cl',
+		'password' => bcrypt('Administrador'),
+		'Role_idRole' => 2,
+		'Persona_rut' => '19302847k',
+	]);
+
+	DB::table('Usuario')->insert([
+		'email' =>'Medico@Medico.cl',
+		'password' => bcrypt('Medico'),
+		'Role_idRole' => 3,
+		'Persona_rut' => '18957283k',
+	]);
+
+	DB::table('Usuario')->insert([
+		'email' =>'Paciente@Paciente.cl',
+		'password' => bcrypt('Paciente'),
+		'Role_idRole' => 4,
+		'Persona_rut' => '178928367',
+	]);
+
+	DB::table('Usuario')->insert([
+		'email' =>'Secretaria@Secretaria.cl',
+		'password' => bcrypt('Secretaria'),
+		'Role_idRole' => 5,
+		'Persona_rut' => '168273729',
+	]);
+
+
+
+
+
+	
 
   DB::table('TipoSangre')->insert([
 	  'nombre' => ' O negativo',
-    'descripcion' => ' Este tipo de sangre no tiene marcadores A ni B y tampoco presenta el factor Rh.',
+	'descripcion' => ' Este tipo de sangre no tiene marcadores A ni B y tampoco presenta el factor Rh.',
 	]);
 
   DB::table('TipoSangre')->insert([
 	  'nombre' => 'O positivo',
-    'descripcion' => 'Este tipo de sangre no tiene marcadores A ni B pero sí que presenta el factor Rh. Se trata de uno de los dos tipos de sangre más frecuentes (junto al A positivo).',
+	'descripcion' => 'Este tipo de sangre no tiene marcadores A ni B pero sí que presenta el factor Rh. Se trata de uno de los dos tipos de sangre más frecuentes (junto al A positivo).',
 	]);
 
   DB::table('TipoSangre')->insert([
 	  'nombre' => 'A negativo',
-    'descripcion' => 'Este tipo de sangre solo tiene el marcador A.',
+	'descripcion' => 'Este tipo de sangre solo tiene el marcador A.',
 	]);
 
   DB::table('TipoSangre')->insert([
 	  'nombre' => 'A positivo',
-    'descripcion' => 'Este tipo de sangre tiene el marcador A y el factor Rh, pero carece del marcador B. Junto con el O positivo, se trata de uno de los dos tipos de sangre más frecuentes.',
+	'descripcion' => 'Este tipo de sangre tiene el marcador A y el factor Rh, pero carece del marcador B. Junto con el O positivo, se trata de uno de los dos tipos de sangre más frecuentes.',
 	]);
 
   DB::table('TipoSangre')->insert([
-    'nombre' => 'B negativo',
-    'descripcion' => 'Este tipo de sangre solo tiene el marcador B.',
+	'nombre' => 'B negativo',
+	'descripcion' => 'Este tipo de sangre solo tiene el marcador B.',
   ]);
 
   DB::table('TipoSangre')->insert([
 	  'nombre' => 'B positivo',
-    'descripcion' => 'Este tipo de sangre tiene el marcador B y el factor Rh, pero carece del marcador A.',
+	'descripcion' => 'Este tipo de sangre tiene el marcador B y el factor Rh, pero carece del marcador A.',
 	]);
 
   DB::table('TipoSangre')->insert([
 	  'nombre' => 'AB negativo',
-    'descripcion' => 'Este tipo de sangre tiene los marcadores A y B, pero carece del factor Rh.',
+	'descripcion' => 'Este tipo de sangre tiene los marcadores A y B, pero carece del factor Rh.',
 	]);
 
   DB::table('TipoSangre')->insert([
 	  'nombre' => 'AB positivo',
-    'descripcion' => 'Este tipo de sangre tiene los tres marcadores: A, B y factor Rh.',
+	'descripcion' => 'Este tipo de sangre tiene los tres marcadores: A, B y factor Rh.',
 	]);
 
 	DB::table('FichaMedica')->insert([
@@ -2307,9 +2314,9 @@ class InformacionBasica extends Seeder
 	  'Persona_rut' => '178928367',
 	  'nombreResponsable' => 'Jorge Ignacio Hochtetter Poza',
 	  'fechaCreacion' => Carbon::create('2017', '01', '01'),
-    'pesoActual' => '80',
-    'estaturaActual' => '180',
-    'TipoSangre_id' => 1,
+	  'pesoActual' => '80',
+	  'estaturaActual' => '180',
+	  'TipoSangre_id' => 1,
 	]);
 
 	DB::table('Historial')->insert([

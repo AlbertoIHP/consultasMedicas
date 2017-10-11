@@ -26,6 +26,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="Persona_rut",
+ *          description="Persona_rut",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="remember_token",
  *          description="remember_token",
  *          type="string"
@@ -48,6 +53,7 @@ class User extends Model
     public $fillable = [
         'password',
         'Role_idRole',
+        'Persona_rut',
         'remember_token'
     ];
 
@@ -60,6 +66,7 @@ class User extends Model
         'email' => 'string',
         'password' => 'string',
         'Role_idRole' => 'integer',
+        'Persona_rut' => 'string',
         'remember_token' => 'string'
     ];
 
@@ -75,16 +82,16 @@ class User extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function role()
+    public function persona()
     {
-        return $this->belongsTo(\App\Models\Role::class);
+        return $this->belongsTo(\App\Models\Persona::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function personas()
+    public function role()
     {
-        return $this->hasMany(\App\Models\Persona::class);
+        return $this->belongsTo(\App\Models\Role::class);
     }
 }

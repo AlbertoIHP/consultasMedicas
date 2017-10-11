@@ -64,12 +64,6 @@
     <p>{!! $persona->Comuna_idComuna !!}</p>
 </div>
 
-<!-- Usuario Email Field -->
-<div class="form-group">
-    {!! Form::label('Usuario_email', 'Usuario Email:') !!}
-    <p>{!! $persona->Usuario_email !!}</p>
-</div>
-
 <!-- Remember Token Field -->
 <div class="form-group">
     {!! Form::label('remember_token', 'Remember Token:') !!}

@@ -74,6 +74,7 @@ class UserDataTable extends DataTable
         return [
             'password' => ['name' => 'password', 'data' => 'password'],
             'Role_idRole' => ['name' => 'Role_idRole', 'data' => 'Role_idRole'],
+            'Persona_rut' => ['name' => 'Persona_rut', 'data' => 'Persona_rut'],
             'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
         ];
     }
