@@ -2804,10 +2804,6 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "Usuario_email": {
-                    "description": "Usuario_email",
-                    "type": "string"
-                },
                 "remember_token": {
                     "description": "remember_token",
                     "type": "string"
@@ -2974,6 +2970,10 @@
                     "description": "Role_idRole",
                     "type": "integer",
                     "format": "int32"
+                },
+                "Persona_rut": {
+                    "description": "Persona_rut",
+                    "type": "string"
                 },
                 "remember_token": {
                     "description": "remember_token",

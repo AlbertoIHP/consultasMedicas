@@ -11,7 +11,7 @@ import { ProvinciaService } from './Services/provincia/provincia.service';
 import { RegionService } from './Services/region/region.service';
 import { RoleService } from './Services/role/role.service';
 import { UserService } from './Services/user/user.service';
-
+import { TipoSangreService } from './Services/tiposangre/tiposangre.service';
 
 
 
@@ -54,18 +54,19 @@ import { LoginComponent } from './Components/login/login/login.component';
 	providers:
 	[
   	appRoutingProviders,
-    ComunaService,
-    EstadocivilService,
-    FichamedicaService,
-    GeneroService,
-    HistorialfichaService,
-    PersonaService,
-    PrevisionService,
-    PrevisionactualService,
-    ProvinciaService,
-    RegionService,
-    RoleService,
-    UserService
+  	ComunaService,
+  	EstadocivilService,
+  	FichamedicaService,
+  	GeneroService,
+  	HistorialfichaService,
+  	PersonaService,
+  	PrevisionService,
+  	PrevisionactualService,
+  	ProvinciaService,
+  	RegionService,
+  	RoleService,
+  	UserService,
+    TipoSangreService
 	],
 
 	bootstrap:

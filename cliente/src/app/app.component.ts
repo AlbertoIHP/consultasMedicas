@@ -7,5 +7,5 @@ import { Role } from './Models/Role.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    public currentUserRole: Role = { idRole: 1, nombre: 'Paciente'};
+	public currentUserRole: Role = { idRole: 1, nombre: 'Secretary'};
 }
