@@ -38,7 +38,7 @@ export class PrevisionService {
 	//POST
 	registerPrevision(prevision: Prevision)
 	{
-		return this.http.post( this.base+'v1/previsions', JSON.stringify(prevision), this.options).map((res: Response) => res.json());
+		return this.http.post( this.base+'previsions', JSON.stringify(prevision), this.options).map((res: Response) => res.json());
 
 	}
 

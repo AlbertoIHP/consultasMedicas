@@ -35,57 +35,59 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Comuna extends Model
 {
-    use SoftDeletes;
+	use SoftDeletes;
 
-    public $table = 'Comuna';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-
-    protected $dates = ['deleted_at'];
+	public $table = 'Comuna';
+	
+	const CREATED_AT = 'created_at';
+	const UPDATED_AT = 'updated_at';
 
 
-    public $fillable = [
-        'Provincia_idProvincia',
-        'nombre',
-        'remember_token'
-    ];
+	protected $dates = ['deleted_at'];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'idComuna' => 'integer',
-        'Provincia_idProvincia' => 'integer',
-        'nombre' => 'string',
-        'remember_token' => 'string'
-    ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        
-    ];
+	public $fillable = [
+		'Provincia_idProvincia',
+		'nombre',
+		'remember_token'
+	];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function provincium()
-    {
-        return $this->belongsTo(\App\Models\Provincium::class);
-    }
+	/**
+	 * The attributes that should be casted to native types.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		'idComuna' => 'integer',
+		'Provincia_idProvincia' => 'integer',
+		'nombre' => 'string',
+		'remember_token' => 'string'
+	];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function personas()
-    {
-        return $this->hasMany(\App\Models\Persona::class);
-    }
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
+	public static $rules = [
+		
+	];
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 **/
+	public function provincium()
+	{
+		return $this->belongsTo(\App\Models\Provincium::class);
+	}
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 **/
+	public function personas()
+	{
+		return $this->hasMany(\App\Models\Persona::class);
+	}
+
+	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

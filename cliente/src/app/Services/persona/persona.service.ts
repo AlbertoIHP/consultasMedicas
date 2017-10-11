@@ -37,7 +37,7 @@ export class PersonaService {
 	//POST
 	registerPersona(persona: Persona)
 	{
-		return this.http.post( this.base+'v1/personas', JSON.stringify(persona), this.options).map((res: Response) => res.json());
+		return this.http.post( this.base+'personas', JSON.stringify(persona), this.options).map((res: Response) => res.json());
 
 	}
 

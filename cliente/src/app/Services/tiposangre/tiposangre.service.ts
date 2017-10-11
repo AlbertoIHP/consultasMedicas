@@ -39,7 +39,7 @@ getTipoSangres(): Observable<TipoSangre[]>
 //POST
 registerTipoSangre(tipoSangre: TipoSangre): Observable<boolean>
 {
-	return this.http.post( this.base+'v1/TipoSangres', JSON.stringify(tipoSangre), this.options).map((res: Response) => res.json());
+	return this.http.post( this.base+'TipoSangres', JSON.stringify(tipoSangre), this.options).map((res: Response) => res.json());
 
 }
 

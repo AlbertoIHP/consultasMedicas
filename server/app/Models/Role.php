@@ -29,47 +29,49 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Role extends Model
 {
-    use SoftDeletes;
+	use SoftDeletes;
 
-    public $table = 'Role';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-
-    protected $dates = ['deleted_at'];
+	public $table = 'Role';
+	
+	const CREATED_AT = 'created_at';
+	const UPDATED_AT = 'updated_at';
 
 
-    public $fillable = [
-        'nombre',
-        'remember_token'
-    ];
+	protected $dates = ['deleted_at'];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'idRole' => 'integer',
-        'nombre' => 'string',
-        'remember_token' => 'string'
-    ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        
-    ];
+	public $fillable = [
+		'nombre',
+		'remember_token'
+	];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function usuarios()
-    {
-        return $this->hasMany(\App\Models\Usuario::class);
-    }
+	/**
+	 * The attributes that should be casted to native types.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		'idRole' => 'integer',
+		'nombre' => 'string',
+		'remember_token' => 'string'
+	];
+
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
+	public static $rules = [
+		
+	];
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 **/
+	public function usuarios()
+	{
+		return $this->hasMany(\App\Models\Usuario::class);
+	}
+
+	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

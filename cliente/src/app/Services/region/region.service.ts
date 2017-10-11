@@ -37,7 +37,7 @@ export class RegionService {
 	//POST
 	registerRegion(region: Region): Observable<boolean>
 	{
-		return this.http.post( this.base+'v1/regions', JSON.stringify(region), this.options).map((res: Response) => res.json());
+		return this.http.post( this.base+'regions', JSON.stringify(region), this.options).map((res: Response) => res.json());
 
 	}
 

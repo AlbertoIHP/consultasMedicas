@@ -51,55 +51,57 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class HistorialFicha extends Model
 {
-    use SoftDeletes;
+	use SoftDeletes;
 
-    public $table = 'Historial';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-
-    protected $dates = ['deleted_at'];
+	public $table = 'Historial';
+	
+	const CREATED_AT = 'created_at';
+	const UPDATED_AT = 'updated_at';
 
 
-    public $fillable = [
-        'fechaConsulta',
-        'informacionMedica',
-        'FichaMedica_id',
-        'habitos',
-        'peso',
-        'estatura'
-    ];
+	protected $dates = ['deleted_at'];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'fechaConsulta' => 'date',
-        'informacionMedica' => 'string',
-        'FichaMedica_id' => 'integer',
-        'habitos' => 'string',
-        'peso' => 'string',
-        'estatura' => 'string'
-    ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        
-    ];
+	public $fillable = [
+		'fechaConsulta',
+		'informacionMedica',
+		'FichaMedica_id',
+		'habitos',
+		'peso',
+		'estatura'
+	];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function fichaMedica()
-    {
-        return $this->belongsTo(\App\Models\FichaMedica::class);
-    }
+	/**
+	 * The attributes that should be casted to native types.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		'id' => 'integer',
+		'fechaConsulta' => 'date',
+		'informacionMedica' => 'string',
+		'FichaMedica_id' => 'integer',
+		'habitos' => 'string',
+		'peso' => 'string',
+		'estatura' => 'string'
+	];
+
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
+	public static $rules = [
+		
+	];
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 **/
+	public function fichaMedica()
+	{
+		return $this->belongsTo(\App\Models\FichaMedica::class);
+	}
+
+	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

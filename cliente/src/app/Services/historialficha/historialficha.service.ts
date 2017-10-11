@@ -38,7 +38,7 @@ export class HistorialfichaService {
 	//POST
 	registerHistorialFicha(historialFicha: HistorialFicha)
 	{
-		return this.http.post( this.base+'v1/historialfichas', JSON.stringify(historialFicha), this.options).map((res: Response) => res.json());
+		return this.http.post( this.base+'historialfichas', JSON.stringify(historialFicha), this.options).map((res: Response) => res.json());
 
 	}
 

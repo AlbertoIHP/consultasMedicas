@@ -35,57 +35,59 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Provincia extends Model
 {
-    use SoftDeletes;
+	use SoftDeletes;
 
-    public $table = 'Provincia';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-
-    protected $dates = ['deleted_at'];
+	public $table = 'Provincia';
+	
+	const CREATED_AT = 'created_at';
+	const UPDATED_AT = 'updated_at';
 
 
-    public $fillable = [
-        'nombre',
-        'Region_idRegion',
-        'remember_token'
-    ];
+	protected $dates = ['deleted_at'];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'idProvincia' => 'integer',
-        'nombre' => 'string',
-        'Region_idRegion' => 'integer',
-        'remember_token' => 'string'
-    ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        
-    ];
+	public $fillable = [
+		'nombre',
+		'Region_idRegion',
+		'remember_token'
+	];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function region()
-    {
-        return $this->belongsTo(\App\Models\Region::class);
-    }
+	/**
+	 * The attributes that should be casted to native types.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		'idProvincia' => 'integer',
+		'nombre' => 'string',
+		'Region_idRegion' => 'integer',
+		'remember_token' => 'string'
+	];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function comunas()
-    {
-        return $this->hasMany(\App\Models\Comuna::class);
-    }
+	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
+
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
+	public static $rules = [
+		
+	];
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 **/
+	public function region()
+	{
+		return $this->belongsTo(\App\Models\Region::class);
+	}
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 **/
+	public function comunas()
+	{
+		return $this->hasMany(\App\Models\Comuna::class);
+	}
 }

@@ -61,75 +61,77 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class FichaMedica extends Model
 {
-    use SoftDeletes;
+	use SoftDeletes;
 
-    public $table = 'FichaMedica';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-
-    protected $dates = ['deleted_at'];
+	public $table = 'FichaMedica';
+	
+	const CREATED_AT = 'created_at';
+	const UPDATED_AT = 'updated_at';
 
 
-    public $fillable = [
-        'nombre',
-        'Persona_rut',
-        'nombreResponsable',
-        'fechaCreacion',
-        'pesoActual',
-        'estaturaActual',
-        'TipoSangre_id',
-        'remember_token'
-    ];
+	protected $dates = ['deleted_at'];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'nombre' => 'string',
-        'Persona_rut' => 'string',
-        'nombreResponsable' => 'string',
-        'fechaCreacion' => 'date',
-        'pesoActual' => 'string',
-        'estaturaActual' => 'string',
-        'TipoSangre_id' => 'integer',
-        'remember_token' => 'string'
-    ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        
-    ];
+	public $fillable = [
+		'nombre',
+		'Persona_rut',
+		'nombreResponsable',
+		'fechaCreacion',
+		'pesoActual',
+		'estaturaActual',
+		'TipoSangre_id',
+		'remember_token'
+	];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function persona()
-    {
-        return $this->belongsTo(\App\Models\Persona::class);
-    }
+	/**
+	 * The attributes that should be casted to native types.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		'id' => 'integer',
+		'nombre' => 'string',
+		'Persona_rut' => 'string',
+		'nombreResponsable' => 'string',
+		'fechaCreacion' => 'date',
+		'pesoActual' => 'string',
+		'estaturaActual' => 'string',
+		'TipoSangre_id' => 'integer',
+		'remember_token' => 'string'
+	];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function tipoSangre()
-    {
-        return $this->belongsTo(\App\Models\TipoSangre::class);
-    }
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
+	public static $rules = [
+		
+	];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function historials()
-    {
-        return $this->hasMany(\App\Models\Historial::class);
-    }
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 **/
+	public function persona()
+	{
+		return $this->belongsTo(\App\Models\Persona::class);
+	}
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 **/
+	public function tipoSangre()
+	{
+		return $this->belongsTo(\App\Models\TipoSangre::class);
+	}
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 **/
+	public function historials()
+	{
+		return $this->hasMany(\App\Models\Historial::class);
+	}
+
+	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

@@ -37,7 +37,7 @@ export class GeneroService {
 	//POST
 	registerGenero(genero: Genero)
 	{
-		return this.http.post( this.base+'v1/generos', JSON.stringify(genero), this.options).map((res: Response) => res.json());
+		return this.http.post( this.base+'generos', JSON.stringify(genero), this.options).map((res: Response) => res.json());
 
 	}
 

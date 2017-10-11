@@ -38,7 +38,7 @@ export class UserService {
 	//POST
 	registerUser(usuario: Usuario): Observable<boolean>
 	{
-		return this.http.post( this.base+'v1/users', JSON.stringify(usuario), this.options).map((res: Response) => res.json());
+		return this.http.post( this.base+'users', JSON.stringify(usuario), this.options).map((res: Response) => res.json());
 
 	}
 

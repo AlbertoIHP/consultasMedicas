@@ -1,5 +1,12 @@
 export class Genero {
-  idGenero: number;
+  idGenero: string;
   descripcion: string;
   nombre: string;
+
+  constructor()
+  {
+	this.idGenero = "";
+	this.descripcion = "";
+	this.nombre = "";
+  }
 }

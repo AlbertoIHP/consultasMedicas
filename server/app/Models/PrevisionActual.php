@@ -41,59 +41,61 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class PrevisionActual extends Model
 {
-    use SoftDeletes;
+	use SoftDeletes;
 
-    public $table = 'PrevisionActual';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-
-    protected $dates = ['deleted_at'];
+	public $table = 'PrevisionActual';
+	
+	const CREATED_AT = 'created_at';
+	const UPDATED_AT = 'updated_at';
 
 
-    public $fillable = [
-        'fechaActualizacion',
-        'Prevision_idPrevision',
-        'Persona_rut',
-        'remember_token'
-    ];
+	protected $dates = ['deleted_at'];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'fechaActualizacion' => 'date',
-        'Prevision_idPrevision' => 'integer',
-        'Persona_rut' => 'string',
-        'remember_token' => 'string'
-    ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        
-    ];
+	public $fillable = [
+		'fechaActualizacion',
+		'Prevision_idPrevision',
+		'Persona_rut',
+		'remember_token'
+	];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function prevision()
-    {
-        return $this->belongsTo(\App\Models\Prevision::class);
-    }
+	/**
+	 * The attributes that should be casted to native types.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		'id' => 'integer',
+		'fechaActualizacion' => 'date',
+		'Prevision_idPrevision' => 'integer',
+		'Persona_rut' => 'string',
+		'remember_token' => 'string'
+	];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function persona()
-    {
-        return $this->belongsTo(\App\Models\Persona::class);
-    }
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
+	public static $rules = [
+		
+	];
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 **/
+	public function prevision()
+	{
+		return $this->belongsTo(\App\Models\Prevision::class);
+	}
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 **/
+	public function persona()
+	{
+		return $this->belongsTo(\App\Models\Persona::class);
+	}
+
+	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

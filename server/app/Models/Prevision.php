@@ -34,57 +34,52 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Prevision extends Model
 {
-    use SoftDeletes;
+	use SoftDeletes;
 
-    public $table = 'Prevision';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-
-    protected $dates = ['deleted_at'];
+	public $table = 'Prevision';
+	
+	const CREATED_AT = 'created_at';
+	const UPDATED_AT = 'updated_at';
 
 
-    public $fillable = [
-        'descripcion',
-        'nombre',
-        'remember_token'
-    ];
+	protected $dates = ['deleted_at'];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'idPrevision' => 'integer',
-        'descripcion' => 'string',
-        'nombre' => 'string',
-        'remember_token' => 'string'
-    ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        
-    ];
+	public $fillable = [
+		'descripcion',
+		'nombre',
+		'remember_token'
+	];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function personas()
-    {
-        return $this->belongsToMany(\App\Models\Persona::class, 'Persona_has_Prevision');
-    }
+	/**
+	 * The attributes that should be casted to native types.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		'idPrevision' => 'integer',
+		'descripcion' => 'string',
+		'nombre' => 'string',
+		'remember_token' => 'string'
+	];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function personas()
-    {
-        return $this->belongsToMany(\App\Models\Persona::class, 'PrevisionActual');
-    }
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
+	public static $rules = [
+		
+	];
+
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 **/
+	public function personas()
+	{
+		return $this->belongsToMany(\App\Models\Persona::class, 'PrevisionActual');
+	}
+
+	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

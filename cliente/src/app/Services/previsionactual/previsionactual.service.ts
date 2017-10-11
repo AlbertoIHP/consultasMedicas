@@ -37,7 +37,7 @@ export class PrevisionactualService {
 	//POST
 	registerPrevisionActual(previsionActual: PrevisionActual)
 	{
-		return this.http.post( this.base+'v1/previsionactuals', JSON.stringify(previsionActual), this.options).map((res: Response) => res.json());
+		return this.http.post( this.base+'previsionactuals', JSON.stringify(previsionActual), this.options).map((res: Response) => res.json());
 
 	}
 

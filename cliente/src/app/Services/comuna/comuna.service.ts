@@ -38,7 +38,7 @@ export class ComunaService {
 	//POST
 	registerComuna(comuna: Comuna)
 	{
-		return this.http.post( this.base+'v1/comunas', JSON.stringify(comuna), this.options).map((res: Response) => res.json());
+		return this.http.post( this.base+'comunas', JSON.stringify(comuna), this.options).map((res: Response) => res.json());
 
 	}
 

@@ -34,9 +34,10 @@
 		 <a class="item">Opciones de Medico</a>
 		</div>
 
-    <div *ngIf="currentUserRole.nombre === 'Secretary'" >
-     <a class="item">Opciones de Secretaria</a>
-    </div>
+	<div *ngIf="currentUserRole.nombre === 'Secretary'" >
+	   <a class="item">Home</a>
+     <a class="item" (click)="irPacientesSecretary()">Pacientes</a>
+	</div>
 	</sui-sidebar>
 
 

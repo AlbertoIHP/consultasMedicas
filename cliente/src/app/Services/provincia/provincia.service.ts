@@ -38,7 +38,7 @@ export class ProvinciaService {
 	//POST
 	registerProvincia(provincia: Provincia): Observable<boolean>
 	{
-		return this.http.post( this.base+'v1/provincias', JSON.stringify(provincia), this.options).map((res: Response) => res.json());
+		return this.http.post( this.base+'provincias', JSON.stringify(provincia), this.options).map((res: Response) => res.json());
 
 	}
 

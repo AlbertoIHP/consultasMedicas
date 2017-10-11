@@ -16,28 +16,29 @@ use InfyOm\Generator\Common\BaseRepository;
 */
 class PersonaRepository extends BaseRepository
 {
-    /**
-     * @var array
-     */
-    protected $fieldSearchable = [
-        'nombre1',
-        'nombre2',
-        'apellido1',
-        'apellido2',
-        'fono_casa',
-        'fono_trabajo',
-        'movil',
-        'idGenero',
-        'EstadoCivil_idEstado',
-        'Comuna_idComuna',
-        'remember_token'
-    ];
+	/**
+	 * @var array
+	 */
+	protected $fieldSearchable = [
+		'rut',
+		'nombre1',
+		'nombre2',
+		'apellido1',
+		'apellido2',
+		'fono_casa',
+		'fono_trabajo',
+		'movil',
+		'idGenero',
+		'EstadoCivil_idEstado',
+		'Comuna_idComuna',
+		'remember_token'
+	];
 
-    /**
-     * Configure the Model
-     **/
-    public function model()
-    {
-        return Persona::class;
-    }
+	/**
+	 * Configure the Model
+	 **/
+	public function model()
+	{
+		return Persona::class;
+	}
 }

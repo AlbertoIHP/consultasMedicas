@@ -34,49 +34,51 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Genero extends Model
 {
-    use SoftDeletes;
+	use SoftDeletes;
 
-    public $table = 'Genero';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-
-    protected $dates = ['deleted_at'];
+	public $table = 'Genero';
+	
+	const CREATED_AT = 'created_at';
+	const UPDATED_AT = 'updated_at';
 
 
-    public $fillable = [
-        'descripcion',
-        'nombre',
-        'remember_token'
-    ];
+	protected $dates = ['deleted_at'];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'idGenero' => 'integer',
-        'descripcion' => 'string',
-        'nombre' => 'string',
-        'remember_token' => 'string'
-    ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        
-    ];
+	public $fillable = [
+		'descripcion',
+		'nombre',
+		'remember_token'
+	];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function personas()
-    {
-        return $this->hasMany(\App\Models\Persona::class);
-    }
+	/**
+	 * The attributes that should be casted to native types.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		'idGenero' => 'integer',
+		'descripcion' => 'string',
+		'nombre' => 'string',
+		'remember_token' => 'string'
+	];
+
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
+	public static $rules = [
+		
+	];
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 **/
+	public function personas()
+	{
+		return $this->hasMany(\App\Models\Persona::class);
+	}
+
+	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

@@ -12,6 +12,7 @@ import { RegionService } from './Services/region/region.service';
 import { RoleService } from './Services/role/role.service';
 import { UserService } from './Services/user/user.service';
 import { TipoSangreService } from './Services/tiposangre/tiposangre.service';
+import { AuthenticationService} from './Services/authentication/authentication.service';
 
 
 
@@ -25,6 +26,7 @@ import { SuiModule } from 'ng2-semantic-ui';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
+
 // COMPONENTES
 import { AppComponent } from './app.component';
 import { AdminhomeComponent } from './Components/admin/adminhome/adminhome.component';
@@ -32,6 +34,7 @@ import { PacientehomeComponent } from './Components/paciente/pacientehome/pacien
 import { SecretaryhomeComponent } from './Components/secretary/secretaryhome/secretaryhome.component';
 import { MedichomeComponent } from './Components/medic/medichome/medichome.component';
 import { LoginComponent } from './Components/login/login/login.component';
+import { SecretarypacientesComponent } from './Components/secretary/secretarypacientes/secretarypacientes.component';
 
 @NgModule({
 	declarations:
@@ -41,14 +44,17 @@ import { LoginComponent } from './Components/login/login/login.component';
 	  PacientehomeComponent,
 	  SecretaryhomeComponent,
 	  MedichomeComponent,
-	  LoginComponent
+	  LoginComponent,
+	  SecretarypacientesComponent
 	],
 
 	imports:
 	[
 	  BrowserModule,
 	  SuiModule,
-	  routing
+	  routing,
+	  FormsModule,
+    HttpModule
 	],
 
 	providers:
@@ -66,7 +72,8 @@ import { LoginComponent } from './Components/login/login/login.component';
   	RegionService,
   	RoleService,
   	UserService,
-    TipoSangreService
+  	TipoSangreService,
+    AuthenticationService
 	],
 
 	bootstrap:

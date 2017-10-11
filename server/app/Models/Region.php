@@ -72,4 +72,6 @@ class Region extends Model
     {
         return $this->hasMany(\App\Models\Provincium::class);
     }
+
+    	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

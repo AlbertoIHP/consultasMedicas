@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Role } from './Models/Role.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,13 @@ import { Role } from './Models/Role.model';
 })
 export class AppComponent {
 	public currentUserRole: Role = { idRole: 1, nombre: 'Secretary'};
+
+
+
+  constructor(private router: Router){}
+
+  irPacientesSecretary()
+  {
+    this.router.navigate(['secretary/pacientes']);
+  }
 }

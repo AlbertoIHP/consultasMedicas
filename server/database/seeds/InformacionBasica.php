@@ -2084,10 +2084,6 @@ class InformacionBasica extends Seeder
 	'Provincia_idProvincia' => 56,
 	]);
 
-	DB::table('EstadoCivil')->insert([
-	'nombre' =>'Casado',
-	'descripcion' => 'Casado',
-	]);
 
 	DB::table('EstadoCivil')->insert([
 	'nombre' =>'Hijo/a',

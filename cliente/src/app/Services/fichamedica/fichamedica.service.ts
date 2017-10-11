@@ -38,7 +38,7 @@ export class FichamedicaService {
 	//POST
 	registerFichaMedica(fichaMedica: FichaMedica)
 	{
-		return this.http.post( this.base+'v1/fichamedicas', JSON.stringify(fichaMedica), this.options).map((res: Response) => res.json());
+		return this.http.post( this.base+'fichamedicas', JSON.stringify(fichaMedica), this.options).map((res: Response) => res.json());
 
 	}
 
