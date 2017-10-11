@@ -1,5 +1,5 @@
 export class TipoSangre {
-  id: integer;
+  id: number;
   nombre: string;
   descripcion: string;
 }
