@@ -61,6 +61,7 @@ class CreateUsersTable extends Migration
 		});
 
 
+
 		Schema::table('Region', function (Blueprint $table) {
 			$table->rememberToken();
 			$table->timestamps();
@@ -181,6 +182,12 @@ class CreateUsersTable extends Migration
 		});
 
 
+		Schema::table('Historial', function (Blueprint $table) {
+			$table->rememberToken();
+			$table->timestamps();
+			$table->timestamp('deleted_at')->nullable();
+
+		});
 
 	}
 

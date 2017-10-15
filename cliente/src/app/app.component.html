@@ -23,7 +23,9 @@
 
 	<sui-sidebar class="inverted vertical"  #sidebar>
 		<div *ngIf="currentUserRole.nombre === 'Administrador'" >
-		 <a class="item">Opciones de admin</a>
+		 <a class="item">Modulo Pacientes</a>
+     <a class="item">Modulo Citas</a>
+     <a class="item">Modulo Atencion</a>
 		</div>
 
 		<div *ngIf="currentUserRole.nombre === 'Paciente'" >
@@ -35,8 +37,8 @@
 		</div>
 
 	<div *ngIf="currentUserRole.nombre === 'Secretary'" >
-	   <a class="item">Home</a>
-     <a class="item" (click)="irPacientesSecretary()">Pacientes</a>
+	   <a class="item" (click)="irHomeSecretary()">Home</a>
+	 <a class="item" (click)="irPacientesSecretary()">Pacientes</a>
 	</div>
 	</sui-sidebar>
 

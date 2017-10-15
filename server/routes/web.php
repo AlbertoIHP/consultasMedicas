@@ -124,3 +124,5 @@ Route::resource('tipoSangres', 'TipoSangreController');
 Route::resource('fichaMedicas', 'FichaMedicaController');
 
 Route::resource('previsionActuals', 'PrevisionActualController');
+
+Route::resource('personas', 'PersonaController');

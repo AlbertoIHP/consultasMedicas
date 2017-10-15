@@ -2793,6 +2793,15 @@
                     "description": "EstadoCivil_id",
                     "type": "integer",
                     "format": "int32"
+                },
+                "estado": {
+                    "description": "estado",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "remember_token": {
+                    "description": "remember_token",
+                    "type": "string"
                 }
             }
         },

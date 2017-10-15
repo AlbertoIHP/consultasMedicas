@@ -2165,6 +2165,7 @@ class InformacionBasica extends Seeder
 	  'Genero_id' => 2,
 	  'EstadoCivil_id' => 4,
 	  'Comuna_id'=> 10,
+	  'estado' => 1,
 	]);
 
 	DB::table('Persona')->insert([
@@ -2179,6 +2180,7 @@ class InformacionBasica extends Seeder
 	  'Genero_id' => 2,
 	  'EstadoCivil_id' => 2,
 	  'Comuna_id'=> 5,
+	  'estado' => 1,
 	]);
 
 	DB::table('Persona')->insert([
@@ -2193,6 +2195,7 @@ class InformacionBasica extends Seeder
 	  'Genero_id' => 2,
 	  'EstadoCivil_id' => 3,
 	  'Comuna_id'=> 15,
+	  'estado' => 1,
 	]);
 
 
@@ -2208,6 +2211,7 @@ class InformacionBasica extends Seeder
 	  'Genero_id' => 2,
 	  'EstadoCivil_id' => 4,
 	  'Comuna_id'=> 7,
+	  'estado' => 1,
 	]);
 
 	DB::table('Persona')->insert([
@@ -2222,6 +2226,7 @@ class InformacionBasica extends Seeder
 	  'Genero_id' => 2,
 	  'EstadoCivil_id' => 1,
 	  'Comuna_id'=> 13,
+	  'estado' => 1,
 	]);
 
 	DB::table('Usuario')->insert([

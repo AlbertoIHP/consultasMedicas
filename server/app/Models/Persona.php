@@ -72,6 +72,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="EstadoCivil_id",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="estado",
+ *          description="estado",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="remember_token",
+ *          description="remember_token",
+ *          type="string"
  *      )
  * )
  */
@@ -99,7 +110,9 @@ class Persona extends Model
 		'movil',
 		'Genero_id',
 		'Comuna_id',
-		'EstadoCivil_id'
+		'EstadoCivil_id',
+		'estado',
+		'remember_token'
 	];
 
 	/**
@@ -119,7 +132,9 @@ class Persona extends Model
 		'movil' => 'string',
 		'Genero_id' => 'integer',
 		'Comuna_id' => 'integer',
-		'EstadoCivil_id' => 'integer'
+		'EstadoCivil_id' => 'integer',
+		'estado' => 'integer',
+		'remember_token' => 'string'
 	];
 
 	/**
@@ -180,4 +195,5 @@ class Persona extends Model
 	}
 
 	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
+
 }

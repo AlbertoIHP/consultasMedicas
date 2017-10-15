@@ -70,3 +70,33 @@
     <p>{!! $persona->EstadoCivil_id !!}</p>
 </div>
 
+<!-- Estado Field -->
+<div class="form-group">
+    {!! Form::label('estado', 'Estado:') !!}
+    <p>{!! $persona->estado !!}</p>
+</div>
+
+<!-- Remember Token Field -->
+<div class="form-group">
+    {!! Form::label('remember_token', 'Remember Token:') !!}
+    <p>{!! $persona->remember_token !!}</p>
+</div>
+
+<!-- Created At Field -->
+<div class="form-group">
+    {!! Form::label('created_at', 'Created At:') !!}
+    <p>{!! $persona->created_at !!}</p>
+</div>
+
+<!-- Updated At Field -->
+<div class="form-group">
+    {!! Form::label('updated_at', 'Updated At:') !!}
+    <p>{!! $persona->updated_at !!}</p>
+</div>
+
+<!-- Deleted At Field -->
+<div class="form-group">
+    {!! Form::label('deleted_at', 'Deleted At:') !!}
+    <p>{!! $persona->deleted_at !!}</p>
+</div>
+

@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class PersonaRepository
  * @package App\Repositories
- * @version October 15, 2017, 3:58 am UTC
+ * @version October 15, 2017, 6:55 pm UTC
  *
  * @method Persona findWithoutFail($id, $columns = ['*'])
  * @method Persona find($id, $columns = ['*'])
@@ -30,7 +30,9 @@ class PersonaRepository extends BaseRepository
         'movil',
         'Genero_id',
         'Comuna_id',
-        'EstadoCivil_id'
+        'EstadoCivil_id',
+        'estado',
+        'remember_token'
     ];
 
     /**
