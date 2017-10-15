@@ -2840,6 +2840,15 @@
                     "description": "Persona_id",
                     "type": "integer",
                     "format": "int32"
+                },
+                "activado": {
+                    "description": "activado",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "remember_token": {
+                    "description": "remember_token",
+                    "type": "string"
                 }
             }
         },

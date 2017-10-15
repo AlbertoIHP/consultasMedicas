@@ -290,3 +290,7 @@
     <a href="{!! route('fichaMedicas.index') !!}"><i class="fa fa-edit"></i><span>FichaMedicas</span></a>
 </li>
 
+<li class="{{ Request::is('previsionActuals*') ? 'active' : '' }}">
+    <a href="{!! route('previsionActuals.index') !!}"><i class="fa fa-edit"></i><span>PrevisionActuals</span></a>
+</li>
+

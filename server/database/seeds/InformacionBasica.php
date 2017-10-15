@@ -2349,12 +2349,14 @@ class InformacionBasica extends Seeder
 	'fechaActualizacion' => Carbon::create('2017', '02', '01'),
 	'Prevision_id' => 1,
 	'Persona_id' => 1,
+	'activado' => 0,
 	]);
 
 	DB::table('PrevisionActual')->insert([
 	'fechaActualizacion' => Carbon::create('2017', '03', '01'),
 	'Prevision_id' => 2,
 	'Persona_id' => 1,
+	'activado' => 0,
 	]);
 
 

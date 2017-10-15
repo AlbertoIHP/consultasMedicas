@@ -33,31 +33,31 @@ constructor(private http: Http, private authenticationService: AuthenticationSer
 //GET
 getTipoSangres(): Observable<TipoSangre[]>
 {
-	return this.http.get(this.base+'TipoSangres', this.options).map((res: Response) => res.json());
+	return this.http.get(this.base+'tipoSangres', this.options).map((res: Response) => res.json());
 }
 
 //POST
 registerTipoSangre(tipoSangre: TipoSangre): Observable<boolean>
 {
-	return this.http.post( this.base+'TipoSangres', JSON.stringify(tipoSangre), this.options).map((res: Response) => res.json());
+	return this.http.post( this.base+'tipoSangres', JSON.stringify(tipoSangre), this.options).map((res: Response) => res.json());
 
 }
 
 //GET
 getTipoSangre(id) : Observable<TipoSangre>
 {
-	return this.http.get(this.base+'TipoSangres/'+id, this.options).map((res: Response) => res.json());
+	return this.http.get(this.base+'tipoSangres/'+id, this.options).map((res: Response) => res.json());
 }
 
 //PUT
 editTipoSangre(tipoSangre: TipoSangre, id: number)
 {
-	return this.http.put(this.base+'TipoSangres/'+id, JSON.stringify(tipoSangre), this.options).map((res: Response) => res.json());
+	return this.http.put(this.base+'tipoSangres/'+id, JSON.stringify(tipoSangre), this.options).map((res: Response) => res.json());
 }
 
 //DELETE
 deleteTipoSangre(id) {
-	return this.http.delete(this.base+'TipoSangres/'+id, this.options).map((res: Response) => res.json());
+	return this.http.delete(this.base+'tipoSangres/'+id, this.options).map((res: Response) => res.json());
 }
 
 

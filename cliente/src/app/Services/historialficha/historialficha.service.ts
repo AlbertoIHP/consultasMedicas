@@ -32,31 +32,31 @@ export class HistorialfichaService {
 	//GET
 	getHistorialFichas(): Observable<HistorialFicha[]>
 	{
-		return this.http.get(this.base+'historialfichas', this.options).map((res: Response) => res.json());
+		return this.http.get(this.base+'historialFichas', this.options).map((res: Response) => res.json());
 	}
 
 	//POST
 	registerHistorialFicha(historialFicha: HistorialFicha)
 	{
-		return this.http.post( this.base+'historialfichas', JSON.stringify(historialFicha), this.options).map((res: Response) => res.json());
+		return this.http.post( this.base+'historialFichas', JSON.stringify(historialFicha), this.options).map((res: Response) => res.json());
 
 	}
 
 	//GET
 	getHistorialFicha(id) : Observable<HistorialFicha>
 	{
-		return this.http.get(this.base+'historialfichas/'+id, this.options).map((res: Response) => res.json());
+		return this.http.get(this.base+'historialFichas/'+id, this.options).map((res: Response) => res.json());
 	}
 
 	//PUT
 	editHistorialFicha(historialFicha: HistorialFicha, id: number)
 	{
-		return this.http.put(this.base+'historialfichas/'+id, JSON.stringify(historialFicha), this.options).map((res: Response) => res.json());
+		return this.http.put(this.base+'historialFichas/'+id, JSON.stringify(historialFicha), this.options).map((res: Response) => res.json());
 	}
 
 	//DELETE
 	deleteHistorialFicha(id) {
-		return this.http.delete(this.base+'historialfichas/'+id, this.options).map((res: Response) => res.json());
+		return this.http.delete(this.base+'historialFichas/'+id, this.options).map((res: Response) => res.json());
 	}
 
 

@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 /**
  * @SWG\Definition(
  *      definition="User",
@@ -39,7 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class User extends Model
+class User extends Authenticatable
 {
 	use SoftDeletes;
 

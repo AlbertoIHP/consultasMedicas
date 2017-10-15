@@ -32,31 +32,31 @@ export class FichamedicaService {
 	//GET
 	getFichasMedicas(): Observable<FichaMedica[]>
 	{
-		return this.http.get(this.base+'fichamedicas', this.options).map((res: Response) => res.json());
+		return this.http.get(this.base+'fichaMedicas', this.options).map((res: Response) => res.json());
 	}
 
 	//POST
 	registerFichaMedica(fichaMedica: FichaMedica)
 	{
-		return this.http.post( this.base+'fichamedicas', JSON.stringify(fichaMedica), this.options).map((res: Response) => res.json());
+		return this.http.post( this.base+'fichaMedicas', JSON.stringify(fichaMedica), this.options).map((res: Response) => res.json());
 
 	}
 
 	//GET
 	getFichaMedica(id) : Observable<FichaMedica>
 	{
-		return this.http.get(this.base+'fichamedicas/'+id, this.options).map((res: Response) => res.json());
+		return this.http.get(this.base+'fichaMedicas/'+id, this.options).map((res: Response) => res.json());
 	}
 
 	//PUT
 	editFichaMedica(fichaMedica: FichaMedica, id: number)
 	{
-		return this.http.put(this.base+'fichamedicas/'+id, JSON.stringify(fichaMedica), this.options).map((res: Response) => res.json());
+		return this.http.put(this.base+'fichaMedicas/'+id, JSON.stringify(fichaMedica), this.options).map((res: Response) => res.json());
 	}
 
 	//DELETE
 	deleteFichaMedica(id) {
-		return this.http.delete(this.base+'fichamedicas/'+id, this.options).map((res: Response) => res.json());
+		return this.http.delete(this.base+'fichaMedicas/'+id, this.options).map((res: Response) => res.json());
 	}
 
 

@@ -74,7 +74,9 @@ class PrevisionActualDataTable extends DataTable
         return [
             'fechaActualizacion' => ['name' => 'fechaActualizacion', 'data' => 'fechaActualizacion'],
             'Prevision_id' => ['name' => 'Prevision_id', 'data' => 'Prevision_id'],
-            'Persona_id' => ['name' => 'Persona_id', 'data' => 'Persona_id']
+            'Persona_id' => ['name' => 'Persona_id', 'data' => 'Persona_id'],
+            'activado' => ['name' => 'activado', 'data' => 'activado'],
+            'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
         ];
     }
 

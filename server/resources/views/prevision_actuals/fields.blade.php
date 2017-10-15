@@ -16,6 +16,18 @@
     {!! Form::number('Persona_id', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Activado Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('activado', 'Activado:') !!}
+    {!! Form::number('activado', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Remember Token Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('remember_token', 'Remember Token:') !!}
+    {!! Form::text('remember_token', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

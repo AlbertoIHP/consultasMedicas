@@ -32,6 +32,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="Persona_id",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="activado",
+ *          description="activado",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="remember_token",
+ *          description="remember_token",
+ *          type="string"
  *      )
  * )
  */
@@ -51,7 +62,9 @@ class PrevisionActual extends Model
 	public $fillable = [
 		'fechaActualizacion',
 		'Prevision_id',
-		'Persona_id'
+		'Persona_id',
+		'activado',
+		'remember_token'
 	];
 
 	/**
@@ -63,7 +76,9 @@ class PrevisionActual extends Model
 		'id' => 'integer',
 		'fechaActualizacion' => 'date',
 		'Prevision_id' => 'integer',
-		'Persona_id' => 'integer'
+		'Persona_id' => 'integer',
+		'activado' => 'integer',
+		'remember_token' => 'string'
 	];
 
 	/**
@@ -90,5 +105,6 @@ class PrevisionActual extends Model
 	{
 		return $this->belongsTo(\App\Models\Prevision::class);
 	}
+
 	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

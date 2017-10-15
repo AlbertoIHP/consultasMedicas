@@ -16,6 +16,6 @@ export class AppComponent {
 
   irPacientesSecretary()
   {
-	this.router.navigate(['secretary/pacientes']);
+	 this.router.navigate(['secretary/pacientes']);
   }
 }

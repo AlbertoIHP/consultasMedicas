@@ -35,6 +35,7 @@ import { SecretaryhomeComponent } from './Components/secretary/secretaryhome/sec
 import { MedichomeComponent } from './Components/medic/medichome/medichome.component';
 import { LoginComponent } from './Components/login/login/login.component';
 import { SecretarypacientesComponent } from './Components/secretary/secretarypacientes/secretarypacientes.component';
+import { SecretaryprevisionComponent } from './Components/secretary/secretaryprevision/secretaryprevision.component';
 
 @NgModule({
 	declarations:
@@ -45,7 +46,8 @@ import { SecretarypacientesComponent } from './Components/secretary/secretarypac
 	  SecretaryhomeComponent,
 	  MedichomeComponent,
 	  LoginComponent,
-	  SecretarypacientesComponent
+	  SecretarypacientesComponent,
+	  SecretaryprevisionComponent
 	],
 
 	imports:
@@ -59,21 +61,21 @@ import { SecretarypacientesComponent } from './Components/secretary/secretarypac
 
 	providers:
 	[
-  	appRoutingProviders,
-  	ComunaService,
-  	EstadocivilService,
-  	FichamedicaService,
-  	GeneroService,
-  	HistorialfichaService,
-  	PersonaService,
-  	PrevisionService,
-  	PrevisionactualService,
-  	ProvinciaService,
-  	RegionService,
-  	RoleService,
-  	UserService,
-  	TipoSangreService,
-  	AuthenticationService
+	appRoutingProviders,
+	ComunaService,
+	EstadocivilService,
+	FichamedicaService,
+	GeneroService,
+	HistorialfichaService,
+	PersonaService,
+	PrevisionService,
+	PrevisionactualService,
+	ProvinciaService,
+	RegionService,
+	RoleService,
+	UserService,
+	TipoSangreService,
+	AuthenticationService
 	],
 
 	bootstrap:

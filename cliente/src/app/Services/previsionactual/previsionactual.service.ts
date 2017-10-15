@@ -31,31 +31,31 @@ export class PrevisionactualService {
 	//GET
 	getPrevisionActuals(): Observable<PrevisionActual[]>
 	{
-		return this.http.get(this.base+'previsionactuals', this.options).map((res: Response) => res.json());
+		return this.http.get(this.base+'previsionActuals', this.options).map((res: Response) => res.json());
 	}
 
 	//POST
 	registerPrevisionActual(previsionActual: PrevisionActual)
 	{
-		return this.http.post( this.base+'previsionactuals', JSON.stringify(previsionActual), this.options).map((res: Response) => res.json());
+		return this.http.post( this.base+'previsionActuals', JSON.stringify(previsionActual), this.options).map((res: Response) => res.json());
 
 	}
 
 	//GET
 	getPrevisionActual(id) : Observable<PrevisionActual>
 	{
-		return this.http.get(this.base+'previsionactuals/'+id, this.options).map((res: Response) => res.json());
+		return this.http.get(this.base+'previsionActuals/'+id, this.options).map((res: Response) => res.json());
 	}
 
 	//PUT
 	editPrevisionActual(previsionActual: PrevisionActual, id: number)
 	{
-		return this.http.put(this.base+'previsionactuals/'+id, JSON.stringify(previsionActual), this.options).map((res: Response) => res.json());
+		return this.http.put(this.base+'previsionActuals/'+id, JSON.stringify(previsionActual), this.options).map((res: Response) => res.json());
 	}
 
 	//DELETE
 	deletePrevisionActual(id) {
-		return this.http.delete(this.base+'previsionactuals/'+id, this.options).map((res: Response) => res.json());
+		return this.http.delete(this.base+'previsionActuals/'+id, this.options).map((res: Response) => res.json());
 	}
 
 
