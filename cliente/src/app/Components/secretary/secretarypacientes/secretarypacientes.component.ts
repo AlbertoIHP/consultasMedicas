@@ -60,7 +60,7 @@ export class SecretarypacientesComponent implements OnInit {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalPacientes = todo;
-      this.reemplazarIdPorString();
+			this.reemplazarIdPorString();
 		});
 	}
 
@@ -127,7 +127,7 @@ export class SecretarypacientesComponent implements OnInit {
 
 		this.actualizarEstadoCiviles();
 
-    this.actualizarPersonas();
+		this.actualizarPersonas();
 	}
 
 
@@ -136,7 +136,7 @@ export class SecretarypacientesComponent implements OnInit {
 		var provinciasRegion: any = [];
 		for(let i = 0 ; i < this.totalProvincias.length ; i++)
 		{
-			if(this.totalProvincias[i].Region_idRegion === region.idRegion)
+			if(this.totalProvincias[i].Region_id === region.id)
 			{
 				provinciasRegion.push(this.totalProvincias[i]);
 			}
@@ -151,7 +151,7 @@ export class SecretarypacientesComponent implements OnInit {
 		var comunasProvincia: any = [];
 		for(let i = 0; i < this.totalComunas.length; i++)
 		{
-			if(this.totalComunas[i].Provincia_idProvincia === provincia.idProvincia)
+			if(this.totalComunas[i].Provincia_id === provincia.id)
 			{
 				comunasProvincia.push(this.totalComunas[i]);
 			}
@@ -165,7 +165,7 @@ export class SecretarypacientesComponent implements OnInit {
 	comunaSeleccionada(comuna)
 	{
 		console.log(JSON.stringify(comuna));
-		this.nuevoPaciente.Comuna_idComuna = comuna.idComuna;
+		this.nuevoPaciente.Comuna_id = comuna.id;
 	}
 
 
@@ -187,20 +187,20 @@ export class SecretarypacientesComponent implements OnInit {
 		this.actualizarComunas();
 		this.actualizarProvincias();
 	this.servicioPersona.registerPersona(this.nuevoPaciente).subscribe(data => {
-	  console.log(data);
-	  this.actualizarPersonas();
+		console.log(data);
+		this.actualizarPersonas();
 	});
 	this.nuevoPaciente = new Persona();
 	}
 
 	estadoCivilSeleccionado(estado)
 	{
-		this.nuevoPaciente.EstadoCivil_idEstado = estado.idEstadoCivil;
+		this.nuevoPaciente.EstadoCivil_id = estado.id;
 	}
 
 	generoSeleccionado(genero)
 	{
-		this.nuevoPaciente.idGenero = genero.idGenero;
+		this.nuevoPaciente.Genero_id = genero.id;
 	}
 
 	ngOnInit()
@@ -208,40 +208,40 @@ export class SecretarypacientesComponent implements OnInit {
 
 	}
 
-  reemplazarIdPorString()
-  {
-    for(let i = 0 ; i < this.totalPacientes.length ; i ++)
-    {
+	reemplazarIdPorString()
+	{
+		for(let i = 0 ; i < this.totalPacientes.length ; i ++)
+		{
 
-      for(let j = 0 ; j < this.totalGeneros.length ; j++)
-      {
-        if(this.totalPacientes[i].idGenero === this.totalGeneros[j].idGenero)
-        {
-          this.totalPacientes[i].idGenero = this.totalGeneros[j].nombre;
-          break;
-        }
-      }
+			for(let j = 0 ; j < this.totalGeneros.length ; j++)
+			{
+				if(this.totalPacientes[i].Genero_id === this.totalGeneros[j].id)
+				{
+					this.totalPacientes[i].Genero_id = this.totalGeneros[j].nombre;
+					break;
+				}
+			}
 
-      for(let j = 0 ; j < this.totalEstadoCiviles.length ; j++)
-      {
-        if(this.totalPacientes[i].EstadoCivil_idEstado === this.totalEstadoCiviles[j].idEstadoCivil)
-        {
-          this.totalPacientes[i].EstadoCivil_idEstado = this.totalEstadoCiviles[j].nombre;
-          break;
-        }
-      }
+			for(let j = 0 ; j < this.totalEstadoCiviles.length ; j++)
+			{
+				if(this.totalPacientes[i].EstadoCivil_id === this.totalEstadoCiviles[j].id)
+				{
+					this.totalPacientes[i].EstadoCivil_id = this.totalEstadoCiviles[j].nombre;
+					break;
+				}
+			}
 
 
-      for(let j = 0 ; j < this.totalComunas.length ; j++)
-      {
-        if(this.totalPacientes[i].Comuna_idComuna === this.totalComunas[j].idComuna)
-        {
-          this.totalPacientes[i].Comuna_idComuna = this.totalComunas[j].nombre;
-          break;
-        }
-      }
+			for(let j = 0 ; j < this.totalComunas.length ; j++)
+			{
+				if(this.totalPacientes[i].Comuna_id === this.totalComunas[j].id)
+				{
+					this.totalPacientes[i].Comuna_id = this.totalComunas[j].nombre;
+					break;
+				}
+			}
 
-      console.log(this.totalPacientes[i]);
-    }
-  }
+			console.log(this.totalPacientes[i]);
+		}
+	}
 }

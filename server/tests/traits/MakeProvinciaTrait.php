@@ -43,11 +43,7 @@ trait MakeProvinciaTrait
 
         return array_merge([
             'nombre' => $fake->word,
-            'Region_idRegion' => $fake->randomDigitNotNull,
-            'remember_token' => $fake->word,
-            'created_at' => $fake->date('Y-m-d H:i:s'),
-            'updated_at' => $fake->date('Y-m-d H:i:s'),
-            'deleted_at' => $fake->date('Y-m-d H:i:s')
+            'Region_id' => $fake->randomDigitNotNull
         ], $provinciaFields);
     }
 }

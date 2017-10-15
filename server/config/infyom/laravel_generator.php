@@ -2,182 +2,182 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Paths
-    |--------------------------------------------------------------------------
-    |
-    */
+	/*
+	|--------------------------------------------------------------------------
+	| Paths
+	|--------------------------------------------------------------------------
+	|
+	*/
 
-    'path' => [
+	'path' => [
 
-        'migration'         => base_path('database/migrations/'),
+		'migration'         => base_path('database/migrations/'),
 
-        'model'             => app_path('Models/'),
+		'model'             => app_path('Models/'),
 
-        'datatables'        => app_path('DataTables/'),
+		'datatables'        => app_path('DataTables/'),
 
-        'repository'        => app_path('Repositories/'),
+		'repository'        => app_path('Repositories/'),
 
-        'routes'            => base_path('routes/web.php'),
+		'routes'            => base_path('routes/web.php'),
 
-        'api_routes'        => base_path('routes/api.php'),
+		'api_routes'        => base_path('routes/api.php'),
 
-        'request'           => app_path('Http/Requests/'),
+		'request'           => app_path('Http/Requests/'),
 
-        'api_request'       => app_path('Http/Requests/API/'),
+		'api_request'       => app_path('Http/Requests/API/'),
 
-        'controller'        => app_path('Http/Controllers/'),
+		'controller'        => app_path('Http/Controllers/'),
 
-        'api_controller'    => app_path('Http/Controllers/API/'),
+		'api_controller'    => app_path('Http/Controllers/API/'),
 
-        'test_trait'        => base_path('tests/traits/'),
+		'test_trait'        => base_path('tests/traits/'),
 
-        'repository_test'   => base_path('tests/'),
+		'repository_test'   => base_path('tests/'),
 
-        'api_test'          => base_path('tests/'),
+		'api_test'          => base_path('tests/'),
 
-        'views'             => base_path('resources/views/'),
+		'views'             => base_path('resources/views/'),
 
-        'schema_files'      => base_path('resources/model_schemas/'),
+		'schema_files'      => base_path('resources/model_schemas/'),
 
-        'templates_dir'     => base_path('resources/infyom/infyom-generator-templates/'),
+		'templates_dir'     => base_path('resources/infyom/infyom-generator-templates/'),
 
-        'modelJs'           => base_path('resources/assets/js/models/'),
-    ],
+		'modelJs'           => base_path('resources/assets/js/models/'),
+	],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Namespaces
-    |--------------------------------------------------------------------------
-    |
-    */
+	/*
+	|--------------------------------------------------------------------------
+	| Namespaces
+	|--------------------------------------------------------------------------
+	|
+	*/
 
-    'namespace' => [
+	'namespace' => [
 
-        'model'             => 'App\Models',
+		'model'             => 'App\Models',
 
-        'datatables'        => 'App\DataTables',
+		'datatables'        => 'App\DataTables',
 
-        'repository'        => 'App\Repositories',
+		'repository'        => 'App\Repositories',
 
-        'controller'        => 'App\Http\Controllers',
+		'controller'        => 'App\Http\Controllers',
 
-        'api_controller'    => 'App\Http\Controllers\API',
+		'api_controller'    => 'App\Http\Controllers\API',
 
-        'request'           => 'App\Http\Requests',
+		'request'           => 'App\Http\Requests',
 
-        'api_request'       => 'App\Http\Requests\API',
-    ],
+		'api_request'       => 'App\Http\Requests\API',
+	],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Templates
-    |--------------------------------------------------------------------------
-    |
-    */
+	/*
+	|--------------------------------------------------------------------------
+	| Templates
+	|--------------------------------------------------------------------------
+	|
+	*/
 
-    'templates'         => 'adminlte-templates',
+	'templates'         => 'adminlte-templates',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Model extend class
-    |--------------------------------------------------------------------------
-    |
-    */
+	/*
+	|--------------------------------------------------------------------------
+	| Model extend class
+	|--------------------------------------------------------------------------
+	|
+	*/
 
-    'model_extend_class' => 'Eloquent',
+	'model_extend_class' => 'Eloquent',
 
-    /*
-    |--------------------------------------------------------------------------
-    | API routes prefix & version
-    |--------------------------------------------------------------------------
-    |
-    */
+	/*
+	|--------------------------------------------------------------------------
+	| API routes prefix & version
+	|--------------------------------------------------------------------------
+	|
+	*/
 
-    'api_prefix'  => 'api',
+	'api_prefix'  => 'api',
 
-    'api_version' => 'v1',
+	'api_version' => 'v1',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Options
-    |--------------------------------------------------------------------------
-    |
-    */
+	/*
+	|--------------------------------------------------------------------------
+	| Options
+	|--------------------------------------------------------------------------
+	|
+	*/
 
-    'options' => [
+	'options' => [
 
-        'softDelete' => true,
+		'softDelete' => true,
 
-        'tables_searchable_default' => false,
-    ],
+		'tables_searchable_default' => false,
+	],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Prefixes
-    |--------------------------------------------------------------------------
-    |
-    */
+	/*
+	|--------------------------------------------------------------------------
+	| Prefixes
+	|--------------------------------------------------------------------------
+	|
+	*/
 
-    'prefixes' => [
+	'prefixes' => [
 
-        'route' => '',  // using admin will create route('admin.?.index') type routes
+		'route' => '',  // using admin will create route('admin.?.index') type routes
 
-        'path' => '',
+		'path' => '',
 
-        'view' => '',  // using backend will create return view('backend.?.index') type the backend views directory
+		'view' => '',  // using backend will create return view('backend.?.index') type the backend views directory
 
-        'public' => '',
-    ],
+		'public' => '',
+	],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Add-Ons
-    |--------------------------------------------------------------------------
-    |
-    */
+	/*
+	|--------------------------------------------------------------------------
+	| Add-Ons
+	|--------------------------------------------------------------------------
+	|
+	*/
 
-    'add_on' => [
+	'add_on' => [
 
-        'swagger'       => true,
+		'swagger'       => true,
 
-        'tests'         => true,
+		'tests'         => true,
 
-        'datatables'    => true,
+		'datatables'    => true,
 
-        'menu'          => [
+		'menu'          => [
 
-            'enabled'       => true,
+			'enabled'       => true,
 
-            'menu_file'     => 'layouts/menu.blade.php',
-        ],
-    ],
+			'menu_file'     => 'layouts/menu.blade.php',
+		],
+	],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Timestamp Fields
-    |--------------------------------------------------------------------------
-    |
-    */
+	/*
+	|--------------------------------------------------------------------------
+	| Timestamp Fields
+	|--------------------------------------------------------------------------
+	|
+	*/
 
-    'timestamps' => [
+	'timestamps' => [
 
-        'enabled'       => true,
+		'enabled'       => true,
 
-        'created_at'    => 'created_at',
+		'created_at'    => 'created_at',
 
-        'updated_at'    => 'updated_at',
+		'updated_at'    => 'updated_at',
 
-        'deleted_at'    => 'deleted_at',
-    ],
+		'deleted_at'    => 'deleted_at',
+	],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Save model files to `App/Models` when use `--prefix`. see #208
-    |--------------------------------------------------------------------------
-    |
-    */
-    'ignore_model_prefix' => false,
+	/*
+	|--------------------------------------------------------------------------
+	| Save model files to `App/Models` when use `--prefix`. see #208
+	|--------------------------------------------------------------------------
+	|
+	*/
+	'ignore_model_prefix' => false,
 
 ];

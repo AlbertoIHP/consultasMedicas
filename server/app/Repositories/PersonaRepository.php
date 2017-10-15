@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class PersonaRepository
  * @package App\Repositories
- * @version October 11, 2017, 2:49 am UTC
+ * @version October 15, 2017, 3:58 am UTC
  *
  * @method Persona findWithoutFail($id, $columns = ['*'])
  * @method Persona find($id, $columns = ['*'])
@@ -16,29 +16,28 @@ use InfyOm\Generator\Common\BaseRepository;
 */
 class PersonaRepository extends BaseRepository
 {
-	/**
-	 * @var array
-	 */
-	protected $fieldSearchable = [
-		'rut',
-		'nombre1',
-		'nombre2',
-		'apellido1',
-		'apellido2',
-		'fono_casa',
-		'fono_trabajo',
-		'movil',
-		'idGenero',
-		'EstadoCivil_idEstado',
-		'Comuna_idComuna',
-		'remember_token'
-	];
+    /**
+     * @var array
+     */
+    protected $fieldSearchable = [
+        'rut',
+        'nombre1',
+        'nombre2',
+        'apellido1',
+        'apellido2',
+        'fono_casa',
+        'fono_trabajo',
+        'movil',
+        'Genero_id',
+        'Comuna_id',
+        'EstadoCivil_id'
+    ];
 
-	/**
-	 * Configure the Model
-	 **/
-	public function model()
-	{
-		return Persona::class;
-	}
+    /**
+     * Configure the Model
+     **/
+    public function model()
+    {
+        return Persona::class;
+    }
 }

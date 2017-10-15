@@ -72,10 +72,10 @@ class UserDataTable extends DataTable
     private function getColumns()
     {
         return [
+            'email' => ['name' => 'email', 'data' => 'email'],
             'password' => ['name' => 'password', 'data' => 'password'],
-            'Role_idRole' => ['name' => 'Role_idRole', 'data' => 'Role_idRole'],
-            'Persona_rut' => ['name' => 'Persona_rut', 'data' => 'Persona_rut'],
-            'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
+            'Role_id' => ['name' => 'Role_id', 'data' => 'Role_id'],
+            'Persona_id' => ['name' => 'Persona_id', 'data' => 'Persona_id']
         ];
     }
 

@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class TipoSangreRepository
  * @package App\Repositories
- * @version October 10, 2017, 2:36 pm UTC
+ * @version October 15, 2017, 3:58 am UTC
  *
  * @method TipoSangre findWithoutFail($id, $columns = ['*'])
  * @method TipoSangre find($id, $columns = ['*'])
@@ -21,8 +21,7 @@ class TipoSangreRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'nombre',
-        'descripcion',
-        'remember_token'
+        'descripcion'
     ];
 
     /**

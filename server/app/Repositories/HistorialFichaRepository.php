@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class HistorialFichaRepository
  * @package App\Repositories
- * @version October 10, 2017, 2:37 pm UTC
+ * @version October 15, 2017, 3:58 am UTC
  *
  * @method HistorialFicha findWithoutFail($id, $columns = ['*'])
  * @method HistorialFicha find($id, $columns = ['*'])
@@ -22,10 +22,10 @@ class HistorialFichaRepository extends BaseRepository
     protected $fieldSearchable = [
         'fechaConsulta',
         'informacionMedica',
-        'FichaMedica_id',
         'habitos',
         'peso',
-        'estatura'
+        'estatura',
+        'FichaMedica_id'
     ];
 
     /**

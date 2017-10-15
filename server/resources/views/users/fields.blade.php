@@ -1,25 +1,25 @@
+<!-- Email Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('email', 'Email:') !!}
+    {!! Form::email('email', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Password Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('password', 'Password:') !!}
     {!! Form::password('password', ['class' => 'form-control']) !!}
 </div>
 
-<!-- Role Idrole Field -->
+<!-- Role Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('Role_idRole', 'Role Idrole:') !!}
-    {!! Form::number('Role_idRole', null, ['class' => 'form-control']) !!}
+    {!! Form::label('Role_id', 'Role Id:') !!}
+    {!! Form::number('Role_id', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Persona Rut Field -->
+<!-- Persona Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('Persona_rut', 'Persona Rut:') !!}
-    {!! Form::text('Persona_rut', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Remember Token Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    {!! Form::text('remember_token', null, ['class' => 'form-control']) !!}
+    {!! Form::label('Persona_id', 'Persona Id:') !!}
+    {!! Form::number('Persona_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

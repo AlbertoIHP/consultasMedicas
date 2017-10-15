@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class GeneroRepository
  * @package App\Repositories
- * @version October 8, 2017, 6:56 am UTC
+ * @version October 15, 2017, 3:57 am UTC
  *
  * @method Genero findWithoutFail($id, $columns = ['*'])
  * @method Genero find($id, $columns = ['*'])
@@ -21,8 +21,7 @@ class GeneroRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'descripcion',
-        'nombre',
-        'remember_token'
+        'nombre'
     ];
 
     /**

@@ -10,12 +10,6 @@
     <p>{!! $fichaMedica->nombre !!}</p>
 </div>
 
-<!-- Persona Rut Field -->
-<div class="form-group">
-    {!! Form::label('Persona_rut', 'Persona Rut:') !!}
-    <p>{!! $fichaMedica->Persona_rut !!}</p>
-</div>
-
 <!-- Nombreresponsable Field -->
 <div class="form-group">
     {!! Form::label('nombreResponsable', 'Nombreresponsable:') !!}
@@ -40,33 +34,15 @@
     <p>{!! $fichaMedica->estaturaActual !!}</p>
 </div>
 
+<!-- Persona Id Field -->
+<div class="form-group">
+    {!! Form::label('Persona_id', 'Persona Id:') !!}
+    <p>{!! $fichaMedica->Persona_id !!}</p>
+</div>
+
 <!-- Tiposangre Id Field -->
 <div class="form-group">
     {!! Form::label('TipoSangre_id', 'Tiposangre Id:') !!}
     <p>{!! $fichaMedica->TipoSangre_id !!}</p>
-</div>
-
-<!-- Remember Token Field -->
-<div class="form-group">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    <p>{!! $fichaMedica->remember_token !!}</p>
-</div>
-
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $fichaMedica->created_at !!}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $fichaMedica->updated_at !!}</p>
-</div>
-
-<!-- Deleted At Field -->
-<div class="form-group">
-    {!! Form::label('deleted_at', 'Deleted At:') !!}
-    <p>{!! $fichaMedica->deleted_at !!}</p>
 </div>
 

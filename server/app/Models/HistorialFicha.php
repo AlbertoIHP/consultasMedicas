@@ -27,12 +27,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="FichaMedica_id",
- *          description="FichaMedica_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="habitos",
  *          description="habitos",
  *          type="string"
@@ -46,6 +40,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="estatura",
  *          description="estatura",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="FichaMedica_id",
+ *          description="FichaMedica_id",
+ *          type="integer",
+ *          format="int32"
  *      )
  * )
  */
@@ -65,10 +65,10 @@ class HistorialFicha extends Model
 	public $fillable = [
 		'fechaConsulta',
 		'informacionMedica',
-		'FichaMedica_id',
 		'habitos',
 		'peso',
-		'estatura'
+		'estatura',
+		'FichaMedica_id'
 	];
 
 	/**
@@ -80,10 +80,10 @@ class HistorialFicha extends Model
 		'id' => 'integer',
 		'fechaConsulta' => 'date',
 		'informacionMedica' => 'string',
-		'FichaMedica_id' => 'integer',
 		'habitos' => 'string',
 		'peso' => 'string',
-		'estatura' => 'string'
+		'estatura' => 'string',
+		'FichaMedica_id' => 'integer'
 	];
 
 	/**
@@ -102,6 +102,7 @@ class HistorialFicha extends Model
 	{
 		return $this->belongsTo(\App\Models\FichaMedica::class);
 	}
+
 
 	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

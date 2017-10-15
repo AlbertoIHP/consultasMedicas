@@ -1,12 +1,12 @@
 export class Provincia {
-  idProvincia: number;
+  id: number;
   nombre: string;
-  Region_idRegion: number;
+  Region_id: number;
 
   constructor()
   {
-	this.idProvincia = 0;
+	this.id = 0;
 	this.nombre = "";
-	this.Region_idRegion = 0;
+	this.Region_id = 0;
   }
 }

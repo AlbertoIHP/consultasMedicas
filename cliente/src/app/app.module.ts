@@ -54,7 +54,7 @@ import { SecretarypacientesComponent } from './Components/secretary/secretarypac
 	  SuiModule,
 	  routing,
 	  FormsModule,
-    HttpModule
+	  HttpModule
 	],
 
 	providers:
@@ -73,7 +73,7 @@ import { SecretarypacientesComponent } from './Components/secretary/secretarypac
   	RoleService,
   	UserService,
   	TipoSangreService,
-    AuthenticationService
+  	AuthenticationService
 	],
 
 	bootstrap:

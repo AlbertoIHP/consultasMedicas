@@ -1,4 +1,5 @@
 export class Persona {
+  id: number;
 	rut: string;
 	nombre1: string;
 	nombre2: string;
@@ -7,12 +8,13 @@ export class Persona {
 	fono_casa: string;
 	fono_trabajo: string;
 	movil: string;
-	idGenero: string;
-	EstadoCivil_idEstado: string;
-	Comuna_idComuna: string;
+	Genero_id: string;
+	EstadoCivil_id: string;
+	Comuna_id: string;
 
 	constructor()
 	{
+	this.id = 0;
 		this.rut = "";
 		this.nombre1 = "";
 		this.nombre2 = "";
@@ -21,8 +23,8 @@ export class Persona {
 		this.fono_casa = "";
 		this.fono_trabajo = "";
 		this.movil = "";
-		this.idGenero = "";
-		this.EstadoCivil_idEstado = "";
-		this.Comuna_idComuna = "";
+		this.Genero_id = "";
+		this.EstadoCivil_id = "";
+		this.Comuna_id = "";
 	}
 }

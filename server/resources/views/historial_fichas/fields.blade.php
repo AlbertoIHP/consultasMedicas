@@ -10,12 +10,6 @@
     {!! Form::text('informacionMedica', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Fichamedica Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('FichaMedica_id', 'Fichamedica Id:') !!}
-    {!! Form::number('FichaMedica_id', null, ['class' => 'form-control']) !!}
-</div>
-
 <!-- Habitos Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('habitos', 'Habitos:') !!}
@@ -32,6 +26,12 @@
 <div class="form-group col-sm-6">
     {!! Form::label('estatura', 'Estatura:') !!}
     {!! Form::text('estatura', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Fichamedica Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('FichaMedica_id', 'Fichamedica Id:') !!}
+    {!! Form::number('FichaMedica_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

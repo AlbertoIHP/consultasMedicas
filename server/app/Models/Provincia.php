@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      definition="Provincia",
  *      required={""},
  *      @SWG\Property(
- *          property="idProvincia",
- *          description="idProvincia",
+ *          property="id",
+ *          description="id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -21,15 +21,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="Region_idRegion",
- *          description="Region_idRegion",
+ *          property="Region_id",
+ *          description="Region_id",
  *          type="integer",
  *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
  *      )
  * )
  */
@@ -48,8 +43,7 @@ class Provincia extends Model
 
 	public $fillable = [
 		'nombre',
-		'Region_idRegion',
-		'remember_token'
+		'Region_id'
 	];
 
 	/**
@@ -58,13 +52,10 @@ class Provincia extends Model
 	 * @var array
 	 */
 	protected $casts = [
-		'idProvincia' => 'integer',
+		'id' => 'integer',
 		'nombre' => 'string',
-		'Region_idRegion' => 'integer',
-		'remember_token' => 'string'
+		'Region_id' => 'integer'
 	];
-
-	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 
 	/**
 	 * Validation rules
@@ -90,4 +81,6 @@ class Provincia extends Model
 	{
 		return $this->hasMany(\App\Models\Comuna::class);
 	}
+
+	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

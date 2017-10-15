@@ -43,16 +43,12 @@ trait MakeFichaMedicaTrait
 
         return array_merge([
             'nombre' => $fake->word,
-            'Persona_rut' => $fake->word,
             'nombreResponsable' => $fake->word,
             'fechaCreacion' => $fake->word,
             'pesoActual' => $fake->word,
             'estaturaActual' => $fake->word,
-            'TipoSangre_id' => $fake->randomDigitNotNull,
-            'remember_token' => $fake->word,
-            'created_at' => $fake->date('Y-m-d H:i:s'),
-            'updated_at' => $fake->date('Y-m-d H:i:s'),
-            'deleted_at' => $fake->date('Y-m-d H:i:s')
+            'Persona_id' => $fake->randomDigitNotNull,
+            'TipoSangre_id' => $fake->randomDigitNotNull
         ], $fichaMedicaFields);
     }
 }

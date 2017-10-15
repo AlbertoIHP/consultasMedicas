@@ -1,6 +1,6 @@
 [
     {
-        "name": "idEstadoCivil",
+        "name": "id",
         "dbType": "integer,true",
         "htmlType": null,
         "validations": null,
@@ -33,56 +33,12 @@
         "inIndex": true
     },
     {
-        "name": "remember_token",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": null,
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "created_at",
-        "dbType": "datetime",
-        "htmlType": "date",
-        "validations": null,
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false
-    },
-    {
-        "name": "updated_at",
-        "dbType": "datetime",
-        "htmlType": "date",
-        "validations": null,
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false
-    },
-    {
-        "name": "deleted_at",
-        "dbType": "datetime",
-        "htmlType": "date",
-        "validations": null,
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false
-    },
-    {
         "type": "relation",
         "relation": "mtm,,Atention_has_Diagnostico"
     },
     {
         "type": "relation",
-        "relation": "mtm,,Doctor"
+        "relation": "mtm,,FichaMedica"
     },
     {
         "type": "relation",
@@ -95,5 +51,9 @@
     {
         "type": "relation",
         "relation": "mtm,,PrevisionActual"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Usuario"
     }
 ]

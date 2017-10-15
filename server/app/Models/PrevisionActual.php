@@ -22,20 +22,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="date"
  *      ),
  *      @SWG\Property(
- *          property="Prevision_idPrevision",
- *          description="Prevision_idPrevision",
+ *          property="Prevision_id",
+ *          description="Prevision_id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="Persona_rut",
- *          description="Persona_rut",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
+ *          property="Persona_id",
+ *          description="Persona_id",
+ *          type="integer",
+ *          format="int32"
  *      )
  * )
  */
@@ -54,9 +50,8 @@ class PrevisionActual extends Model
 
 	public $fillable = [
 		'fechaActualizacion',
-		'Prevision_idPrevision',
-		'Persona_rut',
-		'remember_token'
+		'Prevision_id',
+		'Persona_id'
 	];
 
 	/**
@@ -67,9 +62,8 @@ class PrevisionActual extends Model
 	protected $casts = [
 		'id' => 'integer',
 		'fechaActualizacion' => 'date',
-		'Prevision_idPrevision' => 'integer',
-		'Persona_rut' => 'string',
-		'remember_token' => 'string'
+		'Prevision_id' => 'integer',
+		'Persona_id' => 'integer'
 	];
 
 	/**
@@ -84,18 +78,17 @@ class PrevisionActual extends Model
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 **/
-	public function prevision()
-	{
-		return $this->belongsTo(\App\Models\Prevision::class);
-	}
-
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 **/
 	public function persona()
 	{
 		return $this->belongsTo(\App\Models\Persona::class);
 	}
 
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 **/
+	public function prevision()
+	{
+		return $this->belongsTo(\App\Models\Prevision::class);
+	}
 	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

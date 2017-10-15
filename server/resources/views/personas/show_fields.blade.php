@@ -1,3 +1,9 @@
+<!-- Id Field -->
+<div class="form-group">
+    {!! Form::label('id', 'Id:') !!}
+    <p>{!! $persona->id !!}</p>
+</div>
+
 <!-- Rut Field -->
 <div class="form-group">
     {!! Form::label('rut', 'Rut:') !!}
@@ -46,45 +52,21 @@
     <p>{!! $persona->movil !!}</p>
 </div>
 
-<!-- Idgenero Field -->
+<!-- Genero Id Field -->
 <div class="form-group">
-    {!! Form::label('idGenero', 'Idgenero:') !!}
-    <p>{!! $persona->idGenero !!}</p>
+    {!! Form::label('Genero_id', 'Genero Id:') !!}
+    <p>{!! $persona->Genero_id !!}</p>
 </div>
 
-<!-- Estadocivil Idestado Field -->
+<!-- Comuna Id Field -->
 <div class="form-group">
-    {!! Form::label('EstadoCivil_idEstado', 'Estadocivil Idestado:') !!}
-    <p>{!! $persona->EstadoCivil_idEstado !!}</p>
+    {!! Form::label('Comuna_id', 'Comuna Id:') !!}
+    <p>{!! $persona->Comuna_id !!}</p>
 </div>
 
-<!-- Comuna Idcomuna Field -->
+<!-- Estadocivil Id Field -->
 <div class="form-group">
-    {!! Form::label('Comuna_idComuna', 'Comuna Idcomuna:') !!}
-    <p>{!! $persona->Comuna_idComuna !!}</p>
-</div>
-
-<!-- Remember Token Field -->
-<div class="form-group">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    <p>{!! $persona->remember_token !!}</p>
-</div>
-
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $persona->created_at !!}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $persona->updated_at !!}</p>
-</div>
-
-<!-- Deleted At Field -->
-<div class="form-group">
-    {!! Form::label('deleted_at', 'Deleted At:') !!}
-    <p>{!! $persona->deleted_at !!}</p>
+    {!! Form::label('EstadoCivil_id', 'Estadocivil Id:') !!}
+    <p>{!! $persona->EstadoCivil_id !!}</p>
 </div>
 

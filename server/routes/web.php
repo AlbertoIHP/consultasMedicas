@@ -69,21 +69,15 @@
 // Route::resource('recetaMedicamentos', 'RecetaMedicamentoController');
 
 
-Route::resource('historialFichas', 'HistorialFichaController');
 
-Route::resource('users', 'UserController');
-
-Route::resource('users', 'UserController');
-
-Route::resource('regions', 'RegionController');
-
-Route::resource('regions', 'RegionController');
 
 Route::resource('regions', 'RegionController');
 
 Route::resource('provincias', 'ProvinciaController');
 
 Route::resource('comunas', 'ComunaController');
+
+Route::resource('generos', 'GeneroController');
 
 Route::resource('previsions', 'PrevisionController');
 
@@ -95,9 +89,31 @@ Route::resource('users', 'UserController');
 
 Route::resource('personas', 'PersonaController');
 
-Route::resource('generos', 'GeneroController');
+Route::resource('estadoCivils', 'EstadoCivilController');
+
+Route::resource('historialFichas', 'HistorialFichaController');
+
+Route::resource('tipoSangres', 'TipoSangreController');
 
 Route::resource('fichaMedicas', 'FichaMedicaController');
+
+Route::resource('regions', 'RegionController');
+
+Route::resource('provincias', 'ProvinciaController');
+
+Route::resource('comunas', 'ComunaController');
+
+Route::resource('generos', 'GeneroController');
+
+Route::resource('previsions', 'PrevisionController');
+
+Route::resource('previsionActuals', 'PrevisionActualController');
+
+Route::resource('roles', 'RoleController');
+
+Route::resource('users', 'UserController');
+
+Route::resource('personas', 'PersonaController');
 
 Route::resource('estadoCivils', 'EstadoCivilController');
 
@@ -105,12 +121,4 @@ Route::resource('historialFichas', 'HistorialFichaController');
 
 Route::resource('tipoSangres', 'TipoSangreController');
 
-Route::resource('historials', 'HistorialController');
-
-Route::resource('historialFichas', 'HistorialFichaController');
-
 Route::resource('fichaMedicas', 'FichaMedicaController');
-
-Route::resource('users', 'UserController');
-
-Route::resource('personas', 'PersonaController');

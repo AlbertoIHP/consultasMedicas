@@ -10,14 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      definition="Comuna",
  *      required={""},
  *      @SWG\Property(
- *          property="idComuna",
- *          description="idComuna",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="Provincia_idProvincia",
- *          description="Provincia_idProvincia",
+ *          property="id",
+ *          description="id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -27,9 +21,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
+ *          property="Provincia_id",
+ *          description="Provincia_id",
+ *          type="integer",
+ *          format="int32"
  *      )
  * )
  */
@@ -47,9 +42,8 @@ class Comuna extends Model
 
 
 	public $fillable = [
-		'Provincia_idProvincia',
 		'nombre',
-		'remember_token'
+		'Provincia_id'
 	];
 
 	/**
@@ -58,10 +52,9 @@ class Comuna extends Model
 	 * @var array
 	 */
 	protected $casts = [
-		'idComuna' => 'integer',
-		'Provincia_idProvincia' => 'integer',
+		'id' => 'integer',
 		'nombre' => 'string',
-		'remember_token' => 'string'
+		'Provincia_id' => 'integer'
 	];
 
 	/**
@@ -88,6 +81,15 @@ class Comuna extends Model
 	{
 		return $this->hasMany(\App\Models\Persona::class);
 	}
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 **/
+	public function universidads()
+	{
+		return $this->hasMany(\App\Models\Universidad::class);
+	}
+
 
 	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

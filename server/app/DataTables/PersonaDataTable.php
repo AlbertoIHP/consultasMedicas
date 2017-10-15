@@ -72,6 +72,7 @@ class PersonaDataTable extends DataTable
     private function getColumns()
     {
         return [
+            'rut' => ['name' => 'rut', 'data' => 'rut'],
             'nombre1' => ['name' => 'nombre1', 'data' => 'nombre1'],
             'nombre2' => ['name' => 'nombre2', 'data' => 'nombre2'],
             'apellido1' => ['name' => 'apellido1', 'data' => 'apellido1'],
@@ -79,10 +80,9 @@ class PersonaDataTable extends DataTable
             'fono_casa' => ['name' => 'fono_casa', 'data' => 'fono_casa'],
             'fono_trabajo' => ['name' => 'fono_trabajo', 'data' => 'fono_trabajo'],
             'movil' => ['name' => 'movil', 'data' => 'movil'],
-            'idGenero' => ['name' => 'idGenero', 'data' => 'idGenero'],
-            'EstadoCivil_idEstado' => ['name' => 'EstadoCivil_idEstado', 'data' => 'EstadoCivil_idEstado'],
-            'Comuna_idComuna' => ['name' => 'Comuna_idComuna', 'data' => 'Comuna_idComuna'],
-            'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
+            'Genero_id' => ['name' => 'Genero_id', 'data' => 'Genero_id'],
+            'Comuna_id' => ['name' => 'Comuna_id', 'data' => 'Comuna_id'],
+            'EstadoCivil_id' => ['name' => 'EstadoCivil_id', 'data' => 'EstadoCivil_id']
         ];
     }
 

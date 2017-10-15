@@ -24,11 +24,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="descripcion",
  *          description="descripcion",
  *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
  *      )
  * )
  */
@@ -47,8 +42,7 @@ class TipoSangre extends Model
 
 	public $fillable = [
 		'nombre',
-		'descripcion',
-		'remember_token'
+		'descripcion'
 	];
 
 	/**
@@ -59,8 +53,7 @@ class TipoSangre extends Model
 	protected $casts = [
 		'id' => 'integer',
 		'nombre' => 'string',
-		'descripcion' => 'string',
-		'remember_token' => 'string'
+		'descripcion' => 'string'
 	];
 
 	/**

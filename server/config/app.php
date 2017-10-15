@@ -184,7 +184,7 @@ return [
 	   Yajra\Datatables\DatatablesServiceProvider::class,
 	   Yajra\Datatables\ButtonsServiceProvider::class,
 	   Appointer\Swaggervel\SwaggervelServiceProvider::class,
-      Barryvdh\Cors\ServiceProvider::class,
+	  Barryvdh\Cors\ServiceProvider::class,
 		Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
 	],
@@ -240,7 +240,7 @@ return [
 		'Flash'     => Laracasts\Flash\Flash::class,
 		'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
 		'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-      'Input' => Illuminate\Support\Facades\Input::class,
+	    'Input' => Illuminate\Support\Facades\Input::class,
 
 	],
 

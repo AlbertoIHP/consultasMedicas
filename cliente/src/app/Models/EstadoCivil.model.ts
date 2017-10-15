@@ -1,11 +1,11 @@
 export class EstadoCivil {
-  idEstadoCivil: string;
+  id: string;
   descripcion: string;
   nombre: string;
 
   constructor()
   {
-	this.idEstadoCivil = "";
+	this.id = "";
 	this.descripcion = "";
 	this.nombre = "";
   }

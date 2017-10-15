@@ -43,12 +43,8 @@ trait MakePrevisionActualTrait
 
         return array_merge([
             'fechaActualizacion' => $fake->word,
-            'Prevision_idPrevision' => $fake->randomDigitNotNull,
-            'Persona_rut' => $fake->word,
-            'remember_token' => $fake->word,
-            'created_at' => $fake->date('Y-m-d H:i:s'),
-            'updated_at' => $fake->date('Y-m-d H:i:s'),
-            'deleted_at' => $fake->date('Y-m-d H:i:s')
+            'Prevision_id' => $fake->randomDigitNotNull,
+            'Persona_id' => $fake->randomDigitNotNull
         ], $previsionActualFields);
     }
 }

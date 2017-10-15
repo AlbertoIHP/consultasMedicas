@@ -74,10 +74,10 @@ class HistorialFichaDataTable extends DataTable
         return [
             'fechaConsulta' => ['name' => 'fechaConsulta', 'data' => 'fechaConsulta'],
             'informacionMedica' => ['name' => 'informacionMedica', 'data' => 'informacionMedica'],
-            'FichaMedica_id' => ['name' => 'FichaMedica_id', 'data' => 'FichaMedica_id'],
             'habitos' => ['name' => 'habitos', 'data' => 'habitos'],
             'peso' => ['name' => 'peso', 'data' => 'peso'],
-            'estatura' => ['name' => 'estatura', 'data' => 'estatura']
+            'estatura' => ['name' => 'estatura', 'data' => 'estatura'],
+            'FichaMedica_id' => ['name' => 'FichaMedica_id', 'data' => 'FichaMedica_id']
         ];
     }
 

@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class EstadoCivilRepository
  * @package App\Repositories
- * @version October 8, 2017, 6:56 am UTC
+ * @version October 15, 2017, 3:58 am UTC
  *
  * @method EstadoCivil findWithoutFail($id, $columns = ['*'])
  * @method EstadoCivil find($id, $columns = ['*'])
@@ -21,8 +21,7 @@ class EstadoCivilRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'descripcion',
-        'nombre',
-        'remember_token'
+        'nombre'
     ];
 
     /**

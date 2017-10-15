@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-	public currentUserRole: Role = { idRole: 1, nombre: 'Secretary'};
+	public currentUserRole: Role = { id: 1, nombre: 'Secretary'};
 
 
 
@@ -16,6 +16,6 @@ export class AppComponent {
 
   irPacientesSecretary()
   {
-    this.router.navigate(['secretary/pacientes']);
+	this.router.navigate(['secretary/pacientes']);
   }
 }

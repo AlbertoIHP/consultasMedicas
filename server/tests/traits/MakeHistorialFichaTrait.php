@@ -44,10 +44,10 @@ trait MakeHistorialFichaTrait
         return array_merge([
             'fechaConsulta' => $fake->word,
             'informacionMedica' => $fake->word,
-            'FichaMedica_id' => $fake->randomDigitNotNull,
             'habitos' => $fake->word,
             'peso' => $fake->word,
-            'estatura' => $fake->word
+            'estatura' => $fake->word,
+            'FichaMedica_id' => $fake->randomDigitNotNull
         ], $historialFichaFields);
     }
 }

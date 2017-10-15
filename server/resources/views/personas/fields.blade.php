@@ -1,3 +1,9 @@
+<!-- Rut Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('rut', 'Rut:') !!}
+    {!! Form::text('rut', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Nombre1 Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nombre1', 'Nombre1:') !!}
@@ -40,28 +46,22 @@
     {!! Form::text('movil', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Idgenero Field -->
+<!-- Genero Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('idGenero', 'Idgenero:') !!}
-    {!! Form::number('idGenero', null, ['class' => 'form-control']) !!}
+    {!! Form::label('Genero_id', 'Genero Id:') !!}
+    {!! Form::number('Genero_id', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Estadocivil Idestado Field -->
+<!-- Comuna Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('EstadoCivil_idEstado', 'Estadocivil Idestado:') !!}
-    {!! Form::number('EstadoCivil_idEstado', null, ['class' => 'form-control']) !!}
+    {!! Form::label('Comuna_id', 'Comuna Id:') !!}
+    {!! Form::number('Comuna_id', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Comuna Idcomuna Field -->
+<!-- Estadocivil Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('Comuna_idComuna', 'Comuna Idcomuna:') !!}
-    {!! Form::number('Comuna_idComuna', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Remember Token Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    {!! Form::text('remember_token', null, ['class' => 'form-control']) !!}
+    {!! Form::label('EstadoCivil_id', 'Estadocivil Id:') !!}
+    {!! Form::number('EstadoCivil_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

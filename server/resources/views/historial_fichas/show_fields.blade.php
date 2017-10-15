@@ -16,12 +16,6 @@
     <p>{!! $historialFicha->informacionMedica !!}</p>
 </div>
 
-<!-- Fichamedica Id Field -->
-<div class="form-group">
-    {!! Form::label('FichaMedica_id', 'Fichamedica Id:') !!}
-    <p>{!! $historialFicha->FichaMedica_id !!}</p>
-</div>
-
 <!-- Habitos Field -->
 <div class="form-group">
     {!! Form::label('habitos', 'Habitos:') !!}
@@ -38,5 +32,11 @@
 <div class="form-group">
     {!! Form::label('estatura', 'Estatura:') !!}
     <p>{!! $historialFicha->estatura !!}</p>
+</div>
+
+<!-- Fichamedica Id Field -->
+<div class="form-group">
+    {!! Form::label('FichaMedica_id', 'Fichamedica Id:') !!}
+    <p>{!! $historialFicha->FichaMedica_id !!}</p>
 </div>
 

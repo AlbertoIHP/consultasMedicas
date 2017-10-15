@@ -10,19 +10,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      definition="Role",
  *      required={""},
  *      @SWG\Property(
- *          property="idRole",
- *          description="idRole",
+ *          property="id",
+ *          description="id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="nombre",
  *          description="nombre",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
  *          type="string"
  *      )
  * )
@@ -41,8 +36,7 @@ class Role extends Model
 
 
 	public $fillable = [
-		'nombre',
-		'remember_token'
+		'nombre'
 	];
 
 	/**
@@ -51,9 +45,8 @@ class Role extends Model
 	 * @var array
 	 */
 	protected $casts = [
-		'idRole' => 'integer',
-		'nombre' => 'string',
-		'remember_token' => 'string'
+		'id' => 'integer',
+		'nombre' => 'string'
 	];
 
 	/**

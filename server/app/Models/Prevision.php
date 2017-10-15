@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      definition="Prevision",
  *      required={""},
  *      @SWG\Property(
- *          property="idPrevision",
- *          description="idPrevision",
+ *          property="id",
+ *          description="id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -23,11 +23,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      @SWG\Property(
  *          property="nombre",
  *          description="nombre",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
  *          type="string"
  *      )
  * )
@@ -47,8 +42,7 @@ class Prevision extends Model
 
 	public $fillable = [
 		'descripcion',
-		'nombre',
-		'remember_token'
+		'nombre'
 	];
 
 	/**
@@ -57,10 +51,9 @@ class Prevision extends Model
 	 * @var array
 	 */
 	protected $casts = [
-		'idPrevision' => 'integer',
+		'id' => 'integer',
 		'descripcion' => 'string',
-		'nombre' => 'string',
-		'remember_token' => 'string'
+		'nombre' => 'string'
 	];
 
 	/**
@@ -72,13 +65,20 @@ class Prevision extends Model
 		
 	];
 
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 **/
+	public function personaHasPrevisions()
+	{
+		return $this->hasMany(\App\Models\PersonaHasPrevision::class);
+	}
 
 	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 **/
-	public function personas()
+	public function previsionActuals()
 	{
-		return $this->belongsToMany(\App\Models\Persona::class, 'PrevisionActual');
+		return $this->hasMany(\App\Models\PrevisionActual::class);
 	}
 
 	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];

@@ -43,11 +43,7 @@ trait MakeTipoSangreTrait
 
         return array_merge([
             'nombre' => $fake->word,
-            'descripcion' => $fake->text,
-            'remember_token' => $fake->word,
-            'created_at' => $fake->date('Y-m-d H:i:s'),
-            'updated_at' => $fake->date('Y-m-d H:i:s'),
-            'deleted_at' => $fake->date('Y-m-d H:i:s')
+            'descripcion' => $fake->text
         ], $tipoSangreFields);
     }
 }

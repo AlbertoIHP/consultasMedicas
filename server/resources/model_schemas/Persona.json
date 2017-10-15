@@ -1,14 +1,25 @@
 [
     {
-        "name": "rut",
-        "dbType": "string",
-        "htmlType": "text",
+        "name": "id",
+        "dbType": "integer,true",
+        "htmlType": null,
         "validations": null,
         "searchable": false,
         "fillable": false,
         "primary": true,
         "inForm": false,
         "inIndex": false
+    },
+    {
+        "name": "rut",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
     },
     {
         "name": "nombre1",
@@ -88,7 +99,7 @@
         "inIndex": true
     },
     {
-        "name": "idGenero",
+        "name": "Genero_id",
         "dbType": "integer,false",
         "htmlType": null,
         "validations": null,
@@ -99,7 +110,7 @@
         "inIndex": true
     },
     {
-        "name": "EstadoCivil_idEstado",
+        "name": "Comuna_id",
         "dbType": "integer,false",
         "htmlType": null,
         "validations": null,
@@ -110,7 +121,7 @@
         "inIndex": true
     },
     {
-        "name": "Comuna_idComuna",
+        "name": "EstadoCivil_id",
         "dbType": "integer,false",
         "htmlType": null,
         "validations": null,
@@ -119,50 +130,6 @@
         "primary": false,
         "inForm": true,
         "inIndex": true
-    },
-    {
-        "name": "remember_token",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": null,
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "created_at",
-        "dbType": "datetime",
-        "htmlType": "date",
-        "validations": null,
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false
-    },
-    {
-        "name": "updated_at",
-        "dbType": "datetime",
-        "htmlType": "date",
-        "validations": null,
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false
-    },
-    {
-        "name": "deleted_at",
-        "dbType": "datetime",
-        "htmlType": "date",
-        "validations": null,
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false
     },
     {
         "type": "relation",
@@ -182,26 +149,14 @@
     },
     {
         "type": "relation",
-        "relation": "1tm,Citum"
-    },
-    {
-        "type": "relation",
-        "relation": "1t1,Doctor"
-    },
-    {
-        "type": "relation",
         "relation": "1tm,FichaMedica"
     },
     {
         "type": "relation",
-        "relation": "mtm,Prevision,Persona_has_Prevision"
+        "relation": "1tm,PrevisionActual"
     },
     {
         "type": "relation",
-        "relation": "mtm,Prevision,PrevisionActual"
-    },
-    {
-        "type": "relation",
-        "relation": "mtm,Role,Usuario"
+        "relation": "1tm,Usuario"
     }
 ]

@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class PrevisionRepository
  * @package App\Repositories
- * @version October 8, 2017, 6:56 am UTC
+ * @version October 15, 2017, 3:57 am UTC
  *
  * @method Prevision findWithoutFail($id, $columns = ['*'])
  * @method Prevision find($id, $columns = ['*'])
@@ -21,8 +21,7 @@ class PrevisionRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'descripcion',
-        'nombre',
-        'remember_token'
+        'nombre'
     ];
 
     /**

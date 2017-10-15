@@ -1,10 +1,10 @@
 export class Region {
-  idRegion: number;
+  id: number;
   nombre: string;
 
   constructor()
   {
-	this.idRegion = 0;
+	this.id = 0;
 	this.nombre = "";
   }
 }

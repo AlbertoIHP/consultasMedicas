@@ -4,16 +4,10 @@
     {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Region Idregion Field -->
+<!-- Region Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('Region_idRegion', 'Region Idregion:') !!}
-    {!! Form::number('Region_idRegion', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Remember Token Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    {!! Form::text('remember_token', null, ['class' => 'form-control']) !!}
+    {!! Form::label('Region_id', 'Region Id:') !!}
+    {!! Form::number('Region_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

@@ -4,22 +4,16 @@
     {!! Form::date('fechaActualizacion', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Prevision Idprevision Field -->
+<!-- Prevision Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('Prevision_idPrevision', 'Prevision Idprevision:') !!}
-    {!! Form::number('Prevision_idPrevision', null, ['class' => 'form-control']) !!}
+    {!! Form::label('Prevision_id', 'Prevision Id:') !!}
+    {!! Form::number('Prevision_id', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Persona Rut Field -->
+<!-- Persona Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('Persona_rut', 'Persona Rut:') !!}
-    {!! Form::text('Persona_rut', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Remember Token Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    {!! Form::text('remember_token', null, ['class' => 'form-control']) !!}
+    {!! Form::label('Persona_id', 'Persona Id:') !!}
+    {!! Form::number('Persona_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

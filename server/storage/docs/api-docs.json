@@ -2600,13 +2600,8 @@
                 ""
             ],
             "properties": {
-                "idComuna": {
-                    "description": "idComuna",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "Provincia_idProvincia": {
-                    "description": "Provincia_idProvincia",
+                "id": {
+                    "description": "id",
                     "type": "integer",
                     "format": "int32"
                 },
@@ -2614,9 +2609,10 @@
                     "description": "nombre",
                     "type": "string"
                 },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
+                "Provincia_id": {
+                    "description": "Provincia_id",
+                    "type": "integer",
+                    "format": "int32"
                 }
             }
         },
@@ -2625,8 +2621,8 @@
                 ""
             ],
             "properties": {
-                "idEstadoCivil": {
-                    "description": "idEstadoCivil",
+                "id": {
+                    "description": "id",
                     "type": "integer",
                     "format": "int32"
                 },
@@ -2636,10 +2632,6 @@
                 },
                 "nombre": {
                     "description": "nombre",
-                    "type": "string"
-                },
-                "remember_token": {
-                    "description": "remember_token",
                     "type": "string"
                 }
             }
@@ -2656,10 +2648,6 @@
                 },
                 "nombre": {
                     "description": "nombre",
-                    "type": "string"
-                },
-                "Persona_rut": {
-                    "description": "Persona_rut",
                     "type": "string"
                 },
                 "nombreResponsable": {
@@ -2679,14 +2667,15 @@
                     "description": "estaturaActual",
                     "type": "string"
                 },
+                "Persona_id": {
+                    "description": "Persona_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
                 "TipoSangre_id": {
                     "description": "TipoSangre_id",
                     "type": "integer",
                     "format": "int32"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
                 }
             }
         },
@@ -2695,8 +2684,8 @@
                 ""
             ],
             "properties": {
-                "idGenero": {
-                    "description": "idGenero",
+                "id": {
+                    "description": "id",
                     "type": "integer",
                     "format": "int32"
                 },
@@ -2706,10 +2695,6 @@
                 },
                 "nombre": {
                     "description": "nombre",
-                    "type": "string"
-                },
-                "remember_token": {
-                    "description": "remember_token",
                     "type": "string"
                 }
             }
@@ -2733,11 +2718,6 @@
                     "description": "informacionMedica",
                     "type": "string"
                 },
-                "FichaMedica_id": {
-                    "description": "FichaMedica_id",
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "habitos": {
                     "description": "habitos",
                     "type": "string"
@@ -2749,6 +2729,11 @@
                 "estatura": {
                     "description": "estatura",
                     "type": "string"
+                },
+                "FichaMedica_id": {
+                    "description": "FichaMedica_id",
+                    "type": "integer",
+                    "format": "int32"
                 }
             }
         },
@@ -2757,6 +2742,11 @@
                 ""
             ],
             "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
                 "rut": {
                     "description": "rut",
                     "type": "string"
@@ -2789,24 +2779,20 @@
                     "description": "movil",
                     "type": "string"
                 },
-                "idGenero": {
-                    "description": "idGenero",
+                "Genero_id": {
+                    "description": "Genero_id",
                     "type": "integer",
                     "format": "int32"
                 },
-                "EstadoCivil_idEstado": {
-                    "description": "EstadoCivil_idEstado",
+                "Comuna_id": {
+                    "description": "Comuna_id",
                     "type": "integer",
                     "format": "int32"
                 },
-                "Comuna_idComuna": {
-                    "description": "Comuna_idComuna",
+                "EstadoCivil_id": {
+                    "description": "EstadoCivil_id",
                     "type": "integer",
                     "format": "int32"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
                 }
             }
         },
@@ -2815,8 +2801,8 @@
                 ""
             ],
             "properties": {
-                "idPrevision": {
-                    "description": "idPrevision",
+                "id": {
+                    "description": "id",
                     "type": "integer",
                     "format": "int32"
                 },
@@ -2826,10 +2812,6 @@
                 },
                 "nombre": {
                     "description": "nombre",
-                    "type": "string"
-                },
-                "remember_token": {
-                    "description": "remember_token",
                     "type": "string"
                 }
             }
@@ -2849,18 +2831,15 @@
                     "type": "string",
                     "format": "date"
                 },
-                "Prevision_idPrevision": {
-                    "description": "Prevision_idPrevision",
+                "Prevision_id": {
+                    "description": "Prevision_id",
                     "type": "integer",
                     "format": "int32"
                 },
-                "Persona_rut": {
-                    "description": "Persona_rut",
-                    "type": "string"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
+                "Persona_id": {
+                    "description": "Persona_id",
+                    "type": "integer",
+                    "format": "int32"
                 }
             }
         },
@@ -2869,8 +2848,8 @@
                 ""
             ],
             "properties": {
-                "idProvincia": {
-                    "description": "idProvincia",
+                "id": {
+                    "description": "id",
                     "type": "integer",
                     "format": "int32"
                 },
@@ -2878,14 +2857,10 @@
                     "description": "nombre",
                     "type": "string"
                 },
-                "Region_idRegion": {
-                    "description": "Region_idRegion",
+                "Region_id": {
+                    "description": "Region_id",
                     "type": "integer",
                     "format": "int32"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
                 }
             }
         },
@@ -2894,17 +2869,13 @@
                 ""
             ],
             "properties": {
-                "idRegion": {
-                    "description": "idRegion",
+                "id": {
+                    "description": "id",
                     "type": "integer",
                     "format": "int32"
                 },
                 "nombre": {
                     "description": "nombre",
-                    "type": "string"
-                },
-                "remember_token": {
-                    "description": "remember_token",
                     "type": "string"
                 }
             }
@@ -2914,17 +2885,13 @@
                 ""
             ],
             "properties": {
-                "idRole": {
-                    "description": "idRole",
+                "id": {
+                    "description": "id",
                     "type": "integer",
                     "format": "int32"
                 },
                 "nombre": {
                     "description": "nombre",
-                    "type": "string"
-                },
-                "remember_token": {
-                    "description": "remember_token",
                     "type": "string"
                 }
             }
@@ -2946,10 +2913,6 @@
                 "descripcion": {
                     "description": "descripcion",
                     "type": "string"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
                 }
             }
         },
@@ -2958,6 +2921,11 @@
                 ""
             ],
             "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
                 "email": {
                     "description": "email",
                     "type": "string"
@@ -2966,18 +2934,15 @@
                     "description": "password",
                     "type": "string"
                 },
-                "Role_idRole": {
-                    "description": "Role_idRole",
+                "Role_id": {
+                    "description": "Role_id",
                     "type": "integer",
                     "format": "int32"
                 },
-                "Persona_rut": {
-                    "description": "Persona_rut",
-                    "type": "string"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
+                "Persona_id": {
+                    "description": "Persona_id",
+                    "type": "integer",
+                    "format": "int32"
                 }
             }
         }

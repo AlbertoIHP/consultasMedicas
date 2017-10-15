@@ -21,11 +21,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="Persona_rut",
- *          description="Persona_rut",
- *          type="string"
- *      ),
- *      @SWG\Property(
  *          property="nombreResponsable",
  *          description="nombreResponsable",
  *          type="string"
@@ -47,15 +42,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="TipoSangre_id",
- *          description="TipoSangre_id",
+ *          property="Persona_id",
+ *          description="Persona_id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
+ *          property="TipoSangre_id",
+ *          description="TipoSangre_id",
+ *          type="integer",
+ *          format="int32"
  *      )
  * )
  */
@@ -74,13 +70,12 @@ class FichaMedica extends Model
 
 	public $fillable = [
 		'nombre',
-		'Persona_rut',
 		'nombreResponsable',
 		'fechaCreacion',
 		'pesoActual',
 		'estaturaActual',
-		'TipoSangre_id',
-		'remember_token'
+		'Persona_id',
+		'TipoSangre_id'
 	];
 
 	/**
@@ -91,13 +86,12 @@ class FichaMedica extends Model
 	protected $casts = [
 		'id' => 'integer',
 		'nombre' => 'string',
-		'Persona_rut' => 'string',
 		'nombreResponsable' => 'string',
 		'fechaCreacion' => 'date',
 		'pesoActual' => 'string',
 		'estaturaActual' => 'string',
-		'TipoSangre_id' => 'integer',
-		'remember_token' => 'string'
+		'Persona_id' => 'integer',
+		'TipoSangre_id' => 'integer'
 	];
 
 	/**
@@ -132,6 +126,8 @@ class FichaMedica extends Model
 	{
 		return $this->hasMany(\App\Models\Historial::class);
 	}
+
+
 
 	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

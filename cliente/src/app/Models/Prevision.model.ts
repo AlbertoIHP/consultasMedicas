@@ -1,5 +1,12 @@
 export class Prevision {
-  idPrevision: number;
+  id: number;
   descripcion: string;
   nombre: string;
+
+  constructor ()
+  {
+	this.id = 0;
+	this.descripcion = "";
+	this.nombre = "";
+  }
 }

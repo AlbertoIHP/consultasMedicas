@@ -73,13 +73,12 @@ class FichaMedicaDataTable extends DataTable
     {
         return [
             'nombre' => ['name' => 'nombre', 'data' => 'nombre'],
-            'Persona_rut' => ['name' => 'Persona_rut', 'data' => 'Persona_rut'],
             'nombreResponsable' => ['name' => 'nombreResponsable', 'data' => 'nombreResponsable'],
             'fechaCreacion' => ['name' => 'fechaCreacion', 'data' => 'fechaCreacion'],
             'pesoActual' => ['name' => 'pesoActual', 'data' => 'pesoActual'],
             'estaturaActual' => ['name' => 'estaturaActual', 'data' => 'estaturaActual'],
-            'TipoSangre_id' => ['name' => 'TipoSangre_id', 'data' => 'TipoSangre_id'],
-            'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
+            'Persona_id' => ['name' => 'Persona_id', 'data' => 'Persona_id'],
+            'TipoSangre_id' => ['name' => 'TipoSangre_id', 'data' => 'TipoSangre_id']
         ];
     }
 

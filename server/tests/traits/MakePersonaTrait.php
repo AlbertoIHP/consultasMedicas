@@ -42,6 +42,7 @@ trait MakePersonaTrait
         $fake = Faker::create();
 
         return array_merge([
+            'rut' => $fake->word,
             'nombre1' => $fake->word,
             'nombre2' => $fake->word,
             'apellido1' => $fake->word,
@@ -49,13 +50,9 @@ trait MakePersonaTrait
             'fono_casa' => $fake->word,
             'fono_trabajo' => $fake->word,
             'movil' => $fake->word,
-            'idGenero' => $fake->randomDigitNotNull,
-            'EstadoCivil_idEstado' => $fake->randomDigitNotNull,
-            'Comuna_idComuna' => $fake->randomDigitNotNull,
-            'remember_token' => $fake->word,
-            'created_at' => $fake->date('Y-m-d H:i:s'),
-            'updated_at' => $fake->date('Y-m-d H:i:s'),
-            'deleted_at' => $fake->date('Y-m-d H:i:s')
+            'Genero_id' => $fake->randomDigitNotNull,
+            'Comuna_id' => $fake->randomDigitNotNull,
+            'EstadoCivil_id' => $fake->randomDigitNotNull
         ], $personaFields);
     }
 }

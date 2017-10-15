@@ -73,8 +73,7 @@ class ProvinciaDataTable extends DataTable
     {
         return [
             'nombre' => ['name' => 'nombre', 'data' => 'nombre'],
-            'Region_idRegion' => ['name' => 'Region_idRegion', 'data' => 'Region_idRegion'],
-            'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
+            'Region_id' => ['name' => 'Region_id', 'data' => 'Region_id']
         ];
     }
 

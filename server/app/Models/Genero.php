@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      definition="Genero",
  *      required={""},
  *      @SWG\Property(
- *          property="idGenero",
- *          description="idGenero",
+ *          property="id",
+ *          description="id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -23,11 +23,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      @SWG\Property(
  *          property="nombre",
  *          description="nombre",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
  *          type="string"
  *      )
  * )
@@ -47,8 +42,7 @@ class Genero extends Model
 
 	public $fillable = [
 		'descripcion',
-		'nombre',
-		'remember_token'
+		'nombre'
 	];
 
 	/**
@@ -57,10 +51,9 @@ class Genero extends Model
 	 * @var array
 	 */
 	protected $casts = [
-		'idGenero' => 'integer',
+		'id' => 'integer',
 		'descripcion' => 'string',
-		'nombre' => 'string',
-		'remember_token' => 'string'
+		'nombre' => 'string'
 	];
 
 	/**
@@ -79,6 +72,7 @@ class Genero extends Model
 	{
 		return $this->hasMany(\App\Models\Persona::class);
 	}
+
 
 	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

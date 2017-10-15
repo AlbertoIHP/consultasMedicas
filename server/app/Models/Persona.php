@@ -10,6 +10,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      definition="Persona",
  *      required={""},
  *      @SWG\Property(
+ *          property="id",
+ *          description="id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="rut",
  *          description="rut",
  *          type="string"
@@ -50,27 +56,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="idGenero",
- *          description="idGenero",
+ *          property="Genero_id",
+ *          description="Genero_id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="EstadoCivil_idEstado",
- *          description="EstadoCivil_idEstado",
+ *          property="Comuna_id",
+ *          description="Comuna_id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="Comuna_idComuna",
- *          description="Comuna_idComuna",
+ *          property="EstadoCivil_id",
+ *          description="EstadoCivil_id",
  *          type="integer",
  *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
  *      )
  * )
  */
@@ -96,10 +97,9 @@ class Persona extends Model
 		'fono_casa',
 		'fono_trabajo',
 		'movil',
-		'idGenero',
-		'EstadoCivil_idEstado',
-		'Comuna_idComuna',
-		'remember_token'
+		'Genero_id',
+		'Comuna_id',
+		'EstadoCivil_id'
 	];
 
 	/**
@@ -108,6 +108,7 @@ class Persona extends Model
 	 * @var array
 	 */
 	protected $casts = [
+		'id' => 'integer',
 		'rut' => 'string',
 		'nombre1' => 'string',
 		'nombre2' => 'string',
@@ -116,10 +117,9 @@ class Persona extends Model
 		'fono_casa' => 'string',
 		'fono_trabajo' => 'string',
 		'movil' => 'string',
-		'idGenero' => 'integer',
-		'EstadoCivil_idEstado' => 'integer',
-		'Comuna_idComuna' => 'integer',
-		'remember_token' => 'string'
+		'Genero_id' => 'integer',
+		'Comuna_id' => 'integer',
+		'EstadoCivil_id' => 'integer'
 	];
 
 	/**
@@ -158,43 +158,25 @@ class Persona extends Model
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 **/
-	public function cita()
-	{
-		return $this->hasMany(\App\Models\Citum::class);
-	}
-
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
-	 **/
-	public function doctor()
-	{
-		return $this->hasOne(\App\Models\Doctor::class);
-	}
-
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 **/
 	public function fichaMedicas()
 	{
 		return $this->hasMany(\App\Models\FichaMedica::class);
 	}
 
-
-
 	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 **/
-	public function previsions()
+	public function previsionActuals()
 	{
-		return $this->belongsToMany(\App\Models\Prevision::class, 'PrevisionActual');
+		return $this->hasMany(\App\Models\PrevisionActual::class);
 	}
 
 	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 **/
-	public function roles()
+	public function usuarios()
 	{
-		return $this->belongsToMany(\App\Models\Role::class, 'Usuario');
+		return $this->hasMany(\App\Models\Usuario::class);
 	}
 
 	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];

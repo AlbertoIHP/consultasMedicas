@@ -73,8 +73,7 @@ class TipoSangreDataTable extends DataTable
     {
         return [
             'nombre' => ['name' => 'nombre', 'data' => 'nombre'],
-            'descripcion' => ['name' => 'descripcion', 'data' => 'descripcion'],
-            'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
+            'descripcion' => ['name' => 'descripcion', 'data' => 'descripcion']
         ];
     }
 
