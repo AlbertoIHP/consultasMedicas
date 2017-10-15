@@ -64,31 +64,3 @@ Route::group(['middleware' => ['cors']], function(){
 
 
 
-
-
-
-Route::resource('regions', 'RegionAPIController');
-
-Route::resource('provincias', 'ProvinciaAPIController');
-
-Route::resource('comunas', 'ComunaAPIController');
-
-Route::resource('generos', 'GeneroAPIController');
-
-Route::resource('previsions', 'PrevisionAPIController');
-
-Route::resource('prevision_actuals', 'PrevisionActualAPIController');
-
-Route::resource('roles', 'RoleAPIController');
-
-Route::resource('users', 'UserAPIController');
-
-Route::resource('personas', 'PersonaAPIController');
-
-Route::resource('estado_civils', 'EstadoCivilAPIController');
-
-Route::resource('historial_fichas', 'HistorialFichaAPIController');
-
-Route::resource('tipo_sangres', 'TipoSangreAPIController');
-
-Route::resource('ficha_medicas', 'FichaMedicaAPIController');

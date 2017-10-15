@@ -44,6 +44,7 @@ export class SecretarypacientesComponent implements OnInit {
 	public mostrarRegiones: boolean;
 	public mostrarProvincias: boolean;
 	public mostrarComunas: boolean;
+  public pacienteEditar: Persona;
 
 	actualizarRegiones()
 	{
@@ -116,6 +117,7 @@ export class SecretarypacientesComponent implements OnInit {
 		this.provinciaActual = "";
 		this.totalPacientes = [];
 		this.nuevoPaciente = new Persona();
+    this.pacienteEditar = new Persona();
 
 		this.actualizarRegiones();
 
@@ -149,6 +151,7 @@ export class SecretarypacientesComponent implements OnInit {
 
 	provinciaSeleccionada(provincia){
 		var comunasProvincia: any = [];
+
 		for(let i = 0; i < this.totalComunas.length; i++)
 		{
 			if(this.totalComunas[i].Provincia_id === provincia.id)
@@ -164,19 +167,86 @@ export class SecretarypacientesComponent implements OnInit {
 
 	comunaSeleccionada(comuna)
 	{
-		console.log(JSON.stringify(comuna));
 		this.nuevoPaciente.Comuna_id = comuna.id;
+    this.pacienteEditar.Comuna_id = comuna.id;
 	}
 
+  actualizarPaciente()
+  {
 
-	public open(dynamicContent:string = "Example") {
-			const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
-			config.closeResult = "closed!";
-			config.context = { data: dynamicContent };
-			this.modalService
-					.open(config)
-					.onApprove(result => { /* approve callback */ })
-					.onDeny(result => { /* deny callback */});
+      for ( let i = 0 ; i < this.totalComunas.length ; i ++)
+      {
+        if(this.pacienteEditar.Comuna_id === this.totalComunas[i].nombre)
+        {
+          this.pacienteEditar.Comuna_id = this.totalComunas[i].id;
+        }
+      }
+
+      for ( let i = 0 ; i < this.totalGeneros.length ; i ++)
+      {
+        if(this.pacienteEditar.Genero_id === this.totalGeneros[i].nombre)
+        {
+          this.pacienteEditar.Genero_id = this.totalGeneros[i].id;
+        }
+      }
+
+      for ( let i = 0 ; i < this.totalEstadoCiviles.length ; i ++)
+      {
+        if(this.pacienteEditar.EstadoCivil_id === this.totalEstadoCiviles[i].nombre)
+        {
+          this.pacienteEditar.EstadoCivil_id = this.totalEstadoCiviles[i].id;
+        }
+      }
+
+      this.servicioPersona.editPersona(this.pacienteEditar, this.pacienteEditar.id).subscribe( data => {
+
+      console.log(data);
+
+      this.actualizarRegiones();
+
+      this.actualizarProvincias();
+
+      this.actualizarComunas();
+
+      this.actualizarGeneros();
+
+      this.actualizarEstadoCiviles();
+
+      this.actualizarPersonas();
+      });
+
+
+
+
+
+
+
+  }
+
+	public open(tipo, persona) {
+    const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
+    if(persona != null)
+    {
+         this.pacienteEditar = persona;
+    }
+
+
+    config.context = { data: tipo};
+
+    this.modalService
+        .open(config)
+        .onApprove(result => {
+          if(tipo === "editarPaciente")
+          {
+            this.actualizarPaciente();
+          }
+          else if(tipo === "nuevoPaciente")
+          {
+              this.agregarPaciente()
+          }
+
+        })
+        .onDeny(result => { /* deny callback */});
 	}
 
 	agregarPaciente()
@@ -186,21 +256,23 @@ export class SecretarypacientesComponent implements OnInit {
 		this.mostrarComunas = false;
 		this.actualizarComunas();
 		this.actualizarProvincias();
-	this.servicioPersona.registerPersona(this.nuevoPaciente).subscribe(data => {
-		console.log(data);
-		this.actualizarPersonas();
-	});
-	this.nuevoPaciente = new Persona();
+  	this.servicioPersona.registerPersona(this.nuevoPaciente).subscribe(data => {
+  		console.log(data);
+  		this.actualizarPersonas();
+  	});
+  	this.nuevoPaciente = new Persona();
 	}
 
 	estadoCivilSeleccionado(estado)
 	{
 		this.nuevoPaciente.EstadoCivil_id = estado.id;
+    this.pacienteEditar.EstadoCivil_id = estado.id;
 	}
 
 	generoSeleccionado(genero)
 	{
 		this.nuevoPaciente.Genero_id = genero.id;
+    this.pacienteEditar.Genero_id = genero.id;
 	}
 
 	ngOnInit()
@@ -241,7 +313,6 @@ export class SecretarypacientesComponent implements OnInit {
 				}
 			}
 
-			console.log(this.totalPacientes[i]);
 		}
 	}
 }
