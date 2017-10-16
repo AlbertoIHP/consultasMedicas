@@ -76,6 +76,12 @@
     <p>{!! $persona->estado !!}</p>
 </div>
 
+<!-- Usuarioasignado Field -->
+<div class="form-group">
+    {!! Form::label('usuarioasignado', 'Usuarioasignado:') !!}
+    <p>{!! $persona->usuarioasignado !!}</p>
+</div>
+
 <!-- Remember Token Field -->
 <div class="form-group">
     {!! Form::label('remember_token', 'Remember Token:') !!}

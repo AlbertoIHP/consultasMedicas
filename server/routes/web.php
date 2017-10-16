@@ -128,3 +128,5 @@ Route::resource('previsionActuals', 'PrevisionActualController');
 Route::resource('personas', 'PersonaController');
 
 Route::resource('personas', 'PersonaController');
+
+Route::resource('personas', 'PersonaController');

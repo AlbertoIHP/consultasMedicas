@@ -143,6 +143,17 @@
         "inIndex": true
     },
     {
+        "name": "usuarioasignado",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
         "name": "remember_token",
         "dbType": "string",
         "htmlType": "text",
