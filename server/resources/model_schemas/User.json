@@ -64,11 +64,19 @@
     },
     {
         "type": "relation",
-        "relation": "mtm,,Atention_has_Diagnostico"
+        "relation": "mtm,,AlergiasPaciente"
     },
     {
         "type": "relation",
-        "relation": "mtm,,FichaMedica"
+        "relation": "mtm,,DiagnosticosAtencion"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Medico"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Paciente"
     },
     {
         "type": "relation",

@@ -143,61 +143,6 @@
         "inIndex": true
     },
     {
-        "name": "usuarioasignado",
-        "dbType": "integer,false",
-        "htmlType": null,
-        "validations": null,
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "remember_token",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": null,
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "created_at",
-        "dbType": "datetime",
-        "htmlType": "date",
-        "validations": null,
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false
-    },
-    {
-        "name": "updated_at",
-        "dbType": "datetime",
-        "htmlType": "date",
-        "validations": null,
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false
-    },
-    {
-        "name": "deleted_at",
-        "dbType": "datetime",
-        "htmlType": "date",
-        "validations": null,
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false
-    },
-    {
         "type": "relation",
         "relation": "mt1,Comuna"
     },
@@ -211,11 +156,7 @@
     },
     {
         "type": "relation",
-        "relation": "mtm,,Atencion"
-    },
-    {
-        "type": "relation",
-        "relation": "1tm,Citum"
+        "relation": "mtm,,AlergiasPaciente"
     },
     {
         "type": "relation",
@@ -223,19 +164,15 @@
     },
     {
         "type": "relation",
-        "relation": "1tm,Doctor"
+        "relation": "1tm,Medico"
     },
     {
         "type": "relation",
-        "relation": "1tm,FichaMedica"
+        "relation": "1tm,Paciente"
     },
     {
         "type": "relation",
         "relation": "1tm,PrevisionActual"
-    },
-    {
-        "type": "relation",
-        "relation": "mtm,,UniversidadesComuna"
     },
     {
         "type": "relation",

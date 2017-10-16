@@ -33,12 +33,31 @@
         "inIndex": true
     },
     {
-        "type": "relation",
-        "relation": "mtm,,Atention_has_Diagnostico"
+        "name": "isapre",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
     },
     {
         "type": "relation",
-        "relation": "mtm,,FichaMedica"
+        "relation": "mtm,,AlergiasPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,DiagnosticosAtencion"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Medico"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Paciente"
     },
     {
         "type": "relation",

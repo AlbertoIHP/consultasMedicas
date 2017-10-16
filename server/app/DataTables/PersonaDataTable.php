@@ -83,9 +83,7 @@ class PersonaDataTable extends DataTable
             'Genero_id' => ['name' => 'Genero_id', 'data' => 'Genero_id'],
             'Comuna_id' => ['name' => 'Comuna_id', 'data' => 'Comuna_id'],
             'EstadoCivil_id' => ['name' => 'EstadoCivil_id', 'data' => 'EstadoCivil_id'],
-            'estado' => ['name' => 'estado', 'data' => 'estado'],
-            'usuarioasignado' => ['name' => 'usuarioasignado', 'data' => 'usuarioasignado'],
-            'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
+            'estado' => ['name' => 'estado', 'data' => 'estado']
         ];
     }
 

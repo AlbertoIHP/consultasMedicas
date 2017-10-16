@@ -60,6 +60,15 @@ class ModuloAtencion extends Migration
 			$table->timestamp('deleted_at')->nullable();
 
 		});
+		
+
+		Schema::table('AlergiasPaciente', function (Blueprint $table) {
+			$table->rememberToken();
+			$table->timestamps();
+			$table->timestamp('deleted_at')->nullable();
+
+		});
+
 
 
 

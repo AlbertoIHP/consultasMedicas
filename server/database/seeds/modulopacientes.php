@@ -2355,7 +2355,6 @@ class modulopacientes extends Seeder
 
 
 		DB::table('Medico')->insert([
-		  'rut' => '18957283k',
 		  'Especialidad_id' => 1,
 		  'Persona_id' => 3,
 		]);
@@ -2410,7 +2409,6 @@ class modulopacientes extends Seeder
 			'fecha' => Carbon::create('2017', '01', '01'),
 			'hora' => '22:55',
 			'EstadoCita_id' => 1,
-			'Doctor_id' => 1,
 			'BoxConsulta_id' => 1,
 			'Paciente_id' => 1,
 			'Medico_id' => 1,

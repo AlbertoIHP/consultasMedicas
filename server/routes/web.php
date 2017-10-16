@@ -130,3 +130,27 @@ Route::resource('personas', 'PersonaController');
 Route::resource('personas', 'PersonaController');
 
 Route::resource('personas', 'PersonaController');
+
+Route::resource('regions', 'RegionController');
+
+Route::resource('provincias', 'ProvinciaController');
+
+Route::resource('comunas', 'ComunaController');
+
+Route::resource('previsions', 'PrevisionController');
+
+Route::resource('previsionActuals', 'PrevisionActualController');
+
+Route::resource('roles', 'RoleController');
+
+Route::resource('estadoCivils', 'EstadoCivilController');
+
+Route::resource('generos', 'GeneroController');
+
+Route::resource('tipoSangres', 'TipoSangreController');
+
+Route::resource('personas', 'PersonaController');
+
+Route::resource('pacientes', 'PacienteController');
+
+Route::resource('users', 'UserController');

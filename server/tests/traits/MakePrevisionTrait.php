@@ -43,7 +43,8 @@ trait MakePrevisionTrait
 
         return array_merge([
             'descripcion' => $fake->text,
-            'nombre' => $fake->word
+            'nombre' => $fake->word,
+            'isapre' => $fake->randomDigitNotNull
         ], $previsionFields);
     }
 }

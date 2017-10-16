@@ -73,7 +73,8 @@ class PrevisionDataTable extends DataTable
     {
         return [
             'descripcion' => ['name' => 'descripcion', 'data' => 'descripcion'],
-            'nombre' => ['name' => 'nombre', 'data' => 'nombre']
+            'nombre' => ['name' => 'nombre', 'data' => 'nombre'],
+            'isapre' => ['name' => 'isapre', 'data' => 'isapre']
         ];
     }
 

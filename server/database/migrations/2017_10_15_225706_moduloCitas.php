@@ -13,7 +13,7 @@ class ModuloCitas extends Migration
 	 */
 	public function up()
 	{
-		Schema::table('Doctor', function (Blueprint $table) {
+		Schema::table('Medico', function (Blueprint $table) {
 			$table->rememberToken();
 			$table->timestamps();
 			$table->timestamp('deleted_at')->nullable();
@@ -38,7 +38,6 @@ class ModuloCitas extends Migration
 			$table->timestamps();
 			$table->timestamp('deleted_at')->nullable();
 
-		});
 		});
 
 

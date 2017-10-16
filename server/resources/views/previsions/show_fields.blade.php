@@ -16,3 +16,9 @@
     <p>{!! $prevision->nombre !!}</p>
 </div>
 
+<!-- Isapre Field -->
+<div class="form-group">
+    {!! Form::label('isapre', 'Isapre:') !!}
+    <p>{!! $prevision->isapre !!}</p>
+</div>
+

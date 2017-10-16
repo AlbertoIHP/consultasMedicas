@@ -53,12 +53,7 @@ trait MakePersonaTrait
             'Genero_id' => $fake->randomDigitNotNull,
             'Comuna_id' => $fake->randomDigitNotNull,
             'EstadoCivil_id' => $fake->randomDigitNotNull,
-            'estado' => $fake->randomDigitNotNull,
-            'usuarioasignado' => $fake->randomDigitNotNull,
-            'remember_token' => $fake->word,
-            'created_at' => $fake->date('Y-m-d H:i:s'),
-            'updated_at' => $fake->date('Y-m-d H:i:s'),
-            'deleted_at' => $fake->date('Y-m-d H:i:s')
+            'estado' => $fake->randomDigitNotNull
         ], $personaFields);
     }
 }

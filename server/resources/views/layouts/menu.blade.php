@@ -306,3 +306,51 @@
     <a href="{!! route('personas.index') !!}"><i class="fa fa-edit"></i><span>Personas</span></a>
 </li>
 
+<li class="{{ Request::is('regions*') ? 'active' : '' }}">
+    <a href="{!! route('regions.index') !!}"><i class="fa fa-edit"></i><span>Regions</span></a>
+</li>
+
+<li class="{{ Request::is('provincias*') ? 'active' : '' }}">
+    <a href="{!! route('provincias.index') !!}"><i class="fa fa-edit"></i><span>Provincias</span></a>
+</li>
+
+<li class="{{ Request::is('comunas*') ? 'active' : '' }}">
+    <a href="{!! route('comunas.index') !!}"><i class="fa fa-edit"></i><span>Comunas</span></a>
+</li>
+
+<li class="{{ Request::is('previsions*') ? 'active' : '' }}">
+    <a href="{!! route('previsions.index') !!}"><i class="fa fa-edit"></i><span>Previsions</span></a>
+</li>
+
+<li class="{{ Request::is('previsionActuals*') ? 'active' : '' }}">
+    <a href="{!! route('previsionActuals.index') !!}"><i class="fa fa-edit"></i><span>PrevisionActuals</span></a>
+</li>
+
+<li class="{{ Request::is('roles*') ? 'active' : '' }}">
+    <a href="{!! route('roles.index') !!}"><i class="fa fa-edit"></i><span>Roles</span></a>
+</li>
+
+<li class="{{ Request::is('estadoCivils*') ? 'active' : '' }}">
+    <a href="{!! route('estadoCivils.index') !!}"><i class="fa fa-edit"></i><span>EstadoCivils</span></a>
+</li>
+
+<li class="{{ Request::is('generos*') ? 'active' : '' }}">
+    <a href="{!! route('generos.index') !!}"><i class="fa fa-edit"></i><span>Generos</span></a>
+</li>
+
+<li class="{{ Request::is('tipoSangres*') ? 'active' : '' }}">
+    <a href="{!! route('tipoSangres.index') !!}"><i class="fa fa-edit"></i><span>TipoSangres</span></a>
+</li>
+
+<li class="{{ Request::is('personas*') ? 'active' : '' }}">
+    <a href="{!! route('personas.index') !!}"><i class="fa fa-edit"></i><span>Personas</span></a>
+</li>
+
+<li class="{{ Request::is('pacientes*') ? 'active' : '' }}">
+    <a href="{!! route('pacientes.index') !!}"><i class="fa fa-edit"></i><span>Pacientes</span></a>
+</li>
+
+<li class="{{ Request::is('users*') ? 'active' : '' }}">
+    <a href="{!! route('users.index') !!}"><i class="fa fa-edit"></i><span>Users</span></a>
+</li>
+

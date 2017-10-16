@@ -32,7 +32,7 @@ Route::group(['middleware' => ['cors']], function(){
 
 
 
-  // PROVISORIO
+	  // PROVISORIO
 	Route::resource('v1/regions', 'RegionAPIController');
 
 	Route::resource('v1/provincias', 'ProvinciaAPIController');
@@ -45,20 +45,20 @@ Route::group(['middleware' => ['cors']], function(){
 
 	Route::resource('v1/roles', 'RoleAPIController');
 
-	Route::resource('v1/users', 'UserAPIController');
-
-	Route::resource('v1/personas', 'PersonaAPIController');
+	Route::resource('v1/estadoCivils', 'EstadoCivilAPIController');
 
 	Route::resource('v1/generos', 'GeneroAPIController');
 
-	Route::resource('v1/fichaMedicas', 'FichaMedicaAPIController');
-
-	Route::resource('v1/estadoCivils', 'EstadoCivilAPIController');
-
-	Route::resource('v1/historialFichas', 'HistorialFichaAPIController');
-
 	Route::resource('v1/tipoSangres', 'TipoSangreAPIController');
+
+	Route::resource('v1/personas', 'PersonaAPIController');
+
+	Route::resource('v1/pacientes', 'PacienteAPIController');
+
+	Route::resource('v1/users', 'UserAPIController');
 });
+
+
 
 
 
