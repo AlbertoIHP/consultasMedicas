@@ -36,6 +36,16 @@ import { MedichomeComponent } from './Components/medic/medichome/medichome.compo
 import { LoginComponent } from './Components/login/login/login.component';
 import { SecretarypacientesComponent } from './Components/secretary/secretarypacientes/secretarypacientes.component';
 import { SecretaryprevisionComponent } from './Components/secretary/secretaryprevision/secretaryprevision.component';
+import { AdminpacientesComponent } from './Components/admin/adminpacientes/adminpacientes.component';
+import { PacientesComponent } from './Components/admin/adminpacientes/pacientes/pacientes.component';
+import { EstadocivilComponent } from './Components/admin/adminpacientes/estadocivil/estadocivil.component';
+import { GenerosComponent } from './Components/admin/adminpacientes/generos/generos.component';
+import { ComunasComponent } from './Components/admin/adminpacientes/comunas/comunas.component';
+import { ProvinciasComponent } from './Components/admin/adminpacientes/provincias/provincias.component';
+import { RegionesComponent } from './Components/admin/adminpacientes/regiones/regiones.component';
+import { PrevisionesComponent } from './Components/admin/adminpacientes/previsiones/previsiones.component';
+import { UsuariosComponent } from './Components/admin/adminpacientes/usuarios/usuarios.component';
+import { RolesComponent } from './Components/admin/adminpacientes/roles/roles.component';
 
 @NgModule({
 	declarations:
@@ -47,7 +57,17 @@ import { SecretaryprevisionComponent } from './Components/secretary/secretarypre
 	  MedichomeComponent,
 	  LoginComponent,
 	  SecretarypacientesComponent,
-	  SecretaryprevisionComponent
+	  SecretaryprevisionComponent,
+	  AdminpacientesComponent,
+	  PacientesComponent,
+	  EstadocivilComponent,
+	  GenerosComponent,
+	  ComunasComponent,
+	  ProvinciasComponent,
+	  RegionesComponent,
+	  PrevisionesComponent,
+	  UsuariosComponent,
+	  RolesComponent
 	],
 
 	imports:

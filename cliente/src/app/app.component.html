@@ -23,9 +23,10 @@
 
 	<sui-sidebar class="inverted vertical"  #sidebar>
 		<div *ngIf="currentUserRole.nombre === 'Administrador'" >
-		 <a class="item">Modulo Pacientes</a>
-     <a class="item">Modulo Citas</a>
-     <a class="item">Modulo Atencion</a>
+     <a (click)="irHomeAdmin()" class="item">Home</a>
+		 <a (click)="irPacentesAdmin()" class="item">Modulo Pacientes</a>
+  	 <a (click)="irCitasAdmin()" class="item">Modulo Citas</a>
+  	 <a (click)="irAtencionAdmin()" class="item">Modulo Atencion</a>
 		</div>
 
 		<div *ngIf="currentUserRole.nombre === 'Paciente'" >

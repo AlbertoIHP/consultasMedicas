@@ -14,7 +14,17 @@ export class AppComponent {
 
 	constructor(private router: Router){}
 
-	irPacientesSecretary()
+  irPacentesAdmin ()
+  {
+   this.router.navigate(['admin/pacientes']);
+  }
+
+  irHomeAdmin ()
+  {
+   this.router.navigate(['admin']);
+  }
+
+	irPacientesSecretary ()
 	{
 	 this.router.navigate(['secretary/pacientes']);
 	}

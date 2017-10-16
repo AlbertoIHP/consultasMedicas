@@ -11,6 +11,8 @@ import { MedichomeComponent } from '../Components/medic/medichome/medichome.comp
 import { LoginComponent } from '../Components/login/login/login.component';
 import { SecretarypacientesComponent } from '../Components/secretary/secretarypacientes/secretarypacientes.component';
 import { SecretaryprevisionComponent } from '../Components/secretary/secretaryprevision/secretaryprevision.component';
+import { AdminpacientesComponent } from '../Components/admin/adminpacientes/adminpacientes.component';
+
 
 //Se declaran como constantes todas las rutas con sus respectivos nombres
 const routes: Routes =
@@ -20,6 +22,7 @@ const routes: Routes =
 
   //Rutas admin
 	{ path: 'admin',  component: AdminhomeComponent },
+  { path: 'admin/pacientes',  component: AdminpacientesComponent },
 
   //Rutas paciente
   { path: 'paciente',  component: PacientehomeComponent },

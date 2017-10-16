@@ -33,12 +33,13 @@
 							<td>{{ paciente.Genero_id }}</td>
 							<td>{{ paciente.EstadoCivil_id }}</td>
 							<td>{{ paciente.Comuna_id }}</td>
-				<td>
-				<button *ngIf="paciente.estado === 1" (click)="open('editarPaciente', paciente)" class="ui primary inverted orange button btnTabla">Editar</button>
-			 <button *ngIf="paciente.estado === 1" (click)="previsionPaciente(paciente)" class="ui primary inverted orange button btnTabla">Prevision</button>
-        <a *ngIf="paciente.estado === 0" class="ui orange tag label">Este paciente se encuentra desactivado, contacte un administrador para mayor informacion</a>
-       </td>
-
+							<td>
+								<button *ngIf="paciente.estado === 1" (click)="open('editarPaciente', paciente)" class="ui primary inverted orange button btnTabla">Editar</button>
+								<button *ngIf="paciente.estado === 1" (click)="previsionPaciente(paciente)" class="ui primary inverted orange button btnTabla">Prevision</button>
+								<button *ngIf="paciente.estado === 0" (click)="activarPaciente(paciente)" class="ui primary inverted blue button btnTabla">Activar</button>
+								<button *ngIf="paciente.estado === 1" (click)="desactivarPaciente(paciente)" class="ui primary inverted orange button btnTabla">Desactivar</button>
+								<button *ngIf="paciente.estado === 1" (click)="eliminarPaciente(paciente)" class="ui primary inverted red button btnTabla">Eliminar</button>
+							</td>
 						</tr>
 			</tbody>
 			<tfoot class="full-width">
@@ -54,7 +55,11 @@
 	</div>
 </div>
 
-
+<div *ngIf="mostrarPrevision" class="ui one column grid">
+	<div class="column">
+		<app-secretaryprevision></app-secretaryprevision>
+	</div>
+</div>
 
 	<ng-template let-context let-modal="modal" #modalTemplate>
 

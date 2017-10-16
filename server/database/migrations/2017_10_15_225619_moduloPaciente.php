@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class ModuloPaciente extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -95,92 +95,7 @@ class CreateUsersTable extends Migration
 			$table->timestamp('deleted_at')->nullable();
 
 		});
-		Schema::table('Doctor', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
-		Schema::table('Especialidad', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
-		Schema::table('Cita', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
-
-
-		Schema::table('EstadoCita', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
-		Schema::table('Atention', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
-
-		Schema::table('Diagnostico', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
-		Schema::table('Atention_has_Diagnostico', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
-
-
-		Schema::table('BoxConsulta', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
-		Schema::table('Receta', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
-		Schema::table('TipoBox', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
-		Schema::table('Medicamento', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
-
-
-		Schema::table('ViaAdministracionMedicamento', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
-		Schema::table('Receta_has_Medicamento', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
-
+		
 
 		Schema::table('Historial', function (Blueprint $table) {
 			$table->rememberToken();
@@ -188,6 +103,7 @@ class CreateUsersTable extends Migration
 			$table->timestamp('deleted_at')->nullable();
 
 		});
+
 
 	}
 
@@ -198,6 +114,6 @@ class CreateUsersTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('users');
+		//
 	}
 }

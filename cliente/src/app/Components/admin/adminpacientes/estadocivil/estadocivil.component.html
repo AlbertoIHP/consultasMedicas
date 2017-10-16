@@ -1,0 +1,90 @@
+<div class="ui one column grid">
+  <div class="column">
+    <table class="ui compact celled definition table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+      <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr *ngFor="let estadoCivil of totalEstadoCiviles">
+              <td>{{ estadoCivil.nombre }}</td>
+              <td>{{ estadoCivil.descripcion }}</td>
+              <td>
+                <button (click)="open('editarEC' , estadoCivil)" class="ui primary inverted orange button btnTabla">Editar</button>
+
+                <button (click)="eliminarEstadoCivil(estadoCivil)" class="ui primary inverted red button btnTabla">Eliminar</button>
+              </td>
+            </tr>
+      </tbody>
+      <tfoot class="full-width">
+        <tr>
+          <th colspan="12">
+            <div (click)="open('nuevoEC')" class="ui right floated small primary labeled icon button">
+              <i class="add icon"></i> Agregar Estado Civil
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+
+
+  <ng-template let-context let-modal="modal" #modalTemplate>
+
+      <div *ngIf="context.data === 'nuevoEC'" class="header">Formulario de Nuevo Estado Civil</div>
+      <div *ngIf="context.data === 'editarEC'" class="header">Formulario de Edicion: EC {{editarEC.nombre}}</div>
+
+
+      <div class="content" >
+       <div *ngIf="context.data === 'nuevoEC'" class="ui one column grid">
+
+              <div class="column">
+                <div class="ui input focus inputModal">
+                  <input [(ngModel)]="nuevoEC.nombre" type="text" placeholder="Ingrese un nombre">
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="ui input focus inputModal">
+                  <textarea [(ngModel)]="nuevoEC.descripcion" type="text" placeholder="Describa el estado civil" style="width: 100%"></textarea>
+                </div>
+              </div>
+
+             </div>
+
+
+        <div *ngIf="context.data === 'editarEC'" class="ui one column grid">
+
+              <div class="column">
+                <div class="ui input focus inputModal">
+                  <input [(ngModel)]="editarEC.nombre" type="text" placeholder="Ingrese un nombre">
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="ui input focus inputModal">
+                  <textarea [(ngModel)]="editarEC.descripcion" type="text" placeholder="Describa el estado civil" style="width: 100%"></textarea>
+                </div>
+              </div>
+
+        </div>
+
+
+
+      </div>
+
+
+
+
+      <div class="actions">
+          <button class="ui red button" (click)="modal.deny('denied')">Cancelar</button>
+          <button class="ui blue button"  (click)="modal.approve('approved')">Aceptar</button>
+
+      </div>
+
+  </ng-template>
