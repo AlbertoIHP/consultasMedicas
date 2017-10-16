@@ -58,33 +58,33 @@
 								</div>
 							</div>
 
-              <div class="column">
-                <sui-select class="selection inputModal"
-                            [isSearchable]="true"
-                            placeholder="Role">
+			  <div class="column">
+				<sui-select class="selection inputModal"
+							[isSearchable]="true"
+							placeholder="Role">
 
-                    <sui-select-option
-                    *ngFor="let role of totalRoles"
-                    [value]="role.nombre"
-                    (click)="roleSeleccionado(role)">
-                    </sui-select-option>
+					<sui-select-option
+					*ngFor="let role of totalRoles"
+					[value]="role.nombre"
+					(click)="roleSeleccionado(role)">
+					</sui-select-option>
 
-                </sui-select>
-              </div>
+				</sui-select>
+			  </div>
 
-              <div class="column">
-                <sui-select class="selection inputModal"
-                            [isSearchable]="true"
-                            placeholder="Persona">
+			  <div class="column">
+				<sui-select class="selection inputModal"
+							[isSearchable]="true"
+							placeholder="Persona">
 
-                    <sui-select-option
-                    *ngFor="let persona of personasDisponibles"
-                    [value]="persona.rut+' '+persona.nombre1+' '+persona.apellido1 "
-                    (click)="personaSeleccionada(persona)">
-                    </sui-select-option>
+					<sui-select-option
+					*ngFor="let persona of personasDisponibles"
+					[value]="persona.rut+' '+persona.nombre1+' '+persona.apellido1 "
+					(click)="personaSeleccionada(persona)">
+					</sui-select-option>
 
-                </sui-select>
-              </div>
+				</sui-select>
+			  </div>
 
 
 
@@ -106,19 +106,19 @@
 								</div>
 							</div>
 
-              <div class="column">
-                <sui-select class="selection inputModal"
-                            [isSearchable]="true"
-                            placeholder="Role">
+			  <div class="column">
+				<sui-select class="selection inputModal"
+							[isSearchable]="true"
+							placeholder="Role">
 
-                    <sui-select-option
-                    *ngFor="let role of totalRoles"
-                    [value]="role.nombre"
-                    (click)="editarRoleSeleccionado(role)">
-                    </sui-select-option>
+					<sui-select-option
+					*ngFor="let role of totalRoles"
+					[value]="role.nombre"
+					(click)="editarRoleSeleccionado(role)">
+					</sui-select-option>
 
-                </sui-select>
-              </div>
+				</sui-select>
+			  </div>
 
 
 				</div>
@@ -291,7 +291,7 @@
 
 
 			<div class="actions">
-          <button *ngIf="context.data === 'nuevoUsuario' || context.data === 'editarUsuario'" class="ui red button" (click)="modal.deny('denied')">Cancelar</button>
+		  <button *ngIf="context.data === 'nuevoUsuario' || context.data === 'editarUsuario'" class="ui red button" (click)="modal.deny('denied')">Cancelar</button>
 					<button class="ui blue button"  (click)="modal.approve('approved')">Aceptar</button>
 
 			</div>
