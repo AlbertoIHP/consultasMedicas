@@ -39,21 +39,6 @@ class ModuloCitas extends Migration
 			$table->timestamp('deleted_at')->nullable();
 
 		});
-
-
-		Schema::table('UniversidadesComuna', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
-
-
-		Schema::table('Universidad', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
 		});
 
 

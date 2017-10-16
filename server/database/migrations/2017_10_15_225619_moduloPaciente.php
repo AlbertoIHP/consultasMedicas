@@ -53,12 +53,6 @@ class ModuloPaciente extends Migration
 			$table->timestamp('deleted_at')->nullable();
 
 		});
-		Schema::table('FichaMedica', function (Blueprint $table) {
-			$table->rememberToken();
-			$table->timestamps();
-			$table->timestamp('deleted_at')->nullable();
-
-		});
 
 
 
@@ -98,6 +92,22 @@ class ModuloPaciente extends Migration
 		
 
 		Schema::table('Historial', function (Blueprint $table) {
+			$table->rememberToken();
+			$table->timestamps();
+			$table->timestamp('deleted_at')->nullable();
+
+		});
+		
+
+		Schema::table('Paciente', function (Blueprint $table) {
+			$table->rememberToken();
+			$table->timestamps();
+			$table->timestamp('deleted_at')->nullable();
+
+		});
+		
+
+		Schema::table('AlergiasPaciente', function (Blueprint $table) {
 			$table->rememberToken();
 			$table->timestamps();
 			$table->timestamp('deleted_at')->nullable();

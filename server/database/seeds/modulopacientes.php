@@ -2166,7 +2166,6 @@ class modulopacientes extends Seeder
 		  'EstadoCivil_id' => 4,
 		  'Comuna_id'=> 10,
 		  'estado' => 1,
-		  'usuarioasignado' =>1,
 		]);
 
 		DB::table('Persona')->insert([
@@ -2182,7 +2181,6 @@ class modulopacientes extends Seeder
 		  'EstadoCivil_id' => 2,
 		  'Comuna_id'=> 5,
 		  'estado' => 1,
-		  'usuarioasignado' =>1,
 		]);
 
 		DB::table('Persona')->insert([
@@ -2198,7 +2196,6 @@ class modulopacientes extends Seeder
 		  'EstadoCivil_id' => 3,
 		  'Comuna_id'=> 15,
 		  'estado' => 1,
-		  'usuarioasignado' =>1,
 		]);
 
 
@@ -2215,7 +2212,6 @@ class modulopacientes extends Seeder
 		  'EstadoCivil_id' => 4,
 		  'Comuna_id'=> 7,
 		  'estado' => 1,
-		  'usuarioasignado' =>1,
 		]);
 
 		DB::table('Persona')->insert([
@@ -2231,8 +2227,8 @@ class modulopacientes extends Seeder
 		  'EstadoCivil_id' => 1,
 		  'Comuna_id'=> 13,
 		  'estado' => 1,
-		  'usuarioasignado' =>1,
 		]);
+
 
 		DB::table('Usuario')->insert([
 			'email' =>'Jefatura@Jefatura.cl',
@@ -2315,44 +2311,11 @@ class modulopacientes extends Seeder
 		'descripcion' => 'Este tipo de sangre tiene los tres marcadores: A, B y factor Rh.',
 		]);
 
-		DB::table('FichaMedica')->insert([
-		  'nombre' => 'Jorge Ignacio Hochtetter Poza',
-		  'Persona_id' => 1,
-		  'nombreResponsable' => 'Jorge Ignacio Hochtetter Poza',
-		  'fechaCreacion' => Carbon::create('2017', '01', '01'),
-		  'pesoActual' => '80',
-		  'estaturaActual' => '180',
-		  'TipoSangre_id' => 1,
-		]);
 
-		DB::table('Historial')->insert([
-		  'fechaConsulta' => Carbon::create('2017', '01', '01'),
-		  'habitos' => 'Ninguno',
-		  'InformacionMedica' => 'En esta consulta se detecto algo raro',
-		  'FichaMedica_id' => 1
-		]);
-
-		DB::table('Historial')->insert([
-		  'fechaConsulta' => Carbon::create('2017', '02', '01'),
-		  'habitos' => 'Ninguno',
-		  'InformacionMedica' => 'En esta consulta se detecto algo raro',
-		  'FichaMedica_id' => 1
-		]);
-
-		DB::table('Historial')->insert([
-		  'fechaConsulta' => Carbon::create('2017', '03', '01'),
-		  'habitos' => 'Ninguno',
-		  'InformacionMedica' => 'En esta consulta se detecto algo raro',
-		  'FichaMedica_id' => 1
-		]);
-
-		DB::table('Historial')->insert([
-		  'fechaConsulta' => Carbon::create('2017', '04', '01'),
-		  'habitos' => 'Ninguno',
-		  'InformacionMedica' => 'En esta consulta se detecto algo raro',
-		  'FichaMedica_id' => 1
-		]);
-
+		DB::table('Paciente')->insert([
+			'Persona_id' => 4,
+			'TipoSangre_id' =>1,
+			]);
 
 
 		DB::table('PrevisionActual')->insert([
@@ -2376,60 +2339,6 @@ class modulopacientes extends Seeder
 		'Persona_id' => 1,
 		]);
 
-		DB::table('Universidad')->insert([
-		  'nombre' =>'Universidad de La Frontera',
-		]);
-
-		DB::table('Universidad')->insert([
-		  'nombre' =>'Universidad Autonoma',
-		]);
-
-
-		DB::table('UniversidadesComuna')->insert([
-		  'Comuna_id' => 1,
-		  'Universidad_id' => 1,
-		]);
-
-		DB::table('UniversidadesComuna')->insert([
-		  'Comuna_id' => 2,
-		  'Universidad_id' => 1,
-		]);
-
-		DB::table('UniversidadesComuna')->insert([
-		  'Comuna_id' => 3,
-		  'Universidad_id' => 1,
-		]);
-
-		DB::table('UniversidadesComuna')->insert([
-		  'Comuna_id' => 4,
-		  'Universidad_id' => 1,
-		]);
-
-
-		DB::table('UniversidadesComuna')->insert([
-		  'Comuna_id' => 1,
-		  'Universidad_id' => 2,
-		]);
-
-		DB::table('UniversidadesComuna')->insert([
-		  'Comuna_id' => 2,
-		  'Universidad_id' => 2,
-		]);
-
-		DB::table('UniversidadesComuna')->insert([
-		  'Comuna_id' => 3,
-		  'Universidad_id' => 2,
-		]);
-
-		DB::table('UniversidadesComuna')->insert([
-		  'Comuna_id' => 4,
-		  'Universidad_id' => 2,
-		]);
-
-
-
-
-
 
 
 		DB::table('Especialidad')->insert([
@@ -2445,11 +2354,10 @@ class modulopacientes extends Seeder
 
 
 
-		DB::table('Doctor')->insert([
+		DB::table('Medico')->insert([
 		  'rut' => '18957283k',
 		  'Especialidad_id' => 1,
 		  'Persona_id' => 3,
-		  'UniversidadesComuna_id' => 1,
 		]);
 
 
@@ -2504,7 +2412,8 @@ class modulopacientes extends Seeder
 			'EstadoCita_id' => 1,
 			'Doctor_id' => 1,
 			'BoxConsulta_id' => 1,
-			'Persona_id' => 4,
+			'Paciente_id' => 1,
+			'Medico_id' => 1,
 
 		]);
 		
