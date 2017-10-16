@@ -38,7 +38,7 @@ export class RoleService {
 	//POST
 	registerRole(role: Role)
 	{
-		return this.http.post( this.base+'roles', JSON.stringify(Role), this.options).map((res: Response) => res.json());
+		return this.http.post( this.base+'roles', JSON.stringify(role), this.options).map((res: Response) => res.json());
 
 	}
 

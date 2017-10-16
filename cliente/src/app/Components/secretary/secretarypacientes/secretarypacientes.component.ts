@@ -182,29 +182,7 @@ export class SecretarypacientesComponent implements OnInit {
   actualizarPaciente()
   {
 
-	  for ( let i = 0 ; i < this.totalComunas.length ; i ++)
-	  {
-		if(this.pacienteEditar.Comuna_id === this.totalComunas[i].nombre)
-		{
-		  this.pacienteEditar.Comuna_id = this.totalComunas[i].id;
-		}
-	  }
-
-	  for ( let i = 0 ; i < this.totalGeneros.length ; i ++)
-	  {
-		if(this.pacienteEditar.Genero_id === this.totalGeneros[i].nombre)
-		{
-		  this.pacienteEditar.Genero_id = this.totalGeneros[i].id;
-		}
-	  }
-
-	  for ( let i = 0 ; i < this.totalEstadoCiviles.length ; i ++)
-	  {
-		if(this.pacienteEditar.EstadoCivil_id === this.totalEstadoCiviles[i].nombre)
-		{
-		  this.pacienteEditar.EstadoCivil_id = this.totalEstadoCiviles[i].id;
-		}
-	  }
+    this.pasarStringId(this.pacienteEditar);
 
 	  this.servicioPersona.editPersona(this.pacienteEditar, this.pacienteEditar.id).subscribe( data => {
 
@@ -264,29 +242,57 @@ export class SecretarypacientesComponent implements OnInit {
 		this.mostrarComunas = false;
 		this.actualizarComunas();
 		this.actualizarProvincias();
-	this.servicioPersona.registerPersona(this.nuevoPaciente).subscribe(data => {
-		console.log(data);
-		this.actualizarPersonas();
-	});
-	this.nuevoPaciente = new Persona();
+  	this.servicioPersona.registerPersona(this.nuevoPaciente).subscribe(data => {
+  		console.log(data);
+  		this.actualizarPersonas();
+  	});
+  	this.nuevoPaciente = new Persona();
 	}
 
 	estadoCivilSeleccionado(estado)
 	{
 		this.nuevoPaciente.EstadoCivil_id = estado.id;
-	this.pacienteEditar.EstadoCivil_id = estado.id;
+	  this.pacienteEditar.EstadoCivil_id = estado.id;
 	}
 
 	generoSeleccionado(genero)
 	{
 		this.nuevoPaciente.Genero_id = genero.id;
-	this.pacienteEditar.Genero_id = genero.id;
+	  this.pacienteEditar.Genero_id = genero.id;
 	}
 
 	ngOnInit()
 	{
 
 	}
+
+
+  pasarStringId(paciente)
+  {
+    for ( let i = 0 ; i < this.totalComunas.length ; i ++)
+    {
+    if(paciente.Comuna_id === this.totalComunas[i].nombre)
+    {
+      paciente.Comuna_id = this.totalComunas[i].id;
+    }
+    }
+
+    for ( let i = 0 ; i < this.totalGeneros.length ; i ++)
+    {
+    if(paciente.Genero_id === this.totalGeneros[i].nombre)
+    {
+      paciente.Genero_id = this.totalGeneros[i].id;
+    }
+    }
+
+    for ( let i = 0 ; i < this.totalEstadoCiviles.length ; i ++)
+    {
+    if(paciente.EstadoCivil_id === this.totalEstadoCiviles[i].nombre)
+    {
+      paciente.EstadoCivil_id = this.totalEstadoCiviles[i].id;
+    }
+    }
+  }
 
 	reemplazarIdPorString()
 	{

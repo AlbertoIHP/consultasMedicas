@@ -1,3 +1,75 @@
-<p>
-  roles works!
-</p>
+<div class="ui one column grid">
+	<div class="column">
+		<table class="ui compact celled definition table">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+						<tr *ngFor="let role of totalRoles">
+							<td>{{ role.nombre }}</td>
+							<td>
+								<button (click)="open('editarRole' , role)" class="ui primary inverted orange button btnTabla">Editar</button>
+
+								<button (click)="eliminarRole(role)" class="ui primary inverted red button btnTabla">Eliminar</button>
+							</td>
+						</tr>
+			</tbody>
+			<tfoot class="full-width">
+				<tr>
+					<th colspan="2">
+						<div (click)="open('nuevoRole')" class="ui right floated small primary labeled icon button">
+							<i class="add icon"></i> Agregar Role
+						</div>
+					</th>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>
+
+
+	<ng-template let-context let-modal="modal" #modalTemplate>
+
+			<div *ngIf="context.data === 'nuevoRole'" class="header">Formulario de Nuevo Role</div>
+			<div *ngIf="context.data === 'editarRole'" class="header">Formulario de Edicion: Role {{editarRole.nombre}}</div>
+
+
+			<div class="content" >
+			 <div *ngIf="context.data === 'nuevoRole'" class="ui one column grid">
+
+							<div class="column">
+								<div class="ui input focus inputModal">
+									<input [(ngModel)]="nuevoRole.nombre" type="text" placeholder="Ingrese un nombre">
+								</div>
+							</div>
+
+						 </div>
+
+
+				<div *ngIf="context.data === 'editarRole'" class="ui one column grid">
+
+							<div class="column">
+								<div class="ui input focus inputModal">
+									<input [(ngModel)]="editarRole.nombre" type="text" placeholder="Ingrese un nombre">
+								</div>
+							</div>
+
+				</div>
+
+
+
+			</div>
+
+
+
+
+			<div class="actions">
+					<button class="ui red button" (click)="modal.deny('denied')">Cancelar</button>
+					<button class="ui blue button"  (click)="modal.approve('approved')">Aceptar</button>
+
+			</div>
+
+	</ng-template>

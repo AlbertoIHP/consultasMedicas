@@ -1,3 +1,75 @@
-<p>
-  regiones works!
-</p>
+<div class="ui one column grid">
+  <div class="column">
+    <table class="ui compact celled definition table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+      <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr *ngFor="let region of totalRegiones">
+              <td>{{ region.nombre }}</td>
+              <td>
+                <button (click)="open('editarRegion' , region)" class="ui primary inverted orange button btnTabla">Editar</button>
+
+                <button (click)="eliminarRegion(region)" class="ui primary inverted red button btnTabla">Eliminar</button>
+              </td>
+            </tr>
+      </tbody>
+      <tfoot class="full-width">
+        <tr>
+          <th colspan="2">
+            <div (click)="open('nuevaRegion')" class="ui right floated small primary labeled icon button">
+              <i class="add icon"></i> Agregar Region
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+
+  <ng-template let-context let-modal="modal" #modalTemplate>
+
+      <div *ngIf="context.data === 'nuevaRegion'" class="header">Formulario de Nueva Region</div>
+      <div *ngIf="context.data === 'editarRegion'" class="header">Formulario de Edicion: Region {{editarRegion.nombre}}</div>
+
+
+      <div class="content" >
+       <div *ngIf="context.data === 'nuevaRegion'" class="ui one column grid">
+
+              <div class="column">
+                <div class="ui input focus inputModal">
+                  <input [(ngModel)]="nuevaRegion.nombre" type="text" placeholder="Ingrese un nombre">
+                </div>
+              </div>
+
+             </div>
+
+
+        <div *ngIf="context.data === 'editarRegion'" class="ui one column grid">
+
+              <div class="column">
+                <div class="ui input focus inputModal">
+                  <input [(ngModel)]="editarRegion.nombre" type="text" placeholder="Ingrese un nombre">
+                </div>
+              </div>
+
+        </div>
+
+
+
+      </div>
+
+
+
+
+      <div class="actions">
+          <button class="ui red button" (click)="modal.deny('denied')">Cancelar</button>
+          <button class="ui blue button"  (click)="modal.approve('approved')">Aceptar</button>
+
+      </div>
+
+  </ng-template>

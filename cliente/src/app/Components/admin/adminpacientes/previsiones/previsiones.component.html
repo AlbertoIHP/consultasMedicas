@@ -1,3 +1,89 @@
-<p>
-  previsiones works!
-</p>
+<div class="ui one column grid">
+  <div class="column">
+    <table class="ui compact celled definition table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr *ngFor="let prevision of totalPrevisiones">
+              <td>{{ prevision.nombre }}</td>
+              <td>{{ prevision.descripcion }}</td>
+              <td>
+                <button (click)="open('editarPrevision' , prevision)" class="ui primary inverted orange button btnTabla">Editar</button>
+
+                <button (click)="eliminarPrevision(prevision)" class="ui primary inverted red button btnTabla">Eliminar</button>
+              </td>
+            </tr>
+      </tbody>
+      <tfoot class="full-width">
+        <tr>
+          <th colspan="3">
+            <div (click)="open('nuevaPrevision')" class="ui right floated small primary labeled icon button">
+              <i class="add icon"></i> Agregar Prevision
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+
+  <ng-template let-context let-modal="modal" #modalTemplate>
+
+      <div *ngIf="context.data === 'nuevaPrevision'" class="header">Formulario de Nueva Prevision</div>
+      <div *ngIf="context.data === 'editarPrevision'" class="header">Formulario de Edicion: Prevision {{editarPrevision.nombre}}</div>
+
+
+      <div class="content" >
+       <div *ngIf="context.data === 'nuevaPrevision'" class="ui one column grid">
+
+              <div class="column">
+                <div class="ui input focus inputModal">
+                  <input [(ngModel)]="nuevaPrevision.nombre" type="text" placeholder="Ingrese un nombre">
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="ui input focus inputModal">
+                  <input [(ngModel)]="nuevaPrevision.descripcion" type="text" placeholder="Describa esta nueva prevision">
+                </div>
+              </div>
+
+             </div>
+
+
+        <div *ngIf="context.data === 'editarPrevision'" class="ui one column grid">
+
+              <div class="column">
+                <div class="ui input focus inputModal">
+                  <input [(ngModel)]="editarPrevision.nombre" type="text" placeholder="Ingrese un nombre">
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="ui input focus inputModal">
+                  <input [(ngModel)]="editarPrevision.descripcion" type="text" placeholder="Describa la descripcion">
+                </div>
+              </div>
+
+        </div>
+
+
+
+      </div>
+
+
+
+
+      <div class="actions">
+          <button class="ui red button" (click)="modal.deny('denied')">Cancelar</button>
+          <button class="ui blue button"  (click)="modal.approve('approved')">Aceptar</button>
+
+      </div>
+
+  </ng-template>
