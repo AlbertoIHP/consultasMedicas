@@ -404,205 +404,6 @@
                 }
             }
         },
-        "/fichaMedicas": {
-            "get": {
-                "tags": [
-                    "FichaMedica"
-                ],
-                "summary": "Get a listing of the FichaMedicas.",
-                "description": "Get all FichaMedicas",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/FichaMedica"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "FichaMedica"
-                ],
-                "summary": "Store a newly created FichaMedica in storage",
-                "description": "Store FichaMedica",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "FichaMedica that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/FichaMedica"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/FichaMedica"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/fichaMedicas/{id}": {
-            "get": {
-                "tags": [
-                    "FichaMedica"
-                ],
-                "summary": "Display the specified FichaMedica",
-                "description": "Get FichaMedica",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of FichaMedica",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/FichaMedica"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "FichaMedica"
-                ],
-                "summary": "Update the specified FichaMedica in storage",
-                "description": "Update FichaMedica",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of FichaMedica",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "FichaMedica that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/FichaMedica"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/FichaMedica"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "FichaMedica"
-                ],
-                "summary": "Remove the specified FichaMedica from storage",
-                "description": "Delete FichaMedica",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of FichaMedica",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
         "/generos": {
             "get": {
                 "tags": [
@@ -802,13 +603,13 @@
                 }
             }
         },
-        "/historialFichas": {
+        "/pacientes": {
             "get": {
                 "tags": [
-                    "HistorialFicha"
+                    "Paciente"
                 ],
-                "summary": "Get a listing of the HistorialFichas.",
-                "description": "Get all HistorialFichas",
+                "summary": "Get a listing of the Pacientes.",
+                "description": "Get all Pacientes",
                 "produces": [
                     "application/json"
                 ],
@@ -823,7 +624,7 @@
                                 "data": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/HistorialFicha"
+                                        "$ref": "#/definitions/Paciente"
                                     }
                                 },
                                 "message": {
@@ -837,10 +638,10 @@
             },
             "post": {
                 "tags": [
-                    "HistorialFicha"
+                    "Paciente"
                 ],
-                "summary": "Store a newly created HistorialFicha in storage",
-                "description": "Store HistorialFicha",
+                "summary": "Store a newly created Paciente in storage",
+                "description": "Store Paciente",
                 "produces": [
                     "application/json"
                 ],
@@ -848,10 +649,10 @@
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "HistorialFicha that should be stored",
+                        "description": "Paciente that should be stored",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/HistorialFicha"
+                            "$ref": "#/definitions/Paciente"
                         }
                     }
                 ],
@@ -864,7 +665,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/HistorialFicha"
+                                    "$ref": "#/definitions/Paciente"
                                 },
                                 "message": {
                                     "type": "string"
@@ -876,13 +677,13 @@
                 }
             }
         },
-        "/historialFichas/{id}": {
+        "/pacientes/{id}": {
             "get": {
                 "tags": [
-                    "HistorialFicha"
+                    "Paciente"
                 ],
-                "summary": "Display the specified HistorialFicha",
-                "description": "Get HistorialFicha",
+                "summary": "Display the specified Paciente",
+                "description": "Get Paciente",
                 "produces": [
                     "application/json"
                 ],
@@ -890,7 +691,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of HistorialFicha",
+                        "description": "id of Paciente",
                         "required": true,
                         "type": "integer"
                     }
@@ -904,7 +705,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/HistorialFicha"
+                                    "$ref": "#/definitions/Paciente"
                                 },
                                 "message": {
                                     "type": "string"
@@ -917,10 +718,10 @@
             },
             "put": {
                 "tags": [
-                    "HistorialFicha"
+                    "Paciente"
                 ],
-                "summary": "Update the specified HistorialFicha in storage",
-                "description": "Update HistorialFicha",
+                "summary": "Update the specified Paciente in storage",
+                "description": "Update Paciente",
                 "produces": [
                     "application/json"
                 ],
@@ -928,17 +729,17 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of HistorialFicha",
+                        "description": "id of Paciente",
                         "required": true,
                         "type": "integer"
                     },
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "HistorialFicha that should be updated",
+                        "description": "Paciente that should be updated",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/HistorialFicha"
+                            "$ref": "#/definitions/Paciente"
                         }
                     }
                 ],
@@ -951,7 +752,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/HistorialFicha"
+                                    "$ref": "#/definitions/Paciente"
                                 },
                                 "message": {
                                     "type": "string"
@@ -964,10 +765,10 @@
             },
             "delete": {
                 "tags": [
-                    "HistorialFicha"
+                    "Paciente"
                 ],
-                "summary": "Remove the specified HistorialFicha from storage",
-                "description": "Delete HistorialFicha",
+                "summary": "Remove the specified Paciente from storage",
+                "description": "Delete Paciente",
                 "produces": [
                     "application/json"
                 ],
@@ -975,7 +776,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of HistorialFicha",
+                        "description": "id of Paciente",
                         "required": true,
                         "type": "integer"
                     }
@@ -2636,49 +2437,6 @@
                 }
             }
         },
-        "FichaMedica": {
-            "required": [
-                ""
-            ],
-            "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "nombre": {
-                    "description": "nombre",
-                    "type": "string"
-                },
-                "nombreResponsable": {
-                    "description": "nombreResponsable",
-                    "type": "string"
-                },
-                "fechaCreacion": {
-                    "description": "fechaCreacion",
-                    "type": "string",
-                    "format": "date"
-                },
-                "pesoActual": {
-                    "description": "pesoActual",
-                    "type": "string"
-                },
-                "estaturaActual": {
-                    "description": "estaturaActual",
-                    "type": "string"
-                },
-                "Persona_id": {
-                    "description": "Persona_id",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "TipoSangre_id": {
-                    "description": "TipoSangre_id",
-                    "type": "integer",
-                    "format": "int32"
-                }
-            }
-        },
         "Genero": {
             "required": [
                 ""
@@ -2699,7 +2457,7 @@
                 }
             }
         },
-        "HistorialFicha": {
+        "Paciente": {
             "required": [
                 ""
             ],
@@ -2709,29 +2467,13 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "fechaConsulta": {
-                    "description": "fechaConsulta",
-                    "type": "string",
-                    "format": "date"
+                "Persona_id": {
+                    "description": "Persona_id",
+                    "type": "integer",
+                    "format": "int32"
                 },
-                "informacionMedica": {
-                    "description": "informacionMedica",
-                    "type": "string"
-                },
-                "habitos": {
-                    "description": "habitos",
-                    "type": "string"
-                },
-                "peso": {
-                    "description": "peso",
-                    "type": "string"
-                },
-                "estatura": {
-                    "description": "estatura",
-                    "type": "string"
-                },
-                "FichaMedica_id": {
-                    "description": "FichaMedica_id",
+                "TipoSangre_id": {
+                    "description": "TipoSangre_id",
                     "type": "integer",
                     "format": "int32"
                 }
@@ -2798,15 +2540,6 @@
                     "description": "estado",
                     "type": "integer",
                     "format": "int32"
-                },
-                "usuarioasignado": {
-                    "description": "usuarioasignado",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
                 }
             }
         },
@@ -2827,6 +2560,11 @@
                 "nombre": {
                     "description": "nombre",
                     "type": "string"
+                },
+                "isapre": {
+                    "description": "isapre",
+                    "type": "integer",
+                    "format": "int32"
                 }
             }
         },
@@ -2859,10 +2597,6 @@
                     "description": "activado",
                     "type": "integer",
                     "format": "int32"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
                 }
             }
         },
