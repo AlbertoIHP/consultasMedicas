@@ -200,7 +200,19 @@
     },
     {
         "type": "relation",
-        "relation": "mtm,,Atention_has_Diagnostico"
+        "relation": "mtm,,Atencion"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,Citum"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,DiagnosticosAtencion"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,Doctor"
     },
     {
         "type": "relation",
@@ -209,6 +221,10 @@
     {
         "type": "relation",
         "relation": "1tm,PrevisionActual"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,UniversidadesComuna"
     },
     {
         "type": "relation",

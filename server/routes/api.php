@@ -62,4 +62,3 @@ Route::group(['middleware' => ['cors']], function(){
 
 
 
-
