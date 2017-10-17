@@ -1,11 +1,11 @@
 export class Genero {
-  id: string;
+  id: number;
   descripcion: string;
   nombre: string;
 
   constructor()
   {
-	this.id = "";
+	this.id = 0;
 	this.descripcion = "";
 	this.nombre = "";
   }

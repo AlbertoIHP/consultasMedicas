@@ -4,7 +4,7 @@ export class Role {
 
   constructor ()
   {
-	this.id = 0 ;
+	this.id = 0;
 	this.nombre = "";
   }
 }

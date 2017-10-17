@@ -1,5 +1,5 @@
 export class Usuario {
-  id: number;
+  	id: number;
 	email: string;
 	password: string;
 	Role_id: string;
@@ -7,7 +7,7 @@ export class Usuario {
 
 	constructor()
 	{
-	this.id = 0;
+		this.id = 0;
 		this.email = "";
 		this.password = "";
 		this.Role_id = "";

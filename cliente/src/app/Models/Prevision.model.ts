@@ -1,12 +1,14 @@
 export class Prevision {
-  id: string;
+  id: number;
   descripcion: string;
   nombre: string;
+  isapre: number;
 
   constructor ()
   {
-	this.id = "";
+	this.id = 0;
 	this.descripcion = "";
 	this.nombre = "";
+	this.isapre = 0;
   }
 }

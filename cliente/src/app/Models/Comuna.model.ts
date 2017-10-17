@@ -1,11 +1,11 @@
 export class Comuna {
-  id: string;
+  id: number;
   Provincia_id: string;
   nombre: string;
 
   constructor()
   {
-	this.id = "";
+	this.id = 0;
 	this.Provincia_id = "";
 	this.nombre = "";
   }
