@@ -4,95 +4,95 @@ import { EstadoCivil } from '../../../../Models/EstadoCivil.model';
 import { EstadocivilService } from '../../../../Services/estadocivil/estadocivil.service';
 
 export interface IContext {
-    data:string;
+		data:string;
 }
 
 
 @Component({
-  selector: 'app-estadocivil',
-  templateUrl: './estadocivil.component.html',
-  styleUrls: ['./estadocivil.component.css']
+	selector: 'app-estadocivil',
+	templateUrl: './estadocivil.component.html',
+	styleUrls: ['./estadocivil.component.css']
 })
 
 export class EstadocivilComponent implements OnInit {
-  @ViewChild('modalTemplate')
-  public modalTemplate:ModalTemplate<IContext, string, string>;
-  public totalEstadoCiviles: EstadoCivil[];
-  public nuevoEC: EstadoCivil;
-  public editarEC: EstadoCivil;
+	@ViewChild('modalTemplate')
+	public modalTemplate:ModalTemplate<IContext, string, string>;
+	public totalEstadoCiviles: EstadoCivil[];
+	public nuevoEC: EstadoCivil;
+	public editarEC: EstadoCivil;
 
 
-  constructor (public modalService:SuiModalService, public servicioEstadoCivil: EstadocivilService)
-  {
-    this.actualizarEstadoCiviles();
-    this.nuevoEC = new EstadoCivil();
-    this.editarEC = new EstadoCivil();
-  }
+	constructor (public modalService:SuiModalService, public servicioEstadoCivil: EstadocivilService)
+	{
+		this.actualizarEstadoCiviles();
+		this.nuevoEC = new EstadoCivil();
+		this.editarEC = new EstadoCivil();
+	}
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
-  actualizarEstadoCiviles ()
-  {
-    this.servicioEstadoCivil.getEstadoCivils().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalEstadoCiviles = todo;
-    });
-  }
+	actualizarEstadoCiviles ()
+	{
+		this.servicioEstadoCivil.getEstadoCivils().subscribe(data => {
+			var todo: any = data;
+			todo = todo.data;
+			this.totalEstadoCiviles = todo;
+		});
+	}
 
-  eliminarEstadoCivil (ec)
-  {
-    this.servicioEstadoCivil.deleteEstadoCivil(ec.id).subscribe( data => {
-      console.log(data);
-      this.actualizarEstadoCiviles();
-    });
-  }
-
-
-  actualizarEC ()
-  {
-    this.servicioEstadoCivil.editEstadoCivil(this.editarEC, parseInt(this.editarEC.id)).subscribe(data => {
-      console.log(data);
-      this.actualizarEstadoCiviles();
-    });
-  }
-
-  agregarEC ()
-  {
-    this.servicioEstadoCivil.registerEstadoCivil(this.nuevoEC).subscribe(data => {
-      console.log(data);
-      this.actualizarEstadoCiviles();
-      this.nuevoEC = new EstadoCivil();
-    });
-  }
-
-  public open(tipo, ec) {
-    const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
-
-    if(ec != null)
-    {
-       this.editarEC = ec;
-    }
+	eliminarEstadoCivil (ec)
+	{
+		this.servicioEstadoCivil.deleteEstadoCivil(ec.id).subscribe( data => {
+			console.log(data);
+			this.actualizarEstadoCiviles();
+		});
+	}
 
 
-    config.context = { data: tipo };
+	actualizarEC ()
+	{
+		this.servicioEstadoCivil.editEstadoCivil(this.editarEC, this.editarEC.id).subscribe(data => {
+			console.log(data);
+			this.actualizarEstadoCiviles();
+		});
+	}
 
-    this.modalService
-      .open(config)
-      .onApprove(result => {
-        if(tipo === "editarEC")
-        {
-         this.actualizarEC();
-        }
-        else if(tipo === "nuevoEC")
-        {
-          this.agregarEC()
-        }
+	agregarEC ()
+	{
+		this.servicioEstadoCivil.registerEstadoCivil(this.nuevoEC).subscribe(data => {
+			console.log(data);
+			this.actualizarEstadoCiviles();
+			this.nuevoEC = new EstadoCivil();
+		});
+	}
 
-      })
-      .onDeny(result => { /* deny callback */});
-  }
+	public open(tipo, ec) {
+		const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
+
+		if(ec != null)
+		{
+			 this.editarEC = ec;
+		}
+
+
+		config.context = { data: tipo };
+
+		this.modalService
+			.open(config)
+			.onApprove(result => {
+				if(tipo === "editarEC")
+				{
+				 this.actualizarEC();
+				}
+				else if(tipo === "nuevoEC")
+				{
+					this.agregarEC()
+				}
+
+			})
+			.onDeny(result => { /* deny callback */});
+	}
 
 
 }

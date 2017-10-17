@@ -76,7 +76,7 @@ export class SecretaryprevisionComponent implements OnInit {
 			{
 				if(this.previsionActual.Prevision_id === this.totalPrevision[j].nombre)
 				{
-					this.previsionActual.Prevision_id = this.totalPrevision[j].id;
+					this.previsionActual.Prevision_id = this.totalPrevision[j].id.toString();
 				}
 			}
 
@@ -174,7 +174,7 @@ export class SecretaryprevisionComponent implements OnInit {
 		{
 
 				this.pacienteActual = JSON.parse(localStorage.getItem('currentPacient'));
-				this.nuevaPrevisionActual.Persona_id = this.pacienteActual.id;
+				this.nuevaPrevisionActual.Persona_id = this.pacienteActual.id.toString();
 				this.actualizarPrevision();
 				this.actualizarPrevisionActual();
 		}
@@ -191,7 +191,7 @@ export class SecretaryprevisionComponent implements OnInit {
 		{
 			for( let j = 0 ; j < this.totalPrevision.length ; j ++)
 			{
-				if(this.totalPrevisionActual[x].Prevision_id === this.totalPrevision[j].id)
+				if( parseInt(this.totalPrevisionActual[x].Prevision_id) === this.totalPrevision[j].id)
 				{
 					this.totalPrevisionActual[x].Prevision_id = this.totalPrevision[j].nombre;
 				}

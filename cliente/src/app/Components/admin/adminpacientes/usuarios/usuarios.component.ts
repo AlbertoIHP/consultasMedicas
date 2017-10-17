@@ -82,14 +82,14 @@ export class UsuariosComponent implements OnInit {
 
   buscarPersonasDisponibles ()
   {
-	this.personasDisponibles = [];
-	for( let l = 0 ; l < this.totalPersonas.length ; l ++)
-	{
-	  if(this.totalPersonas[l].usuarioasignado === 0)
-	  {
-		this.personasDisponibles.push(this.totalPersonas[l]);
-	  }
-	}
+  	// this.personasDisponibles = [];
+  	// for( let l = 0 ; l < this.totalPersonas.length ; l ++)
+  	// {
+  	//   if(this.totalPersonas[l].usuarioasignado === 0)
+  	//   {
+  	// 	this.personasDisponibles.push(this.totalPersonas[l]);
+  	//   }
+  	// }
   }
 
 
@@ -146,7 +146,17 @@ export class UsuariosComponent implements OnInit {
 		this.servicioUsuario.registerUser(this.nuevoUsuario).subscribe(data => {
 			this.actualizarUsuarios();
 			this.nuevoUsuario = new Usuario();
-	  this.personaElegida.usuarioasignado = 1;
+
+
+
+	  // this.personaElegida.usuarioasignado = 1;
+
+
+
+
+
+
+
 	  console.log(this.personaElegida);
 
 	  this.servicioPersona.editPersona(this.personaElegida, this.personaElegida.id).subscribe(data => {
@@ -163,17 +173,31 @@ export class UsuariosComponent implements OnInit {
 	{
 		this.servicioUsuario.deleteUser(usuario.id).subscribe( data => {
 
-      this.servicioPersona.getPersona(usuario.Persona_id).subscribe(data => {
-        var a: any = data;
-        var a = a.data;
-        var persona: Persona = a;
-        persona.usuarioasignado = 0;
+	  this.servicioPersona.getPersona(usuario.Persona_id).subscribe(data => {
+		var a: any = data;
+		var a = a.data;
+		var persona: Persona = a;
 
-        this.servicioPersona.editPersona(persona, persona.id).subscribe(data => {
-          console.log(data);
-          this.actualizarPersonas();
-        });
-      });
+
+
+
+
+		// persona.usuarioasignado = 0;
+
+
+
+
+
+
+
+
+
+
+		this.servicioPersona.editPersona(persona, persona.id).subscribe(data => {
+		  console.log(data);
+		  this.actualizarPersonas();
+		});
+	  });
 
 			this.actualizarUsuarios();
 		});

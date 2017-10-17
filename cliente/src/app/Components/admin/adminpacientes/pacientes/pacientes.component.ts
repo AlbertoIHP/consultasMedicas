@@ -325,7 +325,7 @@ export class PacientesComponent implements OnInit {
 
 			for(let j = 0 ; j < this.totalGeneros.length ; j++)
 			{
-				if(this.totalPacientes[i].Genero_id === this.totalGeneros[j].id)
+				if( parseInt(this.totalPacientes[i].Genero_id) === this.totalGeneros[j].id)
 				{
 					this.totalPacientes[i].Genero_id = this.totalGeneros[j].nombre;
 					break;
@@ -334,7 +334,7 @@ export class PacientesComponent implements OnInit {
 
 			for(let j = 0 ; j < this.totalEstadoCiviles.length ; j++)
 			{
-				if(this.totalPacientes[i].EstadoCivil_id === this.totalEstadoCiviles[j].id)
+				if( parseInt(this.totalPacientes[i].EstadoCivil_id) === this.totalEstadoCiviles[j].id)
 				{
 					this.totalPacientes[i].EstadoCivil_id = this.totalEstadoCiviles[j].nombre;
 					break;
@@ -344,7 +344,7 @@ export class PacientesComponent implements OnInit {
 
 			for(let j = 0 ; j < this.totalComunas.length ; j++)
 			{
-				if(this.totalPacientes[i].Comuna_id === this.totalComunas[j].id)
+				if( parseInt(this.totalPacientes[i].Comuna_id) === this.totalComunas[j].id)
 				{
 					this.totalPacientes[i].Comuna_id = this.totalComunas[j].nombre;
 					break;

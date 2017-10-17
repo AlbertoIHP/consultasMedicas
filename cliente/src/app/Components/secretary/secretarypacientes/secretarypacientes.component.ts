@@ -182,7 +182,7 @@ export class SecretarypacientesComponent implements OnInit {
   actualizarPaciente()
   {
 
-    this.pasarStringId(this.pacienteEditar);
+	this.pasarStringId(this.pacienteEditar);
 
 	  this.servicioPersona.editPersona(this.pacienteEditar, this.pacienteEditar.id).subscribe( data => {
 
@@ -242,11 +242,11 @@ export class SecretarypacientesComponent implements OnInit {
 		this.mostrarComunas = false;
 		this.actualizarComunas();
 		this.actualizarProvincias();
-  	this.servicioPersona.registerPersona(this.nuevoPaciente).subscribe(data => {
-  		console.log(data);
-  		this.actualizarPersonas();
-  	});
-  	this.nuevoPaciente = new Persona();
+	this.servicioPersona.registerPersona(this.nuevoPaciente).subscribe(data => {
+		console.log(data);
+		this.actualizarPersonas();
+	});
+	this.nuevoPaciente = new Persona();
 	}
 
 	estadoCivilSeleccionado(estado)
@@ -269,29 +269,29 @@ export class SecretarypacientesComponent implements OnInit {
 
   pasarStringId(paciente)
   {
-    for ( let i = 0 ; i < this.totalComunas.length ; i ++)
-    {
-    if(paciente.Comuna_id === this.totalComunas[i].nombre)
-    {
-      paciente.Comuna_id = this.totalComunas[i].id;
-    }
-    }
+	for ( let i = 0 ; i < this.totalComunas.length ; i ++)
+	{
+	if(paciente.Comuna_id === this.totalComunas[i].nombre)
+	{
+	  paciente.Comuna_id = this.totalComunas[i].id;
+	}
+	}
 
-    for ( let i = 0 ; i < this.totalGeneros.length ; i ++)
-    {
-    if(paciente.Genero_id === this.totalGeneros[i].nombre)
-    {
-      paciente.Genero_id = this.totalGeneros[i].id;
-    }
-    }
+	for ( let i = 0 ; i < this.totalGeneros.length ; i ++)
+	{
+	if(paciente.Genero_id === this.totalGeneros[i].nombre)
+	{
+	  paciente.Genero_id = this.totalGeneros[i].id;
+	}
+	}
 
-    for ( let i = 0 ; i < this.totalEstadoCiviles.length ; i ++)
-    {
-    if(paciente.EstadoCivil_id === this.totalEstadoCiviles[i].nombre)
-    {
-      paciente.EstadoCivil_id = this.totalEstadoCiviles[i].id;
-    }
-    }
+	for ( let i = 0 ; i < this.totalEstadoCiviles.length ; i ++)
+	{
+	if(paciente.EstadoCivil_id === this.totalEstadoCiviles[i].nombre)
+	{
+	  paciente.EstadoCivil_id = this.totalEstadoCiviles[i].id;
+	}
+	}
   }
 
 	reemplazarIdPorString()
@@ -301,7 +301,7 @@ export class SecretarypacientesComponent implements OnInit {
 
 			for(let j = 0 ; j < this.totalGeneros.length ; j++)
 			{
-				if(this.totalPacientes[i].Genero_id === this.totalGeneros[j].id)
+				if( parseInt(this.totalPacientes[i].Genero_id) === this.totalGeneros[j].id)
 				{
 					this.totalPacientes[i].Genero_id = this.totalGeneros[j].nombre;
 					break;
@@ -310,7 +310,7 @@ export class SecretarypacientesComponent implements OnInit {
 
 			for(let j = 0 ; j < this.totalEstadoCiviles.length ; j++)
 			{
-				if(this.totalPacientes[i].EstadoCivil_id === this.totalEstadoCiviles[j].id)
+				if( parseInt(this.totalPacientes[i].EstadoCivil_id) === this.totalEstadoCiviles[j].id)
 				{
 					this.totalPacientes[i].EstadoCivil_id = this.totalEstadoCiviles[j].nombre;
 					break;
@@ -320,7 +320,7 @@ export class SecretarypacientesComponent implements OnInit {
 
 			for(let j = 0 ; j < this.totalComunas.length ; j++)
 			{
-				if(this.totalPacientes[i].Comuna_id === this.totalComunas[j].id)
+				if( parseInt(this.totalPacientes[i].Comuna_id) === this.totalComunas[j].id)
 				{
 					this.totalPacientes[i].Comuna_id = this.totalComunas[j].nombre;
 					break;

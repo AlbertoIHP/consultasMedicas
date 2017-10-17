@@ -65,7 +65,7 @@ export class GenerosComponent implements OnInit {
 
 	actualizarGenero ()
 	{
-		this.servicioGenero.editGenero(this.editarGenero, parseInt(this.editarGenero.id)).subscribe(data => {
+		this.servicioGenero.editGenero(this.editarGenero, this.editarGenero.id).subscribe(data => {
 			console.log(data);
 			this.actualizarGeneros();
 		});
