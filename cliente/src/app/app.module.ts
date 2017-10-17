@@ -3,6 +3,7 @@ import { ComunaService } from './Services/comuna/comuna.service';
 import { EstadocivilService } from './Services/estadocivil/estadocivil.service';
 import { GeneroService } from './Services/genero/genero.service';
 import { PersonaService } from './Services/persona/persona.service';
+import { PacienteService } from './Services/paciente/paciente.service';
 import { PrevisionService } from './Services/prevision/prevision.service';
 import { PrevisionactualService } from './Services/previsionactual/previsionactual.service';
 import { ProvinciaService } from './Services/provincia/provincia.service';
@@ -84,6 +85,7 @@ import { RolesComponent } from './Components/admin/adminpacientes/roles/roles.co
 	EstadocivilService,
 	GeneroService,
 	PersonaService,
+	PacienteService,
 	PrevisionService,
 	PrevisionactualService,
 	ProvinciaService,
