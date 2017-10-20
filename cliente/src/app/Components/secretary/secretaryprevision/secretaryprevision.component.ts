@@ -12,7 +12,11 @@ import { PrevisionActual }  from '../../../Models/PrevisionActual.model';
 import { PrevisionactualService } from '../../../Services/previsionactual/previsionactual.service';
 
 
+import {DataSource} from '@angular/cdk/collections';
+import {Observable} from 'rxjs/Observable';
 
+export interface Element extends PrevisionActual{
+}
 
 @Component({
 	selector: 'app-secretaryprevision',
@@ -28,23 +32,30 @@ export class SecretaryprevisionComponent {
 	public nuevaPrevisionActual: PrevisionActual;
 	public previsionSeleccionada: any;
 	public descripcionSeleccionada: any;
-	public mostrarMensaje: boolean;
+
+
+  //table
+  displayedColumns = ['Fecha Actualizacion', 'Prevision', 'Estado'];
+  dataSource;
 
 	constructor(
 		public servicioPrevision: PrevisionService,
 		public servicioPrevisionActual: PrevisionactualService,
 		public servicioPersona: PersonaService,
-    public dialogRef: MatDialogRef<SecretaryprevisionComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+  	public dialogRef: MatDialogRef<SecretaryprevisionComponent>,
+  	@Inject(MAT_DIALOG_DATA) public data: any
 		)
 	{
+
+
 		this.totalPrevision = [];
 		this.totalPrevisionActual = [];
 		this.previsionActual = new PrevisionActual();
 		this.nuevaPrevisionActual = new PrevisionActual();
-		this.mostrarMensaje = false;
-    this.pacienteActual = data.persona;
-
+  	this.pacienteActual = data.persona;
+    this.nuevaPrevisionActual.Persona_id = this.pacienteActual.id.toString();
+  	this.actualizarPrevision();
+  	this.actualizarPrevisionActual();
 
 
 	}
@@ -55,6 +66,8 @@ export class SecretaryprevisionComponent {
 	{
 		this.descripcionSeleccionada = prevision.descripcion;
 		this.nuevaPrevisionActual.Prevision_id = prevision.id;
+
+    console.log(this.nuevaPrevisionActual);
 
 	}
 
@@ -93,8 +106,15 @@ export class SecretaryprevisionComponent {
 
 	}
 
+  onNoClick()
+  {
+    this.dialogRef.close();
+  }
 
 
+  /**
+  **Este metodo consume todas las previsiones registradas en la API
+  **/
 	actualizarPrevision ()
 	{
 		this.totalPrevision = [];
@@ -104,8 +124,12 @@ export class SecretaryprevisionComponent {
 
 			this.totalPrevision = todo;
 		});
-	}
+  }
 
+
+  /**
+  ** Este metodo filtra el total de las previsiones a aquellas que solamente son del paciente y luego filtra aquellas activadas y desactivadas
+  **/
 	actualizarPrevisionActual ()
 	{
 		this.totalPrevisionActual = [];
@@ -126,15 +150,17 @@ export class SecretaryprevisionComponent {
 		 this.identificarPrevisionActiva();
 
 		}
-		else
-		{
-			this.mostrarMensaje = true;
-		}
 
-
+	  this.dataSource = new ExampleDataSource(this.totalPrevisionActual);
 		});
 	}
 
+
+
+  /**
+  ** Este metodo identifica la prevision que esta activa de todas las filtradas arriba
+  ** Luego se cambian las ID por String para desplegarlas en la table
+  **/
 
 	identificarPrevisionActiva()
 	{
@@ -151,7 +177,9 @@ export class SecretaryprevisionComponent {
 		this.cambiarIdPorString();
 	}
 
-
+  /**
+  ** Este metodo cambia los ID por String
+  **/
 
 	cambiarIdPorString ()
 	{
@@ -166,6 +194,43 @@ export class SecretaryprevisionComponent {
 			}
 
 		}
+
+    for( let j = 0 ; j < this.totalPrevision.length ; j ++)
+    {
+      if(this.totalPrevision[j].isapre === "1")
+      {
+        this.totalPrevision[j].isapre = "Isapre";
+      }
+      else
+      {
+        this.totalPrevision[j].isapre = "No Isapre";
+      }
+    }
+
+
 	}
 
+}
+
+  /**
+  ** Esta clase permite observar cambios en un arreglo de objetos para desplegarlos en una tabla
+  **
+  **/
+
+export class ExampleDataSource extends DataSource<any> {
+  public data;
+
+  constructor (data)
+  {
+	super();
+	this.data = data;
+
+  }
+  /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<Element[]>
+  {
+	return Observable.of(this.data);
+  }
+
+  disconnect() {}
 }

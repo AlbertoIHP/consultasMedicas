@@ -3,7 +3,7 @@ export class PrevisionActual {
 	fechaActualizacion: string;
 	Prevision_id: string;
 	Persona_id: string;
-  	activado: number;
+	activado: number;
 
 	constructor ()
 	{
@@ -11,6 +11,6 @@ export class PrevisionActual {
 		this.fechaActualizacion = new Date().toISOString().slice(0, 19).replace('T', ' ');
 		this.Prevision_id = "";
 		this.Persona_id = "";
-	  	this.activado = 1;
+		this.activado = 1;
 	}
 }
