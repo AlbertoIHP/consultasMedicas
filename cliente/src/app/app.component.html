@@ -1,54 +1,66 @@
-<div class="ui top attached menu two column grid">
-  <div class="column grey">
+<mat-sidenav-container >
+	<mat-toolbar>
+		<button mat-icon-button (click)="sidenav.open()">
+			<mat-icon>more_vert</mat-icon>
+		</button>
 
-	  <i (click)="sidebar.toggle()" class="sidebar icon" style="font-size: 1.15em"></i>
+		<button mat-icon-button [matMenuTriggerFor]="menu" class="rightIcon">
+			<mat-icon>person</mat-icon>
+		</button>
 
-  </div>
+		<mat-menu #menu="matMenu">
+			<button mat-menu-item>
+				<mat-icon>dialpad</mat-icon>
+				<span>Actividad</span>
+			</button>
+			<button mat-menu-item disabled>
+				<mat-icon>voicemail</mat-icon>
+				<span>Editar Perfil</span>
+			</button>
+			<button mat-menu-item>
+				<mat-icon>notifications_off</mat-icon>
+				<span>Cerrar Sesion</span>
+			</button>
+		</mat-menu>
 
-  <div class="column grey" style="text-align: right;">
-	<div class="ui dropdown" suiDropdown >
-		<div class="text" style=" margin-top: 13%">Usuario</div>
-		<i class="dropdown icon"></i>
-		<div class="menu" suiDropdownMenu style="left: -40px !important ">
-			<div class="item">Actividad</div>
-			<div class="item">Editar Perfil</div>
-			<div class="item">Cerrar Sesion</div>
+	</mat-toolbar>
+
+	<mat-sidenav #sidenav >
+			<div *ngIf="currentUserRole.nombre === 'Administrador'" >
+				<div class="row">
+					<div class="section">
+						<button (click)="irHomeAdmin()" mat-button class="fullSpaceButton">Home</button>
+					</div>
+					<div class="section">
+						<button (click)="irPacentesAdmin()" mat-button class="fullSpaceButton">Modulo Pacientes</button>
+					</div>
+					<div class="section">
+						<button (click)="irCitasAdmin()" mat-button class="fullSpaceButton">Modulo Citas</button>
+					</div>
+					<div class="section">
+						<button (click)="irAtencionAdmin()" mat-button class="fullSpaceButton">Modulo Atencion</button>
+					</div>
+				</div>
+
+
+
+
+			</div>
+
+			<div *ngIf="currentUserRole.nombre === 'Paciente'" >
+				<button  mat-button class="fullSpaceButton">Opciones de paciente</button>
+			</div>
+
+			<div *ngIf="currentUserRole.nombre === 'Medico'" >
+				 <button mat-button class="fullSpaceButton">Opciones de Medico</button>
+			</div>
+
+		<div *ngIf="currentUserRole.nombre === 'Secretary'" >
+				<button (click)="irHomeSecretary()" mat-button class="fullSpaceButton">Home</button>
+				<button (click)="irPacientesSecretary()" mat-button class="fullSpaceButton">Personas</button>
 		</div>
-	</div>
-  </div>
+	</mat-sidenav>
 
-</div>
+<router-outlet></router-outlet>
 
-<sui-sidebar-container class="ui bottom attached segment">
-
-	<sui-sidebar class="inverted vertical"  #sidebar>
-		<div *ngIf="currentUserRole.nombre === 'Administrador'" >
-     <a (click)="irHomeAdmin()" class="item">Home</a>
-		 <a (click)="irPacentesAdmin()" class="item">Modulo Pacientes</a>
-  	 <a (click)="irCitasAdmin()" class="item">Modulo Citas</a>
-  	 <a (click)="irAtencionAdmin()" class="item">Modulo Atencion</a>
-		</div>
-
-		<div *ngIf="currentUserRole.nombre === 'Paciente'" >
-		 <a class="item">Opciones de paciente</a>
-		</div>
-
-		<div *ngIf="currentUserRole.nombre === 'Medico'" >
-		 <a class="item">Opciones de Medico</a>
-		</div>
-
-	<div *ngIf="currentUserRole.nombre === 'Secretary'" >
-	   <a class="item" (click)="irHomeSecretary()">Home</a>
-	 <a class="item" (click)="irPacientesSecretary()">Pacientes</a>
-	</div>
-	</sui-sidebar>
-
-
-
-	<sui-sidebar-sibling [isDimmedWhenVisible]="true">
-
-	  <!-- RUTAS -->
-	  <router-outlet></router-outlet>
-
-	</sui-sidebar-sibling>
-</sui-sidebar-container>
+</mat-sidenav-container>

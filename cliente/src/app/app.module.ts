@@ -24,7 +24,9 @@ import { routing, appRoutingProviders } from './Routes/app-routing.module';
 import { SuiModule } from 'ng2-semantic-ui';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-
+//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatInputModule , MatSelectModule, MatDialogModule, MatPaginatorModule, MatTableModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule} from '@angular/material';
 
 // COMPONENTES
 import { AppComponent } from './app.component';
@@ -33,7 +35,6 @@ import { PacientehomeComponent } from './Components/paciente/pacientehome/pacien
 import { SecretaryhomeComponent } from './Components/secretary/secretaryhome/secretaryhome.component';
 import { MedichomeComponent } from './Components/medic/medichome/medichome.component';
 import { LoginComponent } from './Components/login/login/login.component';
-import { SecretarypacientesComponent } from './Components/secretary/secretarypacientes/secretarypacientes.component';
 import { SecretaryprevisionComponent } from './Components/secretary/secretaryprevision/secretaryprevision.component';
 import { AdminpacientesComponent } from './Components/admin/adminpacientes/adminpacientes.component';
 import { PacientesComponent } from './Components/admin/adminpacientes/pacientes/pacientes.component';
@@ -45,6 +46,9 @@ import { RegionesComponent } from './Components/admin/adminpacientes/regiones/re
 import { PrevisionesComponent } from './Components/admin/adminpacientes/previsiones/previsiones.component';
 import { UsuariosComponent } from './Components/admin/adminpacientes/usuarios/usuarios.component';
 import { RolesComponent } from './Components/admin/adminpacientes/roles/roles.component';
+import { SecretarypersonComponent } from './Components/secretary/secretaryperson/secretaryperson.component';
+import { AgregarpersonaComponent } from './Components/secretary/agregarpersona/agregarpersona.component';
+
 
 @NgModule({
 	declarations:
@@ -55,7 +59,6 @@ import { RolesComponent } from './Components/admin/adminpacientes/roles/roles.co
 	  SecretaryhomeComponent,
 	  MedichomeComponent,
 	  LoginComponent,
-	  SecretarypacientesComponent,
 	  SecretaryprevisionComponent,
 	  AdminpacientesComponent,
 	  PacientesComponent,
@@ -66,8 +69,11 @@ import { RolesComponent } from './Components/admin/adminpacientes/roles/roles.co
 	  RegionesComponent,
 	  PrevisionesComponent,
 	  UsuariosComponent,
-	  RolesComponent
+	  RolesComponent,
+	  SecretarypersonComponent,
+    AgregarpersonaComponent
 	],
+  entryComponents: [AgregarpersonaComponent],
 
 	imports:
 	[
@@ -75,7 +81,20 @@ import { RolesComponent } from './Components/admin/adminpacientes/roles/roles.co
 	  SuiModule,
 	  routing,
 	  FormsModule,
-	  HttpModule
+	  HttpModule,
+  	BrowserAnimationsModule,
+  	MatButtonModule,
+  	MatCheckboxModule,
+  	MatSidenavModule,
+  	MatToolbarModule,
+  	MatMenuModule,
+  	MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSelectModule
+	  //NgbModule.forRoot()
 	],
 
 	providers:

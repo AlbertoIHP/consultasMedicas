@@ -1,5 +1,5 @@
 export class Persona {
-  	id: number;
+	id: number;
 	rut: string;
 	nombre1: string;
 	nombre2: string;
@@ -11,7 +11,7 @@ export class Persona {
 	Genero_id: string;
 	EstadoCivil_id: string;
 	Comuna_id: string;
-  	estado: number;
+	estado: number;
 
 	constructor()
 	{
@@ -27,6 +27,6 @@ export class Persona {
 		this.Genero_id = "";
 		this.EstadoCivil_id = "";
 		this.Comuna_id = "";
-	  	this.estado = 1;
+		this.estado = 1;
 	}
 }

@@ -9,10 +9,9 @@ import { PacientehomeComponent } from '../Components/paciente/pacientehome/pacie
 import { SecretaryhomeComponent } from '../Components/secretary/secretaryhome/secretaryhome.component';
 import { MedichomeComponent } from '../Components/medic/medichome/medichome.component';
 import { LoginComponent } from '../Components/login/login/login.component';
-import { SecretarypacientesComponent } from '../Components/secretary/secretarypacientes/secretarypacientes.component';
 import { SecretaryprevisionComponent } from '../Components/secretary/secretaryprevision/secretaryprevision.component';
 import { AdminpacientesComponent } from '../Components/admin/adminpacientes/adminpacientes.component';
-
+import { SecretarypersonComponent } from '../Components/secretary/secretaryperson/secretaryperson.component';
 
 //Se declaran como constantes todas las rutas con sus respectivos nombres
 const routes: Routes =
@@ -29,8 +28,8 @@ const routes: Routes =
 
   //Rutas secretaria
   { path: 'secretary',  component: SecretaryhomeComponent },
-  { path: 'secretary/pacientes',  component: SecretarypacientesComponent },
-  { path: 'secretary/pacientes/prevision',  component: SecretaryprevisionComponent },
+  { path: 'secretary/personas',  component: SecretarypersonComponent },
+  { path: 'secretary/personas/prevision',  component: SecretaryprevisionComponent },
   //Rutas medico
   { path: 'medic',  component: MedichomeComponent },
 
