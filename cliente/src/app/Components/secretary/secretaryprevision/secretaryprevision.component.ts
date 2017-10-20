@@ -36,14 +36,17 @@ export class SecretaryprevisionComponent {
 
   //table
   displayedColumns = ['Fecha Actualizacion', 'Prevision', 'Estado'];
-  dataSource;
+  previsionesTabla;
 
 	constructor(
 		public servicioPrevision: PrevisionService,
 		public servicioPrevisionActual: PrevisionactualService,
 		public servicioPersona: PersonaService,
+
   	public dialogRef: MatDialogRef<SecretaryprevisionComponent>,
   	@Inject(MAT_DIALOG_DATA) public data: any
+
+
 		)
 	{
 
@@ -53,7 +56,7 @@ export class SecretaryprevisionComponent {
 		this.previsionActual = new PrevisionActual();
 		this.nuevaPrevisionActual = new PrevisionActual();
   	this.pacienteActual = data.persona;
-    this.nuevaPrevisionActual.Persona_id = this.pacienteActual.id.toString();
+  	this.nuevaPrevisionActual.Persona_id = this.pacienteActual.id.toString();
   	this.actualizarPrevision();
   	this.actualizarPrevisionActual();
 
@@ -67,7 +70,7 @@ export class SecretaryprevisionComponent {
 		this.descripcionSeleccionada = prevision.descripcion;
 		this.nuevaPrevisionActual.Prevision_id = prevision.id;
 
-    console.log(this.nuevaPrevisionActual);
+	console.log(this.nuevaPrevisionActual);
 
 	}
 
@@ -108,7 +111,7 @@ export class SecretaryprevisionComponent {
 
   onNoClick()
   {
-    this.dialogRef.close();
+	this.dialogRef.close();
   }
 
 
@@ -151,7 +154,7 @@ export class SecretaryprevisionComponent {
 
 		}
 
-	  this.dataSource = new ExampleDataSource(this.totalPrevisionActual);
+	  this.previsionesTabla = new ExampleDataSource(this.totalPrevisionActual);
 		});
 	}
 
@@ -195,17 +198,17 @@ export class SecretaryprevisionComponent {
 
 		}
 
-    for( let j = 0 ; j < this.totalPrevision.length ; j ++)
-    {
-      if(this.totalPrevision[j].isapre === "1")
-      {
-        this.totalPrevision[j].isapre = "Isapre";
-      }
-      else
-      {
-        this.totalPrevision[j].isapre = "No Isapre";
-      }
-    }
+	for( let j = 0 ; j < this.totalPrevision.length ; j ++)
+	{
+	  if(this.totalPrevision[j].isapre === "1")
+	  {
+		this.totalPrevision[j].isapre = "Isapre";
+	  }
+	  else
+	  {
+		this.totalPrevision[j].isapre = "No Isapre";
+	  }
+	}
 
 
 	}
@@ -222,8 +225,8 @@ export class ExampleDataSource extends DataSource<any> {
 
   constructor (data)
   {
-	super();
-	this.data = data;
+  	super();
+  	this.data = data;
 
   }
   /** Connect function called by the table to retrieve one stream containing the data to render. */
