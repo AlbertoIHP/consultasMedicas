@@ -48,7 +48,10 @@
 			</div>
 
 			<div *ngIf="currentUserRole.nombre === 'Paciente'" >
-				<button  mat-button class="fullSpaceButton">Opciones de paciente</button>
+				
+				<button (click)="irHomePaciente()" mat-button class="fullSpaceButton">Home</button>
+
+				<button (click)="irFichaPaciente()" mat-button class="fullSpaceButton">Ficha Médica</button>
 			</div>
 
 			<div *ngIf="currentUserRole.nombre === 'Medico'" >

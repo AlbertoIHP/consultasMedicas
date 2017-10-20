@@ -49,6 +49,7 @@ import { RolesComponent } from './Components/admin/adminpacientes/roles/roles.co
 import { SecretarypersonComponent } from './Components/secretary/secretaryperson/secretaryperson.component';
 import { AgregarpersonaComponent } from './Components/secretary/agregarpersona/agregarpersona.component';
 import { EditarpersonaComponent } from './Components/secretary/editarpersona/editarpersona.component';
+import { PacientefichaComponent } from './Components/paciente/pacienteficha/pacienteficha.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { EditarpersonaComponent } from './Components/secretary/editarpersona/edi
 	  RolesComponent,
 	  SecretarypersonComponent,
   	AgregarpersonaComponent,
-  	EditarpersonaComponent
+  	EditarpersonaComponent,
+  	PacientefichaComponent
 	],
 
   entryComponents:
