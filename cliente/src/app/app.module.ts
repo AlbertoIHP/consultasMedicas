@@ -48,6 +48,7 @@ import { UsuariosComponent } from './Components/admin/adminpacientes/usuarios/us
 import { RolesComponent } from './Components/admin/adminpacientes/roles/roles.component';
 import { SecretarypersonComponent } from './Components/secretary/secretaryperson/secretaryperson.component';
 import { AgregarpersonaComponent } from './Components/secretary/agregarpersona/agregarpersona.component';
+import { EditarpersonaComponent } from './Components/secretary/editarpersona/editarpersona.component';
 
 
 @NgModule({
@@ -71,9 +72,16 @@ import { AgregarpersonaComponent } from './Components/secretary/agregarpersona/a
 	  UsuariosComponent,
 	  RolesComponent,
 	  SecretarypersonComponent,
-    AgregarpersonaComponent
+  	AgregarpersonaComponent,
+  	EditarpersonaComponent
 	],
-  entryComponents: [AgregarpersonaComponent],
+
+  entryComponents:
+  [
+	AgregarpersonaComponent,
+	EditarpersonaComponent,
+  SecretaryprevisionComponent
+  ],
 
 	imports:
 	[
@@ -89,11 +97,11 @@ import { AgregarpersonaComponent } from './Components/secretary/agregarpersona/a
   	MatToolbarModule,
   	MatMenuModule,
   	MatIconModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatDialogModule,
-    MatInputModule,
-    MatSelectModule
+  	MatTableModule,
+  	MatPaginatorModule,
+  	MatDialogModule,
+  	MatInputModule,
+  	MatSelectModule
 	  //NgbModule.forRoot()
 	],
 

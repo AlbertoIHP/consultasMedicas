@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Inject , ViewChild } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
 
 import { Persona } from '../../../Models/Persona.model';
 import { PersonaService } from '../../../Services/persona/persona.service';
@@ -10,13 +11,7 @@ import { PrevisionService } from '../../../Services/prevision/prevision.service'
 import { PrevisionActual }  from '../../../Models/PrevisionActual.model';
 import { PrevisionactualService } from '../../../Services/previsionactual/previsionactual.service';
 
-import {SuiModalService, TemplateModalConfig, ModalTemplate} from 'ng2-semantic-ui';
-import {IMessage} from "ng2-semantic-ui";
 
-
-export interface IContext {
-		data:string;
-}
 
 
 @Component({
@@ -24,12 +19,7 @@ export interface IContext {
 	templateUrl: './secretaryprevision.component.html',
 	styleUrls: ['./secretaryprevision.component.css']
 })
-export class SecretaryprevisionComponent implements OnInit {
-
-	@ViewChild('modalTemplate', 'mensaje')
-	public modalTemplate:ModalTemplate<IContext, string, string>
-	public mensaje: IMessage;
-
+export class SecretaryprevisionComponent {
 
 	public totalPrevision: Prevision[];
 	public totalPrevisionActual: PrevisionActual[];
@@ -44,8 +34,8 @@ export class SecretaryprevisionComponent implements OnInit {
 		public servicioPrevision: PrevisionService,
 		public servicioPrevisionActual: PrevisionactualService,
 		public servicioPersona: PersonaService,
-		public router: Router,
-		public modalService:SuiModalService
+    public dialogRef: MatDialogRef<SecretaryprevisionComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
 		)
 	{
 		this.totalPrevision = [];
@@ -53,6 +43,7 @@ export class SecretaryprevisionComponent implements OnInit {
 		this.previsionActual = new PrevisionActual();
 		this.nuevaPrevisionActual = new PrevisionActual();
 		this.mostrarMensaje = false;
+    this.pacienteActual = data.persona;
 
 
 
@@ -102,16 +93,7 @@ export class SecretaryprevisionComponent implements OnInit {
 
 	}
 
-	public open() {
-			const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
 
-			this.modalService
-					.open(config)
-					.onApprove(result => {
-						this.cambiarPrevision();
-					})
-					.onDeny(result => { /* deny callback */});
-	}
 
 	actualizarPrevision ()
 	{
@@ -169,20 +151,6 @@ export class SecretaryprevisionComponent implements OnInit {
 		this.cambiarIdPorString();
 	}
 
-	ngOnInit() {
-		if(localStorage.getItem('currentPacient'))
-		{
-
-				this.pacienteActual = JSON.parse(localStorage.getItem('currentPacient'));
-				this.nuevaPrevisionActual.Persona_id = this.pacienteActual.id.toString();
-				this.actualizarPrevision();
-				this.actualizarPrevisionActual();
-		}
-		else
-		{
-			this.router.navigate(['secretary/pacientes']);
-		}
-	}
 
 
 	cambiarIdPorString ()

@@ -20,7 +20,8 @@ import { Comuna } from '../../../Models/Comuna.model';
 import { ComunaService } from '../../../Services/comuna/comuna.service';
 
 import { AgregarpersonaComponent } from '../agregarpersona/agregarpersona.component';
-
+import { EditarpersonaComponent } from '../editarpersona/editarpersona.component';
+import { SecretaryprevisionComponent } from '../secretaryprevision/secretaryprevision.component';
 
 import {DataSource} from '@angular/cdk/collections';
 import {MatPaginator} from '@angular/material';
@@ -144,12 +145,39 @@ export class SecretarypersonComponent {
 
   editarPersona (persona)
   {
+    this.pasarStringId(persona);
+    let dialogRef = this.dialog.open(EditarpersonaComponent, {
+      width: '500px',
+    data: {
+    persona: persona,
+    regiones: this.totalRegiones,
+    provincias: this.totalProvincias,
+    comunas: this.totalComunas,
+    ec: this.totalEstadoCiviles,
+    generos: this.totalGeneros
+    }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+
+      this.actualizarPersonas();
+    });
   }
 
   previsionPersona (persona)
   {
+    this.pasarStringId(persona);
+    let dialogRef = this.dialog.open(SecretaryprevisionComponent, {
+      width: '500px',
+    data: {
+    persona: persona
+    }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+
+      this.actualizarPersonas();
+    });
   }
 
 

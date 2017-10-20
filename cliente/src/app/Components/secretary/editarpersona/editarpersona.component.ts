@@ -1,3 +1,4 @@
+
 import { Component, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
@@ -10,11 +11,11 @@ import { Provincia } from '../../../Models/Provincia.model';
 import { Comuna } from '../../../Models/Comuna.model';
 
 @Component({
-	selector: 'app-agregarpersona',
-	templateUrl: './agregarpersona.component.html',
-	styleUrls: ['./agregarpersona.component.css']
+	selector: 'app-editarpersona',
+	templateUrl: './editarpersona.component.html',
+	styleUrls: ['./editarpersona.component.css']
 })
-export class AgregarpersonaComponent{
+export class EditarpersonaComponent {
 	public persona: Persona;
 	public totalPersonas: Persona[];
 	public totalRegiones: Region[];
@@ -33,7 +34,7 @@ export class AgregarpersonaComponent{
 	public comunasMostrar: Comuna[];
 
 	constructor(
-		public dialogRef: MatDialogRef<AgregarpersonaComponent>,
+		public dialogRef: MatDialogRef<EditarpersonaComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		public servicioPersona: PersonaService
 		)
@@ -46,7 +47,7 @@ export class AgregarpersonaComponent{
 		this.mostrarComunas = false;
 		this.mostrarProvincias = false;
 		this.mostrarRegiones = true;
-		this.persona = new Persona();
+		this.persona = this.data.persona;
 		this.totalRegiones = this.data.regiones;
 		this.totalProvincias = this.data.provincias;
 		this.totalComunas = this.data.comunas;
@@ -89,9 +90,10 @@ export class AgregarpersonaComponent{
 		this.mostrarComunas = true;
 	}
 
-	agregarPersona()
+	actualizarPersona()
 	{
-		this.servicioPersona.registerPersona(this.persona).subscribe(data => {
+		console.log(this.persona);
+		this.servicioPersona.editPersona(this.persona, this.persona.id).subscribe(data => {
 			this.defaultValues();
 			this.onNoClick();
 		});

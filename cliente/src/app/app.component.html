@@ -1,4 +1,4 @@
-<mat-sidenav-container >
+<mat-sidenav-container style="height: 1024px">
 	<mat-toolbar>
 		<button mat-icon-button (click)="sidenav.open()">
 			<mat-icon>more_vert</mat-icon>
@@ -25,7 +25,7 @@
 
 	</mat-toolbar>
 
-	<mat-sidenav #sidenav >
+	<mat-sidenav #sidenav style="position: fixed; height: 100%">
 			<div *ngIf="currentUserRole.nombre === 'Administrador'" >
 				<div class="row">
 					<div class="section">
