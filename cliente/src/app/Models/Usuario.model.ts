@@ -1,9 +1,9 @@
 export class Usuario {
-  	id: number;
+	id: number;
 	email: string;
 	password: string;
 	Role_id: string;
-	Persona_id: number;
+	Persona_id: string;
 
 	constructor()
 	{
@@ -11,6 +11,6 @@ export class Usuario {
 		this.email = "";
 		this.password = "";
 		this.Role_id = "";
-		this.Persona_id = 0;
+		this.Persona_id = "0";
 	}
 }

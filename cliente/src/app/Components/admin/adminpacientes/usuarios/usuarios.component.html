@@ -1,4 +1,4 @@
-<div class="ui one column grid">
+<!-- <div class="ui one column grid">
 	<div class="column">
 		<table class="ui compact celled definition table">
 			<thead>
@@ -297,3 +297,154 @@
 			</div>
 
 	</ng-template>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <div class="row">
+  <div class="col s1" >
+  <input (click)="cambiarBusqueda()" type="checkbox" id="test5" />
+  <label for="test5" class="selectRaro"></label>
+
+  </div>
+  <div class="col s11">
+  <label for="miinput">Busqueda por Nombre</label>
+  <input matInput #filter style="width: 100% !important;" id="miinput">
+  </div>
+</div>
+
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table #table *ngIf="!buscarPorNombre" [dataSource]="sourceDatatable">
+
+	<ng-container matColumnDef="Acciones">
+	  <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+
+	  <mat-cell *matCellDef="let row" >
+
+			  <button  mat-icon-button (click) = "edicionUsuario(row)" >
+				<mat-icon>create</mat-icon>
+			  </button>
+
+
+			  <button  mat-icon-button (click) = "eliminarUsuario(row)" >
+				<mat-icon>delete</mat-icon>
+			  </button>
+
+	  </mat-cell>
+
+
+	</ng-container>
+
+	<!-- Progress Column -->
+	<ng-container matColumnDef="Email">
+	  <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+	  <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+	</ng-container>
+
+	<!-- Name Column -->
+	<ng-container matColumnDef="Role">
+	  <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
+	  <mat-cell *matCellDef="let row"> {{row.Role_id}} </mat-cell>
+	</ng-container>
+
+
+	<!-- Name Column -->
+	<ng-container matColumnDef="Persona">
+	  <mat-header-cell *matHeaderCellDef> Persona Asociada a la Cuenta </mat-header-cell>
+	  <mat-cell *matCellDef="let row">
+
+		<button  mat-icon-button (click)="desplegarPersona(row)" >
+		  <mat-icon>remove_red_eye</mat-icon>
+		</button>
+
+
+	  </mat-cell>
+	</ng-container>
+
+
+	<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+	<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+
+ <mat-table #table *ngIf="buscarPorNombre" [dataSource]="sourcePorNombre">
+
+	<ng-container matColumnDef="Acciones">
+	  <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+	  <mat-cell *matCellDef="let row">
+
+			  <button  mat-icon-button (click) = "edicionUsuario(row)" >
+				<mat-icon>create</mat-icon>
+			  </button>
+
+
+			  <button  mat-icon-button (click) = "eliminarUsuario(row)" >
+				<mat-icon>delete</mat-icon>
+			  </button>
+
+	   </mat-cell>
+	</ng-container>
+
+
+	<!-- Progress Column -->
+	<ng-container matColumnDef="Email">
+	  <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+	  <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+	</ng-container>
+
+	<!-- Name Column -->
+	<ng-container matColumnDef="Role">
+	  <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
+	  <mat-cell *matCellDef="let row"> {{row.Role_id}} </mat-cell>
+	</ng-container>
+
+
+	<!-- Name Column -->
+	<ng-container matColumnDef="Persona">
+	  <mat-header-cell *matHeaderCellDef> Persona Asociada a la Cuenta </mat-header-cell>
+	  <mat-cell *matCellDef="let row">
+		<button  mat-icon-button (click)="desplegarPersona(row)" >
+		  <mat-icon>remove_red_eye</mat-icon>
+		</button>
+	  </mat-cell>
+	</ng-container>
+
+
+
+	<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+	<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+
+
+  <mat-paginator #paginator
+				[length]="totalUsuarios.length"
+				[pageIndex]="0"
+				[pageSize]="5"
+				[pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>
+
+ <div class="fixed-action-btn">
+	<a class="btn-floating btn-large blue" (click)="agregacionUsuario()">
+	  <i class="large material-icons">add</i>
+	</a>
+  </div>

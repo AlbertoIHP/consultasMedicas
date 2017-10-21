@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { Persona } from '../../../Models/Persona.model';
@@ -15,7 +15,7 @@ import { Comuna } from '../../../Models/Comuna.model';
 	styleUrls: ['./agregarpersona.component.css']
 })
 
-export class AgregarpersonaComponent{
+export class AgregarpersonaComponent implements OnInit{
 	public persona: Persona;
 	public totalPersonas: Persona[];
 	public totalRegiones: Region[];
@@ -33,14 +33,78 @@ export class AgregarpersonaComponent{
 	public provinciasMostrar: Provincia[];
 	public comunasMostrar: Comuna[];
 
+  public servicioComuna: any;
+  public servicioEC: any;
+  public servicioGenero: any;
+  public servicioProvincia: any;
+  public servicioRegion: any;
+  public servicioPersona: any;
+
+
 	constructor(
 		public dialogRef: MatDialogRef<AgregarpersonaComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: any,
-		public servicioPersona: PersonaService
+		@Inject(MAT_DIALOG_DATA) public data: any
 		)
 	{
+
+    this.servicioRegion = this.data.servicioRegion;
+    this.servicioProvincia = this.data.servicioProvincia;
+    this.servicioComuna = this.data.servicioComuna;
+    this.servicioGenero  = this.data.servicioGenero;
+    this.servicioEC = this.data.servicioEC;
+    this.servicioPersona = this.data.servicioPersona;
 		this.defaultValues();
 	}
+
+  ngOnInit()
+  {
+
+      this.servicioGenero.getGeneros().subscribe(data => {
+          var todo: any;
+          todo = data;
+          todo = todo.data;
+          this.totalGeneros = todo;
+        });
+
+      this.servicioEC.getEstadoCivils().subscribe( data => {
+        var todo: any;
+        todo = data;
+        todo = todo.data;
+        this.totalEstadoCiviles = todo;
+
+
+
+      });
+
+      this.servicioRegion.getRegions().subscribe( data => {
+      var todo: any;
+      todo = data;
+      todo = todo.data;
+      this.totalRegiones = todo;
+      });
+
+
+     this.servicioComuna.getComunas().subscribe( data => {
+      var todo: any;
+      todo = data;
+      todo = todo.data;
+      this.totalComunas = todo;
+
+
+    });
+
+     this.servicioProvincia.getProvincias().subscribe( data => {
+      var todo: any;
+      todo = data;
+      todo = todo.data;
+      this.totalProvincias = todo;
+
+
+    });
+
+
+  }
+
 
 	defaultValues()
 	{

@@ -1,3 +1,38 @@
-<p>
-  agregarusuario works!
-</p>
+<h1 mat-dialog-title style="text-align: center;">Agregar  Usuario</h1>
+
+<div mat-dialog-content>
+
+	<p>Email</p>
+
+	<input matInput tabindex="1" [(ngModel)]="usuario.email">
+
+	<p>Password</p>
+
+	<input type="password" matInput tabindex="1" [(ngModel)]="usuario.password">
+
+	<p>Role</p>
+	<mat-form-field style="width: 100% !important;">
+		<mat-select placeholder="Role" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let role of totalRoles" [value]="role.id" (click)="roleSeleccionado(role)">
+				{{ role.nombre }}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+
+	<p>Persona Asociada</p>
+	<mat-form-field style="width: 100% !important;">
+		<mat-select placeholder="Seleccione una Persona para asociar al usuario" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let persona of personasDisponibles" [value]="persona.id" (click)="personaSeleccionada(persona)">
+			 ( {{ persona.rut }} ) {{persona.nombre1 }} {{persona.apellido1}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+</div>
+
+
+<div mat-dialog-actions>
+	<button mat-button (click)="agregarUsuario()" tabindex="2">Agregar Usuario</button>
+	<button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

@@ -35,4 +35,10 @@ export class AgregarprevisionComponent{
 		});
 	}
 
+  isapreSeleccionado(respuesta)
+  {
+    this.nuevaPrevision.isapre = respuesta;
+    console.log(this.nuevaPrevision);
+  }
+
 }

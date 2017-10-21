@@ -1,0 +1,41 @@
+<h1 mat-dialog-title style="text-align: center;">Persona asociada a la cuenta</h1>
+
+<div mat-dialog-content>
+
+  <p>Rut</p>
+
+  <input disabled matInput tabindex="1" [(ngModel)]="persona.rut">
+
+
+  <p>Nombre</p>
+
+  <input disabled matInput tabindex="1" value="{{persona.nombre1+' '+persona.nombre2+' '+persona.apellido1+' '+persona.apellido2}}">
+
+
+  <p>Telefono</p>
+
+  <input disabled matInput tabindex="1" [(ngModel)]="persona.fono_casa">
+
+
+  <p>Telefono Trabajo</p>
+
+  <input disabled matInput tabindex="1" [(ngModel)]="persona.fono_trabajo">
+
+
+  <p>Celular</p>
+
+  <input disabled matInput tabindex="1" [(ngModel)]="persona.movil">
+
+
+
+</div>
+
+
+<div mat-dialog-actions >
+  <div class="row" style="text-align: center;">
+    <div class="col s12">
+      <button mat-button (click)="onNoClick()" tabindex="-1">Aceptar</button>
+    </div>
+  </div>
+
+</div>

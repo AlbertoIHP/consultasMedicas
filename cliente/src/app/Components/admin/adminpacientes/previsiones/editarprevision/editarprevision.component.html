@@ -11,7 +11,18 @@
 
   <input matInput tabindex="1" [(ngModel)]="prevision.descripcion">
 
+  <p>¿ Esta prevision es ISAPRE ?</p>
+  <mat-form-field style="width: 100% !important;">
+    <mat-select placeholder="Seleccione una opcion" style="width: 100% !important;">
+      <mat-option style="width: 100% !important;" [value]="1" (click)="isapreSeleccionado(1)">
+        Si
+      </mat-option>
 
+      <mat-option style="width: 100% !important;" [value]="0" (click)="isapreSeleccionado(0)">
+        No
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
 </div>
 

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { Provincia } from '../../../../../Models/Provincia.model';
@@ -9,12 +9,20 @@ import { ProvinciaService } from '../../../../../Services/provincia/provincia.se
 	templateUrl: './editarprovincia.component.html',
 	styleUrls: ['./editarprovincia.component.css']
 })
-export class EditarprovinciaComponent {
+export class EditarprovinciaComponent implements OnInit {
 
 	public provincia: Provincia;
 	public totalRegiones: any;
+  public servicioRegion: any;
 
-
+  ngOnInit()
+  {
+    this.servicioRegion.getRegions().subscribe( data => {
+      var todo: any = data;
+      todo = todo.data;
+      this.totalRegiones = todo;
+    });
+  }
 
 	constructor(
 		public dialogRef: MatDialogRef<EditarprovinciaComponent>,
@@ -24,6 +32,7 @@ export class EditarprovinciaComponent {
 	{
 		this.provincia = data.provincia;
 		this.totalRegiones = data.regiones;
+    this.servicioRegion = data.servicioRegion;
 	}
 
 	onNoClick()

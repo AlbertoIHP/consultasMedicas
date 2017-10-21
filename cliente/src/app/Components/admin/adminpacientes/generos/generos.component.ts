@@ -20,7 +20,8 @@ import 'rxjs/add/observable/fromEvent';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
-export interface UserData extends Genero{}
+import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../../Globals/datasource.component';
+
 
 @Component({
 	selector: 'app-generos',
@@ -29,21 +30,21 @@ export interface UserData extends Genero{}
 })
 export class GenerosComponent  {
 	public totalGeneros: Genero[];
-  public buscarPorNombre: boolean;
+	public buscarPorNombre: boolean;
 
-  //DATATABLE
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild('filter') filter: ElementRef;
-  public sourceDatatable: dataTable | null;
-  public sourcePorNombre: buscadorPorNombre | null;
-  public bdEstructura;
-  displayedColumns = ['Acciones', 'Nombre', 'Descripcion'];
+	//DATATABLE
+	@ViewChild(MatPaginator) paginator: MatPaginator;
+	@ViewChild('filter') filter: ElementRef;
+	public sourceDatatable: dataTable | null;
+	public sourcePorNombre: buscadorPorNombre | null;
+	public bdEstructura;
+	displayedColumns = ['Acciones', 'Nombre', 'Descripcion'];
 
 
 	constructor (public servicioGenero: GeneroService, public dialog: MatDialog)
 	{
-    this.buscarPorNombre = false;
-    this.totalGeneros = [];
+		this.buscarPorNombre = false;
+		this.totalGeneros = [];
 		this.actualizarGeneros();
 	}
 
@@ -54,155 +55,70 @@ export class GenerosComponent  {
 			todo = todo.data;
 			this.totalGeneros = todo;
 
-      this.bdEstructura = new ExampleDatabase(this.totalGeneros );
-      this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
-      this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura);
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.sourcePorNombre) { return; }
-            this.sourcePorNombre.filter = this.filter.nativeElement.value;
-          });
+			this.bdEstructura = new ExampleDatabase(this.totalGeneros );
+			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
+			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, 'Genero');
+			Observable.fromEvent(this.filter.nativeElement, 'keyup')
+					.debounceTime(150)
+					.distinctUntilChanged()
+					.subscribe(() => {
+						if (!this.sourcePorNombre) { return; }
+						this.sourcePorNombre.filter = this.filter.nativeElement.value;
+					});
 
 
 		});
 	}
 
-  eliminarGenero (genero)
-  {
-    this.servicioGenero.deleteGenero(genero.id).subscribe( data => {
-      console.log(data);
-      this.actualizarGeneros();
-    });
-  }
+	eliminarGenero (genero)
+	{
+		this.servicioGenero.deleteGenero(genero.id).subscribe( data => {
+			console.log(data);
+			this.actualizarGeneros();
+		});
+	}
 
 
 
-  //DATATABLES
+	//DATATABLES
 
-  cambiarBusqueda()
-  {
-    this.buscarPorNombre = !this.buscarPorNombre;
-  }
-
-
-  edicionGenero (genero)
-  {
-
-    let dialogRef = this.dialog.open(EditargeneroComponent, {
-      width: '1000px',
-      data:
-      {
-       genero: genero
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-      this.actualizarGeneros();
-    });
-  }
-
-  agregacionGenero()
-  {
-    let dialogRef = this.dialog.open(AgregargeneroComponent, {
-      width: '1000px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-      this.actualizarGeneros();
-    });
-  }
+	cambiarBusqueda()
+	{
+		this.buscarPorNombre = !this.buscarPorNombre;
+	}
 
 
+	edicionGenero (genero)
+	{
 
-}
+		let dialogRef = this.dialog.open(EditargeneroComponent, {
+			width: '1000px',
+			data:
+			{
+			 genero: genero
+			}
+		});
 
+		dialogRef.afterClosed().subscribe(result => {
 
+			this.actualizarGeneros();
+		});
+	}
 
-export class ExampleDatabase {
-  /** Stream that emits whenever the data has been modified. */
-  dataChange: BehaviorSubject<UserData[]> = new BehaviorSubject<UserData[]>([]);
-  get data(): UserData[] { return this.dataChange.value; }
+	agregacionGenero()
+	{
+		let dialogRef = this.dialog.open(AgregargeneroComponent, {
+			width: '1000px'
+		});
 
-  constructor(ec)
-  {
-    // Fill up the database with 100 users.
-    for (let i = 0; i < ec.length; i++) { this.addUser(ec[i]); }
-  }
+		dialogRef.afterClosed().subscribe(result => {
 
-  /** Adds a new user to the database. */
-  addUser(ec) {
-    const copiedData = this.data.slice();
-    copiedData.push(ec);
-    this.dataChange.next(copiedData);
-  }
+			this.actualizarGeneros();
+		});
+	}
 
 
 
 }
 
-
-export class dataTable extends DataSource<any> {
-  _filterChange = new BehaviorSubject('');
-  get filter(): string { return this._filterChange.value; }
-  set filter(filter: string) { this._filterChange.next(filter); }
-
-  constructor(private _exampleDatabase: ExampleDatabase, private _paginator: MatPaginator) {
-    super();
-  }
-
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<UserData[]> {
-
-    const displayDataChanges = [
-      this._exampleDatabase.dataChange,
-      this._paginator.page,
-      this._filterChange,
-    ];
-
-    return Observable.merge(...displayDataChanges).map(() => {
-
-      const data = this._exampleDatabase.data.slice();
-      const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-
-
-      return data.splice(startIndex, this._paginator.pageSize);
-
-    });
-  }
-
-  disconnect() {}
-}
-
-
-
-export class buscadorPorNombre extends DataSource<any> {
-  _filterChange = new BehaviorSubject('');
-  get filter(): string { return this._filterChange.value; }
-  set filter(filter: string) { this._filterChange.next(filter); }
-
-  constructor(private _exampleDatabase: ExampleDatabase) {
-    super();
-  }
-
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<UserData[]> {
-    const displayDataChanges = [
-      this._exampleDatabase.dataChange,
-      this._filterChange,
-    ];
-
-    return Observable.merge(...displayDataChanges).map(() => {
-      return this._exampleDatabase.data.slice().filter((item: UserData) => {
-        let searchStr = (item.nombre ).toLowerCase();
-        return searchStr.indexOf(this.filter.toLowerCase()) != -1;
-      });
-    });
-  }
-
-  disconnect() {}
-}
 

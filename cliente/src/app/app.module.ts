@@ -68,6 +68,7 @@ import { AgregarusuarioComponent } from './Components/admin/adminpacientes/usuar
 import { SecretarypacientesComponent } from './Components/secretary/secretarypacientes/secretarypacientes.component';
 import { PersonasComponent } from './Components/secretary/personas/personas.component';
 import { PacientesadminComponent } from './Components/admin/adminpacientes/pacientesadmin/pacientesadmin.component';
+import { VerpersonaComponent } from './Components/admin/adminpacientes/usuarios/verpersona/verpersona.component';
 
 
 @NgModule({
@@ -111,30 +112,32 @@ import { PacientesadminComponent } from './Components/admin/adminpacientes/pacie
 		AgregarusuarioComponent,
 		SecretarypacientesComponent,
 		PersonasComponent,
-		PacientesadminComponent
+		PacientesadminComponent,
+		VerpersonaComponent
 	],
 
 	entryComponents:
 	[
-  	AgregarpersonaComponent,
-  	EditarpersonaComponent,
-  	SecretaryprevisionComponent,
-  	EditarEstadoCComponent,
-  	AgregarEstadoCComponent,
-    EditargeneroComponent,
-    AgregargeneroComponent,
-    AgregarcomunaComponent,
-    EditarcomunaComponent,
-    EditarprevisionComponent,
-    AgregarprevisionComponent,
-    AgregarprovinciaComponent,
-    EditarprovinciaComponent,
-    EditarregionesComponent,
-    AgregarregionesComponent,
-    AgregarrolesComponent,
-    EditarrolesComponent,
-    EditarusuarioComponent,
-    AgregarusuarioComponent
+	AgregarpersonaComponent,
+	EditarpersonaComponent,
+	SecretaryprevisionComponent,
+	EditarEstadoCComponent,
+	AgregarEstadoCComponent,
+	EditargeneroComponent,
+	AgregargeneroComponent,
+	AgregarcomunaComponent,
+	EditarcomunaComponent,
+	EditarprevisionComponent,
+	AgregarprevisionComponent,
+	AgregarprovinciaComponent,
+	EditarprovinciaComponent,
+	EditarregionesComponent,
+	AgregarregionesComponent,
+	AgregarrolesComponent,
+	EditarrolesComponent,
+	EditarusuarioComponent,
+	AgregarusuarioComponent,
+  VerpersonaComponent
 	],
 
 	imports:

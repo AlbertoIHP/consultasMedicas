@@ -49,17 +49,17 @@ export class PacientesComponent extends SecretarypersonComponent {
 
 
 	constructor(
-    public servicioPersona: PersonaService,
-    public servicioRegion: RegionService,
-    public servicioProvincia: ProvinciaService,
-    public servicioComuna: ComunaService,
-    public servicioGenero: GeneroService,
-    public servicioEstadoCivil: EstadocivilService,
-    public router: Router,
-    public dialog: MatDialog
-    )
+		public servicioPersona: PersonaService,
+		public servicioRegion: RegionService,
+		public servicioProvincia: ProvinciaService,
+		public servicioComuna: ComunaService,
+		public servicioGenero: GeneroService,
+		public servicioEstadoCivil: EstadocivilService,
+		public router: Router,
+		public dialog: MatDialog
+		)
 	{
-    super(servicioPersona, servicioRegion, servicioProvincia, servicioComuna, servicioGenero, servicioEstadoCivil, router, dialog);
+		super(servicioPersona, servicioRegion, servicioProvincia, servicioComuna, servicioGenero, servicioEstadoCivil, router, dialog);
 	}
 
 
@@ -69,34 +69,34 @@ export class PacientesComponent extends SecretarypersonComponent {
  /// FUNCIONALIDADES EXCLUSIVAS
 
 
-  eliminarPaciente (paciente)
-  {
-    this.servicioPersona.deletePersona(paciente.id).subscribe( data => {
-      console.log(data);
-      this.actualizarPersonas();
-    });
-  }
+	eliminarPaciente (paciente)
+	{
+		this.servicioPersona.deletePersona(paciente.id).subscribe( data => {
+			console.log(data);
+			this.actualizarPersonas();
+		});
+	}
 
-  desactivarPaciente (paciente)
-  {
-    paciente.estado = 0;
-    this.pasarStringId(paciente);
-    this.servicioPersona.editPersona(paciente, paciente.id).subscribe(data => {
-      console.log(data);
-      this.actualizarPersonas();
-    });
+	desactivarPaciente (paciente)
+	{
+		paciente.estado = 0;
+		this.pasarStringId(paciente);
+		this.servicioPersona.editPersona(paciente, paciente.id).subscribe(data => {
+			console.log(data);
+			this.actualizarPersonas();
+		});
 
-  }
+	}
 
-  activarPaciente (paciente)
-  {
-    paciente.estado = 1;
-    this.pasarStringId(paciente);
-    this.servicioPersona.editPersona(paciente, paciente.id).subscribe(data => {
-      console.log(data);
-      this.actualizarPersonas();
-    });
-  }
+	activarPaciente (paciente)
+	{
+		paciente.estado = 1;
+		this.pasarStringId(paciente);
+		this.servicioPersona.editPersona(paciente, paciente.id).subscribe(data => {
+			console.log(data);
+			this.actualizarPersonas();
+		});
+	}
 
 
 

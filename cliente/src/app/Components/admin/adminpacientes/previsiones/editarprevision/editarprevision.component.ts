@@ -4,31 +4,38 @@ import { Prevision } from '../../../../../Models/Prevision.model';
 import { PrevisionService } from '../../../../../Services/prevision/prevision.service';
 
 @Component({
-  selector: 'app-editarprevision',
-  templateUrl: './editarprevision.component.html',
-  styleUrls: ['./editarprevision.component.css']
+	selector: 'app-editarprevision',
+	templateUrl: './editarprevision.component.html',
+	styleUrls: ['./editarprevision.component.css']
 })
 export class EditarprevisionComponent  {
 
-  public prevision: Prevision;
+	public prevision: Prevision;
 
-  constructor(
-    public dialogRef: MatDialogRef<EditarprevisionComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public servicioPrevision: PrevisionService
-    ) { this.prevision = data.prevision; }
+	constructor(
+		public dialogRef: MatDialogRef<EditarprevisionComponent>,
+		@Inject(MAT_DIALOG_DATA) public data: any,
+		public servicioPrevision: PrevisionService
+		) { this.prevision = data.prevision; }
 
-  onNoClick()
+	onNoClick()
+	{
+		this.dialogRef.close();
+	}
+
+	editarPrevision()
+	{
+		this.servicioPrevision.editPrevision(this.prevision, this.prevision.id).subscribe( data => {
+			console.log(data);
+			this.dialogRef.close();
+
+		});
+	}
+
+  isapreSeleccionado(respuesta)
   {
-    this.dialogRef.close();
+    this.prevision.isapre = respuesta;
+    console.log(this.prevision);
   }
 
-  editarPrevision()
-  {
-    this.servicioPrevision.editPrevision(this.prevision, this.prevision.id).subscribe( data => {
-      console.log(data);
-      this.dialogRef.close();
-
-    });
-  }
 }

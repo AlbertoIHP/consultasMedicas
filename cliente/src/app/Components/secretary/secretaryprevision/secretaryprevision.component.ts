@@ -43,8 +43,8 @@ export class SecretaryprevisionComponent {
 		public servicioPrevisionActual: PrevisionactualService,
 		public servicioPersona: PersonaService,
 
-  	public dialogRef: MatDialogRef<SecretaryprevisionComponent>,
-  	@Inject(MAT_DIALOG_DATA) public data: any
+	public dialogRef: MatDialogRef<SecretaryprevisionComponent>,
+	@Inject(MAT_DIALOG_DATA) public data: any
 
 
 		)
@@ -55,10 +55,10 @@ export class SecretaryprevisionComponent {
 		this.totalPrevisionActual = [];
 		this.previsionActual = new PrevisionActual();
 		this.nuevaPrevisionActual = new PrevisionActual();
-  	this.pacienteActual = data.persona;
-  	this.nuevaPrevisionActual.Persona_id = this.pacienteActual.id.toString();
-  	this.actualizarPrevision();
-  	this.actualizarPrevisionActual();
+	this.pacienteActual = data.persona;
+	this.nuevaPrevisionActual.Persona_id = this.pacienteActual.id.toString();
+	this.actualizarPrevision();
+	this.actualizarPrevisionActual();
 
 
 	}
@@ -200,7 +200,7 @@ export class SecretaryprevisionComponent {
 
 	for( let j = 0 ; j < this.totalPrevision.length ; j ++)
 	{
-	  if(this.totalPrevision[j].isapre === "1")
+	  if( parseInt(this.totalPrevision[j].isapre) === 1)
 	  {
 		this.totalPrevision[j].isapre = "Isapre";
 	  }
@@ -225,8 +225,8 @@ export class ExampleDataSource extends DataSource<any> {
 
   constructor (data)
   {
-  	super();
-  	this.data = data;
+	super();
+	this.data = data;
 
   }
   /** Connect function called by the table to retrieve one stream containing the data to render. */
