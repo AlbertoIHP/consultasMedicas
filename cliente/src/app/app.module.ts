@@ -24,6 +24,7 @@ import { routing, appRoutingProviders } from './Routes/app-routing.module';
 import { SuiModule } from 'ng2-semantic-ui';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import {MatTabsModule} from '@angular/material';
 //import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule , MatSelectModule, MatDialogModule, MatPaginatorModule, MatTableModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule} from '@angular/material';
@@ -105,7 +106,8 @@ import { PacientefichaComponent } from './Components/paciente/pacienteficha/paci
         MatPaginatorModule,
         MatDialogModule,
         MatInputModule,
-        MatSelectModule
+        MatSelectModule,
+        MatTabsModule
         //NgbModule.forRoot()
     ],
 
