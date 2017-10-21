@@ -1,0 +1,25 @@
+<h1 mat-dialog-title style="text-align: center;">Creacion de Comuna</h1>
+
+<div mat-dialog-content>
+
+  <p>Nombre</p>
+
+  <input matInput tabindex="1" [(ngModel)]="nuevaComuna.nombre">
+
+
+  <p>Provincia</p>
+  <mat-form-field style="width: 100% !important;">
+    <mat-select placeholder="Provincia" style="width: 100% !important;">
+      <mat-option style="width: 100% !important;" *ngFor="let provincia of totalProvincias" [value]="provincia.id" (click)="provinciaSeleccionada(provincia)">
+        {{ provincia.nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="agregarComuna()" tabindex="2">Agregar Comuna</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

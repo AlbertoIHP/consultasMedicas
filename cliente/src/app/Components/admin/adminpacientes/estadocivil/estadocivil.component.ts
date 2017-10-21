@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 
 import { EstadoCivil } from '../../../../Models/EstadoCivil.model';
 import { EstadocivilService } from '../../../../Services/estadocivil/estadocivil.service';
@@ -18,10 +18,7 @@ import 'rxjs/add/observable/fromEvent';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
-export interface UserData extends EstadoCivil
-{
-
-}
+export interface UserData extends EstadoCivil{}
 
 @Component({
 	selector: 'app-estadocivil',
@@ -29,11 +26,9 @@ export interface UserData extends EstadoCivil
 	styleUrls: ['./estadocivil.component.css']
 })
 
-export class EstadocivilComponent implements OnInit {
+export class EstadocivilComponent{
 	public totalEstadoCiviles: EstadoCivil[];
-	public nuevoEC: EstadoCivil;
-	public editarEC: EstadoCivil;
-	public buscarPorNombre: boolean;
+
 
 
 	//DATATABLE
@@ -42,7 +37,7 @@ export class EstadocivilComponent implements OnInit {
 	public sourceDatatable: dataTable | null;
 	public sourcePorNombre: buscadorPorNombre | null;
 	public bdEstructura;
-
+  public buscarPorNombre: boolean;
 	displayedColumns = ['Acciones', 'Nombre', 'Descripcion'];
 
 
@@ -51,11 +46,6 @@ export class EstadocivilComponent implements OnInit {
 		this.buscarPorNombre = false;
 		this.totalEstadoCiviles = [];
 		this.actualizarEstadoCiviles();
-		this.nuevoEC = new EstadoCivil();
-		this.editarEC = new EstadoCivil();
-	}
-
-	ngOnInit() {
 	}
 
 	actualizarEstadoCiviles ()
@@ -65,6 +55,8 @@ export class EstadocivilComponent implements OnInit {
 			todo = todo.data;
 			this.totalEstadoCiviles = todo;
 
+
+      //DATATABLE
 			this.bdEstructura = new ExampleDatabase(this.totalEstadoCiviles );
 			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
 			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura);

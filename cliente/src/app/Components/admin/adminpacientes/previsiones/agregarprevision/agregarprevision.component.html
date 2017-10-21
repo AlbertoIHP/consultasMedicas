@@ -1,0 +1,22 @@
+<h1 mat-dialog-title style="text-align: center;">Creacion de Prevision</h1>
+
+<div mat-dialog-content>
+
+  <p>Nombre</p>
+
+  <input matInput tabindex="1" [(ngModel)]="nuevaPrevision.nombre">
+
+
+  <p>Descripcion</p>
+
+  <input matInput tabindex="1" [(ngModel)]="nuevaPrevision.descripcion">
+
+
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="agregarPrevision()" tabindex="2">Agregar Prevision</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

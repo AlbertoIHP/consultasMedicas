@@ -1,6 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {SuiModalService, TemplateModalConfig, ModalTemplate} from 'ng2-semantic-ui';
-
+import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 
 import { Provincia } from '../../../../Models/Provincia.model';
 import { ProvinciaService } from '../../../../Services/provincia/provincia.service';
@@ -8,32 +6,51 @@ import { ProvinciaService } from '../../../../Services/provincia/provincia.servi
 import { Region } from '../../../../Models/Region.model';
 import { RegionService } from '../../../../Services/region/region.service';
 
+import { AgregarprovinciaComponent } from './agregarprovincia/agregarprovincia.component';
+import { EditarprovinciaComponent } from './editarprovincia/editarprovincia.component';
+
+import {DataSource} from '@angular/cdk/collections';
+import {MatPaginator} from '@angular/material';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
 
-export interface IContext {
-		data:string;
-}
+export interface UserData extends Provincia{}
 
 @Component({
 	selector: 'app-provincias',
 	templateUrl: './provincias.component.html',
 	styleUrls: ['./provincias.component.css']
 })
-export class ProvinciasComponent implements OnInit {
-	@ViewChild('modalTemplate')
-	public modalTemplate:ModalTemplate<IContext, string, string>;
-	public totalRegiones: Region[];
+export class ProvinciasComponent {
+public totalRegiones: Region[];
 	public totalProvincias: Provincia[];
-	public nuevaProvincia: Provincia;
-	public editarProvincia: Provincia;
 
-	constructor (public modalService:SuiModalService, public servicioRegion: RegionService, public servicioProvincia: ProvinciaService)
+  //DATATABLE
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('filter') filter: ElementRef;
+  public sourceDatatable: dataTable | null;
+  public sourcePorNombre: buscadorPorNombre | null;
+  public bdEstructura;
+  public buscarPorNombre: boolean;
+  displayedColumns = ['Acciones', 'Nombre', 'Region'];
+
+
+	constructor (public servicioRegion: RegionService, public servicioProvincia: ProvinciaService, public dialog: MatDialog)
 	{
+    this.buscarPorNombre = false;
+    this.totalRegiones = [];
+    this.totalProvincias = [];
 		this.actualizarRegiones();
 		this.actualizarProvincias();
-		this.nuevaProvincia = new Provincia();
-		this.editarProvincia = new Provincia();
 	}
 
 
@@ -55,57 +72,22 @@ export class ProvinciasComponent implements OnInit {
 			todo = todo.data;
 			this.totalProvincias = todo;
 			this.reemplazarIdPorString();
+
+      this.bdEstructura = new ExampleDatabase(this.totalProvincias );
+      this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
+      this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura);
+      Observable.fromEvent(this.filter.nativeElement, 'keyup')
+          .debounceTime(150)
+          .distinctUntilChanged()
+          .subscribe(() => {
+            if (!this.sourcePorNombre) { return; }
+            this.sourcePorNombre.filter = this.filter.nativeElement.value;
+          });
+
 		});
 	}
 
 
-
-	public open(tipo, provincia) {
-		const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
-
-		if(provincia != null)
-		{
-			 this.editarProvincia = provincia;
-		}
-
-
-		config.context = { data: tipo };
-
-		this.modalService
-			.open(config)
-			.onApprove(result => {
-				if(tipo === "editarProvincia")
-				{
-				 this.actualizarProvincia();
-				}
-				else if(tipo === "nuevaProvincia")
-				{
-					this.agregarProvincia();
-				}
-
-			})
-			.onDeny(result => { /* deny callback */});
-	}
-
-	actualizarProvincia ()
-	{
-		this.pasarStringId(this.editarProvincia);
-		this.servicioProvincia.editProvincia(this.editarProvincia, this.editarProvincia.id).subscribe(data => {
-			console.log(data);
-			this.actualizarProvincias();
-		});
-	}
-
-
-	agregarProvincia ()
-	{
-	 this.servicioProvincia.registerProvincia(this.nuevaProvincia).subscribe(data => {
-			console.log(data);
-			this.actualizarProvincias();
-			this.nuevaProvincia = new Provincia();
-		});
-
-	}
 
 
 	eliminarProvincia (provincia)
@@ -117,17 +99,6 @@ export class ProvinciasComponent implements OnInit {
 	}
 
 
-
-	regionSeleccionada (region)
-	{
-		this.nuevaProvincia.Region_id = region.id;
-		console.log(this.nuevaProvincia);
-	}
-
-	editarRegionSeleccionada (region)
-	{
-		this.editarProvincia.Region_id = region.id;
-	}
 
 
 	reemplazarIdPorString()
@@ -160,7 +131,131 @@ export class ProvinciasComponent implements OnInit {
 
 	}
 
-	ngOnInit() {
-	}
+  cambiarBusqueda()
+  {
+    this.buscarPorNombre = !this.buscarPorNombre;
+  }
+
+
+  edicionProvincia (provincia)
+  {
+    this.pasarStringId(provincia);
+
+    let dialogRef = this.dialog.open(EditarprovinciaComponent, {
+      width: '1000px',
+      data:
+      {
+       provincia: provincia,
+       regiones: this.totalRegiones
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      this.actualizarProvincias();
+    });
+  }
+
+  agregacionProvincia()
+  {
+    let dialogRef = this.dialog.open(AgregarprovinciaComponent, {
+      width: '1000px',
+      data : { regiones: this.totalRegiones }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      this.actualizarProvincias();
+    });
+  }
+
+
 
 }
+
+
+
+export class ExampleDatabase {
+  /** Stream that emits whenever the data has been modified. */
+  dataChange: BehaviorSubject<UserData[]> = new BehaviorSubject<UserData[]>([]);
+  get data(): UserData[] { return this.dataChange.value; }
+
+  constructor(ec)
+  {
+    // Fill up the database with 100 users.
+    for (let i = 0; i < ec.length; i++) { this.addUser(ec[i]); }
+  }
+
+  /** Adds a new user to the database. */
+  addUser(ec) {
+    const copiedData = this.data.slice();
+    copiedData.push(ec);
+    this.dataChange.next(copiedData);
+  }
+
+
+
+}
+
+
+export class dataTable extends DataSource<any> {
+  _filterChange = new BehaviorSubject('');
+  get filter(): string { return this._filterChange.value; }
+  set filter(filter: string) { this._filterChange.next(filter); }
+
+  constructor(private _exampleDatabase: ExampleDatabase, private _paginator: MatPaginator) {
+    super();
+  }
+
+  /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<UserData[]> {
+
+    const displayDataChanges = [
+      this._exampleDatabase.dataChange,
+      this._paginator.page,
+      this._filterChange,
+    ];
+
+    return Observable.merge(...displayDataChanges).map(() => {
+
+      const data = this._exampleDatabase.data.slice();
+      const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+
+
+      return data.splice(startIndex, this._paginator.pageSize);
+
+    });
+  }
+
+  disconnect() {}
+}
+
+
+
+export class buscadorPorNombre extends DataSource<any> {
+  _filterChange = new BehaviorSubject('');
+  get filter(): string { return this._filterChange.value; }
+  set filter(filter: string) { this._filterChange.next(filter); }
+
+  constructor(private _exampleDatabase: ExampleDatabase) {
+    super();
+  }
+
+  /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<UserData[]> {
+    const displayDataChanges = [
+      this._exampleDatabase.dataChange,
+      this._filterChange,
+    ];
+
+    return Observable.merge(...displayDataChanges).map(() => {
+      return this._exampleDatabase.data.slice().filter((item: UserData) => {
+        let searchStr = (item.nombre ).toLowerCase();
+        return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+      });
+    });
+  }
+
+  disconnect() {}
+}
+

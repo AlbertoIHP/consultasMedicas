@@ -1,0 +1,16 @@
+<h1 mat-dialog-title style="text-align: center;">Creacion de Role</h1>
+
+<div mat-dialog-content>
+
+  <p>Nombre</p>
+
+  <input matInput tabindex="1" [(ngModel)]="nuevoRole.nombre">
+
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="agregarRole()" tabindex="2">Agregar Role</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

@@ -53,6 +53,18 @@ import { EditarEstadoCComponent } from './Components/admin/adminpacientes/estado
 import { AgregarEstadoCComponent } from './Components/admin/adminpacientes/estadocivil/agregar-estado-c/agregar-estado-c.component';
 import { EditargeneroComponent } from './Components/admin/adminpacientes/generos/editargenero/editargenero.component';
 import { AgregargeneroComponent } from './Components/admin/adminpacientes/generos/agregargenero/agregargenero.component';
+import { AgregarcomunaComponent } from './Components/admin/adminpacientes/comunas/agregarcomuna/agregarcomuna.component';
+import { EditarcomunaComponent } from './Components/admin/adminpacientes/comunas/editarcomuna/editarcomuna.component';
+import { EditarprevisionComponent } from './Components/admin/adminpacientes/previsiones/editarprevision/editarprevision.component';
+import { AgregarprevisionComponent } from './Components/admin/adminpacientes/previsiones/agregarprevision/agregarprevision.component';
+import { AgregarprovinciaComponent } from './Components/admin/adminpacientes/provincias/agregarprovincia/agregarprovincia.component';
+import { EditarprovinciaComponent } from './Components/admin/adminpacientes/provincias/editarprovincia/editarprovincia.component';
+import { EditarregionesComponent } from './Components/admin/adminpacientes/regiones/editarregiones/editarregiones.component';
+import { AgregarregionesComponent } from './Components/admin/adminpacientes/regiones/agregarregiones/agregarregiones.component';
+import { AgregarrolesComponent } from './Components/admin/adminpacientes/roles/agregarroles/agregarroles.component';
+import { EditarrolesComponent } from './Components/admin/adminpacientes/roles/editarroles/editarroles.component';
+import { EditarusuarioComponent } from './Components/admin/adminpacientes/usuarios/editarusuario/editarusuario.component';
+import { AgregarusuarioComponent } from './Components/admin/adminpacientes/usuarios/agregarusuario/agregarusuario.component';
 
 
 @NgModule({
@@ -81,18 +93,42 @@ import { AgregargeneroComponent } from './Components/admin/adminpacientes/genero
 		EditarEstadoCComponent,
 		AgregarEstadoCComponent,
 		EditargeneroComponent,
-		AgregargeneroComponent
+		AgregargeneroComponent,
+		AgregarcomunaComponent,
+		EditarcomunaComponent,
+		EditarprevisionComponent,
+		AgregarprevisionComponent,
+		AgregarprovinciaComponent,
+		EditarprovinciaComponent,
+		EditarregionesComponent,
+		AgregarregionesComponent,
+		AgregarrolesComponent,
+		EditarrolesComponent,
+		EditarusuarioComponent,
+		AgregarusuarioComponent
 	],
 
 	entryComponents:
 	[
-	AgregarpersonaComponent,
-	EditarpersonaComponent,
-	SecretaryprevisionComponent,
-	EditarEstadoCComponent,
-	AgregarEstadoCComponent,
-  EditargeneroComponent,
-  AgregargeneroComponent
+  	AgregarpersonaComponent,
+  	EditarpersonaComponent,
+  	SecretaryprevisionComponent,
+  	EditarEstadoCComponent,
+  	AgregarEstadoCComponent,
+    EditargeneroComponent,
+    AgregargeneroComponent,
+    AgregarcomunaComponent,
+    EditarcomunaComponent,
+    EditarprevisionComponent,
+    AgregarprevisionComponent,
+    AgregarprovinciaComponent,
+    EditarprovinciaComponent,
+    EditarregionesComponent,
+    AgregarregionesComponent,
+    AgregarrolesComponent,
+    EditarrolesComponent,
+    EditarusuarioComponent,
+    AgregarusuarioComponent
 	],
 
 	imports:
