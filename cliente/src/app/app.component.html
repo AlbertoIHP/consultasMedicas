@@ -56,8 +56,18 @@
 			</div>
 
 		<div *ngIf="currentUserRole.nombre === 'Secretary'" >
-				<button (click)="irHomeSecretary()" mat-button class="fullSpaceButton">Home</button>
-				<button (click)="irPacientesSecretary()" mat-button class="fullSpaceButton">Personas</button>
+          <div class="section">
+            <button (click)="irHomeSecretary()" mat-button class="fullSpaceButton">Home</button>
+          </div>
+          <div class="section">
+            <button (click)="irPacientesSecretary()" mat-button class="fullSpaceButton">Modulo Pacientes</button>
+          </div>
+          <div class="section">
+            <button (click)="irCitasAdmin()" mat-button class="fullSpaceButton">Modulo Citas</button>
+          </div>
+          <div class="section">
+            <button (click)="irAtencionAdmin()" mat-button class="fullSpaceButton">Modulo Atencion</button>
+          </div>
 		</div>
 	</mat-sidenav>
 

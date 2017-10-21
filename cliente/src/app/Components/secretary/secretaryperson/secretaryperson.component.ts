@@ -129,7 +129,7 @@ export class SecretarypersonComponent {
 
   editarPersona (persona)
   {
-    var a = JSON.parse( JSON.stringify(persona) );
+	var a = JSON.parse( JSON.stringify(persona) );
 
 	  this.pasarStringId(a);
 

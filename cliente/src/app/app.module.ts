@@ -65,6 +65,9 @@ import { AgregarrolesComponent } from './Components/admin/adminpacientes/roles/a
 import { EditarrolesComponent } from './Components/admin/adminpacientes/roles/editarroles/editarroles.component';
 import { EditarusuarioComponent } from './Components/admin/adminpacientes/usuarios/editarusuario/editarusuario.component';
 import { AgregarusuarioComponent } from './Components/admin/adminpacientes/usuarios/agregarusuario/agregarusuario.component';
+import { SecretarypacientesComponent } from './Components/secretary/secretarypacientes/secretarypacientes.component';
+import { PersonasComponent } from './Components/secretary/personas/personas.component';
+import { PacientesadminComponent } from './Components/admin/adminpacientes/pacientesadmin/pacientesadmin.component';
 
 
 @NgModule({
@@ -105,7 +108,10 @@ import { AgregarusuarioComponent } from './Components/admin/adminpacientes/usuar
 		AgregarrolesComponent,
 		EditarrolesComponent,
 		EditarusuarioComponent,
-		AgregarusuarioComponent
+		AgregarusuarioComponent,
+		SecretarypacientesComponent,
+		PersonasComponent,
+		PacientesadminComponent
 	],
 
 	entryComponents:
