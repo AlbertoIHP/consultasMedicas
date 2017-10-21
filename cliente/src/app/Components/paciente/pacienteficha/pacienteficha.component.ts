@@ -44,11 +44,11 @@ export interface Element extends Persona{
 })
 export class PacientefichaComponent {
 
-	//variables basicas
+	//variables básicas
 
 	public idPersona:number=4;
 
-  //sera array ya que es la unica manera de usarlo con datasource
+  //será array ya que es la única manera de usarlo con datasource
 	public personaPaciente:Persona[];
 
 	public paciente:Paciente;
@@ -112,6 +112,10 @@ export class PacientefichaComponent {
   personaTabla4;
   //datos básicos del paciente para la cuarta tabla
   public datosPacienteT4:any=[{}];
+
+  //elementos de la tabla alergias
+  columnasAlergia=['id','NombreComun','NombreCientifico'];
+  alergiaTabla;
 
   constructor(
 
@@ -184,6 +188,7 @@ export class PacientefichaComponent {
   			console.log(this.paciente);
 
   			this.obtenerTipoSangre(this.paciente.TipoSangre_id);
+        //this.obtenerAlergias(this.paciente.id);
   			break;
   		}else{
         this.esPaciente=false;
@@ -200,7 +205,7 @@ export class PacientefichaComponent {
     	console.log("SANGRE");
     	console.log(this.tipoSangrePaciente);
 
-      //asignacion del tipo de sangre para la tabla 4
+      //asignación del tipo de sangre para la tabla 4
       this.datosPacienteT4[0].tipoSangre=this.tipoSangrePaciente.nombre;
 
   	});
@@ -219,12 +224,27 @@ obtenerAlergias(id){
 
 }
 
+obtenerMedicamento(id){
+  this.servicioMedicamentos.getMedicamento(id).subscribe((data)=>{
+    var todo: any = data;
+      todo = todo.data
+      this.medicamentosPaciente.push(todo);
+  });
+}
+
 obtenerAlergiasPaciente(id){
 	for(let i=0;this.totalAlergias.length;i++){
 		if(this.totalAlergias[i].Paciente_id==id){
 			this.totalAlergiasPaciente.push(this.totalALergias[i]);
 		}
 	}
+//se guardan los medicamentos a los que es alérgico
+
+for(let i=0;i<this.totalAlergiasPaciente.length;i++){
+  this.obtenerMedicamento(this.totalAlergiasPaciente[i].Medicamento_id);
+}
+  //data source para la tabla alergias
+  this.alergiaTabla=new ExampleDataSource(this.medicamentosPaciente);
 }
 */
 
@@ -298,7 +318,7 @@ ordenarAtenciones(atenciones){
     	console.log("PERSONA");
     	console.log(this.personaPaciente);
 
-        //se obtiene telefono casa (puede no estar registrado)
+        //se obtiene teléfono casa (puede no estar registrado)
         this.fonoCasaPaciente=this.personaPaciente[0].fono_casa;
         if(this.fonoCasaPaciente=="none" || this.fonoCasaPaciente==""){
           this.existeFonoCasa=false;
@@ -306,7 +326,7 @@ ordenarAtenciones(atenciones){
           this.existeFonoCasa=true;
         }
 
-        //se obtiene telefono trabajo (puene no estar registrado)
+        //se obtiene teléfono trabajo (puene no estar registrado)
         this.fonoTrabajoPaciente=this.personaPaciente[0].fono_trabajo;
         if(this.fonoTrabajoPaciente=="none" || this.fonoTrabajoPaciente==""){
           this.existeFonoTrabajo=false;
@@ -390,7 +410,7 @@ obtenerProvinciaPaciente(id){
   }
 
  
-//se obtiene el genero del paciente
+//se obtiene el género del paciente
   obtenerGeneroPaciente(id){
   	this.servicioGenero.getGenero(id).subscribe((data)=>{
   		var todo: any = data;
@@ -400,7 +420,7 @@ obtenerProvinciaPaciente(id){
 		console.log("GENERO");
 		console.log(this.generoPaciente);
 
-    //se asigna el nombre del genero a los datos del paciente para la t2
+    //se asigna el nombre del género a los datos del paciente para la t2
     this.datosPacienteT2[0].genero=this.generoPaciente.nombre;
   	});
   }
@@ -414,7 +434,7 @@ obtenerProvinciaPaciente(id){
 		console.log("ESTCIVIL");
 		console.log(this.estadoCivilPaciente);
 
-    //se asigna el nombre del estado civil del genero a los datos del paciente para la t2
+    //se asigna el nombre del estado civil a los datos del paciente para la t2
     this.datosPacienteT2[0].estadoCivil=this.estadoCivilPaciente.nombre;
   	});
   }
@@ -427,9 +447,9 @@ obtenerProvinciaPaciente(id){
    this.servicioPrevisionActual.getPrevisionActuals().subscribe((data)=>{
      var todo: any = data;
      todo = todo.data;
-     //registros en prevision actual
+     //registros en previsión actual
      this.totalPrevisionActual=todo;
-     //se obtiene la prevision
+     //se obtiene la previsión
      this.obtenerPrevision(id);
    });
 
@@ -457,7 +477,7 @@ obtenerProvinciaPaciente(id){
     ultimo=this.historialPrevisionesPacientes[this.historialPrevisionesPacientes.length-1];
     var fechaUltimo=new Date(ultimo.fechaActualizacion);
 
-    //se obtiene la prevision asociada al mismo
+    //se obtiene la previsión asociada al mismo
     
     this.servicioPrevision.getPrevision(ultimo.Prevision_id).subscribe((data)=>{
       var todo: any=data
@@ -468,7 +488,7 @@ obtenerProvinciaPaciente(id){
       console.log("PREVISION");
       console.log(this.previsionPaciente);
 
-      //se asigna la prevision del paciente a los datos de la tabla 1
+      //se asigna la previsión del paciente a los datos de la tabla 1
       this.ubicacionPaciente[0].prevision=this.previsionPaciente.nombre;
     });
   }else{
@@ -477,7 +497,7 @@ obtenerProvinciaPaciente(id){
 
  }
 
- //se ordena el historial (de prevision)
+ //se ordena el historial (de previsión)
  ordenarHistorial(historial){
 
    historial.sort((a:PrevisionActual,b:PrevisionActual)=>{

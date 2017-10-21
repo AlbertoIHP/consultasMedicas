@@ -1,6 +1,8 @@
 
-<div class="col s12">
-	<h4>Ficha Médica</h4>
+<div class="row">
+	<div class="col s12">
+		<h4>Ficha Médica</h4>
+	</div>
 </div>
 
 <mat-tab-group>
@@ -139,5 +141,34 @@
 		</mat-table>
 	</div>
 </mat-tab>
-<mat-tab label="Alergias">Futura tabla de medicamentos</mat-tab>
+<mat-tab label="Alergias">
+
+	<div class="row" style="margin-top: 25px;">
+
+		<mat-table #table [dataSource]="alergiaTabla">
+
+			<ng-container matColumnDef="id">
+				<mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>	
+			</ng-container>
+
+			<ng-container matColumnDef="NombreComun">
+				<mat-header-cell *matHeaderCellDef> Nombre Común </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{element.nombrecomun}} </mat-cell>	
+			</ng-container>
+
+			<ng-container matColumnDef="NombreCientifico">
+				<mat-header-cell *matHeaderCellDef> Nombre Científico </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{element.nombrecientifico}} </mat-cell>	
+			</ng-container>
+
+			<mat-header-row *matHeaderRowDef="columnasAlergia"></mat-header-row>
+			<mat-row *matRowDef="let row; columns: columnasAlergia;"></mat-row>
+
+		</mat-table>
+	</div>
+
+
+
+</mat-tab>
 </mat-tab-group>

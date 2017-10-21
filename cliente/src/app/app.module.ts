@@ -51,6 +51,7 @@ import { SecretarypersonComponent } from './Components/secretary/secretaryperson
 import { AgregarpersonaComponent } from './Components/secretary/agregarpersona/agregarpersona.component';
 import { EditarpersonaComponent } from './Components/secretary/editarpersona/editarpersona.component';
 import { PacientefichaComponent } from './Components/paciente/pacienteficha/pacienteficha.component';
+import { PacientecitaComponent } from './Components/paciente/pacientecita/pacientecita.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { PacientefichaComponent } from './Components/paciente/pacienteficha/paci
         SecretarypersonComponent,
         AgregarpersonaComponent,
         EditarpersonaComponent,
-        PacientefichaComponent
+        PacientefichaComponent,
+        PacientecitaComponent
 
     ],
 

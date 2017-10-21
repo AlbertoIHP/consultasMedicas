@@ -20,6 +20,11 @@ irFichaPaciente()
   	this.router.navigate(['paciente/ficha']);
   }
 
+  irCitasPaciente()
+  {
+    this.router.navigate(['paciente/citas']);
+  }
+
   irHomePaciente()
   {
   	this.router.navigate(['paciente']);
