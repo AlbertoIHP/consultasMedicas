@@ -122,13 +122,14 @@ export class SecretarypersonComponent {
 
 		let dialogRef = this.dialog.open(AgregarpersonaComponent, {
 			width: '500px',
-	  data: {
-		regiones: this.totalRegiones,
-		provincias: this.totalProvincias,
-		comunas: this.totalComunas,
-		ec: this.totalEstadoCiviles,
-		generos: this.totalGeneros
-	  }
+  	  data:
+      {
+  		regiones: this.totalRegiones,
+  		provincias: this.totalProvincias,
+  		comunas: this.totalComunas,
+  		ec: this.totalEstadoCiviles,
+  		generos: this.totalGeneros
+	    }
 		});
 
 		dialogRef.afterClosed().subscribe(result => {
@@ -145,39 +146,41 @@ export class SecretarypersonComponent {
 
   editarPersona (persona)
   {
-    this.pasarStringId(persona);
-    let dialogRef = this.dialog.open(EditarpersonaComponent, {
-      width: '500px',
-    data: {
-    persona: persona,
-    regiones: this.totalRegiones,
-    provincias: this.totalProvincias,
-    comunas: this.totalComunas,
-    ec: this.totalEstadoCiviles,
-    generos: this.totalGeneros
-    }
-    });
+	this.pasarStringId(persona);
+	let dialogRef = this.dialog.open(EditarpersonaComponent, {
+	  width: '500px',
+	data: {
+	persona: persona,
+	regiones: this.totalRegiones,
+	provincias: this.totalProvincias,
+	comunas: this.totalComunas,
+	ec: this.totalEstadoCiviles,
+	generos: this.totalGeneros
+	}
+	});
 
-    dialogRef.afterClosed().subscribe(result => {
+	dialogRef.afterClosed().subscribe(result => {
 
-      this.actualizarPersonas();
-    });
+	  this.actualizarPersonas();
+	});
   }
 
   previsionPersona (persona)
   {
-    this.pasarStringId(persona);
-    let dialogRef = this.dialog.open(SecretaryprevisionComponent, {
-      width: '500px',
-    data: {
-    persona: persona
-    }
-    });
+  	this.pasarStringId(persona);
 
-    dialogRef.afterClosed().subscribe(result => {
+  	let dialogRef = this.dialog.open(SecretaryprevisionComponent, {
+  	  width: '1000px',
+    	data:
+      {
+    	 persona: persona
+  	  }
+  	});
 
-      this.actualizarPersonas();
-    });
+  	dialogRef.afterClosed().subscribe(result => {
+
+  	  this.actualizarPersonas();
+  	});
   }
 
 

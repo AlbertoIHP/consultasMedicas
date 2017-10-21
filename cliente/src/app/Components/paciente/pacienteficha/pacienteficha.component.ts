@@ -30,18 +30,26 @@ import { PrevisionService } from '../../../Services/prevision/prevision.service'
 import { Paciente } from '../../../Models/Paciente.model';
 import { PacienteService } from '../../../Services/paciente/paciente.service';
 
+import {DataSource} from '@angular/cdk/collections';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+
+export interface Element extends Persona{
+}
+
 @Component({
   selector: 'app-pacienteficha',
   templateUrl: './pacienteficha.component.html',
   styleUrls: ['./pacienteficha.component.css']
 })
-export class PacientefichaComponent implements OnInit {
+export class PacientefichaComponent {
 
 	//variables basicas
 
 	public idPersona:number=4;
 
-	public personaPaciente:Persona;
+  //sera array ya que es la unica manera de usarlo con datasource
+	public personaPaciente:Persona[];
 
 	public paciente:Paciente;
 	public totalPacientes:Paciente[];
@@ -56,28 +64,54 @@ export class PacientefichaComponent implements OnInit {
 	public totalPrevisionActual:PrevisionActual[];
 	public previsionPaciente: Prevision;
 
-
+ 
 	//historial previsiones
-  	public historialPrevisionesPacientes: PrevisionActual[];
+  public historialPrevisionesPacientes: PrevisionActual[];
 
-  	//booleano que indica si existen registros en el historial de previsiones
-    public existePrevision:boolean;
+  //booleano que indica si existen registros en el historial de previsiones
+  public existePrevision:boolean;
 
-  	//booleanos para indicar si existen registros del fono trabajo y casa
+  //booleanos para indicar si existen registros del fono trabajo y casa
  
 	public existeFonoTrabajo:boolean;
 	public fonoTrabajoPaciente:string;
 
  	public existeFonoCasa:boolean;
-  	public fonoCasaPaciente:string;
+  public fonoCasaPaciente:string;
+
+  //booleano para indicar si es paciente (será momentáneo, ya que este usuario siempre es paciente)
+  //determinará si aparece o no la cuarta tabla de la ficha
+  public esPaciente:boolean;
+
+
 
   	//booleanos para indicar si existen registrso de peso y estatura en la ficha
   	/*public existeEstatura:boolean;
   	public estaturaPaciente:string;
 
-	public existePeso:boolean;
-	public pesoPaciente:string;*/
+  	public existePeso:boolean;
+  	public pesoPaciente:string;*/
 
+
+
+  //elemetos de la tabla (ficha)
+  displayedColumns1= ['Nombres', 'Apellidos', 'RUT'];
+  displayedColumns2=['Genero','EstadoCivil','FonoCasa','FonoTrabajo','Movil'];
+  displayedColumns3=['Comuna','Provincia','Region','Prevision'];
+  displayedColumns4=['Peso','Estatura','TipoSangre'];
+
+  personaTabla1;
+  //datos básicos del paciente para la primera tabla
+  public datosPacienteT1:any=[{}];
+  personaTabla2;
+  //datos básicos del paciente para la segunda tabla
+  public datosPacienteT2:any=[{}];
+  personaTabla3;
+  //Datos geográficos para la tercera tabla
+  public ubicacionPaciente:any=[{}];
+  personaTabla4;
+  //datos básicos del paciente para la cuarta tabla
+  public datosPacienteT4:any=[{}];
 
   constructor(
 
@@ -95,7 +129,9 @@ export class PacientefichaComponent implements OnInit {
   	) {
 
 
-  	this.personaPaciente= new Persona();
+  	//this.personaPaciente= new Persona();
+
+    this.personaPaciente=[];
 
   	this.paciente=new Paciente();
   	this.totalPacientes=[];
@@ -115,6 +151,7 @@ export class PacientefichaComponent implements OnInit {
   	this.existePrevision=false;
   	this.existeFonoCasa=false;
   	this.existeFonoTrabajo=false;
+    this.esPaciente=false;
 
   	this.obtenerPersonaPaciente(this.idPersona);
   	this.obtenerListaPacientes(this.idPersona);
@@ -123,8 +160,6 @@ export class PacientefichaComponent implements OnInit {
 
   	 }
 
-  ngOnInit() {
-  }
 
 //-------Datos Paciente
 
@@ -141,6 +176,8 @@ export class PacientefichaComponent implements OnInit {
   obtenerPaciente(id){
   	for(let i=0;i<this.totalPacientes.length;i++){
   		if(this.totalPacientes[i].Persona_id==id){
+        this.esPaciente=true;
+
   			this.paciente=this.totalPacientes[i];
 
   			console.log("PACIENTE");
@@ -148,7 +185,9 @@ export class PacientefichaComponent implements OnInit {
 
   			this.obtenerTipoSangre(this.paciente.TipoSangre_id);
   			break;
-  		}
+  		}else{
+        this.esPaciente=false;
+      }
   	}
   }
 
@@ -160,6 +199,9 @@ export class PacientefichaComponent implements OnInit {
 
     	console.log("SANGRE");
     	console.log(this.tipoSangrePaciente);
+
+      //asignacion del tipo de sangre para la tabla 4
+      this.datosPacienteT4[0].tipoSangre=this.tipoSangrePaciente.nombre;
 
   	});
 
@@ -252,12 +294,12 @@ ordenarAtenciones(atenciones){
   	this.servicioPersona.getPersona(id).subscribe((data)=>{
   		var todo: any = data;
     	todo = todo.data;
-    	this.personaPaciente=todo;
+    	this.personaPaciente.push(todo);
     	console.log("PERSONA");
     	console.log(this.personaPaciente);
 
         //se obtiene telefono casa (puede no estar registrado)
-        this.fonoCasaPaciente=this.personaPaciente.fono_casa;
+        this.fonoCasaPaciente=this.personaPaciente[0].fono_casa;
         if(this.fonoCasaPaciente=="none" || this.fonoCasaPaciente==""){
           this.existeFonoCasa=false;
         }else{
@@ -265,21 +307,36 @@ ordenarAtenciones(atenciones){
         }
 
         //se obtiene telefono trabajo (puene no estar registrado)
-        this.fonoTrabajoPaciente=this.personaPaciente.fono_trabajo;
+        this.fonoTrabajoPaciente=this.personaPaciente[0].fono_trabajo;
         if(this.fonoTrabajoPaciente=="none" || this.fonoTrabajoPaciente==""){
           this.existeFonoTrabajo=false;
         }else{
           this.existeFonoTrabajo=true;
         }
 
-  		//se obtienen los datos asociados a la ubicacion del paciente
-  		this.obtenerComunaPaciente(this.personaPaciente.Comuna_id);
-  		//se obtiene el genero del paciente
-  		this.obtenerGeneroPaciente(this.personaPaciente.Genero_id);
+      //asignación teléfonos
+      this.datosPacienteT2[0].fonoCasa=this.fonoCasaPaciente;
+      this.datosPacienteT2[0].fonoTrabajo=this.fonoTrabajoPaciente;
+      this.datosPacienteT2[0].movil=this.personaPaciente[0].movil;
+
+      //asignacion nombre-apellidos
+      this.datosPacienteT1[0].nombres=this.personaPaciente[0].nombre1+" "+this.personaPaciente[0].nombre2;
+      this.datosPacienteT1[0].apellidos=this.personaPaciente[0].apellido1+" "+this.personaPaciente[0].apellido2;
+      this.datosPacienteT1[0].rut=this.personaPaciente[0].rut;
+  		//se obtienen los datos asociados a la ubicación del paciente
+  		this.obtenerComunaPaciente(this.personaPaciente[0].Comuna_id);
+  		//se obtiene el género del paciente
+  		this.obtenerGeneroPaciente(this.personaPaciente[0].Genero_id);
   		//se obtiene el estado civil del paciente
-  		this.obtenerEstadoCivilPaciente(this.personaPaciente.EstadoCivil_id);
+  		this.obtenerEstadoCivilPaciente(this.personaPaciente[0].EstadoCivil_id);
         //obtener prevision
-        this.obtenerPrevisionActual(this.personaPaciente.id);
+      this.obtenerPrevisionActual(this.personaPaciente[0].id);
+
+      this.personaTabla1=new ExampleDataSource(this.datosPacienteT1);
+      this.personaTabla2=new ExampleDataSource(this.datosPacienteT2);
+      this.personaTabla3=new ExampleDataSource(this.ubicacionPaciente);
+      this.personaTabla4=new ExampleDataSource(this.datosPacienteT4);
+
 
   	});
   }
@@ -293,7 +350,8 @@ obtenerComunaPaciente(id){
 
 		console.log("COMUNA");
 		console.log(this.comunaPaciente);
-
+    //se asigna el nombre de la comuna a los datos geográficos
+    this.ubicacionPaciente[0].comuna=this.comunaPaciente.nombre;
 		this.obtenerProvinciaPaciente(this.comunaPaciente.Provincia_id);
 		
   	});
@@ -307,6 +365,9 @@ obtenerProvinciaPaciente(id){
 
 		console.log("PROVINCIA");
 		console.log(this.provinciaPaciente);
+
+    //se asigna el nombre de la provincia a los datos geográficos
+    this.ubicacionPaciente[0].provincia=this.provinciaPaciente.nombre;
 
 		this.obtenerRegionPaciente(this.provinciaPaciente.Region_id);
   	});
@@ -322,6 +383,9 @@ obtenerProvinciaPaciente(id){
 		console.log("REGION");
 		console.log(this.regionPaciente);
 
+    //se asigna el nombre de la región a los datos geográficos
+    this.ubicacionPaciente[0].region=this.regionPaciente.nombre;
+
   	});
   }
 
@@ -335,6 +399,9 @@ obtenerProvinciaPaciente(id){
 
 		console.log("GENERO");
 		console.log(this.generoPaciente);
+
+    //se asigna el nombre del genero a los datos del paciente para la t2
+    this.datosPacienteT2[0].genero=this.generoPaciente.nombre;
   	});
   }
 //se obtiene el estado civil del paciente
@@ -346,6 +413,9 @@ obtenerProvinciaPaciente(id){
 
 		console.log("ESTCIVIL");
 		console.log(this.estadoCivilPaciente);
+
+    //se asigna el nombre del estado civil del genero a los datos del paciente para la t2
+    this.datosPacienteT2[0].estadoCivil=this.estadoCivilPaciente.nombre;
   	});
   }
 
@@ -397,6 +467,9 @@ obtenerProvinciaPaciente(id){
 
       console.log("PREVISION");
       console.log(this.previsionPaciente);
+
+      //se asigna la prevision del paciente a los datos de la tabla 1
+      this.ubicacionPaciente[0].prevision=this.previsionPaciente.nombre;
     });
   }else{
     this.existePrevision=false;
@@ -416,3 +489,28 @@ obtenerProvinciaPaciente(id){
  }
 
 }
+
+  /**
+  ** Esta clase permite observar cambios en un arreglo de objetos para desplegarlos en una tabla
+  **
+  **/
+
+export class ExampleDataSource extends DataSource<any> {
+  public data;
+
+  constructor (data)
+  {
+    super();
+    this.data = data;
+
+  }
+  /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<Element[]>
+  {
+  return Observable.of(this.data);
+
+  }
+
+  disconnect() {}
+}
+
