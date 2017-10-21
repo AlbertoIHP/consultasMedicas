@@ -1,0 +1,22 @@
+<h1 mat-dialog-title style="text-align: center;">Creacion de Estado Civil</h1>
+
+<div mat-dialog-content>
+
+  <p>Nombre</p>
+
+  <input matInput tabindex="1" [(ngModel)]="nuevoEC.nombre">
+
+
+  <p>Descripcion</p>
+
+  <input matInput tabindex="1" [(ngModel)]="nuevoEC.descripcion">
+
+
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="agregarEC()" tabindex="2">Agregar Estado Civil</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

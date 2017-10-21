@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Creacion de Nueva Persona</h1>
+<h1 mat-dialog-title style="text-align: center;">Creacion de Nueva Persona</h1>
 
 <div mat-dialog-content>
 
@@ -41,7 +41,7 @@
 	<input matInput tabindex="1" [(ngModel)]="persona.movil">
 
 
-	<p>Sexo</p>
+	<p>Genero</p>
   <mat-form-field style="width: 100% !important;">
 		<mat-select placeholder="Genero" style="width: 100% !important;">
 			<mat-option style="width: 100% !important;" *ngFor="let genero of totalGeneros" [value]="genero.id" (click)="generoSeleccionado(genero)">

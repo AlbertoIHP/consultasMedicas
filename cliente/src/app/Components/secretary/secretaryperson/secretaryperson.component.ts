@@ -36,20 +36,7 @@ import 'rxjs/add/observable/fromEvent';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
-export interface UserData {
-	id: number;
-	rut: string;
-	nombre1: string;
-	nombre2: string;
-	apellido1: string;
-	apellido2: string;
-	fono_casa: string;
-	fono_trabajo: string;
-	movil: string;
-	Genero_id: string;
-	EstadoCivil_id: string;
-	Comuna_id: string;
-	estado: number;
+export interface UserData extends Persona{
 }
 
 @Component({
@@ -61,10 +48,7 @@ export class SecretarypersonComponent {
 	displayedColumns = [
 	'Acciones',
 	'Rut',
-	'Primer Nombre',
-	'Segundo Nombre',
-	'Primer Apellido',
-	'Segundo Apellido',
+	'Nombre',
 	'Telefono de Casa',
 	'Telefono de Trabajo',
 	'Celular',
@@ -99,7 +83,6 @@ export class SecretarypersonComponent {
 		public servicioEstadoCivil: EstadocivilService,
 		public router: Router,
 		public dialog: MatDialog
-
 		)
 	{
 		this.totalPacientes = [];
@@ -122,14 +105,14 @@ export class SecretarypersonComponent {
 
 		let dialogRef = this.dialog.open(AgregarpersonaComponent, {
 			width: '500px',
-  	  data:
-      {
-  		regiones: this.totalRegiones,
-  		provincias: this.totalProvincias,
-  		comunas: this.totalComunas,
-  		ec: this.totalEstadoCiviles,
-  		generos: this.totalGeneros
-	    }
+	  data:
+	  {
+		regiones: this.totalRegiones,
+		provincias: this.totalProvincias,
+		comunas: this.totalComunas,
+		ec: this.totalEstadoCiviles,
+		generos: this.totalGeneros
+		}
 		});
 
 		dialogRef.afterClosed().subscribe(result => {
@@ -171,9 +154,9 @@ export class SecretarypersonComponent {
 
   	let dialogRef = this.dialog.open(SecretaryprevisionComponent, {
   	  width: '1000px',
-    	data:
-      {
-    	 persona: persona
+  		data:
+  	  {
+  		 persona: persona
   	  }
   	});
 
@@ -273,7 +256,7 @@ export class SecretarypersonComponent {
 				.debounceTime(150)
 				.distinctUntilChanged()
 				.subscribe(() => {
-					if (!this.dataSource) { return; }
+					if (!this.dataSource2) { return; }
 					this.dataSource2.filter = this.filter.nativeElement.value;
 				});
 		});

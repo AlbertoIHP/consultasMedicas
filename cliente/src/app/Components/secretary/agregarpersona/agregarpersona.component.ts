@@ -14,6 +14,7 @@ import { Comuna } from '../../../Models/Comuna.model';
 	templateUrl: './agregarpersona.component.html',
 	styleUrls: ['./agregarpersona.component.css']
 })
+
 export class AgregarpersonaComponent{
 	public persona: Persona;
 	public totalPersonas: Persona[];

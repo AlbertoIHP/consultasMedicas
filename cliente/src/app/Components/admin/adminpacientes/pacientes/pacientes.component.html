@@ -1,326 +1,216 @@
 
 
 
-<div class="ui one column grid">
-	<div class="column">
-		<table class="ui compact celled definition table">
-			<thead>
-				<tr>
-					<th>Rut</th>
-					<th>Primer Nombre</th>
-					<th>Segundo Nombre</th>
-					<th>Primer Apellido</th>
-					<th>Segundo Apellido</th>
-					<th>Telefono de Casa</th>
-					<th>Telefono de Trabajo</th>
-					<th>Celular</th>
-					<th>Sexo</th>
-					<th>Estado Civil</th>
-					<th>Comuna</th>
-			<th>Acciones</th>
-				</tr>
-			</thead>
-			<tbody>
-						<tr *ngFor="let paciente of totalPacientes">
-							<td>{{ paciente.rut }}</td>
-							<td>{{ paciente.nombre1 }}</td>
-							<td>{{ paciente.nombre2 }}</td>
-							<td>{{ paciente.apellido1 }}</td>
-							<td>{{ paciente.apellido2 }}</td>
-							<td>{{ paciente.fono_casa }}</td>
-							<td>{{ paciente.fono_trabajo }}</td>
-							<td>{{ paciente.movil }}</td>
-							<td>{{ paciente.Genero_id }}</td>
-							<td>{{ paciente.EstadoCivil_id }}</td>
-							<td>{{ paciente.Comuna_id }}</td>
-							<td>
-								<button *ngIf="paciente.estado === 1" (click)="open('editarPaciente', paciente)" class="ui primary inverted orange button btnTabla">Editar</button>
-								<button *ngIf="paciente.estado === 1" (click)="previsionPaciente(paciente)" class="ui primary inverted orange button btnTabla">Prevision</button>
-								<button *ngIf="paciente.estado === 0" (click)="activarPaciente(paciente)" class="ui primary inverted blue button btnTabla">Activar</button>
-								<button *ngIf="paciente.estado === 1" (click)="desactivarPaciente(paciente)" class="ui primary inverted orange button btnTabla">Desactivar</button>
-								<button *ngIf="paciente.estado === 1" (click)="eliminarPaciente(paciente)" class="ui primary inverted red button btnTabla">Eliminar</button>
-							</td>
-						</tr>
-			</tbody>
-			<tfoot class="full-width">
-				<tr>
-					<th colspan="12">
-						<div (click)="open('nuevoPaciente')" class="ui right floated small primary labeled icon button">
-							<i class="user icon"></i> Agregar Paciente
-						</div>
-					</th>
-				</tr>
-			</tfoot>
-		</table>
-	</div>
+
+
+<div class="row">
+  <div class="col s1" >
+  <input (click)="cambiarBusqueda()" type="checkbox" id="test5" />
+  <label for="test5" class="selectRaro"></label>
+
+  </div>
+  <div class="col s11">
+  <label for="miinput">Busqueda por Rut</label>
+  <input matInput #filter style="width: 100% !important;" id="miinput">
+  </div>
 </div>
 
-<div *ngIf="mostrarPrevision" class="ui one column grid">
-	<div class="column">
-		<app-secretaryprevision></app-secretaryprevision>
-	</div>
+
+
+
+
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table #table *ngIf="!buscarPorRut" [dataSource]="dataSource">
+
+    <ng-container matColumnDef="Acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+
+      <mat-cell *matCellDef="let row" >
+
+
+
+              <button *ngIf="row.estado === 1" mat-icon-button (click) = "editarPersona(row)" >
+                <mat-icon>create</mat-icon>
+              </button>
+
+              <button *ngIf="row.estado === 0" (click)="activarPaciente(row)" mat-icon-button  >
+                <mat-icon>arrow_upward</mat-icon>
+              </button>
+
+              <button *ngIf="row.estado === 1" (click)="desactivarPaciente(row)" mat-icon-button >
+                <mat-icon>do_not_disturb</mat-icon>
+              </button>
+
+              <button *ngIf="row.estado === 1" mat-icon-button (click) = "previsionPersona(row)" >
+                <mat-icon>credit_card</mat-icon>
+              </button>
+
+
+              <button *ngIf="row.estado === 1" mat-icon-button (click)="eliminarPaciente(row)"  >
+                <mat-icon>delete</mat-icon>
+              </button>
+
+
+      </mat-cell>
+
+
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Rut">
+      <mat-header-cell *matHeaderCellDef> Rut </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Nombre">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.nombre1}} {{row.nombre2}} {{row.apellido1}} {{row.apellido2}}</mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="Telefono de Casa">
+      <mat-header-cell *matHeaderCellDef> Telefono</mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.fono_casa}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="Telefono de Trabajo">
+      <mat-header-cell *matHeaderCellDef> Telefono Trabajo </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.fono_trabajo}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="Celular">
+      <mat-header-cell *matHeaderCellDef> Celular </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.movil}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="Sexo">
+      <mat-header-cell *matHeaderCellDef> Genero </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.Genero_id}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="Estado Civil">
+      <mat-header-cell *matHeaderCellDef> Estado Civil </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.EstadoCivil_id}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="Comuna">
+      <mat-header-cell *matHeaderCellDef> Comuna </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.Comuna_id}} </mat-cell>
+    </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+
+ <mat-table #table *ngIf="buscarPorRut" [dataSource]="dataSource2">
+
+    <ng-container matColumnDef="Acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+
+              <button *ngIf="row.estado === 1" mat-icon-button (click) = "editarPersona(row)" >
+                <mat-icon>create</mat-icon>
+              </button>
+
+              <button *ngIf="row.estado === 0" (click)="activarPaciente(row)" mat-icon-button  >
+                <mat-icon>arrow_upward</mat-icon>
+              </button>
+
+              <button *ngIf="row.estado === 1" (click)="desactivarPaciente(row)" mat-icon-button >
+                <mat-icon>do_not_disturb</mat-icon>
+              </button>
+
+              <button *ngIf="row.estado === 1" mat-icon-button (click) = "previsionPersona(row)" >
+                <mat-icon>credit_card</mat-icon>
+              </button>
+
+
+              <button *ngIf="row.estado === 1" mat-icon-button (click)="eliminarPaciente(row)"  >
+                <mat-icon>delete</mat-icon>
+              </button>
+
+       </mat-cell>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Rut">
+      <mat-header-cell *matHeaderCellDef> Rut </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
+    </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Nombre">
+    <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.nombre1}} {{row.nombre2}} {{row.apellido1}} {{row.apellido2}}</mat-cell>
+  </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="Telefono de Casa">
+      <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.fono_casa}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="Telefono de Trabajo">
+      <mat-header-cell *matHeaderCellDef> Telefono Trabajo </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.fono_trabajo}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="Celular">
+      <mat-header-cell *matHeaderCellDef> Celular </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.movil}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="Sexo">
+      <mat-header-cell *matHeaderCellDef> Genero </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.Genero_id}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="Estado Civil">
+      <mat-header-cell *matHeaderCellDef> Estado Civil </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.EstadoCivil_id}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="Comuna">
+      <mat-header-cell *matHeaderCellDef> Comuna </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.Comuna_id}} </mat-cell>
+    </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+
+
+  <mat-paginator #paginator
+                [length]="totalPacientes.length"
+                [pageIndex]="0"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
 </div>
 
-	<ng-template let-context let-modal="modal" #modalTemplate>
-
-			<div *ngIf="context.data === 'nuevoPaciente'" class="header">Formulario de Nuevo Paciente</div>
-			<div *ngIf="context.data === 'editarPaciente'" class="header">Formulario de Edicion: Paciente {{pacienteEditar.nombre1}} {{pacienteEditar.apellido1}}</div>
-
-
-			<div class="content" >
-			 <div *ngIf="context.data === 'nuevoPaciente'" class="ui one column grid">
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="nuevoPaciente.rut" type="text" placeholder="Rut">
-								</div>
-							</div>
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="nuevoPaciente.nombre1" type="text" placeholder="Primer Nombre">
-								</div>
-							</div>
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="nuevoPaciente.nombre2" type="text" placeholder="Segundo Nombre">
-								</div>
-							</div>
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="nuevoPaciente.apellido1" type="text" placeholder="Primer Apellido">
-								</div>
-							</div>
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="nuevoPaciente.apellido2" type="text" placeholder="Segundo Apellido">
-								</div>
-							</div>
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="nuevoPaciente.fono_casa" type="text" placeholder="Telefono de Casa">
-								</div>
-							</div>
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="nuevoPaciente.fono_trabajo" type="text" placeholder="Telefono de Trabajo">
-								</div>
-							</div>
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="nuevoPaciente.movil" type="text" placeholder="Celular">
-								</div>
-							</div>
-
-							<div class="column">
-								<sui-select class="selection inputModal"
-														[isSearchable]="true"
-									placeholder="Sexo">
-										<sui-select-option
-										*ngFor="let o of totalGeneros"
-										[value]="o.nombre"
-										(click)="generoSeleccionado(o)"></sui-select-option>
-								</sui-select>
-							</div>
-
-							<div class="column">
-								<sui-select class="selection inputModal"
-														[isSearchable]="true"
-											 placeholder="Estado Civil">
-										<sui-select-option
-										*ngFor="let o of totalEstadoCiviles"
-										[value]="o.nombre"
-										(click)="estadoCivilSeleccionado(o)"></sui-select-option>
-								</sui-select>
-							</div>
-
-							<div class="column">
-								<sui-select class="selection inputModal"
-														[(ngModel)]="regionActual"
-														[isSearchable]="true"
-														*ngIf="mostrarRegiones"
-									placeholder="Region">
-
-										<sui-select-option
-										*ngFor="let o of totalRegiones"
-										[value]="o.nombre"
-										(click)="regionSeleccionada(o)">
-										</sui-select-option>
-
-								</sui-select>
-
-								<sui-select class="selection inputModal"
-														[(ngModel)]="provinciaActual"
-														[isSearchable]="true"
-														*ngIf="mostrarProvincias"
-									placeholder="Provincia">
-
-										<sui-select-option
-										*ngFor="let o of totalProvincias"
-										[value]="o.nombre"
-										(click)="provinciaSeleccionada(o)">
-										</sui-select-option>
-
-								</sui-select>
-
-								<sui-select class="selection inputModal"
-														[isSearchable]="true"
-														*ngIf="mostrarComunas"
-									placeholder="Comuna">
-
-										<sui-select-option
-										*ngFor="let o of totalComunas"
-										[value]="o.nombre"
-										(click)="comunaSeleccionada(o)">
-										</sui-select-option>
-
-								</sui-select>
-
-
-
-							</div>
-
-						 </div>
-
-
-				<div *ngIf="context.data === 'editarPaciente'" class="ui one column grid">
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="pacienteEditar.rut" type="text" placeholder="Rut">
-								</div>
-							</div>
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="pacienteEditar.nombre1" type="text" placeholder="Primer Nombre">
-								</div>
-							</div>
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="pacienteEditar.nombre2" type="text" placeholder="Segundo Nombre">
-								</div>
-							</div>
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="pacienteEditar.apellido1" type="text" placeholder="Primer Apellido">
-								</div>
-							</div>
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="pacienteEditar.apellido2" type="text" placeholder="Segundo Apellido">
-								</div>
-							</div>
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="pacienteEditar.fono_casa" type="text" placeholder="Telefono de Casa">
-								</div>
-							</div>
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="pacienteEditar.fono_trabajo" type="text" placeholder="Telefono de Trabajo">
-								</div>
-							</div>
-
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="pacienteEditar.movil" type="text" placeholder="Celular">
-								</div>
-							</div>
-
-							<div class="column">
-								<sui-select class="selection inputModal"
-														[isSearchable]="true"
-									placeholder="{{pacienteEditar.Genero_id}}">
-										<sui-select-option
-										*ngFor="let o of totalGeneros"
-										[value]="o.nombre"
-										(click)="generoSeleccionado(o)"></sui-select-option>
-								</sui-select>
-							</div>
-
-							<div class="column">
-								<sui-select class="selection inputModal"
-														[isSearchable]="true"
-											 placeholder="{{pacienteEditar.EstadoCivil_id}}">
-										<sui-select-option
-										*ngFor="let o of totalEstadoCiviles"
-										[value]="o.nombre"
-										(click)="estadoCivilSeleccionado(o)"></sui-select-option>
-								</sui-select>
-							</div>
-
-							<div class="column">
-								<sui-select class="selection inputModal"
-														[(ngModel)]="regionActual"
-														[isSearchable]="true"
-														*ngIf="mostrarRegiones"
-									placeholder="Region">
-
-										<sui-select-option
-										*ngFor="let o of totalRegiones"
-										[value]="o.nombre"
-										(click)="regionSeleccionada(o)">
-										</sui-select-option>
-
-								</sui-select>
-
-								<sui-select class="selection inputModal"
-														[(ngModel)]="provinciaActual"
-														[isSearchable]="true"
-														*ngIf="mostrarProvincias"
-									placeholder="Provincia">
-
-										<sui-select-option
-										*ngFor="let o of totalProvincias"
-										[value]="o.nombre"
-										(click)="provinciaSeleccionada(o)">
-										</sui-select-option>
-
-								</sui-select>
-
-								<sui-select class="selection inputModal"
-														[isSearchable]="true"
-														*ngIf="mostrarComunas"
-									placeholder="Comuna">
-
-										<sui-select-option
-										*ngFor="let o of totalComunas"
-										[value]="o.nombre"
-										(click)="comunaSeleccionada(o)">
-										</sui-select-option>
-
-								</sui-select>
-
-
-
-							</div>
-				</div>
-
-
-
-			</div>
-
-
-
-
-			<div class="actions">
-					<button class="ui red button" (click)="modal.deny('denied')">Cancelar</button>
-					<button class="ui blue button"  (click)="modal.approve('approved')">Aceptar</button>
-
-			</div>
-
-	</ng-template>
-
-
+ <div class="fixed-action-btn">
+    <a class="btn-floating btn-large blue" (click)="crearPersona()">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>

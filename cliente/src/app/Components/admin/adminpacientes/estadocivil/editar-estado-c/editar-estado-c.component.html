@@ -1,0 +1,22 @@
+<h1 mat-dialog-title style="text-align: center;">Edicion de Estado Civil</h1>
+
+<div mat-dialog-content>
+
+  <p>Nombre</p>
+
+  <input matInput tabindex="1" [(ngModel)]="EC.nombre">
+
+
+  <p>Descripcion</p>
+
+  <input matInput tabindex="1" [(ngModel)]="EC.descripcion">
+
+
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="editarEC()" tabindex="2">Editar Estado Civil</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>
