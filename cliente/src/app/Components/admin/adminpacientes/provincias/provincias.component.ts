@@ -34,21 +34,21 @@ export class ProvinciasComponent {
 public totalRegiones: Region[];
 	public totalProvincias: Provincia[];
 
-  //DATATABLE
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild('filter') filter: ElementRef;
-  public sourceDatatable: dataTable | null;
-  public sourcePorNombre: buscadorPorNombre | null;
-  public bdEstructura;
-  public buscarPorNombre: boolean;
-  displayedColumns = ['Acciones', 'Nombre', 'Region'];
+	//DATATABLE
+	@ViewChild(MatPaginator) paginator: MatPaginator;
+	@ViewChild('filter') filter: ElementRef;
+	public sourceDatatable: dataTable | null;
+	public sourcePorNombre: buscadorPorNombre | null;
+	public bdEstructura;
+	public buscarPorNombre: boolean;
+	displayedColumns = ['Acciones', 'Nombre', 'Region'];
 
 
 	constructor (public servicioRegion: RegionService, public servicioProvincia: ProvinciaService, public dialog: MatDialog)
 	{
-    this.buscarPorNombre = false;
-    this.totalRegiones = [];
-    this.totalProvincias = [];
+		this.buscarPorNombre = false;
+		this.totalRegiones = [];
+		this.totalProvincias = [];
 		this.actualizarRegiones();
 		this.actualizarProvincias();
 	}
@@ -73,16 +73,16 @@ public totalRegiones: Region[];
 			this.totalProvincias = todo;
 			this.reemplazarIdPorString();
 
-      this.bdEstructura = new ExampleDatabase(this.totalProvincias );
-      this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
-      this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura);
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.sourcePorNombre) { return; }
-            this.sourcePorNombre.filter = this.filter.nativeElement.value;
-          });
+			this.bdEstructura = new ExampleDatabase(this.totalProvincias );
+			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
+			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura);
+			Observable.fromEvent(this.filter.nativeElement, 'keyup')
+					.debounceTime(150)
+					.distinctUntilChanged()
+					.subscribe(() => {
+						if (!this.sourcePorNombre) { return; }
+						this.sourcePorNombre.filter = this.filter.nativeElement.value;
+					});
 
 		});
 	}
@@ -131,43 +131,46 @@ public totalRegiones: Region[];
 
 	}
 
-  cambiarBusqueda()
-  {
-    this.buscarPorNombre = !this.buscarPorNombre;
-  }
+	cambiarBusqueda()
+	{
+		this.buscarPorNombre = !this.buscarPorNombre;
+	}
 
 
-  edicionProvincia (provincia)
-  {
-    this.pasarStringId(provincia);
+	edicionProvincia (provincia)
+	{
 
-    let dialogRef = this.dialog.open(EditarprovinciaComponent, {
-      width: '1000px',
-      data:
-      {
-       provincia: provincia,
-       regiones: this.totalRegiones
-      }
-    });
+     var a = JSON.parse( JSON.stringify(provincia) );
 
-    dialogRef.afterClosed().subscribe(result => {
+    this.pasarStringId(a);
 
-      this.actualizarProvincias();
-    });
-  }
+		let dialogRef = this.dialog.open(EditarprovinciaComponent, {
+			width: '1000px',
+			data:
+			{
+			 provincia: a,
+			 regiones: this.totalRegiones
+			}
+		});
 
-  agregacionProvincia()
-  {
-    let dialogRef = this.dialog.open(AgregarprovinciaComponent, {
-      width: '1000px',
-      data : { regiones: this.totalRegiones }
-    });
+		dialogRef.afterClosed().subscribe(result => {
 
-    dialogRef.afterClosed().subscribe(result => {
+			this.actualizarProvincias();
+		});
+	}
 
-      this.actualizarProvincias();
-    });
-  }
+	agregacionProvincia()
+	{
+		let dialogRef = this.dialog.open(AgregarprovinciaComponent, {
+			width: '1000px',
+			data : { regiones: this.totalRegiones }
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
+			this.actualizarProvincias();
+		});
+	}
 
 
 
@@ -176,22 +179,22 @@ public totalRegiones: Region[];
 
 
 export class ExampleDatabase {
-  /** Stream that emits whenever the data has been modified. */
-  dataChange: BehaviorSubject<UserData[]> = new BehaviorSubject<UserData[]>([]);
-  get data(): UserData[] { return this.dataChange.value; }
+	/** Stream that emits whenever the data has been modified. */
+	dataChange: BehaviorSubject<UserData[]> = new BehaviorSubject<UserData[]>([]);
+	get data(): UserData[] { return this.dataChange.value; }
 
-  constructor(ec)
-  {
-    // Fill up the database with 100 users.
-    for (let i = 0; i < ec.length; i++) { this.addUser(ec[i]); }
-  }
+	constructor(ec)
+	{
+		// Fill up the database with 100 users.
+		for (let i = 0; i < ec.length; i++) { this.addUser(ec[i]); }
+	}
 
-  /** Adds a new user to the database. */
-  addUser(ec) {
-    const copiedData = this.data.slice();
-    copiedData.push(ec);
-    this.dataChange.next(copiedData);
-  }
+	/** Adds a new user to the database. */
+	addUser(ec) {
+		const copiedData = this.data.slice();
+		copiedData.push(ec);
+		this.dataChange.next(copiedData);
+	}
 
 
 
@@ -199,63 +202,63 @@ export class ExampleDatabase {
 
 
 export class dataTable extends DataSource<any> {
-  _filterChange = new BehaviorSubject('');
-  get filter(): string { return this._filterChange.value; }
-  set filter(filter: string) { this._filterChange.next(filter); }
+	_filterChange = new BehaviorSubject('');
+	get filter(): string { return this._filterChange.value; }
+	set filter(filter: string) { this._filterChange.next(filter); }
 
-  constructor(private _exampleDatabase: ExampleDatabase, private _paginator: MatPaginator) {
-    super();
-  }
+	constructor(private _exampleDatabase: ExampleDatabase, private _paginator: MatPaginator) {
+		super();
+	}
 
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<UserData[]> {
+	/** Connect function called by the table to retrieve one stream containing the data to render. */
+	connect(): Observable<UserData[]> {
 
-    const displayDataChanges = [
-      this._exampleDatabase.dataChange,
-      this._paginator.page,
-      this._filterChange,
-    ];
+		const displayDataChanges = [
+			this._exampleDatabase.dataChange,
+			this._paginator.page,
+			this._filterChange,
+		];
 
-    return Observable.merge(...displayDataChanges).map(() => {
+		return Observable.merge(...displayDataChanges).map(() => {
 
-      const data = this._exampleDatabase.data.slice();
-      const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+			const data = this._exampleDatabase.data.slice();
+			const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
 
 
-      return data.splice(startIndex, this._paginator.pageSize);
+			return data.splice(startIndex, this._paginator.pageSize);
 
-    });
-  }
+		});
+	}
 
-  disconnect() {}
+	disconnect() {}
 }
 
 
 
 export class buscadorPorNombre extends DataSource<any> {
-  _filterChange = new BehaviorSubject('');
-  get filter(): string { return this._filterChange.value; }
-  set filter(filter: string) { this._filterChange.next(filter); }
+	_filterChange = new BehaviorSubject('');
+	get filter(): string { return this._filterChange.value; }
+	set filter(filter: string) { this._filterChange.next(filter); }
 
-  constructor(private _exampleDatabase: ExampleDatabase) {
-    super();
-  }
+	constructor(private _exampleDatabase: ExampleDatabase) {
+		super();
+	}
 
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<UserData[]> {
-    const displayDataChanges = [
-      this._exampleDatabase.dataChange,
-      this._filterChange,
-    ];
+	/** Connect function called by the table to retrieve one stream containing the data to render. */
+	connect(): Observable<UserData[]> {
+		const displayDataChanges = [
+			this._exampleDatabase.dataChange,
+			this._filterChange,
+		];
 
-    return Observable.merge(...displayDataChanges).map(() => {
-      return this._exampleDatabase.data.slice().filter((item: UserData) => {
-        let searchStr = (item.nombre ).toLowerCase();
-        return searchStr.indexOf(this.filter.toLowerCase()) != -1;
-      });
-    });
-  }
+		return Observable.merge(...displayDataChanges).map(() => {
+			return this._exampleDatabase.data.slice().filter((item: UserData) => {
+				let searchStr = (item.nombre ).toLowerCase();
+				return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+			});
+		});
+	}
 
-  disconnect() {}
+	disconnect() {}
 }
 

@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 
 import { EstadoCivil } from '../../../../Models/EstadoCivil.model';
 import { EstadocivilService } from '../../../../Services/estadocivil/estadocivil.service';
+
 import { EditarEstadoCComponent } from './editar-estado-c/editar-estado-c.component';
 import { AgregarEstadoCComponent } from './agregar-estado-c/agregar-estado-c.component';
 

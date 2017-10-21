@@ -1,89 +1,119 @@
-<div class="ui one column grid">
-  <div class="column">
-    <table class="ui compact celled definition table">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Descripcion</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-            <tr *ngFor="let prevision of totalPrevisiones">
-              <td>{{ prevision.nombre }}</td>
-              <td>{{ prevision.descripcion }}</td>
-              <td>
-                <button (click)="open('editarPrevision' , prevision)" class="ui primary inverted orange button btnTabla">Editar</button>
+<div class="row">
+  <div class="col s1" >
+  <input (click)="cambiarBusqueda()" type="checkbox" id="test5" />
+  <label for="test5" class="selectRaro"></label>
 
-                <button (click)="eliminarPrevision(prevision)" class="ui primary inverted red button btnTabla">Eliminar</button>
-              </td>
-            </tr>
-      </tbody>
-      <tfoot class="full-width">
-        <tr>
-          <th colspan="3">
-            <div (click)="open('nuevaPrevision')" class="ui right floated small primary labeled icon button">
-              <i class="add icon"></i> Agregar Prevision
-            </div>
-          </th>
-        </tr>
-      </tfoot>
-    </table>
+  </div>
+  <div class="col s11">
+  <label for="miinput">Busqueda por Nombre</label>
+  <input matInput #filter style="width: 100% !important;" id="miinput">
   </div>
 </div>
 
 
-  <ng-template let-context let-modal="modal" #modalTemplate>
+<div class="example-container mat-elevation-z8">
 
-      <div *ngIf="context.data === 'nuevaPrevision'" class="header">Formulario de Nueva Prevision</div>
-      <div *ngIf="context.data === 'editarPrevision'" class="header">Formulario de Edicion: Prevision {{editarPrevision.nombre}}</div>
+  <mat-table #table *ngIf="!buscarPorNombre" [dataSource]="sourceDatatable">
 
+    <ng-container matColumnDef="Acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
 
-      <div class="content" >
-       <div *ngIf="context.data === 'nuevaPrevision'" class="ui one column grid">
-
-              <div class="column">
-                <div class="ui input focus inputModal">
-                  <input [(ngModel)]="nuevaPrevision.nombre" type="text" placeholder="Ingrese un nombre">
-                </div>
-              </div>
-
-              <div class="column">
-                <div class="ui input focus inputModal">
-                  <input [(ngModel)]="nuevaPrevision.descripcion" type="text" placeholder="Describa esta nueva prevision">
-                </div>
-              </div>
-
-             </div>
+      <mat-cell *matCellDef="let row" >
 
 
-        <div *ngIf="context.data === 'editarPrevision'" class="ui one column grid">
-
-              <div class="column">
-                <div class="ui input focus inputModal">
-                  <input [(ngModel)]="editarPrevision.nombre" type="text" placeholder="Ingrese un nombre">
-                </div>
-              </div>
-
-              <div class="column">
-                <div class="ui input focus inputModal">
-                  <input [(ngModel)]="editarPrevision.descripcion" type="text" placeholder="Describa la descripcion">
-                </div>
-              </div>
-
-        </div>
+              <button  mat-icon-button (click) = "edicionPrevision(row)" >
+                <mat-icon>create</mat-icon>
+              </button>
 
 
+              <button  mat-icon-button (click) = "eliminarPrevision(row)" >
+                <mat-icon>delete</mat-icon>
+              </button>
 
-      </div>
+      </mat-cell>
+
+
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Nombre">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Descripcion">
+      <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.descripcion}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Isapre">
+      <mat-header-cell *matHeaderCellDef> Isapre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.isapre}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+
+ <mat-table #table *ngIf="buscarPorNombre" [dataSource]="sourcePorNombre">
+
+    <ng-container matColumnDef="Acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+
+              <button  mat-icon-button (click) = "edicionPrevision(row)" >
+                <mat-icon>create</mat-icon>
+              </button>
+
+
+              <button  mat-icon-button (click) = "eliminarPrevision(row)" >
+                <mat-icon>delete</mat-icon>
+              </button>
+
+       </mat-cell>
+    </ng-container>
+
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Nombre">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Descripcion">
+      <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.descripcion}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Isapre">
+      <mat-header-cell *matHeaderCellDef> Isapre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.isapre}} </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 
 
 
 
-      <div class="actions">
-          <button class="ui red button" (click)="modal.deny('denied')">Cancelar</button>
-          <button class="ui blue button"  (click)="modal.approve('approved')">Aceptar</button>
+  <mat-paginator #paginator
+                [length]="totalPrevisiones.length"
+                [pageIndex]="0"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>
 
-      </div>
-
-  </ng-template>
+ <div class="fixed-action-btn">
+    <a class="btn-floating btn-large blue" (click)="agregacionPrevision()">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>

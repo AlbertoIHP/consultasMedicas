@@ -129,11 +129,14 @@ export class SecretarypersonComponent {
 
   editarPersona (persona)
   {
-	this.pasarStringId(persona);
+    var a = JSON.parse( JSON.stringify(persona) );
+
+	  this.pasarStringId(a);
+
 	let dialogRef = this.dialog.open(EditarpersonaComponent, {
 	  width: '500px',
 	data: {
-	persona: persona,
+	persona: a,
 	regiones: this.totalRegiones,
 	provincias: this.totalProvincias,
 	comunas: this.totalComunas,
@@ -150,20 +153,20 @@ export class SecretarypersonComponent {
 
   previsionPersona (persona)
   {
-  	this.pasarStringId(persona);
+	this.pasarStringId(persona);
 
-  	let dialogRef = this.dialog.open(SecretaryprevisionComponent, {
-  	  width: '1000px',
-  		data:
-  	  {
-  		 persona: persona
-  	  }
-  	});
+	let dialogRef = this.dialog.open(SecretaryprevisionComponent, {
+	  width: '1000px',
+		data:
+	  {
+		 persona: persona
+	  }
+	});
 
-  	dialogRef.afterClosed().subscribe(result => {
+	dialogRef.afterClosed().subscribe(result => {
 
-  	  this.actualizarPersonas();
-  	});
+	  this.actualizarPersonas();
+	});
   }
 
 
