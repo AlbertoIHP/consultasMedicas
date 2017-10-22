@@ -18,7 +18,9 @@ export class AgregarusuarioComponent implements OnInit{
 	public servicioPersona: any;
 	public servicioRole: any;
   public isPersona: boolean;
-
+  public persona: any;
+  public rolePersona: any;
+  public tienePersona: any;
 
 
 
@@ -27,8 +29,11 @@ export class AgregarusuarioComponent implements OnInit{
 		@Inject(MAT_DIALOG_DATA) public data: any
 		)
 	{
-
-
+    this.tienePersona = false;
+    this.personasDisponibles = this.totalPersonas;
+    this.servicioPersona = data.servicioPersona;
+    this.servicioUsuario = data.servicioUsuario;
+    this.servicioRole = data.servicioRole;
 
 		this.usuario = data.usuario;
 		this.totalRoles = data.roles;
@@ -37,17 +42,12 @@ export class AgregarusuarioComponent implements OnInit{
 	if(data.persona)
 	{
 	   this.usuario.Persona_id = data.persona.id;
-	   this.isPersona = true;
-	}
-	else
-	{
-	  this.isPersona = false;
+     this.persona = data.persona;
+     this.tienePersona = true;
 	}
 
-		this.personasDisponibles = this.totalPersonas;
-		this.servicioPersona = data.servicioPersona;
-		this.servicioUsuario = data.servicioUsuario;
-		this.servicioRole = data.servicioRole;
+
+
 
 	}
 
@@ -87,6 +87,23 @@ export class AgregarusuarioComponent implements OnInit{
 	  todo = todo.data;
 	  this.totalUsuarios = todo;
 	  this.filtrarUsuariosRegistrados();
+
+    if(this.tienePersona)
+    {
+      this.isPersona = false;
+     for( let i = 0 ; i < this.totalUsuarios.length ; i ++)
+     {
+      if( parseInt(this.totalUsuarios[i].Persona_id) === this.persona.id)
+      {
+        this.usuario = this.totalUsuarios[i];
+        this.servicioRole.getRole(this.usuario.Role_id).subscribe(data => { var todo: any = data; todo = todo.data; this.rolePersona = todo.nombre});
+        this.isPersona = true;
+
+        break;
+      }
+     }
+    }
+
 	});
   }
 
