@@ -218,7 +218,7 @@ export class SecretaryprevisionComponent {
 
 	for( let j = 0 ; j < this.totalPrevision.length ; j ++)
 	{
-		if(this.totalPrevision[j].isapre === "1")
+		if(parseInt(this.totalPrevision[j].isapre) === 1)
 		{
 		this.totalPrevision[j].isapre = "Isapre";
 		}

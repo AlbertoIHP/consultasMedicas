@@ -15,7 +15,7 @@ export class PacienteService {
 	public options: RequestOptions;
 	public headers: Headers;
 
-  	constructor(private http: Http, private authenticationService: AuthenticationService)
+	constructor(private http: Http, private authenticationService: AuthenticationService)
 	{
 		this.headers = new Headers(
 		{
@@ -35,7 +35,7 @@ export class PacienteService {
 	//Post nuevo paciente
 	registerPaciente(paciente: Paciente)
 	{
-		return this.http.post(this.base+'paciente', JSON.stringify(paciente), this.options).map((res: Response) => res.json());
+		return this.http.post(this.base+'pacientes', JSON.stringify(paciente), this.options).map((res: Response) => res.json());
 	}
 
 	//GET paciente particular

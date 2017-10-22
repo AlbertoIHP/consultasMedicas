@@ -126,11 +126,11 @@ export class SecretarypersonComponent implements OnInit{
 		});
 
 		dialogRef.afterClosed().subscribe(result => {
-      this.actualizarGeneros();
-      this.actualizarRegiones();
-      this.actualizarComunas();
-      this.actualizarProvincias();
-      this.actualizarEstadoCiviles();
+	  this.actualizarGeneros();
+	  this.actualizarRegiones();
+	  this.actualizarComunas();
+	  this.actualizarProvincias();
+	  this.actualizarEstadoCiviles();
 			this.actualizarPersonas();
 		});
 	}
@@ -165,24 +165,25 @@ export class SecretarypersonComponent implements OnInit{
 	});
 
 	dialogRef.afterClosed().subscribe(result => {
-      this.actualizarGeneros();
-      this.actualizarRegiones();
-      this.actualizarComunas();
-      this.actualizarProvincias();
-      this.actualizarEstadoCiviles();
-	    this.actualizarPersonas();
+	  this.actualizarGeneros();
+	  this.actualizarRegiones();
+	  this.actualizarComunas();
+	  this.actualizarProvincias();
+	  this.actualizarEstadoCiviles();
+		this.actualizarPersonas();
 	});
   }
 
   previsionPersona (persona)
   {
-	this.pasarStringId(persona);
+    var a = JSON.parse(JSON.stringify(persona));
+	  this.pasarStringId(a);
 
 	let dialogRef = this.dialog.open(SecretaryprevisionComponent, {
 	  width: '1000px',
 		data:
 	  {
-		 persona: persona
+		 persona: a
 	  }
 	});
 
