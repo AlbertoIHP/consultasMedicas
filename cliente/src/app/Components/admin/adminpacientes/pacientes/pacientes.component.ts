@@ -19,6 +19,11 @@ import { ProvinciaService } from '../../../../Services/provincia/provincia.servi
 import { Comuna } from '../../../../Models/Comuna.model';
 import { ComunaService } from '../../../../Services/comuna/comuna.service';
 
+import { Usuario } from '../../../../Models/Usuario.model';
+import { UserService } from '../../../../Services/user/user.service';
+import { RoleService } from '../../../../Services/role/role.service';
+
+
 import { AgregarpersonaComponent } from '../../../secretary/agregarpersona/agregarpersona.component';
 import { EditarpersonaComponent } from '../../../secretary/editarpersona/editarpersona.component';
 import { SecretaryprevisionComponent } from '../../../secretary/secretaryprevision/secretaryprevision.component';
@@ -36,7 +41,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-
+import { AgregarusuarioComponent } from '../usuarios/agregarusuario/agregarusuario.component';
 
 
 @Component({
@@ -56,7 +61,9 @@ export class PacientesComponent extends SecretarypersonComponent {
 		public servicioGenero: GeneroService,
 		public servicioEstadoCivil: EstadocivilService,
 		public router: Router,
-		public dialog: MatDialog
+		public dialog: MatDialog,
+	public servicioUsuario: UserService,
+	public servicioRole: RoleService
 		)
 	{
 		super(servicioPersona, servicioRegion, servicioProvincia, servicioComuna, servicioGenero, servicioEstadoCivil, router, dialog);
@@ -77,16 +84,7 @@ export class PacientesComponent extends SecretarypersonComponent {
 		});
 	}
 
-	desactivarPaciente (paciente)
-	{
-		paciente.estado = 0;
-		this.pasarStringId(paciente);
-		this.servicioPersona.editPersona(paciente, paciente.id).subscribe(data => {
-			console.log(data);
-			this.actualizarPersonas();
-		});
 
-	}
 
 	activarPaciente (paciente)
 	{
@@ -100,7 +98,30 @@ export class PacientesComponent extends SecretarypersonComponent {
 
 
 
+  agregarUsuario(persona)
+  {
+    var a: any = JSON.parse(JSON.stringify(persona));
+	 this.pasarStringId(a);
 
+	let dialogRef = this.dialog.open(AgregarusuarioComponent, {
+	  width: '1000px',
+	  data:
+	  {
+	   persona: a,
+	   servicioPersona: this.servicioPersona,
+	   servicioUsuario: this.servicioUsuario,
+	   servicioRole: this.servicioRole,
+	   usuario: new Usuario()
+
+
+	  }
+	});
+
+	dialogRef.afterClosed().subscribe(result => {
+
+	  this.actualizarPersonas();
+	});
+  }
 
 
 

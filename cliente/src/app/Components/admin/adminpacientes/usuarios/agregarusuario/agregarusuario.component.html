@@ -20,8 +20,8 @@
 	</mat-form-field>
 
 
-	<p>Persona Asociada</p>
-	<mat-form-field style="width: 100% !important;">
+	<p *ngIf="!isPersona">Persona Asociada</p>
+	<mat-form-field style="width: 100% !important;" *ngIf="!isPersona">
 		<mat-select placeholder="Seleccione una Persona para asociar al usuario" style="width: 100% !important;">
 			<mat-option style="width: 100% !important;" *ngFor="let persona of personasDisponibles" [value]="persona.id" (click)="personaSeleccionada(persona)">
 			 ( {{ persona.rut }} ) {{persona.nombre1 }} {{persona.apellido1}}

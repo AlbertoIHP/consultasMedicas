@@ -17,8 +17,7 @@ export class AgregarusuarioComponent implements OnInit{
 	public servicioUsuario: any;
 	public servicioPersona: any;
 	public servicioRole: any;
-
-
+  public isPersona: boolean;
 
 
 
@@ -30,29 +29,38 @@ export class AgregarusuarioComponent implements OnInit{
 	{
 
 
+
 		this.usuario = data.usuario;
 		this.totalRoles = data.roles;
 		this.totalPersonas = data.personas;
 		this.totalUsuarios = data.usuarios;
+	if(data.persona)
+	{
+	   this.usuario.Persona_id = data.persona.id;
+	   this.isPersona = true;
+	}
+	else
+	{
+	  this.isPersona = false;
+	}
 
 		this.personasDisponibles = this.totalPersonas;
 		this.servicioPersona = data.servicioPersona;
 		this.servicioUsuario = data.servicioUsuario;
 		this.servicioRole = data.servicioRole;
-		this.filtrarUsuariosRegistrados();
 
 	}
 
   ngOnInit()
   {
-    this.servicioRole.getRoles().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalRoles = todo;
+	this.servicioRole.getRoles().subscribe(data => {
+	  var todo: any = data;
+	  todo = todo.data;
+	  this.totalRoles = todo;
 
-    });
+	});
 
-      this.actualizarPersonas();
+	  this.actualizarPersonas();
   }
 
 	onNoClick()
@@ -96,10 +104,16 @@ export class AgregarusuarioComponent implements OnInit{
 	agregarUsuario()
 	{
 		this.servicioUsuario.registerUser(this.usuario).subscribe(data => {
-			console.log(data);
 			this.dialogRef.close();
 
-		});
+		},
+      //Verificamos si es que se ha catcheado algun error y desplegamos alguna alerta
+      (err) => {
+      if (err === 'Used') {
+        alert("Esta persona ya tiene asignado un usuario")
+      }
+
+    });
 	}
 
 
