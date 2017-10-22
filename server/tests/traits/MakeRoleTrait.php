@@ -42,7 +42,11 @@ trait MakeRoleTrait
         $fake = Faker::create();
 
         return array_merge([
-            'nombre' => $fake->word
+            'nombre' => $fake->word,
+            'write' => $fake->randomDigitNotNull,
+            'view' => $fake->randomDigitNotNull,
+            'edit' => $fake->randomDigitNotNull,
+            'delete' => $fake->randomDigitNotNull
         ], $roleFields);
     }
 }

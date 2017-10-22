@@ -19,6 +19,30 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="nombre",
  *          description="nombre",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="write",
+ *          description="write",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="view",
+ *          description="view",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="edit",
+ *          description="edit",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="delete",
+ *          description="delete",
+ *          type="integer",
+ *          format="int32"
  *      )
  * )
  */
@@ -36,7 +60,11 @@ class Role extends Model
 
 
 	public $fillable = [
-		'nombre'
+		'nombre',
+		'write',
+		'view',
+		'edit',
+		'delete'
 	];
 
 	/**
@@ -46,7 +74,11 @@ class Role extends Model
 	 */
 	protected $casts = [
 		'id' => 'integer',
-		'nombre' => 'string'
+		'nombre' => 'string',
+		'write' => 'integer',
+		'view' => 'integer',
+		'edit' => 'integer',
+		'delete' => 'integer'
 	];
 
 	/**
@@ -66,5 +98,5 @@ class Role extends Model
 		return $this->hasMany(\App\Models\Usuario::class);
 	}
 
-	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];	
+	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }
