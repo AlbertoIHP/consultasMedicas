@@ -1,6 +1,4 @@
-import { Component, Inject , ViewChild } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
+import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
 
 import { Persona } from '../../../Models/Persona.model';
 import { PersonaService } from '../../../Services/persona/persona.service';
@@ -13,10 +11,20 @@ import { PrevisionactualService } from '../../../Services/previsionactual/previs
 
 
 import {DataSource} from '@angular/cdk/collections';
+import {MatPaginator} from '@angular/material';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-export interface Element extends PrevisionActual{
-}
+
+import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
+
 
 @Component({
 	selector: 'app-secretaryprevision',
@@ -33,32 +41,37 @@ export class SecretaryprevisionComponent {
 	public previsionSeleccionada: any;
 	public descripcionSeleccionada: any;
 
+	//DATATABLE
+	@ViewChild(MatPaginator) paginator: MatPaginator;
+	@ViewChild('filter') filter: ElementRef;
+	public sourceDatatable: dataTable | null;
+	public sourcePorNombre: buscadorPorNombre | null;
+	public bdEstructura;
+	public buscarPorNombre: boolean;
+	displayedColumns = ['Fecha Actualizacion', 'Prevision', 'Estado'];
 
-  //table
-  displayedColumns = ['Fecha Actualizacion', 'Prevision', 'Estado'];
-  previsionesTabla;
+
 
 	constructor(
 		public servicioPrevision: PrevisionService,
 		public servicioPrevisionActual: PrevisionactualService,
 		public servicioPersona: PersonaService,
-
-	public dialogRef: MatDialogRef<SecretaryprevisionComponent>,
-	@Inject(MAT_DIALOG_DATA) public data: any
-
+		public dialog: MatDialog,
+		public dialogRef: MatDialogRef<SecretaryprevisionComponent>,
+		@Inject(MAT_DIALOG_DATA) public data: any,
 
 		)
 	{
 
-
+		this.buscarPorNombre = false;
 		this.totalPrevision = [];
 		this.totalPrevisionActual = [];
 		this.previsionActual = new PrevisionActual();
 		this.nuevaPrevisionActual = new PrevisionActual();
-	this.pacienteActual = data.persona;
-	this.nuevaPrevisionActual.Persona_id = this.pacienteActual.id.toString();
-	this.actualizarPrevision();
-	this.actualizarPrevisionActual();
+		this.pacienteActual = data.persona;
+		this.nuevaPrevisionActual.Persona_id = this.pacienteActual.id.toString();
+		this.actualizarPrevision();
+		this.actualizarPrevisionActual();
 
 
 	}
@@ -109,15 +122,15 @@ export class SecretaryprevisionComponent {
 
 	}
 
-  onNoClick()
-  {
+	onNoClick()
+	{
 	this.dialogRef.close();
-  }
+	}
 
 
-  /**
-  **Este metodo consume todas las previsiones registradas en la API
-  **/
+	/**
+	**Este metodo consume todas las previsiones registradas en la API
+	**/
 	actualizarPrevision ()
 	{
 		this.totalPrevision = [];
@@ -127,12 +140,12 @@ export class SecretaryprevisionComponent {
 
 			this.totalPrevision = todo;
 		});
-  }
+	}
 
 
-  /**
-  ** Este metodo filtra el total de las previsiones a aquellas que solamente son del paciente y luego filtra aquellas activadas y desactivadas
-  **/
+	/**
+	** Este metodo filtra el total de las previsiones a aquellas que solamente son del paciente y luego filtra aquellas activadas y desactivadas
+	**/
 	actualizarPrevisionActual ()
 	{
 		this.totalPrevisionActual = [];
@@ -154,16 +167,21 @@ export class SecretaryprevisionComponent {
 
 		}
 
-	  this.previsionesTabla = new ExampleDataSource(this.totalPrevisionActual);
+			this.bdEstructura = new ExampleDatabase(this.totalPrevisionActual );
+			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
+
+
+
+
 		});
 	}
 
 
 
-  /**
-  ** Este metodo identifica la prevision que esta activa de todas las filtradas arriba
-  ** Luego se cambian las ID por String para desplegarlas en la table
-  **/
+	/**
+	** Este metodo identifica la prevision que esta activa de todas las filtradas arriba
+	** Luego se cambian las ID por String para desplegarlas en la table
+	**/
 
 	identificarPrevisionActiva()
 	{
@@ -180,9 +198,9 @@ export class SecretaryprevisionComponent {
 		this.cambiarIdPorString();
 	}
 
-  /**
-  ** Este metodo cambia los ID por String
-  **/
+	/**
+	** Este metodo cambia los ID por String
+	**/
 
 	cambiarIdPorString ()
 	{
@@ -200,40 +218,22 @@ export class SecretaryprevisionComponent {
 
 	for( let j = 0 ; j < this.totalPrevision.length ; j ++)
 	{
-	  if( parseInt(this.totalPrevision[j].isapre) === 1)
-	  {
+		if(this.totalPrevision[j].isapre === "1")
+		{
 		this.totalPrevision[j].isapre = "Isapre";
-	  }
-	  else
-	  {
+		}
+		else
+		{
 		this.totalPrevision[j].isapre = "No Isapre";
-	  }
+		}
 	}
 
 
 	}
 
-}
+	cambiarBusqueda()
+	{
+		this.buscarPorNombre = !this.buscarPorNombre;
+	}
 
-  /**
-  ** Esta clase permite observar cambios en un arreglo de objetos para desplegarlos en una tabla
-  **
-  **/
-
-export class ExampleDataSource extends DataSource<any> {
-  public data;
-
-  constructor (data)
-  {
-	super();
-	this.data = data;
-
-  }
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Element[]>
-  {
-	return Observable.of(this.data);
-  }
-
-  disconnect() {}
 }

@@ -62,10 +62,10 @@ export class UsuariosComponent {
 	public dialog: MatDialog
 	)
 	{
-  	this.buscarPorNombre = false;
-  	this.totalRoles = [];
-  	this.totalPersonas = [];
-  	this.totalUsuarios = [];
+	this.buscarPorNombre = false;
+	this.totalRoles = [];
+	this.totalPersonas = [];
+	this.totalUsuarios = [];
 		this.actualizarRoles();
 		this.actualizarPersonas();
 		this.actualizarUsuarios();
@@ -176,10 +176,10 @@ export class UsuariosComponent {
 	  data:
 	  {
 	   usuario: a,
-  	 personas: this.totalPersonas,
-  	 roles:this.totalRoles,
-  	 servicioUsuario: this.servicioUsuario,
-     servicioRole: this.servicioRole
+	 personas: this.totalPersonas,
+	 roles:this.totalRoles,
+	 servicioUsuario: this.servicioUsuario,
+	 servicioRole: this.servicioRole
 
 	  }
 	});

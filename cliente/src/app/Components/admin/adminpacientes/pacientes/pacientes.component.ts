@@ -95,7 +95,15 @@ export class PacientesComponent extends SecretarypersonComponent {
 			this.actualizarPersonas();
 		});
 	}
-
+  desactivarPaciente (paciente)
+  {
+    paciente.estado = 0;
+    this.pasarStringId(paciente);
+    this.servicioPersona.editPersona(paciente, paciente.id).subscribe(data => {
+      console.log(data);
+      this.actualizarPersonas();
+    });
+  }
 
 
   agregarUsuario(persona)
