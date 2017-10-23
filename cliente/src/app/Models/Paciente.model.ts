@@ -1,5 +1,5 @@
 export class Paciente {
-  	id: number;
+  id: number;
 	Persona_id: string;
 	TipoSangre_id: string;
 

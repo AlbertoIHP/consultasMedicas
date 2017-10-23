@@ -48,9 +48,9 @@
 							</button>
 
 
-							<button *ngIf="row.estado === 1" mat-icon-button (click)="eliminarPaciente(row)"  >
+<!-- 							<button *ngIf="row.estado === 1" mat-icon-button (click)="eliminarPaciente(row)"  >
 								<mat-icon>delete</mat-icon>
-							</button>
+							</button> -->
 
               <button *ngIf="row.estado === 1" mat-icon-button (click) = "agregarUsuario(row)" >
                 <mat-icon>person_add</mat-icon>
@@ -73,23 +73,11 @@
 			<mat-cell *matCellDef="let row"> {{row.nombre1}} {{row.nombre2}} {{row.apellido1}} {{row.apellido2}}</mat-cell>
 		</ng-container>
 
-		<!-- Color Column -->
-		<ng-container matColumnDef="Telefono de Casa">
-			<mat-header-cell *matHeaderCellDef> Telefono</mat-header-cell>
-			<mat-cell *matCellDef="let row" > {{row.fono_casa}} </mat-cell>
-		</ng-container>
-
-		<!-- Color Column -->
-		<ng-container matColumnDef="Telefono de Trabajo">
-			<mat-header-cell *matHeaderCellDef> Telefono Trabajo </mat-header-cell>
-			<mat-cell *matCellDef="let row" > {{row.fono_trabajo}} </mat-cell>
-		</ng-container>
-
-		<!-- Color Column -->
-		<ng-container matColumnDef="Celular">
-			<mat-header-cell *matHeaderCellDef> Celular </mat-header-cell>
-			<mat-cell *matCellDef="let row" > {{row.movil}} </mat-cell>
-		</ng-container>
+    <!-- Color Column -->
+    <ng-container matColumnDef="Telefonos">
+      <mat-header-cell *matHeaderCellDef> Telefonos</mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.fono_casa}} <br> {{row.fono_trabajo}} <br>  {{row.movil}}</mat-cell>
+    </ng-container>
 
 		<!-- Color Column -->
 		<ng-container matColumnDef="Sexo">
@@ -139,10 +127,9 @@
 								<mat-icon>credit_card</mat-icon>
 							</button>
 
-
-							<button *ngIf="row.estado === 1" mat-icon-button (click)="eliminarPaciente(row)"  >
-								<mat-icon>delete</mat-icon>
-							</button>
+<!--              <button *ngIf="row.estado === 1" mat-icon-button (click)="eliminarPaciente(row)"  >
+                <mat-icon>delete</mat-icon>
+              </button> -->
 
               <button *ngIf="row.estado === 1" mat-icon-button (click) = "agregarUsuario(row)" >
                 <mat-icon>person_add</mat-icon>
@@ -163,23 +150,11 @@
 		<mat-cell *matCellDef="let row"> {{row.nombre1}} {{row.nombre2}} {{row.apellido1}} {{row.apellido2}}</mat-cell>
 	</ng-container>
 
-		<!-- Color Column -->
-		<ng-container matColumnDef="Telefono de Casa">
-			<mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
-			<mat-cell *matCellDef="let row" > {{row.fono_casa}} </mat-cell>
-		</ng-container>
-
-		<!-- Color Column -->
-		<ng-container matColumnDef="Telefono de Trabajo">
-			<mat-header-cell *matHeaderCellDef> Telefono Trabajo </mat-header-cell>
-			<mat-cell *matCellDef="let row" > {{row.fono_trabajo}} </mat-cell>
-		</ng-container>
-
-		<!-- Color Column -->
-		<ng-container matColumnDef="Celular">
-			<mat-header-cell *matHeaderCellDef> Celular </mat-header-cell>
-			<mat-cell *matCellDef="let row" > {{row.movil}} </mat-cell>
-		</ng-container>
+    <!-- Color Column -->
+    <ng-container matColumnDef="Telefonos">
+      <mat-header-cell *matHeaderCellDef> Telefonos</mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.fono_casa}} <br> {{row.fono_trabajo}} <br>  {{row.movil}}</mat-cell>
+    </ng-container>
 
 		<!-- Color Column -->
 		<ng-container matColumnDef="Sexo">

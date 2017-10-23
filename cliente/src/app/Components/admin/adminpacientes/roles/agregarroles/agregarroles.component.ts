@@ -10,6 +10,10 @@ import { RoleService } from '../../../../../Services/role/role.service';
 })
 export class AgregarrolesComponent  {
 	public nuevoRole: Role;
+  public isWrite: boolean = false;
+  public isRead: boolean = false;
+  public isEdit: boolean = false;
+  public isDelete: boolean = false;
 
 
 	constructor(
@@ -29,12 +33,57 @@ export class AgregarrolesComponent  {
 
 	agregarRole()
 	{
+    if(this.isEdit)
+    {
+      this.nuevoRole.edit = 1;
+    }
+
+    if(this.isWrite)
+    {
+      this.nuevoRole.write = 1;
+    }
+
+    if(this.isRead)
+    {
+      this.nuevoRole.view = 1;
+    }
+
+    if(this.isDelete)
+    {
+      this.nuevoRole.erase = 1;
+    }
+
+    console.log(this.nuevoRole);
+
 		this.servicioRole.registerRole(this.nuevoRole).subscribe(data => {
-			console.log(data);
 			this.dialogRef.close();
 		});
 	}
 
+
+cambiarEscritura()
+{
+  this.isWrite = !this.isWrite;
+  console.log(this.isWrite);
+}
+
+
+cambiarLectura()
+{
+  this.isEdit = !this.isEdit;
+}
+
+
+cambiarEdicion()
+{
+  this.isRead = !this.isRead;
+}
+
+
+cambiarBorrado()
+{
+  this.isDelete = !this.isDelete;
+}
 
 
 

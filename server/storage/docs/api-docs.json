@@ -2650,6 +2650,26 @@
                 "nombre": {
                     "description": "nombre",
                     "type": "string"
+                },
+                "write": {
+                    "description": "write",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "view": {
+                    "description": "view",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "edit": {
+                    "description": "edit",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "erase": {
+                    "description": "erase",
+                    "type": "integer",
+                    "format": "int32"
                 }
             }
         },

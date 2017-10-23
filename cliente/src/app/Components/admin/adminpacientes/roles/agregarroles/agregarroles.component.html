@@ -1,11 +1,22 @@
 <h1 mat-dialog-title style="text-align: center;">Creacion de Role</h1>
 
 <div mat-dialog-content>
+  <div class="row">
+    <div class="col s12">
+      <p>Nombre</p>
 
-  <p>Nombre</p>
+      <input matInput tabindex="1" [(ngModel)]="nuevoRole.nombre">
+    </div>
+  </div>
 
-  <input matInput tabindex="1" [(ngModel)]="nuevoRole.nombre">
 
+  <div class="row">
+    <div class="col s3" ><mat-checkbox (click) = "cambiarEscritura()">Escritura</mat-checkbox></div>
+    <div class="col s3" ><mat-checkbox (click) = "cambiarLectura()">Lectura</mat-checkbox></div>
+    <div class="col s3" ><mat-checkbox (click) = "cambiarEdicion()">Edicion</mat-checkbox></div>
+    <div class="col s3" ><mat-checkbox (click) = "cambiarBorrado()">Borrado</mat-checkbox></div>
+
+  </div>
 
 </div>
 

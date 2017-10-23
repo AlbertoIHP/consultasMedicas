@@ -22,10 +22,10 @@
     {!! Form::number('edit', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Delete Field -->
+<!-- Erase Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('delete', 'Delete:') !!}
-    {!! Form::number('delete', null, ['class' => 'form-control']) !!}
+    {!! Form::label('erase', 'Erase:') !!}
+    {!! Form::number('erase', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

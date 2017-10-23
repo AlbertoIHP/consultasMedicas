@@ -55,7 +55,7 @@
         "inIndex": true
     },
     {
-        "name": "delete",
+        "name": "erase",
         "dbType": "integer,false",
         "htmlType": null,
         "validations": null,

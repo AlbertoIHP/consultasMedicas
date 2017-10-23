@@ -46,7 +46,7 @@ trait MakeRoleTrait
             'write' => $fake->randomDigitNotNull,
             'view' => $fake->randomDigitNotNull,
             'edit' => $fake->randomDigitNotNull,
-            'delete' => $fake->randomDigitNotNull
+            'erase' => $fake->randomDigitNotNull
         ], $roleFields);
     }
 }

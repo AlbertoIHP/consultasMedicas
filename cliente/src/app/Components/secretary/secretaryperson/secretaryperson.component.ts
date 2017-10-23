@@ -49,9 +49,7 @@ export class SecretarypersonComponent implements OnInit{
 	'Acciones',
 	'Rut',
 	'Nombre',
-	'Telefono de Casa',
-	'Telefono de Trabajo',
-	'Celular',
+  'Telefonos',
 	'Sexo',
 	'Estado Civil',
 	'Comuna'

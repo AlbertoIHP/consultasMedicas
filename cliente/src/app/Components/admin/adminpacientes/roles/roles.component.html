@@ -40,6 +40,19 @@
       <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
     </ng-container>
 
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Permisos">
+      <mat-header-cell *matHeaderCellDef> Permisos </mat-header-cell>
+      <mat-cell *matCellDef="let row" >
+        <span *ngIf="row.write === 1">Escritura </span>
+        <span *ngIf="row.edit === 1">Edicion </span>
+        <span *ngIf="row.view === 1">Lectura </span>
+        <span *ngIf="row.erase === 1">Borrado </span>
+        <span *ngIf="row.erase === 0 && row.erase === 0 && row.edit === 0 && row.write === 0">Ninguno </span>
+
+       </mat-cell>
+    </ng-container>
+
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -72,6 +85,18 @@
       <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
     </ng-container>
 
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Permisos">
+      <mat-header-cell *matHeaderCellDef> Permisos </mat-header-cell>
+      <mat-cell *matCellDef="let row" >
+        <span *ngIf="row.write === 1">Escritura </span>
+        <span *ngIf="row.edit === 1">Edicion </span>
+        <span *ngIf="row.view === 1">Lectura </span>
+        <span *ngIf="row.erase === 1">Borrado </span>
+        <span *ngIf="row.erase === 0 && row.erase === 0 && row.edit === 0 && row.write === 0">Ninguno </span>
+
+       </mat-cell>
+    </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

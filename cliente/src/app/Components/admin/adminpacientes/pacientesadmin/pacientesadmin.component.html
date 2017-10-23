@@ -26,9 +26,14 @@
                 <mat-icon>create</mat-icon>
               </button>
 
+<!--
 
-             <button  mat-icon-button (click) = "eliminarPaciente(row)" >
+              <button  mat-icon-button (click) = "eliminarPaciente(row)" >
                 <mat-icon>delete</mat-icon>
+              </button> -->
+
+              <button (click)="desactivarPaciente(row)" mat-icon-button >
+                <mat-icon>do_not_disturb</mat-icon>
               </button>
 
       </mat-cell>
@@ -67,10 +72,14 @@
               <button  mat-icon-button (click) = "edicionPaciente(row)" >
                 <mat-icon>create</mat-icon>
               </button>
-
+<!--
 
               <button  mat-icon-button (click) = "eliminarPaciente(row)" >
                 <mat-icon>delete</mat-icon>
+              </button> -->
+
+              <button (click)="desactivarPaciente(row)" mat-icon-button >
+                <mat-icon>do_not_disturb</mat-icon>
               </button>
 
        </mat-cell>

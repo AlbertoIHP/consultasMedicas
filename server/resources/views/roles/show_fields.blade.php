@@ -28,9 +28,9 @@
     <p>{!! $role->edit !!}</p>
 </div>
 
-<!-- Delete Field -->
+<!-- Erase Field -->
 <div class="form-group">
-    {!! Form::label('delete', 'Delete:') !!}
-    <p>{!! $role->delete !!}</p>
+    {!! Form::label('erase', 'Erase:') !!}
+    <p>{!! $role->erase !!}</p>
 </div>
 

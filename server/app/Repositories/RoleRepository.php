@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class RoleRepository
  * @package App\Repositories
- * @version October 22, 2017, 11:31 pm UTC
+ * @version October 23, 2017, 7:14 pm UTC
  *
  * @method Role findWithoutFail($id, $columns = ['*'])
  * @method Role find($id, $columns = ['*'])
@@ -24,7 +24,7 @@ class RoleRepository extends BaseRepository
         'write',
         'view',
         'edit',
-        'delete'
+        'erase'
     ];
 
     /**

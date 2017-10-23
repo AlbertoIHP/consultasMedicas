@@ -76,7 +76,7 @@ class RoleDataTable extends DataTable
             'write' => ['name' => 'write', 'data' => 'write'],
             'view' => ['name' => 'view', 'data' => 'view'],
             'edit' => ['name' => 'edit', 'data' => 'edit'],
-            'delete' => ['name' => 'delete', 'data' => 'delete']
+            'erase' => ['name' => 'erase', 'data' => 'erase']
         ];
     }
 

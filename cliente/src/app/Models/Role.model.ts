@@ -4,7 +4,7 @@ export class Role {
     write: number;
     view: number;
     edit: number;
-    delete: number;
+    erase: number;
 
     constructor ()
     {
@@ -12,7 +12,7 @@ export class Role {
         this.nombre = "";
         this.write = 0;
         this.edit = 0;
-        this.delete = 0;
+        this.erase = 0;
         this.view = 0 ;
     }
 }
