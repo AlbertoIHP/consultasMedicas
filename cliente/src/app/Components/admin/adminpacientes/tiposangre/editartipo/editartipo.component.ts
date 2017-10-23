@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-editartipo',
   templateUrl: './editartipo.component.html',
   styleUrls: ['./editartipo.component.css']
 })
-export class EditartipoComponent implements OnInit {
+export class EditartipoComponent{
+  public ts: any;
+  public servicio: any;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(
+    public dialogRef: MatDialogRef<EditartipoComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+    )
+  {
+    this.ts = data.ts;
+    this.servicio = data.servicioTS;
   }
 
+
+  editarTS()
+  {
+    this.servicio.editTipoSangre(this.ts, this.ts.id).subscribe(data => {
+      console.log(data);
+      this.dialogRef.close();
+    });
+  }
 }

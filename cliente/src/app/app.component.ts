@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-	public currentUserRole: Role = { id: 1, nombre: 'Secretary', write: 0, view: 0, edit: 0, delete: 0};
+	public currentUserRole: Role = { id: 1, nombre: 'Secretary', write: 0, view: 0, edit: 0, erase: 0};
 
 
 
