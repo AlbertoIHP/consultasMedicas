@@ -63,3 +63,6 @@ Route::group(['middleware' => ['cors']], function(){
 
 
 
+Route::resource('roles', 'RoleAPIController');
+
+Route::resource('roles', 'RoleAPIController');

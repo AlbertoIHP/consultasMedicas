@@ -1,11 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {SuiModalService, TemplateModalConfig, ModalTemplate} from 'ng2-semantic-ui';
+import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
+
 import { EstadoCivil } from '../../../../Models/EstadoCivil.model';
 import { EstadocivilService } from '../../../../Services/estadocivil/estadocivil.service';
 
-export interface IContext {
-		data:string;
-}
+import { EditarEstadoCComponent } from './editar-estado-c/editar-estado-c.component';
+import { AgregarEstadoCComponent } from './agregar-estado-c/agregar-estado-c.component';
+
+import {DataSource} from '@angular/cdk/collections';
+import {MatPaginator} from '@angular/material';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+
+import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../../Globals/datasource.component';
 
 
 @Component({
@@ -14,22 +28,26 @@ export interface IContext {
 	styleUrls: ['./estadocivil.component.css']
 })
 
-export class EstadocivilComponent implements OnInit {
-	@ViewChild('modalTemplate')
-	public modalTemplate:ModalTemplate<IContext, string, string>;
+export class EstadocivilComponent{
 	public totalEstadoCiviles: EstadoCivil[];
-	public nuevoEC: EstadoCivil;
-	public editarEC: EstadoCivil;
 
 
-	constructor (public modalService:SuiModalService, public servicioEstadoCivil: EstadocivilService)
+
+	//DATATABLE
+	@ViewChild(MatPaginator) paginator: MatPaginator;
+	@ViewChild('filter') filter: ElementRef;
+	public sourceDatatable: dataTable | null;
+	public sourcePorNombre: buscadorPorNombre | null;
+	public bdEstructura;
+  public buscarPorNombre: boolean;
+	displayedColumns = ['Acciones', 'Nombre', 'Descripcion'];
+
+
+	constructor (public servicioEstadoCivil: EstadocivilService, public dialog: MatDialog)
 	{
+		this.buscarPorNombre = false;
+		this.totalEstadoCiviles = [];
 		this.actualizarEstadoCiviles();
-		this.nuevoEC = new EstadoCivil();
-		this.editarEC = new EstadoCivil();
-	}
-
-	ngOnInit() {
 	}
 
 	actualizarEstadoCiviles ()
@@ -38,6 +56,20 @@ export class EstadocivilComponent implements OnInit {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalEstadoCiviles = todo;
+
+
+	  //DATATABLE
+			this.bdEstructura = new ExampleDatabase(this.totalEstadoCiviles );
+			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
+			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, 'EC');
+			Observable.fromEvent(this.filter.nativeElement, 'keyup')
+					.debounceTime(150)
+					.distinctUntilChanged()
+					.subscribe(() => {
+						if (!this.sourcePorNombre) { return; }
+						this.sourcePorNombre.filter = this.filter.nativeElement.value;
+					});
+
 		});
 	}
 
@@ -49,50 +81,38 @@ export class EstadocivilComponent implements OnInit {
 		});
 	}
 
-
-	actualizarEC ()
+	cambiarBusqueda()
 	{
-		this.servicioEstadoCivil.editEstadoCivil(this.editarEC, this.editarEC.id).subscribe(data => {
-			console.log(data);
+		this.buscarPorNombre = !this.buscarPorNombre;
+	}
+
+	edicionEC (ec)
+	{
+
+		let dialogRef = this.dialog.open(EditarEstadoCComponent, {
+			width: '1000px',
+			data:
+			{
+			 ec: ec
+			}
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
 			this.actualizarEstadoCiviles();
 		});
 	}
 
-	agregarEC ()
+	agregacionEC()
 	{
-		this.servicioEstadoCivil.registerEstadoCivil(this.nuevoEC).subscribe(data => {
-			console.log(data);
+		let dialogRef = this.dialog.open(AgregarEstadoCComponent, {
+			width: '1000px'
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
 			this.actualizarEstadoCiviles();
-			this.nuevoEC = new EstadoCivil();
 		});
 	}
-
-	public open(tipo, ec) {
-		const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
-
-		if(ec != null)
-		{
-			 this.editarEC = ec;
-		}
-
-
-		config.context = { data: tipo };
-
-		this.modalService
-			.open(config)
-			.onApprove(result => {
-				if(tipo === "editarEC")
-				{
-				 this.actualizarEC();
-				}
-				else if(tipo === "nuevoEC")
-				{
-					this.agregarEC()
-				}
-
-			})
-			.onDeny(result => { /* deny callback */});
-	}
-
 
 }

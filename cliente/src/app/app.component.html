@@ -1,4 +1,33 @@
 <mat-sidenav-container style="height: 1024px">
+
+<mat-toolbar>
+
+    <button mat-icon-button (click)="sidenav.open()">
+        <mat-icon>menu </mat-icon>
+    </button>
+    <span class="example-spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Actividad</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Editar Perfil</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Cerrar Sesion</span>
+      </button>
+    </mat-menu>
+
+</mat-toolbar>
+
+
+<!--
 	<mat-toolbar>
 		<button mat-icon-button (click)="sidenav.open()">
 			<mat-icon>menu </mat-icon>
@@ -24,7 +53,7 @@
 		</mat-menu>
 
 	</mat-toolbar>
-
+ -->
 	<mat-sidenav #sidenav style="position: fixed; height: 100%">
 			<div *ngIf="currentUserRole.nombre === 'Administrador'" >
 				<div class="row">
@@ -57,12 +86,23 @@
 			</div>
 
 			<div *ngIf="currentUserRole.nombre === 'Medico'" >
-				 <button mat-button class="fullSpaceButton">Opciones de Medico</button>
+				 <button (click)="irHomeMedico()" mat-button class="fullSpaceButton">Home</button>
+				 <button (click)="irPacientesMedico()" mat-button class="fullSpaceButton">Pacientes</button>
 			</div>
 
 		<div *ngIf="currentUserRole.nombre === 'Secretary'" >
-				<button (click)="irHomeSecretary()" mat-button class="fullSpaceButton">Home</button>
-				<button (click)="irPacientesSecretary()" mat-button class="fullSpaceButton">Personas</button>
+          <div class="section">
+            <button (click)="irHomeSecretary()" mat-button class="fullSpaceButton">Home</button>
+          </div>
+          <div class="section">
+            <button (click)="irPacientesSecretary()" mat-button class="fullSpaceButton">Modulo Pacientes</button>
+          </div>
+          <div class="section">
+            <button (click)="irCitasAdmin()" mat-button class="fullSpaceButton">Modulo Citas</button>
+          </div>
+          <div class="section">
+            <button (click)="irAtencionAdmin()" mat-button class="fullSpaceButton">Modulo Atencion</button>
+          </div>
 		</div>
 	</mat-sidenav>
 

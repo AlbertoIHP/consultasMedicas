@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class RoleRepository
  * @package App\Repositories
- * @version October 16, 2017, 10:48 pm UTC
+ * @version October 23, 2017, 7:14 pm UTC
  *
  * @method Role findWithoutFail($id, $columns = ['*'])
  * @method Role find($id, $columns = ['*'])
@@ -20,7 +20,11 @@ class RoleRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'nombre'
+        'nombre',
+        'write',
+        'view',
+        'edit',
+        'erase'
     ];
 
     /**

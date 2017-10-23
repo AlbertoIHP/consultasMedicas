@@ -1,0 +1,15 @@
+<h1 mat-dialog-title style="text-align: center;">Edicion de Role</h1>
+
+<div mat-dialog-content>
+
+  <p>Nombre</p>
+
+  <input matInput tabindex="1" [(ngModel)]="role.nombre">
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="editarRole()" tabindex="2">Editar Role</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

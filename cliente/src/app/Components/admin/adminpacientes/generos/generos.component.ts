@@ -1,10 +1,26 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {SuiModalService, TemplateModalConfig, ModalTemplate} from 'ng2-semantic-ui';
+import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
+
+
 import { Genero } from '../../../../Models/Genero.model';
 import { GeneroService } from '../../../../Services/genero/genero.service';
-export interface IContext {
-		data:string;
-}
+
+import { AgregargeneroComponent } from './agregargenero/agregargenero.component';
+import { EditargeneroComponent } from './editargenero/editargenero.component';
+
+import {DataSource} from '@angular/cdk/collections';
+import {MatPaginator} from '@angular/material';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+
+import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../../Globals/datasource.component';
 
 
 @Component({
@@ -12,19 +28,24 @@ export interface IContext {
 	templateUrl: './generos.component.html',
 	styleUrls: ['./generos.component.css']
 })
-export class GenerosComponent implements OnInit {
-	@ViewChild('modalTemplate')
-	public modalTemplate:ModalTemplate<IContext, string, string>;
+export class GenerosComponent  {
 	public totalGeneros: Genero[];
-	public nuevoGenero: Genero;
-	public editarGenero: Genero;
+	public buscarPorNombre: boolean;
+
+	//DATATABLE
+	@ViewChild(MatPaginator) paginator: MatPaginator;
+	@ViewChild('filter') filter: ElementRef;
+	public sourceDatatable: dataTable | null;
+	public sourcePorNombre: buscadorPorNombre | null;
+	public bdEstructura;
+	displayedColumns = ['Acciones', 'Nombre', 'Descripcion'];
 
 
-	constructor (public modalService:SuiModalService, public servicioGenero: GeneroService)
+	constructor (public servicioGenero: GeneroService, public dialog: MatDialog)
 	{
+		this.buscarPorNombre = false;
+		this.totalGeneros = [];
 		this.actualizarGeneros();
-		this.nuevoGenero = new Genero();
-		this.editarGenero = new Genero();
 	}
 
 	actualizarGeneros ()
@@ -33,53 +54,21 @@ export class GenerosComponent implements OnInit {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalGeneros = todo;
+
+			this.bdEstructura = new ExampleDatabase(this.totalGeneros );
+			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
+			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, 'Genero');
+			Observable.fromEvent(this.filter.nativeElement, 'keyup')
+					.debounceTime(150)
+					.distinctUntilChanged()
+					.subscribe(() => {
+						if (!this.sourcePorNombre) { return; }
+						this.sourcePorNombre.filter = this.filter.nativeElement.value;
+					});
+
+
 		});
 	}
-
-	public open(tipo, genero) {
-		const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
-
-		if(genero != null)
-		{
-			 this.editarGenero = genero;
-		}
-
-
-		config.context = { data: tipo };
-
-		this.modalService
-			.open(config)
-			.onApprove(result => {
-				if(tipo === "editarGenero")
-				{
-				 this.actualizarGenero();
-				}
-				else if(tipo === "nuevoGenero")
-				{
-					this.agregarGenero();
-				}
-
-			})
-			.onDeny(result => { /* deny callback */});
-	}
-
-	actualizarGenero ()
-	{
-		this.servicioGenero.editGenero(this.editarGenero, this.editarGenero.id).subscribe(data => {
-			console.log(data);
-			this.actualizarGeneros();
-		});
-	}
-
-	agregarGenero ()
-	{
-	 this.servicioGenero.registerGenero(this.nuevoGenero).subscribe(data => {
-			console.log(data);
-			this.actualizarGeneros();
-			this.nuevoGenero = new Genero();
-		});
-	}
-
 
 	eliminarGenero (genero)
 	{
@@ -89,7 +78,47 @@ export class GenerosComponent implements OnInit {
 		});
 	}
 
-	ngOnInit() {
+
+
+	//DATATABLES
+
+	cambiarBusqueda()
+	{
+		this.buscarPorNombre = !this.buscarPorNombre;
 	}
 
+
+	edicionGenero (genero)
+	{
+
+		let dialogRef = this.dialog.open(EditargeneroComponent, {
+			width: '1000px',
+			data:
+			{
+			 genero: genero
+			}
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
+			this.actualizarGeneros();
+		});
+	}
+
+	agregacionGenero()
+	{
+		let dialogRef = this.dialog.open(AgregargeneroComponent, {
+			width: '1000px'
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
+			this.actualizarGeneros();
+		});
+	}
+
+
+
 }
+
+

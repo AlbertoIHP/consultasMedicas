@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {SuiModalService, TemplateModalConfig, ModalTemplate} from 'ng2-semantic-ui';
+import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
+
 
 import { Usuario } from '../../../../Models/Usuario.model';
 import { UserService } from '../../../../Services/user/user.service';
@@ -10,12 +10,26 @@ import { PersonaService } from '../../../../Services/persona/persona.service';
 import { Role } from '../../../../Models/Role.model';
 import { RoleService } from '../../../../Services/role/role.service';
 
+import { AgregarusuarioComponent } from './agregarusuario/agregarusuario.component';
+import { EditarusuarioComponent } from './editarusuario/editarusuario.component';
+import { VerpersonaComponent } from './verpersona/verpersona.component';
 
-export interface IContext {
-		data:string;
-}
+//DATATABLES
+import {DataSource} from '@angular/cdk/collections';
+import {MatPaginator} from '@angular/material';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
+
+import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../../Globals/datasource.component';
 
 
 @Component({
@@ -23,29 +37,38 @@ export interface IContext {
 	templateUrl: './usuarios.component.html',
 	styleUrls: ['./usuarios.component.css']
 })
-export class UsuariosComponent implements OnInit {
-	@ViewChild('modalTemplate')
-	public modalTemplate:ModalTemplate<IContext, string, string>;
+export class UsuariosComponent {
+
+
+
 	public totalUsuarios: Usuario[];
 	public totalPersonas: Persona[];
 	public totalRoles: Role[];
-	public nuevoUsuario: Usuario;
-	public editarUsuario: Usuario;
-	public visualizacionPersona: Persona;
-  public personasDisponibles: Persona[];
-  public personaElegida: Persona;
 
 
-	constructor (public modalService:SuiModalService, public servicioUsuario: UserService, public servicioRole: RoleService, public servicioPersona: PersonaService)
+  //DATATABLE
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('filter') filter: ElementRef;
+  public sourceDatatable: dataTable | null;
+  public sourcePorNombre: buscadorPorNombre | null;
+  public bdEstructura;
+  public buscarPorNombre: boolean;
+  displayedColumns = ['Acciones','Email', 'Role', 'Persona'];
+
+	constructor (
+	public servicioUsuario: UserService,
+	public servicioRole: RoleService,
+	public servicioPersona: PersonaService,
+	public dialog: MatDialog
+	)
 	{
-	this.personasDisponibles = [];
+	this.buscarPorNombre = false;
+	this.totalRoles = [];
+	this.totalPersonas = [];
+	this.totalUsuarios = [];
 		this.actualizarRoles();
 		this.actualizarPersonas();
 		this.actualizarUsuarios();
-
-		this.nuevoUsuario = new Usuario();
-		this.editarUsuario = new Usuario();
-		this.visualizacionPersona = new Persona();
 	}
 
 	actualizarRoles ()
@@ -65,150 +88,41 @@ export class UsuariosComponent implements OnInit {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalPersonas = todo;
-	  this.buscarPersonasDisponibles();
 		});
 	}
 
 	actualizarUsuarios ()
 	{
-	this.totalUsuarios = [];
+	  this.totalUsuarios = [];
 		this.servicioUsuario.getUsers().subscribe(data => {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalUsuarios = todo;
 			this.reemplazarIdPorString();
-		});
+
+
+	//DATATABLE
+	  this.bdEstructura = new ExampleDatabase(this.totalUsuarios );
+	  this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
+	  this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, "Usuario");
+	  Observable.fromEvent(this.filter.nativeElement, 'keyup')
+		  .debounceTime(150)
+		  .distinctUntilChanged()
+		  .subscribe(() => {
+			if (!this.sourcePorNombre) { return; }
+			this.sourcePorNombre.filter = this.filter.nativeElement.value;
+		  });
+
+	 });
 	}
 
-  buscarPersonasDisponibles ()
-  {
-  	// this.personasDisponibles = [];
-  	// for( let l = 0 ; l < this.totalPersonas.length ; l ++)
-  	// {
-  	//   if(this.totalPersonas[l].usuarioasignado === 0)
-  	//   {
-  	// 	this.personasDisponibles.push(this.totalPersonas[l]);
-  	//   }
-  	// }
-  }
-
-
-	public open (tipo, usuario)
-	{
-	this.actualizarPersonas();
-		const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
-		config.context = { data: tipo };
-
-	if (usuario != null)
-	{
-	  this.servicioPersona.getPersona(usuario.Persona_id).subscribe(data => {
-		console.log(data);
-		var todo: any = data;
-		todo = todo.data;
-		this.visualizacionPersona = todo;
-	  });
-	}
-
-	this.editarUsuario = usuario;
-
-		this.modalService
-			.open(config).onApprove(result => {
-				if(tipo === "editarUsuario")
-				{
-				 this.actualizarUsuario();
-				}
-				else if(tipo === "nuevoUsuario")
-				{
-					this.agregarUsuario();
-				}
-
-			}).onDeny(result => { /* deny callback */});
-
-
-
-
-	}
-
-	actualizarUsuario ()
-	{
-		this.servicioUsuario.editUser(this.editarUsuario, this.editarUsuario.id).subscribe(data => {
-			console.log(data);
-			this.actualizarUsuarios();
-		});
-	}
-
-
-
-
-	agregarUsuario ()
-	{
-		console.log(this.nuevoUsuario);
-		this.servicioUsuario.registerUser(this.nuevoUsuario).subscribe(data => {
-			this.actualizarUsuarios();
-			this.nuevoUsuario = new Usuario();
-
-
-
-	  // this.personaElegida.usuarioasignado = 1;
-
-
-
-
-
-
-
-	  console.log(this.personaElegida);
-
-	  this.servicioPersona.editPersona(this.personaElegida, this.personaElegida.id).subscribe(data => {
-		this.actualizarPersonas();
-	  });
-
-
-
-		});
-
-	}
 
 	eliminarUsuario (usuario)
 	{
 		this.servicioUsuario.deleteUser(usuario.id).subscribe( data => {
-
-	  this.servicioPersona.getPersona(usuario.Persona_id).subscribe(data => {
-		var a: any = data;
-		var a = a.data;
-		var persona: Persona = a;
-
-
-
-
-
-		// persona.usuarioasignado = 0;
-
-
-
-
-
-
-
-
-
-
-		this.servicioPersona.editPersona(persona, persona.id).subscribe(data => {
-		  console.log(data);
-		  this.actualizarPersonas();
-		});
-	  });
-
 			this.actualizarUsuarios();
 		});
 	}
-
-  personaSeleccionada (persona)
-  {
-	this.personaElegida = persona;
-	this.nuevoUsuario.Persona_id = persona.id;
-	console.log(this.nuevoUsuario);
-  }
 
 
 
@@ -242,19 +156,87 @@ export class UsuariosComponent implements OnInit {
 		}
 	}
 
+  cambiarBusqueda()
+  {
+	this.buscarPorNombre = !this.buscarPorNombre;
+  }
 
-		editarRoleSeleccionado (role)
-	{
-		this.editarUsuario.Role_id = role.id;
-	}
 
-	roleSeleccionado (role)
-	{
-		this.nuevoUsuario.Role_id = role.id;
-		console.log(this.nuevoUsuario);
-	}
 
-	ngOnInit() {
-	}
+
+  edicionUsuario (usuario)
+  {
+	var a = JSON.parse(JSON.stringify(usuario));
+
+	this.pasarStringId(a);
+
+	console.log(a);
+	let dialogRef = this.dialog.open(EditarusuarioComponent, {
+	  width: '1000px',
+	  data:
+	  {
+	   usuario: a,
+	 personas: this.totalPersonas,
+	 roles:this.totalRoles,
+	 servicioUsuario: this.servicioUsuario,
+	 servicioRole: this.servicioRole
+
+	  }
+	});
+
+	dialogRef.afterClosed().subscribe(result => {
+
+	  this.actualizarUsuarios();
+	});
+  }
+
+  agregacionUsuario()
+  {
+
+	let dialogRef = this.dialog.open(AgregarusuarioComponent, {
+	  width: '1000px',
+	data: {
+	usuario: new Usuario(),
+	  usuarios: this.totalUsuarios,
+	  personas: this.totalPersonas,
+	  roles:this.totalRoles,
+	  servicioUsuario: this.servicioUsuario,
+	  servicioPersona: this.servicioPersona,
+	  servicioRole: this.servicioRole
+	   }
+	});
+
+	dialogRef.afterClosed().subscribe(result => {
+
+	  this.actualizarUsuarios();
+	});
+  }
+
+  desplegarPersona(usuario)
+  {
+	this.servicioPersona.getPersona(parseInt(usuario.Persona_id)).subscribe(data => {
+
+	  var persona: any = data;
+	  persona = persona.data;
+
+	  console.log(persona);
+
+	  let dialogRef = this.dialog.open(VerpersonaComponent, {
+		width: '1000px',
+		data: { persona: persona }
+	  });
+
+	  dialogRef.afterClosed().subscribe(result => {
+
+		this.actualizarUsuarios();
+	  });
+
+	});
+
+
+  }
+
+
+
 
 }

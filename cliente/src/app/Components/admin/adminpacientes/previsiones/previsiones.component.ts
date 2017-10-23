@@ -1,29 +1,53 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {SuiModalService, TemplateModalConfig, ModalTemplate} from 'ng2-semantic-ui';
+
+import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
+
+
 import { Prevision } from '../../../../Models/Prevision.model';
 import { PrevisionService } from '../../../../Services/prevision/prevision.service';
-export interface IContext {
-		data:string;
-}
+
+
+import { AgregarprevisionComponent } from './agregarprevision/agregarprevision.component';
+import { EditarprevisionComponent } from './editarprevision/editarprevision.component';
+
+import {DataSource} from '@angular/cdk/collections';
+import {MatPaginator} from '@angular/material';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../../Globals/datasource.component';
+
+
 
 @Component({
 	selector: 'app-previsiones',
 	templateUrl: './previsiones.component.html',
 	styleUrls: ['./previsiones.component.css']
 })
-export class PrevisionesComponent implements OnInit {
-	@ViewChild('modalTemplate')
-	public modalTemplate:ModalTemplate<IContext, string, string>;
+export class PrevisionesComponent{
 	public totalPrevisiones: Prevision[];
-	public nuevaPrevision: Prevision;
-	public editarPrevision: Prevision;
 
 
-	constructor (public modalService:SuiModalService, public servicioPrevisiones: PrevisionService)
+	//DATATABLE
+	@ViewChild(MatPaginator) paginator: MatPaginator;
+	@ViewChild('filter') filter: ElementRef;
+	public sourceDatatable: dataTable | null;
+	public sourcePorNombre: buscadorPorNombre | null;
+	public bdEstructura;
+	public buscarPorNombre: boolean;
+	displayedColumns = ['Acciones', 'Nombre', 'Descripcion', 'Isapre'];
+
+	constructor (public servicioPrevisiones: PrevisionService, public dialog: MatDialog)
 	{
+		this.buscarPorNombre = false;
+		this.totalPrevisiones = [];
 		this.actualizarPrevisiones();
-		this.nuevaPrevision = new Prevision();
-		this.editarPrevision = new Prevision();
 	}
 
 	actualizarPrevisiones ()
@@ -32,55 +56,22 @@ export class PrevisionesComponent implements OnInit {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalPrevisiones = todo;
+			this.pasarIdString();
+
+
+			//DATATABLE
+			this.bdEstructura = new ExampleDatabase(this.totalPrevisiones );
+			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
+			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, 'Prevision');
+			Observable.fromEvent(this.filter.nativeElement, 'keyup')
+					.debounceTime(150)
+					.distinctUntilChanged()
+					.subscribe(() => {
+						if (!this.sourcePorNombre) { return; }
+						this.sourcePorNombre.filter = this.filter.nativeElement.value;
+					});
 		});
 	}
-
-	public open(tipo, prevision) {
-		const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
-
-		if(prevision != null)
-		{
-			 this.editarPrevision = prevision;
-		}
-
-
-		config.context = { data: tipo };
-
-		this.modalService
-			.open(config)
-			.onApprove(result => {
-				if(tipo === "editarPrevision")
-				{
-				 this.actualizarPrevision();
-				}
-				else if(tipo === "nuevaPrevision")
-				{
-					this.agregarPrevision();
-				}
-
-			})
-			.onDeny(result => { /* deny callback */});
-	}
-
-	actualizarPrevision ()
-	{
-		this.servicioPrevisiones.editPrevision(this.editarPrevision, this.editarPrevision.id).subscribe(data => {
-			console.log(data);
-			this.actualizarPrevisiones();
-		});
-	}
-
-
-	agregarPrevision ()
-	{
-	 this.servicioPrevisiones.registerPrevision(this.nuevaPrevision).subscribe(data => {
-			console.log(data);
-			this.actualizarPrevisiones();
-			this.nuevaPrevision = new Prevision();
-		});
-
-	}
-
 
 	eliminarPrevision (prevision)
 	{
@@ -90,9 +81,69 @@ export class PrevisionesComponent implements OnInit {
 		});
 	}
 
+	pasarIdString()
+	{
+		for ( let i = 0 ; i < this.totalPrevisiones.length ; i ++)
+		{
+			if( parseInt(this.totalPrevisiones[i].isapre) === 1)
+			{
+				this.totalPrevisiones[i].isapre = "ISAPRE";
+			}
+			else
+			{
+				this.totalPrevisiones[i].isapre = "NO ISAPRE";
+			}
+		}
+	}
 
+	pasarStringId(prevision)
+	{
+		if (prevision.isapre === "ISAPRE")
+		{
+			prevision.isapre = "1";
+		}
+		else
+		{
+			prevision.isapre = "0";
+		}
+	}
 
-	ngOnInit() {
+	cambiarBusqueda()
+	{
+		this.buscarPorNombre = !this.buscarPorNombre;
+	}
+
+	edicionPrevision (prevision)
+	{
+
+		var a = JSON.parse( JSON.stringify(prevision));
+		this.pasarStringId(a);
+
+		let dialogRef = this.dialog.open(EditarprevisionComponent, {
+			width: '1000px',
+			data:
+			{
+			 prevision: a
+			}
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
+			this.actualizarPrevisiones();
+		});
+	}
+
+	agregacionPrevision()
+	{
+		let dialogRef = this.dialog.open(AgregarprevisionComponent, {
+			width: '1000px'
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
+			this.actualizarPrevisiones();
+		});
 	}
 
 }
+

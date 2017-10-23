@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {SuiModalService, TemplateModalConfig, ModalTemplate} from 'ng2-semantic-ui';
+import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 
 
 import { Comuna } from '../../../../Models/Comuna.model';
@@ -8,9 +7,25 @@ import { ComunaService } from '../../../../Services/comuna/comuna.service';
 import { Provincia } from '../../../../Models/Provincia.model';
 import { ProvinciaService } from '../../../../Services/provincia/provincia.service';
 
-export interface IContext {
-		data:string;
-}
+
+import { AgregarcomunaComponent } from './agregarcomuna/agregarcomuna.component';
+import { EditarcomunaComponent } from './editarcomuna/editarcomuna.component';
+
+//DATATABLE
+import {DataSource} from '@angular/cdk/collections';
+import {MatPaginator} from '@angular/material';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+
+import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../../Globals/datasource.component';
 
 
 @Component({
@@ -18,21 +33,28 @@ export interface IContext {
 	templateUrl: './comunas.component.html',
 	styleUrls: ['./comunas.component.css']
 })
-export class ComunasComponent implements OnInit {
-	@ViewChild('modalTemplate')
-	public modalTemplate:ModalTemplate<IContext, string, string>;
+export class ComunasComponent {
 	public totalProvincias: Provincia[];
 	public totalComunas: Comuna[];
-	public nuevaComuna: Comuna;
-	public editarComuna: Comuna;
 
-	constructor (public modalService:SuiModalService, public servicioProvincia: ProvinciaService, public servicioComuna: ComunaService)
+	//DATATABLE
+	@ViewChild(MatPaginator) paginator: MatPaginator;
+	@ViewChild('filter') filter: ElementRef;
+	public sourceDatatable: dataTable | null;
+	public sourcePorNombre: buscadorPorNombre | null;
+	public bdEstructura;
+	public buscarPorNombre: boolean;
+	displayedColumns = ['Acciones', 'Nombre', 'Provincia'];
+
+
+	constructor (public servicioProvincia: ProvinciaService, public servicioComuna: ComunaService, public dialog: MatDialog)
 	{
+		this.buscarPorNombre = false;
+		this.totalProvincias = [];
+		this.totalComunas = [];
 		this.actualizarProvincias();
 		this.actualizarComunas();
 
-		this.nuevaComuna = new Comuna();
-		this.editarComuna = new Comuna();
 	}
 
 
@@ -53,56 +75,21 @@ export class ComunasComponent implements OnInit {
 			todo = todo.data;
 			this.totalComunas = todo;
 			this.reemplazarIdPorString();
+
+			//DATATABLE
+			this.bdEstructura = new ExampleDatabase(this.totalComunas );
+			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
+			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, 'Comuna');
+			Observable.fromEvent(this.filter.nativeElement, 'keyup')
+					.debounceTime(150)
+					.distinctUntilChanged()
+					.subscribe(() => {
+						if (!this.sourcePorNombre) { return; }
+						this.sourcePorNombre.filter = this.filter.nativeElement.value;
+					});
+
+
 		});
-	}
-
-	public open(tipo, comuna) {
-		const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
-
-		if(comuna != null)
-		{
-			 this.editarComuna = comuna;
-		}
-
-
-		config.context = { data: tipo };
-
-		this.modalService
-			.open(config)
-			.onApprove(result => {
-				if(tipo === "editarComuna")
-				{
-				 this.actualizarComuna();
-				}
-				else if(tipo === "nuevaComuna")
-				{
-					this.agregarComuna();
-				}
-
-			})
-			.onDeny(result => { /* deny callback */});
-	}
-
-
-	actualizarComuna ()
-	{
-		this.pasarStringId(this.editarComuna);
-
-		this.servicioComuna.editComuna(this.editarComuna, this.editarComuna.id).subscribe(data => {
-			console.log(data);
-			this.actualizarComunas();
-		});
-	}
-
-
-	agregarComuna ()
-	{
-	 this.servicioComuna.registerComuna(this.nuevaComuna).subscribe(data => {
-			console.log(data);
-			this.actualizarComunas();
-			this.nuevaComuna = new Comuna();
-		});
-
 	}
 
 
@@ -112,18 +99,6 @@ export class ComunasComponent implements OnInit {
 			console.log(data);
 			this.actualizarComunas();
 		});
-	}
-
-
-	provinciaSeleccionada (provincia)
-	{
-		this.nuevaComuna.Provincia_id = provincia.id;
-		console.log(this.nuevaComuna);
-	}
-
-	editarProvinciaSeleccionada (provincia)
-	{
-		this.editarComuna.Provincia_id = provincia.id;
 	}
 
 
@@ -156,8 +131,53 @@ export class ComunasComponent implements OnInit {
 
 	}
 
-
-	ngOnInit() {
+	cambiarBusqueda()
+	{
+		this.buscarPorNombre = !this.buscarPorNombre;
 	}
 
+
+
+
+	edicionComuna (comuna)
+	{
+
+		var a = JSON.parse( JSON.stringify(comuna) );
+
+		this.pasarStringId(a);
+
+		let dialogRef = this.dialog.open(EditarcomunaComponent, {
+			width: '1000px',
+			data:
+			{
+			 comuna: a,
+			 provincias: this.totalProvincias,
+       servicioProvincia: this.servicioProvincia,
+       servicioComuna: this.servicioComuna
+			}
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
+      this.actualizarProvincias();
+			this.actualizarComunas();
+		});
+	}
+
+	agregacionComuna()
+	{
+		let dialogRef = this.dialog.open(AgregarcomunaComponent, {
+			width: '1000px',
+			data: {
+        provincias: this.totalProvincias,
+        servicioProvincia: this.servicioProvincia
+      }
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+      this.actualizarProvincias();
+			this.actualizarComunas();
+		});
+	}
 }
+

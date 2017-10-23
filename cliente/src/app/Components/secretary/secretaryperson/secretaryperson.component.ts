@@ -36,38 +36,20 @@ import 'rxjs/add/observable/fromEvent';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
-export interface UserData {
-	id: number;
-	rut: string;
-	nombre1: string;
-	nombre2: string;
-	apellido1: string;
-	apellido2: string;
-	fono_casa: string;
-	fono_trabajo: string;
-	movil: string;
-	Genero_id: string;
-	EstadoCivil_id: string;
-	Comuna_id: string;
-	estado: number;
-}
+import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
+
 
 @Component({
 	selector: 'app-secretaryperson',
 	templateUrl: './secretaryperson.component.html',
 	styleUrls: ['./secretaryperson.component.css']
 })
-export class SecretarypersonComponent {
+export class SecretarypersonComponent implements OnInit{
 	displayedColumns = [
 	'Acciones',
 	'Rut',
-	'Primer Nombre',
-	'Segundo Nombre',
-	'Primer Apellido',
-	'Segundo Apellido',
-	'Telefono de Casa',
-	'Telefono de Trabajo',
-	'Celular',
+	'Nombre',
+  'Telefonos',
 	'Sexo',
 	'Estado Civil',
 	'Comuna'
@@ -83,12 +65,16 @@ export class SecretarypersonComponent {
 
 	//DATATABLE
 	public exampleDatabase;
-	public dataSource: ExampleDataSource | null;
-	public dataSource2: ExampleDataSource2 | null;
+	public dataSource: dataTable | null;
+	public dataSource2: buscadorPorNombre | null;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild('filter') filter: ElementRef;
 	public buscarPorRut: boolean;
 
+  ngOnInit()
+  {
+	console.log("ME ESTOY INICIANDO");
+  }
 
 	constructor(
 		public servicioPersona: PersonaService,
@@ -99,7 +85,6 @@ export class SecretarypersonComponent {
 		public servicioEstadoCivil: EstadocivilService,
 		public router: Router,
 		public dialog: MatDialog
-
 		)
 	{
 		this.totalPacientes = [];
@@ -122,18 +107,28 @@ export class SecretarypersonComponent {
 
 		let dialogRef = this.dialog.open(AgregarpersonaComponent, {
 			width: '500px',
-  	  data:
-      {
-  		regiones: this.totalRegiones,
-  		provincias: this.totalProvincias,
-  		comunas: this.totalComunas,
-  		ec: this.totalEstadoCiviles,
-  		generos: this.totalGeneros
-	    }
+	  data:
+	  {
+		regiones: this.totalRegiones,
+		provincias: this.totalProvincias,
+		comunas: this.totalComunas,
+		ec: this.totalEstadoCiviles,
+		generos: this.totalGeneros,
+	  servicioGenero: this.servicioGenero,
+	  servicioEC: this.servicioEstadoCivil,
+	  servicioComuna: this.servicioComuna,
+	  servicioPersona: this.servicioPersona,
+	  servicioProvincia: this.servicioProvincia,
+	  servicioRegion: this.servicioRegion
+		}
 		});
 
 		dialogRef.afterClosed().subscribe(result => {
-
+	  this.actualizarGeneros();
+	  this.actualizarRegiones();
+	  this.actualizarComunas();
+	  this.actualizarProvincias();
+	  this.actualizarEstadoCiviles();
 			this.actualizarPersonas();
 		});
 	}
@@ -146,41 +141,54 @@ export class SecretarypersonComponent {
 
   editarPersona (persona)
   {
-	this.pasarStringId(persona);
+	var a = JSON.parse( JSON.stringify(persona) );
+
+	  this.pasarStringId(a);
+
 	let dialogRef = this.dialog.open(EditarpersonaComponent, {
 	  width: '500px',
 	data: {
-	persona: persona,
+	persona: a,
 	regiones: this.totalRegiones,
 	provincias: this.totalProvincias,
 	comunas: this.totalComunas,
 	ec: this.totalEstadoCiviles,
-	generos: this.totalGeneros
+	generos: this.totalGeneros,
+	servicioGenero: this.servicioGenero,
+	servicioEC: this.servicioEstadoCivil,
+	servicioComuna: this.servicioComuna,
+	servicioProvincia: this.servicioProvincia,
+	servicioRegion: this.servicioRegion
 	}
+	});
+
+	dialogRef.afterClosed().subscribe(result => {
+	  this.actualizarGeneros();
+	  this.actualizarRegiones();
+	  this.actualizarComunas();
+	  this.actualizarProvincias();
+	  this.actualizarEstadoCiviles();
+		this.actualizarPersonas();
+	});
+  }
+
+  previsionPersona (persona)
+  {
+    var a = JSON.parse(JSON.stringify(persona));
+	  this.pasarStringId(a);
+
+	let dialogRef = this.dialog.open(SecretaryprevisionComponent, {
+	  width: '1000px',
+		data:
+	  {
+		 persona: a
+	  }
 	});
 
 	dialogRef.afterClosed().subscribe(result => {
 
 	  this.actualizarPersonas();
 	});
-  }
-
-  previsionPersona (persona)
-  {
-  	this.pasarStringId(persona);
-
-  	let dialogRef = this.dialog.open(SecretaryprevisionComponent, {
-  	  width: '1000px',
-    	data:
-      {
-    	 persona: persona
-  	  }
-  	});
-
-  	dialogRef.afterClosed().subscribe(result => {
-
-  	  this.actualizarPersonas();
-  	});
   }
 
 
@@ -266,14 +274,14 @@ export class SecretarypersonComponent {
 			this.totalPacientes = todo;
 			this.reemplazarIdPorString();
 			this.exampleDatabase = new ExampleDatabase(this.totalPacientes );
-			this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator);
-			this.dataSource2 = new ExampleDataSource2(this.exampleDatabase);
+			this.dataSource = new dataTable(this.exampleDatabase, this.paginator);
+			this.dataSource2 = new buscadorPorNombre(this.exampleDatabase, 'Persona');
 
 			Observable.fromEvent(this.filter.nativeElement, 'keyup')
 				.debounceTime(150)
 				.distinctUntilChanged()
 				.subscribe(() => {
-					if (!this.dataSource) { return; }
+					if (!this.dataSource2) { return; }
 					this.dataSource2.filter = this.filter.nativeElement.value;
 				});
 		});
@@ -319,86 +327,5 @@ export class SecretarypersonComponent {
 
 
 
-}
-
-
-export class ExampleDatabase {
-	/** Stream that emits whenever the data has been modified. */
-	dataChange: BehaviorSubject<UserData[]> = new BehaviorSubject<UserData[]>([]);
-	get data(): UserData[] { return this.dataChange.value; }
-
-	constructor(personas)
-	{
-		// Fill up the database with 100 users.
-		for (let i = 0; i < personas.length; i++) { this.addUser(personas[i]); }
-	}
-
-	/** Adds a new user to the database. */
-	addUser(persona) {
-		const copiedData = this.data.slice();
-		copiedData.push(persona);
-		this.dataChange.next(copiedData);
-	}
-
-}
-
-
-export class ExampleDataSource extends DataSource<any> {
-	_filterChange = new BehaviorSubject('');
-	get filter(): string { return this._filterChange.value; }
-	set filter(filter: string) { this._filterChange.next(filter); }
-
-	constructor(private _exampleDatabase: ExampleDatabase, private _paginator: MatPaginator) {
-		super();
-	}
-
-	/** Connect function called by the table to retrieve one stream containing the data to render. */
-	connect(): Observable<UserData[]> {
-
-		const displayDataChanges = [
-			this._exampleDatabase.dataChange,
-			this._paginator.page,
-			this._filterChange,
-		];
-
-		return Observable.merge(...displayDataChanges).map(() => {
-
-			const data = this._exampleDatabase.data.slice();
-			const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-
-
-			return data.splice(startIndex, this._paginator.pageSize);
-
-		});
-	}
-
-	disconnect() {}
-}
-
-export class ExampleDataSource2 extends DataSource<any> {
-	_filterChange = new BehaviorSubject('');
-	get filter(): string { return this._filterChange.value; }
-	set filter(filter: string) { this._filterChange.next(filter); }
-
-	constructor(private _exampleDatabase: ExampleDatabase) {
-		super();
-	}
-
-	/** Connect function called by the table to retrieve one stream containing the data to render. */
-	connect(): Observable<UserData[]> {
-		const displayDataChanges = [
-			this._exampleDatabase.dataChange,
-			this._filterChange,
-		];
-
-		return Observable.merge(...displayDataChanges).map(() => {
-			return this._exampleDatabase.data.slice().filter((item: UserData) => {
-				let searchStr = (item.rut ).toLowerCase();
-				return searchStr.indexOf(this.filter.toLowerCase()) != -1;
-			});
-		});
-	}
-
-	disconnect() {}
 }
 

@@ -1,299 +1,135 @@
-<div class="ui one column grid">
-	<div class="column">
-		<table class="ui compact celled definition table">
-			<thead>
-				<tr>
-					<th>Email</th>
-					<th>Password</th>
-					<th>Role</th>
-					<th>Persona Asociada a la cuenta</th>
-					<th>Acciones</th>
-				</tr>
-			</thead>
-			<tbody>
-						<tr *ngFor="let usuario of totalUsuarios">
-							<td>{{ usuario.email }}</td>
-							<td>{{ usuario.password }}</td>
-							<td>{{ usuario.Role_id }}</td>
-							<td><button (click)="open('verPersona' , usuario)" class="ui primary inverted blue button btnTabla">Ver</button></td>
-							<td>
-								<button (click)="open('editarUsuario' , usuario)" class="ui primary inverted orange button btnTabla">Editar</button>
 
-								<button (click)="eliminarUsuario(usuario)" class="ui primary inverted red button btnTabla">Eliminar</button>
-							</td>
-						</tr>
-			</tbody>
-			<tfoot class="full-width">
-				<tr>
-					<th colspan="5">
-						<div (click)="open('nuevoUsuario')" class="ui right floated small primary labeled icon button">
-							<i class="add icon"></i> Agregar Usuario
-						</div>
-					</th>
-				</tr>
-			</tfoot>
-		</table>
-	</div>
+
+ <div class="row">
+  <div class="col s1" >
+  <input (click)="cambiarBusqueda()" type="checkbox" id="test5" />
+  <label for="test5" class="selectRaro"></label>
+
+  </div>
+  <div class="col s11">
+  <label for="miinput">Busqueda por Nombre</label>
+  <input matInput #filter style="width: 100% !important;" id="miinput">
+  </div>
 </div>
 
 
-	<ng-template let-context let-modal="modal" #modalTemplate>
+<div class="example-container mat-elevation-z8">
 
-			<div *ngIf="context.data === 'nuevoUsuario'" class="header">Formulario de Nuevo Usuario</div>
-			<div *ngIf="context.data === 'editarUsuario'" class="header">Formulario de Edicion: Usuario {{editarUsuario.email}}</div>
+  <mat-table #table *ngIf="!buscarPorNombre" [dataSource]="sourceDatatable">
 
+	<ng-container matColumnDef="Acciones">
+	  <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
 
-			<div class="content" >
-			 <div *ngIf="context.data === 'nuevoUsuario'" class="ui one column grid">
+	  <mat-cell *matCellDef="let row" >
 
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="nuevoUsuario.email" type="email" placeholder="Ingrese un correo electronico">
-								</div>
-							</div>
+			  <button  mat-icon-button (click) = "edicionUsuario(row)" >
+				<mat-icon>create</mat-icon>
+			  </button>
 
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="nuevoUsuario.password" type="password" placeholder="Ingrese una contraseña">
-								</div>
-							</div>
 
-			  <div class="column">
-				<sui-select class="selection inputModal"
-							[isSearchable]="true"
-							placeholder="Role">
+			  <button  mat-icon-button (click) = "eliminarUsuario(row)" >
+				<mat-icon>delete</mat-icon>
+			  </button>
 
-					<sui-select-option
-					*ngFor="let role of totalRoles"
-					[value]="role.nombre"
-					(click)="roleSeleccionado(role)">
-					</sui-select-option>
+	  </mat-cell>
 
-				</sui-select>
-			  </div>
 
-			  <div class="column">
-				<sui-select class="selection inputModal"
-							[isSearchable]="true"
-							placeholder="Persona">
+	</ng-container>
 
-					<sui-select-option
-					*ngFor="let persona of personasDisponibles"
-					[value]="persona.rut+' '+persona.nombre1+' '+persona.apellido1 "
-					(click)="personaSeleccionada(persona)">
-					</sui-select-option>
+	<!-- Progress Column -->
+	<ng-container matColumnDef="Email">
+	  <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+	  <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+	</ng-container>
 
-				</sui-select>
-			  </div>
+	<!-- Name Column -->
+	<ng-container matColumnDef="Role">
+	  <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
+	  <mat-cell *matCellDef="let row"> {{row.Role_id}} </mat-cell>
+	</ng-container>
 
 
+	<!-- Name Column -->
+	<ng-container matColumnDef="Persona">
+	  <mat-header-cell *matHeaderCellDef> Persona Asociada a la Cuenta </mat-header-cell>
+	  <mat-cell *matCellDef="let row">
 
+		<button  mat-icon-button (click)="desplegarPersona(row)" >
+		  <mat-icon>remove_red_eye</mat-icon>
+		</button>
 
-				</div>
 
+	  </mat-cell>
+	</ng-container>
 
-				<div *ngIf="context.data === 'editarUsuario'" class="ui one column grid">
 
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="editarUsuario.email" type="email" placeholder="Ingrese un nombre">
-								</div>
-							</div>
+	<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+	<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-							<div class="column">
-								<div class="ui input focus inputModal">
-									<input [(ngModel)]="editarUsuario.password" type="text" placeholder="Ingrese un nombre">
-								</div>
-							</div>
+  </mat-table>
 
-			  <div class="column">
-				<sui-select class="selection inputModal"
-							[isSearchable]="true"
-							placeholder="Role">
 
-					<sui-select-option
-					*ngFor="let role of totalRoles"
-					[value]="role.nombre"
-					(click)="editarRoleSeleccionado(role)">
-					</sui-select-option>
+ <mat-table #table *ngIf="buscarPorNombre" [dataSource]="sourcePorNombre">
 
-				</sui-select>
-			  </div>
+	<ng-container matColumnDef="Acciones">
+	  <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+	  <mat-cell *matCellDef="let row">
 
+			  <button  mat-icon-button (click) = "edicionUsuario(row)" >
+				<mat-icon>create</mat-icon>
+			  </button>
 
-				</div>
 
-				<div *ngIf="context.data === 'verPersona'" class="ui one column grid">
+			  <button  mat-icon-button (click) = "eliminarUsuario(row)" >
+				<mat-icon>delete</mat-icon>
+			  </button>
 
-							<div class="column">
+	   </mat-cell>
+	</ng-container>
 
-								<div class="row">
-									<div class="column">
-										Rut
-									</div>
-								</div>
 
+	<!-- Progress Column -->
+	<ng-container matColumnDef="Email">
+	  <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+	  <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+	</ng-container>
 
-								<div class="row">
-									<div class="column">
-										<div class="ui input focus inputModal">
-											<input disabled [(ngModel)]="visualizacionPersona.rut" type="text" >
-										</div>
-									</div>
-								</div>
-							</div>
+	<!-- Name Column -->
+	<ng-container matColumnDef="Role">
+	  <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
+	  <mat-cell *matCellDef="let row"> {{row.Role_id}} </mat-cell>
+	</ng-container>
 
-							<div class="column">
 
-								<div class="row">
-									<div class="column">
-										Primer Nombre
-									</div>
-								</div>
+	<!-- Name Column -->
+	<ng-container matColumnDef="Persona">
+	  <mat-header-cell *matHeaderCellDef> Persona Asociada a la Cuenta </mat-header-cell>
+	  <mat-cell *matCellDef="let row">
+		<button  mat-icon-button (click)="desplegarPersona(row)" >
+		  <mat-icon>remove_red_eye</mat-icon>
+		</button>
+	  </mat-cell>
+	</ng-container>
 
 
-								<div class="row">
-									<div class="column">
-										<div class="ui input focus inputModal">
-											<input disabled [(ngModel)]="visualizacionPersona.nombre1" type="text" >
-										</div>
-									</div>
-								</div>
-							</div>
 
-							<div class="column">
+	<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+	<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 
 
-								<div class="row">
-									<div class="column">
-										Segundo Nombre
-									</div>
-								</div>
 
 
-								<div class="row">
-									<div class="column">
-										<div class="ui input focus inputModal">
-											<input disabled [(ngModel)]="visualizacionPersona.nombre2" type="text" >
-										</div>
-									</div>
-								</div>
+  <mat-paginator #paginator
+				[length]="totalUsuarios.length"
+				[pageIndex]="0"
+				[pageSize]="5"
+				[pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>
 
-
-
-							</div>
-
-							<div class="column">
-
-								<div class="row">
-									<div class="column">
-										Primer Apellido
-									</div>
-								</div>
-
-
-								<div class="row">
-									<div class="column">
-										<div class="ui input focus inputModal">
-											<input disabled [(ngModel)]="visualizacionPersona.apellido1" type="text" >
-										</div>
-									</div>
-								</div>
-
-							</div>
-
-
-
-							<div class="column">
-
-								<div class="row">
-									<div class="column">
-										Segundo Apellido
-									</div>
-								</div>
-
-
-								<div class="row">
-									<div class="column">
-										<div class="ui input focus inputModal">
-											<input disabled [(ngModel)]="visualizacionPersona.apellido2" type="text" >
-										</div>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="column">
-
-
-								<div class="row">
-									<div class="column">
-										Telefono Movil
-									</div>
-								</div>
-
-
-								<div class="row">
-									<div class="column">
-										<div class="ui input focus inputModal">
-											<input disabled [(ngModel)]="visualizacionPersona.movil" type="text" >
-										</div>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="column">
-
-
-								<div class="row">
-									<div class="column">
-										Telefono Casa
-									</div>
-								</div>
-
-
-								<div class="row">
-									<div class="column">
-										<div class="ui input focus inputModal">
-											<input disabled [(ngModel)]="visualizacionPersona.fono_trabajo" type="text" >
-										</div>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="column">
-
-
-								<div class="row">
-									<div class="column">
-										Telefono Trabajo
-									</div>
-								</div>
-
-
-								<div class="row">
-									<div class="column">
-										<div class="ui input focus inputModal">
-											<input disabled [(ngModel)]="visualizacionPersona.fono_trabajo" type="text" >
-										</div>
-									</div>
-								</div>
-
-							</div>
-
-				</div>
-
-			</div>
-
-
-
-
-			<div class="actions">
-		  <button *ngIf="context.data === 'nuevoUsuario' || context.data === 'editarUsuario'" class="ui red button" (click)="modal.deny('denied')">Cancelar</button>
-					<button class="ui blue button"  (click)="modal.approve('approved')">Aceptar</button>
-
-			</div>
-
-	</ng-template>
+ <div class="fixed-action-btn">
+	<a class="btn-floating btn-large blue" (click)="agregacionUsuario()">
+	  <i class="large material-icons">add</i>
+	</a>
+  </div>

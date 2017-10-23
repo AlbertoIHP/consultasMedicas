@@ -1,0 +1,45 @@
+<h1 *ngIf="!isPersona" mat-dialog-title style="text-align: center;">Agregar  Usuario</h1>
+<h1 *ngIf="isPersona" mat-dialog-title style="text-align: center;">Usuario de: {{ persona.nombre1 }} {{persona.apellido1}}</h1>
+
+<div mat-dialog-content>
+
+	<p>Email</p>
+
+	<input *ngIf="!isPersona" matInput tabindex="1" [(ngModel)]="usuario.email">
+
+  <input *ngIf="isPersona" disabled matInput tabindex="1" [(ngModel)]="usuario.email">
+
+	<p>Password</p>
+
+	<input *ngIf="!isPersona" type="password" matInput tabindex="1" [(ngModel)]="usuario.password">
+
+  <input *ngIf="isPersona" disabled type="password" matInput tabindex="1" [(ngModel)]="usuario.password">
+
+	<p >Role</p>
+	<mat-form-field style="width: 100% !important;" *ngIf="!isPersona">
+		<mat-select placeholder="Role" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let role of totalRoles" [value]="role.id" (click)="roleSeleccionado(role)">
+				{{ role.nombre }}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+  <input *ngIf="isPersona" disabled type="text" matInput tabindex="1" [(ngModel)]="rolePersona">
+
+
+
+	<p *ngIf="!isPersona && !tienePersona">Persona Asociada</p>
+	<mat-form-field style="width: 100% !important;" *ngIf="!isPersona && !tienePersona">
+		<mat-select placeholder="Seleccione una Persona para asociar al usuario" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let persona of personasDisponibles" [value]="persona.id" (click)="personaSeleccionada(persona)">
+			 ( {{ persona.rut }} ) {{persona.nombre1 }} {{persona.apellido1}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+</div>
+
+
+<div mat-dialog-actions>
+	<button *ngIf="!isPersona"  mat-button (click)="agregarUsuario()" tabindex="2">Agregar Usuario</button>
+	<button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

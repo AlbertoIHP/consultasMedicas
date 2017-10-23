@@ -1,0 +1,135 @@
+
+
+ <div class="row">
+  <div class="col s1" >
+  <input (click)="cambiarBusqueda()" type="checkbox" id="test5" />
+  <label for="test5" class="selectRaro"></label>
+
+  </div>
+  <div class="col s11">
+  <label for="miinput">Busqueda por Nombre</label>
+  <input matInput #filter style="width: 100% !important;" id="miinput">
+  </div>
+</div>
+
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table #table *ngIf="!buscarPorNombre" [dataSource]="sourceDatatable">
+
+    <ng-container matColumnDef="Acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+
+      <mat-cell *matCellDef="let row" >
+
+              <button *ngIf="row.activado === 1"  mat-icon-button (click) = "edicionPaciente(row)" >
+                <mat-icon>create</mat-icon>
+              </button>
+
+              <button *ngIf="row.activado === 1" (click)="desactivarPaciente(row)" mat-icon-button >
+                <mat-icon>do_not_disturb</mat-icon>
+              </button>
+
+              <button *ngIf="row.activado === 0" (click)="activarPaciente(row)" mat-icon-button  >
+                <mat-icon>arrow_upward</mat-icon>
+              </button>
+      </mat-cell>
+
+
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Rut">
+      <mat-header-cell *matHeaderCellDef> Rut </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
+    </ng-container>
+
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Persona">
+      <mat-header-cell *matHeaderCellDef> Persona Asociada al Paciente </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button  mat-icon-button (click)="desplegarPersona(row)" >
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Tipo Sangre">
+      <mat-header-cell *matHeaderCellDef> Tipo Sangre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.TipoSangre_id}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+
+ <mat-table #table *ngIf="buscarPorNombre" [dataSource]="sourcePorNombre">
+
+    <ng-container matColumnDef="Acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+
+              <button *ngIf="row.activado === 1"  mat-icon-button (click) = "edicionPaciente(row)" >
+                <mat-icon>create</mat-icon>
+              </button>
+
+              <button *ngIf="row.activado === 1" (click)="desactivarPaciente(row)" mat-icon-button >
+                <mat-icon>do_not_disturb</mat-icon>
+              </button>
+
+              <button *ngIf="row.activado === 0" (click)="activarPaciente(row)" mat-icon-button  >
+                <mat-icon>arrow_upward</mat-icon>
+              </button>
+
+
+       </mat-cell>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Rut">
+      <mat-header-cell *matHeaderCellDef> Rut </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
+    </ng-container>
+
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Persona">
+      <mat-header-cell *matHeaderCellDef> Persona Asociada al Paciente </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button  mat-icon-button (click)="desplegarPersona(row)" >
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Tipo Sangre">
+      <mat-header-cell *matHeaderCellDef> Tipo Sangre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.TipoSangre_id}} </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+
+
+  <mat-paginator #paginator
+                [length]="totalPacientes.length"
+                [pageIndex]="0"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>
+
+ <div class="fixed-action-btn">
+    <a class="btn-floating btn-large blue" (click)="agregacionPaciente()">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>

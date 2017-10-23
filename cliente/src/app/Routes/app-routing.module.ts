@@ -15,6 +15,10 @@ import { SecretarypersonComponent } from '../Components/secretary/secretaryperso
 import { PacientefichaComponent } from '../Components/paciente/pacienteficha/pacienteficha.component';
 import { PacientecitaComponent } from '../Components/paciente/pacientecita/pacientecita.component';
 
+import { PersonasComponent } from '../Components/secretary/personas/personas.component';
+import { MedicpacientesComponent } from '../Components/medic/medicpacientes/medicpacientes.component';
+
+
 //Se declaran como constantes todas las rutas con sus respectivos nombres
 const routes: Routes =
 [
@@ -23,7 +27,7 @@ const routes: Routes =
 
   //Rutas admin
 	{ path: 'admin',  component: AdminhomeComponent },
-  { path: 'admin/pacientes',  component: AdminpacientesComponent },
+  { path: 'admin/moduloPacientes',  component: AdminpacientesComponent },
 
   //Rutas paciente
   { path: 'paciente',  component: PacientehomeComponent },
@@ -32,10 +36,12 @@ const routes: Routes =
 
   //Rutas secretaria
   { path: 'secretary',  component: SecretaryhomeComponent },
-  { path: 'secretary/personas',  component: SecretarypersonComponent },
+  { path: 'secretary/moduloPacientes',  component: PersonasComponent },
   { path: 'secretary/personas/prevision',  component: SecretaryprevisionComponent },
   //Rutas medico
   { path: 'medic',  component: MedichomeComponent },
+  { path: 'medic/pacientes',  component: MedicpacientesComponent },
+  
 
 
 

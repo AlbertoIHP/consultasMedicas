@@ -1,12 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {SuiModalService, TemplateModalConfig, ModalTemplate} from 'ng2-semantic-ui';
+import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 
 import { Role } from '../../../../Models/Role.model';
 import { RoleService } from '../../../../Services/role/role.service';
 
-export interface IContext {
-		data:string;
-}
+import { AgregarrolesComponent } from './agregarroles/agregarroles.component';
+import { EditarrolesComponent } from './editarroles/editarroles.component';
+
+import {DataSource} from '@angular/cdk/collections';
+import {MatPaginator} from '@angular/material';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../../Globals/datasource.component';
 
 
 
@@ -16,19 +28,24 @@ export interface IContext {
 	templateUrl: './roles.component.html',
 	styleUrls: ['./roles.component.css']
 })
-export class RolesComponent implements OnInit {
-	@ViewChild('modalTemplate')
-	public modalTemplate:ModalTemplate<IContext, string, string>;
-	public totalRoles: Role[];
-	public nuevoRole: Role;
-	public editarRole: Role;
+export class RolesComponent  {
+public totalRoles: Role[];
+
+	//DATATABLE
+	@ViewChild(MatPaginator) paginator: MatPaginator;
+	@ViewChild('filter') filter: ElementRef;
+	public sourceDatatable: dataTable | null;
+	public sourcePorNombre: buscadorPorNombre | null;
+	public bdEstructura;
+	public buscarPorNombre: boolean;
+	displayedColumns = ['Acciones', 'Nombre', 'Permisos'];
 
 
-	constructor (public modalService:SuiModalService, public servicioRole: RoleService)
+	constructor (public servicioRole: RoleService, public dialog: MatDialog)
 	{
+		this.buscarPorNombre = false;
+		this.totalRoles = [];
 		this.actualizarRoles();
-		this.nuevoRole = new Role();
-		this.editarRole = new Role();
 	}
 
 
@@ -39,58 +56,21 @@ export class RolesComponent implements OnInit {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalRoles = todo;
+
+			//DATATABLE
+			this.bdEstructura = new ExampleDatabase(this.totalRoles );
+			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
+			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, 'Role');
+			Observable.fromEvent(this.filter.nativeElement, 'keyup')
+					.debounceTime(150)
+					.distinctUntilChanged()
+					.subscribe(() => {
+						if (!this.sourcePorNombre) { return; }
+						this.sourcePorNombre.filter = this.filter.nativeElement.value;
+					});
+
 		});
 	}
-
-
-	public open(tipo, role)
-  {
-		const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
-
-		if(role != null)
-		{
-			 this.editarRole = role;
-		}
-
-
-		config.context = { data: tipo };
-
-		this.modalService
-			.open(config)
-			.onApprove(result => {
-				if(tipo === "editarRole")
-				{
-				 this.actualizarRole();
-				}
-				else if(tipo === "nuevoRole")
-				{
-					this.agregarRole();
-				}
-
-			})
-			.onDeny(result => { /* deny callback */});
-	}
-
-	actualizarRole ()
-	{
-		this.servicioRole.editRole(this.editarRole, this.editarRole.id).subscribe(data => {
-			console.log(data);
-			this.actualizarRoles();
-		});
-	}
-
-
-	agregarRole ()
-	{
-		console.log(this.nuevoRole);
-		this.servicioRole.registerRole(this.nuevoRole).subscribe(data => {
-			console.log(data);
-			this.actualizarRoles();
-			this.nuevoRole = new Role();
-		});
-
-	}
-
 
 	eliminarRole (role)
 	{
@@ -100,8 +80,39 @@ export class RolesComponent implements OnInit {
 		});
 	}
 
+	cambiarBusqueda()
+	{
+		this.buscarPorNombre = !this.buscarPorNombre;
+	}
 
-	ngOnInit() {
+	edicionRole (role)
+	{
+
+		let dialogRef = this.dialog.open(EditarrolesComponent, {
+			width: '1000px',
+			data:
+			{
+			 role: role
+			}
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
+			this.actualizarRoles();
+		});
+	}
+
+	agregacionRole()
+	{
+		let dialogRef = this.dialog.open(AgregarrolesComponent, {
+			width: '1000px'
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
+			this.actualizarRoles();
+		});
 	}
 
 }
+

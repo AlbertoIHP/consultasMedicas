@@ -1,12 +1,16 @@
 export class Paciente {
-  	id: number;
+  id: number;
 	Persona_id: string;
 	TipoSangre_id: string;
+  rut: string;
+  activado: number;
 
 	constructor()
 	{
 		this.id = 0;
 		this.Persona_id = "";
 		this.TipoSangre_id = "";
+    this.rut = "";
+    this.activado = 0;
 	}
 }

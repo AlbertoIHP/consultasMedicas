@@ -24,10 +24,10 @@ import { routing, appRoutingProviders } from './Routes/app-routing.module';
 import { SuiModule } from 'ng2-semantic-ui';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import {MatTabsModule} from '@angular/material';
+//import {MatTabsModule} from '@angular/material';
 //import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatInputModule , MatSelectModule, MatDialogModule, MatPaginatorModule, MatTableModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule} from '@angular/material';
+import {MatTabsModule, MatInputModule , MatSelectModule, MatDialogModule, MatPaginatorModule, MatTableModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule} from '@angular/material';
 
 // COMPONENTES
 import { AppComponent } from './app.component';
@@ -50,91 +50,164 @@ import { RolesComponent } from './Components/admin/adminpacientes/roles/roles.co
 import { SecretarypersonComponent } from './Components/secretary/secretaryperson/secretaryperson.component';
 import { AgregarpersonaComponent } from './Components/secretary/agregarpersona/agregarpersona.component';
 import { EditarpersonaComponent } from './Components/secretary/editarpersona/editarpersona.component';
+
+import { EditarEstadoCComponent } from './Components/admin/adminpacientes/estadocivil/editar-estado-c/editar-estado-c.component';
+import { AgregarEstadoCComponent } from './Components/admin/adminpacientes/estadocivil/agregar-estado-c/agregar-estado-c.component';
+import { EditargeneroComponent } from './Components/admin/adminpacientes/generos/editargenero/editargenero.component';
+import { AgregargeneroComponent } from './Components/admin/adminpacientes/generos/agregargenero/agregargenero.component';
+import { AgregarcomunaComponent } from './Components/admin/adminpacientes/comunas/agregarcomuna/agregarcomuna.component';
+import { EditarcomunaComponent } from './Components/admin/adminpacientes/comunas/editarcomuna/editarcomuna.component';
+import { EditarprevisionComponent } from './Components/admin/adminpacientes/previsiones/editarprevision/editarprevision.component';
+import { AgregarprevisionComponent } from './Components/admin/adminpacientes/previsiones/agregarprevision/agregarprevision.component';
+import { AgregarprovinciaComponent } from './Components/admin/adminpacientes/provincias/agregarprovincia/agregarprovincia.component';
+import { EditarprovinciaComponent } from './Components/admin/adminpacientes/provincias/editarprovincia/editarprovincia.component';
+import { EditarregionesComponent } from './Components/admin/adminpacientes/regiones/editarregiones/editarregiones.component';
+import { AgregarregionesComponent } from './Components/admin/adminpacientes/regiones/agregarregiones/agregarregiones.component';
+import { AgregarrolesComponent } from './Components/admin/adminpacientes/roles/agregarroles/agregarroles.component';
+import { EditarrolesComponent } from './Components/admin/adminpacientes/roles/editarroles/editarroles.component';
+import { EditarusuarioComponent } from './Components/admin/adminpacientes/usuarios/editarusuario/editarusuario.component';
+import { AgregarusuarioComponent } from './Components/admin/adminpacientes/usuarios/agregarusuario/agregarusuario.component';
+import { SecretarypacientesComponent } from './Components/secretary/secretarypacientes/secretarypacientes.component';
+import { PersonasComponent } from './Components/secretary/personas/personas.component';
+import { PacientesadminComponent } from './Components/admin/adminpacientes/pacientesadmin/pacientesadmin.component';
+import { VerpersonaComponent } from './Components/admin/adminpacientes/usuarios/verpersona/verpersona.component';
+import { EditarpacienteComponent } from './Components/secretary/secretarypacientes/editarpaciente/editarpaciente.component';
+import { AgregarpacienteComponent } from './Components/secretary/secretarypacientes/agregarpaciente/agregarpaciente.component';
+import { TiposangreComponent } from './Components/admin/adminpacientes/tiposangre/tiposangre.component';
+import { AgregartipoComponent } from './Components/admin/adminpacientes/tiposangre/agregartipo/agregartipo.component';
+import { EditartipoComponent } from './Components/admin/adminpacientes/tiposangre/editartipo/editartipo.component';
 import { PacientefichaComponent } from './Components/paciente/pacienteficha/pacienteficha.component';
 import { PacientecitaComponent } from './Components/paciente/pacientecita/pacientecita.component';
+import { MedicpacientesComponent } from './Components/medic/medicpacientes/medicpacientes.component';
 
 
 @NgModule({
+	declarations:
+	[
+		AppComponent,
+		AdminhomeComponent,
+		PacientehomeComponent,
+		SecretaryhomeComponent,
+		MedichomeComponent,
+		LoginComponent,
+		SecretaryprevisionComponent,
+		AdminpacientesComponent,
+		PacientesComponent,
+		EstadocivilComponent,
+		GenerosComponent,
+		ComunasComponent,
+		ProvinciasComponent,
+		RegionesComponent,
+		PrevisionesComponent,
+		UsuariosComponent,
+		RolesComponent,
+		SecretarypersonComponent,
+		AgregarpersonaComponent,
+		EditarpersonaComponent,
+		EditarEstadoCComponent,
+		AgregarEstadoCComponent,
+		EditargeneroComponent,
+		AgregargeneroComponent,
+		AgregarcomunaComponent,
+		EditarcomunaComponent,
+		EditarprevisionComponent,
+		AgregarprevisionComponent,
+		AgregarprovinciaComponent,
+		EditarprovinciaComponent,
+		EditarregionesComponent,
+		AgregarregionesComponent,
+		AgregarrolesComponent,
+		EditarrolesComponent,
+		EditarusuarioComponent,
+		AgregarusuarioComponent,
+		SecretarypacientesComponent,
+		PersonasComponent,
+		PacientesadminComponent,
+		VerpersonaComponent,
+		EditarpacienteComponent,
+		AgregarpacienteComponent,
+		TiposangreComponent,
+		AgregartipoComponent,
+		EditartipoComponent,
+		 PacientefichaComponent,
+        PacientecitaComponent,
+        MedicpacientesComponent
+	],
 
-    declarations:
-    [
-        AppComponent,
-        AdminhomeComponent,
-        PacientehomeComponent,
-        SecretaryhomeComponent,
-        MedichomeComponent,
-        LoginComponent,
-        SecretaryprevisionComponent,
-        AdminpacientesComponent,
-        PacientesComponent,
-        EstadocivilComponent,
-        GenerosComponent,
-        ComunasComponent,
-        ProvinciasComponent,
-        RegionesComponent,
-        PrevisionesComponent,
-        UsuariosComponent,
-        RolesComponent,
-        SecretarypersonComponent,
-        AgregarpersonaComponent,
-        EditarpersonaComponent,
-        PacientefichaComponent,
-        PacientecitaComponent
+	entryComponents:
+	[
+		AgregarpersonaComponent,
+		EditarpersonaComponent,
+		SecretaryprevisionComponent,
+		EditarEstadoCComponent,
+		AgregarEstadoCComponent,
+		EditargeneroComponent,
+		AgregargeneroComponent,
+		AgregarcomunaComponent,
+		EditarcomunaComponent,
+		EditarprevisionComponent,
+		AgregarprevisionComponent,
+		AgregarprovinciaComponent,
+		EditarprovinciaComponent,
+		EditarregionesComponent,
+		AgregarregionesComponent,
+		AgregarrolesComponent,
+		EditarrolesComponent,
+		EditarusuarioComponent,
+		AgregarusuarioComponent,
+		VerpersonaComponent,
+		EditarpacienteComponent,
+		AgregarpacienteComponent,
+    AgregartipoComponent,
+    EditartipoComponent
+	],
 
-    ],
 
-    entryComponents:
-    [
-    AgregarpersonaComponent,
-    EditarpersonaComponent,
-    SecretaryprevisionComponent
-    ],
+	imports:
+	[
+		BrowserModule,
+		SuiModule,
+		routing,
+		FormsModule,
+		HttpModule,
+		BrowserAnimationsModule,
+		MatButtonModule,
+		MatCheckboxModule,
+		MatSidenavModule,
+		MatToolbarModule,
+		MatMenuModule,
+		MatIconModule,
+		MatTableModule,
+		MatPaginatorModule,
+		MatDialogModule,
+		MatInputModule,
+		MatSelectModule,
+		MatTabsModule
+		//NgbModule.forRoot()
+	],
 
-    imports:
-    [
-        BrowserModule,
-        SuiModule,
-        routing,
-        FormsModule,
-        HttpModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatCheckboxModule,
-        MatSidenavModule,
-        MatToolbarModule,
-        MatMenuModule,
-        MatIconModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatDialogModule,
-        MatInputModule,
-        MatSelectModule,
-        MatTabsModule
-        //NgbModule.forRoot()
-    ],
+	providers:
+	[
+	appRoutingProviders,
+	ComunaService,
+	EstadocivilService,
+	GeneroService,
+	PersonaService,
+	PacienteService,
+	PrevisionService,
+	PrevisionactualService,
+	ProvinciaService,
+	RegionService,
+	RoleService,
+	UserService,
+	TipoSangreService,
+	AuthenticationService
+	],
 
-    providers:
-    [
-    appRoutingProviders,
-    ComunaService,
-    EstadocivilService,
-    GeneroService,
-    PersonaService,
-    PacienteService,
-    PrevisionService,
-    PrevisionactualService,
-    ProvinciaService,
-    RegionService,
-    RoleService,
-    UserService,
-    TipoSangreService,
-    AuthenticationService
-    ],
-
-    bootstrap:
-    [
-        AppComponent
-    ]
+	bootstrap:
+	[
+		AppComponent
+	]
 
 })
 export class AppModule { }

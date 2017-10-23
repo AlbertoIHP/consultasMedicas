@@ -19,52 +19,82 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="nombre",
  *          description="nombre",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="write",
+ *          description="write",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="view",
+ *          description="view",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="edit",
+ *          description="edit",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="erase",
+ *          description="erase",
+ *          type="integer",
+ *          format="int32"
  *      )
  * )
  */
 class Role extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
 
-	public $table = 'Role';
-	
-	const CREATED_AT = 'created_at';
-	const UPDATED_AT = 'updated_at';
-
-
-	protected $dates = ['deleted_at'];
+    public $table = 'Role';
+    
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
 
 
-	public $fillable = [
-		'nombre'
-	];
+    protected $dates = ['deleted_at'];
 
-	/**
-	 * The attributes that should be casted to native types.
-	 *
-	 * @var array
-	 */
-	protected $casts = [
-		'id' => 'integer',
-		'nombre' => 'string'
-	];
 
-	/**
-	 * Validation rules
-	 *
-	 * @var array
-	 */
-	public static $rules = [
-		
-	];
+    public $fillable = [
+        'nombre',
+        'write',
+        'view',
+        'edit',
+        'erase'
+    ];
 
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 **/
-	public function usuarios()
-	{
-		return $this->hasMany(\App\Models\Usuario::class);
-	}
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'nombre' => 'string',
+        'write' => 'integer',
+        'view' => 'integer',
+        'edit' => 'integer',
+        'erase' => 'integer'
+    ];
 
-	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];	
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function usuarios()
+    {
+        return $this->hasMany(\App\Models\Usuario::class);
+    }
 }

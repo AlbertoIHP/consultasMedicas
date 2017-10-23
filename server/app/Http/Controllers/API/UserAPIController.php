@@ -108,11 +108,21 @@ class UserAPIController extends AppBaseController
 	 */
 	public function store(CreateUserAPIRequest $request)
 	{
-		$input = $request->all();
-		$input['password'] = bcrypt($input['password']);
-		$users = $this->userRepository->create($input);
 
-		return $this->sendResponse($users->toArray(), 'User saved successfully');
+		try
+		{
+			error_log("Hola");
+			$input = $request->all();
+			$input['password'] = bcrypt($input['password']);
+			$users = $this->userRepository->create($input);
+
+			return $this->sendResponse($users->toArray(), 'User saved successfully');
+		}
+		catch (\Exception $e)
+		{
+			return response()->json(['error' => 'Esta persona ya tiene usuario asignado'], 405);
+			error_log("hola");
+		}
 	}
 
 	/**
@@ -280,5 +290,5 @@ class UserAPIController extends AppBaseController
 		return $this->sendResponse($id, 'User deleted successfully');
 	}
 
-	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];	
+
 }

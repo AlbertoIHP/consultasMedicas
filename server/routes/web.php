@@ -154,3 +154,9 @@ Route::resource('personas', 'PersonaController');
 Route::resource('pacientes', 'PacienteController');
 
 Route::resource('users', 'UserController');
+
+Route::resource('roles', 'RoleController');
+
+Route::resource('roles', 'RoleController');
+
+Route::resource('roles', 'RoleController');
