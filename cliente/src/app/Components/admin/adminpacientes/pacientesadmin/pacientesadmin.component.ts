@@ -34,4 +34,33 @@ export class PacientesadminComponent extends SecretarypacientesComponent impleme
   ngOnInit() {
   }
 
+
+  desactivarPaciente(paciente)
+  {
+    this.servicioPersona.getPersona(paciente.Persona_id).subscribe(data => {
+      var todo: any = data;
+      todo = todo.data;
+      todo.estado = 0;
+      this.servicioPersona.editPersona(todo, todo.id).subscribe(data => {
+        console.log(data);
+        this.actualizarPersonas();
+      })
+    });
+
+  }
+
+ activarPaciente(paciente)
+ {
+    this.servicioPersona.getPersona(paciente.Persona_id).subscribe(data => {
+      var todo: any = data;
+      todo = todo.data;
+      todo.estado = 1;
+      this.servicioPersona.editPersona(todo, todo.id).subscribe(data => {
+        console.log(data);
+        this.actualizarPersonas();
+      })
+    });
+ }
+
+
 }

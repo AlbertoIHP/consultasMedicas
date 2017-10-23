@@ -45,7 +45,7 @@ export class SecretarypacientesComponent implements OnInit {
 	public sourcePorNombre: buscadorPorNombre | null;
 	public bdEstructura;
 	public buscarPorNombre: boolean;
-	displayedColumns = ['Acciones','Persona', 'Tipo Sangre'];
+	displayedColumns = ['Acciones', 'Rut', 'Persona', 'Tipo Sangre'];
 
 	constructor(
 		public servicioPersona: PersonaService,
@@ -60,7 +60,6 @@ export class SecretarypacientesComponent implements OnInit {
 		this.totalPersonas = [];
 		this.actualizarPersonas();
 		this.actualizarTSs();
-		this.actualizarPacientes();
 
 	}
 
@@ -75,9 +74,12 @@ export class SecretarypacientesComponent implements OnInit {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalPersonas = todo;
+      this.actualizarPacientes();
+
 		});
 
 	}
+
 
 
 	actualizarTSs ()
@@ -98,6 +100,13 @@ export class SecretarypacientesComponent implements OnInit {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalPacientes = todo;
+
+      //Asignar rut busca el rut de cad apacietne buscando en su persona
+      this.asignarRut();
+
+      //Lo mismo que arriba solo que con activado
+      this.reconocerActivado();
+
 			this.reemplazarIdPorString();
 
 		//DATATABLE
@@ -112,9 +121,48 @@ export class SecretarypacientesComponent implements OnInit {
 				this.sourcePorNombre.filter = this.filter.nativeElement.value;
 				});
 
+
+
+
+
 		});
 	}
 
+
+  reconocerActivado ()
+  {
+     for ( let i = 0 ; i < this.totalPacientes.length ; i ++)
+    {
+      for( let j = 0 ; j < this.totalPersonas.length ; j ++)
+      {
+        if( parseInt(this.totalPacientes[i].Persona_id) === this.totalPersonas[j].id )
+        {
+
+          this.totalPersonas[j].estado === 0 ? this.totalPacientes[i].activado = 0 : this.totalPacientes[i].activado = 1;
+          console.log(this.totalPacientes)
+          break;
+        }
+      }
+    }
+  }
+
+
+  asignarRut()
+  {
+    for ( let i = 0 ; i < this.totalPacientes.length ; i ++)
+    {
+      for( let j = 0 ; j < this.totalPersonas.length ; j ++)
+      {
+        if( parseInt(this.totalPacientes[i].Persona_id) === this.totalPersonas[j].id)
+        {
+          console.log(this.totalPersonas[j].rut)
+          this.totalPacientes[i].rut = this.totalPersonas[j].rut;
+          console.log(this.totalPacientes[i]);
+          break;
+        }
+      }
+    }
+  }
 
 
 	cambiarBusqueda()

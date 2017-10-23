@@ -22,24 +22,28 @@
 
       <mat-cell *matCellDef="let row" >
 
-              <button  mat-icon-button (click) = "edicionPaciente(row)" >
+              <button *ngIf="row.activado === 1"  mat-icon-button (click) = "edicionPaciente(row)" >
                 <mat-icon>create</mat-icon>
               </button>
 
-<!--
-
-              <button  mat-icon-button (click) = "eliminarPaciente(row)" >
-                <mat-icon>delete</mat-icon>
-              </button> -->
-
-              <button (click)="desactivarPaciente(row)" mat-icon-button >
+              <button *ngIf="row.activado === 1" (click)="desactivarPaciente(row)" mat-icon-button >
                 <mat-icon>do_not_disturb</mat-icon>
               </button>
 
+              <button *ngIf="row.activado === 0" (click)="activarPaciente(row)" mat-icon-button  >
+                <mat-icon>arrow_upward</mat-icon>
+              </button>
       </mat-cell>
 
 
     </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Rut">
+      <mat-header-cell *matHeaderCellDef> Rut </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
+    </ng-container>
+
 
     <!-- Name Column -->
     <ng-container matColumnDef="Persona">
@@ -69,22 +73,27 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-              <button  mat-icon-button (click) = "edicionPaciente(row)" >
+              <button *ngIf="row.activado === 1"  mat-icon-button (click) = "edicionPaciente(row)" >
                 <mat-icon>create</mat-icon>
               </button>
-<!--
 
-              <button  mat-icon-button (click) = "eliminarPaciente(row)" >
-                <mat-icon>delete</mat-icon>
-              </button> -->
-
-              <button (click)="desactivarPaciente(row)" mat-icon-button >
+              <button *ngIf="row.activado === 1" (click)="desactivarPaciente(row)" mat-icon-button >
                 <mat-icon>do_not_disturb</mat-icon>
               </button>
+
+              <button *ngIf="row.activado === 0" (click)="activarPaciente(row)" mat-icon-button  >
+                <mat-icon>arrow_upward</mat-icon>
+              </button>
+
 
        </mat-cell>
     </ng-container>
 
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Rut">
+      <mat-header-cell *matHeaderCellDef> Rut </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
+    </ng-container>
 
 
     <!-- Name Column -->
