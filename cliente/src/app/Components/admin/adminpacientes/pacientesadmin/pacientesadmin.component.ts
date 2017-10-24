@@ -12,6 +12,9 @@ import { TipoSangreService } from '../../../../Services/tiposangre/tiposangre.se
 
 import { PacienteService } from '../../../../Services/paciente/paciente.service';
 
+import { VerfichapacienteComponent } from '../../../medic/medicpacientes/verfichapaciente/verfichapaciente.component';
+
+
 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material'
 
@@ -61,6 +64,32 @@ export class PacientesadminComponent extends SecretarypacientesComponent impleme
       })
     });
  }
+
+//función para mostrar la ficha médica del paciente correspondiente
+ desplegarFichaPaciente(paciente)
+  {
+  this.servicioPersona.getPersona(parseInt(paciente.Persona_id)).subscribe(data => {
+
+    var persona: any = data;
+    persona = persona.data;
+
+    console.log(persona);
+
+    let dialogRef = this.dialog.open(VerfichapacienteComponent, {
+    width: '1000px',
+    height:'500px',
+    data: { persona: persona }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    this.actualizarPacientes();
+    });
+
+  });
+
+
+  }
 
 
 }

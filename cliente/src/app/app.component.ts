@@ -8,12 +8,42 @@ import { Router } from '@angular/router';
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-	public currentUserRole: Role = { id: 1, nombre: 'Secretary', write: 0, view: 0, edit: 0, erase: 0};
+
+	public currentUserRole: Role = { id: 1, nombre: 'Administrador', write: 0, view: 0, edit: 0, erase: 0};
 
 
 
 	constructor(private router: Router){}
 
+  //Médico
+
+  irHomeMedico()
+  {
+    this.router.navigate(['medic']);
+  }
+
+  irPacientesMedico()
+  {
+    this.router.navigate(['medic/pacientes']);
+  }
+
+	//Paciente
+irFichaPaciente()
+  {
+  	this.router.navigate(['paciente/ficha']);
+  }
+
+  irCitasPaciente()
+  {
+    this.router.navigate(['paciente/citas']);
+  }
+
+  irHomePaciente()
+  {
+  	this.router.navigate(['paciente']);
+  }
+
+//admin
   irPacentesAdmin ()
   {
    this.router.navigate(['admin/moduloPacientes']);
@@ -23,7 +53,7 @@ export class AppComponent {
   {
    this.router.navigate(['admin']);
   }
-
+//secretary
 	irPacientesSecretary ()
 	{
 	 this.router.navigate(['secretary/moduloPacientes']);

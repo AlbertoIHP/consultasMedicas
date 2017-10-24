@@ -50,11 +50,17 @@
 			</div>
 
 			<div *ngIf="currentUserRole.nombre === 'Paciente'" >
-				<button  mat-button class="fullSpaceButton">Opciones de paciente</button>
+				
+				<button (click)="irHomePaciente()" mat-button class="fullSpaceButton">Home</button>
+
+				<button (click)="irFichaPaciente()" mat-button class="fullSpaceButton">Ficha Médica</button>
+
+				<button (click)="irCitasPaciente()" mat-button class="fullSpaceButton">Citas</button>
 			</div>
 
 			<div *ngIf="currentUserRole.nombre === 'Medico'" >
-				 <button mat-button class="fullSpaceButton">Opciones de Medico</button>
+				 <button (click)="irHomeMedico()" mat-button class="fullSpaceButton">Home</button>
+				 <button (click)="irPacientesMedico()" mat-button class="fullSpaceButton">Pacientes</button>
 			</div>
 
 		<div *ngIf="currentUserRole.nombre === 'Secretary'" >

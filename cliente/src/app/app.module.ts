@@ -24,6 +24,7 @@ import { routing, appRoutingProviders } from './Routes/app-routing.module';
 import { SuiModule } from 'ng2-semantic-ui';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+//import {MatTabsModule} from '@angular/material';
 //import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTabsModule, MatInputModule , MatSelectModule, MatDialogModule, MatPaginatorModule, MatTableModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule} from '@angular/material';
@@ -49,6 +50,7 @@ import { RolesComponent } from './Components/admin/adminpacientes/roles/roles.co
 import { SecretarypersonComponent } from './Components/secretary/secretaryperson/secretaryperson.component';
 import { AgregarpersonaComponent } from './Components/secretary/agregarpersona/agregarpersona.component';
 import { EditarpersonaComponent } from './Components/secretary/editarpersona/editarpersona.component';
+
 import { EditarEstadoCComponent } from './Components/admin/adminpacientes/estadocivil/editar-estado-c/editar-estado-c.component';
 import { AgregarEstadoCComponent } from './Components/admin/adminpacientes/estadocivil/agregar-estado-c/agregar-estado-c.component';
 import { EditargeneroComponent } from './Components/admin/adminpacientes/generos/editargenero/editargenero.component';
@@ -74,6 +76,10 @@ import { AgregarpacienteComponent } from './Components/secretary/secretarypacien
 import { TiposangreComponent } from './Components/admin/adminpacientes/tiposangre/tiposangre.component';
 import { AgregartipoComponent } from './Components/admin/adminpacientes/tiposangre/agregartipo/agregartipo.component';
 import { EditartipoComponent } from './Components/admin/adminpacientes/tiposangre/editartipo/editartipo.component';
+import { PacientefichaComponent } from './Components/paciente/pacienteficha/pacienteficha.component';
+import { PacientecitaComponent } from './Components/paciente/pacientecita/pacientecita.component';
+import { MedicpacientesComponent } from './Components/medic/medicpacientes/medicpacientes.component';
+import { VerfichapacienteComponent } from './Components/medic/medicpacientes/verfichapaciente/verfichapaciente.component';
 
 
 @NgModule({
@@ -123,7 +129,11 @@ import { EditartipoComponent } from './Components/admin/adminpacientes/tiposangr
 		AgregarpacienteComponent,
 		TiposangreComponent,
 		AgregartipoComponent,
-		EditartipoComponent
+		EditartipoComponent,
+		 PacientefichaComponent,
+        PacientecitaComponent,
+        MedicpacientesComponent,
+        VerfichapacienteComponent
 	],
 
 	entryComponents:
@@ -151,8 +161,10 @@ import { EditartipoComponent } from './Components/admin/adminpacientes/tiposangr
 		EditarpacienteComponent,
 		AgregarpacienteComponent,
     AgregartipoComponent,
-    EditartipoComponent
+    EditartipoComponent,
+    VerfichapacienteComponent
 	],
+
 
 	imports:
 	[
