@@ -43,31 +43,36 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { AgregarusuarioComponent } from '../usuarios/agregarusuario/agregarusuario.component';
 
+import { EventosService } from '../../../../Services/eventos/eventos.service';
 
 @Component({
-	selector: 'app-pacientes',
-	templateUrl: './pacientes.component.html',
-	styleUrls: ['./pacientes.component.css']
+  selector: 'app-pacientes',
+  templateUrl: './pacientes.component.html',
+  styleUrls: ['./pacientes.component.css']
 })
 export class PacientesComponent extends SecretarypersonComponent {
 
 
 
-	constructor(
-		public servicioPersona: PersonaService,
-		public servicioRegion: RegionService,
-		public servicioProvincia: ProvinciaService,
-		public servicioComuna: ComunaService,
-		public servicioGenero: GeneroService,
-		public servicioEstadoCivil: EstadocivilService,
-		public router: Router,
-		public dialog: MatDialog,
-	public servicioUsuario: UserService,
-	public servicioRole: RoleService
-		)
-	{
-		super(servicioPersona, servicioRegion, servicioProvincia, servicioComuna, servicioGenero, servicioEstadoCivil, router, dialog);
-	}
+  constructor(
+    public servicioPersona: PersonaService,
+    public servicioRegion: RegionService,
+    public servicioProvincia: ProvinciaService,
+    public servicioComuna: ComunaService,
+    public servicioGenero: GeneroService,
+    public servicioEstadoCivil: EstadocivilService,
+    public router: Router,
+    public dialog: MatDialog,
+    public servicioUsuario: UserService,
+    public servicioRole: RoleService,
+    public servicioEventos: EventosService
+    )
+  {
+    super(servicioPersona, servicioRegion, servicioProvincia, servicioComuna, servicioGenero, servicioEstadoCivil, router, dialog);
+    this.servicioEventos.seActivo.subscribe(() => {
+      this.actualizarPersonas();
+    });
+  }
 
 
 
@@ -76,25 +81,26 @@ export class PacientesComponent extends SecretarypersonComponent {
  /// FUNCIONALIDADES EXCLUSIVAS
 
 
-	eliminarPaciente (paciente)
-	{
-		this.servicioPersona.deletePersona(paciente.id).subscribe( data => {
-			console.log(data);
-			this.actualizarPersonas();
-		});
-	}
+  eliminarPaciente (paciente)
+  {
+    this.servicioPersona.deletePersona(paciente.id).subscribe( data => {
+      console.log(data);
+      this.actualizarPersonas();
+    });
+  }
 
 
 
-	activarPaciente (paciente)
-	{
-		paciente.estado = 1;
-		this.pasarStringId(paciente);
-		this.servicioPersona.editPersona(paciente, paciente.id).subscribe(data => {
-			console.log(data);
-			this.actualizarPersonas();
-		});
-	}
+  activarPaciente (paciente)
+  {
+    paciente.estado = 1;
+    this.pasarStringId(paciente);
+    this.servicioPersona.editPersona(paciente, paciente.id).subscribe(data => {
+      console.log(data);
+      this.actualizarPersonas();
+      this.servicioEventos.hiceUnCambio();
+    });
+  }
   desactivarPaciente (paciente)
   {
     paciente.estado = 0;
@@ -102,6 +108,7 @@ export class PacientesComponent extends SecretarypersonComponent {
     this.servicioPersona.editPersona(paciente, paciente.id).subscribe(data => {
       console.log(data);
       this.actualizarPersonas();
+      this.servicioEventos.hiceUnCambio();
     });
   }
 
@@ -109,26 +116,26 @@ export class PacientesComponent extends SecretarypersonComponent {
   agregarUsuario(persona)
   {
     var a: any = JSON.parse(JSON.stringify(persona));
-	 this.pasarStringId(a);
+   this.pasarStringId(a);
 
-	let dialogRef = this.dialog.open(AgregarusuarioComponent, {
-	  width: '1000px',
-	  data:
-	  {
-	   persona: a,
-	   servicioPersona: this.servicioPersona,
-	   servicioUsuario: this.servicioUsuario,
-	   servicioRole: this.servicioRole,
-	   usuario: new Usuario()
+  let dialogRef = this.dialog.open(AgregarusuarioComponent, {
+    width: '1000px',
+    data:
+    {
+     persona: a,
+     servicioPersona: this.servicioPersona,
+     servicioUsuario: this.servicioUsuario,
+     servicioRole: this.servicioRole,
+     usuario: new Usuario()
 
 
-	  }
-	});
+    }
+  });
 
-	dialogRef.afterClosed().subscribe(result => {
+  dialogRef.afterClosed().subscribe(result => {
 
-	  this.actualizarPersonas();
-	});
+    this.actualizarPersonas();
+  });
   }
 
 

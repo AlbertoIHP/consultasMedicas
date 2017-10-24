@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
+import { EventosService } from '../../../../../Services/eventos/eventos.service';
 
 
 @Component({
@@ -26,7 +26,8 @@ export class AgregarusuarioComponent implements OnInit{
 
 	constructor(
 		public dialogRef: MatDialogRef<AgregarusuarioComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: any
+		@Inject(MAT_DIALOG_DATA) public data: any,
+    public servicioEventos: EventosService
 		)
 	{
 	this.tienePersona = false;
@@ -122,15 +123,16 @@ export class AgregarusuarioComponent implements OnInit{
 	{
 		this.servicioUsuario.registerUser(this.usuario).subscribe(data => {
 			this.dialogRef.close();
+      this.servicioEventos.hiceUnCambio();
 
-		},
-	  //Verificamos si es que se ha catcheado algun error y desplegamos alguna alerta
-	  (err) => {
-	  if (err === 'Used') {
-		alert("Esta persona ya tiene asignado un usuario")
-	  }
+		});
+	//   //Verificamos si es que se ha catcheado algun error y desplegamos alguna alerta
+	//   (err) => {
+	//   if (err === 'Used') {
+	// 	alert("Esta persona ya tiene asignado un usuario")
+	//   }
 
-	});
+	// });
 	}
 
 

@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
-
+import { EventosService } from '../../../../Services/eventos/eventos.service';
 
 import { Usuario } from '../../../../Models/Usuario.model';
 import { UserService } from '../../../../Services/user/user.service';
@@ -59,16 +59,20 @@ export class UsuariosComponent {
 	public servicioUsuario: UserService,
 	public servicioRole: RoleService,
 	public servicioPersona: PersonaService,
-	public dialog: MatDialog
+	public dialog: MatDialog,
+  public servicioEventos: EventosService
 	)
 	{
 	this.buscarPorNombre = false;
 	this.totalRoles = [];
 	this.totalPersonas = [];
 	this.totalUsuarios = [];
-		this.actualizarRoles();
-		this.actualizarPersonas();
-		this.actualizarUsuarios();
+	this.actualizarRoles();
+	this.actualizarPersonas();
+	this.actualizarUsuarios();
+  this.servicioEventos.seActivo.subscribe(() => {
+      this.actualizarUsuarios();
+    });
 	}
 
 	actualizarRoles ()

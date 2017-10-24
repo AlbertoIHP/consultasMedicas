@@ -38,19 +38,20 @@ export class UserService {
 	//POST
 	registerUser(usuario: Usuario): Observable<boolean>
 	{
-		return this.http.post( this.base+'users', JSON.stringify(usuario), this.options).map((res: Response) =>
-    {
-  		if (res.ok) {
-  			return true;
-  		}else{
-  			return false;
-  		}
-	  }).catch( e => {
-		if(e.status === 405)
-  		{
-  		  return Observable.throw('Used');
-  		}
-	  });
+		return this.http.post( this.base+'users', JSON.stringify(usuario), this.options).map((res: Response) => res.json());
+  //   .map((res: Response) =>
+  //   {
+  // 		if (res.ok) {
+  // 			return true;
+  // 		}else{
+  // 			return false;
+  // 		}
+	 //  }).catch( e => {
+		// if(e.status === 405)
+  // 		{
+  // 		  return Observable.throw('Used');
+  // 		}
+	 //  });
 
 	}
 

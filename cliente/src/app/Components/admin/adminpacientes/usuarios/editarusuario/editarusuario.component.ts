@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 
+import { EventosService } from '../../../../../Services/eventos/eventos.service';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class EditarusuarioComponent  implements OnInit{
 
   constructor(
     public dialogRef: MatDialogRef<EditarusuarioComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public servicioEventos: EventosService
     )
   {
     this.usuario = data.usuario;
@@ -46,7 +48,7 @@ export class EditarusuarioComponent  implements OnInit{
     this.servicio.editUser(this.usuario, this.usuario.id).subscribe( data => {
       console.log(data);
       this.dialogRef.close();
-
+      this.servicioEventos.hiceUnCambio();
     });
   }
 

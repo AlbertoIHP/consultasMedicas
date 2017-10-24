@@ -14,6 +14,7 @@ import { PacienteService } from '../../../../Services/paciente/paciente.service'
 
 import { VerfichapacienteComponent } from '../../../medic/medicpacientes/verfichapaciente/verfichapaciente.component';
 
+import { EventosService } from '../../../../Services/eventos/eventos.service';
 
 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material'
@@ -29,9 +30,13 @@ export class PacientesadminComponent extends SecretarypacientesComponent impleme
     public servicioPersona: PersonaService,
     public servicioTS: TipoSangreService,
     public servicioPaciente: PacienteService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public servicioEventos: EventosService
     ) {
     super(servicioPersona, servicioTS, servicioPaciente, dialog);
+    this.servicioEventos.seActivo.subscribe(() => {
+      this.actualizarPersonas();
+    });
    }
 
   ngOnInit() {
@@ -47,6 +52,11 @@ export class PacientesadminComponent extends SecretarypacientesComponent impleme
       this.servicioPersona.editPersona(todo, todo.id).subscribe(data => {
         console.log(data);
         this.actualizarPersonas();
+
+        //El servicio con este metodo emite un evento que cualqueir componetne que este suscrito a dicho evento reaccionara
+        console.log("Yo hice un cambio (SoyPaciente)")
+       this.servicioEventos.hiceUnCambio();
+
       })
     });
 
@@ -61,6 +71,7 @@ export class PacientesadminComponent extends SecretarypacientesComponent impleme
       this.servicioPersona.editPersona(todo, todo.id).subscribe(data => {
         console.log(data);
         this.actualizarPersonas();
+        this.servicioEventos.hiceUnCambio();
       })
     });
  }
