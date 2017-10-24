@@ -42,6 +42,7 @@ trait MakePermisoModuloTrait
         $fake = Faker::create();
 
         return array_merge([
+            'Role_id' => $fake->randomDigitNotNull,
             'Modulo_id' => $fake->randomDigitNotNull,
             'write' => $fake->randomDigitNotNull,
             'delete' => $fake->randomDigitNotNull,

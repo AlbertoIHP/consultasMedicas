@@ -1,3 +1,9 @@
+<!-- Id Field -->
+<div class="form-group">
+    {!! Form::label('id', 'Id:') !!}
+    <p>{!! $permisoModulo->id !!}</p>
+</div>
+
 <!-- Role Id Field -->
 <div class="form-group">
     {!! Form::label('Role_id', 'Role Id:') !!}

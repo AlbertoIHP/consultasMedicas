@@ -72,6 +72,7 @@ class PermisoModuloDataTable extends DataTable
     private function getColumns()
     {
         return [
+            'Role_id' => ['name' => 'Role_id', 'data' => 'Role_id'],
             'Modulo_id' => ['name' => 'Modulo_id', 'data' => 'Modulo_id'],
             'write' => ['name' => 'write', 'data' => 'write'],
             'delete' => ['name' => 'delete', 'data' => 'delete'],

@@ -1,3 +1,9 @@
+<!-- Role Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('Role_id', 'Role Id:') !!}
+    {!! Form::number('Role_id', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Modulo Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('Modulo_id', 'Modulo Id:') !!}

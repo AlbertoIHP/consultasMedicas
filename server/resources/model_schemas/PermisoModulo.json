@@ -1,7 +1,7 @@
 [
     {
-        "name": "Role_id",
-        "dbType": "integer,false",
+        "name": "id",
+        "dbType": "integer,true",
         "htmlType": null,
         "validations": null,
         "searchable": false,
@@ -9,6 +9,17 @@
         "primary": true,
         "inForm": false,
         "inIndex": false
+    },
+    {
+        "name": "Role_id",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
     },
     {
         "name": "Modulo_id",
