@@ -2,25 +2,25 @@
 
 namespace App\Repositories;
 
-use App\Models\Role;
+use App\Models\Modulo;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
- * Class RoleRepository
+ * Class ModuloRepository
  * @package App\Repositories
  * @version October 24, 2017, 5:08 am UTC
  *
- * @method Role findWithoutFail($id, $columns = ['*'])
- * @method Role find($id, $columns = ['*'])
- * @method Role first($columns = ['*'])
+ * @method Modulo findWithoutFail($id, $columns = ['*'])
+ * @method Modulo find($id, $columns = ['*'])
+ * @method Modulo first($columns = ['*'])
 */
-class RoleRepository extends BaseRepository
+class ModuloRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'nombre'
+        'name'
     ];
 
     /**
@@ -28,6 +28,6 @@ class RoleRepository extends BaseRepository
      **/
     public function model()
     {
-        return Role::class;
+        return Modulo::class;
     }
 }

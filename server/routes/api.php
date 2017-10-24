@@ -32,37 +32,38 @@ Route::group(['middleware' => ['cors']], function(){
 
 
 
-	  // PROVISORIO
-	Route::resource('v1/regions', 'RegionAPIController');
+      // PROVISORIO
+    Route::resource('v1/regions', 'RegionAPIController');
 
-	Route::resource('v1/provincias', 'ProvinciaAPIController');
+    Route::resource('v1/provincias', 'ProvinciaAPIController');
 
-	Route::resource('v1/comunas', 'ComunaAPIController');
+    Route::resource('v1/comunas', 'ComunaAPIController');
 
-	Route::resource('v1/previsions', 'PrevisionAPIController');
+    Route::resource('v1/previsions', 'PrevisionAPIController');
 
-	Route::resource('v1/previsionActuals', 'PrevisionActualAPIController');
+    Route::resource('v1/previsionActuals', 'PrevisionActualAPIController');
 
-	Route::resource('v1/roles', 'RoleAPIController');
+    Route::resource('v1/roles', 'RoleAPIController');
 
-	Route::resource('v1/estadoCivils', 'EstadoCivilAPIController');
+    Route::resource('v1/estadoCivils', 'EstadoCivilAPIController');
 
-	Route::resource('v1/generos', 'GeneroAPIController');
+    Route::resource('v1/generos', 'GeneroAPIController');
 
-	Route::resource('v1/tipoSangres', 'TipoSangreAPIController');
+    Route::resource('v1/tipoSangres', 'TipoSangreAPIController');
 
-	Route::resource('v1/personas', 'PersonaAPIController');
+    Route::resource('v1/personas', 'PersonaAPIController');
 
-	Route::resource('v1/pacientes', 'PacienteAPIController');
+    Route::resource('v1/pacientes', 'PacienteAPIController');
 
-	Route::resource('v1/users', 'UserAPIController');
+    Route::resource('v1/users', 'UserAPIController');
+
+
+    Route::resource('v1/permisoModulos', 'PermisoModuloAPIController');
+
+    Route::resource('v1/modulos', 'ModuloAPIController');
 });
 
 
 
 
 
-
-Route::resource('roles', 'RoleAPIController');
-
-Route::resource('roles', 'RoleAPIController');

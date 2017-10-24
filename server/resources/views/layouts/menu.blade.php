@@ -366,3 +366,15 @@
     <a href="{!! route('roles.index') !!}"><i class="fa fa-edit"></i><span>Roles</span></a>
 </li>
 
+<li class="{{ Request::is('roles*') ? 'active' : '' }}">
+    <a href="{!! route('roles.index') !!}"><i class="fa fa-edit"></i><span>Roles</span></a>
+</li>
+
+<li class="{{ Request::is('permisoModulos*') ? 'active' : '' }}">
+    <a href="{!! route('permisoModulos.index') !!}"><i class="fa fa-edit"></i><span>Permiso Modulos</span></a>
+</li>
+
+<li class="{{ Request::is('modulos*') ? 'active' : '' }}">
+    <a href="{!! route('modulos.index') !!}"><i class="fa fa-edit"></i><span>Modulos</span></a>
+</li>
+

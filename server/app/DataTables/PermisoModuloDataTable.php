@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Role;
+use App\Models\PermisoModulo;
 use Form;
 use Yajra\Datatables\Services\DataTable;
 
-class RoleDataTable extends DataTable
+class PermisoModuloDataTable extends DataTable
 {
 
     /**
@@ -16,7 +16,7 @@ class RoleDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'roles.datatables_actions')
+            ->addColumn('action', 'permiso_modulos.datatables_actions')
             ->make(true);
     }
 
@@ -27,9 +27,9 @@ class RoleDataTable extends DataTable
      */
     public function query()
     {
-        $roles = Role::query();
+        $permisoModulos = PermisoModulo::query();
 
-        return $this->applyScopes($roles);
+        return $this->applyScopes($permisoModulos);
     }
 
     /**
@@ -72,7 +72,11 @@ class RoleDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'nombre' => ['name' => 'nombre', 'data' => 'nombre']
+            'Modulo_id' => ['name' => 'Modulo_id', 'data' => 'Modulo_id'],
+            'write' => ['name' => 'write', 'data' => 'write'],
+            'delete' => ['name' => 'delete', 'data' => 'delete'],
+            'update' => ['name' => 'update', 'data' => 'update'],
+            'view' => ['name' => 'view', 'data' => 'view']
         ];
     }
 
@@ -83,6 +87,6 @@ class RoleDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'roles';
+        return 'permisoModulos';
     }
 }

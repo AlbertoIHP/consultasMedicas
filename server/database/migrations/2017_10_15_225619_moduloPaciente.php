@@ -20,6 +20,20 @@ class ModuloPaciente extends Migration
 
 		});
 
+		Schema::table('PermisoModulo', function (Blueprint $table) {
+			$table->rememberToken();
+			$table->timestamps();
+			$table->timestamp('deleted_at')->nullable();
+
+		});
+
+		Schema::table('Modulo', function (Blueprint $table) {
+			$table->rememberToken();
+			$table->timestamps();
+			$table->timestamp('deleted_at')->nullable();
+
+		});
+
 		Schema::table('TipoSangre', function (Blueprint $table) {
 			$table->rememberToken();
 			$table->timestamps();

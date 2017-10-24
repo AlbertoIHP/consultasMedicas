@@ -603,6 +603,205 @@
                 }
             }
         },
+        "/modulos": {
+            "get": {
+                "tags": [
+                    "Modulo"
+                ],
+                "summary": "Get a listing of the Modulos.",
+                "description": "Get all Modulos",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Modulo"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Modulo"
+                ],
+                "summary": "Store a newly created Modulo in storage",
+                "description": "Store Modulo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Modulo that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Modulo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Modulo"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/modulos/{id}": {
+            "get": {
+                "tags": [
+                    "Modulo"
+                ],
+                "summary": "Display the specified Modulo",
+                "description": "Get Modulo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Modulo",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Modulo"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Modulo"
+                ],
+                "summary": "Update the specified Modulo in storage",
+                "description": "Update Modulo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Modulo",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Modulo that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Modulo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Modulo"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Modulo"
+                ],
+                "summary": "Remove the specified Modulo from storage",
+                "description": "Delete Modulo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Modulo",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/pacientes": {
             "get": {
                 "tags": [
@@ -777,6 +976,205 @@
                         "name": "id",
                         "in": "path",
                         "description": "id of Paciente",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/permisoModulos": {
+            "get": {
+                "tags": [
+                    "PermisoModulo"
+                ],
+                "summary": "Get a listing of the PermisoModulos.",
+                "description": "Get all PermisoModulos",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/PermisoModulo"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "PermisoModulo"
+                ],
+                "summary": "Store a newly created PermisoModulo in storage",
+                "description": "Store PermisoModulo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "PermisoModulo that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/PermisoModulo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/PermisoModulo"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/permisoModulos/{id}": {
+            "get": {
+                "tags": [
+                    "PermisoModulo"
+                ],
+                "summary": "Display the specified PermisoModulo",
+                "description": "Get PermisoModulo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PermisoModulo",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/PermisoModulo"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "PermisoModulo"
+                ],
+                "summary": "Update the specified PermisoModulo in storage",
+                "description": "Update PermisoModulo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PermisoModulo",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "PermisoModulo that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/PermisoModulo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/PermisoModulo"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "PermisoModulo"
+                ],
+                "summary": "Remove the specified PermisoModulo from storage",
+                "description": "Delete PermisoModulo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of PermisoModulo",
                         "required": true,
                         "type": "integer"
                     }
@@ -2457,6 +2855,22 @@
                 }
             }
         },
+        "Modulo": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                }
+            }
+        },
         "Paciente": {
             "required": [
                 ""
@@ -2474,6 +2888,43 @@
                 },
                 "TipoSangre_id": {
                     "description": "TipoSangre_id",
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "PermisoModulo": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "Role_id": {
+                    "description": "Role_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Modulo_id": {
+                    "description": "Modulo_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "write": {
+                    "description": "write",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "delete": {
+                    "description": "delete",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "update": {
+                    "description": "update",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "view": {
+                    "description": "view",
                     "type": "integer",
                     "format": "int32"
                 }
@@ -2650,26 +3101,6 @@
                 "nombre": {
                     "description": "nombre",
                     "type": "string"
-                },
-                "write": {
-                    "description": "write",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "view": {
-                    "description": "view",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "edit": {
-                    "description": "edit",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "erase": {
-                    "description": "erase",
-                    "type": "integer",
-                    "format": "int32"
                 }
             }
         },

@@ -160,3 +160,9 @@ Route::resource('roles', 'RoleController');
 Route::resource('roles', 'RoleController');
 
 Route::resource('roles', 'RoleController');
+
+Route::resource('roles', 'RoleController');
+
+Route::resource('permisoModulos', 'PermisoModuloController');
+
+Route::resource('modulos', 'ModuloController');

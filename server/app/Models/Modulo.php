@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="Role",
+ *      definition="Modulo",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,17 +16,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="nombre",
- *          description="nombre",
+ *          property="name",
+ *          description="name",
  *          type="string"
  *      )
  * )
  */
-class Role extends Model
+class Modulo extends Model
 {
     use SoftDeletes;
 
-    public $table = 'Role';
+    public $table = 'Modulo';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -36,7 +36,7 @@ class Role extends Model
 
 
     public $fillable = [
-        'nombre'
+        'name'
     ];
 
     /**
@@ -46,7 +46,7 @@ class Role extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'nombre' => 'string'
+        'name' => 'string'
     ];
 
     /**
@@ -61,18 +61,11 @@ class Role extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function modulos()
+    public function roles()
     {
-        return $this->belongsToMany(\App\Models\Modulo::class, 'PermisoModulo');
+        return $this->belongsToMany(\App\Models\Role::class, 'PermisoModulo');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function usuarios()
-    {
-        return $this->hasMany(\App\Models\Usuario::class);
-    }
 
-        protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];   
+    protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];   
 }

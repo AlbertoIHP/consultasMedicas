@@ -11,7 +11,7 @@
         "inIndex": false
     },
     {
-        "name": "nombre",
+        "name": "name",
         "dbType": "string",
         "htmlType": "text",
         "validations": null,
@@ -39,7 +39,7 @@
     },
     {
         "type": "relation",
-        "relation": "mtm,Modulo,PermisoModulo"
+        "relation": "mtm,Role,PermisoModulo"
     },
     {
         "type": "relation",
@@ -51,6 +51,6 @@
     },
     {
         "type": "relation",
-        "relation": "1tm,Usuario"
+        "relation": "mtm,,Usuario"
     }
 ]

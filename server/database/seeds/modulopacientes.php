@@ -2415,6 +2415,59 @@ class modulopacientes extends Seeder
 
 		]);
 		
+		DB::table('Modulo')->insert([
+			'name' => 'Personas',
+		]);
+		
+		DB::table('Modulo')->insert([
+			'name' => 'Pacientes',
+		]);
+		
+		DB::table('Modulo')->insert([
+			'name' => 'EstadoCivil',
+		]);
+		
+		DB::table('Modulo')->insert([
+			'name' => 'Generos',
+		]);
+		
+		DB::table('Modulo')->insert([
+			'name' => 'Comunas',
+		]);
+		
+		DB::table('Modulo')->insert([
+			'name' => 'Provincias',
+		]);
+		
+		DB::table('Modulo')->insert([
+			'name' => 'Regiones',
+		]);
+		
+		DB::table('Modulo')->insert([
+			'name' => 'Previsiones',
+		]);
+		
+		DB::table('Modulo')->insert([
+			'name' => 'Usuarios',
+		]);
+		
+		DB::table('Modulo')->insert([
+			'name' => 'Roles',
+		]);
+		
+		DB::table('Modulo')->insert([
+			'name' => 'TipoSangre',
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 1,
+			'Modulo_id' => 1,
+		]);
+		
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 2,
+			'Modulo_id' => 2,
+		]);
 
 	}
 }

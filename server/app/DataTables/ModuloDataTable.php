@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Role;
+use App\Models\Modulo;
 use Form;
 use Yajra\Datatables\Services\DataTable;
 
-class RoleDataTable extends DataTable
+class ModuloDataTable extends DataTable
 {
 
     /**
@@ -16,7 +16,7 @@ class RoleDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'roles.datatables_actions')
+            ->addColumn('action', 'modulos.datatables_actions')
             ->make(true);
     }
 
@@ -27,9 +27,9 @@ class RoleDataTable extends DataTable
      */
     public function query()
     {
-        $roles = Role::query();
+        $modulos = Modulo::query();
 
-        return $this->applyScopes($roles);
+        return $this->applyScopes($modulos);
     }
 
     /**
@@ -72,7 +72,7 @@ class RoleDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'nombre' => ['name' => 'nombre', 'data' => 'nombre']
+            'name' => ['name' => 'name', 'data' => 'name']
         ];
     }
 
@@ -83,6 +83,6 @@ class RoleDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'roles';
+        return 'modulos';
     }
 }
