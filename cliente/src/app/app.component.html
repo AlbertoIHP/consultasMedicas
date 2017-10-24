@@ -27,33 +27,6 @@
 </mat-toolbar>
 
 
-<!--
-	<mat-toolbar>
-		<button mat-icon-button (click)="sidenav.open()">
-			<mat-icon>menu </mat-icon>
-		</button>
-
-		<button mat-icon-button [matMenuTriggerFor]="menu" class="rightIcon">
-			<mat-icon>more_vert</mat-icon>
-		</button>
-
-		<mat-menu #menu="matMenu">
-			<button mat-menu-item>
-				<mat-icon>dialpad</mat-icon>
-				<span>Actividad</span>
-			</button>
-			<button mat-menu-item disabled>
-				<mat-icon>voicemail</mat-icon>
-				<span>Editar Perfil</span>
-			</button>
-			<button mat-menu-item>
-				<mat-icon>notifications_off</mat-icon>
-				<span>Cerrar Sesion</span>
-			</button>
-		</mat-menu>
-
-	</mat-toolbar>
- -->
 	<mat-sidenav #sidenav style="position: fixed; height: 100%">
 			<div *ngIf="currentUserRole.nombre === 'Administrador'" >
 				<div class="row">
