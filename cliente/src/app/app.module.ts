@@ -79,6 +79,7 @@ import { EditartipoComponent } from './Components/admin/adminpacientes/tiposangr
 import { PacientefichaComponent } from './Components/paciente/pacienteficha/pacienteficha.component';
 import { PacientecitaComponent } from './Components/paciente/pacientecita/pacientecita.component';
 import { MedicpacientesComponent } from './Components/medic/medicpacientes/medicpacientes.component';
+import { VerfichapacienteComponent } from './Components/medic/medicpacientes/verfichapaciente/verfichapaciente.component';
 
 
 @NgModule({
@@ -131,7 +132,8 @@ import { MedicpacientesComponent } from './Components/medic/medicpacientes/medic
 		EditartipoComponent,
 		 PacientefichaComponent,
         PacientecitaComponent,
-        MedicpacientesComponent
+        MedicpacientesComponent,
+        VerfichapacienteComponent
 	],
 
 	entryComponents:
@@ -159,7 +161,8 @@ import { MedicpacientesComponent } from './Components/medic/medicpacientes/medic
 		EditarpacienteComponent,
 		AgregarpacienteComponent,
     AgregartipoComponent,
-    EditartipoComponent
+    EditartipoComponent,
+    VerfichapacienteComponent
 	],
 
 

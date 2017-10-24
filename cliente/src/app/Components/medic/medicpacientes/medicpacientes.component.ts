@@ -24,6 +24,9 @@ import { TipoSangreService } from '../../../Services/tiposangre/tiposangre.servi
 import { Paciente } from '../../../Models/Paciente.model';
 import { PacienteService } from '../../../Services/paciente/paciente.service';
 
+import { VerfichapacienteComponent } from './verfichapaciente/verfichapaciente.component';
+
+
 @Component({
   selector: 'app-medicpacientes',
   templateUrl: './medicpacientes.component.html',
@@ -63,6 +66,32 @@ export class MedicpacientesComponent implements OnInit {
 	ngOnInit() {
 	}
 
+
+
+	desplegarFichaPaciente(paciente)
+	{
+	this.servicioPersona.getPersona(parseInt(paciente.Persona_id)).subscribe(data => {
+
+		var persona: any = data;
+		persona = persona.data;
+
+		console.log(persona);
+
+		let dialogRef = this.dialog.open(VerfichapacienteComponent, {
+		width: '1000px',
+		height:'500px',
+		data: { persona: persona }
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
+		this.actualizarPacientes();
+		});
+
+	});
+
+
+	}
 
 	actualizarPersonas()
 	{

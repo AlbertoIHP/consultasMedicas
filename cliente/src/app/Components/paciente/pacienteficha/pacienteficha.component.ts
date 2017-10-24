@@ -46,7 +46,7 @@ export class PacientefichaComponent {
 
 	//variables básicas
 
-	public idPersona:number=4;
+	public idPersona:number=1;
 
   //será array ya que es la única manera de usarlo con datasource
 	public personaPaciente:Persona[];
