@@ -2898,6 +2898,11 @@
                 ""
             ],
             "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
                 "Role_id": {
                     "description": "Role_id",
                     "type": "integer",

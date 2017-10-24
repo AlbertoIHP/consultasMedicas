@@ -1,0 +1,102 @@
+<h1 mat-dialog-title style="text-align: center;">Creacion de Nueva Persona</h1>
+
+<div mat-dialog-content>
+
+	<p>Rut</p>
+
+	<input matInput tabindex="1" [(ngModel)]="persona.rut">
+
+
+	<p>Primer Nombre</p>
+
+	<input matInput tabindex="1" [(ngModel)]="persona.nombre1">
+
+
+	<p>Segundo Nombre</p>
+	<input matInput tabindex="1" [(ngModel)]="persona.nombre2">
+
+
+	<p>Primer Apellido</p>
+
+	<input matInput tabindex="1" [(ngModel)]="persona.apellido1">
+
+
+	<p>Segundo Apellido</p>
+
+	<input matInput tabindex="1" [(ngModel)]="persona.apellido2">
+
+
+	<p>Telefono de Casa</p>
+
+	<input matInput tabindex="1" [(ngModel)]="persona.fono_casa">
+
+
+	<p>Telefono de Trabajo</p>
+
+	<input matInput tabindex="1" [(ngModel)]="persona.fono_trabajo">
+
+
+	<p>Celular</p>
+
+	<input matInput tabindex="1" [(ngModel)]="persona.movil">
+
+
+	<p>Genero</p>
+  <mat-form-field style="width: 100% !important;">
+		<mat-select placeholder="Genero" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let genero of totalGeneros" [value]="genero.id" (click)="generoSeleccionado(genero)">
+				{{ genero.nombre }}
+			</mat-option>
+		</mat-select>
+  </mat-form-field>
+
+	<p>Estado Civil</p>
+  <mat-form-field style="width: 100% !important;">
+	<mat-select placeholder="Estado Civil" style="width: 100% !important;">
+	  <mat-option style="width: 100% !important;" *ngFor="let ec of totalEstadoCiviles" [value]="ec.id" (click)="ecSeleccionado(ec)">
+		{{ ec.nombre }}
+	  </mat-option>
+	</mat-select>
+  </mat-form-field>
+
+
+
+
+	<p *ngIf="mostrarRegiones">Region</p>
+
+  <mat-form-field style="width: 100% !important;" *ngIf="mostrarRegiones">
+  <mat-select placeholder="Region" style="width: 100% !important;">
+	<mat-option style="width: 100% !important;" *ngFor="let region of totalRegiones" [value]="region.id" (click)="regionSeleccionada(region)">
+	{{ region.nombre }}
+	</mat-option>
+  </mat-select>
+  </mat-form-field>
+
+  <p *ngIf="mostrarProvincias">Provincia</p>
+
+  <mat-form-field style="width: 100% !important;" *ngIf="mostrarProvincias">
+  <mat-select placeholder="Provincia" style="width: 100% !important;">
+	<mat-option style="width: 100% !important;" *ngFor="let provincia of provinciasMostrar" [value]="provincia.id" (click)="provinciaSeleccionada(provincia)">
+	{{ provincia.nombre }}
+	</mat-option>
+  </mat-select>
+  </mat-form-field>
+
+
+  <p *ngIf="mostrarComunas">Comuna</p>
+
+  <mat-form-field style="width: 100% !important;" *ngIf="mostrarComunas">
+  <mat-select placeholder="Comuna" style="width: 100% !important;" >
+	<mat-option style="width: 100% !important;" *ngFor="let comuna of comunasMostrar" [value]="comuna.id" (click)="comunaSeleccionada(comuna)">
+	{{ comuna.nombre }}
+	</mat-option>
+  </mat-select>
+  </mat-form-field>
+
+</div>
+
+
+<div mat-dialog-actions>
+	<button mat-button (click)="agregarPersona()" tabindex="2">Agregar Persona</button>
+	<button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

@@ -1,0 +1,31 @@
+<h1  mat-dialog-title style="text-align: center;">Agregar  Paciente</h1>
+
+<div mat-dialog-content>
+
+	<p >Tipo Sangre</p>
+	<mat-form-field style="width: 100% !important;" >
+		<mat-select placeholder="Tipo Sangre" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let tiposangre of totalTS" [value]="tiposangre.id" (click)="tsSeleccionado(tiposangre)">
+				{{ tiposangre.nombre }}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+
+
+	<p >Persona Asociada</p>
+	<mat-form-field style="width: 100% !important;" >
+		<mat-select placeholder="Seleccione una Persona para asociar al Paciente" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let persona of personasDisponibles" [value]="persona.id" (click)="personaSeleccionada(persona)">
+			 ( {{ persona.rut }} ) {{persona.nombre1 }} {{persona.apellido1}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+</div>
+
+
+<div mat-dialog-actions>
+	<button *ngIf="!isPersona"  mat-button (click)="agregarPaciente()" tabindex="2">Agregar Paciente</button>
+	<button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>
