@@ -9,58 +9,27 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
-	public currentUserRole: Role = { id: 1, nombre: 'Administrador', write: 0, view: 0, edit: 0, erase: 0};
-
-
-
 	constructor(private router: Router){}
 
-  //Médico
 
-  irHomeMedico()
+  irMP()
   {
-    this.router.navigate(['medic']);
+    this.router.navigate(['moduloPacientes']);
   }
 
-  irPacientesMedico()
+
+  irMC()
   {
-    this.router.navigate(['medic/pacientes']);
+
   }
 
-	//Paciente
-irFichaPaciente()
+
+  irMA()
   {
-  	this.router.navigate(['paciente/ficha']);
+
   }
 
-  irCitasPaciente()
-  {
-    this.router.navigate(['paciente/citas']);
-  }
 
-  irHomePaciente()
-  {
-  	this.router.navigate(['paciente']);
-  }
 
-//admin
-  irPacentesAdmin ()
-  {
-   this.router.navigate(['admin/moduloPacientes']);
-  }
 
-  irHomeAdmin ()
-  {
-   this.router.navigate(['admin']);
-  }
-//secretary
-	irPacientesSecretary ()
-	{
-	 this.router.navigate(['secretary/moduloPacientes']);
-	}
-
-	irHomeSecretary ()
-	{
-		this.router.navigate(['secretary']);
-	}
 }

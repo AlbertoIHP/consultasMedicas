@@ -12,7 +12,6 @@ import { RoleService } from './Services/role/role.service';
 import { UserService } from './Services/user/user.service';
 import { TipoSangreService } from './Services/tiposangre/tiposangre.service';
 import { AuthenticationService} from './Services/authentication/authentication.service';
-
 import { EventosService } from './Services/eventos/eventos.service';
 
 
@@ -26,75 +25,95 @@ import { routing, appRoutingProviders } from './Routes/app-routing.module';
 import { SuiModule } from 'ng2-semantic-ui';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-//import {MatTabsModule} from '@angular/material';
-//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTabsModule, MatInputModule , MatSelectModule, MatDialogModule, MatPaginatorModule, MatTableModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule} from '@angular/material';
 
 // COMPONENTES
-import { AppComponent } from './app.component';
-import { AdminhomeComponent } from './Components/admin/adminhome/adminhome.component';
-import { PacientehomeComponent } from './Components/paciente/pacientehome/pacientehome.component';
-import { SecretaryhomeComponent } from './Components/secretary/secretaryhome/secretaryhome.component';
-import { MedichomeComponent } from './Components/medic/medichome/medichome.component';
-import { LoginComponent } from './Components/login/login/login.component';
-import { SecretaryprevisionComponent } from './Components/secretary/secretaryprevision/secretaryprevision.component';
-import { AdminpacientesComponent } from './Components/admin/adminpacientes/adminpacientes.component';
-import { PacientesComponent } from './Components/admin/adminpacientes/pacientes/pacientes.component';
-import { EstadocivilComponent } from './Components/admin/adminpacientes/estadocivil/estadocivil.component';
-import { GenerosComponent } from './Components/admin/adminpacientes/generos/generos.component';
-import { ComunasComponent } from './Components/admin/adminpacientes/comunas/comunas.component';
-import { ProvinciasComponent } from './Components/admin/adminpacientes/provincias/provincias.component';
-import { RegionesComponent } from './Components/admin/adminpacientes/regiones/regiones.component';
-import { PrevisionesComponent } from './Components/admin/adminpacientes/previsiones/previsiones.component';
-import { UsuariosComponent } from './Components/admin/adminpacientes/usuarios/usuarios.component';
-import { RolesComponent } from './Components/admin/adminpacientes/roles/roles.component';
-import { SecretarypersonComponent } from './Components/secretary/secretaryperson/secretaryperson.component';
-import { AgregarpersonaComponent } from './Components/secretary/agregarpersona/agregarpersona.component';
-import { EditarpersonaComponent } from './Components/secretary/editarpersona/editarpersona.component';
 
-import { EditarEstadoCComponent } from './Components/admin/adminpacientes/estadocivil/editar-estado-c/editar-estado-c.component';
-import { AgregarEstadoCComponent } from './Components/admin/adminpacientes/estadocivil/agregar-estado-c/agregar-estado-c.component';
-import { EditargeneroComponent } from './Components/admin/adminpacientes/generos/editargenero/editargenero.component';
-import { AgregargeneroComponent } from './Components/admin/adminpacientes/generos/agregargenero/agregargenero.component';
-import { AgregarcomunaComponent } from './Components/admin/adminpacientes/comunas/agregarcomuna/agregarcomuna.component';
-import { EditarcomunaComponent } from './Components/admin/adminpacientes/comunas/editarcomuna/editarcomuna.component';
-import { EditarprevisionComponent } from './Components/admin/adminpacientes/previsiones/editarprevision/editarprevision.component';
-import { AgregarprevisionComponent } from './Components/admin/adminpacientes/previsiones/agregarprevision/agregarprevision.component';
-import { AgregarprovinciaComponent } from './Components/admin/adminpacientes/provincias/agregarprovincia/agregarprovincia.component';
-import { EditarprovinciaComponent } from './Components/admin/adminpacientes/provincias/editarprovincia/editarprovincia.component';
-import { EditarregionesComponent } from './Components/admin/adminpacientes/regiones/editarregiones/editarregiones.component';
-import { AgregarregionesComponent } from './Components/admin/adminpacientes/regiones/agregarregiones/agregarregiones.component';
-import { AgregarrolesComponent } from './Components/admin/adminpacientes/roles/agregarroles/agregarroles.component';
-import { EditarrolesComponent } from './Components/admin/adminpacientes/roles/editarroles/editarroles.component';
-import { EditarusuarioComponent } from './Components/admin/adminpacientes/usuarios/editarusuario/editarusuario.component';
-import { AgregarusuarioComponent } from './Components/admin/adminpacientes/usuarios/agregarusuario/agregarusuario.component';
-import { SecretarypacientesComponent } from './Components/secretary/secretarypacientes/secretarypacientes.component';
-import { PersonasComponent } from './Components/secretary/personas/personas.component';
-import { PacientesadminComponent } from './Components/admin/adminpacientes/pacientesadmin/pacientesadmin.component';
-import { VerpersonaComponent } from './Components/admin/adminpacientes/usuarios/verpersona/verpersona.component';
-import { EditarpacienteComponent } from './Components/secretary/secretarypacientes/editarpaciente/editarpaciente.component';
-import { AgregarpacienteComponent } from './Components/secretary/secretarypacientes/agregarpaciente/agregarpaciente.component';
-import { TiposangreComponent } from './Components/admin/adminpacientes/tiposangre/tiposangre.component';
-import { AgregartipoComponent } from './Components/admin/adminpacientes/tiposangre/agregartipo/agregartipo.component';
-import { EditartipoComponent } from './Components/admin/adminpacientes/tiposangre/editartipo/editartipo.component';
-import { PacientefichaComponent } from './Components/paciente/pacienteficha/pacienteficha.component';
-import { PacientecitaComponent } from './Components/paciente/pacientecita/pacientecita.component';
-import { MedicpacientesComponent } from './Components/medic/medicpacientes/medicpacientes.component';
-import { VerfichapacienteComponent } from './Components/medic/medicpacientes/verfichapaciente/verfichapaciente.component';
+//Componentes Raices
+import { AppComponent } from './app.component';
+import { LoginComponent } from './Components/login/login.component';
+
+//Modulo Pacientes
+import { Homemp } from './Components/moduloPacientes/homemp.component';
+
+  //Componente Ficha Medica
+  import { VerFichaMedicaComponent } from './Components/moduloPacientes/fichamedica/verfichamedica/verfichamedica.component';
+
+  //Componente Estado Civil
+  import { EstadocivilComponent } from './Components/moduloPacientes/estadocivil/estadocivil.component';
+  import { EditarEstadoCComponent } from './Components/moduloPacientes/estadocivil/editar-estado-c/editar-estado-c.component';
+  import { AgregarEstadoCComponent } from './Components/moduloPacientes/estadocivil/agregar-estado-c/agregar-estado-c.component';
+
+  //Componente Generos
+  import { GenerosComponent } from './Components/moduloPacientes/generos/generos.component';
+  import { EditargeneroComponent } from './Components/moduloPacientes/generos/editargenero/editargenero.component';
+  import { AgregargeneroComponent } from './Components/moduloPacientes/generos/agregargenero/agregargenero.component';
+
+  //Componente Comunas
+  import { ComunasComponent } from './Components/moduloPacientes/comunas/comunas.component';
+  import { AgregarcomunaComponent } from './Components/moduloPacientes/comunas/agregarcomuna/agregarcomuna.component';
+  import { EditarcomunaComponent } from './Components/moduloPacientes/comunas/editarcomuna/editarcomuna.component';
+
+  //Componente Previsiones
+  import { PrevisionesComponent } from './Components/moduloPacientes/previsiones/previsiones.component';
+  import { EditarprevisionComponent } from './Components/moduloPacientes/previsiones/editarprevision/editarprevision.component';
+  import { AgregarprevisionComponent } from './Components/moduloPacientes/previsiones/agregarprevision/agregarprevision.component';
+  import { VerPrevisionComponent } from './Components/moduloPacientes/previsiones/verprevision/verprevision.component';
+
+  //Componente Provincias
+  import { ProvinciasComponent } from './Components/moduloPacientes/provincias/provincias.component';
+  import { AgregarprovinciaComponent } from './Components/moduloPacientes/provincias/agregarprovincia/agregarprovincia.component';
+  import { EditarprovinciaComponent } from './Components/moduloPacientes/provincias/editarprovincia/editarprovincia.component';
+
+  //Componente Regiones
+  import { RegionesComponent } from './Components/moduloPacientes/regiones/regiones.component';
+  import { EditarregionesComponent } from './Components/moduloPacientes/regiones/editarregiones/editarregiones.component';
+  import { AgregarregionesComponent } from './Components/moduloPacientes/regiones/agregarregiones/agregarregiones.component';
+
+  //Componente Roles
+  import { RolesComponent } from './Components/moduloPacientes/roles/roles.component';
+  import { AgregarrolesComponent } from './Components/moduloPacientes/roles/agregarroles/agregarroles.component';
+  import { EditarrolesComponent } from './Components/moduloPacientes/roles/editarroles/editarroles.component';
+
+  //Componente Usuario
+  import { UsuariosComponent } from './Components/moduloPacientes/usuarios/usuarios.component';
+  import { EditarusuarioComponent } from './Components/moduloPacientes/usuarios/editarusuario/editarusuario.component';
+  import { AgregarusuarioComponent } from './Components/moduloPacientes/usuarios/agregarusuario/agregarusuario.component';
+
+  //Componente Persona
+  import { PersonaComponent } from './Components/moduloPacientes/personas/personas.component';
+  import { VerpersonaComponent } from './Components/moduloPacientes/personas/verpersona/verpersona.component';
+  import { AgregarpersonaComponent } from './Components/moduloPacientes/personas/agregarpersona/agregarpersona.component';
+  import { EditarpersonaComponent } from './Components/moduloPacientes/personas/editarpersona/editarpersona.component';
+
+  //Componente Pacientes
+  import { PacientesComponent } from './Components/moduloPacientes/pacientes/pacientes.component';
+  import { EditarpacienteComponent } from './Components/moduloPacientes/pacientes/editarpaciente/editarpaciente.component';
+  import { AgregarpacienteComponent } from './Components/moduloPacientes/pacientes/agregarpaciente/agregarpaciente.component';
+
+  //Componente Tipo Sangre
+  import { TiposangreComponent } from './Components/moduloPacientes/tiposangre/tiposangre.component';
+  import { AgregartipoComponent } from './Components/moduloPacientes/tiposangre/agregartipo/agregartipo.component';
+  import { EditartipoComponent } from './Components/moduloPacientes/tiposangre/editartipo/editartipo.component';
+
+
+
+
+
+
+
 
 
 @NgModule({
   declarations:
   [
+    //Componentes Raiz
     AppComponent,
-    AdminhomeComponent,
-    PacientehomeComponent,
-    SecretaryhomeComponent,
-    MedichomeComponent,
     LoginComponent,
-    SecretaryprevisionComponent,
-    AdminpacientesComponent,
+    //Modulo MP y todos sus componentes
+    Homemp,
+    PersonaComponent,
     PacientesComponent,
     EstadocivilComponent,
     GenerosComponent,
@@ -104,7 +123,10 @@ import { VerfichapacienteComponent } from './Components/medic/medicpacientes/ver
     PrevisionesComponent,
     UsuariosComponent,
     RolesComponent,
-    SecretarypersonComponent,
+    VerFichaMedicaComponent,
+
+
+    //Componentes Hijos (CRUD)
     AgregarpersonaComponent,
     EditarpersonaComponent,
     EditarEstadoCComponent,
@@ -115,6 +137,7 @@ import { VerfichapacienteComponent } from './Components/medic/medicpacientes/ver
     EditarcomunaComponent,
     EditarprevisionComponent,
     AgregarprevisionComponent,
+    VerPrevisionComponent,
     AgregarprovinciaComponent,
     EditarprovinciaComponent,
     EditarregionesComponent,
@@ -123,48 +146,43 @@ import { VerfichapacienteComponent } from './Components/medic/medicpacientes/ver
     EditarrolesComponent,
     EditarusuarioComponent,
     AgregarusuarioComponent,
-    SecretarypacientesComponent,
-    PersonasComponent,
-    PacientesadminComponent,
+    VerpersonaComponent,
+    EditarpacienteComponent,
+    AgregarpacienteComponent,
+    TiposangreComponent,
+    AgregartipoComponent,
+    EditartipoComponent
+  ],
+
+  entryComponents:
+  [
+    //Componentes de entrada para Modales en Materialize
+    AgregarpersonaComponent,
+    EditarpersonaComponent,
+    EditarEstadoCComponent,
+    AgregarEstadoCComponent,
+    EditargeneroComponent,
+    AgregargeneroComponent,
+    AgregarcomunaComponent,
+    EditarcomunaComponent,
+    EditarprevisionComponent,
+    AgregarprevisionComponent,
+    VerPrevisionComponent,
+    AgregarprovinciaComponent,
+    EditarprovinciaComponent,
+    EditarregionesComponent,
+    AgregarregionesComponent,
+    AgregarrolesComponent,
+    EditarrolesComponent,
+    EditarusuarioComponent,
+    AgregarusuarioComponent,
     VerpersonaComponent,
     EditarpacienteComponent,
     AgregarpacienteComponent,
     TiposangreComponent,
     AgregartipoComponent,
     EditartipoComponent,
-    PacientefichaComponent,
-    PacientecitaComponent,
-    MedicpacientesComponent,
-    VerfichapacienteComponent
-  ],
-
-  entryComponents:
-  [
-    AgregarpersonaComponent,
-    EditarpersonaComponent,
-    SecretaryprevisionComponent,
-    EditarEstadoCComponent,
-    AgregarEstadoCComponent,
-    EditargeneroComponent,
-    AgregargeneroComponent,
-    AgregarcomunaComponent,
-    EditarcomunaComponent,
-    EditarprevisionComponent,
-    AgregarprevisionComponent,
-    AgregarprovinciaComponent,
-    EditarprovinciaComponent,
-    EditarregionesComponent,
-    AgregarregionesComponent,
-    AgregarrolesComponent,
-    EditarrolesComponent,
-    EditarusuarioComponent,
-    AgregarusuarioComponent,
-    VerpersonaComponent,
-    EditarpacienteComponent,
-    AgregarpacienteComponent,
-    AgregartipoComponent,
-    EditartipoComponent,
-    VerfichapacienteComponent
+    VerFichaMedicaComponent
   ],
 
 
