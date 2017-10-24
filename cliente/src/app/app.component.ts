@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
-	public currentUserRole: Role = { id: 1, nombre: 'Medico', write: 0, view: 0, edit: 0, erase: 0};
+	public currentUserRole: Role = { id: 1, nombre: 'Administrador', write: 0, view: 0, edit: 0, erase: 0};
 
 
 

@@ -30,6 +30,11 @@
                 <mat-icon>do_not_disturb</mat-icon>
               </button>
 
+              <!--Aqui se llamará a la función de la ficha-->
+              <button *ngIf="row.activado === 1"  mat-icon-button (click) = "desplegarFichaPaciente(row)" >
+                <i class="material-icons">assignment</i>
+              </button>
+
               <button *ngIf="row.activado === 0" (click)="activarPaciente(row)" mat-icon-button  >
                 <mat-icon>arrow_upward</mat-icon>
               </button>
@@ -79,6 +84,11 @@
 
               <button *ngIf="row.activado === 1" (click)="desactivarPaciente(row)" mat-icon-button >
                 <mat-icon>do_not_disturb</mat-icon>
+              </button>
+
+              <!--Aqui se llamará a la función de la ficha-->
+              <button *ngIf="row.activado === 1"  mat-icon-button (click) = "desplegarFichaPaciente(row)" >
+                <i class="material-icons">assignment</i>
               </button>
 
               <button *ngIf="row.activado === 0" (click)="activarPaciente(row)" mat-icon-button  >
