@@ -5,6 +5,7 @@
 	</div>
 </div>
 
+<div *ngIf="paciente.activado === 1">
 <mat-tab-group>
 	<mat-tab label="Datos generales">
 
@@ -173,3 +174,12 @@
 
 </mat-tab>
 </mat-tab-group>
+</div>
+
+<div *ngIf="paciente.activado === 0">
+	<div class="row">
+		<div class="col s12">
+			<h6 class="letraAlerta">Ud. está desactivado, por favor comuníquese con administración.</h6>
+		</div>
+	</div>
+</div>
