@@ -189,7 +189,7 @@ export class PacientesComponent implements OnInit {
 	eliminarPaciente (paciente)
 	{
 		this.servicioPaciente.deletePaciente(paciente.id).subscribe( data => {
-			this.actualizarPacientes();
+			this.actualizarPersonas();
 		});
 	}
 
@@ -220,7 +220,7 @@ export class PacientesComponent implements OnInit {
 
 	dialogRef.afterClosed().subscribe(result => {
 
-		this.actualizarPacientes();
+		this.actualizarPersonas();
 	});
 	}
 
@@ -241,7 +241,7 @@ export class PacientesComponent implements OnInit {
 
 		dialogRef.afterClosed().subscribe(result => {
 
-			this.actualizarPacientes();
+			this.actualizarPersonas();
 		});
 	}
 
@@ -261,7 +261,7 @@ export class PacientesComponent implements OnInit {
 
 		dialogRef.afterClosed().subscribe(result => {
 
-		this.actualizarPacientes();
+		this.actualizarPersonas();
 		});
 
 	});
@@ -351,7 +351,7 @@ export class PacientesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
 
-    this.actualizarPacientes();
+    this.actualizarPersonas();
     });
 
   });
