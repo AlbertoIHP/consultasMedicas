@@ -32,7 +32,7 @@
 
 
               <button *ngIf="row.estado === 1" mat-icon-button (click) = "editarPersona(row)" >
-                <mat-icon>create</mat-icon>
+                <mat-icon svgIcon="icono-editar"></mat-icon>
               </button>
 
               <button *ngIf="row.estado === 0" (click)="activarPaciente(row)" mat-icon-button  >
@@ -40,15 +40,15 @@
               </button>
 
               <button *ngIf="row.estado === 1" (click)="desactivarPaciente(row)" mat-icon-button >
-                <mat-icon>do_not_disturb</mat-icon>
+                <mat-icon svgIcon="icono-desactivar"></mat-icon>
               </button>
 
               <button *ngIf="row.estado === 1" mat-icon-button (click) = "previsionPersona(row)" >
-                <mat-icon>credit_card</mat-icon>
+                <mat-icon svgIcon="icono-prevision"></mat-icon>
               </button>
 
               <button *ngIf="row.estado === 1" mat-icon-button (click) = "agregarUsuario(row)" >
-                <mat-icon>person_add</mat-icon>
+                <mat-icon svgIcon="icono-agregar"></mat-icon>
               </button>
 
       </mat-cell>
