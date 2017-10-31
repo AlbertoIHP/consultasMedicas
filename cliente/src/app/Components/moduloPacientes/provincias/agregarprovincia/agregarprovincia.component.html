@@ -1,4 +1,4 @@
-<h1 mat-dialog-title style="text-align: center;">Creacion de Provincia</h1>
+<h1 mat-dialog-title style="text-align: center;">Creación de Provincia</h1>
 
 <div mat-dialog-content>
 
@@ -7,7 +7,7 @@
 	<input matInput tabindex="1" [(ngModel)]="nuevaProvincia.nombre">
 
 
-	<p>Region</p>
+	<p>Región</p>
 	<mat-form-field style="width: 100% !important;">
 		<mat-select placeholder="Provincia" style="width: 100% !important;">
 			<mat-option style="width: 100% !important;" *ngFor="let region of totalRegiones" [value]="region.id" (click)="regionSeleccionada(region)">

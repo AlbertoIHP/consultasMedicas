@@ -5,7 +5,7 @@
 
   </div>
   <div class="col s11">
-  <label for="miinput">Busqueda por Nombre</label>
+  <label for="miinput">Búsqueda por Nombre</label>
   <input matInput #filter style="width: 100% !important;" id="miinput">
   </div>
 </div>
@@ -21,12 +21,12 @@
       <mat-cell *matCellDef="let row" >
 
               <button  mat-icon-button (click) = "edicionRegion(row)" >
-                <mat-icon>create</mat-icon>
+                <mat-icon svgIcon="icono-editar"></mat-icon>
               </button>
 
 
               <button  mat-icon-button (click) = "eliminarRegion(row)" >
-                <mat-icon>delete</mat-icon>
+                <mat-icon svgIcon="icono-eliminar"></mat-icon>
               </button>
 
       </mat-cell>
@@ -54,12 +54,12 @@
       <mat-cell *matCellDef="let row">
 
               <button  mat-icon-button (click) = "edicionRegion(row)" >
-                <mat-icon>create</mat-icon>
+                <mat-icon svgIcon="icono-editar"></mat-icon>
               </button>
 
 
               <button  mat-icon-button (click) = "eliminarRegion(row)" >
-                <mat-icon>delete</mat-icon>
+                <mat-icon svgIcon="icono-eliminar"></mat-icon>
               </button>
 
        </mat-cell>
