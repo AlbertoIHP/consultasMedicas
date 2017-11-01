@@ -43,7 +43,7 @@
 
 	<p>Género</p>
   <mat-form-field style="width: 100% !important;">
-		<mat-select placeholder="Genero" style="width: 100% !important;">
+		<mat-select placeholder="Género" style="width: 100% !important;">
 			<mat-option style="width: 100% !important;" *ngFor="let genero of totalGeneros" [value]="genero.id" (click)="generoSeleccionado(genero)">
 				{{ genero.nombre }}
 			</mat-option>
@@ -65,7 +65,7 @@
 	<p *ngIf="mostrarRegiones">Región</p>
 
   <mat-form-field style="width: 100% !important;" *ngIf="mostrarRegiones">
-  <mat-select placeholder="Region" style="width: 100% !important;">
+  <mat-select placeholder="Región" style="width: 100% !important;">
 	<mat-option style="width: 100% !important;" *ngFor="let region of totalRegiones" [value]="region.id" (click)="regionSeleccionada(region)">
 	{{ region.nombre }}
 	</mat-option>
