@@ -23,7 +23,7 @@ class Persona extends Migration
         $table->string('fono_casa');
         $table->string('fono_trabajo');
         $table->string('movil');
-        $table->integer('estado');
+        $table->integer('estado')->default(1);
 
 
         $table->integer('Genero_id')->unsigned()->nullable();

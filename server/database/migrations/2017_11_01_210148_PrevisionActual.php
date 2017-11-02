@@ -16,7 +16,7 @@ class PrevisionActual extends Migration
         Schema::create('PrevisionActual', function (Blueprint $table) {
         $table->increments('id');
         $table->date('fechaActualizacion');
-        $table->integer('activado');
+        $table->integer('activado')->default(1);
 
 
         $table->integer('Prevision_id')->unsigned()->nullable();

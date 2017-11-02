@@ -15,10 +15,10 @@ class PermisoModulo extends Migration
     {
         Schema::create('PermisoModulo', function (Blueprint $table) {
         $table->increments('id');
-        $table->integer('write');
-        $table->integer('delete');
-        $table->integer('update');
-        $table->integer('view');
+        $table->integer('write')->default(1);
+        $table->integer('delete')->default(1);
+        $table->integer('update')->default(1);
+        $table->integer('view')->default(1);
 
         $table->integer('Role_id')->unsigned()->nullable();
         $table->integer('Modulo_id')->unsigned()->nullable();

@@ -17,7 +17,7 @@ class Prevision extends Migration
         $table->increments('id');
         $table->text('descripcion');
         $table->string('nombre');
-        $table->integer('isapre');
+        $table->integer('isapre')->default(0);
 
         $table->rememberToken();
         $table->timestamps();
