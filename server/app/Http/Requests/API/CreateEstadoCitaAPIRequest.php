@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\API;
 
-use Illuminate\Foundation\Http\FormRequest;
-use App\Models\PermisoModulo;
+use App\Models\EstadoCita;
+use InfyOm\Generator\Request\APIRequest;
 
-class UpdatePermisoModuloRequest extends FormRequest
+class CreateEstadoCitaAPIRequest extends APIRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,6 +24,6 @@ class UpdatePermisoModuloRequest extends FormRequest
      */
     public function rules()
     {
-        return PermisoModulo::$rules;
+        return EstadoCita::$rules;
     }
 }

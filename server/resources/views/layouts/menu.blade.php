@@ -382,3 +382,27 @@
     <a href="{!! route('permisoModulos.index') !!}"><i class="fa fa-edit"></i><span>Permiso Modulos</span></a>
 </li>
 
+<li class="{{ Request::is('tipoBoxes*') ? 'active' : '' }}">
+    <a href="{!! route('tipoBoxes.index') !!}"><i class="fa fa-edit"></i><span>Tipo Boxes</span></a>
+</li>
+
+<li class="{{ Request::is('boxConsultas*') ? 'active' : '' }}">
+    <a href="{!! route('boxConsultas.index') !!}"><i class="fa fa-edit"></i><span>Box Consultas</span></a>
+</li>
+
+<li class="{{ Request::is('estadoCitas*') ? 'active' : '' }}">
+    <a href="{!! route('estadoCitas.index') !!}"><i class="fa fa-edit"></i><span>Estado Citas</span></a>
+</li>
+
+<li class="{{ Request::is('especialidads*') ? 'active' : '' }}">
+    <a href="{!! route('especialidads.index') !!}"><i class="fa fa-edit"></i><span>Especialidads</span></a>
+</li>
+
+<li class="{{ Request::is('medicos*') ? 'active' : '' }}">
+    <a href="{!! route('medicos.index') !!}"><i class="fa fa-edit"></i><span>Medicos</span></a>
+</li>
+
+<li class="{{ Request::is('citas*') ? 'active' : '' }}">
+    <a href="{!! route('citas.index') !!}"><i class="fa fa-edit"></i><span>Citas</span></a>
+</li>
+

@@ -6,6 +6,404 @@
     },
     "basePath": "/api/v1",
     "paths": {
+        "/boxConsultas": {
+            "get": {
+                "tags": [
+                    "BoxConsulta"
+                ],
+                "summary": "Get a listing of the BoxConsultas.",
+                "description": "Get all BoxConsultas",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/BoxConsulta"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "BoxConsulta"
+                ],
+                "summary": "Store a newly created BoxConsulta in storage",
+                "description": "Store BoxConsulta",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "BoxConsulta that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/BoxConsulta"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/BoxConsulta"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/boxConsultas/{id}": {
+            "get": {
+                "tags": [
+                    "BoxConsulta"
+                ],
+                "summary": "Display the specified BoxConsulta",
+                "description": "Get BoxConsulta",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of BoxConsulta",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/BoxConsulta"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "BoxConsulta"
+                ],
+                "summary": "Update the specified BoxConsulta in storage",
+                "description": "Update BoxConsulta",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of BoxConsulta",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "BoxConsulta that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/BoxConsulta"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/BoxConsulta"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "BoxConsulta"
+                ],
+                "summary": "Remove the specified BoxConsulta from storage",
+                "description": "Delete BoxConsulta",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of BoxConsulta",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/citas": {
+            "get": {
+                "tags": [
+                    "Cita"
+                ],
+                "summary": "Get a listing of the Citas.",
+                "description": "Get all Citas",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Cita"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cita"
+                ],
+                "summary": "Store a newly created Cita in storage",
+                "description": "Store Cita",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Cita that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Cita"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Cita"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/citas/{id}": {
+            "get": {
+                "tags": [
+                    "Cita"
+                ],
+                "summary": "Display the specified Cita",
+                "description": "Get Cita",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Cita",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Cita"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Cita"
+                ],
+                "summary": "Update the specified Cita in storage",
+                "description": "Update Cita",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Cita",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Cita that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Cita"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Cita"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Cita"
+                ],
+                "summary": "Remove the specified Cita from storage",
+                "description": "Delete Cita",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Cita",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/comunas": {
             "get": {
                 "tags": [
@@ -180,6 +578,404 @@
                         "name": "id",
                         "in": "path",
                         "description": "id of Comuna",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/especialidads": {
+            "get": {
+                "tags": [
+                    "Especialidad"
+                ],
+                "summary": "Get a listing of the Especialidads.",
+                "description": "Get all Especialidads",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Especialidad"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Especialidad"
+                ],
+                "summary": "Store a newly created Especialidad in storage",
+                "description": "Store Especialidad",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Especialidad that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Especialidad"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Especialidad"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/especialidads/{id}": {
+            "get": {
+                "tags": [
+                    "Especialidad"
+                ],
+                "summary": "Display the specified Especialidad",
+                "description": "Get Especialidad",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Especialidad",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Especialidad"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Especialidad"
+                ],
+                "summary": "Update the specified Especialidad in storage",
+                "description": "Update Especialidad",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Especialidad",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Especialidad that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Especialidad"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Especialidad"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Especialidad"
+                ],
+                "summary": "Remove the specified Especialidad from storage",
+                "description": "Delete Especialidad",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Especialidad",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/estadoCitas": {
+            "get": {
+                "tags": [
+                    "EstadoCita"
+                ],
+                "summary": "Get a listing of the EstadoCitas.",
+                "description": "Get all EstadoCitas",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/EstadoCita"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "EstadoCita"
+                ],
+                "summary": "Store a newly created EstadoCita in storage",
+                "description": "Store EstadoCita",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "EstadoCita that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/EstadoCita"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/EstadoCita"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/estadoCitas/{id}": {
+            "get": {
+                "tags": [
+                    "EstadoCita"
+                ],
+                "summary": "Display the specified EstadoCita",
+                "description": "Get EstadoCita",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of EstadoCita",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/EstadoCita"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "EstadoCita"
+                ],
+                "summary": "Update the specified EstadoCita in storage",
+                "description": "Update EstadoCita",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of EstadoCita",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "EstadoCita that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/EstadoCita"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/EstadoCita"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "EstadoCita"
+                ],
+                "summary": "Remove the specified EstadoCita from storage",
+                "description": "Delete EstadoCita",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of EstadoCita",
                         "required": true,
                         "type": "integer"
                     }
@@ -578,6 +1374,205 @@
                         "name": "id",
                         "in": "path",
                         "description": "id of Genero",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/medicos": {
+            "get": {
+                "tags": [
+                    "Medico"
+                ],
+                "summary": "Get a listing of the Medicos.",
+                "description": "Get all Medicos",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Medico"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Medico"
+                ],
+                "summary": "Store a newly created Medico in storage",
+                "description": "Store Medico",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Medico that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Medico"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Medico"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/medicos/{id}": {
+            "get": {
+                "tags": [
+                    "Medico"
+                ],
+                "summary": "Display the specified Medico",
+                "description": "Get Medico",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Medico",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Medico"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Medico"
+                ],
+                "summary": "Update the specified Medico in storage",
+                "description": "Update Medico",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Medico",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Medico that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Medico"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Medico"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Medico"
+                ],
+                "summary": "Remove the specified Medico from storage",
+                "description": "Delete Medico",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Medico",
                         "required": true,
                         "type": "integer"
                     }
@@ -2394,6 +3389,205 @@
                 }
             }
         },
+        "/tipoBoxes": {
+            "get": {
+                "tags": [
+                    "TipoBox"
+                ],
+                "summary": "Get a listing of the TipoBoxes.",
+                "description": "Get all TipoBoxes",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/TipoBox"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "TipoBox"
+                ],
+                "summary": "Store a newly created TipoBox in storage",
+                "description": "Store TipoBox",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "TipoBox that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/TipoBox"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/TipoBox"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/tipoBoxes/{id}": {
+            "get": {
+                "tags": [
+                    "TipoBox"
+                ],
+                "summary": "Display the specified TipoBox",
+                "description": "Get TipoBox",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of TipoBox",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/TipoBox"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "TipoBox"
+                ],
+                "summary": "Update the specified TipoBox in storage",
+                "description": "Update TipoBox",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of TipoBox",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "TipoBox that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/TipoBox"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/TipoBox"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "TipoBox"
+                ],
+                "summary": "Remove the specified TipoBox from storage",
+                "description": "Delete TipoBox",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of TipoBox",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/tipoSangres": {
             "get": {
                 "tags": [
@@ -2794,6 +3988,76 @@
         }
     },
     "definitions": {
+        "BoxConsulta": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "ubicacion": {
+                    "description": "ubicacion",
+                    "type": "string"
+                },
+                "TipoBox_id": {
+                    "description": "TipoBox_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "remember_token": {
+                    "description": "remember_token",
+                    "type": "string"
+                }
+            }
+        },
+        "Cita": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "fecha": {
+                    "description": "fecha",
+                    "type": "string",
+                    "format": "date"
+                },
+                "hora": {
+                    "description": "hora",
+                    "type": "string"
+                },
+                "EstadoCita_id": {
+                    "description": "EstadoCita_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "BoxConsulta_id": {
+                    "description": "BoxConsulta_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Paciente_id": {
+                    "description": "Paciente_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Medico_id": {
+                    "description": "Medico_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "remember_token": {
+                    "description": "remember_token",
+                    "type": "string"
+                }
+            }
+        },
         "Comuna": {
             "required": [
                 ""
@@ -2812,6 +4076,50 @@
                     "description": "Provincia_id",
                     "type": "integer",
                     "format": "int32"
+                }
+            }
+        },
+        "Especialidad": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nombre": {
+                    "description": "nombre",
+                    "type": "string"
+                },
+                "remember_token": {
+                    "description": "remember_token",
+                    "type": "string"
+                }
+            }
+        },
+        "EstadoCita": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nombre": {
+                    "description": "nombre",
+                    "type": "string"
+                },
+                "descripcion": {
+                    "description": "descripcion",
+                    "type": "string"
+                },
+                "remember_token": {
+                    "description": "remember_token",
+                    "type": "string"
                 }
             }
         },
@@ -2851,6 +4159,32 @@
                 },
                 "nombre": {
                     "description": "nombre",
+                    "type": "string"
+                }
+            }
+        },
+        "Medico": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Especialidad_id": {
+                    "description": "Especialidad_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Persona_id": {
+                    "description": "Persona_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "remember_token": {
+                    "description": "remember_token",
                     "type": "string"
                 }
             }
@@ -3105,6 +4439,30 @@
                 },
                 "nombre": {
                     "description": "nombre",
+                    "type": "string"
+                }
+            }
+        },
+        "TipoBox": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nombre": {
+                    "description": "nombre",
+                    "type": "string"
+                },
+                "descripcion": {
+                    "description": "descripcion",
+                    "type": "string"
+                },
+                "remember_token": {
+                    "description": "remember_token",
                     "type": "string"
                 }
             }

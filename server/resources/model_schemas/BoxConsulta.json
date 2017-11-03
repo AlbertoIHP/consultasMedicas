@@ -1,7 +1,7 @@
 [
     {
-        "name": "idConsulta",
-        "dbType": "integer,true",
+        "name": "id",
+        "dbType": "integer,true,true",
         "htmlType": null,
         "validations": null,
         "searchable": false,
@@ -22,8 +22,8 @@
         "inIndex": true
     },
     {
-        "name": "TipoBox_idTipoBox",
-        "dbType": "integer,false",
+        "name": "TipoBox_id",
+        "dbType": "integer,false,true",
         "htmlType": null,
         "validations": null,
         "searchable": true,
@@ -33,16 +33,60 @@
         "inIndex": true
     },
     {
+        "name": "remember_token",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "created_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "deleted_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
         "type": "relation",
         "relation": "mt1,TipoBox"
     },
     {
         "type": "relation",
-        "relation": "1tm,Atention"
+        "relation": "mtm,,AlergiasPaciente"
     },
     {
         "type": "relation",
-        "relation": "mtm,,Atention_has_Diagnostico"
+        "relation": "1tm,Atencion"
     },
     {
         "type": "relation",
@@ -50,11 +94,19 @@
     },
     {
         "type": "relation",
-        "relation": "mtm,,Doctor"
+        "relation": "mtm,,DiagnosticosAtencion"
     },
     {
         "type": "relation",
-        "relation": "mtm,,Persona_has_Prevision"
+        "relation": "mtm,,Medico"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Paciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,PermisoModulo"
     },
     {
         "type": "relation",

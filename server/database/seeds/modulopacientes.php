@@ -2341,6 +2341,7 @@ class modulopacientes extends Seeder
 
 
 
+		/*
 		DB::table('Especialidad')->insert([
 		  'nombre' => 'Pediatria',
 		]);
@@ -2353,7 +2354,7 @@ class modulopacientes extends Seeder
 
 
 
-
+		
 		DB::table('Medico')->insert([
 		  'Especialidad_id' => 1,
 		  'Persona_id' => 3,
@@ -2414,6 +2415,7 @@ class modulopacientes extends Seeder
 			'Medico_id' => 1,
 
 		]);
+		*/
 		
 		DB::table('Modulo')->insert([
 			'name' => 'Personas',

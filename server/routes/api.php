@@ -61,7 +61,21 @@ Route::group(['middleware' => ['cors']], function(){
     Route::resource('v1/permisoModulos', 'PermisoModuloAPIController');
 
     Route::resource('v1/modulos', 'ModuloAPIController');
+
+    Route::resource('v1/tipoBoxes', 'TipoBoxAPIController');
+
+    Route::resource('v1/boxConsultas', 'BoxConsultaAPIController');
+
+    Route::resource('v1/estadoCitas', 'EstadoCitaAPIController');
+
+    Route::resource('v1/especialidads', 'EspecialidadAPIController');
+
+    Route::resource('v1/medicos', 'MedicoAPIController');
+
+    Route::resource('v1/citas', 'CitaAPIController');
 });
+
+
 
 
 

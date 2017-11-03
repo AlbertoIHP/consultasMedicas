@@ -168,3 +168,15 @@ Route::resource('permisoModulos', 'PermisoModuloController');
 Route::resource('modulos', 'ModuloController');
 
 Route::resource('permisoModulos', 'PermisoModuloController');
+
+Route::resource('tipoBoxes', 'TipoBoxController');
+
+Route::resource('boxConsultas', 'BoxConsultaController');
+
+Route::resource('estadoCitas', 'EstadoCitaController');
+
+Route::resource('especialidads', 'EspecialidadController');
+
+Route::resource('medicos', 'MedicoController');
+
+Route::resource('citas', 'CitaController');
