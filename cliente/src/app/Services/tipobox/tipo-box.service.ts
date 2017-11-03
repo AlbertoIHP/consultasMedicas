@@ -29,33 +29,33 @@ constructor(private http: Http, private authenticationService: AuthenticationSer
 
 }
 //GET
-getTipoBoxs(): Observable<TipoBox[]>
+getTipoBoxes(): Observable<TipoBox[]>
 {
-	return this.http.get(this.base+'tipoBoxs', this.options).map((res: Response) => res.json());
+	return this.http.get(this.base+'tipoBoxes', this.options).map((res: Response) => res.json());
 }
 
 //POST
 registerTipoBox(tipoBox: TipoBox): Observable<boolean>
 {
-	return this.http.post( this.base+'tipoBoxs', JSON.stringify(tipoBox), this.options).map((res: Response) => res.json());
+	return this.http.post( this.base+'tipoBoxes', JSON.stringify(tipoBox), this.options).map((res: Response) => res.json());
 
 }
 
 //GET
 getTipoBox(id) : Observable<TipoBox>
 {
-	return this.http.get(this.base+'tipoBoxs/'+id, this.options).map((res: Response) => res.json());
+	return this.http.get(this.base+'tipoBoxes/'+id, this.options).map((res: Response) => res.json());
 }
 
 //PUT
 editTipoBox(tipoBox: TipoBox, id: number)
 {
-	return this.http.put(this.base+'tipoBoxs/'+id, JSON.stringify(tipoBox), this.options).map((res: Response) => res.json());
+	return this.http.put(this.base+'tipoBoxes/'+id, JSON.stringify(tipoBox), this.options).map((res: Response) => res.json());
 }
 
 //DELETE
 deleteTipoBox(id) {
-	return this.http.delete(this.base+'tipoBoxs/'+id, this.options).map((res: Response) => res.json());
+	return this.http.delete(this.base+'tipoBoxes/'+id, this.options).map((res: Response) => res.json());
 }
 
 
