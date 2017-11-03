@@ -1,11 +1,9 @@
-<mat-sidenav-container style="height: 1024px">
+<mat-toolbar color="primary" style="margin-bottom: 10px;" *ngIf="isLogeado">
 
-<mat-toolbar color="primary" style="margin-bottom: 10px;">
-
-  <span>Clínica Algo</span>
+  <span>Clínica Web</span>
 
    <span class="example-spacer"></span>
-  
+
       <button mat-button>
         <mat-icon>dialpad</mat-icon>
         <span>Actividad</span>
@@ -14,11 +12,11 @@
         <mat-icon svgIcon="icono-editar-perfil"></mat-icon>
         <span>Editar Perfil</span>
       </button>
-      <button mat-button>
+      <button mat-button (click)="cerrarSesion()">
         <mat-icon svgIcon="icono-logout"></mat-icon>
         <span>Cerrar Sesión</span>
       </button>
-  
+
 
   <mat-toolbar-row style="margin-top: -30px;">
     <button mat-button (click)="irMP()">
@@ -38,51 +36,11 @@
 
   </mat-toolbar-row>
 
-  <!--
 
-    <button mat-icon-button (click)="sidenav.open()">
-        <mat-icon>menu </mat-icon>
-    </button>
-
-    <span class="example-spacer"></span>
-
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Actividad</span>
-      </button>
-      <button mat-menu-item disabled>
-        <mat-icon>voicemail</mat-icon>
-        <span>Editar Perfil</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-        <span>Cerrar Sesion</span>
-      </button>
-    </mat-menu>
-  -->
 
 </mat-toolbar>
 
-<!--
-	<mat-sidenav #sidenav style="position: fixed; height: 100%">
-				<div class="row">
-					<div class="section">
-						<button (click)="irMP()" mat-button class="fullSpaceButton">Modulo Pacientes</button>
-					</div>
-					<div class="section">
-						<button (click)="irMC()" mat-button class="fullSpaceButton">Modulo Citas</button>
-					</div>
-					<div class="section">
-						<button (click)="irMA()" mat-button class="fullSpaceButton">Modulo Atencion</button>
-					</div>
-				</div>}
-	</mat-sidenav>
--->
+
 <router-outlet></router-outlet>
 
-</mat-sidenav-container>
+

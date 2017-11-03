@@ -17,6 +17,8 @@ class ModuloPaciente extends Migration
 			$table->rememberToken();
 			$table->timestamps();
 			$table->timestamp('deleted_at')->nullable();
+			$table->boolean('confirmed')->default(0);
+			$table->string('confirmation_code')->nullable();
 
 		});
 

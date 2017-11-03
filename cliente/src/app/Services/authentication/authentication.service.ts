@@ -42,20 +42,7 @@ export class AuthenticationService {
 					return false;
 				}
 
-
-
 			})
-			.catch(e => {
-			if (e.status === 401)
-			{
-				return Observable.throw('Unauthorized');
-
-			}
-			else if(e.status === 405)
-			{
-				return Observable.throw('Unactivated');
-			}
-		});
 
 	}
 

@@ -57,7 +57,9 @@ class User extends Authenticatable
 		'email',
 		'password',
 		'Role_id',
-		'Persona_id'
+		'Persona_id',
+		'confirmation_code',
+		'confirmed'
 	];
 
 	/**

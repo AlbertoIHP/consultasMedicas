@@ -3,6 +3,7 @@ import { Role } from './Models/Role.model';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material';
+import { EventosService } from './Services/eventos/eventos.service'
 
 @Component({
 	selector: 'app-root',
@@ -10,8 +11,9 @@ import {MatIconRegistry} from '@angular/material';
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public isLogeado: boolean = false
 
-	constructor(private router: Router,private iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
+	constructor(public eventosService: EventosService,private router: Router,private iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
     //iconos de toolbar
     this.iconRegistry
         .addSvgIcon('icono-paciente',
@@ -57,6 +59,11 @@ export class AppComponent {
     this.iconRegistry
         .addSvgIcon('icono-eliminar',
             sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/trash.svg'));
+
+
+    this.eventosService.isSingIn.subscribe( data => {
+      this.isLogeado = true
+    })
   }
 
 
@@ -78,5 +85,11 @@ export class AppComponent {
   }
 
 
+  cerrarSesion()
+  {
+    this.isLogeado = false
+    localStorage.clear()
+    this.router.navigate(['/'])
+  }
 
 }

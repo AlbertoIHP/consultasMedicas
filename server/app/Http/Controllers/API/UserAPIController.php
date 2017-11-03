@@ -12,6 +12,15 @@ use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+
+//CORREO TIII
+use Illuminate\Support\Facades\Mail;
+use Input;
+
+
 /**
  * Class UserController
  * @package App\Http\Controllers\API
@@ -106,24 +115,62 @@ class UserAPIController extends AppBaseController
 	 *      )
 	 * )
 	 */
-	public function store(CreateUserAPIRequest $request)
-	{
 
-		try
-		{
-			error_log("Hola");
-			$input = $request->all();
-			$input['password'] = bcrypt($input['password']);
-			$users = $this->userRepository->create($input);
 
-			return $this->sendResponse($users->toArray(), 'User saved successfully');
-		}
-		catch (\Exception $e)
-		{
-			return response()->json(['error' => 'Esta persona ya tiene usuario asignado'], 405);
-			error_log("hola");
-		}
+public function store(Request $request){
+
+	$confirmation_code = str_random(30);
+	$input = $request->all();
+
+	error_log(json_encode($input));
+
+	$rules = [
+	  'email' => 'required|unique:Usuario',
+	  'password' => 'required',
+	];
+
+
+	$data = [
+	  'email' => $request->email,
+	  'password' => bcrypt($request->password),
+	  'Role_id' => $request->Role_id,
+	  'Persona_id' => $request->Persona_id,
+	  'confirmation_code' => $confirmation_code
+	];
+
+	error_log(json_encode($data));
+	
+	try {
+
+	  $validator = \Validator::make($data, $rules);
+
+	  if ($validator->fails()) {
+		return [
+		  'created' => false,
+		  'errors' => $validator->errors()->all(),
+		];
+	  }else{
+
+		Mail::send('email.validarCuenta', 
+		  ['confirmation_code' => $confirmation_code], function ($message) {
+			$message->to(Input::get('email'), Input::get('nombre'))
+				->subject('Por favor verifique su cuenta');
+		});
+		User::create($data);
+		return ['created' => true];
+
+
+	  }
+	} catch (\Exception $e) {
+	  \Log::info('Error creating user: ' . $e);
+	  return \Response::json(['created' => false], 500);
 	}
+  }
+
+
+
+
+
 
 	/**
 	 * @param int $id
@@ -289,6 +336,36 @@ class UserAPIController extends AppBaseController
 
 		return $this->sendResponse($id, 'User deleted successfully');
 	}
+
+
+
+	  public function confirm ($confirmation_code) {
+
+	  	error_log(json_encode($confirmation_code));
+
+		if (!$confirmation_code) 
+		{
+		  return \Response::json(['confirmation_code' => 'Invalid'], 500);
+		}
+
+
+		
+		$user = User::whereConfirmationCode($confirmation_code)->first();
+
+
+		if (!$user) {
+		  return \Response::json(['confirmation_code' => 'Invalid'], 500);
+		}
+		$user->confirmed = 1;
+		$user->confirmation_code = null;
+		$user->save();
+		return \Response::json(['verified' => true, 'confirmed' => $user->confirmed]);
+	  }
+
+
+
+
+
 
 
 }

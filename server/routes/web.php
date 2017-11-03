@@ -71,100 +71,103 @@
 
 
 
-Route::resource('regions', 'RegionController');
+// Route::resource('regions', 'RegionController');
 
-Route::resource('provincias', 'ProvinciaController');
+// Route::resource('provincias', 'ProvinciaController');
 
-Route::resource('comunas', 'ComunaController');
+// Route::resource('comunas', 'ComunaController');
 
-Route::resource('generos', 'GeneroController');
+// Route::resource('generos', 'GeneroController');
 
-Route::resource('previsions', 'PrevisionController');
+// Route::resource('previsions', 'PrevisionController');
 
-Route::resource('previsionActuals', 'PrevisionActualController');
+// Route::resource('previsionActuals', 'PrevisionActualController');
 
-Route::resource('roles', 'RoleController');
+// Route::resource('roles', 'RoleController');
 
-Route::resource('users', 'UserController');
+// Route::resource('users', 'UserController');
 
-Route::resource('personas', 'PersonaController');
+// Route::resource('personas', 'PersonaController');
 
-Route::resource('estadoCivils', 'EstadoCivilController');
+// Route::resource('estadoCivils', 'EstadoCivilController');
 
-Route::resource('historialFichas', 'HistorialFichaController');
+// Route::resource('historialFichas', 'HistorialFichaController');
 
-Route::resource('tipoSangres', 'TipoSangreController');
+// Route::resource('tipoSangres', 'TipoSangreController');
 
-Route::resource('fichaMedicas', 'FichaMedicaController');
+// Route::resource('fichaMedicas', 'FichaMedicaController');
 
-Route::resource('regions', 'RegionController');
+// Route::resource('regions', 'RegionController');
 
-Route::resource('provincias', 'ProvinciaController');
+// Route::resource('provincias', 'ProvinciaController');
 
-Route::resource('comunas', 'ComunaController');
+// Route::resource('comunas', 'ComunaController');
 
-Route::resource('generos', 'GeneroController');
+// Route::resource('generos', 'GeneroController');
 
-Route::resource('previsions', 'PrevisionController');
+// Route::resource('previsions', 'PrevisionController');
 
-Route::resource('previsionActuals', 'PrevisionActualController');
+// Route::resource('previsionActuals', 'PrevisionActualController');
 
-Route::resource('roles', 'RoleController');
+// Route::resource('roles', 'RoleController');
 
-Route::resource('users', 'UserController');
+// Route::resource('users', 'UserController');
 
-Route::resource('personas', 'PersonaController');
+// Route::resource('personas', 'PersonaController');
 
-Route::resource('estadoCivils', 'EstadoCivilController');
+// Route::resource('estadoCivils', 'EstadoCivilController');
 
-Route::resource('historialFichas', 'HistorialFichaController');
+// Route::resource('historialFichas', 'HistorialFichaController');
 
-Route::resource('tipoSangres', 'TipoSangreController');
+// Route::resource('tipoSangres', 'TipoSangreController');
 
-Route::resource('fichaMedicas', 'FichaMedicaController');
+// Route::resource('fichaMedicas', 'FichaMedicaController');
 
-Route::resource('previsionActuals', 'PrevisionActualController');
+// Route::resource('previsionActuals', 'PrevisionActualController');
 
-Route::resource('personas', 'PersonaController');
+// Route::resource('personas', 'PersonaController');
 
-Route::resource('personas', 'PersonaController');
+// Route::resource('personas', 'PersonaController');
 
-Route::resource('personas', 'PersonaController');
+// Route::resource('personas', 'PersonaController');
 
-Route::resource('regions', 'RegionController');
+// Route::resource('regions', 'RegionController');
 
-Route::resource('provincias', 'ProvinciaController');
+// Route::resource('provincias', 'ProvinciaController');
 
-Route::resource('comunas', 'ComunaController');
+// Route::resource('comunas', 'ComunaController');
 
-Route::resource('previsions', 'PrevisionController');
+// Route::resource('previsions', 'PrevisionController');
 
-Route::resource('previsionActuals', 'PrevisionActualController');
+// Route::resource('previsionActuals', 'PrevisionActualController');
 
-Route::resource('roles', 'RoleController');
+// Route::resource('roles', 'RoleController');
 
-Route::resource('estadoCivils', 'EstadoCivilController');
+// Route::resource('estadoCivils', 'EstadoCivilController');
 
-Route::resource('generos', 'GeneroController');
+// Route::resource('generos', 'GeneroController');
 
-Route::resource('tipoSangres', 'TipoSangreController');
+// Route::resource('tipoSangres', 'TipoSangreController');
 
-Route::resource('personas', 'PersonaController');
+// Route::resource('personas', 'PersonaController');
 
-Route::resource('pacientes', 'PacienteController');
+// Route::resource('pacientes', 'PacienteController');
 
-Route::resource('users', 'UserController');
+// Route::resource('users', 'UserController');
 
-Route::resource('roles', 'RoleController');
+// Route::resource('roles', 'RoleController');
 
-Route::resource('roles', 'RoleController');
+// Route::resource('roles', 'RoleController');
 
-Route::resource('roles', 'RoleController');
+// Route::resource('roles', 'RoleController');
 
-Route::resource('roles', 'RoleController');
+// Route::resource('roles', 'RoleController');
 
-Route::resource('permisoModulos', 'PermisoModuloController');
+// Route::resource('permisoModulos', 'PermisoModuloController');
 
-Route::resource('modulos', 'ModuloController');
+// Route::resource('modulos', 'ModuloController');
 
-Route::resource('permisoModulos', 'PermisoModuloController');
+// Route::resource('permisoModulos', 'PermisoModuloController');
+
+
+Route::get('/register/verify/{confirmationCode}', 'UserController@confirm');

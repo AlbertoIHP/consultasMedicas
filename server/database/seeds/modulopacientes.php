@@ -2235,6 +2235,7 @@ class modulopacientes extends Seeder
 			'password' => bcrypt('Jefatura'),
 			'Role_id' => 1,
 			'Persona_id' => 1,
+			'confirmed' => 1
 		]);
 
 		DB::table('Usuario')->insert([
@@ -2242,6 +2243,7 @@ class modulopacientes extends Seeder
 			'password' => bcrypt('Administrador'),
 			'Role_id' => 2,
 			'Persona_id' => 2,
+			'confirmed' => 1
 		]);
 
 		DB::table('Usuario')->insert([
@@ -2249,6 +2251,7 @@ class modulopacientes extends Seeder
 			'password' => bcrypt('Medico'),
 			'Role_id' => 3,
 			'Persona_id' => 3,
+			'confirmed' => 1
 		]);
 
 		DB::table('Usuario')->insert([
@@ -2256,6 +2259,7 @@ class modulopacientes extends Seeder
 			'password' => bcrypt('Paciente'),
 			'Role_id' => 4,
 			'Persona_id' => 4,
+			'confirmed' => 1
 		]);
 
 		DB::table('Usuario')->insert([
@@ -2263,6 +2267,7 @@ class modulopacientes extends Seeder
 			'password' => bcrypt('Secretaria'),
 			'Role_id' => 5,
 			'Persona_id' => 5,
+			'confirmed' => 1
 		]);
 
 

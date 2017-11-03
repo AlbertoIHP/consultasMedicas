@@ -25,7 +25,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing, appRoutingProviders } from './Routes/app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatTabsModule, MatInputModule , MatSelectModule, MatDialogModule, MatPaginatorModule, MatTableModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule} from '@angular/material';
+import { MatListModule, MatStepperModule, MatCardModule, MatGridListModule, MatButtonToggleModule, MatTabsModule, MatInputModule , MatSelectModule, MatDialogModule, MatPaginatorModule, MatTableModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms'
+
 
 // COMPONENTES
 
@@ -95,6 +97,7 @@ import { Homemp } from './Components/moduloPacientes/homemp.component';
   import { TiposangreComponent } from './Components/moduloPacientes/tiposangre/tiposangre.component';
   import { AgregartipoComponent } from './Components/moduloPacientes/tiposangre/agregartipo/agregartipo.component';
   import { EditartipoComponent } from './Components/moduloPacientes/tiposangre/editartipo/editartipo.component';
+import { RegistroComponent } from './Components/login/registro/registro.component';
 
 
 
@@ -150,7 +153,8 @@ import { Homemp } from './Components/moduloPacientes/homemp.component';
     AgregarpacienteComponent,
     TiposangreComponent,
     AgregartipoComponent,
-    EditartipoComponent
+    EditartipoComponent,
+    RegistroComponent
   ],
 
   entryComponents:
@@ -181,12 +185,14 @@ import { Homemp } from './Components/moduloPacientes/homemp.component';
     TiposangreComponent,
     AgregartipoComponent,
     EditartipoComponent,
-    VerFichaMedicaComponent
+    VerFichaMedicaComponent,
+    RegistroComponent
   ],
 
 
   imports:
   [
+    ReactiveFormsModule,
     BrowserModule,
     routing,
     FormsModule,
@@ -203,7 +209,12 @@ import { Homemp } from './Components/moduloPacientes/homemp.component';
     MatDialogModule,
     MatInputModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatButtonToggleModule,
+    MatGridListModule,
+    MatCardModule,
+    MatStepperModule,
+    MatListModule
   ],
 
   providers:
