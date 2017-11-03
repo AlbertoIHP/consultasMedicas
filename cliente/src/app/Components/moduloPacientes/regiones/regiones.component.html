@@ -5,7 +5,7 @@
 
   </div>
   <div class="col s11">
-  <label for="miinput">Busqueda por Nombre</label>
+  <label for="miinput">Búsqueda por Nombre</label>
   <input matInput #filter style="width: 100% !important;" id="miinput">
   </div>
 </div>
@@ -21,12 +21,12 @@
       <mat-cell *matCellDef="let row" >
 
               <button  mat-icon-button (click) = "edicionRegion(row)" >
-                <mat-icon>create</mat-icon>
+                <mat-icon svgIcon="icono-editar"></mat-icon>
               </button>
 
 
               <button  mat-icon-button (click) = "eliminarRegion(row)" >
-                <mat-icon>delete</mat-icon>
+                <mat-icon svgIcon="icono-eliminar"></mat-icon>
               </button>
 
       </mat-cell>
@@ -42,7 +42,7 @@
 
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
 
   </mat-table>
 
@@ -54,12 +54,12 @@
       <mat-cell *matCellDef="let row">
 
               <button  mat-icon-button (click) = "edicionRegion(row)" >
-                <mat-icon>create</mat-icon>
+                <mat-icon svgIcon="icono-editar"></mat-icon>
               </button>
 
 
               <button  mat-icon-button (click) = "eliminarRegion(row)" >
-                <mat-icon>delete</mat-icon>
+                <mat-icon svgIcon="icono-eliminar"></mat-icon>
               </button>
 
        </mat-cell>
@@ -73,7 +73,7 @@
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
   </mat-table>
 
 

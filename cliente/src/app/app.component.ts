@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Role } from './Models/Role.model';
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
+import {MatIconRegistry} from '@angular/material';
 
 @Component({
 	selector: 'app-root',
@@ -9,7 +11,53 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
-	constructor(private router: Router){}
+	constructor(private router: Router,private iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
+    //iconos de toolbar
+    this.iconRegistry
+        .addSvgIcon('icono-paciente',
+            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/patient.svg'));
+
+    this.iconRegistry
+        .addSvgIcon('icono-agenda',
+            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/agenda.svg'));
+
+    this.iconRegistry
+        .addSvgIcon('icono-doctor',
+            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/doctor.svg'));
+
+    this.iconRegistry
+        .addSvgIcon('icono-logout',
+            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/exit.svg'));
+
+    this.iconRegistry
+        .addSvgIcon('icono-editar-perfil',
+            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/tools.svg'));
+
+    //iconos para las acciones de las distintas secciones de módulos
+    this.iconRegistry
+        .addSvgIcon('icono-editar',
+            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/repair.svg'));
+
+    this.iconRegistry
+        .addSvgIcon('icono-desactivar',
+            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/cancel.svg'));
+
+    this.iconRegistry
+        .addSvgIcon('icono-ficha-medica',
+            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/curriculum.svg'));
+
+    this.iconRegistry
+        .addSvgIcon('icono-prevision',
+            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/commerce.svg'));
+
+    this.iconRegistry
+        .addSvgIcon('icono-agregar',
+            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/add-user.svg'));
+
+    this.iconRegistry
+        .addSvgIcon('icono-eliminar',
+            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/trash.svg'));
+  }
 
 
   irMP()
@@ -28,7 +76,6 @@ export class AppComponent {
   {
 
   }
-
 
 
 

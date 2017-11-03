@@ -1,4 +1,4 @@
-<h1 mat-dialog-title style="text-align: center;">Edicion de Provincia</h1>
+<h1 mat-dialog-title style="text-align: center;">Edición de Provincia</h1>
 
 <div mat-dialog-content>
 
@@ -8,9 +8,9 @@
 
 
 
-	<p>Region</p>
+	<p>Región</p>
 	<mat-form-field style="width: 100% !important;">
-		<mat-select placeholder="Provincia" style="width: 100% !important;">
+		<mat-select placeholder="Región" style="width: 100% !important;">
 			<mat-option style="width: 100% !important;" *ngFor="let region of totalRegiones" [value]="region.id" (click)="regionSeleccionada(region)">
 				{{ region.nombre }}
 			</mat-option>

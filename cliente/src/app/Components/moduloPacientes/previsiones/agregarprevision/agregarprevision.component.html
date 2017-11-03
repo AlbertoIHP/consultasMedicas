@@ -1,4 +1,4 @@
-<h1 mat-dialog-title style="text-align: center;">Creacion de Prevision</h1>
+<h1 mat-dialog-title style="text-align: center;">Creación de Previsión</h1>
 
 <div mat-dialog-content>
 
@@ -7,14 +7,14 @@
   <input matInput tabindex="1" [(ngModel)]="nuevaPrevision.nombre">
 
 
-  <p>Descripcion</p>
+  <p>Descripción</p>
 
   <input matInput tabindex="1" [(ngModel)]="nuevaPrevision.descripcion">
 
 
-  <p>¿ Esta prevision es ISAPRE ?</p>
+  <p>¿ Esta previsión es ISAPRE ?</p>
   <mat-form-field style="width: 100% !important;">
-    <mat-select placeholder="Seleccione una opcion" style="width: 100% !important;">
+    <mat-select placeholder="Seleccione una opción" style="width: 100% !important;">
       <mat-option style="width: 100% !important;" [value]="1" (click)="isapreSeleccionado(1)">
         Si
       </mat-option>

@@ -1,4 +1,4 @@
-<h1 mat-dialog-title style="text-align: center;">Edicion Persona: {{persona.rut}}</h1>
+<h1 mat-dialog-title style="text-align: center;">Edición Persona: {{persona.rut}}</h1>
 
 <div mat-dialog-content>
 
@@ -26,12 +26,12 @@
 	<input matInput tabindex="1" [(ngModel)]="persona.apellido2">
 
 
-	<p>Telefono de Casa</p>
+	<p>Teléfono de Casa</p>
 
 	<input matInput tabindex="1" [(ngModel)]="persona.fono_casa">
 
 
-	<p>Telefono de Trabajo</p>
+	<p>Teléfono de Trabajo</p>
 
 	<input matInput tabindex="1" [(ngModel)]="persona.fono_trabajo">
 
@@ -41,7 +41,7 @@
 	<input matInput tabindex="1" [(ngModel)]="persona.movil">
 
 
-	<p>Genero</p>
+	<p>Género</p>
 	<mat-form-field style="width: 100% !important;">
 		<mat-select placeholder="Genero" style="width: 100% !important;">
 			<mat-option style="width: 100% !important;" *ngFor="let genero of totalGeneros" [value]="genero.id" (click)="generoSeleccionado(genero)">

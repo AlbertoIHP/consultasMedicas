@@ -10,7 +10,7 @@
 
   </div>
   <div class="col s11">
-  <label for="miinput">Busqueda por Rut</label>
+  <label for="miinput">Búsqueda por Rut</label>
   <input matInput #filter style="width: 100% !important;" id="miinput">
   </div>
 </div>
@@ -29,10 +29,8 @@
 
       <mat-cell *matCellDef="let row" >
 
-
-
               <button *ngIf="row.estado === 1" mat-icon-button (click) = "editarPersona(row)" >
-                <mat-icon>create</mat-icon>
+                <mat-icon svgIcon="icono-editar"></mat-icon>
               </button>
 
               <button *ngIf="row.estado === 0" (click)="activarPaciente(row)" mat-icon-button  >
@@ -40,15 +38,15 @@
               </button>
 
               <button *ngIf="row.estado === 1" (click)="desactivarPaciente(row)" mat-icon-button >
-                <mat-icon>do_not_disturb</mat-icon>
+                <mat-icon svgIcon="icono-desactivar"></mat-icon>
               </button>
 
               <button *ngIf="row.estado === 1" mat-icon-button (click) = "previsionPersona(row)" >
-                <mat-icon>credit_card</mat-icon>
+                <mat-icon svgIcon="icono-prevision"></mat-icon>
               </button>
 
               <button *ngIf="row.estado === 1" mat-icon-button (click) = "agregarUsuario(row)" >
-                <mat-icon>person_add</mat-icon>
+                <mat-icon svgIcon="icono-agregar"></mat-icon>
               </button>
 
       </mat-cell>
@@ -70,13 +68,13 @@
 
     <!-- Color Column -->
     <ng-container matColumnDef="Telefonos">
-      <mat-header-cell *matHeaderCellDef> Telefonos</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Teléfonos</mat-header-cell>
       <mat-cell *matCellDef="let row" > {{row.fono_casa}} <br> {{row.fono_trabajo}} <br>  {{row.movil}}</mat-cell>
     </ng-container>
 
     <!-- Color Column -->
     <ng-container matColumnDef="Sexo">
-      <mat-header-cell *matHeaderCellDef> Genero </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Género </mat-header-cell>
       <mat-cell *matCellDef="let row" > {{row.Genero_id}} </mat-cell>
     </ng-container>
 
@@ -95,9 +93,12 @@
 
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
+
+
 
   </mat-table>
+
 
 
  <mat-table #table *ngIf="buscarPorRut" [dataSource]="dataSource2">
@@ -107,7 +108,7 @@
       <mat-cell *matCellDef="let row">
 
               <button *ngIf="row.estado === 1" mat-icon-button (click) = "editarPersona(row)" >
-                <mat-icon>create</mat-icon>
+                <mat-icon svgIcon="icono-editar"></mat-icon>
               </button>
 
               <button *ngIf="row.estado === 0" (click)="activarPaciente(row)" mat-icon-button  >
@@ -115,15 +116,15 @@
               </button>
 
               <button *ngIf="row.estado === 1" (click)="desactivarPaciente(row)" mat-icon-button >
-                <mat-icon>do_not_disturb</mat-icon>
+                <mat-icon svgIcon="icono-desactivar"></mat-icon>
               </button>
 
               <button *ngIf="row.estado === 1" mat-icon-button (click) = "previsionPersona(row)" >
-                <mat-icon>credit_card</mat-icon>
+                <mat-icon svgIcon="icono-prevision"></mat-icon>
               </button>
 
               <button *ngIf="row.estado === 1" mat-icon-button (click) = "agregarUsuario(row)" >
-                <mat-icon>person_add</mat-icon>
+                <mat-icon svgIcon="icono-agregar"></mat-icon>
               </button>
 
        </mat-cell>
@@ -143,13 +144,13 @@
 
     <!-- Color Column -->
     <ng-container matColumnDef="Telefonos">
-      <mat-header-cell *matHeaderCellDef> Telefonos</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Teléfonos</mat-header-cell>
       <mat-cell *matCellDef="let row" > {{row.fono_casa}} <br> {{row.fono_trabajo}} <br>  {{row.movil}}</mat-cell>
     </ng-container>
 
     <!-- Color Column -->
     <ng-container matColumnDef="Sexo">
-      <mat-header-cell *matHeaderCellDef> Genero </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Género </mat-header-cell>
       <mat-cell *matCellDef="let row" > {{row.Genero_id}} </mat-cell>
     </ng-container>
 
@@ -168,7 +169,7 @@
 
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
   </mat-table>
 
 
