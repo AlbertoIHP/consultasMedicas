@@ -19,12 +19,11 @@ import { EventosService } from './Services/eventos/eventos.service';
 
 
 //MODULOS
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing, appRoutingProviders } from './Routes/app-routing.module';
-import { SuiModule } from 'ng2-semantic-ui';
-import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTabsModule, MatInputModule , MatSelectModule, MatDialogModule, MatPaginatorModule, MatTableModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule} from '@angular/material';
 
@@ -189,7 +188,6 @@ import { Homemp } from './Components/moduloPacientes/homemp.component';
   imports:
   [
     BrowserModule,
-    SuiModule,
     routing,
     FormsModule,
     HttpModule,
@@ -206,7 +204,6 @@ import { Homemp } from './Components/moduloPacientes/homemp.component';
     MatInputModule,
     MatSelectModule,
     MatTabsModule
-    //NgbModule.forRoot()
   ],
 
   providers:
