@@ -17,11 +17,8 @@ class Usuario extends Migration
         $table->increments('id');
         $table->string('email');
         $table->string('password');
-
-        /*
         $table->boolean('confirmed')->default(0);
         $table->string('confirmation_code')->nullable();
-        */
 
         $table->integer('Role_id')->unsigned()->nullable();
         $table->integer('Persona_id')->unsigned()->nullable();        
