@@ -18,6 +18,11 @@ class Usuario extends Migration
         $table->string('email');
         $table->string('password');
 
+        /*
+        $table->boolean('confirmed')->default(0);
+        $table->string('confirmation_code')->nullable();
+        */
+
         $table->integer('Role_id')->unsigned()->nullable();
         $table->integer('Persona_id')->unsigned()->nullable();        
 
@@ -27,6 +32,7 @@ class Usuario extends Migration
         $table->rememberToken();
         $table->timestamps();
         $table->timestamp('deleted_at')->nullable();
+        
       });
     }
 
