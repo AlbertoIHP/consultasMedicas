@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, Inject, OnInit, Input } from '@angular/core';
 
 //DATATABLES
 import {DataSource} from '@angular/cdk/collections';
@@ -24,8 +24,7 @@ import { TipoSangreService } from '../../../Services/tiposangre/tiposangre.servi
 import { Paciente } from '../../../Models/Paciente.model';
 import { PacienteService } from '../../../Services/paciente/paciente.service';
 
-
-
+import { Role } from '../../../Models/Role.model';
 
 import { VerpersonaComponent } from '../personas/verpersona/verpersona.component';
 
@@ -38,6 +37,8 @@ import { EditarpacienteComponent } from './editarpaciente/editarpaciente.compone
 import { VerFichaMedicaComponent } from '../fichamedica/verfichamedica/verfichamedica.component'
 import { EventosService } from '../../../Services/eventos/eventos.service';
 
+
+
 @Component({
 	selector: 'app-pacientes',
 	templateUrl: './pacientes.component.html',
@@ -47,6 +48,9 @@ export class PacientesComponent implements OnInit {
 	public totalPersonas: Persona[];
 	public totalPacientes: Paciente[];
 	public totalTS: TipoSangre[];
+
+	//Rol de usuario actual (desde el componente padre home)
+	@Input() rolUsuario:Role;
 
 	//DATATABLE
 	@ViewChild(MatPaginator) paginator: MatPaginator;
