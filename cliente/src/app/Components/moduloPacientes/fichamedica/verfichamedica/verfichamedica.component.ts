@@ -48,7 +48,7 @@ export class VerFichaMedicaComponent {
 
   //variables básicas
 
-  public idPersona:number=1;
+	public idPersona:number=4;
 
   //será array ya que es la única manera de usarlo con datasource
   public personaPaciente:Persona[];
@@ -169,8 +169,7 @@ export class VerFichaMedicaComponent {
     this.obtenerPersonaPaciente(this.idPersona);
     this.obtenerListaPacientes(this.idPersona);
 
-
-     }
+  	 }
 
 
 //-------Datos Paciente
@@ -195,7 +194,8 @@ export class VerFichaMedicaComponent {
         console.log("PACIENTE");
         console.log(this.paciente);
 
-        this.obtenerTipoSangre(this.paciente.TipoSangre_id);
+  			this.obtenerTipoSangre(this.paciente.TipoSangre_id);
+        this.reconocerActivado();
         //this.obtenerAlergias(this.paciente.id);
         break;
       }else{
@@ -215,10 +215,19 @@ export class VerFichaMedicaComponent {
 
       //asignación del tipo de sangre para la tabla 4
       this.datosPacienteT4[0].tipoSangre=this.tipoSangrePaciente.nombre;
-
-    });
+  	});
 
   }
+
+   reconocerActivado (){
+     var persona=new Persona();
+     persona=this.personaPaciente[0];
+     console.log("ESTADO");
+     console.log(persona.estado);
+      persona.estado === 0 ? this.paciente.activado = 0 : this.paciente.activado = 1;
+          
+  }
+
 
 //Funciones para alergias (servicios futuros)
 /*
