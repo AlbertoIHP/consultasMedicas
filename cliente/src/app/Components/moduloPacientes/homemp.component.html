@@ -45,8 +45,8 @@
     <app-tiposangre></app-tiposangre>
   </mat-tab>
 
-  <mat-tab label="Datos Generales" *ngIf="rolUsuario.nombre=='Paciente'">
-    <app-fichamedica [idPersonaActual]="'usuarioActual.usuario.Persona_id'"></app-fichamedica>
+  <mat-tab label="Paciente" *ngIf="rolUsuario.nombre=='Paciente'">
+    <app-fichamedica [usuarioActual]="usuarioActual.usuario"></app-fichamedica>
   </mat-tab>
 
 <!--Secretaria
