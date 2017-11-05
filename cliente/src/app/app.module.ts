@@ -41,7 +41,7 @@ import { Homemp } from './Components/moduloPacientes/homemp.component';
 
   //Componente Ficha Medica
   import { VerFichaMedicaComponent } from './Components/moduloPacientes/fichamedica/verfichamedica/verfichamedica.component';
-
+  import { FichaMedicaComponent } from './Components/moduloPacientes/fichamedica/fichamedica.component';
   //Componente Estado Civil
   import { EstadocivilComponent } from './Components/moduloPacientes/estadocivil/estadocivil.component';
   import { EditarEstadoCComponent } from './Components/moduloPacientes/estadocivil/editar-estado-c/editar-estado-c.component';
@@ -150,6 +150,7 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
     UsuariosComponent,
     RolesComponent,
     VerFichaMedicaComponent,
+    FichaMedicaComponent,
 
 
     //Componentes Hijos (CRUD)

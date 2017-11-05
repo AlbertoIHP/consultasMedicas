@@ -1,48 +1,74 @@
 <mat-tab-group>
 
-  <mat-tab label="Personas">
+  <mat-tab label="Personas" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura' || rolUsuario.nombre=='Secretaría'">
+    <app-personas></app-personas>
+  </mat-tab>
+
+  <mat-tab label="Pacientes" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura' || rolUsuario.nombre=='Secretaría' || rolUsuario.nombre=='Médico'">
+  <!--Este tab para médico será temporal-->
+  <app-pacientes [rolUsuario]="rolUsuario"></app-pacientes>
+  </mat-tab>
+
+  <mat-tab label="Estado Civil" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura'">
+    <app-estadocivil></app-estadocivil>
+  </mat-tab>
+
+  <mat-tab label="Géneros" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura'">
+    <app-generos></app-generos>
+  </mat-tab>
+
+  <mat-tab label="Comunas" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura'">
+    <app-comunas></app-comunas>
+  </mat-tab>
+
+  <mat-tab label="Provincias" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura'">
+    <app-provincias></app-provincias>
+  </mat-tab>
+
+  <mat-tab label="Regiones" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura'">
+    <app-regiones></app-regiones>
+  </mat-tab>
+
+  <mat-tab label="Previsiones" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura'">
+    <app-previsiones></app-previsiones>
+  </mat-tab>
+
+  <mat-tab label="Usuarios" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura'">
+    <app-usuarios></app-usuarios>
+  </mat-tab>
+
+  <mat-tab label="Roles" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura'">
+    <app-roles></app-roles>
+  </mat-tab>
+
+  <mat-tab label="Tipo Sangre" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura'">
+    <app-tiposangre></app-tiposangre>
+  </mat-tab>
+
+  <mat-tab label="Paciente" *ngIf="rolUsuario.nombre=='Paciente'">
+    <app-fichamedica [usuarioActual]="usuarioActual.usuario"></app-fichamedica>
+  </mat-tab>
+
+<!--Secretaria
+<div *ngIf="rolUsuario.nombre=='Secretaría'">
+  <mat-tab label="Personas" >
     <app-personas></app-personas>
   </mat-tab>
 
   <mat-tab label="Pacientes">
   <app-pacientes></app-pacientes>
   </mat-tab>
+</div>
 
-  <mat-tab label="Estado Civil">
-    <app-estadocivil></app-estadocivil>
+<div *ngIf="rolUsuario.nombre=='Médico'">
+  <mat-tab label="Pacientes">
+  <app-pacientes></app-pacientes>
   </mat-tab>
-
-  <mat-tab label="Géneros">
-    <app-generos></app-generos>
+</div>
+<div *ngIf="rolUsuario.nombre=='Paciente'">
+  <mat-tab label="Pacientes">
+  <app-pacientes></app-pacientes>
   </mat-tab>
-
-  <mat-tab label="Comunas">
-    <app-comunas></app-comunas>
-  </mat-tab>
-
-  <mat-tab label="Provincias">
-    <app-provincias></app-provincias>
-  </mat-tab>
-
-  <mat-tab label="Regiones">
-    <app-regiones></app-regiones>
-  </mat-tab>
-
-  <mat-tab label="Previsiones">
-    <app-previsiones></app-previsiones>
-  </mat-tab>
-
-  <mat-tab label="Usuarios">
-    <app-usuarios></app-usuarios>
-  </mat-tab>
-
-  <mat-tab label="Roles">
-    <app-roles></app-roles>
-  </mat-tab>
-
-  <mat-tab label="Tipo Sangre">
-    <app-tiposangre></app-tiposangre>
-  </mat-tab>
-
-
+</div>
+-->
 </mat-tab-group>

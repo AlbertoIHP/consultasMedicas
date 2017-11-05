@@ -22,12 +22,12 @@
 
       <mat-cell *matCellDef="let row" >
 
-              <button *ngIf="row.activado === 1"  mat-icon-button (click) = "edicionPaciente(row)" >
+              <button *ngIf="row.activado === 1 && rolUsuario.nombre!='Médico'"  mat-icon-button (click) = "edicionPaciente(row)" >
                 <mat-icon svgIcon="icono-editar"></mat-icon>
 
               </button>
 
-              <button *ngIf="row.activado === 1" (click)="desactivarPaciente(row)" mat-icon-button >
+              <button *ngIf="row.activado === 1 && rolUsuario.nombre!='Médico'" (click)="desactivarPaciente(row)" mat-icon-button >
                 <mat-icon svgIcon="icono-desactivar"></mat-icon>
 
               </button>
@@ -38,7 +38,7 @@
 
               </button>
 
-              <button *ngIf="row.activado === 0" (click)="activarPaciente(row)" mat-icon-button  >
+              <button *ngIf="row.activado === 0 && rolUsuario.nombre!='Médico'" (click)="activarPaciente(row)" mat-icon-button  >
                 <mat-icon>arrow_upward</mat-icon>
               </button>
       </mat-cell>

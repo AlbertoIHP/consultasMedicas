@@ -60,6 +60,11 @@ export class AppComponent {
         .addSvgIcon('icono-eliminar',
             sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/trash.svg'));
 
+    if(localStorage.getItem('currentUser'))
+    {
+      this.isLogeado = true
+    }
+
 
     if( localStorage.getItem('currentUser'))
     {
