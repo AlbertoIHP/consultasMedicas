@@ -261,7 +261,7 @@ export class PacientesComponent implements OnInit {
 
 		dialogRef.afterClosed().subscribe(result => {
 
-		this.actualizarPersonas();
+		//this.actualizarPersonas();
 		});
 
 	});
@@ -351,7 +351,7 @@ export class PacientesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
 
-    this.actualizarPersonas();
+     //this.actualizarPersonas();
     });
 
   });

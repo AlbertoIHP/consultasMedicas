@@ -45,7 +45,7 @@ trait MakePermisoModuloTrait
             'Role_id' => $fake->randomDigitNotNull,
             'Modulo_id' => $fake->randomDigitNotNull,
             'write' => $fake->randomDigitNotNull,
-            'delete' => $fake->randomDigitNotNull,
+            'erase' => $fake->randomDigitNotNull,
             'update' => $fake->randomDigitNotNull,
             'view' => $fake->randomDigitNotNull
         ], $permisoModuloFields);

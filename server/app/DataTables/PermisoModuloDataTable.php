@@ -75,7 +75,7 @@ class PermisoModuloDataTable extends DataTable
             'Role_id' => ['name' => 'Role_id', 'data' => 'Role_id'],
             'Modulo_id' => ['name' => 'Modulo_id', 'data' => 'Modulo_id'],
             'write' => ['name' => 'write', 'data' => 'write'],
-            'delete' => ['name' => 'delete', 'data' => 'delete'],
+            'erase' => ['name' => 'erase', 'data' => 'erase'],
             'update' => ['name' => 'update', 'data' => 'update'],
             'view' => ['name' => 'view', 'data' => 'view']
         ];

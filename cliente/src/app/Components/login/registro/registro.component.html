@@ -1,26 +1,26 @@
 <mat-horizontal-stepper [linear]="isLinear">
 
   <mat-step [stepControl]="firstFormGroup">
-
+<form [formGroup]="firstFormGroup">
 
       <ng-template matStepLabel>Informacion personal</ng-template>
 
       <div class="row">
         <div class="col s4">
-          <form [formGroup]="firstFormGroup">
+
             <label for="rut">Rut</label>
             <input id="rut" matInput formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.rut" (ngModelChange)="buscarRut()"  (keyup.enter)="buscarRut()" >
-          </form>
+
         </div>
 
         <div class="col s4">
           <label for="pn">Primer nombre</label>
-          <input  id="pn" matInput [(ngModel)]="nuevaPersona.nombre1">
+          <input formControlName="firstCtrl" required id="pn" matInput [(ngModel)]="nuevaPersona.nombre1">
         </div>
 
         <div class="col s4">
           <label for="sn">Segundo nombre</label>
-          <input  id="sn" matInput [(ngModel)]="nuevaPersona.nombre2">
+          <input formControlName="firstCtrl" required id="sn" matInput [(ngModel)]="nuevaPersona.nombre2">
         </div>
       </div>
 
@@ -29,12 +29,12 @@
 
         <div class="col s6">
           <label for="pa">Primer apellido</label>
-          <input  id="pa" matInput  [(ngModel)]="nuevaPersona.apellido1">
+          <input formControlName="firstCtrl" required id="pa" matInput  [(ngModel)]="nuevaPersona.apellido1">
         </div>
 
         <div class="col s6">
           <label for="sa">Segundo apellido</label>
-          <input id="sa" matInput  [(ngModel)]="nuevaPersona.apellido2">
+          <input formControlName="firstCtrl" required id="sa" matInput  [(ngModel)]="nuevaPersona.apellido2">
         </div>
 
       </div>
@@ -42,28 +42,28 @@
       <div class="row">
         <div class="col s4">
           <label for="rut">Telefono de casa</label>
-          <input id="rut" matInput [(ngModel)]="nuevaPersona.fono_casa">
+          <input formControlName="firstCtrl" required id="rut" matInput [(ngModel)]="nuevaPersona.fono_casa">
         </div>
 
         <div class="col s4">
           <label for="pn">Telefono de trabajo</label>
-          <input  id="pn" matInput [(ngModel)]="nuevaPersona.fono_trabajo">
+          <input formControlName="firstCtrl" required  id="pn" matInput [(ngModel)]="nuevaPersona.fono_trabajo">
         </div>
 
         <div class="col s4">
           <label for="sn">Telefono movil</label>
-          <input  id="sn" matInput  [(ngModel)]="nuevaPersona.movil">
+          <input formControlName="firstCtrl" required  id="sn" matInput  [(ngModel)]="nuevaPersona.movil">
         </div>
       </div>
 
 
 
 
-      <div class="row" *ngIf="puedeSeguir">
+      <div class="row" >
 
         <div class="col s6">
           <mat-form-field style="width: 100% !important;">
-            <mat-select placeholder="Género" style="width: 100% !important;">
+            <mat-select formControlName="firstCtrl" required placeholder="Género" style="width: 100% !important;">
               <mat-option style="width: 100% !important;" *ngFor="let genero of totalGeneros" [value]="genero.id" (click)="generoSeleccionado(genero)">
                 {{ genero.nombre }}
               </mat-option>
@@ -73,7 +73,7 @@
 
         <div class="col s6" >
           <mat-form-field style="width: 100% !important;">
-          <mat-select placeholder="Estado Civil" style="width: 100% !important;">
+          <mat-select formControlName="firstCtrl" required placeholder="Estado Civil" style="width: 100% !important;">
             <mat-option style="width: 100% !important;" *ngFor="let ec of totalEstadoCiviles" [value]="ec.id" (click)="ecSeleccionado(ec)">
             {{ ec.nombre }}
             </mat-option>
@@ -84,11 +84,11 @@
       </div>
 
 
-      <div class="row" *ngIf="puedeSeguir">
+      <div class="row" >
         <div class="col s12">
 
           <mat-form-field style="width: 100% !important;" *ngIf="mostrarRegiones">
-          <mat-select placeholder="Región" style="width: 100% !important;">
+          <mat-select formControlName="firstCtrl" required placeholder="Región" style="width: 100% !important;">
           <mat-option style="width: 100% !important;" *ngFor="let region of totalRegiones" [value]="region.id" (click)="regionSeleccionada(region)">
           {{ region.nombre }}
           </mat-option>
@@ -97,7 +97,7 @@
 
 
           <mat-form-field style="width: 100% !important;" *ngIf="mostrarProvincias">
-          <mat-select placeholder="Provincia" style="width: 100% !important;">
+          <mat-select formControlName="firstCtrl" required placeholder="Provincia" style="width: 100% !important;">
           <mat-option style="width: 100% !important;" *ngFor="let provincia of provinciasMostrar" [value]="provincia.id" (click)="provinciaSeleccionada(provincia)">
           {{ provincia.nombre }}
           </mat-option>
@@ -107,7 +107,7 @@
 
 
           <mat-form-field style="width: 100% !important;" *ngIf="mostrarComunas">
-          <mat-select placeholder="Comuna" style="width: 100% !important;" >
+          <mat-select formControlName="firstCtrl" required placeholder="Comuna" style="width: 100% !important;" >
           <mat-option style="width: 100% !important;" *ngFor="let comuna of comunasMostrar" [value]="comuna.id" (click)="comunaSeleccionada(comuna)">
           {{ comuna.nombre }}
           </mat-option>
@@ -122,7 +122,7 @@
       </div>
 
       </div>
-
+</form>
 
   </mat-step>
 

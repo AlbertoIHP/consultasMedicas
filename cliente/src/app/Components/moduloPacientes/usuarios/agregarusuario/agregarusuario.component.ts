@@ -23,6 +23,18 @@ export class AgregarusuarioComponent implements OnInit{
   public tienePersona: any;
 
 
+  GeneratePassword()
+  {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }
+
+
 
 	constructor(
 		public dialogRef: MatDialogRef<AgregarusuarioComponent>,
@@ -92,13 +104,16 @@ export class AgregarusuarioComponent implements OnInit{
 	if(this.tienePersona)
 	{
 	  this.isPersona = false;
+    this.usuario.password = this.GeneratePassword();
 	 for( let i = 0 ; i < this.totalUsuarios.length ; i ++)
 	 {
 	  if( parseInt(this.totalUsuarios[i].Persona_id) === this.persona.id)
 	  {
+
 		this.usuario = this.totalUsuarios[i];
 		this.servicioRole.getRole(this.usuario.Role_id).subscribe(data => { var todo: any = data; todo = todo.data; this.rolePersona = todo.nombre});
-		this.isPersona = true;
+
+    this.isPersona = true;
 
 		break;
 	  }

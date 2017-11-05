@@ -2918,8 +2918,8 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "delete": {
-                    "description": "delete",
+                "erase": {
+                    "description": "erase",
                     "type": "integer",
                     "format": "int32"
                 },

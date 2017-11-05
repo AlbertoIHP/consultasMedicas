@@ -129,7 +129,7 @@ export class PersonaComponent implements OnInit{
   crearPersona(): void {
 
     let dialogRef = this.dialog.open(AgregarpersonaComponent, {
-      width: '500px',
+      width: '1000px',
     data:
     {
     regiones: this.totalRegiones,
@@ -210,7 +210,7 @@ export class PersonaComponent implements OnInit{
 
   dialogRef.afterClosed().subscribe(result => {
 
-    this.actualizarPersonas();
+    //this.actualizarPersonas();
   });
   }
 
@@ -370,13 +370,14 @@ export class PersonaComponent implements OnInit{
       this.servicioEventos.hiceUnCambio();
     });
   }
+
   desactivarPaciente (paciente)
   {
     paciente.estado = 0;
     this.pasarStringId(paciente);
     this.servicioPersona.editPersona(paciente, paciente.id).subscribe(data => {
       console.log(data);
-      this.actualizarPersonas();
+      //this.actualizarPersonas();
       this.servicioEventos.hiceUnCambio();
     });
   }
@@ -403,7 +404,7 @@ export class PersonaComponent implements OnInit{
 
   dialogRef.afterClosed().subscribe(result => {
 
-    this.actualizarPersonas();
+    //this.actualizarPersonas();
   });
   }
 

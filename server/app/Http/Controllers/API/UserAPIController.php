@@ -122,8 +122,6 @@ public function store(Request $request){
 	$confirmation_code = str_random(30);
 	$input = $request->all();
 
-	error_log(json_encode($input));
-
 	$rules = [
 	  'email' => 'required|unique:Usuario',
 	  'password' => 'required',
@@ -138,7 +136,6 @@ public function store(Request $request){
 	  'confirmation_code' => $confirmation_code
 	];
 
-	error_log(json_encode($data));
 	
 	try {
 
@@ -152,10 +149,14 @@ public function store(Request $request){
 	  }else{
 
 		Mail::send('email.validarCuenta', 
-		  ['confirmation_code' => $confirmation_code], function ($message) {
+		  ['confirmation_code' => $confirmation_code, 'email'=> $request->email, 'password' => $request->password], function ($message) {
+
 			$message->to(Input::get('email'), Input::get('nombre'))
 				->subject('Por favor verifique su cuenta');
+
 		});
+
+
 		User::create($data);
 		return ['created' => true];
 
@@ -345,7 +346,7 @@ public function store(Request $request){
 
 		if (!$confirmation_code) 
 		{
-		  return \Response::json(['confirmation_code' => 'Invalid'], 500);
+		 return view('email.error');
 		}
 
 
@@ -353,13 +354,18 @@ public function store(Request $request){
 		$user = User::whereConfirmationCode($confirmation_code)->first();
 
 
-		if (!$user) {
-		  return \Response::json(['confirmation_code' => 'Invalid'], 500);
+		if (!$user) 
+		{
+			return view('email.error');;
 		}
+
+
 		$user->confirmed = 1;
 		$user->confirmation_code = null;
 		$user->save();
-		return \Response::json(['verified' => true, 'confirmed' => $user->confirmed]);
+
+		return view('email.confirmacion');
+
 	  }
 
 

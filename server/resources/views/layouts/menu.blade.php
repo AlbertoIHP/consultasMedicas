@@ -382,3 +382,7 @@
     <a href="{!! route('permisoModulos.index') !!}"><i class="fa fa-edit"></i><span>Permiso Modulos</span></a>
 </li>
 
+<li class="{{ Request::is('permisoModulos*') ? 'active' : '' }}">
+    <a href="{!! route('permisoModulos.index') !!}"><i class="fa fa-edit"></i><span>Permiso Modulos</span></a>
+</li>
+

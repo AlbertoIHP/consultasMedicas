@@ -1,6 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Persona } from '../../../../Models/Persona.model';
+import { Usuario } from '../../../../Models/Usuario.model';
+import { UserService } from '../../../../Services/user/user.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
 
 @Component({
 	selector: 'app-agregarpersona',
@@ -33,10 +37,17 @@ export class AgregarpersonaComponent implements OnInit{
   public servicioRegion: any;
   public servicioPersona: any;
 
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
+
+  public nuevoUsuario: Usuario;
 
 	constructor(
 		public dialogRef: MatDialogRef<AgregarpersonaComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: any
+		@Inject(MAT_DIALOG_DATA) public data: any,
+    private _formBuilder: FormBuilder,
+    public servicioUsuario: UserService
 		)
 	{
 
@@ -46,11 +57,20 @@ export class AgregarpersonaComponent implements OnInit{
     this.servicioGenero  = this.data.servicioGenero;
     this.servicioEC = this.data.servicioEC;
     this.servicioPersona = this.data.servicioPersona;
+    this.nuevoUsuario = new Usuario();
 		this.defaultValues();
 	}
 
   ngOnInit()
   {
+
+        this.firstFormGroup = this._formBuilder.group({
+          firstCtrl: ['', Validators.required]
+        });
+        this.secondFormGroup = this._formBuilder.group({
+          secondCtrl: ['', Validators.required]
+        });
+
 
       this.servicioGenero.getGeneros().subscribe(data => {
           var todo: any;
@@ -149,9 +169,36 @@ export class AgregarpersonaComponent implements OnInit{
 
 	agregarPersona()
 	{
+
 		this.servicioPersona.registerPersona(this.persona).subscribe(data => {
-			this.defaultValues();
-			this.onNoClick();
+
+      this.servicioPersona.getPersonas().subscribe(data => {
+        var todo: any = data
+        todo = todo.data
+
+        var persona: any = todo.filter( persona =>  persona.rut === this.persona.rut)
+
+        console.log(persona)
+
+        this.nuevoUsuario.Persona_id = persona[0].id ;
+        this.nuevoUsuario.Role_id = '4';
+        this.nuevoUsuario.password = this.GeneratePassword();
+
+        console.log(this.nuevoUsuario)
+
+        this.servicioUsuario.registerUser(this.nuevoUsuario).subscribe( data => {
+
+          console.log(data)
+          this.defaultValues();
+
+        })
+
+
+
+      })
+
+
+
 		});
 	}
 
@@ -169,5 +216,17 @@ export class AgregarpersonaComponent implements OnInit{
 	{
 		this.persona.Genero_id = genero.id;
 	}
+
+
+  GeneratePassword()
+  {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }
 
 }

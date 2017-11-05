@@ -304,37 +304,36 @@ export class RegistroComponent implements OnInit {
         if(this.totalPersonas[i].rut === this.nuevaPersona.rut)
         {
 
-          this.nuevaPersona.id = this.totalPersonas[i].id
-          this.nuevaPersona.nombre1 = this.totalPersonas[i].nombre1
-          this.nuevaPersona.nombre2 = this.totalPersonas[i].nombre2
-          this.nuevaPersona.apellido1 = this.totalPersonas[i].apellido1
-          this.nuevaPersona.apellido2 = this.totalPersonas[i].apellido2
-          this.nuevaPersona.fono_casa = this.totalPersonas[i].fono_casa
-          this.nuevaPersona.fono_trabajo = this.totalPersonas[i].fono_trabajo
-          this.nuevaPersona.movil = this.totalPersonas[i].movil
-          this.nuevaPersona.Genero_id = this.totalPersonas[i].Genero_id
-          this.nuevaPersona.EstadoCivil_id = this.totalPersonas[i].EstadoCivil_id
-          this.nuevaPersona.Comuna_id = this.totalPersonas[i].Comuna_id
-          this.puedeSeguir = false
-          this.seEncontro = true
-          this.nuevoUsuario.Persona_id = this.nuevaPersona.id.toString();
-          this.nuevoUsuario.Role_id = '1'
-          console.log(this.nuevaPersona)
-          console.log(this.nuevoUsuario)
+          // this.nuevaPersona.id = this.totalPersonas[i].id
+          // this.nuevaPersona.nombre1 = this.totalPersonas[i].nombre1
+          // this.nuevaPersona.nombre2 = this.totalPersonas[i].nombre2
+          // this.nuevaPersona.apellido1 = this.totalPersonas[i].apellido1
+          // this.nuevaPersona.apellido2 = this.totalPersonas[i].apellido2
+          // this.nuevaPersona.fono_casa = this.totalPersonas[i].fono_casa
+          // this.nuevaPersona.fono_trabajo = this.totalPersonas[i].fono_trabajo
+          // this.nuevaPersona.movil = this.totalPersonas[i].movil
+          // this.nuevaPersona.Genero_id = this.totalPersonas[i].Genero_id
+          // this.nuevaPersona.EstadoCivil_id = this.totalPersonas[i].EstadoCivil_id
+          // this.nuevaPersona.Comuna_id = this.totalPersonas[i].Comuna_id
+          // this.puedeSeguir = false
+          // this.seEncontro = true
+          // this.nuevoUsuario.Persona_id = this.nuevaPersona.id.toString();
+          // this.nuevoUsuario.Role_id = '1'
+          alert("¡Usted ya esta registrado!")
+          this.defaultValues()
+          this.onNoClick()
           break
         }
-        else
-        {
-          this.puedeSeguir = true
-          this.seEncontro = false
-          var rut = this.nuevaPersona.rut
-          this.nuevaPersona = new Persona()
-          this.nuevaPersona.rut = rut
-          this.nuevoUsuario = new Usuario()
+        // else
+        // {
+        //   this.puedeSeguir = true
+        //   this.seEncontro = false
+        //   var rut = this.nuevaPersona.rut
+        //   this.nuevaPersona = new Persona()
+        //   this.nuevaPersona.rut = rut
+        //   this.nuevoUsuario = new Usuario()
 
-          console.log(this.nuevaPersona)
-          console.log(this.nuevoUsuario)
-        }
+        // }
       }
 
 

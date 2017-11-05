@@ -11,17 +11,69 @@
 
 
   <div class="row">
-    <div class="col s3" ><mat-checkbox (click) = "cambiarEscritura()">Escritura</mat-checkbox></div>
-    <div class="col s3" ><mat-checkbox (click) = "cambiarLectura()">Lectura</mat-checkbox></div>
-    <div class="col s3" ><mat-checkbox (click) = "cambiarEdicion()">Edicion</mat-checkbox></div>
-    <div class="col s3" ><mat-checkbox (click) = "cambiarBorrado()">Borrado</mat-checkbox></div>
+    <div class="col s12">
+<!--   <mat-table #table [dataSource]="dataSource">
 
+    <ng-container matColumnDef="function">
+      <mat-header-cell *matHeaderCellDef> Funcion </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Modulo_id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="permissions">
+      <mat-header-cell *matHeaderCellDef> Permisos </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+
+        <div class="row">
+         <div class="col s3" (click)="escribir(element)" ><mat-checkbox >Escritura</mat-checkbox></div>
+          <div class="col s3" (click)="leer(element)"><mat-checkbox >Lectura</mat-checkbox></div>
+          <div class="col s3" (click)="editar(element)" ><mat-checkbox >Edicion</mat-checkbox></div>
+          <div class="col s3" (click)="borrar(element)" ><mat-checkbox >Borrado</mat-checkbox></div>
+        </div>
+
+       </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table> -->
+
+      <table class="striped">
+        <thead>
+          <tr>
+              <th>Funciones</th>
+              <th>Permisos</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr  *ngFor="let permiso of totalPM">
+            <td> {{permiso.Modulo_id}}</td>
+            <td>
+            <div class="row">
+
+              <div class="col s3"><mat-checkbox [(ngModel)]="permiso.write">Escritura </mat-checkbox></div>
+              <div class="col s3"><mat-checkbox [(ngModel)]="permiso.view" >Lectura</mat-checkbox></div>
+              <div class="col s3"><mat-checkbox [(ngModel)]="permiso.update">Edicion</mat-checkbox></div>
+              <div class="col s3"><mat-checkbox [(ngModel)]="permiso.erase" >Borrado</mat-checkbox></div>
+            </div>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
   </div>
+
+
 
 </div>
 
 
-<div mat-dialog-actions>
-  <button mat-button (click)="agregarRole()" tabindex="2">Agregar Role</button>
-  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+<div class="row">
+  <div class="col s12">
+    <button mat-button style="width: 100%" (click)="agregarRole()" >Agregar Role</button>
+  </div>
+
+
 </div>

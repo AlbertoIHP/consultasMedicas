@@ -3,27 +3,39 @@
 
 <div mat-dialog-content>
 
-	<p>Email</p>
+  <div class="row" *ngIf="!isPersona">
+    <div class="col s12">
+      <p>La contraseña del usuario es autogenerada, y se le informara al correo electronico. Asi mismo, este debe activar su cuenta mediante un enlace de activacion que sera enviado en el mismo correo.</p>
+    </div>
+  </div>
 
-	<input *ngIf="!isPersona" matInput tabindex="1" [(ngModel)]="usuario.email">
+  <div class="row">
+    <div class="col s6">
+      <p>Email</p>
+      <input *ngIf="!isPersona" matInput tabindex="1" [(ngModel)]="usuario.email">
+      <input *ngIf="isPersona" disabled matInput tabindex="1" [(ngModel)]="usuario.email">
+    </div>
 
-  <input *ngIf="isPersona" disabled matInput tabindex="1" [(ngModel)]="usuario.email">
+    <div class="col s6">
+      <p >Role</p>
+      <mat-form-field style="width: 100% !important;" *ngIf="!isPersona">
+        <mat-select placeholder="Role" style="width: 100% !important;">
+          <mat-option style="width: 100% !important;" *ngFor="let role of totalRoles" [value]="role.id" (click)="roleSeleccionado(role)">
+            {{ role.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <input *ngIf="isPersona" disabled type="text" matInput tabindex="1" [(ngModel)]="rolePersona">
 
-	<p>Password</p>
+    </div>
+  </div>
 
-	<input *ngIf="!isPersona" type="password" matInput tabindex="1" [(ngModel)]="usuario.password">
-
-  <input *ngIf="isPersona" disabled type="password" matInput tabindex="1" [(ngModel)]="usuario.password">
-
-	<p >Role</p>
-	<mat-form-field style="width: 100% !important;" *ngIf="!isPersona">
-		<mat-select placeholder="Role" style="width: 100% !important;">
-			<mat-option style="width: 100% !important;" *ngFor="let role of totalRoles" [value]="role.id" (click)="roleSeleccionado(role)">
-				{{ role.nombre }}
-			</mat-option>
-		</mat-select>
-	</mat-form-field>
-  <input *ngIf="isPersona" disabled type="text" matInput tabindex="1" [(ngModel)]="rolePersona">
+  <div class="row">
+    <div class="col s12">
+       <p *ngIf="isPersona">Password</p>
+      <input *ngIf="isPersona" disabled type="password" matInput tabindex="1" [(ngModel)]="usuario.password" style="width: 100%">
+    </div>
+  </div>
 
 
 
@@ -39,7 +51,11 @@
 </div>
 
 
-<div mat-dialog-actions>
-	<button *ngIf="!isPersona"  mat-button (click)="agregarUsuario()" tabindex="2">Agregar Usuario</button>
-	<button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
-</div>
+  <div class="row">
+    <div class="col s6">
+      <button *ngIf="!isPersona"  mat-button (click)="agregarUsuario()"  style="width: 100%">Agregar Usuario</button>
+    </div>
+    <div class="col s6">
+     <button mat-button (click)="onNoClick()" style="width: 100%">Cancelar</button>
+    </div>
+  </div>

@@ -34,8 +34,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="delete",
- *          description="delete",
+ *          property="erase",
+ *          description="erase",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -70,7 +70,7 @@ class PermisoModulo extends Model
         'Role_id',
         'Modulo_id',
         'write',
-        'delete',
+        'erase',
         'update',
         'view'
     ];
@@ -85,7 +85,7 @@ class PermisoModulo extends Model
         'Role_id' => 'integer',
         'Modulo_id' => 'integer',
         'write' => 'integer',
-        'delete' => 'integer',
+        'erase' => 'integer',
         'update' => 'integer',
         'view' => 'integer'
     ];
@@ -114,5 +114,6 @@ class PermisoModulo extends Model
     {
         return $this->belongsTo(\App\Models\Role::class);
     }
-    protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];  
+
+ protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];   
 }

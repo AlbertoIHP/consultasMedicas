@@ -13,7 +13,8 @@ import { UserService } from './Services/user/user.service';
 import { TipoSangreService } from './Services/tiposangre/tiposangre.service';
 import { AuthenticationService} from './Services/authentication/authentication.service';
 import { EventosService } from './Services/eventos/eventos.service';
-
+import { ModuloService } from './Services/modulo/modulo.service';
+import { PermisoModuloService } from './Services/permisomodulo/permisomodulo.service';
 
 
 
@@ -219,21 +220,23 @@ import { RegistroComponent } from './Components/login/registro/registro.componen
 
   providers:
   [
-  appRoutingProviders,
-  ComunaService,
-  EstadocivilService,
-  GeneroService,
-  PersonaService,
-  PacienteService,
-  PrevisionService,
-  PrevisionactualService,
-  ProvinciaService,
-  RegionService,
-  RoleService,
-  UserService,
-  TipoSangreService,
-  AuthenticationService,
-  EventosService
+    appRoutingProviders,
+    ComunaService,
+    EstadocivilService,
+    GeneroService,
+    PersonaService,
+    PacienteService,
+    PrevisionService,
+    PrevisionactualService,
+    ProvinciaService,
+    RegionService,
+    RoleService,
+    UserService,
+    TipoSangreService,
+    AuthenticationService,
+    EventosService,
+    ModuloService,
+    PermisoModuloService
   ],
 
   bootstrap:

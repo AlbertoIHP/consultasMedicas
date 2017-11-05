@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class PermisoModuloRepository
  * @package App\Repositories
- * @version October 24, 2017, 5:28 am UTC
+ * @version November 5, 2017, 5:22 am UTC
  *
  * @method PermisoModulo findWithoutFail($id, $columns = ['*'])
  * @method PermisoModulo find($id, $columns = ['*'])
@@ -23,7 +23,7 @@ class PermisoModuloRepository extends BaseRepository
         'Role_id',
         'Modulo_id',
         'write',
-        'delete',
+        'erase',
         'update',
         'view'
     ];

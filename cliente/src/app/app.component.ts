@@ -61,6 +61,11 @@ export class AppComponent {
             sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/trash.svg'));
 
 
+    if( localStorage.getItem('currentUser'))
+    {
+      this.isLogeado = true
+    }
+
     this.eventosService.isSingIn.subscribe( data => {
       this.isLogeado = true
     })
