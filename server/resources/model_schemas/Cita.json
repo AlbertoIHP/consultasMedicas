@@ -1,7 +1,7 @@
 [
     {
-        "name": "idCita",
-        "dbType": "integer,true",
+        "name": "id",
+        "dbType": "integer,true,true",
         "htmlType": null,
         "validations": null,
         "searchable": false,
@@ -12,7 +12,7 @@
     },
     {
         "name": "fecha",
-        "dbType": "datetime",
+        "dbType": "date",
         "htmlType": "date",
         "validations": null,
         "searchable": true,
@@ -22,18 +22,7 @@
         "inIndex": true
     },
     {
-        "name": "Consulta_idConsulta",
-        "dbType": "integer,false",
-        "htmlType": null,
-        "validations": null,
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "Doctor_rut",
+        "name": "hora",
         "dbType": "string",
         "htmlType": "text",
         "validations": null,
@@ -44,7 +33,51 @@
         "inIndex": true
     },
     {
-        "name": "Persona_rut",
+        "name": "EstadoCita_id",
+        "dbType": "integer,false,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "BoxConsulta_id",
+        "dbType": "integer,false,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "Paciente_id",
+        "dbType": "integer,false,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "Medico_id",
+        "dbType": "integer,false,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "remember_token",
         "dbType": "string",
         "htmlType": "text",
         "validations": null,
@@ -55,26 +88,37 @@
         "inIndex": true
     },
     {
-        "name": "fechahora",
+        "name": "created_at",
         "dbType": "datetime",
         "htmlType": "date",
         "validations": null,
-        "searchable": true,
-        "fillable": true,
+        "searchable": false,
+        "fillable": false,
         "primary": false,
-        "inForm": true,
-        "inIndex": true
+        "inForm": false,
+        "inIndex": false
     },
     {
-        "name": "EstadoCita_idEstadoCita",
-        "dbType": "integer,false",
-        "htmlType": null,
+        "name": "updated_at",
+        "dbType": "datetime",
+        "htmlType": "date",
         "validations": null,
-        "searchable": true,
-        "fillable": true,
+        "searchable": false,
+        "fillable": false,
         "primary": false,
-        "inForm": true,
-        "inIndex": true
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "deleted_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
     },
     {
         "type": "relation",
@@ -86,23 +130,35 @@
     },
     {
         "type": "relation",
-        "relation": "mt1,Persona"
+        "relation": "mt1,Medico"
     },
     {
         "type": "relation",
-        "relation": "1tm,Atention"
+        "relation": "mt1,Paciente"
     },
     {
         "type": "relation",
-        "relation": "mtm,,Atention_has_Diagnostico"
+        "relation": "mtm,,AlergiasPaciente"
     },
     {
         "type": "relation",
-        "relation": "mtm,,Doctor"
+        "relation": "1tm,Atencion"
     },
     {
         "type": "relation",
-        "relation": "mtm,,Persona_has_Prevision"
+        "relation": "mtm,,DiagnosticosAtencion"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Medico"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Paciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,PermisoModulo"
     },
     {
         "type": "relation",

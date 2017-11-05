@@ -1,7 +1,7 @@
 [
     {
-        "name": "idEstadoCita",
-        "dbType": "integer,true",
+        "name": "id",
+        "dbType": "integer,true,true",
         "htmlType": null,
         "validations": null,
         "searchable": false,
@@ -11,7 +11,7 @@
         "inIndex": false
     },
     {
-        "name": "estadoCita",
+        "name": "nombre",
         "dbType": "string",
         "htmlType": "text",
         "validations": null,
@@ -22,8 +22,63 @@
         "inIndex": true
     },
     {
+        "name": "descripcion",
+        "dbType": "text",
+        "htmlType": "textarea",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "remember_token",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "created_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "deleted_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
         "type": "relation",
-        "relation": "mtm,,Atention_has_Diagnostico"
+        "relation": "mtm,,AlergiasPaciente"
     },
     {
         "type": "relation",
@@ -31,11 +86,19 @@
     },
     {
         "type": "relation",
-        "relation": "mtm,,Doctor"
+        "relation": "mtm,,DiagnosticosAtencion"
     },
     {
         "type": "relation",
-        "relation": "mtm,,Persona_has_Prevision"
+        "relation": "mtm,,Medico"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Paciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,PermisoModulo"
     },
     {
         "type": "relation",

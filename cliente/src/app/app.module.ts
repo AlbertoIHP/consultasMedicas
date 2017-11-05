@@ -99,6 +99,27 @@ import { Homemp } from './Components/moduloPacientes/homemp.component';
   import { AgregartipoComponent } from './Components/moduloPacientes/tiposangre/agregartipo/agregartipo.component';
   import { EditartipoComponent } from './Components/moduloPacientes/tiposangre/editartipo/editartipo.component';
 import { RegistroComponent } from './Components/login/registro/registro.component';
+import { TipoBoxComponent } from './Components/moduloCitas/tipo-box/tipo-box.component';
+import { TipoboxComponent } from './Components/moduloCitas/tipobox/tipobox.component';
+import { BoxconsultaComponent } from './Components/moduloCitas/boxconsulta/boxconsulta.component';
+import { EstadocitaComponent } from './Components/moduloCitas/estadocita/estadocita.component';
+import { EspecialidadComponent } from './Components/moduloCitas/especialidad/especialidad.component';
+import { MedicoComponent } from './Components/moduloCitas/medico/medico.component';
+import { CitaComponent } from './Components/moduloCitas/cita/cita.component';
+import { AgregarboxconsultaComponent } from './Components/moduloCitas/boxconsulta/agregarboxconsulta/agregarboxconsulta.component';
+import { EditarboxconsultaComponent } from './Components/moduloCitas/boxconsulta/editarboxconsulta/editarboxconsulta.component';
+import { AgregarcitaComponent } from './Components/moduloCitas/cita/agregarcita/agregarcita.component';
+import { EditarcitaComponent } from './Components/moduloCitas/cita/editarcita/editarcita.component';
+import { VercitaComponent } from './Components/moduloCitas/cita/vercita/vercita.component';
+import { AgregarespecialidadComponent } from './Components/moduloCitas/especialidad/agregarespecialidad/agregarespecialidad.component';
+import { EditarespecialidadComponent } from './Components/moduloCitas/especialidad/editarespecialidad/editarespecialidad.component';
+import { AgregarestadocitaComponent } from './Components/moduloCitas/estadocita/agregarestadocita/agregarestadocita.component';
+import { EditarestadocitaComponent } from './Components/moduloCitas/estadocita/editarestadocita/editarestadocita.component';
+import { AgregarmedicoComponent } from './Components/moduloCitas/medico/agregarmedico/agregarmedico.component';
+import { EditarmedicoComponent } from './Components/moduloCitas/medico/editarmedico/editarmedico.component';
+import { AgregartipoboxComponent } from './Components/moduloCitas/tipobox/agregartipobox/agregartipobox.component';
+import { EditartipoboxComponent } from './Components/moduloCitas/tipobox/editartipobox/editartipobox.component';
+import { HomemcComponent } from './Components/moduloCitas/homemc/homemc.component';
 
 
 
@@ -156,6 +177,28 @@ import { RegistroComponent } from './Components/login/registro/registro.componen
     AgregartipoComponent,
     EditartipoComponent,
     RegistroComponent
+    EditartipoComponent,
+    TipoBoxComponent,
+    TipoboxComponent,
+    BoxconsultaComponent,
+    EstadocitaComponent,
+    EspecialidadComponent,
+    MedicoComponent,
+    CitaComponent,
+    AgregarboxconsultaComponent,
+    EditarboxconsultaComponent,
+    AgregarcitaComponent,
+    EditarcitaComponent,
+    VercitaComponent,
+    AgregarespecialidadComponent,
+    EditarespecialidadComponent,
+    AgregarestadocitaComponent,
+    EditarestadocitaComponent,
+    AgregarmedicoComponent,
+    EditarmedicoComponent,
+    AgregartipoboxComponent,
+    EditartipoboxComponent,
+    HomemcComponent
   ],
 
   entryComponents:
