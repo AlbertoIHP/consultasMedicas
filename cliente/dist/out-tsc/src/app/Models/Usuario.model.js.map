@@ -1,1 +1,0 @@
-{"version":3,"file":"Usuario.model.js","sourceRoot":"","sources":["../../../../../src/app/Models/Usuario.model.ts"],"names":[],"mappings":";;AAAA;IAOC;QAEC,IAAI,CAAC,EAAE,GAAG,CAAC,CAAC;QACZ,IAAI,CAAC,KAAK,GAAG,EAAE,CAAC;QAChB,IAAI,CAAC,QAAQ,GAAG,EAAE,CAAC;QACnB,IAAI,CAAC,OAAO,GAAG,EAAE,CAAC;QAClB,IAAI,CAAC,UAAU,GAAG,GAAG,CAAC;IACvB,CAAC;IACF,cAAC;AAAD,CAAC,AAfD,IAeC;AAfY,0BAAO"}

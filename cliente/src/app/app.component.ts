@@ -80,7 +80,7 @@ export class AppComponent {
 
   irMC()
   {
-
+    this.router.navigate(['moduloCitas']);
   }
 
 

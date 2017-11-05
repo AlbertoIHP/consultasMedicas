@@ -16,7 +16,7 @@ class PermisoModulo extends Migration
         Schema::create('PermisoModulo', function (Blueprint $table) {
         $table->increments('id');
         $table->integer('write')->default(1);
-        $table->integer('delete')->default(1);
+        $table->integer('erase')->default(1);
         $table->integer('update')->default(1);
         $table->integer('view')->default(1);
 

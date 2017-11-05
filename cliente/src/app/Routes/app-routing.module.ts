@@ -2,6 +2,8 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { Homemp } from '../Components/moduloPacientes/homemp.component';
+import { HomemcComponent } from '../Components/moduloCitas/homemc.component';
+
 import { LoginComponent } from '../Components/login/login.component'
 
 
@@ -15,8 +17,9 @@ const routes: Routes =
 	{ path: '',  component: LoginComponent },
 
   //Rutas MODULO
-    //MODULO PACIENTES
+  //MODULO PACIENTES
 	{ path: 'moduloPacientes',  component: Homemp },
+  { path: 'moduloCitas',  component: HomemcComponent }
 
 
 
