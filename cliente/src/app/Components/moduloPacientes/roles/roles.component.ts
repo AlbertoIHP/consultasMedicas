@@ -38,7 +38,7 @@ public totalRoles: Role[];
 	public sourcePorNombre: buscadorPorNombre | null;
 	public bdEstructura;
 	public buscarPorNombre: boolean;
-	displayedColumns = ['Acciones', 'Nombre', 'Permisos'];
+	displayedColumns = ['Acciones', 'Nombre'];
 
 
 	constructor (public servicioRole: RoleService, public dialog: MatDialog)

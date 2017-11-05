@@ -15,6 +15,7 @@ export class EditarusuarioComponent  implements OnInit{
   public totalRoles: any;
   public servicio: any;
   public servicioRole: any;
+  public emailValido = true;
 
   ngOnInit()
   {
@@ -57,5 +58,25 @@ export class EditarusuarioComponent  implements OnInit{
     console.log(this.usuario);
     this.usuario.Role_id = role.id;
   }
+
+  validateEmail(email)
+  {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    console.log(re.test(email))
+
+
+
+    if( re.test(email) )
+    {
+      this.emailValido = false
+    }
+    else
+    {
+      this.emailValido = true
+    }
+  }
+
+
+
 
 }

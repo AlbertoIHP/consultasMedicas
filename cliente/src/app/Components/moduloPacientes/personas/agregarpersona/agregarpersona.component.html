@@ -22,17 +22,17 @@
 
         <div class="col s4">
           <p>Rut</p>
-          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.rut">
+          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.rut" (ngModelChange)="verificarRut()" >
         </div>
 
         <div class="col s4">
           <p>Primer Nombre</p>
-          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.nombre1">
+          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.nombre1" (ngModelChange)="verificarRut()">
         </div>
 
         <div class="col s4">
          <p>Segundo Nombre</p>
-          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.nombre2">
+          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.nombre2" (ngModelChange)="verificarRut()">
         </div>
       </div>
 
@@ -40,12 +40,12 @@
       <div class="row">
         <div class="col s6">
           <p>Primer Apellido</p>
-          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.apellido1">
+          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.apellido1" (ngModelChange)="verificarRut()">
         </div>
 
         <div class="col s6">
           <p>Segundo Apellido</p>
-          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.apellido2">
+          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.apellido2" (ngModelChange)="verificarRut()">
         </div>
       </div>
 
@@ -54,17 +54,17 @@
       <div class="row">
         <div class="col s4">
          <p>Teléfono de Casa</p>
-         <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.fono_casa">
+         <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.fono_casa" (ngModelChange)="verificarRut()">
         </div>
 
         <div class="col s4">
          <p>Teléfono de Trabajo</p>
-        <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.fono_trabajo">
+        <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.fono_trabajo" (ngModelChange)="verificarRut()">
         </div>
 
         <div class="col s4">
          <p>Celular</p>
-         <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.movil">
+         <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.movil" (ngModelChange)="verificarRut()">
         </div>
       </div>
 
@@ -123,7 +123,7 @@
 
       <div class="row">
         <div class="col s12">
-          <button mat-button matStepperNext style="width: 100%">Siguiente</button>
+          <button mat-button matStepperNext style="width: 100%" disabled="{{rutValido}}">Siguiente</button>
         </div>
 
 
@@ -145,7 +145,7 @@
         <p>Un email sera enviado a la direccion ingresada, el cual contendra la constraseña de acceso predeterminada para el usuario, una vez entre con dicha contraseña podra modificarla desde el sistema.</p>
 
         <label for="">Correo electronico</label>
-        <input id="newEmaul" matInput type="email"  formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.email">
+        <input id="newEmaul" matInput type="email"  formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.email" (ngModelChange)="validateEmail(nuevoUsuario.email)">
 
 
       <div class="row">
@@ -154,7 +154,7 @@
         </div>
 
         <div class="col s6">
-         <button mat-button matStepperNext style="width: 100%" (click)="agregarPersona()" >Registrar</button>
+         <button mat-button matStepperNext style="width: 100%" (click)="agregarPersona()" disabled="{{emailValido}}">Registrar</button>
         </div>
       </div>
     </form>
@@ -164,10 +164,26 @@
 
 
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
+    <ng-template matStepLabel style="text-align: center">Verificacion de cuenta</ng-template>
+
+    <div style="text-align: center !important">
+          <img src="https://lh3.googleusercontent.com/Vct_XSpNfhherziE-h0mSSpbrJf2jYM1nvPO2PVkcIECnqqUHCf-2-5j8EObefEmS0o7=w300" style="max-width: 300px; max-height: 300px">
+
+              <p>
+      Un correo electronico ha sido enviado a la direccion registrada.
+      Una vez confirmes tu cuenta, podras tener acceso a la pagina web de la clinica.
+
+    </p>
+
     </div>
+
+
+
+
+     <div class="row">
+          <div class="col s12">
+            <button mat-button (click)="onNoClick()" style="width: 100%">Cerrar</button>
+          </div>
+        </div>
   </mat-step>
 </mat-horizontal-stepper>

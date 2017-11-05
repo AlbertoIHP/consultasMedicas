@@ -4,7 +4,7 @@
 
   <p>Email</p>
 
-  <input matInput tabindex="1" [(ngModel)]="usuario.email">
+  <input matInput tabindex="1" [(ngModel)]="usuario.email" (ngModelChange)="validateEmail(usuario.email)">
 
   <p>Password</p>
 
@@ -25,6 +25,6 @@
 
 
 <div mat-dialog-actions>
-  <button mat-button (click)="editarRole()" tabindex="2">Editar Usuario</button>
+  <button mat-button (click)="editarRole()" disabled="{{emailValido}}" tabindex="2">Editar Usuario</button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col s6">
       <p>Email</p>
-      <input *ngIf="!isPersona" matInput tabindex="1" [(ngModel)]="usuario.email">
+      <input *ngIf="!isPersona" matInput tabindex="1" [(ngModel)]="usuario.email" (ngModelChange)="validateEmail(usuario.email)">
       <input *ngIf="isPersona" disabled matInput tabindex="1" [(ngModel)]="usuario.email">
     </div>
 
@@ -53,7 +53,7 @@
 
   <div class="row">
     <div class="col s6">
-      <button *ngIf="!isPersona"  mat-button (click)="agregarUsuario()"  style="width: 100%">Agregar Usuario</button>
+      <button *ngIf="!isPersona"  mat-button (click)="agregarUsuario()" disabled="{{emailValido}}"  style="width: 100%">Agregar Usuario</button>
     </div>
     <div class="col s6">
      <button mat-button (click)="onNoClick()" style="width: 100%">Cancelar</button>

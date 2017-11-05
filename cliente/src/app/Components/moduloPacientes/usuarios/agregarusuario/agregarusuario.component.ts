@@ -21,6 +21,7 @@ export class AgregarusuarioComponent implements OnInit{
   public persona: any;
   public rolePersona: any;
   public tienePersona: any;
+  public emailValido = true;
 
 
   GeneratePassword()
@@ -164,5 +165,22 @@ export class AgregarusuarioComponent implements OnInit{
 			}
 		}
 	}
+
+  validateEmail(email)
+  {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    console.log(re.test(email))
+
+    if( re.test(email) )
+    {
+      this.emailValido = false
+    }
+    else
+    {
+      this.emailValido = true
+    }
+  }
+
+
 
 }

@@ -149,11 +149,11 @@
       <div class="row">
         <div class="col s6">
           <label for="email">Correo electronico</label>
-          <input id="email" matInput type="email" formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.email">
+          <input id="email" matInput type="email" formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.email" (ngModelChange)="validateEmail(nuevoUsuario.email)" >
         </div>
         <div class="col s6">
           <label for="pass">Contraseña</label>
-          <input id="pass" matInput type="password" formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.password">
+          <input id="pass" matInput type="password" formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.password" (ngModelChange)="validateEmail(nuevoUsuario.email)">
 
         </div>
       </div>
@@ -167,7 +167,7 @@
              <button mat-button matStepperPrevious style="width: 100%"><mat-icon>arrow_back</mat-icon>Volver</button>
         </div>
         <div class="col s6">
-            <button mat-button matStepperNext style="width: 100%" (click)="agregarPersona()">Registrarme<mat-icon>add</mat-icon></button>
+            <button mat-button matStepperNext style="width: 100%" (click)="agregarPersona()" disabled="{{emailValido}}">Registrarme<mat-icon>add</mat-icon></button>
         </div>
 
       </div>
@@ -182,16 +182,23 @@
 
 
 
-  <mat-step>
-    <ng-template matStepLabel>Verificacion de cuenta</ng-template>
+  <mat-step style="text-align: center">
+    <ng-template matStepLabel style="text-align: center">Verificacion de cuenta</ng-template>
 
+    <div style="text-align: center !important">
+          <img src="https://lh3.googleusercontent.com/Vct_XSpNfhherziE-h0mSSpbrJf2jYM1nvPO2PVkcIECnqqUHCf-2-5j8EObefEmS0o7=w300" style="max-width: 300px; max-height: 300px">
 
-    <img src="https://lh3.googleusercontent.com/Vct_XSpNfhherziE-h0mSSpbrJf2jYM1nvPO2PVkcIECnqqUHCf-2-5j8EObefEmS0o7=w300" style="max-width: 300px; max-height: 300px">
-    <p>
+              <p>
       Un correo electronico ha sido enviado a la direccion registrada.
       Una vez confirmes tu cuenta, podras tener acceso a la pagina web de la clinica.
 
     </p>
+
+    </div>
+
+
+
+
     <div class="row">
       <div class="col s12">
         <button mat-button (click)="onNoClick()" style="width: 100%">Cerrar</button>

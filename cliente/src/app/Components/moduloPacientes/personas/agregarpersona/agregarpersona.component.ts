@@ -36,6 +36,8 @@ export class AgregarpersonaComponent implements OnInit{
   public servicioProvincia: any;
   public servicioRegion: any;
   public servicioPersona: any;
+  public emailValido = true;
+  public rutValido = true;
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -205,6 +207,15 @@ export class AgregarpersonaComponent implements OnInit{
 	comunaSeleccionada(comuna)
 	{
 		this.persona.Comuna_id = comuna.id;
+    if(this.persona.rut != '' && this.validator(this.persona.rut) && this.persona.nombre1 != '' && this.persona.nombre2 != '' && this.persona.apellido1 != '' && this.persona.apellido2 != '' &&
+      this.persona.fono_casa != '' && this.persona.fono_trabajo != '' && this.persona.movil != '')
+    {
+      this.rutValido = false
+    }
+    else
+    {
+      this.rutValido = true
+    }
 	}
 
 	ecSeleccionado(ec)
@@ -228,5 +239,60 @@ export class AgregarpersonaComponent implements OnInit{
 
     return text;
   }
+
+  validator (rutComplete)
+  {
+    if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutComplete)) {
+      return false
+    }
+    let tmp = rutComplete.split('-')
+    let checkDigit = tmp[1]
+    let rut = tmp[0]
+    if (checkDigit === 'K' || checkDigit === 'k') {
+      checkDigit = 'k'
+      return (this.verifyNumber(rut) === checkDigit)
+    }
+    return (this.verifyNumber(rut) === parseInt(checkDigit))
+  }
+
+
+
+
+  verifyNumber (T)
+  {
+    let M = 0
+    let S = 1
+    for (; T; T = Math.floor(T / 10)) {
+      S = (S + T % 10 * (9 - M++ % 6)) % 11
+    }
+    return S ? S - 1 : 'k'
+  }
+
+
+  validateEmail(email)
+  {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    console.log(re.test(email))
+
+    if( re.test(email) )
+    {
+      this.emailValido = false
+    }
+    else
+    {
+      this.emailValido = true
+    }
+  }
+
+
+
+  verificarRut()
+  {
+    console.log("Esta funcion hasta ahora no tiene ninguna utilidad, deprecada en las proximas actualizacioens")
+  }
+
+
+
+
 
 }

@@ -62,6 +62,8 @@ export class RegistroComponent implements OnInit {
   public puedeSeguir = true
   public seEncontro = false
 
+  public emailValido = true
+
 
   constructor(
     public dialogRef: MatDialogRef<RegistroComponent>,
@@ -286,7 +288,6 @@ export class RegistroComponent implements OnInit {
   generoSeleccionado(genero)
   {
     this.nuevaPersona.Genero_id = genero.id;
-
   }
 
 
@@ -294,51 +295,71 @@ export class RegistroComponent implements OnInit {
 
   buscarRut()
   {
-
     if( this.nuevaPersona.rut != '' )
     {
 
+
+      if(this.validator(this.nuevaPersona.rut))
+      {
+        this.puedeSeguir = true
+      }
 
       for( let i = 0 ; i < this.totalPersonas.length ; i ++)
       {
         if(this.totalPersonas[i].rut === this.nuevaPersona.rut)
         {
-
-          // this.nuevaPersona.id = this.totalPersonas[i].id
-          // this.nuevaPersona.nombre1 = this.totalPersonas[i].nombre1
-          // this.nuevaPersona.nombre2 = this.totalPersonas[i].nombre2
-          // this.nuevaPersona.apellido1 = this.totalPersonas[i].apellido1
-          // this.nuevaPersona.apellido2 = this.totalPersonas[i].apellido2
-          // this.nuevaPersona.fono_casa = this.totalPersonas[i].fono_casa
-          // this.nuevaPersona.fono_trabajo = this.totalPersonas[i].fono_trabajo
-          // this.nuevaPersona.movil = this.totalPersonas[i].movil
-          // this.nuevaPersona.Genero_id = this.totalPersonas[i].Genero_id
-          // this.nuevaPersona.EstadoCivil_id = this.totalPersonas[i].EstadoCivil_id
-          // this.nuevaPersona.Comuna_id = this.totalPersonas[i].Comuna_id
-          // this.puedeSeguir = false
-          // this.seEncontro = true
-          // this.nuevoUsuario.Persona_id = this.nuevaPersona.id.toString();
-          // this.nuevoUsuario.Role_id = '1'
           alert("¡Usted ya esta registrado!")
           this.defaultValues()
           this.onNoClick()
           break
         }
-        // else
-        // {
-        //   this.puedeSeguir = true
-        //   this.seEncontro = false
-        //   var rut = this.nuevaPersona.rut
-        //   this.nuevaPersona = new Persona()
-        //   this.nuevaPersona.rut = rut
-        //   this.nuevoUsuario = new Usuario()
-
-        // }
       }
-
-
     }
-
   }
+
+
+
+validator (rutComplete)
+{
+    if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutComplete)) {
+      return false
+    }
+    let tmp = rutComplete.split('-')
+    let checkDigit = tmp[1]
+    let rut = tmp[0]
+    if (checkDigit === 'K' || checkDigit === 'k') {
+      checkDigit = 'k'
+      return (this.verifyNumber(rut) === checkDigit)
+    }
+    return (this.verifyNumber(rut) === parseInt(checkDigit))
+  }
+
+
+  verifyNumber (T)
+  {
+    let M = 0
+    let S = 1
+    for (; T; T = Math.floor(T / 10)) {
+      S = (S + T % 10 * (9 - M++ % 6)) % 11
+    }
+    return S ? S - 1 : 'k'
+  }
+
+
+  validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    console.log(re.test(email))
+
+    if( re.test(email) && this.nuevoUsuario.password != '')
+    {
+      this.emailValido = false
+    }
+    else
+    {
+      this.emailValido = true
+    }
+  }
+
+
 
 }
