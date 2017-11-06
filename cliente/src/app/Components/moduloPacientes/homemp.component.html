@@ -44,10 +44,13 @@
   <mat-tab label="Tipo Sangre" *ngIf="usuarioActual.obtenerExistenciaPermiso('TipoSangre')">
     <app-tiposangre></app-tiposangre>
   </mat-tab>
-<!--Temporal-->
+
   <mat-tab label="Paciente" *ngIf="usuarioActual.obtenerExistenciaPermiso('Paciente')">
     <app-fichamedica></app-fichamedica>
   </mat-tab>
 
+  <mat-tab label="Paciente" *ngIf="usuarioActual.obtenerExistenciaPermiso('Medico')">
+    <!--Componente médico (en teoría vería sus pacientes)-->
+  </mat-tab>
 
 </mat-tab-group>
