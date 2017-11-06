@@ -49,7 +49,7 @@
     <app-fichamedica></app-fichamedica>
   </mat-tab>
 
-  <mat-tab label="Paciente" *ngIf="usuarioActual.obtenerExistenciaPermiso('Medico')">
+  <mat-tab label="Médico" *ngIf="usuarioActual.obtenerExistenciaPermiso('Medico')">
     <!--Componente médico (en teoría vería sus pacientes)-->
   </mat-tab>
 
