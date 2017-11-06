@@ -20,12 +20,12 @@
 
       <mat-cell *matCellDef="let row" >
 
-              <button  mat-icon-button (click) = "edicionRole(row)" >
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Roles')" mat-icon-button (click) = "edicionRole(row)" >
                 <mat-icon svgIcon="icono-editar"></mat-icon>
               </button>
 
 
-              <button  mat-icon-button (click) = "eliminarRole(row)" >
+              <button *ngIf="usuarioActual.obtenerPermisoErase('Roles')" mat-icon-button (click) = "eliminarRole(row)" >
                 <mat-icon svgIcon="icono-eliminar"></mat-icon>
               </button>
 
@@ -55,12 +55,12 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-              <button  mat-icon-button (click) = "edicionRole(row)" >
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Roles')" mat-icon-button (click) = "edicionRole(row)" >
                 <mat-icon svgIcon="icono-editar"></mat-icon>
               </button>
 
 
-              <button  mat-icon-button (click) = "eliminarRole(row)" >
+              <button *ngIf="usuarioActual.obtenerPermisoErase('Roles')" mat-icon-button (click) = "eliminarRole(row)" >
                 <mat-icon svgIcon="icono-eliminar"></mat-icon>
               </button>
 
@@ -91,7 +91,7 @@
 </div>
 
  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large blue" (click)="agregacionRole()">
+    <a class="btn-floating btn-large blue" *ngIf="usuarioActual.obtenerPermisoWrite('Roles')" (click)="agregacionRole()">
       <i class="large material-icons">add</i>
     </a>
   </div>

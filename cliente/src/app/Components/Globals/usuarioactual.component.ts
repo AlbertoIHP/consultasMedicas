@@ -7,79 +7,72 @@ import { UserService } from '../../Services/user/user.service';
 import { Role } from '../../Models/Role.model';
 import { RoleService } from '../../Services/role/role.service';
 
+import { PermisoModulo } from '../../Models/PermisoModulo.model';
+import { PermisoModuloService } from '../../Services/permisomodulo/permisomodulo.service';
 
+import { Modulo } from '../../Models/Modulo.model';
+import { ModuloService } from '../../Services/modulo/modulo.service';
 
 export class UsuarioActual implements OnInit {
-  public isLogeado = false
+   //permisos
+   public permisos:any[];
 
-   public rolUsuario:Role;
-   public usuario:Usuario;
-   public totalUsuarios: Usuario[];
-   public totalRoles: Role[];
-   public current:any;
-
-  constructor(public servicioRol:RoleService, public servicioUsuario: UserService) {
-      //se obendrá el tipo de usuario que se logea
-      this.rolUsuario=new Role();
-      this.usuario=new Usuario();
-      this.totalUsuarios=[];
-      this.totalRoles=[];
-      this.current=JSON.parse(localStorage.getItem('currentUser'));
-      //console.log("mail: "+this.current.email);
-      this.obtenerUsuario();
-      this.obtenerRole();
-    
+  constructor() {
+     this.permisos=JSON.parse(localStorage.getItem('permisos'));
 
    }
 
   ngOnInit() {
   }
 
-//función para obtener el usuario actual
-  obtenerUsuario(){
-    this.servicioUsuario.getUsers().subscribe((data)=>{
-      var todo: any = data;
-      todo = todo.data;
-      this.totalUsuarios=todo;
-
-      //se hacen las comparaciones de email
-      for(let i=0;i<this.totalUsuarios.length;i++){
-       if(this.totalUsuarios[i].email==this.current.email){
-         this.usuario=this.totalUsuarios[i];
-         break;
-       }
+ obtenerExistenciaPermiso(nombreModulo):boolean{
+    for(let i=0;i<this.permisos.length;i++){
+      if(this.permisos[i].Modulo_id===nombreModulo && this.permisos[i].view==1){
+        return true;
+      }else{
+        return false;
       }
-
-      console.log(this.usuario.Persona_id);
-
-    });
-   
-
+    }
+  
+    
   }
 
 
-//función para obtener el rol del usuario actual
-  obtenerRole(){
-    this.servicioRol.getRoles().subscribe((data)=>{
-      var todo: any = data;
-      todo = todo.data;
-      this.totalRoles=todo;
-      //se hacen las comparaciones por el id del rol
-
-      for(let i=0;i<this.totalRoles.length;i++){
-
-        if(this.totalRoles[i].id==parseInt(this.usuario.Role_id)){
-            this.rolUsuario.nombre=this.totalRoles[i].nombre;
-            break;
-        }
+  obtenerPermisoWrite(nombreModulo):boolean{
+    for(let i=0;i<this.permisos.length;i++){
+      if(this.permisos[i].Modulo_id===nombreModulo && this.permisos[i].write==1){
+        return true;
+      }else{
+        return false;
       }
+    }
+  
+    
+  }
 
-      console.log(this.rolUsuario.nombre);
+  obtenerPermisoErase(nombreModulo):boolean{
+    for(let i=0;i<this.permisos.length;i++){
+      if(this.permisos[i].Modulo_id===nombreModulo && this.permisos[i].erase==1){
+        return true;
+      }else{
+        return false;
+      }
+    }
+  
+    
+  }
 
-    });
 
-   
-
+  obtenerPermisoUpdate(nombreModulo):boolean{
+    for(let i=0;i<this.permisos.length;i++){
+      if(this.permisos[i].Modulo_id===nombreModulo && this.permisos[i].update==1){
+        return true;
+      }else{
+        return false;
+      }
+    }
+  
+    
   }
 
 }

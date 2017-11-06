@@ -23,6 +23,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
+
 
 
 @Component({
@@ -32,7 +34,7 @@ import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/dat
 })
 export class PrevisionesComponent{
 	public totalPrevisiones: Prevision[];
-
+	public usuarioActual;
 
 	//DATATABLE
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -45,6 +47,7 @@ export class PrevisionesComponent{
 
 	constructor (public servicioPrevisiones: PrevisionService, public dialog: MatDialog)
 	{
+		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalPrevisiones = [];
 		this.actualizarPrevisiones();

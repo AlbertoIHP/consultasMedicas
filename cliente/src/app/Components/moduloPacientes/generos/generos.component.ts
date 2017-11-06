@@ -22,6 +22,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
+
 
 @Component({
 	selector: 'app-generos',
@@ -31,6 +33,8 @@ import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/dat
 export class GenerosComponent  {
 	public totalGeneros: Genero[];
 	public buscarPorNombre: boolean;
+	public usuarioActual;
+
 
 	//DATATABLE
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -43,6 +47,7 @@ export class GenerosComponent  {
 
 	constructor (public servicioGenero: GeneroService, public dialog: MatDialog)
 	{
+		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalGeneros = [];
 		this.actualizarGeneros();

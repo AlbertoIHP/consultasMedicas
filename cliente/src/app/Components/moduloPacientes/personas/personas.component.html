@@ -29,23 +29,23 @@
 
       <mat-cell *matCellDef="let row" >
 
-              <button *ngIf="row.estado === 1" mat-icon-button (click) = "editarPersona(row)" >
+              <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoUpdate('Personas')"  mat-icon-button (click) = "editarPersona(row)" >
                 <mat-icon svgIcon="icono-editar"></mat-icon>
               </button>
 
-              <button *ngIf="row.estado === 0" (click)="activarPaciente(row)" mat-icon-button  >
+              <button *ngIf="row.estado === 0 && usuarioActual.obtenerPermisoUpdate('Personas')" (click)="activarPaciente(row)" mat-icon-button  >
                 <mat-icon>arrow_upward</mat-icon>
               </button>
 
-              <button *ngIf="row.estado === 1" (click)="desactivarPaciente(row)" mat-icon-button >
+              <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoUpdate('Personas')" (click)="desactivarPaciente(row)" mat-icon-button >
                 <mat-icon svgIcon="icono-desactivar"></mat-icon>
               </button>
 
-              <button *ngIf="row.estado === 1" mat-icon-button (click) = "previsionPersona(row)" >
+              <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoUpdate('Personas')" mat-icon-button (click) = "previsionPersona(row)" >
                 <mat-icon svgIcon="icono-prevision"></mat-icon>
               </button>
 
-              <button *ngIf="row.estado === 1" mat-icon-button (click) = "agregarUsuario(row)" >
+              <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoWrite('Personas')" mat-icon-button (click) = "agregarUsuario(row)" >
                 <mat-icon svgIcon="icono-agregar"></mat-icon>
               </button>
 
@@ -107,23 +107,23 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-              <button *ngIf="row.estado === 1" mat-icon-button (click) = "editarPersona(row)" >
+             <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoUpdate('Personas')"  mat-icon-button (click) = "editarPersona(row)" >
                 <mat-icon svgIcon="icono-editar"></mat-icon>
               </button>
 
-              <button *ngIf="row.estado === 0" (click)="activarPaciente(row)" mat-icon-button  >
+              <button *ngIf="row.estado === 0 && usuarioActual.obtenerPermisoUpdate('Personas')" (click)="activarPaciente(row)" mat-icon-button  >
                 <mat-icon>arrow_upward</mat-icon>
               </button>
 
-              <button *ngIf="row.estado === 1" (click)="desactivarPaciente(row)" mat-icon-button >
+              <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoUpdate('Personas')" (click)="desactivarPaciente(row)" mat-icon-button >
                 <mat-icon svgIcon="icono-desactivar"></mat-icon>
               </button>
 
-              <button *ngIf="row.estado === 1" mat-icon-button (click) = "previsionPersona(row)" >
+              <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoUpdate('Personas')" mat-icon-button (click) = "previsionPersona(row)" >
                 <mat-icon svgIcon="icono-prevision"></mat-icon>
               </button>
 
-              <button *ngIf="row.estado === 1" mat-icon-button (click) = "agregarUsuario(row)" >
+              <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoWrite('Personas')" mat-icon-button (click) = "agregarUsuario(row)" >
                 <mat-icon svgIcon="icono-agregar"></mat-icon>
               </button>
 
@@ -184,7 +184,7 @@
 </div>
 
  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large blue" (click)="crearPersona()">
+    <a class="btn-floating btn-large blue"*ngIf="usuarioActual.obtenerPermisoWrite('Personas')" (click)="crearPersona()">
       <i class="large material-icons">add</i>
     </a>
   </div>
