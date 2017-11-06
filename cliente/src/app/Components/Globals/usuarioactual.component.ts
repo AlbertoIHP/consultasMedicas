@@ -16,9 +16,11 @@ import { ModuloService } from '../../Services/modulo/modulo.service';
 export class UsuarioActual implements OnInit {
    //permisos
    public permisos:any[];
+   public totalUsuarios:Usuario[];
+   public current:any;
 
   constructor() {
-     this.permisos=JSON.parse(localStorage.getItem('permisos'));
+     this.permisos=JSON.parse(localStorage.getItem('permisos')); 
 
    }
 
@@ -74,5 +76,6 @@ export class UsuarioActual implements OnInit {
   
     
   }
+
 
 }

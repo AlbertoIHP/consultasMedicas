@@ -11,6 +11,7 @@ import { RoleService } from '../../Services/role/role.service';
 
 import {UsuarioActual} from '../Globals/usuarioactual.component';
 
+
 import { PermisoModulo } from '../../Models/PermisoModulo.model';
 import { PermisoModuloService } from '../../Services/permisomodulo/permisomodulo.service';
 
@@ -23,27 +24,23 @@ import { ModuloService } from '../../Services/modulo/modulo.service';
 })
 export class Homemp implements OnInit {
   public isLogeado = false
+  public usuarioActual;
 
-   public current:any;
-   public usuarioActual;
-
-
-  constructor(public eventosService: EventosService, public router: Router) {
+  constructor(public eventosService: EventosService, public router: Router, 
+                                                       public servicioUsuario: UserService) {
     if( !(localStorage.getItem('currentUser')) )
     {
       this.router.navigate(['/'])
     }else{
+      //se obtienen los datos asociados a permisos del usuario actual
       this.usuarioActual=new UsuarioActual();
-     
-     
+
     }
 
    }
 
   ngOnInit() {
   }
-
-  
 
 
 }

@@ -44,14 +44,12 @@ import { Role } from '../../../Models/Role.model';
   styleUrls: ['./fichamedica.component.css']
 })
 export class FichaMedicaComponent implements OnInit{
-  @Input() usuarioActual:any;
 
   public persona: any;
+  public contenidoStorage:any;
 
   //variables básicas
 
-  public idPersona:number;
-  
   //será array ya que es la única manera de usarlo con datasource
   public personaPaciente:Persona[];
 
@@ -135,46 +133,8 @@ export class FichaMedicaComponent implements OnInit{
     
 
     ) {
+        this.contenidoStorage=JSON.parse(localStorage.getItem('persona'));
 
-
-    //this.personaPaciente= new Persona();
-    /*
-    this.idPersona=4;
-    this.personaPaciente=[];
-
-    this.paciente=new Paciente();
-    this.totalPacientes=[];
-
-    this.tipoSangrePaciente=new TipoSangre();
-
-    this.regionPaciente = new Region();
-    this.provinciaPaciente= new Provincia();
-    this.comunaPaciente = new Comuna();
-    this.generoPaciente = new Genero();
-    this.estadoCivilPaciente= new EstadoCivil();
-    this.totalPrevisionActual= [];
-    this.previsionPaciente= new Prevision();
-
-    this.historialPrevisionesPacientes=[];
-
-    this.existePrevision=false;
-    this.existeFonoCasa=false;
-    this.existeFonoTrabajo=false;
-    this.esPaciente=false;
-
-    this.obtenerPersonaPaciente(this.idPersona);
-    this.obtenerListaPacientes(this.idPersona);
-    */
-    
-
-
-     }
-
-     ngOnInit(){
-       console.log("persona "+parseInt(JSON.stringify(this.usuarioActual.Persona_id)));
-       this.idPersona=parseInt(JSON.stringify(this.usuarioActual.Persona_id));
-       console.log("idPersona "+this.idPersona);
-       
         this.personaPaciente=[];
 
         this.paciente=new Paciente();
@@ -197,8 +157,13 @@ export class FichaMedicaComponent implements OnInit{
         this.existeFonoTrabajo=false;
         this.esPaciente=false;
 
-        this.obtenerPersonaPaciente(this.idPersona);
-        this.obtenerListaPacientes(this.idPersona);
+        this.obtenerPersonaPaciente(parseInt(this.contenidoStorage.id));
+        this.obtenerListaPacientes(parseInt(this.contenidoStorage.id));
+
+
+     }
+
+     ngOnInit(){
 
 
      }
