@@ -29,9 +29,9 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-
-
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
+
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
 
 @Component({
@@ -46,7 +46,7 @@ export class UsuariosComponent {
 	public totalUsuarios: Usuario[];
 	public totalPersonas: Persona[];
 	public totalRoles: Role[];
-
+	public usuarioActual;
 
   //DATATABLE
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -65,6 +65,7 @@ export class UsuariosComponent {
   public servicioEventos: EventosService
 	)
 	{
+	this.usuarioActual=new UsuarioActual();
 	this.buscarPorNombre = false;
 	this.totalRoles = [];
 	this.totalPersonas = [];

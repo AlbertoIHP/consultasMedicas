@@ -20,12 +20,12 @@
 
       <mat-cell *matCellDef="let row" >
 
-              <button  mat-icon-button (click) = "edicionTS(row)" >
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('TipoSangre')" mat-icon-button (click) = "edicionTS(row)" >
                 <mat-icon svgIcon="icono-editar"></mat-icon>
               </button>
 
 
-              <button  mat-icon-button (click) = "eliminarTS(row)" >
+              <button *ngIf="usuarioActual.obtenerPermisoErase('TipoSangre')" mat-icon-button (click) = "eliminarTS(row)" >
                 <mat-icon svgIcon="icono-eliminar"></mat-icon>
               </button>
 
@@ -59,12 +59,12 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-              <button  mat-icon-button (click) = "edicionTS(row)" >
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('TipoSangre')" mat-icon-button (click) = "edicionTS(row)" >
                 <mat-icon svgIcon="icono-editar"></mat-icon>
               </button>
 
 
-              <button  mat-icon-button (click) = "eliminarTS(row)" >
+              <button *ngIf="usuarioActual.obtenerPermisoErase('TipoSangre')" mat-icon-button (click) = "eliminarTS(row)" >
                 <mat-icon svgIcon="icono-eliminar"></mat-icon>
               </button>
 
@@ -102,7 +102,7 @@
 </div>
 
  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large blue" (click)="agregacionTS()">
+    <a class="btn-floating btn-large blue" *ngIf="usuarioActual.obtenerPermisoWrite('TipoSangre')" (click)="agregacionTS()">
       <i class="large material-icons">add</i>
     </a>
   </div>

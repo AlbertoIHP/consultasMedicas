@@ -35,9 +35,6 @@ import { Usuario } from '../../../Models/Usuario.model';
 import { UserService } from '../../../Services/user/user.service';
 import { RoleService } from '../../../Services/role/role.service';
 
-
-
-
 import {DataSource} from '@angular/cdk/collections';
 import {MatPaginator} from '@angular/material';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
@@ -53,6 +50,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
 @Component({
   selector: 'app-personas',
@@ -76,7 +74,7 @@ export class PersonaComponent implements OnInit{
   public totalComunas: Comuna[];
   public totalGeneros: Genero[];
   public totalEstadoCiviles: EstadoCivil[];
-
+  public usuarioActual;
 
   //DATATABLE
   public exampleDatabase;
@@ -105,6 +103,9 @@ export class PersonaComponent implements OnInit{
     public servicioRole: RoleService,
     )
   {
+
+    this.usuarioActual=new UsuarioActual();
+
     this.totalPacientes = [];
     this.buscarPorRut = false;
 

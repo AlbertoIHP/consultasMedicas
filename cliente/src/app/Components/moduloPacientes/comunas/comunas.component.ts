@@ -24,9 +24,9 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
 @Component({
 	selector: 'app-comunas',
@@ -36,6 +36,7 @@ import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/dat
 export class ComunasComponent {
 	public totalProvincias: Provincia[];
 	public totalComunas: Comuna[];
+	public usuarioActual;
 
 	//DATATABLE
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -49,6 +50,7 @@ export class ComunasComponent {
 
 	constructor (public servicioProvincia: ProvinciaService, public servicioComuna: ComunaService, public dialog: MatDialog)
 	{
+		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalProvincias = [];
 		this.totalComunas = [];

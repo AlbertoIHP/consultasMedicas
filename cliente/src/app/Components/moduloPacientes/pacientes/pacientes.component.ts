@@ -28,8 +28,6 @@ import { Role } from '../../../Models/Role.model';
 
 import { VerpersonaComponent } from '../personas/verpersona/verpersona.component';
 
-
-
 import { AgregarpacienteComponent } from './agregarpaciente/agregarpaciente.component';
 import { EditarpacienteComponent } from './editarpaciente/editarpaciente.component';
 
@@ -37,6 +35,7 @@ import { EditarpacienteComponent } from './editarpaciente/editarpaciente.compone
 import { VerFichaMedicaComponent } from '../fichamedica/verfichamedica/verfichamedica.component'
 import { EventosService } from '../../../Services/eventos/eventos.service';
 
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
 
 @Component({
@@ -48,9 +47,7 @@ export class PacientesComponent implements OnInit {
 	public totalPersonas: Persona[];
 	public totalPacientes: Paciente[];
 	public totalTS: TipoSangre[];
-
-	//Rol de usuario actual (desde el componente padre home)
-	@Input() rolUsuario:Role;
+	public usuarioActual;
 
 	//DATATABLE
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -69,6 +66,7 @@ export class PacientesComponent implements OnInit {
     public servicioEventos: EventosService
 		)
 	{
+		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalTS = [];
 		this.totalPacientes = [];

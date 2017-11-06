@@ -20,12 +20,12 @@
 
 			<mat-cell *matCellDef="let row" >
 
-							<button  mat-icon-button (click) = "edicionGenero(row)" >
+							<button *ngIf="usuarioActual.obtenerPermisoUpdate('Generos')" mat-icon-button (click) = "edicionGenero(row)" >
 								<mat-icon svgIcon="icono-editar"></mat-icon>
 							</button>
 
 
-							<button  mat-icon-button (click) = "eliminarGenero(row)" >
+							<button *ngIf="usuarioActual.obtenerPermisoErase('Generos')" mat-icon-button (click) = "eliminarGenero(row)" >
 								<mat-icon svgIcon="icono-eliminar"></mat-icon>
 							</button>
 
@@ -59,12 +59,12 @@
 			<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
 			<mat-cell *matCellDef="let row">
 
-							<button  mat-icon-button (click) = "edicionGenero(row)" >
+							<button *ngIf="usuarioActual.obtenerPermisoUpdate('Generos')" mat-icon-button (click) = "edicionGenero(row)" >
 								<mat-icon svgIcon="icono-editar"></mat-icon>
 							</button>
 
 
-							<button  mat-icon-button (click) = "eliminarGenero(row)" >
+							<button *ngIf="usuarioActual.obtenerPermisoErase('Generos')" mat-icon-button (click) = "eliminarGenero(row)" >
 								<mat-icon svgIcon="icono-eliminar"></mat-icon>
 							</button>
 
@@ -101,7 +101,7 @@
 </div>
 
  <div class="fixed-action-btn">
-		<a class="btn-floating btn-large blue" (click)="agregacionGenero()">
+		<a class="btn-floating btn-large blue" *ngIf="usuarioActual.obtenerPermisoWrite('Generos')" (click)="agregacionGenero()">
 			<i class="large material-icons">add</i>
 		</a>
 	</div>
