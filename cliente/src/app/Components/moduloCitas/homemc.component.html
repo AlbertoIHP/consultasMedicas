@@ -1,3 +1,26 @@
-<p>
-  homemc works!
-</p>
+<mat-tab-group>
+
+  <mat-tab label="Citas" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura' || rolUsuario.nombre=='Secretaría' || rolUsuario.nombre=='Paciente' || rolUsuario.nombre=='Medico'">
+    <app-cita></app-cita>
+  </mat-tab>
+
+  <mat-tab label="Estado citas" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura'">
+  <app-estadocita></app-estadocita>
+  </mat-tab>
+
+  <mat-tab label="Box consulta" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura'">
+    <app-boxconsulta></app-boxconsulta>
+  </mat-tab>
+
+  <mat-tab label="Tipo box" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura'">
+    <app-tipobox></app-tipobox>
+  </mat-tab>
+
+  <mat-tab label="Médicos" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura' || rolUsuario.nombre=='Secretaría' || rolUsuario.nombre=='Paciente' || rolUsuario.nombre=='Medico'">
+    <app-medico></app-medico>
+  </mat-tab>
+
+  <mat-tab label="Especialidad" *ngIf="rolUsuario.nombre=='Administrador' || rolUsuario.nombre=='Jefatura'">
+    <app-especialidad></app-especialidad>
+  </mat-tab>
+</mat-tab-group>
