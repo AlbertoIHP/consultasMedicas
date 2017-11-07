@@ -12,6 +12,11 @@ import { RoleService } from '../../Services/role/role.service';
 import {UsuarioActual} from '../Globals/usuarioactual.component';
 
 
+import { PermisoModulo } from '../../Models/PermisoModulo.model';
+import { PermisoModuloService } from '../../Services/permisomodulo/permisomodulo.service';
+
+import { Modulo } from '../../Models/Modulo.model';
+import { ModuloService } from '../../Services/modulo/modulo.service';
 @Component({
   selector: 'app-homemc',
   templateUrl: './homemc.component.html',
@@ -19,26 +24,23 @@ import {UsuarioActual} from '../Globals/usuarioactual.component';
 })
 export class HomemcComponent implements OnInit {
   public isLogeado = false
-   public rolUsuario:Role;
-   public usuario:Usuario;
-   public totalUsuarios: Usuario[];
-   public totalRoles: Role[];
-   public current:any;
-   public usuarioActual;
+  public usuarioActual;
 
-  constructor(public eventosService: EventosService, public router: Router,
-   public servicioRol:RoleService, public servicioUsuario: UserService) {
+  constructor(public eventosService: EventosService, public router: Router, 
+                                                       public servicioUsuario: UserService) {
     if( !(localStorage.getItem('currentUser')) )
     {
       this.router.navigate(['/'])
     }else{
-      this.usuarioActual=new UsuarioActual(this.servicioRol,this.servicioUsuario);
-      this.rolUsuario=this.usuarioActual.rolUsuario;
-      this.usuario=this.usuarioActual.usuario;
+      //se obtienen los datos asociados a permisos del usuario actual
+      this.usuarioActual=new UsuarioActual();
+
     }
 
    }
 
   ngOnInit() {
   }
+
+
 }
