@@ -28,8 +28,9 @@ export class UsuarioActual implements OnInit {
   }
 
  obtenerExistenciaPermiso(nombreModulo):boolean{
+   console.log(this.permisos);
     for(let i=0;i<this.permisos.length;i++){
-      if(this.permisos[i].Modulo_id===nombreModulo && this.permisos[i].view==1){
+      if(this.permisos[i].Modulo_id===nombreModulo && this.permisos[i].view===1){
         return true;
       }else{
         return false;
@@ -42,7 +43,7 @@ export class UsuarioActual implements OnInit {
 
   obtenerPermisoWrite(nombreModulo):boolean{
     for(let i=0;i<this.permisos.length;i++){
-      if(this.permisos[i].Modulo_id===nombreModulo && this.permisos[i].write==1){
+      if(this.permisos[i].Modulo_id===nombreModulo && this.permisos[i].write===1){
         return true;
       }else{
         return false;
@@ -54,7 +55,7 @@ export class UsuarioActual implements OnInit {
 
   obtenerPermisoErase(nombreModulo):boolean{
     for(let i=0;i<this.permisos.length;i++){
-      if(this.permisos[i].Modulo_id===nombreModulo && this.permisos[i].erase==1){
+      if(this.permisos[i].Modulo_id===nombreModulo && this.permisos[i].erase===1){
         return true;
       }else{
         return false;
