@@ -1,103 +1,19 @@
- <div class="row">
-	<div class="col s1" >
-	<input (click)="cambiarBusqueda()" type="checkbox" id="test5" />
-	<label for="test5" class="selectRaro"></label>
+<h1 mat-dialog-title style="text-align: center;">Edición de estado cita</h1>
 
-	</div>
-	<div class="col s11">
-	<label for="miinput">Búsqueda por Nombre</label>
-	<input matInput #filter style="width: 100% !important;" id="miinput">
-	</div>
+<div mat-dialog-content>
+
+  <p>Nombre</p>
+
+  <input matInput tabindex="1" [(ngModel)]="estadocita.nombre">
+
+  <p>Descripción</p>
+
+  <input matInput tabindex="1" [(ngModel)]="estadocita.descripcion">
+
 </div>
 
 
-<div class="example-container mat-elevation-z8">
-
-	<mat-table #table *ngIf="!buscarPorNombre" [dataSource]="sourceDatatable">
-
-		<ng-container matColumnDef="Acciones">
-			<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-
-			<mat-cell *matCellDef="let row" >
-
-							<button *ngIf="usuarioActual.obtenerPermisoUpdate('EstadoCita')" mat-icon-button (click) = "edicionEstadoCita(row)" >
-								<mat-icon svgIcon="icono-editar"></mat-icon>
-							</button>
-
-
-							<button *ngIf="usuarioActual.obtenerPermisoErase('EstadoCita')" mat-icon-button (click) = "eliminarEstadoCita(row)" >
-								<mat-icon svgIcon="icono-eliminar"></mat-icon>
-							</button>
-
-			</mat-cell>
-
-
-		</ng-container>
-
-		<!-- Progress Column -->
-		<ng-container matColumnDef="Nombre">
-			<mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-			<mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
-		</ng-container>
-
-		<ng-container matColumnDef="Descripcion">
-			<mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-			<mat-cell *matCellDef="let row"> {{row.descripcion}} </mat-cell>
-		</ng-container>
-
-		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-		<mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
-
-	</mat-table>
-
-
- <mat-table #table *ngIf="buscarPorNombre" [dataSource]="sourcePorNombre">
-
-		<ng-container matColumnDef="Acciones">
-			<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-			<mat-cell *matCellDef="let row">
-
-							<button *ngIf="usuarioActual.obtenerPermisoUpdate('EstadoCita')" mat-icon-button (click) = "edicionEstadoCita(row)" >
-								<mat-icon svgIcon="icono-editar"></mat-icon>
-							</button>
-
-
-							<button *ngIf="usuarioActual.obtenerPermisoErase('EstadoCita')" mat-icon-button (click) = "eliminarEstadoCita(row)" >
-								<mat-icon svgIcon="icono-eliminar"></mat-icon>
-							</button>
-
-			 </mat-cell>
-		</ng-container>
-
-
-		<!-- Progress Column -->
-		<ng-container matColumnDef="Nombre">
-			<mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-			<mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
-		</ng-container>
-
-		<ng-container matColumnDef="Descripcion">
-			<mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-			<mat-cell *matCellDef="let row"> {{row.descripcion}} </mat-cell>
-		</ng-container>
-
-		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-		<mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
-	</mat-table>
-
-
-
-
-	<mat-paginator #paginator
-								[length]="totalEstadoCita.length"
-								[pageIndex]="0"
-								[pageSize]="5"
-								[pageSizeOptions]="[5, 10, 25, 100]">
-	</mat-paginator>
+<div mat-dialog-actions>
+  <button mat-button (click)="editarEstadoCita()" tabindex="2">Editar Estado Cita</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>
-
- <div class="fixed-action-btn">
-		<a class="btn-floating btn-large blue" *ngIf="usuarioActual.obtenerPermisoWrite('EstadoCita')" (click)="agregacionEstadoCita()">
-			<i class="large material-icons">add</i>
-		</a>
-	</div>

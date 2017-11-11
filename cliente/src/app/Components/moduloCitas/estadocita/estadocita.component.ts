@@ -61,7 +61,7 @@ export class EstadocitaComponent {
 
 			this.bdEstructura = new ExampleDatabase(this.totalEstadocitas );
 			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
-			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, 'Especialidad');
+			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, 'EstadoCita');
 			Observable.fromEvent(this.filter.nativeElement, 'keyup')
 					.debounceTime(150)
 					.distinctUntilChanged()
@@ -74,7 +74,7 @@ export class EstadocitaComponent {
 		});
 	}
 
-	eliminarEspecialidad (estadocita)
+	eliminarEstadoCita (estadocita)
 	{
 		this.servicioEstadoCita.deleteEstadoCita(estadocita.id).subscribe( data => {
 			console.log(data);
