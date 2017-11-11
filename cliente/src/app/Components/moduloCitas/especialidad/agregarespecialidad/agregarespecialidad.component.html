@@ -1,3 +1,15 @@
-<p>
-  agregarespecialidad works!
-</p>
+<h1 mat-dialog-title style="text-align: center;">Creación de especialidad</h1>
+
+<div mat-dialog-content>
+
+  <p>Nombre</p>
+
+  <input matInput tabindex="1" [(ngModel)]="nuevaEspecialidad.nombre">
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="agregarEspecialidad()" tabindex="2">Agregar especialidad</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

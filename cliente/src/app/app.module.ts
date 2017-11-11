@@ -16,7 +16,13 @@ import { EventosService } from './Services/eventos/eventos.service';
 import { ModuloService } from './Services/modulo/modulo.service';
 import { PermisoModuloService } from './Services/permisomodulo/permisomodulo.service';
 
-
+// SERVICIOS MODULO CITAS
+import { BoxConsultaService } from './Services/boxconsulta/box-consulta.service';
+import { CitaService } from './Services/cita/cita.service';
+import { EspecialidadService } from './Services/especialidad/especialidad.service';
+import { EstadoCitaService } from './Services/estadocita/estado-cita.service';
+import { MedicoService } from './Services/medico/medico.service';
+import { TipoBoxService } from './Services/tipobox/tipo-box.service';
 
 
 //MODULOS
@@ -103,31 +109,37 @@ import { Homemp } from './Components/moduloPacientes/homemp.component';
  //Modulo Citas
 import { HomemcComponent } from './Components/moduloCitas/homemc.component';
 
+  //Componentes Tipo Box
   import { TipoboxComponent } from './Components/moduloCitas/tipobox/tipobox.component';
-  import { BoxconsultaComponent } from './Components/moduloCitas/boxconsulta/boxconsulta.component';
-  import { EstadocitaComponent } from './Components/moduloCitas/estadocita/estadocita.component';
-  import { EspecialidadComponent } from './Components/moduloCitas/especialidad/especialidad.component';
-  import { MedicoComponent } from './Components/moduloCitas/medico/medico.component';
-  import { CitaComponent } from './Components/moduloCitas/cita/cita.component';
-  import { AgregarboxconsultaComponent } from './Components/moduloCitas/boxconsulta/agregarboxconsulta/agregarboxconsulta.component';
-  import { EditarboxconsultaComponent } from './Components/moduloCitas/boxconsulta/editarboxconsulta/editarboxconsulta.component';
-  import { AgregarcitaComponent } from './Components/moduloCitas/cita/agregarcita/agregarcita.component';
-  import { EditarcitaComponent } from './Components/moduloCitas/cita/editarcita/editarcita.component';
-  import { VercitaComponent } from './Components/moduloCitas/cita/vercita/vercita.component';
-  import { AgregarespecialidadComponent } from './Components/moduloCitas/especialidad/agregarespecialidad/agregarespecialidad.component';
-  import { EditarespecialidadComponent } from './Components/moduloCitas/especialidad/editarespecialidad/editarespecialidad.component';
-  import { AgregarestadocitaComponent } from './Components/moduloCitas/estadocita/agregarestadocita/agregarestadocita.component';
-  import { EditarestadocitaComponent } from './Components/moduloCitas/estadocita/editarestadocita/editarestadocita.component';
-  import { AgregarmedicoComponent } from './Components/moduloCitas/medico/agregarmedico/agregarmedico.component';
-  import { EditarmedicoComponent } from './Components/moduloCitas/medico/editarmedico/editarmedico.component';
   import { AgregartipoboxComponent } from './Components/moduloCitas/tipobox/agregartipobox/agregartipobox.component';
   import { EditartipoboxComponent } from './Components/moduloCitas/tipobox/editartipobox/editartipobox.component';
 
+  //Componente Box Consulta
+  import { BoxconsultaComponent } from './Components/moduloCitas/boxconsulta/boxconsulta.component';
+  import { AgregarboxconsultaComponent } from './Components/moduloCitas/boxconsulta/agregarboxconsulta/agregarboxconsulta.component';
+  import { EditarboxconsultaComponent } from './Components/moduloCitas/boxconsulta/editarboxconsulta/editarboxconsulta.component';
+  
+  //Componente Estado Cita
+  import { EstadocitaComponent } from './Components/moduloCitas/estadocita/estadocita.component';
+  import { AgregarestadocitaComponent } from './Components/moduloCitas/estadocita/agregarestadocita/agregarestadocita.component';
+  import { EditarestadocitaComponent } from './Components/moduloCitas/estadocita/editarestadocita/editarestadocita.component';
+  
+  //Componente Especialidad
+  import { EspecialidadComponent } from './Components/moduloCitas/especialidad/especialidad.component';
+  import { AgregarespecialidadComponent } from './Components/moduloCitas/especialidad/agregarespecialidad/agregarespecialidad.component';
+  import { EditarespecialidadComponent } from './Components/moduloCitas/especialidad/editarespecialidad/editarespecialidad.component';
+  
+  //Componente Medico
+  import { MedicoComponent } from './Components/moduloCitas/medico/medico.component';
+  import { AgregarmedicoComponent } from './Components/moduloCitas/medico/agregarmedico/agregarmedico.component';
+  import { EditarmedicoComponent } from './Components/moduloCitas/medico/editarmedico/editarmedico.component';
 
-
-
-
-
+  //Componente Cita
+  import { CitaComponent } from './Components/moduloCitas/cita/cita.component';
+  import { AgregarcitaComponent } from './Components/moduloCitas/cita/agregarcita/agregarcita.component';
+  import { EditarcitaComponent } from './Components/moduloCitas/cita/editarcita/editarcita.component';
+  import { VercitaComponent } from './Components/moduloCitas/cita/vercita/vercita.component';
+  
 
 
 
@@ -151,7 +163,6 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
     RolesComponent,
     VerFichaMedicaComponent,
     FichaMedicaComponent,
-
 
     //Componentes Hijos (CRUD)
     AgregarpersonaComponent,
@@ -181,12 +192,17 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
     EditartipoComponent,
     RegistroComponent,
     EditartipoComponent,
+
+    //Modulo Citas
+    HomemcComponent,
     TipoboxComponent,
     BoxconsultaComponent,
     EstadocitaComponent,
     EspecialidadComponent,
     MedicoComponent,
     CitaComponent,
+
+    //Modulos hijos (CRUD)
     AgregarboxconsultaComponent,
     EditarboxconsultaComponent,
     AgregarcitaComponent,
@@ -199,8 +215,7 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
     AgregarmedicoComponent,
     EditarmedicoComponent,
     AgregartipoboxComponent,
-    EditartipoboxComponent,
-    HomemcComponent
+    EditartipoboxComponent
   ],
 
   entryComponents:
@@ -232,7 +247,20 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
     AgregartipoComponent,
     EditartipoComponent,
     VerFichaMedicaComponent,
-    RegistroComponent
+    RegistroComponent,
+    AgregarboxconsultaComponent,
+    EditarboxconsultaComponent,
+    AgregarcitaComponent,
+    EditarcitaComponent,
+    VercitaComponent,
+    AgregarespecialidadComponent,
+    EditarespecialidadComponent,
+    AgregarestadocitaComponent,
+    EditarestadocitaComponent,
+    AgregarmedicoComponent,
+    EditarmedicoComponent,
+    AgregartipoboxComponent,
+    EditartipoboxComponent
   ],
 
 
@@ -281,7 +309,13 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
     AuthenticationService,
     EventosService,
     ModuloService,
-    PermisoModuloService
+    PermisoModuloService,
+    BoxConsultaService,
+    CitaService,
+    EspecialidadService,
+    EstadoCitaService,
+    MedicoService,
+    TipoBoxService
   ],
 
   bootstrap:

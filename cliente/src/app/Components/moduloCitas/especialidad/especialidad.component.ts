@@ -19,7 +19,6 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
@@ -30,7 +29,7 @@ import {UsuarioActual} from '../../Globals/usuarioactual.component';
   templateUrl: './especialidad.component.html',
   styleUrls: ['./especialidad.component.css']
 })
-export class EspecialidadComponent implements OnInit {
+export class EspecialidadComponent {
 	public totalEspecialidades: Especialidad[];
 	public buscarPorNombre: boolean;
 	public usuarioActual;
@@ -42,7 +41,7 @@ export class EspecialidadComponent implements OnInit {
 	public sourceDatatable: dataTable | null;
 	public sourcePorNombre: buscadorPorNombre | null;
 	public bdEstructura;
-	displayedColumns = ['Acciones', 'Nombre', 'Descripcion'];
+	displayedColumns = ['Acciones', 'Nombre'];
 
 
 	constructor (public servicioEspecialidad: EspecialidadService, public dialog: MatDialog)
