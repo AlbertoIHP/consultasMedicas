@@ -2860,6 +2860,15 @@ class modulopacientes extends Seeder
 			'view' => 1,
 		]);
 
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 4,
+			'Modulo_id' => 12,
+			'write' => 0,
+			'erase' => 0,
+			'update' => 0,
+			'view' => 1,
+		]);
+
 		//Medico
 		DB::table('PermisoModulo')->insert([
 			'Role_id' => 3,
