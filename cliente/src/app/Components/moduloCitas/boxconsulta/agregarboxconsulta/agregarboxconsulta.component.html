@@ -1,3 +1,25 @@
-<p>
-  agregarboxconsulta works!
-</p>
+<h1 mat-dialog-title style="text-align: center;">Creación de Box</h1>
+
+<div mat-dialog-content>
+
+	<p>Ubicación</p>
+
+	<input matInput tabindex="1" [(ngModel)]="nuevoBoxConsulta.ubicacion">
+
+
+	<p>Tipo box</p>
+	<mat-form-field style="width: 100% !important;">
+		<mat-select placeholder="Provincia" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let tipobox of totalTipoBoxes" [value]="tipobox.id" (click)="tipoBoxSeleccionado(tipobox)">
+				{{ tipobox.nombre }}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+</div>
+
+
+<div mat-dialog-actions>
+	<button mat-button (click)="agregarBoxConsulta()" tabindex="2">Agregar box</button>
+	<button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>
