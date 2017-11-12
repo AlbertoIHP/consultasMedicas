@@ -28,7 +28,6 @@ export class UsuarioActual implements OnInit {
   }
 
  obtenerExistenciaPermiso(nombreModulo):boolean{
-   console.log(this.permisos);
     for(let i=0;i<this.permisos.length;i++){
       if(this.permisos[i].Modulo_id===nombreModulo && this.permisos[i].view==1){
         return true;

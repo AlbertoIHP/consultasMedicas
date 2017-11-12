@@ -4,8 +4,14 @@ import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core'
 import { TipoBox } from '../../../Models/TipoBox.model';
 import { TipoBoxService } from '../../../Services/tipobox/tipo-box.service';
 
+import { BoxConsulta } from '../../../Models/BoxConsulta.model';
+import { BoxConsultaService } from '../../../Services/boxconsulta/box-consulta.service';
+
+
 import { AgregartipoboxComponent } from './agregartipobox/agregartipobox.component';
 import { EditartipoboxComponent } from './editartipobox/editartipobox.component';
+
+import { MensajeErrorComponent } from '../../Globals/mensaje-error/mensaje-error.component';
 
 import {DataSource} from '@angular/cdk/collections';
 import {MatPaginator} from '@angular/material';
@@ -33,8 +39,9 @@ export class TipoboxComponent {
 	public totalTipoboxes: TipoBox[];
 	public buscarPorNombre: boolean;
 	public usuarioActual;
-
-
+	//temporal
+	public totalBoxConsultas: BoxConsulta[];
+	
 	//DATATABLE
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild('filter') filter: ElementRef;
@@ -44,11 +51,13 @@ export class TipoboxComponent {
 	displayedColumns = ['Acciones', 'Nombre', 'Descripcion'];
 
 
-	constructor (public servicioTipoBox: TipoBoxService, public dialog: MatDialog)
+	constructor (public servicioTipoBox: TipoBoxService, 
+		public servicioBoxConsulta:BoxConsultaService, public dialog: MatDialog)
 	{
 		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalTipoboxes = [];
+		this.totalBoxConsultas=[];
 		this.actualizarTipoBoxs();
 	}
 
@@ -73,13 +82,41 @@ export class TipoboxComponent {
 
 		});
 	}
+	//función temporal que retornará true en caso de que el tipo box esté en uso
+	verificarUsoTipoBox(tipobox):boolean{
+		//buscar en box consultas el box que tenga el tipo box asociado (cambiar en backend)
+		this.servicioBoxConsulta.getBoxConsultas().subscribe((data)=>{
+			var todo:any= data;
+			todo = todo.data;
+			this.totalBoxConsultas=todo;
+		});
+
+		for(let i=0;i<this.totalBoxConsultas.length;i++){
+			console.log(this.totalBoxConsultas[i].TipoBox_id+'-'+tipobox.id);
+				if(parseInt(this.totalBoxConsultas[i].TipoBox_id)===parseInt(tipobox.id)){
+					return true;
+				}
+			}
+		return false;
+	}
+
 
 	eliminarTipoBox (tipobox)
-	{
-		this.servicioTipoBox.deleteTipoBox(tipobox.id).subscribe( data => {
-			console.log(data);
-			this.actualizarTipoBoxs();
-		});
+	{	
+		console.log('click');
+		if(this.verificarUsoTipoBox(tipobox)==true){
+
+			this.mostrarMensaje("Este tipo de box esta siendo usado por un box de consulta.");
+
+		}else{
+			/*
+			this.servicioTipoBox.deleteTipoBox(tipobox.id).subscribe( data => {
+				console.log(data);
+				this.actualizarTipoBoxs();
+			});
+			*/
+		}
+		
 	}
 
 
@@ -119,6 +156,21 @@ export class TipoboxComponent {
 
 			this.actualizarTipoBoxs();
 		});
+	}
+
+	mostrarMensaje(mensaje){
+		let dialogRef = this.dialog.open(MensajeErrorComponent, {
+			width: '400px',
+			data:{
+				mensajeError:mensaje
+			}
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
+			this.actualizarTipoBoxs();
+		});
+
 	}
 
 
