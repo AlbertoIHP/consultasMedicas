@@ -6,6 +6,9 @@ import { BoxConsultaService } from '../../../Services/boxconsulta/box-consulta.s
 import { TipoBox } from '../../../Models/TipoBox.model';
 import { TipoBoxService } from '../../../Services/tipobox/tipo-box.service';
 
+import { Cita } from '../../../Models/Cita.model';
+import { CitaService } from '../../../Services/cita/cita.service';
+
 import { AgregarboxconsultaComponent } from './agregarboxconsulta/agregarboxconsulta.component';
 import { EditarboxconsultaComponent } from './editarboxconsulta/editarboxconsulta.component';
 
@@ -37,6 +40,9 @@ export class BoxconsultaComponent implements OnInit {
 	public buscarPorNombre: boolean;
 	public usuarioActual;
 
+	// Temporal para validación
+	public totalCitas: Cita[];
+
 	//DATATABLE
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild('filter') filter: ElementRef;
@@ -46,7 +52,7 @@ export class BoxconsultaComponent implements OnInit {
 	displayedColumns = ['Acciones', 'Ubicacion', 'TipoBox'];
 
 
-  constructor(public servicioBoxConsulta: BoxConsultaService, public servicioTipoBox: TipoBoxService, public dialog: MatDialog) 
+  constructor(public servicioBoxConsulta: BoxConsultaService, public servicioTipoBox: TipoBoxService, public servicioCita: CitaService, public dialog: MatDialog) 
   {
 
   	this.usuarioActual=new UsuarioActual();
@@ -55,9 +61,8 @@ export class BoxconsultaComponent implements OnInit {
 	this.totalTipoBoxes=[];
 	this.actualizarTipoBoxes();
 	this.actualizarBoxConsultas();
+	this.actualizarCitas();
 	
-
-
    }
 
   ngOnInit() {
@@ -93,20 +98,49 @@ actualizarTipoBoxes ()
 
 
 		});
- }
+	}
 
- eliminarBoxConsulta (boxconsulta)
+
+	actualizarCitas()
 	{
-		//si está siendo usado...
-		//this.mostrarMensaje("Este box se encuentra siendo usado en una cita.");
-		
-		this.servicioBoxConsulta.deleteBoxConsulta(boxconsulta.id).subscribe( data => {
-			console.log(data);
-			this.actualizarBoxConsultas();
+		//buscar en box consultas el box que tenga el tipo box asociado (cambiar en backend)
+		this.servicioCita.getCitas().subscribe((data)=>{
+			var todo:any= data;
+			todo = todo.data;
+			this.totalCitas=todo;
 		});
+	}
+
+	//Función temporal que retornará true en caso de que la box consulta esté en uso
+	verificarUsoBoxConsulta(boxconsulta):boolean{
 		
+		console.log(this.totalCitas.length);
+		for(let i=0;i<this.totalCitas.length;i++){
+			console.log(this.totalCitas[i].BoxConsulta_id+'-'+boxconsulta.id);
+				if(parseInt(this.totalCitas[i].BoxConsulta_id)===parseInt(boxconsulta.id)){
+					return true;
+				}
+			}
+		return false;
+	}
+
+
+	eliminarBoxConsulta (boxconsulta)
+	{	
+		console.log('click');
+		if(this.verificarUsoBoxConsulta(boxconsulta)==true){
+
+			this.mostrarMensaje("Esta box consulta está siendo usada por un médico.");
+
+		}else{
+			this.servicioBoxConsulta.deleteBoxConsulta(boxconsulta.id).subscribe( data => {
+				console.log(data);
+				this.actualizarBoxConsultas();
+			});
+		}
 		
 	}
+
 
 
 //DATATABLES

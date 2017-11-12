@@ -24,12 +24,19 @@ import { EspecialidadService } from '../../../Services/especialidad/especialidad
 import { Medico } from '../../../Models/Medico.model';
 import { MedicoService } from '../../../Services/medico/medico.service';
 
+/*
+import { Cita } from '../../../Models/Cita.model';
+import { CitaService } from '../../../Services/cita/cita.service';
+*/
+
 import { Role } from '../../../Models/Role.model';
 
 import { VerpersonaComponent } from '../../moduloPacientes/personas/verpersona/verpersona.component';
 
 import { AgregarmedicoComponent } from './agregarmedico/agregarmedico.component';
 import { EditarmedicoComponent } from './editarmedico/editarmedico.component';
+
+import { MensajeErrorComponent } from '../../Globals/mensaje-error/mensaje-error.component';
 
 import { EventosService } from '../../../Services/eventos/eventos.service';
 
@@ -47,6 +54,9 @@ export class MedicoComponent implements OnInit {
 	public totalEspecialidad: Especialidad[];
 	public usuarioActual;
 
+	/*Temporal para validación
+	public totalCitas: Cita[];*/
+
 	//DATATABLE
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild('filter') filter: ElementRef;
@@ -60,6 +70,7 @@ export class MedicoComponent implements OnInit {
 		public servicioPersona: PersonaService,
 		public servicioEspecialidad: EspecialidadService,
 		public servicioMedico: MedicoService,
+		//public servicioCita: CitaService,
 		public dialog: MatDialog,
     	public servicioEventos: EventosService
 	)
@@ -71,9 +82,10 @@ export class MedicoComponent implements OnInit {
 		this.totalPersonas = [];
 		this.actualizarPersonas();
 		this.actualizarEspecialidads();
+		//this.actualizarCitas();
     	this.servicioEventos.seActivo.subscribe(() => {
-      	this.actualizarPersonas();
-    });
+      		this.actualizarPersonas();
+    	});
 
 	}
 
@@ -180,7 +192,46 @@ export class MedicoComponent implements OnInit {
 	this.buscarPorNombre = !this.buscarPorNombre;
 	}
 
+	/* 
+	actualizarCitas()
+	{
+		//buscar en box consultas el box que tenga el tipo box asociado (cambiar en backend)
+		this.servicioCita.getCitas().subscribe((data)=>{
+			var todo:any= data;
+			todo = todo.data;
+			this.totalCitas=todo;
+		});
+	}
 
+	//Función temporal que retornará true en caso de que el médico esté en uso
+	verificarUsoMedico(medico):boolean{
+		
+		console.log(this.totalCitas.length);
+		for(let i=0;i<this.totalCitas.length;i++){
+			console.log(this.totalCitas[i].Medico_id+'-'+medico.id);
+				if(parseInt(this.totalCitas[i].Medico_id)===parseInt(medico.id)){
+					return true;
+				}
+			}
+		return false;
+	}
+
+
+	eliminarMedico (medico)
+	{	
+		console.log('click');
+		if(this.verificarUsoMedico(medico)==true){
+
+			this.mostrarMensaje("Esta estado cita está siendo usada por un médico.");
+
+		}else{
+			this.servicioMedico.deleteMedico(medico.id).subscribe( data => {
+				console.log(data);
+				this.actualizarMedicos();
+			});
+		}
+		
+	} */
 
 	eliminarMedico (medico)
 	{
@@ -328,5 +379,20 @@ export class MedicoComponent implements OnInit {
       })
     });
  }
+
+ /*mostrarMensaje(mensaje){
+		let dialogRef = this.dialog.open(MensajeErrorComponent, {
+			width: '400px',
+			data:{
+				mensajeError:mensaje
+			}
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
+			this.actualizarMedicos();
+		});
+
+ } */
 
 }
