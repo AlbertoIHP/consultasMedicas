@@ -1,3 +1,31 @@
-<p>
-  agregarmedico works!
-</p>
+<h1  mat-dialog-title style="text-align: center;">Agregar Médico</h1>
+
+<div mat-dialog-content>
+
+	<p >Especialidad</p>
+	<mat-form-field style="width: 100% !important;" >
+		<mat-select placeholder="Especialidad" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let especialidad of totalEspecialidades" [value]="especialidad.id" (click)="especialidadSeleccionada(especialidad)">
+				{{ especialidad.nombre }}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+
+
+	<p >Persona Asociada</p>
+	<mat-form-field style="width: 100% !important;" >
+		<mat-select placeholder="Seleccione una Persona para asociar al Médico" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let persona of personasDisponibles" [value]="persona.id" (click)="personaSeleccionada(persona)">
+			 ( {{ persona.rut }} ) {{persona.nombre1 }} {{persona.apellido1}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+</div>
+
+
+<div mat-dialog-actions>
+	<button *ngIf="!isPersona"  mat-button (click)="agregarMedico()" tabindex="2">Agregar Médico</button>
+	<button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

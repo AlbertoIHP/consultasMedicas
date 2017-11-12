@@ -121,7 +121,7 @@ export class buscadorPorNombre extends DataSource<any> {
         {
            let searchStr = (item.nombre ).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
-        }else if(this.filtro === "Paciente")
+        }else if(this.filtro === "Paciente" || this.filtro === "Medico")
         {
            let searchStr = (item.rut ).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
