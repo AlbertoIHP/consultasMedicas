@@ -4,8 +4,13 @@ import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core'
 import { EstadoCita } from '../../../Models/EstadoCita.model';
 import { EstadoCitaService } from '../../../Services/estadocita/estado-cita.service';
 
+import { Cita } from '../../../Models/Cita.model';
+import { CitaService } from '../../../Services/cita/cita.service';
+
 import { AgregarestadocitaComponent } from './agregarestadocita/agregarestadocita.component';
 import { EditarestadocitaComponent } from './editarestadocita/editarestadocita.component';
+
+import { MensajeErrorComponent } from '../../Globals/mensaje-error/mensaje-error.component';
 
 import {DataSource} from '@angular/cdk/collections';
 import {MatPaginator} from '@angular/material';
@@ -34,6 +39,9 @@ export class EstadocitaComponent {
 	public buscarPorNombre: boolean;
 	public usuarioActual;
 
+	// Temporal para validación
+	public totalCitas: Cita[];
+
 
 	//DATATABLE
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -44,12 +52,13 @@ export class EstadocitaComponent {
 	displayedColumns = ['Acciones', 'Nombre', 'Descripcion'];
 
 
-	constructor (public servicioEstadoCita: EstadoCitaService, public dialog: MatDialog)
+	constructor (public servicioEstadoCita: EstadoCitaService, public servicioCita: CitaService, public dialog: MatDialog)
 	{
 		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalEstadocitas = [];
 		this.actualizarEstadoCitas();
+		this.actualizarCitas();
 	}
 
 	actualizarEstadoCitas ()
@@ -74,12 +83,44 @@ export class EstadocitaComponent {
 		});
 	}
 
-	eliminarEstadoCita (estadocita)
+	actualizarCitas()
 	{
-		this.servicioEstadoCita.deleteEstadoCita(estadocita.id).subscribe( data => {
-			console.log(data);
-			this.actualizarEstadoCitas();
+		//buscar en box consultas el box que tenga el tipo box asociado (cambiar en backend)
+		this.servicioCita.getCitas().subscribe((data)=>{
+			var todo:any= data;
+			todo = todo.data;
+			this.totalCitas=todo;
 		});
+	}
+
+	//Función temporal que retornará true en caso de que el estado cita esté en uso
+	verificarUsoEstadoCita(estadocita):boolean{
+		
+		console.log(this.totalCitas.length);
+		for(let i=0;i<this.totalCitas.length;i++){
+			console.log(this.totalCitas[i].EstadoCita_id+'-'+estadocita.id);
+				if(parseInt(this.totalCitas[i].EstadoCita_id)===parseInt(estadocita.id)){
+					return true;
+				}
+			}
+		return false;
+	}
+
+
+	eliminarEstadoCita (estadocita)
+	{	
+		console.log('click');
+		if(this.verificarUsoEstadoCita(estadocita)==true){
+
+			this.mostrarMensaje("Esta estado cita está siendo usada por un médico.");
+
+		}else{
+			this.servicioEstadoCita.deleteEstadoCita(estadocita.id).subscribe( data => {
+				console.log(data);
+				this.actualizarEstadoCitas();
+			});
+		}
+		
 	}
 
 
@@ -121,6 +162,20 @@ export class EstadocitaComponent {
 		});
 	}
 
+	mostrarMensaje(mensaje){
+		let dialogRef = this.dialog.open(MensajeErrorComponent, {
+			width: '400px',
+			data:{
+				mensajeError:mensaje
+			}
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
+			this.actualizarEstadoCitas();
+		});
+
+	}
 
 
 }
