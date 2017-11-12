@@ -59,9 +59,10 @@ export class TipoboxComponent {
 		this.totalTipoboxes = [];
 		this.totalBoxConsultas=[];
 		this.actualizarTipoBoxs();
+		this.actualizarBoxConsulta();
 	}
 
-	actualizarTipoBoxs ()
+	actualizarTipoBoxs()
 	{
 		this.servicioTipoBox.getTipoBoxes().subscribe(data => {
 			var todo: any = data;
@@ -82,15 +83,21 @@ export class TipoboxComponent {
 
 		});
 	}
-	//función temporal que retornará true en caso de que el tipo box esté en uso
-	verificarUsoTipoBox(tipobox):boolean{
+
+	actualizarBoxConsulta()
+	{
 		//buscar en box consultas el box que tenga el tipo box asociado (cambiar en backend)
 		this.servicioBoxConsulta.getBoxConsultas().subscribe((data)=>{
 			var todo:any= data;
 			todo = todo.data;
 			this.totalBoxConsultas=todo;
 		});
+	}
 
+	//función temporal que retornará true en caso de que el tipo box esté en uso
+	verificarUsoTipoBox(tipobox):boolean{
+		
+		console.log(this.totalBoxConsultas.length);
 		for(let i=0;i<this.totalBoxConsultas.length;i++){
 			console.log(this.totalBoxConsultas[i].TipoBox_id+'-'+tipobox.id);
 				if(parseInt(this.totalBoxConsultas[i].TipoBox_id)===parseInt(tipobox.id)){
@@ -106,15 +113,13 @@ export class TipoboxComponent {
 		console.log('click');
 		if(this.verificarUsoTipoBox(tipobox)==true){
 
-			this.mostrarMensaje("Este tipo de box esta siendo usado por un box de consulta.");
+			this.mostrarMensaje("Este tipo de box está siendo usado por un box de consulta.");
 
 		}else{
-			/*
 			this.servicioTipoBox.deleteTipoBox(tipobox.id).subscribe( data => {
 				console.log(data);
 				this.actualizarTipoBoxs();
 			});
-			*/
 		}
 		
 	}

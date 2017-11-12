@@ -4,8 +4,13 @@ import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core'
 import { Especialidad } from '../../../Models/Especialidad.model';
 import { EspecialidadService } from '../../../Services/especialidad/especialidad.service';
 
+import { Medico } from '../../../Models/Medico.model';
+import { MedicoService } from '../../../Services/medico/medico.service';
+
 import { AgregarespecialidadComponent } from './agregarespecialidad/agregarespecialidad.component';
 import { EditarespecialidadComponent } from './editarespecialidad/editarespecialidad.component';
+
+import { MensajeErrorComponent } from '../../Globals/mensaje-error/mensaje-error.component';
 
 import {DataSource} from '@angular/cdk/collections';
 import {MatPaginator} from '@angular/material';
@@ -34,6 +39,8 @@ export class EspecialidadComponent {
 	public buscarPorNombre: boolean;
 	public usuarioActual;
 
+	// Temporal para validación
+	public totalMedicos: Medico[];
 
 	//DATATABLE
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -44,12 +51,13 @@ export class EspecialidadComponent {
 	displayedColumns = ['Acciones', 'Nombre'];
 
 
-	constructor (public servicioEspecialidad: EspecialidadService, public dialog: MatDialog)
+	constructor (public servicioEspecialidad: EspecialidadService, public servicioMedico: MedicoService, public dialog: MatDialog)
 	{
 		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalEspecialidades = [];
 		this.actualizarEspecialidades();
+		this.actualizarMedicos();
 	}
 
 	actualizarEspecialidades ()
@@ -74,14 +82,45 @@ export class EspecialidadComponent {
 		});
 	}
 
-	eliminarEspecialidad (especialidad)
+	actualizarMedicos()
 	{
-		this.servicioEspecialidad.deleteEspecialidad(especialidad.id).subscribe( data => {
-			console.log(data);
-			this.actualizarEspecialidades();
+		//buscar en box consultas el box que tenga el tipo box asociado (cambiar en backend)
+		this.servicioMedico.getMedicos().subscribe((data)=>{
+			var todo:any= data;
+			todo = todo.data;
+			this.totalMedicos=todo;
 		});
 	}
 
+	//Función temporal que retornará true en caso de que la especialidad esté en uso
+	verificarUsoEspecialidad(especialidad):boolean{
+		
+		console.log(this.totalMedicos.length);
+		for(let i=0;i<this.totalMedicos.length;i++){
+			console.log(this.totalMedicos[i].Especialidad_id+'-'+especialidad.id);
+				if(parseInt(this.totalMedicos[i].Especialidad_id)===parseInt(especialidad.id)){
+					return true;
+				}
+			}
+		return false;
+	}
+
+
+	eliminarEspecialidad (especialidad)
+	{	
+		console.log('click');
+		if(this.verificarUsoEspecialidad(especialidad)==true){
+
+			this.mostrarMensaje("Esta especialidad está siendo usada por un médico.");
+
+		}else{
+			this.servicioEspecialidad.deleteEspecialidad(especialidad.id).subscribe( data => {
+				console.log(data);
+				this.actualizarEspecialidades();
+			});
+		}
+		
+	}
 
 
 	//DATATABLES
@@ -121,6 +160,20 @@ export class EspecialidadComponent {
 		});
 	}
 
+	mostrarMensaje(mensaje){
+		let dialogRef = this.dialog.open(MensajeErrorComponent, {
+			width: '400px',
+			data:{
+				mensajeError:mensaje
+			}
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
+			this.actualizarEspecialidades();
+		});
+
+	}
 
 
 }
