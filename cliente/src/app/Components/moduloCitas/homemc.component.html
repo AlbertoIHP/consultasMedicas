@@ -1,26 +1,26 @@
 <mat-tab-group>
 
-  <mat-tab label="Citas">
+  <mat-tab label="Citas" *ngIf="usuarioActual.obtenerExistenciaPermiso('Cita')">
     <app-cita></app-cita>
   </mat-tab>
 
-  <mat-tab label="Estado citas">
+  <mat-tab label="Estado citas" *ngIf="usuarioActual.obtenerExistenciaPermiso('EstadoCita')">
   <app-estadocita></app-estadocita>
   </mat-tab>
 
-  <mat-tab label="Box consulta">
+  <mat-tab label="Box consulta" *ngIf="usuarioActual.obtenerExistenciaPermiso('BoxConsulta')">
     <app-boxconsulta></app-boxconsulta>
   </mat-tab>
 
-  <mat-tab label="Tipo box">
+  <mat-tab label="Tipo box" *ngIf="usuarioActual.obtenerExistenciaPermiso('TipoBox')">
     <app-tipobox></app-tipobox>
   </mat-tab>
 
-  <mat-tab label="Médicos">
+  <mat-tab label="Médicos" *ngIf="usuarioActual.obtenerExistenciaPermiso('Medico')">
     <app-medico></app-medico>
   </mat-tab>
 
-  <mat-tab label="Especialidad">
+  <mat-tab label="Especialidad" *ngIf="usuarioActual.obtenerExistenciaPermiso('Especialidad')">
     <app-especialidad></app-especialidad>
   </mat-tab>
 </mat-tab-group>

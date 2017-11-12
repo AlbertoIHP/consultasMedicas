@@ -2835,7 +2835,7 @@ class modulopacientes extends Seeder
 			'Role_id' => 5,
 			'Modulo_id' => 18,
 			'write' => 1,
-			'erase' => 0,
+			'erase' => 1,
 			'update' => 1,
 			'view' => 1,
 		]);
