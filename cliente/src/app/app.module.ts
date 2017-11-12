@@ -139,6 +139,7 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   import { AgregarcitaComponent } from './Components/moduloCitas/cita/agregarcita/agregarcita.component';
   import { EditarcitaComponent } from './Components/moduloCitas/cita/editarcita/editarcita.component';
   import { VercitaComponent } from './Components/moduloCitas/cita/vercita/vercita.component';
+import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaje-error.component';
   
 
 
@@ -215,7 +216,8 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
     AgregarmedicoComponent,
     EditarmedicoComponent,
     AgregartipoboxComponent,
-    EditartipoboxComponent
+    EditartipoboxComponent,
+    MensajeErrorComponent
   ],
 
   entryComponents:
@@ -260,7 +262,8 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
     AgregarmedicoComponent,
     EditarmedicoComponent,
     AgregartipoboxComponent,
-    EditartipoboxComponent
+    EditartipoboxComponent,
+    MensajeErrorComponent
   ],
 
 

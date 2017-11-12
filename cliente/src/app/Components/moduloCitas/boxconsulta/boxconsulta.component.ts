@@ -9,6 +9,8 @@ import { TipoBoxService } from '../../../Services/tipobox/tipo-box.service';
 import { AgregarboxconsultaComponent } from './agregarboxconsulta/agregarboxconsulta.component';
 import { EditarboxconsultaComponent } from './editarboxconsulta/editarboxconsulta.component';
 
+import { MensajeErrorComponent } from '../../Globals/mensaje-error/mensaje-error.component';
+
 import {DataSource} from '@angular/cdk/collections';
 import {MatPaginator} from '@angular/material';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
@@ -95,10 +97,15 @@ actualizarTipoBoxes ()
 
  eliminarBoxConsulta (boxconsulta)
 	{
+		//si está siendo usado...
+		//this.mostrarMensaje("Este box se encuentra siendo usado en una cita.");
+		
 		this.servicioBoxConsulta.deleteBoxConsulta(boxconsulta.id).subscribe( data => {
 			console.log(data);
 			this.actualizarBoxConsultas();
 		});
+		
+		
 	}
 
 
@@ -141,6 +148,21 @@ actualizarTipoBoxes ()
 				totalTipoBoxes:this.totalTipoBoxes,
 				servicioTipoBox:this.servicioTipoBox,
 				servicioBoxConsulta:this.servicioBoxConsulta
+			}
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+
+			this.actualizarBoxConsultas();
+		});
+	}
+
+	//función para mostrar un mensaje de error
+	mostrarMensaje(mensaje){
+		let dialogRef = this.dialog.open(MensajeErrorComponent, {
+			width: '400px',
+			data:{
+				mensajeError:mensaje
 			}
 		});
 
