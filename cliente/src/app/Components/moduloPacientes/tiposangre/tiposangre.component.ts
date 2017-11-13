@@ -20,6 +20,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
 @Component({
   selector: 'app-tiposangre',
@@ -29,6 +30,7 @@ import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/dat
 export class TiposangreComponent implements OnInit {
 
   public totalTS: TipoSangre[];
+  public usuarioActual;
 
   //DATATABLE
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -44,6 +46,7 @@ export class TiposangreComponent implements OnInit {
 
   constructor(public servicioTS: TipoSangreService , public dialog: MatDialog)
   {
+    this.usuarioActual=new UsuarioActual();
     this.buscarPorNombre = false;
     this.totalTS = [];
     this.actualizarTSs();
@@ -89,7 +92,7 @@ export class TiposangreComponent implements OnInit {
   {
 
     let dialogRef = this.dialog.open(EditartipoComponent, {
-      width: '1000px',
+      width: '700px',
       data:
       {
        ts: ts,
@@ -111,7 +114,7 @@ export class TiposangreComponent implements OnInit {
   agregacionTS()
   {
     let dialogRef = this.dialog.open(AgregartipoComponent, {
-      width: '1000px',
+      width: '700px',
       data:
       {
        ts: new TipoSangre(),

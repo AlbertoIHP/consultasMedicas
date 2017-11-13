@@ -1,3 +1,21 @@
-<p>
-  editarmedico works!
-</p>
+<h1  mat-dialog-title style="text-align: center;">Editar Médico</h1>
+
+<div mat-dialog-content>
+
+  <p>Especialidad</p>
+  <mat-form-field style="width: 100% !important;" >
+    <mat-select placeholder="Especialidad" style="width: 100% !important;">
+      <mat-option style="width: 100% !important;" *ngFor="let especialidad of totalEspecialidades" [value]="especialidad.id" (click)="especialidadSeleccionada(especialidad)">
+        {{ especialidad.nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button *ngIf="!isPersona"  mat-button (click)="editarMedico()" tabindex="2">Actualizar Médico</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

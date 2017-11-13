@@ -25,6 +25,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../../Globals/datasource.component';
 
+import {UsuarioActual} from '../../../Globals/usuarioactual.component';
+
 
 @Component({
 	selector: 'app-verprevision',
@@ -40,6 +42,7 @@ export class VerPrevisionComponent {
 	public nuevaPrevisionActual: any;
 	public previsionSeleccionada: any;
 	public descripcionSeleccionada: any;
+	public usuarioActual;
 
 	//DATATABLE
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -62,7 +65,7 @@ export class VerPrevisionComponent {
 
 		)
 	{
-
+		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalPrevision = [];
 		this.totalPrevisionActual = [];

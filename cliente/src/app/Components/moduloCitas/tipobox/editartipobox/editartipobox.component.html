@@ -1,3 +1,19 @@
-<p>
-  editartipobox works!
-</p>
+<h1 mat-dialog-title style="text-align: center;">Edición de tipo box</h1>
+
+<div mat-dialog-content>
+
+  <p>Nombre</p>
+
+  <input matInput tabindex="1" [(ngModel)]="tipobox.nombre">
+
+  <p>Descripción</p>
+
+  <input matInput tabindex="1" [(ngModel)]="tipobox.descripcion">
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="editarTipoBox()" tabindex="2">Editar tipo box</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

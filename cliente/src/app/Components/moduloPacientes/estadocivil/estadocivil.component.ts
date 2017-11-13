@@ -21,6 +21,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
+
 
 @Component({
 	selector: 'app-estadocivil',
@@ -30,7 +32,7 @@ import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/dat
 
 export class EstadocivilComponent{
 	public totalEstadoCiviles: EstadoCivil[];
-
+	public usuarioActual;
 
 
 	//DATATABLE
@@ -45,6 +47,7 @@ export class EstadocivilComponent{
 
 	constructor (public servicioEstadoCivil: EstadocivilService, public dialog: MatDialog)
 	{
+		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalEstadoCiviles = [];
 		this.actualizarEstadoCiviles();
@@ -90,7 +93,7 @@ export class EstadocivilComponent{
 	{
 
 		let dialogRef = this.dialog.open(EditarEstadoCComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 ec: ec
@@ -106,7 +109,7 @@ export class EstadocivilComponent{
 	agregacionEC()
 	{
 		let dialogRef = this.dialog.open(AgregarEstadoCComponent, {
-			width: '1000px'
+			width: '700px'
 		});
 
 		dialogRef.afterClosed().subscribe(result => {

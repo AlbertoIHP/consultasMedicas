@@ -106,7 +106,7 @@ export class buscadorPorNombre extends DataSource<any> {
            let searchStr = (item.nombre ).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }
-        else if( this.filtro === "EC" || this.filtro === "Region" || this.filtro === "Provincia" || this.filtro === "Comuna" || this.filtro === "Prevision" || this.filtro === "Genero")
+        else if( this.filtro === "EC" || this.filtro === "Region" || this.filtro === "Provincia" || this.filtro === "Comuna" || this.filtro === "Prevision" || this.filtro === "Genero" || this.filtro === "EstadoCita" || this.filtro === "Especialidad" || this.filtro === "TipoBox")
         {
            let searchStr = (item.nombre ).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) != -1;
@@ -121,9 +121,12 @@ export class buscadorPorNombre extends DataSource<any> {
         {
            let searchStr = (item.nombre ).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
-        }else if(this.filtro === "Paciente")
+        }else if(this.filtro === "Paciente" || this.filtro === "Medico")
         {
            let searchStr = (item.rut ).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+        }else if(this.filtro == "BoxConsulta"){
+           let searchStr = (item.ubicacion).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }
 

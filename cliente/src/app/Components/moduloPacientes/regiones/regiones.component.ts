@@ -22,6 +22,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
+
 @Component({
 	selector: 'app-regiones',
 	templateUrl: './regiones.component.html',
@@ -30,7 +32,7 @@ import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/dat
 export class RegionesComponent {
 
 	public totalRegiones: Region[];
-
+	public usuarioActual;
 
 	//DATATABLE
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -47,6 +49,7 @@ export class RegionesComponent {
 
 	constructor (public servicioRegion: RegionService , public dialog: MatDialog)
 	{
+		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalRegiones = [];
 		this.actualizarRegiones();
@@ -89,7 +92,7 @@ export class RegionesComponent {
 	{
 
 		let dialogRef = this.dialog.open(EditarregionesComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 region: region
@@ -110,7 +113,7 @@ export class RegionesComponent {
 	agregacionRegion()
 	{
 		let dialogRef = this.dialog.open(AgregarregionesComponent, {
-			width: '1000px'
+			width: '700px'
 		});
 
 		dialogRef.afterClosed().subscribe(result => {

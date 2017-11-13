@@ -20,8 +20,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
-
-
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
 @Component({
 	selector: 'app-roles',
@@ -30,6 +29,7 @@ import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/dat
 })
 export class RolesComponent  {
 public totalRoles: Role[];
+public usuarioActual;
 
 	//DATATABLE
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -43,6 +43,7 @@ public totalRoles: Role[];
 
 	constructor (public servicioRole: RoleService, public dialog: MatDialog)
 	{
+		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalRoles = [];
 		this.actualizarRoles();
@@ -89,7 +90,7 @@ public totalRoles: Role[];
 	{
 
 		let dialogRef = this.dialog.open(EditarrolesComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 role: role
@@ -105,7 +106,7 @@ public totalRoles: Role[];
 	agregacionRole()
 	{
 		let dialogRef = this.dialog.open(AgregarrolesComponent, {
-			width: '1000px'
+			width: '700px'
 		});
 
 		dialogRef.afterClosed().subscribe(result => {

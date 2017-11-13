@@ -21,9 +21,9 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-
-
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
+
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
 
 @Component({
@@ -34,6 +34,7 @@ import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/dat
 export class ProvinciasComponent {
 public totalRegiones: Region[];
 	public totalProvincias: Provincia[];
+	public usuarioActual;
 
 	//DATATABLE
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -47,6 +48,7 @@ public totalRegiones: Region[];
 
 	constructor (public servicioRegion: RegionService, public servicioProvincia: ProvinciaService, public dialog: MatDialog)
 	{
+		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalRegiones = [];
 		this.totalProvincias = [];
@@ -146,7 +148,7 @@ public totalRegiones: Region[];
 	this.pasarStringId(a);
 
 		let dialogRef = this.dialog.open(EditarprovinciaComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 provincia: a,
@@ -164,7 +166,7 @@ public totalRegiones: Region[];
 	agregacionProvincia()
 	{
 		let dialogRef = this.dialog.open(AgregarprovinciaComponent, {
-			width: '1000px',
+			width: '700px',
 			data : {
         regiones: this.totalRegiones,
         servicioRegion: this.servicioRegion,
