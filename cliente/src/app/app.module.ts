@@ -21,13 +21,13 @@ import { PermisoModuloService } from './Services/permisomodulo/permisomodulo.ser
 
 //MODULOS
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing, appRoutingProviders } from './Routes/app-routing.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule, MatStepperModule, MatCardModule, MatGridListModule, MatButtonToggleModule, MatTabsModule, MatInputModule , MatSelectModule, MatDialogModule, MatPaginatorModule, MatTableModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule } from '@angular/material';
-import { ReactiveFormsModule } from '@angular/forms'
+
 
 
 // COMPONENTES
@@ -290,4 +290,5 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   ]
 
 })
+
 export class AppModule { }

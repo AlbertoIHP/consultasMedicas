@@ -12,8 +12,6 @@ use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
 //CORREO TIII
@@ -340,7 +338,8 @@ public function store(Request $request){
 
 
 
-	  public function confirm ($confirmation_code) {
+	  public function confirm ($confirmation_code) 
+	  {
 
 	  	error_log(json_encode($confirmation_code));
 

@@ -82,7 +82,7 @@ export class TiposangreComponent implements OnInit {
     });
 
   }
-AgregartipoComponent
+
 
 
   edicionTS (ts)
