@@ -92,7 +92,7 @@ AgregartipoComponent
   {
 
     let dialogRef = this.dialog.open(EditartipoComponent, {
-      width: '1000px',
+      width: '700px',
       data:
       {
        ts: ts,
@@ -114,7 +114,7 @@ AgregartipoComponent
   agregacionTS()
   {
     let dialogRef = this.dialog.open(AgregartipoComponent, {
-      width: '1000px',
+      width: '700px',
       data:
       {
        ts: new TipoSangre(),

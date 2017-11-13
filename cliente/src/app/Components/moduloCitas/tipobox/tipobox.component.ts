@@ -138,7 +138,7 @@ export class TipoboxComponent {
 	{
 
 		let dialogRef = this.dialog.open(EditartipoboxComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 tipobox: tipobox
@@ -154,7 +154,7 @@ export class TipoboxComponent {
 	agregacionTipoBox()
 	{
 		let dialogRef = this.dialog.open(AgregartipoboxComponent, {
-			width: '1000px'
+			width: '700px'
 		});
 
 		dialogRef.afterClosed().subscribe(result => {

@@ -130,7 +130,7 @@ export class PersonaComponent implements OnInit{
   crearPersona(): void {
 
     let dialogRef = this.dialog.open(AgregarpersonaComponent, {
-      width: '1000px',
+      width: '700px',
     data:
     {
     regiones: this.totalRegiones,
@@ -202,7 +202,7 @@ export class PersonaComponent implements OnInit{
     this.pasarStringId(a);
 
   let dialogRef = this.dialog.open(VerPrevisionComponent, {
-    width: '1000px',
+    width: '700px',
     data:
     {
      persona: a
@@ -390,7 +390,7 @@ export class PersonaComponent implements OnInit{
    this.pasarStringId(a);
 
   let dialogRef = this.dialog.open(AgregarusuarioComponent, {
-    width: '1000px',
+    width: '700px',
     data:
     {
      persona: a,

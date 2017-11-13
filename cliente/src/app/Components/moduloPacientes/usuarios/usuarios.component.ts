@@ -179,7 +179,7 @@ export class UsuariosComponent {
 
 	console.log(a);
 	let dialogRef = this.dialog.open(EditarusuarioComponent, {
-	  width: '1000px',
+	  width: '700px',
 	  data:
 	  {
 	   usuario: a,
@@ -201,7 +201,7 @@ export class UsuariosComponent {
   {
 
 	let dialogRef = this.dialog.open(AgregarusuarioComponent, {
-	  width: '1000px',
+	  width: '700px',
 	data: {
 	usuario: new Usuario(),
 	  usuarios: this.totalUsuarios,
@@ -229,7 +229,7 @@ export class UsuariosComponent {
 	  console.log(persona);
 
 	  let dialogRef = this.dialog.open(VerpersonaComponent, {
-		width: '1000px',
+		width: '700px',
 		data: { persona: persona }
 	  });
 

@@ -149,7 +149,7 @@ export class ComunasComponent {
 		this.pasarStringId(a);
 
 		let dialogRef = this.dialog.open(EditarcomunaComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 comuna: a,
@@ -169,7 +169,7 @@ export class ComunasComponent {
 	agregacionComuna()
 	{
 		let dialogRef = this.dialog.open(AgregarcomunaComponent, {
-			width: '1000px',
+			width: '700px',
 			data: {
         provincias: this.totalProvincias,
         servicioProvincia: this.servicioProvincia

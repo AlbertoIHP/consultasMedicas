@@ -97,7 +97,7 @@ export class GenerosComponent  {
 	{
 
 		let dialogRef = this.dialog.open(EditargeneroComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 genero: genero
@@ -113,7 +113,7 @@ export class GenerosComponent  {
 	agregacionGenero()
 	{
 		let dialogRef = this.dialog.open(AgregargeneroComponent, {
-			width: '1000px'
+			width: '700px'
 		});
 
 		dialogRef.afterClosed().subscribe(result => {
