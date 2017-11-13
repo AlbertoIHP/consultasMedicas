@@ -148,7 +148,7 @@ public totalRegiones: Region[];
 	this.pasarStringId(a);
 
 		let dialogRef = this.dialog.open(EditarprovinciaComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 provincia: a,
@@ -166,7 +166,7 @@ public totalRegiones: Region[];
 	agregacionProvincia()
 	{
 		let dialogRef = this.dialog.open(AgregarprovinciaComponent, {
-			width: '1000px',
+			width: '700px',
 			data : {
         regiones: this.totalRegiones,
         servicioRegion: this.servicioRegion,

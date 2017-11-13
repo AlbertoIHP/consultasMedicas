@@ -123,7 +123,7 @@ export class PrevisionesComponent{
 		this.pasarStringId(a);
 
 		let dialogRef = this.dialog.open(EditarprevisionComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 prevision: a
@@ -139,7 +139,7 @@ export class PrevisionesComponent{
 	agregacionPrevision()
 	{
 		let dialogRef = this.dialog.open(AgregarprevisionComponent, {
-			width: '1000px'
+			width: '700px'
 		});
 
 		dialogRef.afterClosed().subscribe(result => {

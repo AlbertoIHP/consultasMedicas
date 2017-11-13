@@ -206,7 +206,7 @@ export class PacientesComponent implements OnInit {
 
 	console.log(a);
 	let dialogRef = this.dialog.open(EditarpacienteComponent, {
-		width: '1000px',
+		width: '700px',
 		data:
 		{
      pacientes: this.totalPacientes,
@@ -230,7 +230,7 @@ export class PacientesComponent implements OnInit {
 	{
 
 		let dialogRef = this.dialog.open(AgregarpacienteComponent, {
-			width: '1000px',
+			width: '700px',
 		data: {
 			 paciente: new Paciente(),
 			 personas: this.totalPersonas,
@@ -257,7 +257,7 @@ export class PacientesComponent implements OnInit {
 		console.log(persona);
 
 		let dialogRef = this.dialog.open(VerpersonaComponent, {
-		width: '1000px',
+		width: '700px',
 		data: { persona: persona }
 		});
 

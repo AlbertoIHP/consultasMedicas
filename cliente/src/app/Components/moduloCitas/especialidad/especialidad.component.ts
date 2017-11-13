@@ -135,7 +135,7 @@ export class EspecialidadComponent {
 	{
 
 		let dialogRef = this.dialog.open(EditarespecialidadComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 especialidad: especialidad
@@ -151,7 +151,7 @@ export class EspecialidadComponent {
 	agregacionEspecialidad()
 	{
 		let dialogRef = this.dialog.open(AgregarespecialidadComponent, {
-			width: '1000px'
+			width: '700px'
 		});
 
 		dialogRef.afterClosed().subscribe(result => {

@@ -159,7 +159,7 @@ actualizarTipoBoxes ()
 		this.pasarStringId(a);
 
 		let dialogRef = this.dialog.open(EditarboxconsultaComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 boxconsulta: a,
@@ -177,7 +177,7 @@ actualizarTipoBoxes ()
 	agregacionBoxConsulta()
 	{
 		let dialogRef = this.dialog.open(AgregarboxconsultaComponent, {
-			width: '1000px',
+			width: '700px',
 			data:{
 				totalTipoBoxes:this.totalTipoBoxes,
 				servicioTipoBox:this.servicioTipoBox,

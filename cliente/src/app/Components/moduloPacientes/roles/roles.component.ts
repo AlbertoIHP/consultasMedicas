@@ -90,7 +90,7 @@ public usuarioActual;
 	{
 
 		let dialogRef = this.dialog.open(EditarrolesComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 role: role
@@ -106,7 +106,7 @@ public usuarioActual;
 	agregacionRole()
 	{
 		let dialogRef = this.dialog.open(AgregarrolesComponent, {
-			width: '1000px'
+			width: '700px'
 		});
 
 		dialogRef.afterClosed().subscribe(result => {

@@ -93,7 +93,7 @@ export class EstadocivilComponent{
 	{
 
 		let dialogRef = this.dialog.open(EditarEstadoCComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 ec: ec
@@ -109,7 +109,7 @@ export class EstadocivilComponent{
 	agregacionEC()
 	{
 		let dialogRef = this.dialog.open(AgregarEstadoCComponent, {
-			width: '1000px'
+			width: '700px'
 		});
 
 		dialogRef.afterClosed().subscribe(result => {

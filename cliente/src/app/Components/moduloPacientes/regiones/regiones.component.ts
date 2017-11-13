@@ -92,7 +92,7 @@ export class RegionesComponent {
 	{
 
 		let dialogRef = this.dialog.open(EditarregionesComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 region: region
@@ -113,7 +113,7 @@ export class RegionesComponent {
 	agregacionRegion()
 	{
 		let dialogRef = this.dialog.open(AgregarregionesComponent, {
-			width: '1000px'
+			width: '700px'
 		});
 
 		dialogRef.afterClosed().subscribe(result => {

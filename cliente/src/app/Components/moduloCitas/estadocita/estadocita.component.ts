@@ -137,7 +137,7 @@ export class EstadocitaComponent {
 	{
 
 		let dialogRef = this.dialog.open(EditarestadocitaComponent, {
-			width: '1000px',
+			width: '700px',
 			data:
 			{
 			 estadocita: estadocita
@@ -153,7 +153,7 @@ export class EstadocitaComponent {
 	agregacionEstadoCita()
 	{
 		let dialogRef = this.dialog.open(AgregarestadocitaComponent, {
-			width: '1000px'
+			width: '700px'
 		});
 
 		dialogRef.afterClosed().subscribe(result => {
