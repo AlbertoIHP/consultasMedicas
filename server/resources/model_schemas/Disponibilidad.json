@@ -11,9 +11,9 @@
         "inIndex": false
     },
     {
-        "name": "Especialidad_id",
-        "dbType": "integer,false,true",
-        "htmlType": null,
+        "name": "dia",
+        "dbType": "string",
+        "htmlType": "text",
         "validations": null,
         "searchable": true,
         "fillable": true,
@@ -22,7 +22,29 @@
         "inIndex": true
     },
     {
-        "name": "Persona_id",
+        "name": "hora_inicio",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "hora_termino",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "Medico_id",
         "dbType": "integer,false,true",
         "htmlType": null,
         "validations": null,
@@ -78,11 +100,7 @@
     },
     {
         "type": "relation",
-        "relation": "mt1,Especialidad"
-    },
-    {
-        "type": "relation",
-        "relation": "mt1,Persona"
+        "relation": "mt1,Medico"
     },
     {
         "type": "relation",
@@ -90,15 +108,11 @@
     },
     {
         "type": "relation",
-        "relation": "1tm,Citum"
-    },
-    {
-        "type": "relation",
         "relation": "mtm,,DiagnosticosAtencion"
     },
     {
         "type": "relation",
-        "relation": "1tm,Disponibilidad"
+        "relation": "mtm,,Medico"
     },
     {
         "type": "relation",

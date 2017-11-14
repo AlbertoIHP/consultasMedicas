@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="Medico",
+ *      definition="Disponibilidad",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,14 +16,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="Especialidad_id",
- *          description="Especialidad_id",
- *          type="integer",
- *          format="int32"
+ *          property="dia",
+ *          description="dia",
+ *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="Persona_id",
- *          description="Persona_id",
+ *          property="hora_inicio",
+ *          description="hora_inicio",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="hora_termino",
+ *          description="hora_termino",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="Medico_id",
+ *          description="Medico_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -34,11 +43,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class Medico extends Model
+class Disponibilidad extends Model
 {
     use SoftDeletes;
 
-    public $table = 'Medico';
+    public $table = 'Disponibilidad';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -48,8 +57,10 @@ class Medico extends Model
 
 
     public $fillable = [
-        'Especialidad_id',
-        'Persona_id',
+        'dia',
+        'hora_inicio',
+        'hora_termino',
+        'Medico_id',
         'remember_token'
     ];
 
@@ -60,8 +71,10 @@ class Medico extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'Especialidad_id' => 'integer',
-        'Persona_id' => 'integer',
+        'dia' => 'string',
+        'hora_inicio' => 'string',
+        'hora_termino' => 'string',
+        'Medico_id' => 'integer',
         'remember_token' => 'string'
     ];
 
@@ -77,33 +90,9 @@ class Medico extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function especialidad()
+    public function medico()
     {
-        return $this->belongsTo(\App\Models\Especialidad::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function persona()
-    {
-        return $this->belongsTo(\App\Models\Persona::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function cita()
-    {
-        return $this->hasMany(\App\Models\Citum::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function disponibilidads()
-    {
-        return $this->hasMany(\App\Models\Disponibilidad::class);
+        return $this->belongsTo(\App\Models\Medico::class);
     }
     protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

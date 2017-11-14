@@ -410,3 +410,11 @@
     <a href="{!! route('citas.index') !!}"><i class="fa fa-edit"></i><span>Citas</span></a>
 </li>
 
+<li class="{{ Request::is('disponibilidads*') ? 'active' : '' }}">
+    <a href="{!! route('disponibilidads.index') !!}"><i class="fa fa-edit"></i><span>Disponibilidads</span></a>
+</li>
+
+<li class="{{ Request::is('medicos*') ? 'active' : '' }}">
+    <a href="{!! route('medicos.index') !!}"><i class="fa fa-edit"></i><span>Medicos</span></a>
+</li>
+

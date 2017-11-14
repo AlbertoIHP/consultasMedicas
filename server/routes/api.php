@@ -73,7 +73,11 @@ Route::group(['middleware' => ['cors']], function(){
     Route::resource('v1/medicos', 'MedicoAPIController');
 
     Route::resource('v1/citas', 'CitaAPIController');
+
+    Route::resource('v1/disponibilidads', 'DisponibilidadAPIController');
 });
+
+
 
 
 
