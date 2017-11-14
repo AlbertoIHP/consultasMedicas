@@ -63,6 +63,9 @@ export class AppComponent {
     this.iconRegistry
         .addSvgIcon('icono-error',
             sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/warning.svg'));
+    this.iconRegistry
+        .addSvgIcon('icono-alternativo',
+            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/alternativo/pencil.svg'));
 
     if(localStorage.getItem('currentUser'))
     {
