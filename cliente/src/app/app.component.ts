@@ -109,4 +109,11 @@ export class AppComponent {
     this.router.navigate(['/'])
   }
 
+  changeMenu(menu1, menu2)
+  {
+    menu1.close()
+    menu2.close()
+  }
+
+
 }

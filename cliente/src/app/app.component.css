@@ -16,3 +16,16 @@
   flex: 1 1 auto;
 }
 
+.sidenavBtn
+{
+  width: 100%;
+  text-align: left
+}
+
+.bloqueSideNav
+{
+    position: absolute;
+    height: 64px;
+    width: 240px;
+    background-color: #3f51b5;
+}

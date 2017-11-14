@@ -18,7 +18,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-
+import { Router } from '@angular/router';
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
@@ -45,8 +45,16 @@ export class EstadocivilComponent{
 	displayedColumns = ['Acciones', 'Nombre', 'Descripcion'];
 
 
-	constructor (public servicioEstadoCivil: EstadocivilService, public dialog: MatDialog)
-	{
+	constructor (
+    public servicioEstadoCivil: EstadocivilService,
+    public dialog: MatDialog,
+    public router: Router)
+  {
+    if( !(localStorage.getItem('currentUser')) )
+    {
+      this.router.navigate(['login'])
+    }
+
 		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalEstadoCiviles = [];

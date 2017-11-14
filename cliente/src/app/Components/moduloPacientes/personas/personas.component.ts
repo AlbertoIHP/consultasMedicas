@@ -47,7 +47,6 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
@@ -100,9 +99,16 @@ export class PersonaComponent implements OnInit{
     public dialog: MatDialog,
     public servicioEventos: EventosService,
     public servicioUsuario: UserService,
-    public servicioRole: RoleService,
+    public servicioRole: RoleService
+
     )
   {
+    if( !(localStorage.getItem('currentUser')) )
+    {
+      this.router.navigate(['login'])
+    }
+
+
 
     this.usuarioActual=new UsuarioActual();
 

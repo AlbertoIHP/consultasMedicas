@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
 
           this.roleId = currentUser[0].Role_id
 
-          var personaId=currentUser[0].Persona_id 
+          var personaId=currentUser[0].Persona_id
 
           this.servicioModulo.getModulos().subscribe(data => {
             var todo: any = data
@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('persona',test);
 
               this.eventService.singIn()
-              this.router.navigate(['moduloPacientes'])
+              this.router.navigate(['per'])
 
 
             })

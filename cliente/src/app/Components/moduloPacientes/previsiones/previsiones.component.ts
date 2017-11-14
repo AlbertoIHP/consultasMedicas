@@ -25,7 +25,7 @@ import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/dat
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
-
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-previsiones',
@@ -45,8 +45,18 @@ export class PrevisionesComponent{
 	public buscarPorNombre: boolean;
 	displayedColumns = ['Acciones', 'Nombre', 'Descripcion', 'Isapre'];
 
-	constructor (public servicioPrevisiones: PrevisionService, public dialog: MatDialog)
-	{
+	constructor (
+    public servicioPrevisiones: PrevisionService,
+    public dialog: MatDialog,
+    public router: Router)
+  {
+    if( !(localStorage.getItem('currentUser')) )
+    {
+      this.router.navigate(['login'])
+    }
+
+
+
 		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalPrevisiones = [];

@@ -23,7 +23,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
-
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-generos',
@@ -45,8 +45,19 @@ export class GenerosComponent  {
 	displayedColumns = ['Acciones', 'Nombre', 'Descripcion'];
 
 
-	constructor (public servicioGenero: GeneroService, public dialog: MatDialog)
-	{
+	constructor (
+    public servicioGenero: GeneroService,
+    public dialog: MatDialog,
+    public router: Router
+
+
+    )
+  {
+    if( !(localStorage.getItem('currentUser')) )
+    {
+      this.router.navigate(['login'])
+    }
+
 		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalGeneros = [];

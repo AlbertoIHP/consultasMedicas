@@ -1,46 +1,37 @@
 
 
-<div class="row" style="margin-left: 25%; margin-right: 25%">
-  <div class="col s12">
-    <mat-card class="example-card" style="margin-top: 80px">
+<div class="container" style="margin-top: 10px">
 
-      <mat-card-content style="color: grey">
-      <div class="row">
-        <div class="col s1">
-          <mat-icon >person</mat-icon>
-        </div>
-        <div class="col s11">
-          <input matInput placeholder="Correo Electronico" type="email" [(ngModel)]="user" (ngModelChange)="activeLogIn()">
-        </div>
-      </div>
+  <div class="row">
+    <div class="col s12" style="text-align: center">
+        <img src="assets/logo.png" alt="" class="circle responsive-img" style="max-width: 40%; max-height: 40%">
+    </div>
+  </div>
 
-      <div class="row">
-        <div class="col s1">
-          <mat-icon >lock</mat-icon>
-        </div>
-        <div class="col s11">
-          <input matInput placeholder="Contraseña" type="password" [(ngModel)]="password" (ngModelChange)="activeLogIn()">
-        </div>
-      </div>
-      </mat-card-content>
+  <div class="row">
+    <div class="col s12">
+      <label for="email">Correo Electrónico</label>
+      <input type="email" id="email" matInput [(ngModel)]="user" (ngModelChange)="activeLogIn()">
+    </div>
+  </div>
 
-      <mat-card-actions>
-        <div class="row" style="margin-bottom: 0px">
-          <div class="col s12" >
-        <button mat-button style="width: 100%" (click)="login()" disabled="{{isLoginable}}">Iniciar Sesion</button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col s12">
-        <button mat-button style="width: 100%" (click)="register()">Registrarme</button>
-          </div>
-        </div>
-      </mat-card-actions>
+  <div class="row">
+    <div class="col s12">
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" matInput [(ngModel)]="password" (ngModelChange)="activeLogIn()" >
+    </div>
+  </div>
 
-</mat-card>
+  <div class="row">
+    <div class="col s12">
+      <button style="width: 100%" mat-button (click)="login()" disabled="{{isLoginable}}">Iniciar Sesión</button>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col s12">
+      <button style="width: 100%" mat-button (click)="register()">Registrarme</button>
+    </div>
   </div>
 
 </div>
-
-

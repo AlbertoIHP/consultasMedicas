@@ -27,7 +27,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
-
+import { Router } from '@angular/router';
 @Component({
 	selector: 'app-comunas',
 	templateUrl: './comunas.component.html',
@@ -48,8 +48,17 @@ export class ComunasComponent {
 	displayedColumns = ['Acciones', 'Nombre', 'Provincia'];
 
 
-	constructor (public servicioProvincia: ProvinciaService, public servicioComuna: ComunaService, public dialog: MatDialog)
-	{
+	constructor (
+    public servicioProvincia: ProvinciaService,
+    public servicioComuna: ComunaService,
+    public dialog: MatDialog,
+    public router: Router)
+  {
+    if( !(localStorage.getItem('currentUser')) )
+    {
+      this.router.navigate(['login'])
+    }
+
 		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalProvincias = [];

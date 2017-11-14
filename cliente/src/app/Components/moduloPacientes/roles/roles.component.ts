@@ -21,7 +21,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
-
+import { Router } from '@angular/router';
 @Component({
 	selector: 'app-roles',
 	templateUrl: './roles.component.html',
@@ -41,8 +41,18 @@ public usuarioActual;
 	displayedColumns = ['Acciones', 'Nombre'];
 
 
-	constructor (public servicioRole: RoleService, public dialog: MatDialog)
-	{
+	constructor (
+    public servicioRole: RoleService,
+    public dialog: MatDialog,
+    public router: Router)
+  {
+    if( !(localStorage.getItem('currentUser')) )
+    {
+      this.router.navigate(['login'])
+    }
+
+
+
 		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalRoles = [];

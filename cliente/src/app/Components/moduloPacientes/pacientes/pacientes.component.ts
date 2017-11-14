@@ -36,7 +36,7 @@ import { VerFichaMedicaComponent } from '../fichamedica/verfichamedica/verficham
 import { EventosService } from '../../../Services/eventos/eventos.service';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
-
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-pacientes',
@@ -63,9 +63,15 @@ export class PacientesComponent implements OnInit {
 		public servicioTS: TipoSangreService,
 		public servicioPaciente: PacienteService,
 		public dialog: MatDialog,
-    public servicioEventos: EventosService
-		)
-	{
+    public servicioEventos: EventosService,
+    public router: Router)
+  {
+    if( !(localStorage.getItem('currentUser')) )
+    {
+      this.router.navigate(['login'])
+    }
+
+
 		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalTS = [];

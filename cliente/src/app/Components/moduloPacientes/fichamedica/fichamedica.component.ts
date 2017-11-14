@@ -36,7 +36,7 @@ import 'rxjs/add/observable/of';
 
 import { Usuario } from '../../../Models/Usuario.model';
 import { Role } from '../../../Models/Role.model';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fichamedica',
@@ -130,9 +130,14 @@ export class FichaMedicaComponent implements OnInit{
     public servicioPrevisionActual: PrevisionactualService,
     public servicioPrevision: PrevisionService,
     public servicioPaciente:PacienteService,
-    
+    public router: Router) {
 
-    ) {
+
+        if( !(localStorage.getItem('currentUser')) )
+        {
+          this.router.navigate(['login'])
+        }
+
         this.contenidoStorage=JSON.parse(localStorage.getItem('persona'));
 
         this.personaPaciente=[];
@@ -512,7 +517,7 @@ obtenerProvinciaPaciente(id){
 
  }
 
- 
+
 
 }
 

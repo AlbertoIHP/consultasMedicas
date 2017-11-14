@@ -32,7 +32,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing, appRoutingProviders } from './Routes/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatListModule, MatStepperModule, MatCardModule, MatGridListModule, MatButtonToggleModule, MatTabsModule, MatInputModule , MatSelectModule, MatDialogModule, MatPaginatorModule, MatTableModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule } from '@angular/material';
+import { MatExpansionModule, MatListModule, MatStepperModule, MatCardModule, MatGridListModule, MatButtonToggleModule, MatTabsModule, MatInputModule , MatSelectModule, MatDialogModule, MatPaginatorModule, MatTableModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule } from '@angular/material';
 
 
 
@@ -118,17 +118,17 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   import { BoxconsultaComponent } from './Components/moduloCitas/boxconsulta/boxconsulta.component';
   import { AgregarboxconsultaComponent } from './Components/moduloCitas/boxconsulta/agregarboxconsulta/agregarboxconsulta.component';
   import { EditarboxconsultaComponent } from './Components/moduloCitas/boxconsulta/editarboxconsulta/editarboxconsulta.component';
-  
+
   //Componente Estado Cita
   import { EstadocitaComponent } from './Components/moduloCitas/estadocita/estadocita.component';
   import { AgregarestadocitaComponent } from './Components/moduloCitas/estadocita/agregarestadocita/agregarestadocita.component';
   import { EditarestadocitaComponent } from './Components/moduloCitas/estadocita/editarestadocita/editarestadocita.component';
-  
+
   //Componente Especialidad
   import { EspecialidadComponent } from './Components/moduloCitas/especialidad/especialidad.component';
   import { AgregarespecialidadComponent } from './Components/moduloCitas/especialidad/agregarespecialidad/agregarespecialidad.component';
   import { EditarespecialidadComponent } from './Components/moduloCitas/especialidad/editarespecialidad/editarespecialidad.component';
-  
+
   //Componente Medico
   import { MedicoComponent } from './Components/moduloCitas/medico/medico.component';
   import { AgregarmedicoComponent } from './Components/moduloCitas/medico/agregarmedico/agregarmedico.component';
@@ -140,7 +140,7 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   import { EditarcitaComponent } from './Components/moduloCitas/cita/editarcita/editarcita.component';
   import { VercitaComponent } from './Components/moduloCitas/cita/vercita/vercita.component';
 import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaje-error.component';
-  
+
 
 
 
@@ -291,7 +291,8 @@ import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaj
     MatGridListModule,
     MatCardModule,
     MatStepperModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule
   ],
 
   providers:

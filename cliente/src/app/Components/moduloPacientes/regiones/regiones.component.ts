@@ -23,7 +23,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
-
+import { Router } from '@angular/router';
 @Component({
 	selector: 'app-regiones',
 	templateUrl: './regiones.component.html',
@@ -47,8 +47,18 @@ export class RegionesComponent {
 
 
 
-	constructor (public servicioRegion: RegionService , public dialog: MatDialog)
-	{
+	constructor (
+    public servicioRegion: RegionService,
+    public dialog: MatDialog,
+    public router: Router)
+  {
+    if( !(localStorage.getItem('currentUser')) )
+    {
+      this.router.navigate(['login'])
+    }
+
+
+
 		this.usuarioActual=new UsuarioActual();
 		this.buscarPorNombre = false;
 		this.totalRegiones = [];

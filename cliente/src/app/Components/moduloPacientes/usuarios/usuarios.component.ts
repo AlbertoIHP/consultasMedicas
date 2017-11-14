@@ -13,7 +13,7 @@ import { RoleService } from '../../../Services/role/role.service';
 import { AgregarusuarioComponent } from './agregarusuario/agregarusuario.component';
 import { EditarusuarioComponent } from './editarusuario/editarusuario.component';
 
-
+import { Router } from '@angular/router';
 import { VerpersonaComponent } from '../personas/verpersona/verpersona.component';
 
 //DATATABLES
@@ -62,20 +62,28 @@ export class UsuariosComponent {
 	public servicioRole: RoleService,
 	public servicioPersona: PersonaService,
 	public dialog: MatDialog,
-  public servicioEventos: EventosService
-	)
-	{
-	this.usuarioActual=new UsuarioActual();
-	this.buscarPorNombre = false;
-	this.totalRoles = [];
-	this.totalPersonas = [];
-	this.totalUsuarios = [];
-	this.actualizarRoles();
-	this.actualizarPersonas();
-	this.actualizarUsuarios();
-  this.servicioEventos.seActivo.subscribe(() => {
-      this.actualizarUsuarios();
-    });
+  public servicioEventos: EventosService,
+    public router: Router)
+  {
+    if( !(localStorage.getItem('currentUser')) )
+    {
+      this.router.navigate(['login'])
+    }
+
+
+
+
+  	this.usuarioActual=new UsuarioActual();
+  	this.buscarPorNombre = false;
+  	this.totalRoles = [];
+  	this.totalPersonas = [];
+  	this.totalUsuarios = [];
+  	this.actualizarRoles();
+  	this.actualizarPersonas();
+  	this.actualizarUsuarios();
+    this.servicioEventos.seActivo.subscribe(() => {
+        this.actualizarUsuarios();
+      });
 	}
 
 	actualizarRoles ()

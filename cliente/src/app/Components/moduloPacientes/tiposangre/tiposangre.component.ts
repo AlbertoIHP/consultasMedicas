@@ -19,7 +19,7 @@ import 'rxjs/add/observable/fromEvent';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
-
+import { Router } from '@angular/router';
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
 @Component({
@@ -44,8 +44,18 @@ export class TiposangreComponent implements OnInit {
 
 
 
-  constructor(public servicioTS: TipoSangreService , public dialog: MatDialog)
+  constructor(
+    public servicioTS: TipoSangreService,
+    public dialog: MatDialog,
+    public router: Router)
   {
+    if( !(localStorage.getItem('currentUser')) )
+    {
+      this.router.navigate(['login'])
+    }
+
+
+
     this.usuarioActual=new UsuarioActual();
     this.buscarPorNombre = false;
     this.totalTS = [];
