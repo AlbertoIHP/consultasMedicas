@@ -21,12 +21,12 @@
 			<mat-cell *matCellDef="let row" >
 
 							<button *ngIf="usuarioActual.obtenerPermisoUpdate('TipoBox')" mat-icon-button (click) = "edicionTipoBox(row)" >
-								<mat-icon svgIcon="icono-editar"></mat-icon>
+								<i class="material-icons icono-editar">edit</i>
 							</button>
 
 
 							<button *ngIf="usuarioActual.obtenerPermisoErase('TipoBox')" mat-icon-button (click) = "eliminarTipoBox(row)" >
-								<mat-icon svgIcon="icono-eliminar"></mat-icon>
+								<i class="material-icons icono-borrar">delete</i>
 							</button>
 
 			</mat-cell>
@@ -59,12 +59,12 @@
 			<mat-cell *matCellDef="let row">
 
 							<button *ngIf="usuarioActual.obtenerPermisoUpdate('TipoBox')" mat-icon-button (click) = "edicionTipoBox(row)" >
-								<mat-icon svgIcon="icono-editar"></mat-icon>
+								<i class="material-icons icono-editar">edit</i>
 							</button>
 
 
 							<button *ngIf="usuarioActual.obtenerPermisoErase('TipoBox')" mat-icon-button (click) = "eliminarTipoBox(row)" >
-								<mat-icon svgIcon="icono-eliminar"></mat-icon>
+								<i class="material-icons icono-borrar">delete</i>
 							</button>
 
 			 </mat-cell>
