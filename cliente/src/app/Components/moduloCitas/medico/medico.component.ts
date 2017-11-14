@@ -1,20 +1,5 @@
 import { Component, ElementRef, ViewChild, Inject, OnInit, Input } from '@angular/core';
 
-//DATATABLES
-import {DataSource} from '@angular/cdk/collections';
-import {MatPaginator} from '@angular/material';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/observable/fromEvent';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
-import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
-
 import { Persona } from '../../../Models/Persona.model';
 import { PersonaService } from '../../../Services/persona/persona.service';
 
@@ -23,11 +8,6 @@ import { EspecialidadService } from '../../../Services/especialidad/especialidad
 
 import { Medico } from '../../../Models/Medico.model';
 import { MedicoService } from '../../../Services/medico/medico.service';
-
-/*
-import { Cita } from '../../../Models/Cita.model';
-import { CitaService } from '../../../Services/cita/cita.service';
-*/
 
 import { Role } from '../../../Models/Role.model';
 
@@ -42,13 +22,28 @@ import { EventosService } from '../../../Services/eventos/eventos.service';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
+//DATATABLE
+import {DataSource} from '@angular/cdk/collections';
+import {MatPaginator, MatSort} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
+import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
 
 @Component({
   selector: 'app-medico',
   templateUrl: './medico.component.html',
   styleUrls: ['./medico.component.css']
 })
-export class MedicoComponent implements OnInit {
+export class MedicoComponent  {
 	public totalPersonas: Persona[];
 	public totalMedicos: Medico[];
 	public totalEspecialidad: Especialidad[];
@@ -56,15 +51,64 @@ export class MedicoComponent implements OnInit {
 
 	/*Temporal para validación
 	public totalCitas: Cita[];*/
-
-	//DATATABLE
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild('filter') filter: ElementRef;
-	public sourceDatatable: dataTable | null;
-	public sourcePorNombre: buscadorPorNombre | null;
-	public bdEstructura;
-	public buscarPorNombre: boolean;
 	displayedColumns = ['Acciones', 'Rut', 'Persona', 'Especialidad'];
+
+
+  //DATATABLE
+  exampleDatabase;
+  selection = new SelectionModel<string>(true, []);
+  dataSource: ExampleDataSource | null;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('filter') filter: ElementRef;
+
+
+
+  ngOnInit()
+  {
+    this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Medico');
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+        .debounceTime(150)
+        .distinctUntilChanged()
+        .subscribe(() => {
+          if (!this.dataSource) { return; }
+          this.dataSource.filter = this.filter.nativeElement.value;
+        })
+
+
+    this.exampleDatabase = []
+
+  }
+
+
+  isAllSelected(): boolean
+  {
+    if (!this.dataSource) { return false; }
+    if (this.selection.isEmpty()) { return false; }
+
+    if (this.filter.nativeElement.value) {
+      return this.selection.selected.length == this.dataSource.renderedData.length;
+    } else {
+      return this.selection.selected.length == this.exampleDatabase.data.length;
+    }
+  }
+
+  masterToggle()
+  {
+    if (!this.dataSource) { return; }
+
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else if (this.filter.nativeElement.value) {
+      this.dataSource.renderedData.forEach(data => this.selection.select(data.id));
+    } else {
+      this.exampleDatabase.data.forEach(data => this.selection.select(data.id));
+    }
+  }
+
+
+
+
 
 	constructor(
 		public servicioPersona: PersonaService,
@@ -76,7 +120,6 @@ export class MedicoComponent implements OnInit {
 	)
 	{
 		this.usuarioActual=new UsuarioActual();
-		this.buscarPorNombre = false;
 		this.totalEspecialidad = [];
 		this.totalMedicos = [];
 		this.totalPersonas = [];
@@ -87,9 +130,6 @@ export class MedicoComponent implements OnInit {
       		this.actualizarPersonas();
     	});
 
-	}
-
-	ngOnInit() {
 	}
 
 
@@ -131,17 +171,17 @@ export class MedicoComponent implements OnInit {
 
 			this.reemplazarIdPorString();
 
-		//DATATABLE
-			this.bdEstructura = new ExampleDatabase(this.totalMedicos );
-			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
-			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, "Medico");
-			Observable.fromEvent(this.filter.nativeElement, 'keyup')
-				.debounceTime(150)
-				.distinctUntilChanged()
-				.subscribe(() => {
-				if (!this.sourcePorNombre) { return; }
-				this.sourcePorNombre.filter = this.filter.nativeElement.value;
-				});
+      //DATATABLE
+      this.exampleDatabase  = new ExampleDatabase(this.totalMedicos);
+
+      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'Medico');
+      Observable.fromEvent(this.filter.nativeElement, 'keyup')
+          .debounceTime(150)
+          .distinctUntilChanged()
+          .subscribe(() => {
+            if (!this.dataSource) { return; }
+            this.dataSource.filter = this.filter.nativeElement.value;
+          })
 
 
 
@@ -187,12 +227,7 @@ export class MedicoComponent implements OnInit {
   }
 
 
-	cambiarBusqueda()
-	{
-	this.buscarPorNombre = !this.buscarPorNombre;
-	}
-
-	/* 
+	/*
 	actualizarCitas()
 	{
 		//buscar en box consultas el box que tenga el tipo box asociado (cambiar en backend)
@@ -205,7 +240,7 @@ export class MedicoComponent implements OnInit {
 
 	//Función temporal que retornará true en caso de que el médico esté en uso
 	verificarUsoMedico(medico):boolean{
-		
+
 		console.log(this.totalCitas.length);
 		for(let i=0;i<this.totalCitas.length;i++){
 			console.log(this.totalCitas[i].Medico_id+'-'+medico.id);
@@ -218,7 +253,7 @@ export class MedicoComponent implements OnInit {
 
 
 	eliminarMedico (medico)
-	{	
+	{
 		console.log('click');
 		if(this.verificarUsoMedico(medico)==true){
 
@@ -230,7 +265,7 @@ export class MedicoComponent implements OnInit {
 				this.actualizarMedicos();
 			});
 		}
-		
+
 	} */
 
 	eliminarMedico (medico)

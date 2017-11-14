@@ -22,8 +22,6 @@ import { ComunaService } from '../../../Services/comuna/comuna.service';
 import { AgregarpersonaComponent } from './agregarpersona/agregarpersona.component';
 import { EditarpersonaComponent } from './editarpersona/editarpersona.component';
 
-
-
 import { VerPrevisionComponent } from '../previsiones/verprevision/verprevision.component';
 
 
@@ -35,28 +33,36 @@ import { Usuario } from '../../../Models/Usuario.model';
 import { UserService } from '../../../Services/user/user.service';
 import { RoleService } from '../../../Services/role/role.service';
 
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
+
+
+//DATATABLE
 import {DataSource} from '@angular/cdk/collections';
-import {MatPaginator} from '@angular/material';
+import {MatPaginator, MatSort} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
+import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
-import {UsuarioActual} from '../../Globals/usuarioactual.component';
+
+
+
+
 
 @Component({
   selector: 'app-personas',
   templateUrl: './personas.component.html',
   styleUrls: ['./personas.component.css']
 })
-export class PersonaComponent implements OnInit{
+export class PersonaComponent{
   displayedColumns = [
   'Acciones',
   'Rut',
@@ -75,18 +81,73 @@ export class PersonaComponent implements OnInit{
   public totalEstadoCiviles: EstadoCivil[];
   public usuarioActual;
 
+
+
   //DATATABLE
-  public exampleDatabase;
-  public dataSource: dataTable | null;
-  public dataSource2: buscadorPorNombre | null;
+  exampleDatabase;
+  selection = new SelectionModel<string>(true, []);
+  dataSource: ExampleDataSource | null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
-  public buscarPorRut: boolean;
+
+
 
   ngOnInit()
   {
-  console.log("ME ESTOY INICIANDO");
+    this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Persona');
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+        .debounceTime(150)
+        .distinctUntilChanged()
+        .subscribe(() => {
+          if (!this.dataSource) { return; }
+          this.dataSource.filter = this.filter.nativeElement.value;
+        })
+
+
+    this.exampleDatabase = []
+
   }
+
+
+  isAllSelected(): boolean
+  {
+    if (!this.dataSource) { return false; }
+    if (this.selection.isEmpty()) { return false; }
+
+    if (this.filter.nativeElement.value) {
+      return this.selection.selected.length == this.dataSource.renderedData.length;
+    } else {
+      return this.selection.selected.length == this.exampleDatabase.data.length;
+    }
+  }
+
+  masterToggle()
+  {
+    if (!this.dataSource) { return; }
+
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else if (this.filter.nativeElement.value) {
+      this.dataSource.renderedData.forEach(data => this.selection.select(data.id));
+    } else {
+      this.exampleDatabase.data.forEach(data => this.selection.select(data.id));
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   constructor(
     public servicioPersona: PersonaService,
@@ -113,7 +174,8 @@ export class PersonaComponent implements OnInit{
     this.usuarioActual=new UsuarioActual();
 
     this.totalPacientes = [];
-    this.buscarPorRut = false;
+
+    this.totalGeneros = [];
 
     this.actualizarRegiones();
 
@@ -163,12 +225,6 @@ export class PersonaComponent implements OnInit{
     });
   }
 
-  cambiarBusqueda()
-  {
-    this.buscarPorRut = !this.buscarPorRut;
-  }
-
-
   editarPersona (persona)
   {
   var a = JSON.parse( JSON.stringify(persona) );
@@ -215,10 +271,6 @@ export class PersonaComponent implements OnInit{
     }
   });
 
-  dialogRef.afterClosed().subscribe(result => {
-
-    //this.actualizarPersonas();
-  });
   }
 
 
@@ -303,18 +355,19 @@ export class PersonaComponent implements OnInit{
       todo = todo.data;
       this.totalPacientes = todo;
       this.reemplazarIdPorString();
-      this.exampleDatabase = new ExampleDatabase(this.totalPacientes );
-      this.dataSource = new dataTable(this.exampleDatabase, this.paginator);
-      this.dataSource2 = new buscadorPorNombre(this.exampleDatabase, 'Persona');
 
+      //DATATABLE
+      this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
+
+      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'Persona');
       Observable.fromEvent(this.filter.nativeElement, 'keyup')
-        .debounceTime(150)
-        .distinctUntilChanged()
-        .subscribe(() => {
-          if (!this.dataSource2) { return; }
-          this.dataSource2.filter = this.filter.nativeElement.value;
-        });
-    });
+          .debounceTime(150)
+          .distinctUntilChanged()
+          .subscribe(() => {
+            if (!this.dataSource) { return; }
+            this.dataSource.filter = this.filter.nativeElement.value;
+          })
+    })
   }
 
   actualizarProvincias()
@@ -372,8 +425,6 @@ export class PersonaComponent implements OnInit{
     paciente.estado = 1;
     this.pasarStringId(paciente);
     this.servicioPersona.editPersona(paciente, paciente.id).subscribe(data => {
-      console.log(data);
-      this.actualizarPersonas();
       this.servicioEventos.hiceUnCambio();
     });
   }
@@ -383,8 +434,6 @@ export class PersonaComponent implements OnInit{
     paciente.estado = 0;
     this.pasarStringId(paciente);
     this.servicioPersona.editPersona(paciente, paciente.id).subscribe(data => {
-      console.log(data);
-      //this.actualizarPersonas();
       this.servicioEventos.hiceUnCambio();
     });
   }
@@ -409,10 +458,6 @@ export class PersonaComponent implements OnInit{
     }
   });
 
-  dialogRef.afterClosed().subscribe(result => {
-
-    //this.actualizarPersonas();
-  });
   }
 
 

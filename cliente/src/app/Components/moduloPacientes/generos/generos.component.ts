@@ -6,24 +6,28 @@ import { GeneroService } from '../../../Services/genero/genero.service';
 
 import { AgregargeneroComponent } from './agregargenero/agregargenero.component';
 import { EditargeneroComponent } from './editargenero/editargenero.component';
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
+import { Router } from '@angular/router';
 
+
+//DATATABLE
 import {DataSource} from '@angular/cdk/collections';
-import {MatPaginator} from '@angular/material';
+import {MatPaginator, MatSort} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
+import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
-import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
-import {UsuarioActual} from '../../Globals/usuarioactual.component';
-import { Router } from '@angular/router';
+
 
 @Component({
 	selector: 'app-generos',
@@ -36,13 +40,79 @@ export class GenerosComponent  {
 	public usuarioActual;
 
 
-	//DATATABLE
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild('filter') filter: ElementRef;
-	public sourceDatatable: dataTable | null;
-	public sourcePorNombre: buscadorPorNombre | null;
-	public bdEstructura;
+  //DATATABLE
+  exampleDatabase;
+  selection = new SelectionModel<string>(true, []);
+  dataSource: ExampleDataSource | null;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('filter') filter: ElementRef;
+
 	displayedColumns = ['Acciones', 'Nombre', 'Descripcion'];
+
+
+  ngOnInit()
+  {
+    this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Genero');
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+        .debounceTime(150)
+        .distinctUntilChanged()
+        .subscribe(() => {
+          if (!this.dataSource) { return; }
+          this.dataSource.filter = this.filter.nativeElement.value;
+        })
+
+
+    this.exampleDatabase = []
+
+  }
+
+
+  isAllSelected(): boolean
+  {
+    if (!this.dataSource) { return false; }
+    if (this.selection.isEmpty()) { return false; }
+
+    if (this.filter.nativeElement.value) {
+      return this.selection.selected.length == this.dataSource.renderedData.length;
+    } else {
+      return this.selection.selected.length == this.exampleDatabase.data.length;
+    }
+  }
+
+  masterToggle()
+  {
+    if (!this.dataSource) { return; }
+
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else if (this.filter.nativeElement.value) {
+      this.dataSource.renderedData.forEach(data => this.selection.select(data.id));
+    } else {
+      this.exampleDatabase.data.forEach(data => this.selection.select(data.id));
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	constructor (
@@ -59,7 +129,6 @@ export class GenerosComponent  {
     }
 
 		this.usuarioActual=new UsuarioActual();
-		this.buscarPorNombre = false;
 		this.totalGeneros = [];
 		this.actualizarGeneros();
 	}
@@ -71,16 +140,17 @@ export class GenerosComponent  {
 			todo = todo.data;
 			this.totalGeneros = todo;
 
-			this.bdEstructura = new ExampleDatabase(this.totalGeneros );
-			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
-			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, 'Genero');
-			Observable.fromEvent(this.filter.nativeElement, 'keyup')
-					.debounceTime(150)
-					.distinctUntilChanged()
-					.subscribe(() => {
-						if (!this.sourcePorNombre) { return; }
-						this.sourcePorNombre.filter = this.filter.nativeElement.value;
-					});
+      //DATATABLE
+      this.exampleDatabase  = new ExampleDatabase(this.totalGeneros);
+
+      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'Genero');
+      Observable.fromEvent(this.filter.nativeElement, 'keyup')
+          .debounceTime(150)
+          .distinctUntilChanged()
+          .subscribe(() => {
+            if (!this.dataSource) { return; }
+            this.dataSource.filter = this.filter.nativeElement.value;
+          })
 
 
 		});
@@ -94,14 +164,6 @@ export class GenerosComponent  {
 		});
 	}
 
-
-
-	//DATATABLES
-
-	cambiarBusqueda()
-	{
-		this.buscarPorNombre = !this.buscarPorNombre;
-	}
 
 
 	edicionGenero (genero)

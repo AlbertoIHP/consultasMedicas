@@ -13,28 +13,30 @@ import { AgregarboxconsultaComponent } from './agregarboxconsulta/agregarboxcons
 import { EditarboxconsultaComponent } from './editarboxconsulta/editarboxconsulta.component';
 
 import { MensajeErrorComponent } from '../../Globals/mensaje-error/mensaje-error.component';
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
+//DATATABLE
 import {DataSource} from '@angular/cdk/collections';
-import {MatPaginator} from '@angular/material';
+import {MatPaginator, MatSort} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
+import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
 
-import {UsuarioActual} from '../../Globals/usuarioactual.component';
 @Component({
   selector: 'app-boxconsulta',
   templateUrl: './boxconsulta.component.html',
   styleUrls: ['./boxconsulta.component.css']
 })
-export class BoxconsultaComponent implements OnInit {
+export class BoxconsultaComponent {
 	public totalBoxConsultas: BoxConsulta[];
 	public totalTipoBoxes: TipoBox[];
 	public buscarPorNombre: boolean;
@@ -42,31 +44,75 @@ export class BoxconsultaComponent implements OnInit {
 
 	// Temporal para validación
 	public totalCitas: Cita[];
-
-	//DATATABLE
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild('filter') filter: ElementRef;
-	public sourceDatatable: dataTable | null;
-	public sourcePorNombre: buscadorPorNombre | null;
-	public bdEstructura;
 	displayedColumns = ['Acciones', 'Ubicacion', 'TipoBox'];
 
+  //DATATABLE
+  exampleDatabase;
+  selection = new SelectionModel<string>(true, []);
+  dataSource: ExampleDataSource | null;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('filter') filter: ElementRef;
 
-  constructor(public servicioBoxConsulta: BoxConsultaService, public servicioTipoBox: TipoBoxService, public servicioCita: CitaService, public dialog: MatDialog) 
+
+
+  ngOnInit()
+  {
+    this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'BoxConsulta');
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+        .debounceTime(150)
+        .distinctUntilChanged()
+        .subscribe(() => {
+          if (!this.dataSource) { return; }
+          this.dataSource.filter = this.filter.nativeElement.value;
+        })
+
+
+    this.exampleDatabase = []
+
+  }
+
+
+  isAllSelected(): boolean
+  {
+    if (!this.dataSource) { return false; }
+    if (this.selection.isEmpty()) { return false; }
+
+    if (this.filter.nativeElement.value) {
+      return this.selection.selected.length == this.dataSource.renderedData.length;
+    } else {
+      return this.selection.selected.length == this.exampleDatabase.data.length;
+    }
+  }
+
+  masterToggle()
+  {
+    if (!this.dataSource) { return; }
+
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else if (this.filter.nativeElement.value) {
+      this.dataSource.renderedData.forEach(data => this.selection.select(data.id));
+    } else {
+      this.exampleDatabase.data.forEach(data => this.selection.select(data.id));
+    }
+  }
+
+
+
+
+  constructor(public servicioBoxConsulta: BoxConsultaService, public servicioTipoBox: TipoBoxService, public servicioCita: CitaService, public dialog: MatDialog)
   {
 
   	this.usuarioActual=new UsuarioActual();
-	this.buscarPorNombre = false;
 	this.totalBoxConsultas = [];
 	this.totalTipoBoxes=[];
 	this.actualizarTipoBoxes();
 	this.actualizarBoxConsultas();
 	this.actualizarCitas();
-	
+
    }
 
-  ngOnInit() {
-  }
 
 actualizarTipoBoxes ()
 	{
@@ -85,16 +131,17 @@ actualizarTipoBoxes ()
 			this.totalBoxConsultas = todo;
 			this.reemplazarIdPorString();
 
-			this.bdEstructura = new ExampleDatabase(this.totalBoxConsultas );
-			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
-			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, 'BoxConsulta');
-			Observable.fromEvent(this.filter.nativeElement, 'keyup')
-					.debounceTime(150)
-					.distinctUntilChanged()
-					.subscribe(() => {
-						if (!this.sourcePorNombre) { return; }
-						this.sourcePorNombre.filter = this.filter.nativeElement.value;
-					});
+      //DATATABLE
+      this.exampleDatabase  = new ExampleDatabase(this.totalBoxConsultas);
+
+      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'BoxConsulta');
+      Observable.fromEvent(this.filter.nativeElement, 'keyup')
+          .debounceTime(150)
+          .distinctUntilChanged()
+          .subscribe(() => {
+            if (!this.dataSource) { return; }
+            this.dataSource.filter = this.filter.nativeElement.value;
+          })
 
 
 		});
@@ -113,7 +160,7 @@ actualizarTipoBoxes ()
 
 	//Función temporal que retornará true en caso de que la box consulta esté en uso
 	verificarUsoBoxConsulta(boxconsulta):boolean{
-		
+
 		console.log(this.totalCitas.length);
 		for(let i=0;i<this.totalCitas.length;i++){
 			console.log(this.totalCitas[i].BoxConsulta_id+'-'+boxconsulta.id);
@@ -126,7 +173,7 @@ actualizarTipoBoxes ()
 
 
 	eliminarBoxConsulta (boxconsulta)
-	{	
+	{
 		console.log('click');
 		if(this.verificarUsoBoxConsulta(boxconsulta)==true){
 
@@ -138,17 +185,12 @@ actualizarTipoBoxes ()
 				this.actualizarBoxConsultas();
 			});
 		}
-		
+
 	}
 
 
 
-//DATATABLES
 
-	cambiarBusqueda()
-	{
-		this.buscarPorNombre = !this.buscarPorNombre;
-	}
 
 
 	edicionBoxConsulta (boxconsulta)

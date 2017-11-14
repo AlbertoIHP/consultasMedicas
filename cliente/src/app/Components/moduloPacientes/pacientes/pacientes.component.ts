@@ -1,20 +1,5 @@
 import { Component, ElementRef, ViewChild, Inject, OnInit, Input } from '@angular/core';
 
-//DATATABLES
-import {DataSource} from '@angular/cdk/collections';
-import {MatPaginator} from '@angular/material';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/observable/fromEvent';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
-import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
-
 import { Persona } from '../../../Models/Persona.model';
 import { PersonaService } from '../../../Services/persona/persona.service';
 
@@ -38,6 +23,23 @@ import { EventosService } from '../../../Services/eventos/eventos.service';
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 import { Router } from '@angular/router';
 
+//DATATABLE
+import {DataSource} from '@angular/cdk/collections';
+import {MatPaginator, MatSort} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
+import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+
+
 @Component({
 	selector: 'app-pacientes',
 	templateUrl: './pacientes.component.html',
@@ -49,14 +51,67 @@ export class PacientesComponent implements OnInit {
 	public totalTS: TipoSangre[];
 	public usuarioActual;
 
-	//DATATABLE
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild('filter') filter: ElementRef;
-	public sourceDatatable: dataTable | null;
-	public sourcePorNombre: buscadorPorNombre | null;
-	public bdEstructura;
-	public buscarPorNombre: boolean;
 	displayedColumns = ['Acciones', 'Rut', 'Persona', 'Tipo Sangre'];
+
+  //DATATABLE
+  exampleDatabase;
+  selection = new SelectionModel<string>(true, []);
+  dataSource: ExampleDataSource | null;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('filter') filter: ElementRef;
+
+
+
+  ngOnInit()
+  {
+    this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Paciente');
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+        .debounceTime(150)
+        .distinctUntilChanged()
+        .subscribe(() => {
+          if (!this.dataSource) { return; }
+          this.dataSource.filter = this.filter.nativeElement.value;
+        })
+
+
+    this.exampleDatabase = []
+
+  }
+
+
+  isAllSelected(): boolean
+  {
+    if (!this.dataSource) { return false; }
+    if (this.selection.isEmpty()) { return false; }
+
+    if (this.filter.nativeElement.value) {
+      return this.selection.selected.length == this.dataSource.renderedData.length;
+    } else {
+      return this.selection.selected.length == this.exampleDatabase.data.length;
+    }
+  }
+
+  masterToggle()
+  {
+    if (!this.dataSource) { return; }
+
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else if (this.filter.nativeElement.value) {
+      this.dataSource.renderedData.forEach(data => this.selection.select(data.id));
+    } else {
+      this.exampleDatabase.data.forEach(data => this.selection.select(data.id));
+    }
+  }
+
+
+
+
+
+
+
+
 
 	constructor(
 		public servicioPersona: PersonaService,
@@ -73,7 +128,6 @@ export class PacientesComponent implements OnInit {
 
 
 		this.usuarioActual=new UsuarioActual();
-		this.buscarPorNombre = false;
 		this.totalTS = [];
 		this.totalPacientes = [];
 		this.totalPersonas = [];
@@ -85,8 +139,6 @@ export class PacientesComponent implements OnInit {
 
 	}
 
-	ngOnInit() {
-	}
 
 
 	actualizarPersonas()
@@ -131,17 +183,17 @@ export class PacientesComponent implements OnInit {
 
 			this.reemplazarIdPorString();
 
-		//DATATABLE
-			this.bdEstructura = new ExampleDatabase(this.totalPacientes );
-			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
-			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, "Paciente");
-			Observable.fromEvent(this.filter.nativeElement, 'keyup')
-				.debounceTime(150)
-				.distinctUntilChanged()
-				.subscribe(() => {
-				if (!this.sourcePorNombre) { return; }
-				this.sourcePorNombre.filter = this.filter.nativeElement.value;
-				});
+      //DATATABLE
+      this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
+
+      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'Paciente');
+      Observable.fromEvent(this.filter.nativeElement, 'keyup')
+          .debounceTime(150)
+          .distinctUntilChanged()
+          .subscribe(() => {
+            if (!this.dataSource) { return; }
+            this.dataSource.filter = this.filter.nativeElement.value;
+          })
 
 
 
@@ -185,12 +237,6 @@ export class PacientesComponent implements OnInit {
       }
     }
   }
-
-
-	cambiarBusqueda()
-	{
-	this.buscarPorNombre = !this.buscarPorNombre;
-	}
 
 
 
