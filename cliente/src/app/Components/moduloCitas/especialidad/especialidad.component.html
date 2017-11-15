@@ -15,11 +15,11 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Especialidad')" class="btn" type="button" style="background-color: #009999;" (click) = "edicionEspecialidad(row)" >
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Especialidad')" class="btn" type="button" style="background-color: #009999;" (click) = "edicionEspecialidad(row)" matTooltip="Editar">
                <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
               </button>
 
-              <button *ngIf="usuarioActual.obtenerPermisoErase('Especialidad')" class="btn" type="button" style="background-color: #ff3333;" (click) = "eliminarEspecialidad(row)" >
+              <button *ngIf="usuarioActual.obtenerPermisoErase('Especialidad')" class="btn" type="button" style="background-color: #ff3333;" (click) = "eliminarEspecialidad(row)" matTooltip="Eliminar">
                 <i class="fa fa-trash-o icono" aria-hidden="true"></i>
               </button>
 
