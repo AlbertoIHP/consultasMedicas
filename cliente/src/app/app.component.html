@@ -1,80 +1,100 @@
 
   <div class="bloqueSideNav" *ngIf="isLogeado">
-    <mat-toolbar color="primary" style="margin-bottom: 10px;" *ngIf="isLogeado">
+    <mat-toolbar color=primary style="margin-bottom: 10px;background-color:#204060 !important;" *ngIf="isLogeado">
 
-      <span>Clínica Web</span>
+      <span><i class="fa fa-heartbeat" style="margin: 10px;" aria-hidden="true"></i>Clínica Web</span>
 
     </mat-toolbar>
   </div>
 
 <mat-sidenav-container >
 
-  <mat-sidenav #sidenav mode="side" opened="true" style="width: 240px; margin-top: 64px" *ngIf="isLogeado">
-
+  <mat-sidenav #sidenav mode="side" opened="true" style="width: 240px; margin-top: 64px;background-color:#19334d !important;border-right: 1px solid #19334d;" *ngIf="isLogeado">
 
     <mat-expansion-panel #pacientes (click)="changeMenu(citas,atenciones)">
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header class="panel-nav">
         <mat-panel-title>
-          <mat-icon svgIcon="icono-paciente"></mat-icon>
-          <span> Módulo Pacientes</span>
+          <i class="fa fa-wheelchair icono-nav" aria-hidden="true"></i>
+          <span style="color:#d9e6f2"> Módulo Pacientes</span>
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <div class="row">
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/per" routerLinkActive="active">Personas</button>
+          <button mat-button class="sidenavBtn" routerLink="/per" routerLinkActive="active">
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span style="margin-left: 8px;">Personas</span>
+        </button>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/pac" routerLinkActive="active">Pacientes</button>
+          <button mat-button class="sidenavBtn" routerLink="/pac" routerLinkActive="active">
+            <i class="fa fa-wheelchair" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Pacientes</span>
+        </button>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/ec" routerLinkActive="active">Estado Civil</button>
+          <button mat-button class="sidenavBtn" routerLink="/ec" routerLinkActive="active">
+            <i class="fa fa-address-card" aria-hidden="true"></i>
+            <span style="margin-left: 8px;">Estado Civil</span>
+        </button>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/gen" routerLinkActive="active">Generos</button>
+          <button mat-button class="sidenavBtn" routerLink="/gen" routerLinkActive="active">
+            <i class="fa fa-venus-mars" aria-hidden="true"></i>
+            <span style="margin-left: 8px;">Géneros</span>
+          </button>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/com" routerLinkActive="active">Comunas</button>
+          <button mat-button class="sidenavBtn" routerLink="/com" routerLinkActive="active">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <span style="margin-left: 15px;">Comunas</span>
+        </button>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/pro" routerLinkActive="active">Provincias</button>
+          <button mat-button class="sidenavBtn" routerLink="/pro" routerLinkActive="active">
+            <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+            <span style="margin-left: 15px;">Provincias</span>
+        </button>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/reg" routerLinkActive="active">Regiones</button>
+          <button mat-button class="sidenavBtn" routerLink="/reg" routerLinkActive="active">
+            <i class="fa fa-compass" aria-hidden="true"></i>
+            <span style="margin-left: 12px;">Regiones</span>
+        </button>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/pre" routerLinkActive="active">Previsiones</button>
+          <button mat-button class="sidenavBtn" routerLink="/pre" routerLinkActive="active">
+            <i class="fa fa-credit-card" aria-hidden="true"></i>
+            <span style="margin-left: 8px;">Previsiones</span>
+        </button>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/usu" routerLinkActive="active">Usuarios</button>
+          <button mat-button class="sidenavBtn" routerLink="/usu" routerLinkActive="active">
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Usuarios</span>
+        </button>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/rol" routerLinkActive="active">Roles</button>
+          <button mat-button class="sidenavBtn" routerLink="/rol" routerLinkActive="active">
+            <i class="fa fa-user-secret" aria-hidden="true"></i>
+            <span style="margin-left: 12px;">Roles</span>
+        </button>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/ts" routerLinkActive="active">Tipo Sangre</button>
+          <button mat-button class="sidenavBtn" routerLink="/ts" routerLinkActive="active">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Tipo Sangre</span>
+        </button>
         </div>
-      </div>
     </mat-expansion-panel>
 
 
@@ -82,38 +102,47 @@
 
 
     <mat-expansion-panel #citas (click)="changeMenu(pacientes,atenciones)">
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header class="panel-nav">
         <mat-panel-title>
-          <mat-icon svgIcon="icono-agenda"></mat-icon>
-          <span> Módulo Citas</span>
+          <i class="fa fa-address-book icono-nav" aria-hidden="true"></i>
+          <span style="color:#d9e6f2"> Módulo Citas</span>
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <div class="row">
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/cit" routerLinkActive="active">Citas</button>
+          <button mat-button class="sidenavBtn" routerLink="/cit" routerLinkActive="active">
+            <i class="fa fa-book icono" aria-hidden="true"></i>
+            <span style="margin-left: 9px;">Citas</span>
+          </button>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/es" routerLinkActive="active">Estado Citas</button>
+          <button mat-button class="sidenavBtn" routerLink="/es" routerLinkActive="active">
+            <i class="fa fa-cubes icono" aria-hidden="true"></i>
+            <span style="margin-left: 4px;">Estado Citas</span>
+          </button>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/bc" routerLinkActive="active">Box Consulta</button>
+          <button mat-button class="sidenavBtn" routerLink="/bc" routerLinkActive="active">
+            <i class="fa fa-location-arrow icono" aria-hidden="true"></i>
+            <span style="margin-left: 11px;" >Box Consulta</span>
+          </button>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/med" routerLinkActive="active">Medicos</button>
+          <button mat-button class="sidenavBtn" routerLink="/med" routerLinkActive="active">
+            <i class="fa fa-user-md" aria-hidden="true"></i>
+            <span style="margin-left: 11px;">Medicos</span>
+        </button>
         </div>
-      </div>
-      <div class="row">
+
         <div class="col s12">
-          <button mat-button class="sidenavBtn" routerLink="/esp" routerLinkActive="active">Especialidad</button>
+          <button mat-button class="sidenavBtn" routerLink="/esp" routerLinkActive="active">
+            <i class="fa fa-medkit" aria-hidden="true"></i>
+            <span style="margin-left: 8px;">Especialidad</span>
+        </button>
         </div>
-      </div>
     </mat-expansion-panel>
 
 
@@ -122,18 +151,21 @@
 
 
     <mat-expansion-panel #atenciones (click)="changeMenu(pacientes,citas)">
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header class="panel-nav">
         <mat-panel-title>
-          <mat-icon svgIcon="icono-doctor"></mat-icon>
-          <span> Módulo Atenciones</span>
+          <i class="fa fa-stethoscope icono-nav" aria-hidden="true"></i>
+          <span style="color:#d9e6f2 "> Módulo Atenciones</span>
         </mat-panel-title>
       </mat-expansion-panel-header>
     </mat-expansion-panel>
+<!--
+  <span style="position: absolute; bottom: 0;left: 0;color:#d9e6f2;text-align: center;width: 100%;height: 30px;background-color:#204060;">Clínica 2017</span>
+-->
   </mat-sidenav>
 
 
 
-  <mat-toolbar color="primary" style="margin-bottom: 10px;" *ngIf="isLogeado">
+  <mat-toolbar color="primary" style="margin-bottom: 10px;background-color:#19334d ;" *ngIf="isLogeado">
      <span class="example-spacer"></span>
 
         <button mat-button>

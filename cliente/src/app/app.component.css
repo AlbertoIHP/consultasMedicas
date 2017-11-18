@@ -22,10 +22,35 @@
   text-align: left
 }
 
+.sidenavBtn .icono{
+  
+}
+
 .bloqueSideNav
 {
     position: absolute;
     height: 64px;
     width: 240px;
-    background-color: #3f51b5;
+    /*background-color: #3f51b5;*/
+}
+
+/* Sidenav */
+.icono-nav{
+  font-size: 15px;
+  margin:5px;
+  color:white;
+  -ms-transform: translate(0px, -2px); /* IE 9 */
+  -webkit-transform: translate(0px, -2px); /* Safari */
+  transform: translate(0px, -2px);
+}
+
+.panel-nav{
+  background-color:#264d73 !important;
+  /*border-bottom:1px solid #204060;*/
+  padding-left: 0px;
+}
+
+.panel-nav:hover{
+  background-color: #2d5986 !important;
+
 }
