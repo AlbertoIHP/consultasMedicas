@@ -10,10 +10,20 @@ mat-sidenav
   background-color: #3f51b5 !important;
 }
 
+
+
+/* Formularios */
+
+.boton-aceptar{
+	background-color: #3366ff; 
+	color:white !important; 
+}
+
+
 /*Boostrap plus plus*/
 .btn{
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   padding-right: 30px;
   padding-left: 0px;
   border-radius:.125rem;
@@ -35,6 +45,7 @@ transform: translate(8.5px, -3px);
 .btn.active,.btn:hover{
   cursor:pointer;box-shadow:0 4px 10px 0 rgba(0,0,0,0.16),0 4px 20px 0 rgba(0,0,0,0.12)
 }
+
 
 
 
