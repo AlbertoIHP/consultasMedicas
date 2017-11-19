@@ -15,13 +15,13 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Roles')" mat-icon-button (click) = "edicionRole(row)" >
-                <mat-icon svgIcon="icono-editar"></mat-icon>
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Roles')" class="btn" type="button" style="background-color: #009999;" (click) = "edicionRole(row)" matTooltip="Editar">
+                <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
               </button>
 
 
-              <button *ngIf="usuarioActual.obtenerPermisoErase('Roles')" mat-icon-button (click) = "eliminarRole(row)" >
-                <mat-icon svgIcon="icono-eliminar"></mat-icon>
+              <button *ngIf="usuarioActual.obtenerPermisoErase('Roles')" class="btn" type="button" style="background-color: #ff3333;" (click) = "eliminarRole(row)"  matTooltip="Eliminar" >
+                <i class="fa fa-trash-o icono" aria-hidden="true"></i>
               </button>
 
        </mat-cell>

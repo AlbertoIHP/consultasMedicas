@@ -19,6 +19,10 @@ export class EditartipoComponent{
     this.servicio = data.servicioTS;
   }
 
+  onNoClick()
+  {
+    this.dialogRef.close();
+  }
 
   editarTS()
   {

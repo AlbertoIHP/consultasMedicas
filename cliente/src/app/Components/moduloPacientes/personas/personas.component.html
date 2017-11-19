@@ -15,24 +15,24 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-             <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoUpdate('Personas')"  mat-icon-button (click) = "editarPersona(row)" >
-                <mat-icon svgIcon="icono-editar"></mat-icon>
+             <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoUpdate('Personas')" class="btn" type="button" style="background-color: #009999;" (click) = "editarPersona(row)" matTooltip="Editar" >
+                <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
               </button>
 
-              <button *ngIf="row.estado === 0 && usuarioActual.obtenerPermisoUpdate('Personas')" (click)="activarPaciente(row)" mat-icon-button  >
-                <mat-icon>arrow_upward</mat-icon>
+              <button *ngIf="row.estado === 0 && usuarioActual.obtenerPermisoUpdate('Personas')" (click)="activarPaciente(row)" class="btn" type="button" style="background-color: #ff9900;" matTooltip="Activar"  >
+                <i class="fa fa-arrow-up icono" aria-hidden="true"></i>
               </button>
 
-              <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoUpdate('Personas')" (click)="desactivarPaciente(row)" mat-icon-button >
-                <mat-icon svgIcon="icono-desactivar"></mat-icon>
+              <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoUpdate('Personas')" (click)="desactivarPaciente(row)" class="btn" type="button" style="background-color: #ff9900;" matTooltip="Desactivar">
+                <i class="fa fa-ban icono" aria-hidden="true"></i>
               </button>
 
-              <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoUpdate('Personas')" mat-icon-button (click) = "previsionPersona(row)" >
-                <mat-icon svgIcon="icono-prevision"></mat-icon>
+              <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoUpdate('Personas')" (click) = "previsionPersona(row)" class="btn" type="button" style="background-color: #40bf80;" matTooltip="Ver previsión">
+                <i class="fa fa-life-ring icono-grande" aria-hidden="true"></i>
               </button>
 
-              <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoWrite('Personas')" mat-icon-button (click) = "agregarUsuario(row)" >
-                <mat-icon svgIcon="icono-agregar"></mat-icon>
+              <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoWrite('Personas')" (click) = "agregarUsuario(row)" class="btn" type="button" style="background-color: #ff8533;" matTooltip="Ver usuario">
+                <i class="fa fa-user-o icono" aria-hidden="true"></i>
               </button>
 
        </mat-cell>
