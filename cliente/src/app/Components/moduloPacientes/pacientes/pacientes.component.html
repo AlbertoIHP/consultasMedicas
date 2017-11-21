@@ -15,21 +15,21 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-               <button *ngIf="row.activado === 1 && usuarioActual.obtenerPermisoUpdate('Pacientes')"  class="btn" type="button" style="background-color: #009999;" (click) = "edicionPaciente(row)"  matTooltip="Editar">
+               <button *ngIf="row.activado === 1 && usuarioActual.obtenerPermisoUpdate('Pacientes')"  class="btn boton-editar" type="button" (click) = "edicionPaciente(row)"  matTooltip="Editar">
                  <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
               </button>
 
-              <button *ngIf="row.activado === 1 && usuarioActual.obtenerPermisoUpdate('Pacientes')" (click)="desactivarPaciente(row)" class="btn" type="button" style="background-color: #ff9900;text-align: center;" matTooltip="Desactivar" >
+              <button *ngIf="row.activado === 1 && usuarioActual.obtenerPermisoUpdate('Pacientes')" (click)="desactivarPaciente(row)" class="btn boton-desactivar" type="button" matTooltip="Desactivar" >
                 <i class="fa fa-ban icono" aria-hidden="true"></i>
 
               </button>
 
               <!--Aqui se llamará a la función de la ficha-->
-              <button *ngIf="row.activado === 1" (click) = "desplegarFichaPaciente(row)" class="btn" type="button" style="background-color: #40bf80;text-align: center;" matTooltip="Ver ficha" >
+              <button *ngIf="row.activado === 1" (click) = "desplegarFichaPaciente(row)" class="btn boton-ficha" type="button" matTooltip="Ver ficha" >
                 <i class="fa fa-address-book-o icono" aria-hidden="true"></i>
               </button>
 
-              <button *ngIf="row.activado === 0 && usuarioActual.obtenerPermisoUpdate('Pacientes')" (click)="activarPaciente(row)" class="btn" type="button" style="background-color: #ff9900;" matTooltip="Activar">
+              <button *ngIf="row.activado === 0 && usuarioActual.obtenerPermisoUpdate('Pacientes')" (click)="activarPaciente(row)" class="btn boton-activar" type="button" matTooltip="Activar">
                 <i class="fa fa-arrow-up icono" aria-hidden="true"></i>
               </button>
 
@@ -49,7 +49,7 @@
       <mat-header-cell *matHeaderCellDef> Persona Asociada al Paciente </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-        <button  mat-button style="background-color: #00cc00;" (click)="desplegarPersona(row)" >
+        <button  mat-button class="boton-datos" (click)="desplegarPersona(row)" >
           <span style="color:white;">Ver datos</span>
         </button>
 
@@ -83,7 +83,7 @@
   </mat-paginator>
 </div>
  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large blue" *ngIf="usuarioActual.obtenerPermisoWrite('Pacientes')" (click)="agregacionPaciente()">
+    <a class="btn-floating btn-large boton-agregar" *ngIf="usuarioActual.obtenerPermisoWrite('Pacientes')" (click)="agregacionPaciente()">
       <i class="large material-icons">add</i>
     </a>
   </div>

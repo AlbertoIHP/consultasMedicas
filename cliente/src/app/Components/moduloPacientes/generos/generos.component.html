@@ -15,12 +15,12 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Generos')" class="btn" type="button" style="background-color: #009999;" (click) = "edicionGenero(row)" matTooltip="Editar">
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Generos')" class="btn boton-editar" type="button" (click) = "edicionGenero(row)" matTooltip="Editar">
                 <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
               </button>
 
 
-              <button *ngIf="usuarioActual.obtenerPermisoErase('Generos')" class="btn" type="button" style="background-color: #ff3333;" (click) = "eliminarGenero(row)" matTooltip="Eliminar">
+              <button *ngIf="usuarioActual.obtenerPermisoErase('Generos')" class="btn boton-eliminar" type="button" (click) = "eliminarGenero(row)" matTooltip="Eliminar">
                 <i class="fa fa-trash-o icono" aria-hidden="true"></i>
               </button>
 
@@ -62,7 +62,7 @@
   </mat-paginator>
 </div>
  <div class="fixed-action-btn">
-		<a class="btn-floating btn-large blue" *ngIf="usuarioActual.obtenerPermisoWrite('Generos')" (click)="agregacionGenero()">
+		<a class="btn-floating btn-large boton-agregar" *ngIf="usuarioActual.obtenerPermisoWrite('Generos')" (click)="agregacionGenero()">
 			<i class="large material-icons">add</i>
 		</a>
 	</div>

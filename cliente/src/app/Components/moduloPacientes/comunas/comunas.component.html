@@ -16,12 +16,12 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Comunas')" (click) = "edicionComuna(row)" class="btn" type="button" style="background-color: #009999;" matTooltip="Editar">
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Comunas')" (click) = "edicionComuna(row)" class="btn boton-editar" type="button" matTooltip="Editar">
                 <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
               </button>
 
 
-              <button *ngIf="usuarioActual.obtenerPermisoErase('Comunas')" (click) = "eliminarComuna(row)" class="btn" type="button" style="background-color: #ff3333;" matTooltip="Eliminar">
+              <button *ngIf="usuarioActual.obtenerPermisoErase('Comunas')" (click) = "eliminarComuna(row)" class="btn boton-eliminar" type="button" matTooltip="Eliminar">
                 <i class="fa fa-trash-o icono" aria-hidden="true"></i>
               </button>
 
@@ -62,7 +62,7 @@
 </div>
 
  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large blue" *ngIf="usuarioActual.obtenerPermisoWrite('Comunas')" (click)="agregacionComuna()">
+    <a class="btn-floating btn-large boton-agregar" *ngIf="usuarioActual.obtenerPermisoWrite('Comunas')" (click)="agregacionComuna()">
       <i class="large material-icons">add</i>
     </a>
   </div>
