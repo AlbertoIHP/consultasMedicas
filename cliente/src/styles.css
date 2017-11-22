@@ -22,10 +22,16 @@ mat-sidenav
 
 /*Acciones*/
 
+/*datos--*/
 .boton-datos{
   background-color: #ff8533;
 }
 
+.boton-datos:focus{
+  background-color: #ffa366;
+}
+
+/*---*/
 .boton-agregar{
   background-color: #009999;
 }
