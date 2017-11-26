@@ -40,8 +40,8 @@
 
     <!-- Progress Column -->
     <ng-container matColumnDef="Rut">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Rut </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customWidthClass'"> Rut </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customWidthClass'"> {{row.rut}} </mat-cell>
     </ng-container>
 
   <!-- Name Column -->
