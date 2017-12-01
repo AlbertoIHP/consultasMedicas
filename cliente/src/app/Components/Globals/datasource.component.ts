@@ -229,6 +229,12 @@ export class ExampleDataSource extends DataSource<any> {
            let searchStr = (item.nombre).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }
+        else if(this.filtro == "Citas")
+        {
+
+           let searchStr = (item.Medico_id.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+        }
 
 
 
@@ -383,6 +389,19 @@ export class ExampleDataSource extends DataSource<any> {
             case 'Descripcion': [propertyA, propertyB] = [a.descripcion, b.descripcion]; break;
           }
         }
+        else if(this.filtro === "Citas" )
+        {
+          switch (this._sort.active)
+          {
+            case 'Fecha': [propertyA, propertyB] = [a.fecha, b.fecha]; break;
+            case 'Hora': [propertyA, propertyB] = [a.hora, b.hora]; break;
+            case 'Estado': [propertyA, propertyB] = [a.EstadoCita_id, b.EstadoCita_id]; break;
+            case 'Box': [propertyA, propertyB] = [a.BoxConsulta_id, b.BoxConsulta_id]; break;
+            case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
+            case 'Medico': [propertyA, propertyB] = [a.Medico_id, b.Medico_id]; break;
+          }
+        }
+
 
 
 

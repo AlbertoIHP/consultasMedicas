@@ -31,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing, appRoutingProviders } from './Routes/app-routing.module';
+import { CalendarModule } from 'angular-calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatAutocompleteModule,
@@ -167,13 +168,18 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   import { EditarmedicoComponent } from './Components/moduloCitas/medico/editarmedico/editarmedico.component';
 
   //Componente Cita
+  import { CalendarHeaderComponent } from './Components/moduloCitas/cita/header.component';
   import { CitaComponent } from './Components/moduloCitas/cita/cita.component';
   import { AgregarcitaComponent } from './Components/moduloCitas/cita/agregarcita/agregarcita.component';
   import { EditarcitaComponent } from './Components/moduloCitas/cita/editarcita/editarcita.component';
   import { VercitaComponent } from './Components/moduloCitas/cita/vercita/vercita.component';
-import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaje-error.component';
+  import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaje-error.component';
 
 
+import {
+  NgbDatepickerModule,
+  NgbTimepickerModule
+} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -234,6 +240,7 @@ import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaj
     EspecialidadComponent,
     MedicoComponent,
     CitaComponent,
+    CalendarHeaderComponent,
 
     //Modulos hijos (CRUD)
     AgregarboxconsultaComponent,
@@ -339,6 +346,9 @@ import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaj
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    NgbDatepickerModule.forRoot(),
+    NgbTimepickerModule.forRoot(),
+    CalendarModule.forRoot()
   ],
 
   providers:

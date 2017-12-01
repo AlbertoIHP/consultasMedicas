@@ -1,10 +1,12 @@
-import {Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
 
 import { BoxConsulta } from '../../../Models/BoxConsulta.model';
 import { BoxConsultaService } from '../../../Services/boxconsulta/box-consulta.service';
 
 import { TipoBox } from '../../../Models/TipoBox.model';
 import { TipoBoxService } from '../../../Services/tipobox/tipo-box.service';
+
+import { EspecialidadService } from '../../../Services/especialidad/especialidad.service'
 
 import { Cita } from '../../../Models/Cita.model';
 import { CitaService } from '../../../Services/cita/cita.service';
@@ -13,7 +15,7 @@ import { AgregarboxconsultaComponent } from './agregarboxconsulta/agregarboxcons
 import { EditarboxconsultaComponent } from './editarboxconsulta/editarboxconsulta.component';
 
 import { MensajeErrorComponent } from '../../Globals/mensaje-error/mensaje-error.component';
-import {UsuarioActual} from '../../Globals/usuarioactual.component';
+import { UsuarioActual } from '../../Globals/usuarioactual.component';
 
 //DATATABLE
 import {DataSource} from '@angular/cdk/collections';
@@ -38,7 +40,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class BoxconsultaComponent {
 	public totalBoxConsultas: BoxConsulta[];
-	public totalTipoBoxes: TipoBox[];
+	public totalTipoBoxes: any[];
 	public buscarPorNombre: boolean;
 	public usuarioActual;
 
@@ -101,26 +103,33 @@ export class BoxconsultaComponent {
 
 
 
-  constructor(public servicioBoxConsulta: BoxConsultaService, public servicioTipoBox: TipoBoxService, public servicioCita: CitaService, public dialog: MatDialog)
+  constructor( public servicioEspecialidad: EspecialidadService, public servicioBoxConsulta: BoxConsultaService, public servicioTipoBox: TipoBoxService, public servicioCita: CitaService, public dialog: MatDialog)
   {
 
   	this.usuarioActual=new UsuarioActual();
-	this.totalBoxConsultas = [];
-	this.totalTipoBoxes=[];
-	this.actualizarTipoBoxes();
-	this.actualizarBoxConsultas();
-	this.actualizarCitas();
+  	this.totalBoxConsultas = [];
+  	this.totalTipoBoxes=[];
+  	this.actualizarTipoBoxes();
+  	this.actualizarBoxConsultas();
+  	this.actualizarCitas();
 
    }
 
 
 actualizarTipoBoxes ()
 	{
-		this.servicioTipoBox.getTipoBoxes().subscribe(data => {
-			var todo: any = data;
-			todo = todo.data;
-			this.totalTipoBoxes = todo;
-		});
+
+    this.servicioEspecialidad.getEspecialidads().subscribe( data => {
+      var todo: any = data
+      todo = todo.data
+      this.totalTipoBoxes = todo
+    })
+
+		// this.servicioTipoBox.getTipoBoxes().subscribe(data => {
+		// 	var todo: any = data;
+		// 	todo = todo.data;
+		// 	this.totalTipoBoxes = todo;
+		// });
 	}
 
  actualizarBoxConsultas(){

@@ -17,11 +17,11 @@ import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
 
 //DATATABLE
-import {DataSource} from '@angular/cdk/collections';
-import {MatPaginator, MatSort} from '@angular/material';
-import {SelectionModel} from '@angular/cdk/collections';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
+import { DataSource } from '@angular/cdk/collections';
+import { MatPaginator, MatSort } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/observable/fromEvent';
@@ -29,7 +29,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/debounceTime';
 import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.component';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 
 @Component({

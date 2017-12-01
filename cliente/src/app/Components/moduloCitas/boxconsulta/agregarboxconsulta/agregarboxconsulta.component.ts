@@ -16,8 +16,8 @@ export class AgregarboxconsultaComponent implements OnInit {
   constructor(
   	public dialogRef: MatDialogRef<AgregarboxconsultaComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any
-	
-  	) { 
+
+  	) {
 
   	this.nuevoBoxConsulta = new BoxConsulta();
 	this.totalTipoBoxes = data.totalTipoBoxes;
@@ -28,11 +28,11 @@ export class AgregarboxconsultaComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.servicioTipoBox.getTipoBoxes().subscribe( data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalTipoBoxes = todo;
-    });
+  	// this.servicioTipoBox.getTipoBoxes().subscribe( data => {
+   //    var todo: any = data;
+   //    todo = todo.data;
+   //    this.totalTipoBoxes = todo;
+   //  });
   }
 
   onNoClick()
