@@ -15,13 +15,13 @@
     <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
     <mat-cell *matCellDef="let row">
 
-        <button *ngIf="usuarioActual.obtenerPermisoUpdate('Usuarios')" mat-icon-button (click) = "edicionUsuario(row)" >
-        <mat-icon svgIcon="icono-editar"></mat-icon>
+        <button *ngIf="usuarioActual.obtenerPermisoUpdate('Usuarios')" class="btn boton-editar" type="button" (click) = "edicionUsuario(row)" matTooltip="Editar">
+          <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
         </button>
 
 
-        <button *ngIf="usuarioActual.obtenerPermisoErase('Usuarios')" mat-icon-button (click) = "eliminarUsuario(row)" >
-        <mat-icon svgIcon="icono-eliminar"></mat-icon>
+        <button *ngIf="usuarioActual.obtenerPermisoErase('Usuarios')" class="btn boton-eliminar" type="button" (click) = "eliminarUsuario(row)" matTooltip="Eliminar">
+          <i class="fa fa-trash-o icono" aria-hidden="true"></i>
         </button>
 
      </mat-cell>
@@ -45,9 +45,11 @@
   <ng-container matColumnDef="Persona">
     <mat-header-cell *matHeaderCellDef> Persona Asociada a la Cuenta </mat-header-cell>
     <mat-cell *matCellDef="let row">
-    <button  mat-icon-button (click)="desplegarPersona(row)" >
-      <mat-icon>remove_red_eye</mat-icon>
+
+    <button  mat-button class="boton-datos" (click)="desplegarPersona(row)" >
+       <span style="color:white;">Ver datos</span>
     </button>
+
     </mat-cell>
   </ng-container>
 
@@ -74,7 +76,7 @@
 </div>
 
  <div class="fixed-action-btn">
-	<a class="btn-floating btn-large blue" *ngIf="usuarioActual.obtenerPermisoWrite('Usuarios')" (click)="agregacionUsuario()">
+	<a class="btn-floating btn-large boton-agregar" *ngIf="usuarioActual.obtenerPermisoWrite('Usuarios')" (click)="agregacionUsuario()">
 	  <i class="large material-icons">add</i>
 	</a>
   </div>

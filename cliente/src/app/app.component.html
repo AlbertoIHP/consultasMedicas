@@ -9,7 +9,7 @@
 
 <mat-sidenav-container >
 
-  <mat-sidenav #sidenav mode="side" opened="true" style="width: 240px; margin-top: 64px;background-color:#19334d !important;border-right: 1px solid #19334d;" *ngIf="isLogeado">
+  <mat-sidenav #sidenav mode="side" opened="true" class="sidenav-mod" *ngIf="isLogeado">
 
     <mat-expansion-panel #pacientes (click)="changeMenu(citas,atenciones)">
       <mat-expansion-panel-header class="panel-nav">
@@ -18,6 +18,8 @@
           <span style="color:#d9e6f2"> Módulo Pacientes</span>
         </mat-panel-title>
       </mat-expansion-panel-header>
+
+      <div class="botones-nav">
 
         <div class="col s12">
           <button mat-button class="sidenavBtn" routerLink="/per" routerLinkActive="active">
@@ -95,9 +97,10 @@
             <span style="margin-left: 10px;">Tipo Sangre</span>
         </button>
         </div>
+
+
+      </div>
     </mat-expansion-panel>
-
-
 
 
 
@@ -108,6 +111,8 @@
           <span style="color:#d9e6f2"> Módulo Citas</span>
         </mat-panel-title>
       </mat-expansion-panel-header>
+
+      <div class="botones-nav">
 
         <div class="col s12">
           <button mat-button class="sidenavBtn" routerLink="/cit" routerLinkActive="active">
@@ -143,12 +148,11 @@
             <span style="margin-left: 8px;">Especialidad</span>
         </button>
         </div>
+
+      </div>
+
+
     </mat-expansion-panel>
-
-
-
-
-
 
     <mat-expansion-panel #atenciones (click)="changeMenu(pacientes,citas)">
       <mat-expansion-panel-header class="panel-nav">
@@ -165,18 +169,18 @@
 
 
 
-  <mat-toolbar color="primary" style="margin-bottom: 10px;background-color:#19334d ;" *ngIf="isLogeado">
+  <mat-toolbar color="primary" class="toolbar-act" *ngIf="isLogeado">
      <span class="example-spacer"></span>
 
-        <button mat-button>
+        <button class="boton-act" mat-button>
           <mat-icon>dialpad</mat-icon>
           <span>Actividad</span>
         </button>
-        <button mat-button>
+        <button mat-button class="boton-act">
           <mat-icon svgIcon="icono-editar-perfil"></mat-icon>
           <span>Editar Perfil</span>
         </button>
-        <button mat-button (click)="cerrarSesion()">
+        <button mat-button class="boton-act" (click)="cerrarSesion()">
           <mat-icon svgIcon="icono-logout"></mat-icon>
           <span>Cerrar Sesión</span>
         </button>

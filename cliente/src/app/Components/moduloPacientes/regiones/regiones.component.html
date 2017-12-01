@@ -15,13 +15,13 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Regiones')" mat-icon-button (click) = "edicionRegion(row)" >
-                <mat-icon svgIcon="icono-editar"></mat-icon>
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Regiones')" class="btn boton-editar" type="button"(click) = "edicionRegion(row)" matTooltip="Editar">
+                <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
               </button>
 
 
-              <button *ngIf="usuarioActual.obtenerPermisoErase('Regiones')" mat-icon-button (click) = "eliminarRegion(row)" >
-                <mat-icon svgIcon="icono-eliminar"></mat-icon>
+              <button *ngIf="usuarioActual.obtenerPermisoErase('Regiones')" class="btn boton-eliminar" type="button" (click) = "eliminarRegion(row)" matTooltip="Eliminar">
+                <i class="fa fa-trash-o icono" aria-hidden="true"></i>
               </button>
 
        </mat-cell>
@@ -61,7 +61,7 @@
 </div>
 
  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large blue" *ngIf="usuarioActual.obtenerPermisoWrite('Regiones')" (click)="agregacionRegion()">
+    <a class="btn-floating btn-large boton-agregar" *ngIf="usuarioActual.obtenerPermisoWrite('Regiones')" (click)="agregacionRegion()">
       <i class="large material-icons">add</i>
     </a>
   </div>

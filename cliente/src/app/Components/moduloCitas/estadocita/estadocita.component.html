@@ -16,12 +16,12 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-              <button *ngIf="usuarioActual.obtenerPermisoUpdate('EstadoCita')"class="btn" type="button" style="background-color: #009999;"  (click) = "edicionEstadoCita(row)" matTooltip="Editar" >
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('EstadoCita')" class="btn boton-editar" type="button" (click) = "edicionEstadoCita(row)" matTooltip="Editar" >
                 <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
               </button>
 
 
-              <button *ngIf="usuarioActual.obtenerPermisoErase('EstadoCita')" class="btn" type="button" style="background-color: #ff3333;" (click) = "eliminarEstadoCita(row)" matTooltip="Eliminar">
+              <button *ngIf="usuarioActual.obtenerPermisoErase('EstadoCita')" class="btn boton-eliminar" type="button" (click) = "eliminarEstadoCita(row)" matTooltip="Eliminar">
                 <i class="fa fa-trash-o icono" aria-hidden="true"></i>
               </button>
 
@@ -63,7 +63,7 @@
 </div>
 
  <div class="fixed-action-btn">
-		<a class="btn-floating btn-large blue" *ngIf="usuarioActual.obtenerPermisoWrite('EstadoCita')" (click)="agregacionEstadoCita()">
+		<a class="btn-floating btn-large boton-agregar" *ngIf="usuarioActual.obtenerPermisoWrite('EstadoCita')" (click)="agregacionEstadoCita()">
 			<i class="large material-icons">add</i>
 		</a>
 	</div>
