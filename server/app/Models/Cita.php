@@ -86,7 +86,7 @@ class Cita extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'fecha' => 'date',
+        'fecha' => 'string',
         'hora' => 'string',
         'EstadoCita_id' => 'integer',
         'BoxConsulta_id' => 'integer',

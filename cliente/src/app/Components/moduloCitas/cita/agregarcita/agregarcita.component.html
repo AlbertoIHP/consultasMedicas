@@ -1,4 +1,4 @@
-<mat-horizontal-stepper [linear]="true">
+<mat-horizontal-stepper [linear]="true" style="max-height: 553px">
 
 
   <mat-step [stepControl]="zeroFormGroup">
@@ -11,17 +11,17 @@
 
       <div class="row" style="text-align: center;">
 
-        <div class="col s4" mwlCalendarPreviousView view="month" [(viewDate)]="viewDate" style="margin-top: 30px">
+        <div class="col s4" mwlCalendarPreviousView view="month" [(viewDate)]="viewDate" >
           <button mat-button>
             <mat-icon>arrow_back</mat-icon>
           </button>
         </div>
 
         <div class="col s4">
-          <h3>{{ viewDate | calendarDate:'monthViewTitle':'es' }}</h3>
+          <h6>{{ viewDate | calendarDate:'monthViewTitle':'es' }}</h6>
         </div>
 
-        <div class="col s4" mwlCalendarNextView  view="month" [(viewDate)]="viewDate" style="margin-top: 30px">
+        <div class="col s4" mwlCalendarNextView  view="month" [(viewDate)]="viewDate" >
           <button mat-button>
             <mat-icon>arrow_forward</mat-icon>
           </button>
@@ -38,13 +38,60 @@
 
       <div class="row">
         <div class="col s12">
-          <button mat-button matStepperNext style="width: 100%" disabled="{{fechaSeleccionada}}">Siguiente</button>
+          <button mat-button matStepperNext style="width: 100%" disabled="{{fechaSeleccionada}}">Siguiente <mat-icon>arrow_forward</mat-icon></button>
         </div>
 
 
 
       </div>
   </mat-step>
+
+
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Hora e Informacion del Paciente</ng-template>
+
+
+
+      <div class="row">
+        <div class="col s6">
+          <mat-form-field style="width: 100% !important;">
+            <mat-select formControlName="secondCtrl" required placeholder="Paciente" style="width: 100% !important;" [(ngModel)]="cita.Paciente_id" >
+              <mat-option style="width: 100% !important;" *ngFor="let paciente of pacientes" [value]="paciente.id" >
+                {{ paciente.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col s6">
+          <mat-form-field style="width: 100% !important;">
+            <mat-select formControlName="secondCtrl" required placeholder="Hora de la consulta" style="width: 100% !important;" [(ngModel)]="cita.hora" >
+              <mat-option style="width: 100% !important;" *ngFor="let hora of horasDia" [value]="hora" (click)="filtrarPorHora(hora)" >
+              {{ hora }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col s6">
+          <button mat-button matStepperPrevious style="width: 100%"> <mat-icon>arrow_back</mat-icon> Volver</button>
+        </div>
+
+        <div class="col s6">
+         <button mat-button matStepperNext style="width: 100%" >Siguiente  <mat-icon>arrow_forward</mat-icon></button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+
+
+
+
+
 
 
 
@@ -93,51 +140,15 @@
 
       <div class="row">
         <div class="col s6">
-          <button mat-button matStepperPrevious style="width: 100%">Volver</button>
+          <button mat-button matStepperPrevious style="width: 100%"> <mat-icon>arrow_back</mat-icon>Volver</button>
         </div>
 
         <div class="col s6">
-         <button mat-button matStepperNext style="width: 100%" >Siguiente</button>
+         <button mat-button matStepperNext style="width: 100%" (click)="agendarCita()" >Agendar Cita <mat-icon>add</mat-icon></button>
         </div>
       </div>
     </form>
   </mat-step>
-
-
-
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Hora e Informacion del Paciente</ng-template>
-
-
-
-
-
-      <div class="row">
-        <div class="col s6">
-          <button mat-button matStepperPrevious style="width: 100%">Volver</button>
-        </div>
-
-        <div class="col s6">
-         <button mat-button matStepperNext style="width: 100%" >Siguiente</button>
-        </div>
-      </div>
-    </form>
-  </mat-step>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   <mat-step>
@@ -147,8 +158,7 @@
           <img src="https://lh3.googleusercontent.com/Vct_XSpNfhherziE-h0mSSpbrJf2jYM1nvPO2PVkcIECnqqUHCf-2-5j8EObefEmS0o7=w300" style="max-width: 300px; max-height: 300px">
 
               <p>
-      Un correo electronico ha sido enviado a la direccion registrada.
-      Una vez confirmes tu cuenta, podras tener acceso a la pagina web de la clinica.
+      Un correo electronico ha sido enviado al medico y al paciente respectivamente, con la informacion de la reserva medica.
 
     </p>
 

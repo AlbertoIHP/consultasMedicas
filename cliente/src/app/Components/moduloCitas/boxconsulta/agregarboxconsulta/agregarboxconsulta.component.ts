@@ -20,7 +20,7 @@ export class AgregarboxconsultaComponent implements OnInit {
   	) {
 
   	this.nuevoBoxConsulta = new BoxConsulta();
-	this.totalTipoBoxes = data.totalTipoBoxes;
+	  this.totalTipoBoxes = data.totalTipoBoxes;
     this.servicioTipoBox = data.servicioTipoBox;
     this.servicioBoxConsulta = data.servicioBoxConsulta;
 
@@ -42,6 +42,7 @@ export class AgregarboxconsultaComponent implements OnInit {
 
 	agregarBoxConsulta()
 	{
+    console.log(this.nuevoBoxConsulta)
 		this.servicioBoxConsulta.registerBoxConsulta(this.nuevoBoxConsulta).subscribe(data => {
 			console.log(data);
 			this.dialogRef.close();

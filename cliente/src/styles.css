@@ -10,7 +10,12 @@ mat-sidenav
   background-color: #3f51b5 !important;
 }
 
-
+mwl-calendar-month-cell
+{
+    min-height: 50px !important;
+    max-height: 50px !important;
+    line-height: 0.5 !important;
+}
 
 /* Formularios */
 

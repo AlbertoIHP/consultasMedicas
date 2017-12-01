@@ -12,7 +12,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import { EspecialidadService } from '../../../../Services/especialidad/especialidad.service'
 import { PersonaService } from '../../../../Services/persona/persona.service'
-
+import { DisponibilidadService } from '../../../../Services/disponibilidad/disponibilidad.service'
 @Component({
   selector: 'app-agregarcita',
   templateUrl: './agregarcita.component.html',
@@ -49,30 +49,43 @@ export class AgregarcitaComponent {
 
   private fechaSeleccionada = true
 
-
+  private horasDia
 
   private mostrarMedicos: any
   private mostrarBoxs: any
   private especialidadSeleccionada: any
+  private disponibilidades: any
+
 
   constructor(
     public dialogRef: MatDialogRef<AgregarcitaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _formBuilder: FormBuilder,
     private servicioEspecialidad: EspecialidadService,
-    private servicioPersona: PersonaService
+    private servicioPersona: PersonaService,
+    private servicioDisponibilidad: DisponibilidadService
 
     )
   {
     this.mostrarBoxs = []
     this.mostrarMedicos = []
     this.especialidades = []
+    this.disponibilidades = []
     this.cita = data.cita
     this.estados = data.estados
     this.pacientes = data.pacientes
     this.medicos = data.medicos
     this.boxs = data.boxs
     this.servicioCitas = data.servicioCitas
+
+
+    this.horasDia = [ '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00' ]
+
+
+    this.servicioDisponibilidad.getDisponibilidads().subscribe( data => {
+      this.disponibilidades = this.normalizeData(data)
+
+    })
 
     this.servicioEspecialidad.getEspecialidads().subscribe( data => {
       this.especialidades = this.normalizeData(data)
@@ -90,6 +103,15 @@ export class AgregarcitaComponent {
 
       }
 
+      for( let j = 0 ; j < this.pacientes.length ; j ++ )
+      {
+        let currentPersona = totalPersonas.filter( persona => persona.id === parseInt(this.pacientes[j].Persona_id))
+
+        this.pacientes[j].nombre = '('+currentPersona[0].rut+') '+currentPersona[0].nombre1+' '+currentPersona[0].apellido1
+
+
+      }
+
     })
   }
 
@@ -98,19 +120,15 @@ export class AgregarcitaComponent {
     return todo.data
   }
 
+  private wardmeds
+
   filtrarMedicos(especialidad)
   {
-
     this.especialidadSeleccionada = especialidad
-    console.log("filtrando")
 
-    let medicosEspecialidad = this.medicos.filter( medico => parseInt( medico.Especialidad_id ) === this.especialidadSeleccionada.id )
-    this.mostrarMedicos = medicosEspecialidad
+    this.mostrarMedicos = this.wardmeds.filter( medico => parseInt( medico.Especialidad_id ) === this.especialidadSeleccionada.id )
 
-
-    let boxsEspecialidad = this.boxs.filter( box => parseInt( box.TipoBox_id ) === this.especialidadSeleccionada.id )
-    this.mostrarBoxs = boxsEspecialidad
-
+    this.mostrarBoxs = this.boxs.filter( box => parseInt( box.TipoBox_id ) === this.especialidadSeleccionada.id )
   }
 
 
@@ -189,10 +207,15 @@ export class AgregarcitaComponent {
       alert("Ha seleccionado una fecha pasada")
     }
 
-
-
   }
 
+
+  agendarCita()
+  {
+    this.servicioCitas.registerCita(this.cita).subscribe( data => {
+      console.log(data)
+    })
+  }
 
 
   visualizarCita(box)
@@ -202,6 +225,63 @@ export class AgregarcitaComponent {
     this.cita.EstadoCita_id = 1
     console.log(this.cita)
   }
+
+  filtrarPorHora(hora)
+  {
+      hora = hora.split(':')[0].toString()+hora.split(':')[1].toString()
+      console.log(hora)
+
+      let dia = this.cita.fecha.split(' ')[0]
+      console.log(dia)
+
+      let currentDisponibilidad = this.disponibilidades.filter( dis => dis.dia === dia  && dis.hora_inicio != 'No disponible')
+
+      let auxDisponibilidad = []
+
+      for ( let dis of currentDisponibilidad )
+      {
+        let horas = dis.hora_inicio.split(':')[0]
+        let minutos = dis.hora_inicio.split(':')[1]
+        let totalInicio = horas.toString()+minutos.toString()
+
+        horas = dis.hora_termino.split(':')[0]
+        minutos = dis.hora_termino.split(':')[1]
+        let totalTermino = horas.toString()+minutos.toString()
+
+        if( hora >= parseInt(totalInicio) && hora<= parseInt(totalTermino) )
+        {
+          auxDisponibilidad.push(dis)
+        }
+      }
+
+      console.log(auxDisponibilidad)
+
+
+
+
+      let auxMedicoId = []
+      for( let dis of auxDisponibilidad)
+      {
+        auxMedicoId.push(dis.Medico_id)
+      }
+
+      auxMedicoId = auxMedicoId.filter( function(elem, index, self){ return index === self.indexOf(elem) } )
+
+
+
+      this.mostrarMedicos = []
+
+      for( let id of auxMedicoId)
+      {
+        this.mostrarMedicos.push( this.medicos.filter( med => med.id === parseInt( id ) )[0] )
+      }
+
+      this.wardmeds = this.mostrarMedicos
+
+
+
+  }
+
 
 
 

@@ -1,11 +1,10 @@
-<mat-horizontal-stepper >
+<mat-horizontal-stepper style="max-height: 553px">
 
   <mat-step >
 
 
       <ng-template matStepLabel>Informacion General</ng-template>
 
-      <p >Especialidad</p>
       <mat-form-field style="width: 100% !important;" >
         <mat-select placeholder="Especialidad" style="width: 100% !important;">
           <mat-option style="width: 100% !important;" *ngFor="let especialidad of totalEspecialidades" [value]="especialidad.id" (click)="especialidadSeleccionada(especialidad)">
@@ -16,7 +15,6 @@
 
 
 
-      <p >Persona Asociada</p>
       <mat-form-field style="width: 100% !important;" >
         <mat-select placeholder="Seleccione una Persona para asociar al Médico" style="width: 100% !important;">
           <mat-option style="width: 100% !important;" *ngFor="let persona of personasDisponibles" [value]="persona.id" (click)="personaSeleccionada(persona)">

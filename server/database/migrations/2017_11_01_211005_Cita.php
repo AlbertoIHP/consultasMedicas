@@ -15,7 +15,7 @@ class Cita extends Migration
     {
         Schema::create('Cita', function (Blueprint $table) {
         $table->increments('id');
-        $table->date('fecha');
+        $table->string('fecha');
         $table->string('hora');
 
         $table->integer('EstadoCita_id')->unsigned()->nullable();

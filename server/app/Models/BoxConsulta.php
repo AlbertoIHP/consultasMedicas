@@ -76,7 +76,7 @@ class BoxConsulta extends Model
      **/
     public function tipoBox()
     {
-        return $this->belongsTo(\App\Models\TipoBox::class);
+        return $this->belongsTo(\App\Models\Especialidad::class);
     }
 
     /**
