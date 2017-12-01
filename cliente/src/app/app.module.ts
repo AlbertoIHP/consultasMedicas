@@ -23,6 +23,7 @@ import { EspecialidadService } from './Services/especialidad/especialidad.servic
 import { EstadoCitaService } from './Services/estadocita/estado-cita.service';
 import { MedicoService } from './Services/medico/medico.service';
 import { TipoBoxService } from './Services/tipobox/tipo-box.service';
+import { DisponibilidadService } from './Services/disponibilidad/disponibilidad.service';
 
 
 //MODULOS
@@ -166,6 +167,7 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   import { MedicoComponent } from './Components/moduloCitas/medico/medico.component';
   import { AgregarmedicoComponent } from './Components/moduloCitas/medico/agregarmedico/agregarmedico.component';
   import { EditarmedicoComponent } from './Components/moduloCitas/medico/editarmedico/editarmedico.component';
+  import { DisponibilidadComponent } from './Components/moduloCitas/medico/disponibilidad/disponibilidad.component';
 
   //Componente Cita
   import { CalendarHeaderComponent } from './Components/moduloCitas/cita/header.component';
@@ -180,6 +182,7 @@ import {
   NgbDatepickerModule,
   NgbTimepickerModule
 } from '@ng-bootstrap/ng-bootstrap';
+import { VerdisComponent } from './Components/moduloCitas/medico/verdis/verdis.component';
 
 
 @NgModule({
@@ -256,7 +259,9 @@ import {
     EditarmedicoComponent,
     AgregartipoboxComponent,
     EditartipoboxComponent,
-    MensajeErrorComponent
+    MensajeErrorComponent,
+    DisponibilidadComponent,
+    VerdisComponent
   ],
 
   entryComponents:
@@ -302,7 +307,9 @@ import {
     EditarmedicoComponent,
     AgregartipoboxComponent,
     EditartipoboxComponent,
-    MensajeErrorComponent
+    MensajeErrorComponent,
+    DisponibilidadComponent,
+    VerdisComponent
   ],
 
 
@@ -375,7 +382,8 @@ import {
     EspecialidadService,
     EstadoCitaService,
     MedicoService,
-    TipoBoxService
+    TipoBoxService,
+    DisponibilidadService
   ],
 
   bootstrap:

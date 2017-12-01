@@ -20,7 +20,9 @@ import { MensajeErrorComponent } from '../../Globals/mensaje-error/mensaje-error
 
 import { EventosService } from '../../../Services/eventos/eventos.service';
 
-import {UsuarioActual} from '../../Globals/usuarioactual.component';
+import { UsuarioActual } from '../../Globals/usuarioactual.component';
+
+import { DisponibilidadService } from '../../../Services/disponibilidad/disponibilidad.service';
 
 //DATATABLE
 import {DataSource} from '@angular/cdk/collections';
@@ -38,6 +40,8 @@ import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.com
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
+import { DisponibilidadComponent } from './disponibilidad/disponibilidad.component'
+
 @Component({
   selector: 'app-medico',
   templateUrl: './medico.component.html',
@@ -51,7 +55,7 @@ export class MedicoComponent  {
 
 	/*Temporal para validación
 	public totalCitas: Cita[];*/
-	displayedColumns = ['Acciones', 'Rut', 'Persona', 'Especialidad'];
+	displayedColumns = ['Acciones', 'Rut', 'Persona', 'Especialidad', 'Disponibilidad'];
 
 
   //DATATABLE
@@ -62,7 +66,41 @@ export class MedicoComponent  {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
 
+  public AUX: any
 
+  abrirDisponibilidad(medico)
+  {
+    this.servicioDisponibilidad.getDisponibilidads().subscribe( data => {
+
+      var a = JSON.parse(JSON.stringify(medico));
+
+      this.pasarStringId(a);
+
+      this.AUX = a
+
+      let disponibilidadMedico = this.normalizeData(data)
+
+      console.log(disponibilidadMedico)
+
+      disponibilidadMedico = disponibilidadMedico.filter( dis => parseInt(dis.Medico_id) === this.AUX.id)
+
+
+
+      let dialogRef = this.dialog.open(DisponibilidadComponent, {
+        width: '700px',
+        data:
+        {
+          disponibilidad: disponibilidadMedico
+        }
+      });
+
+    })
+  }
+
+  normalizeData( todo: any )
+  {
+    return todo.data
+  }
 
   ngOnInit()
   {
@@ -114,9 +152,9 @@ export class MedicoComponent  {
 		public servicioPersona: PersonaService,
 		public servicioEspecialidad: EspecialidadService,
 		public servicioMedico: MedicoService,
-		//public servicioCita: CitaService,
 		public dialog: MatDialog,
-    	public servicioEventos: EventosService
+    public servicioEventos: EventosService,
+    private servicioDisponibilidad: DisponibilidadService
 	)
 	{
 		this.usuarioActual=new UsuarioActual();
@@ -227,46 +265,6 @@ export class MedicoComponent  {
   }
 
 
-	/*
-	actualizarCitas()
-	{
-		//buscar en box consultas el box que tenga el tipo box asociado (cambiar en backend)
-		this.servicioCita.getCitas().subscribe((data)=>{
-			var todo:any= data;
-			todo = todo.data;
-			this.totalCitas=todo;
-		});
-	}
-
-	//Función temporal que retornará true en caso de que el médico esté en uso
-	verificarUsoMedico(medico):boolean{
-
-		console.log(this.totalCitas.length);
-		for(let i=0;i<this.totalCitas.length;i++){
-			console.log(this.totalCitas[i].Medico_id+'-'+medico.id);
-				if(parseInt(this.totalCitas[i].Medico_id)===parseInt(medico.id)){
-					return true;
-				}
-			}
-		return false;
-	}
-
-
-	eliminarMedico (medico)
-	{
-		console.log('click');
-		if(this.verificarUsoMedico(medico)==true){
-
-			this.mostrarMensaje("Esta estado cita está siendo usada por un médico.");
-
-		}else{
-			this.servicioMedico.deleteMedico(medico.id).subscribe( data => {
-				console.log(data);
-				this.actualizarMedicos();
-			});
-		}
-
-	} */
 
 	eliminarMedico (medico)
 	{
@@ -317,7 +315,8 @@ export class MedicoComponent  {
 			 especialidades:this.totalEspecialidad,
 			 servicioMedico: this.servicioMedico,
 			 servicioPersona: this.servicioPersona,
-			 servicioEspecialidad: this.servicioEspecialidad
+			 servicioEspecialidad: this.servicioEspecialidad,
+       servicioDisponibilidad: this.servicioDisponibilidad
 			 }
 		});
 
@@ -339,11 +338,6 @@ export class MedicoComponent  {
 		let dialogRef = this.dialog.open(VerpersonaComponent, {
 		width: '700px',
 		data: { persona: persona }
-		});
-
-		dialogRef.afterClosed().subscribe(result => {
-
-		//this.actualizarPersonas();
 		});
 
 	});
@@ -415,19 +409,5 @@ export class MedicoComponent  {
     });
  }
 
- /*mostrarMensaje(mensaje){
-		let dialogRef = this.dialog.open(MensajeErrorComponent, {
-			width: '400px',
-			data:{
-				mensajeError:mensaje
-			}
-		});
-
-		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarMedicos();
-		});
-
- } */
 
 }

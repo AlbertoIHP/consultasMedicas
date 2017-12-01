@@ -56,6 +56,16 @@
       <mat-cell *matCellDef="let row"> {{row.Especialidad_id}} </mat-cell>
     </ng-container>
 
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Disponibilidad">
+      <mat-header-cell *matHeaderCellDef> Disponibilidad </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button  mat-button class="boton-datos" (click)="abrirDisponibilidad(row)" >
+            <span style="color:white;">Ver datos</span>
+          </button>
+        </mat-cell>
+    </ng-container>
+
 
 
 

@@ -250,7 +250,7 @@ export class CitaComponent {
 
 
     let dialogRef = this.dialog.open(modal, {
-      width: '700px',
+      width: '1000px',
     data: {
         cita: currentCita,
         estados: this.totalEstados,
