@@ -25,6 +25,16 @@ import { MedicoService } from './Services/medico/medico.service';
 import { TipoBoxService } from './Services/tipobox/tipo-box.service';
 import { DisponibilidadService } from './Services/disponibilidad/disponibilidad.service';
 
+//SERVICIOS MODULO ATENCIONES
+import { AtencionService } from './Services/atencion/atencion.service';
+import { DiagnosticoService } from './Services/diagnostico/diagnostico.service';
+import { DiagnosticosAtencionService } from './Services/diagnosticosatencion/diagnosticos-atencion.service';
+import { ViaAdministracionMedicamentoService } from './Services/viaAdministracionMedicamento/via-administracion-medicamento.service';
+import { MedicamentoService } from './Services/medicamento/medicamento.service';
+import { RecetaService } from './Services/receta/receta.service';
+import { MedicamentosRecetaService } from './Services/medicamentosReceta/medicamentos-receta.service';
+import { AlergiasPacienteService } from './Services/alergiasPaciente/alergias-paciente.service';
+
 
 //MODULOS
 import { HttpModule } from '@angular/http';
@@ -383,7 +393,16 @@ import { VerdisComponent } from './Components/moduloCitas/medico/verdis/verdis.c
     EstadoCitaService,
     MedicoService,
     TipoBoxService,
-    DisponibilidadService
+    DisponibilidadService,
+    AtencionService,
+    DiagnosticoService,
+    DiagnosticosAtencionService,
+    ViaAdministracionMedicamentoService,
+    MedicamentoService,
+    MedicamentosRecetaService,
+    RecetaService,
+    AlergiasPacienteService,
+
   ],
 
   bootstrap:
