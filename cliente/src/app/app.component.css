@@ -18,6 +18,10 @@
 
 /* sidenav */
 
+.botones-nav{
+  margin-left: -10px;
+}
+
 .sidenavBtn
 {
   width: 100%;
