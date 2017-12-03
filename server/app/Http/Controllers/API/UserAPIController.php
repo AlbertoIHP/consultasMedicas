@@ -139,15 +139,20 @@ public function store(Request $request){
 
 	  $validator = \Validator::make($data, $rules);
 
-	  if ($validator->fails()) {
+	  if ($validator->fails()) 
+	  {
 		return [
 		  'created' => false,
 		  'errors' => $validator->errors()->all(),
 		];
-	  }else{
+	  }
+	  else
+	  {
 
 		Mail::send('email.validarCuenta', 
 		  ['confirmation_code' => $confirmation_code, 'email'=> $request->email, 'password' => $request->password], function ($message) {
+
+		  	
 
 			$message->to(Input::get('email'), Input::get('nombre'))
 				->subject('Por favor verifique su cuenta');
@@ -157,7 +162,6 @@ public function store(Request $request){
 
 		User::create($data);
 		return ['created' => true];
-
 
 	  }
 	} catch (\Exception $e) {
