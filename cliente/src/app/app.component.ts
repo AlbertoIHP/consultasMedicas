@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material';
 import { EventosService } from './Services/eventos/eventos.service';
+import {UsuarioActual} from './Components/Globals/usuarioactual.component';
+
 
 @Component({
 	selector: 'app-root',
@@ -12,8 +14,10 @@ import { EventosService } from './Services/eventos/eventos.service';
 })
 export class AppComponent {
   public isLogeado: boolean = false
+  public usuarioActual
 
 	constructor(public eventosService: EventosService,private router: Router,private iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
+     this.usuarioActual= new UsuarioActual();
     //iconos de toolbar
     this.iconRegistry
         .addSvgIcon('icono-logout',
@@ -42,6 +46,7 @@ export class AppComponent {
 
     this.eventosService.isSingIn.subscribe( data => {
       this.isLogeado = true
+      this.usuarioActual.permisos=JSON.parse(localStorage.getItem('permisos'));
     })
   }
 
