@@ -3,7 +3,7 @@ import { Role } from './Models/Role.model';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material';
-import { EventosService } from './Services/eventos/eventos.service'
+import { EventosService } from './Services/eventos/eventos.service';
 
 @Component({
 	selector: 'app-root',
