@@ -15,11 +15,11 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-              <button  class="btn boton-editar" type="button" (click) = "edicionDiagnostico(row)" matTooltip="Editar">
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Diagnostico')" class="btn boton-editar" type="button" (click) = "edicionDiagnostico(row)" matTooltip="Editar">
                <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
               </button>
 
-              <button class="btn boton-eliminar" type="button" (click) = "eliminarDiagnostico(row)" matTooltip="Eliminar">
+              <button *ngIf="usuarioActual.obtenerPermisoErase('Diagnostico')" class="btn boton-eliminar" type="button" (click) = "eliminarDiagnostico(row)" matTooltip="Eliminar">
                 <i class="fa fa-trash-o icono" aria-hidden="true"></i>
               </button>
 
@@ -52,7 +52,7 @@
 
 
  <div class="fixed-action-btn">
-		<a class="btn-floating btn-large boton-agregar"  (click)="agregacionDiagnostico()">
+		<a class="btn-floating btn-large boton-agregar" *ngIf="usuarioActual.obtenerPermisoWrite('Diagnostico')" (click)="agregacionDiagnostico()">
 			<i class="large material-icons">add</i>
 		</a>
 	</div>

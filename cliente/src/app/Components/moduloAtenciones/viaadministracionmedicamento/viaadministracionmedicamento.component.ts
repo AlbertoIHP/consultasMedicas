@@ -30,7 +30,7 @@ import {UsuarioActual} from '../../Globals/usuarioactual.component';
 export class ViaadministracionmedicamentoComponent implements OnInit {
 
 	public totalViaAdminMed:ViaAdministracionMedicamento[];
-	//public usuarioActual;
+	public usuarioActual;
 
 	//DATATABLE
 	exampleDatabase;
@@ -84,8 +84,8 @@ export class ViaadministracionmedicamentoComponent implements OnInit {
 	  }
 
   constructor(public servicioViaAdminMed:ViaAdministracionMedicamentoService, public dialog: MatDialog) {
+  	this.usuarioActual= new UsuarioActual();
   	this.totalViaAdminMed=[];
-  	//this.usuarioActual= new UsuarioActual();
   	this.actualizarViaAdminMed();
 
   }

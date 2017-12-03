@@ -30,7 +30,7 @@ import {UsuarioActual} from '../../Globals/usuarioactual.component';
 })
 export class DiagnosticoComponent implements OnInit {
 	public totalDiagnosticos:Diagnostico[];
-	//public usuarioActual;
+	public usuarioActual;
 
 	//DATATABLE
 	exampleDatabase;
@@ -86,7 +86,7 @@ export class DiagnosticoComponent implements OnInit {
 
 	constructor (public servicioDiagnostico:DiagnosticoService, public dialog: MatDialog)
 		{
-			//this.usuarioActual=new UsuarioActual();
+			this.usuarioActual=new UsuarioActual();
 			this.totalDiagnosticos=[];
 			this.actualizarDiagnosticos();
 		}
