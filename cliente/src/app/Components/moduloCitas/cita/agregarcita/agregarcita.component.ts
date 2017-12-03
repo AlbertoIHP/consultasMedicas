@@ -13,19 +13,12 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { EspecialidadService } from '../../../../Services/especialidad/especialidad.service'
 import { PersonaService } from '../../../../Services/persona/persona.service'
 import { DisponibilidadService } from '../../../../Services/disponibilidad/disponibilidad.service'
+
 @Component({
   selector: 'app-agregarcita',
   templateUrl: './agregarcita.component.html',
   styleUrls: ['./agregarcita.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: [
-    `
-    .cal-day-selected,
-    .cal-day-selected:hover {
-      background-color: #19334d !important;
-    }
-  `
-  ],
   encapsulation: ViewEncapsulation.None
 
 })
@@ -37,35 +30,35 @@ export class AgregarcitaComponent {
   firstFormGroup: FormGroup
   secondFormGroup: FormGroup
   zeroFormGroup: FormGroup
-  private cita: any
-  private estados: any
-  private pacientes: any
-  private medicos: any
-  private boxs: any
-  private servicioCitas: any
-  private especialidades: any
-  private personas: any
-  private text = "hola"
+  protected cita: any
+  protected estados: any
+  protected pacientes: any
+  protected medicos: any
+  protected boxs: any
+  protected servicioCitas: any
+  protected especialidades: any
+  protected personas: any
+  protected text = "hola"
 
-  private fechaSeleccionada = true
+  protected fechaSeleccionada = true
 
-  private horasDia
+  protected horasDia
 
-  private mostrarMedicos: any
-  private mostrarBoxs: any
-  private especialidadSeleccionada: any
-  private disponibilidades: any
+  protected mostrarMedicos: any
+  protected mostrarBoxs: any
+  protected especialidadSeleccionada: any
+  protected disponibilidades: any
 
-  private citas: any
+  protected citas: any
 
 
   constructor(
     public dialogRef: MatDialogRef<AgregarcitaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _formBuilder: FormBuilder,
-    private servicioEspecialidad: EspecialidadService,
-    private servicioPersona: PersonaService,
-    private servicioDisponibilidad: DisponibilidadService
+    protected _formBuilder: FormBuilder,
+    protected servicioEspecialidad: EspecialidadService,
+    protected servicioPersona: PersonaService,
+    protected servicioDisponibilidad: DisponibilidadService
 
     )
   {
@@ -126,7 +119,7 @@ export class AgregarcitaComponent {
     return todo.data
   }
 
-  private wardmeds
+  protected wardmeds
 
   filtrarMedicos(especialidad)
   {
