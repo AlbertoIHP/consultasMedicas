@@ -134,6 +134,11 @@ export class buscadorPorNombre extends DataSource<any> {
         }else if(this.filtro === "Diagnostico"){
            let searchStr = (item.diagnostico).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+           
+        }else if(this.filtro == "ViaAdminMed"){
+
+           let searchStr = (item.descripcion.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }
 
 
