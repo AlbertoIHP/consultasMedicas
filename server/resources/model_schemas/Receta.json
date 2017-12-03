@@ -1,7 +1,7 @@
 [
     {
-        "name": "idReceta",
-        "dbType": "integer,true",
+        "name": "id",
+        "dbType": "integer,true,true",
         "htmlType": null,
         "validations": null,
         "searchable": false,
@@ -22,8 +22,8 @@
         "inIndex": true
     },
     {
-        "name": "Atention_Cita_idCita",
-        "dbType": "integer,false",
+        "name": "Atencion_id",
+        "dbType": "integer,false,true",
         "htmlType": null,
         "validations": null,
         "searchable": true,
@@ -33,24 +33,80 @@
         "inIndex": true
     },
     {
-        "type": "relation",
-        "relation": "mtm,,Atention_has_Diagnostico"
+        "name": "remember_token",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "created_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "deleted_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
     },
     {
         "type": "relation",
-        "relation": "mtm,,Doctor"
+        "relation": "mt1,Atencion"
     },
     {
         "type": "relation",
-        "relation": "mtm,,Persona_has_Prevision"
+        "relation": "mtm,,AlergiasPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,DiagnosticosAtencion"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,MedicamentosRecetum"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Medico"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Paciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,PermisoModulo"
     },
     {
         "type": "relation",
         "relation": "mtm,,PrevisionActual"
-    },
-    {
-        "type": "relation",
-        "relation": "1tm,RecetaHasMedicamento"
     },
     {
         "type": "relation",

@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
 	{
 		$this->call(modulopacientes::class);
 		$this->call(modulocitas::class);
+		$this->call(moduloatenciones::class);
 	}
 }

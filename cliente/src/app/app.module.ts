@@ -25,6 +25,16 @@ import { MedicoService } from './Services/medico/medico.service';
 import { TipoBoxService } from './Services/tipobox/tipo-box.service';
 import { DisponibilidadService } from './Services/disponibilidad/disponibilidad.service';
 
+//SERVICIOS MODULO ATENCIONES
+import { AtencionService } from './Services/atencion/atencion.service';
+import { DiagnosticoService } from './Services/diagnostico/diagnostico.service';
+import { DiagnosticosAtencionService } from './Services/diagnosticosatencion/diagnosticos-atencion.service';
+import { ViaAdministracionMedicamentoService } from './Services/viaAdministracionMedicamento/via-administracion-medicamento.service';
+import { MedicamentoService } from './Services/medicamento/medicamento.service';
+import { RecetaService } from './Services/receta/receta.service';
+import { MedicamentosRecetaService } from './Services/medicamentosReceta/medicamentos-receta.service';
+import { AlergiasPacienteService } from './Services/alergiasPaciente/alergias-paciente.service';
+
 
 //MODULOS
 import { HttpModule } from '@angular/http';
@@ -178,6 +188,40 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaje-error.component';
 
 
+  //Módulo Atenciones
+  import { AtencionComponent } from './Components/moduloAtenciones/atencion/atencion.component';
+  import { AgregarAtencionComponent } from './Components/moduloAtenciones/atencion/agregar-atencion/agregar-atencion.component';
+  import { EditarAtencionComponent } from './Components/moduloAtenciones/atencion/editar-atencion/editar-atencion.component';
+
+  import { DiagnosticoComponent } from './Components/moduloAtenciones/diagnostico/diagnostico.component';
+  import { AgregarDiagnosticoComponent } from './Components/moduloAtenciones/diagnostico/agregar-diagnostico/agregar-diagnostico.component';
+  import { EditarDiagnosticoComponent } from './Components/moduloAtenciones/diagnostico/editar-diagnostico/editar-diagnostico.component';
+
+  import { RecetaComponent } from './Components/moduloAtenciones/receta/receta.component';
+  import { AgregarRecetaComponent } from './Components/moduloAtenciones/receta/agregar-receta/agregar-receta.component';
+  import { EditarRecetaComponent } from './Components/moduloAtenciones/receta/editar-receta/editar-receta.component';
+
+  import { MedicamentoComponent } from './Components/moduloAtenciones/medicamento/medicamento.component';
+  import { AgregarMedicamentoComponent } from './Components/moduloAtenciones/medicamento/agregar-medicamento/agregar-medicamento.component';
+  import { EditarMedicamentoComponent } from './Components/moduloAtenciones/medicamento/editar-medicamento/editar-medicamento.component';
+
+  import { DiagnosticosatencionComponent } from './Components/moduloAtenciones/diagnosticosatencion/diagnosticosatencion.component';
+  import { AgregarDiagnosticosAtencionComponent } from './Components/moduloAtenciones/diagnosticosatencion/agregar-diagnosticos-atencion/agregar-diagnosticos-atencion.component';
+  import { EditarDiagnosticosAtencionComponent } from './Components/moduloAtenciones/diagnosticosatencion/editar-diagnosticos-atencion/editar-diagnosticos-atencion.component';
+
+  import { ViaadministracionmedicamentoComponent } from './Components/moduloAtenciones/viaadministracionmedicamento/viaadministracionmedicamento.component';
+  import { AgregarViaAdministracionMedicamentoComponent } from './Components/moduloAtenciones/viaadministracionmedicamento/agregar-via-administracion-medicamento/agregar-via-administracion-medicamento.component';
+  import { EditarViaAdministracionMedicamentoComponent } from './Components/moduloAtenciones/viaadministracionmedicamento/editar-via-administracion-medicamento/editar-via-administracion-medicamento.component';
+
+  import { MedicamentosrecetaComponent } from './Components/moduloAtenciones/medicamentosreceta/medicamentosreceta.component';
+  import { AgregarMedicamentosRecetaComponent } from './Components/moduloAtenciones/medicamentosreceta/agregar-medicamentos-receta/agregar-medicamentos-receta.component';
+  import { EditarMedicamentosRecetaComponent } from './Components/moduloAtenciones/medicamentosreceta/editar-medicamentos-receta/editar-medicamentos-receta.component';
+
+  import { AlergiaspacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/alergiaspaciente.component';
+  import { AgregarAlergiasPacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/agregar-alergias-paciente/agregar-alergias-paciente.component';
+  import { EditarAlergiasPacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/editar-alergias-paciente/editar-alergias-paciente.component';
+
+
 import {
   NgbDatepickerModule,
   NgbTimepickerModule
@@ -261,7 +305,32 @@ import { VerdisComponent } from './Components/moduloCitas/medico/verdis/verdis.c
     EditartipoboxComponent,
     MensajeErrorComponent,
     DisponibilidadComponent,
-    VerdisComponent
+    VerdisComponent,
+    AtencionComponent,
+    DiagnosticoComponent,
+    RecetaComponent,
+    MedicamentoComponent,
+    DiagnosticosatencionComponent,
+    ViaadministracionmedicamentoComponent,
+    MedicamentosrecetaComponent,
+    AlergiaspacienteComponent,
+    AgregarAlergiasPacienteComponent,
+    EditarAlergiasPacienteComponent,
+    AgregarAtencionComponent,
+    EditarAtencionComponent,
+    AgregarDiagnosticoComponent,
+    EditarDiagnosticoComponent,
+    AgregarDiagnosticosAtencionComponent,
+    EditarDiagnosticosAtencionComponent,
+    AgregarMedicamentoComponent,
+    EditarMedicamentoComponent,
+    AgregarMedicamentosRecetaComponent,
+    EditarMedicamentosRecetaComponent,
+    AgregarRecetaComponent,
+    EditarRecetaComponent,
+    AgregarViaAdministracionMedicamentoComponent,
+    EditarViaAdministracionMedicamentoComponent
+    
   ],
 
   entryComponents:
@@ -383,7 +452,16 @@ import { VerdisComponent } from './Components/moduloCitas/medico/verdis/verdis.c
     EstadoCitaService,
     MedicoService,
     TipoBoxService,
-    DisponibilidadService
+    DisponibilidadService,
+    AtencionService,
+    DiagnosticoService,
+    DiagnosticosAtencionService,
+    ViaAdministracionMedicamentoService,
+    MedicamentoService,
+    MedicamentosRecetaService,
+    RecetaService,
+    AlergiasPacienteService,
+
   ],
 
   bootstrap:
