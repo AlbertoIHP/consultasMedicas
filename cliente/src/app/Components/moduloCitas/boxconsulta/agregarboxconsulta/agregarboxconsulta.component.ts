@@ -48,11 +48,4 @@ export class AgregarboxconsultaComponent implements OnInit {
 			this.dialogRef.close();
 		});
 	}
-
-
-	tipoBoxSeleccionado(tipobox)
-	{
-		this.nuevoBoxConsulta.TipoBox_id = tipobox.id;
-	}
-
 }

@@ -33,6 +33,7 @@ export class EditarmedicoComponent implements OnInit {
 
       this.personasDisponibles = []
       this.medico = data.medico
+      console.log(this.medico)
       this.totalMedicos = data.medicos
       this.totalPersonas = data.personas
       this.totalEspecialidades = data.especialidades
@@ -73,17 +74,6 @@ export class EditarmedicoComponent implements OnInit {
 
     this.dialogRef.close();
   }
-
-  especialidadSeleccionada(especialidad)
-  {
-    this.medico.Especialidad_id = especialidad.id;
-  }
-
-  personaSeleccionada(persona)
-  {
-    this.medico.Persona_id = persona.id;
-  }
-
 
   actualizarEspecialidades ()
   {

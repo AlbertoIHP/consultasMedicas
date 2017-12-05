@@ -3,11 +3,11 @@
   <mat-step >
 
 
-      <ng-template matStepLabel>Informacion General</ng-template>
+      <ng-template matStepLabel>Información General</ng-template>
 
       <mat-form-field style="width: 100% !important;" >
-        <mat-select placeholder="Especialidad" style="width: 100% !important;">
-          <mat-option style="width: 100% !important;" *ngFor="let especialidad of totalEspecialidades" [value]="especialidad.id" (click)="especialidadSeleccionada(especialidad)">
+        <mat-select placeholder="Especialidad" [(ngModel)]="medico.Especialidad_id" style="width: 100% !important;">
+          <mat-option style="width: 100% !important;" *ngFor="let especialidad of totalEspecialidades" [value]="especialidad.id">
             {{ especialidad.nombre }}
           </mat-option>
         </mat-select>
@@ -16,8 +16,8 @@
 
 
       <mat-form-field style="width: 100% !important;" >
-        <mat-select placeholder="Seleccione una Persona para asociar al Médico" style="width: 100% !important;">
-          <mat-option style="width: 100% !important;" *ngFor="let persona of personasDisponibles" [value]="persona.id" (click)="personaSeleccionada(persona)">
+        <mat-select placeholder="Seleccione una Persona para asociar al Médico" [(ngModel)]="medico.Persona_id" style="width: 100% !important;">
+          <mat-option style="width: 100% !important;" *ngFor="let persona of personasDisponibles" [value]="persona.id">
            ( {{ persona.rut }} ) {{persona.nombre1 }} {{persona.apellido1}}
           </mat-option>
         </mat-select>
@@ -38,14 +38,14 @@
 
 
   <mat-step >
-      <ng-template matStepLabel>Horarios de Atencion</ng-template>
+      <ng-template matStepLabel>Horarios de Atención</ng-template>
 
         <table class="striped">
           <thead>
             <tr>
                 <th>Dia</th>
-                <th>Hora Inicio Atencion</th>
-                <th>Hora Termino Atencion</th>
+                <th>Hora Inicio Atención</th>
+                <th>Hora Termino Atención</th>
             </tr>
           </thead>
 

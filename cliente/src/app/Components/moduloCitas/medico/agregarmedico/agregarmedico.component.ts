@@ -75,17 +75,6 @@ export class AgregarmedicoComponent implements OnInit {
 		this.dialogRef.close();
 	}
 
-	especialidadSeleccionada(especialidad)
-	{
-		this.medico.Especialidad_id = especialidad.id;
-	}
-
-	personaSeleccionada(persona)
-	{
-		this.medico.Persona_id = persona.id;
-	}
-
-
   actualizarEspecialidades ()
   {
     this.servicioEspecialidad.getEspecialidads().subscribe(data => {
@@ -143,7 +132,7 @@ export class AgregarmedicoComponent implements OnInit {
 		//Verificamos si es que se ha catcheado algun error y desplegamos alguna alerta
 		(err) => {
 		if (err === 'Used') {
-		alert("Esta persona ya tiene asignado un medico")
+		alert("Esta persona ya tiene asignado un médico")
 		}
 
 	});

@@ -3,7 +3,7 @@
 
   <mat-step >
 
-      <ng-template matStepLabel>Seleccion de Fecha</ng-template>
+      <ng-template matStepLabel>Selección de Fecha</ng-template>
 
 
       <div class="row" style="text-align: center;">
@@ -45,7 +45,7 @@
 
 
   <mat-step >
-      <ng-template matStepLabel>Hora e Informacion del Paciente</ng-template>
+      <ng-template matStepLabel>Hora e Información del Paciente</ng-template>
 
 
 
@@ -93,7 +93,7 @@
 
 
   <mat-step >
-      <ng-template matStepLabel>Seleccion de Especialidad</ng-template>
+      <ng-template matStepLabel>Selección de Especialidad</ng-template>
 
 
 
@@ -110,7 +110,7 @@
 
         <div class="col s4">
           <mat-form-field style="width: 100% !important;">
-            <mat-select  placeholder="Medico" style="width: 100% !important;" [(ngModel)]="cita.Medico_id" >
+            <mat-select  placeholder="Médico" style="width: 100% !important;" [(ngModel)]="cita.Medico_id" >
               <mat-option style="width: 100% !important;" *ngFor="let medico of mostrarMedicos" [value]="medico.id" >
               {{ medico.nombre }}
               </mat-option>
@@ -145,13 +145,13 @@
 
 
   <mat-step>
-    <ng-template matStepLabel style="text-align: center">Verificacion de cuenta</ng-template>
+    <ng-template matStepLabel style="text-align: center">Verificación de cuenta</ng-template>
 
     <div style="text-align: center !important">
           <img src="https://lh3.googleusercontent.com/Vct_XSpNfhherziE-h0mSSpbrJf2jYM1nvPO2PVkcIECnqqUHCf-2-5j8EObefEmS0o7=w300" style="max-width: 300px; max-height: 300px">
 
               <p>
-      Un correo electronico ha sido enviado al medico y al paciente respectivamente, con la informacion de la reserva medica.
+      Un correo electrónico ha sido enviado al médico y al paciente respectivamente, con la información de la reserva médica.
 
     </p>
 
