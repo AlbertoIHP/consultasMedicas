@@ -1,3 +1,83 @@
-<p>
-  cita works!
-</p>
+<div class="example-header" >
+
+
+    <label for="finder">Buscar por medico...</label>
+    <input id="finder" matInput #filter >
+
+</div>
+
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="Acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+
+              <button class="btn boton-editar" type="button" (click) = "abrirModal('editar',row)" matTooltip="Editar">
+               <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
+              </button>
+
+              <button class="btn boton-eliminar" type="button" (click) = "eliminarCita(row)" matTooltip="Eliminar">
+                <i class="fa fa-trash-o icono" aria-hidden="true"></i>
+              </button>
+
+       </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Fecha">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.fecha}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Hora">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Hora </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.hora}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Estado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.EstadoCita_id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Box">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Box </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.BoxConsulta_id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Paciente">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Paciente </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.Paciente_id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Medico">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Medico </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.Medico_id}} </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
+
+  </mat-table>
+
+  <div class="example-no-results"
+       [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+       No hay registros con dicho nombre.
+  </div>
+
+  <mat-paginator #paginator
+                [length]="dataSource.filteredData.length"
+                [pageIndex]="0"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>
+
+
+ <div class="fixed-action-btn">
+    <a class="btn-floating btn-large boton-agregar"  (click)="abrirModal('agregar')">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>

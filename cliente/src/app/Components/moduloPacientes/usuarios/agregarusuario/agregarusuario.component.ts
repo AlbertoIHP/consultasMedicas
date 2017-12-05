@@ -83,16 +83,6 @@ export class AgregarusuarioComponent implements OnInit{
 		this.dialogRef.close();
 	}
 
-	roleSeleccionado(role)
-	{
-		console.log(this.usuario);
-		this.usuario.Role_id = role.id;
-	}
-
-	personaSeleccionada(persona)
-	{
-		this.usuario.Persona_id = persona.id;
-	}
 
   actualizarUsuarios()
   {

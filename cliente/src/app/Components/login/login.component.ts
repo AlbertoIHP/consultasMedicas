@@ -44,15 +44,29 @@ export class LoginComponent implements OnInit {
     public servicioPM: PermisoModuloService,
     public servicioModulo: ModuloService)
   {
-    this.totalModulos = []
-    this.totalPM = []
-    this.user = ''
-    this.password = ''
-    this.isLoginable = true
-    this.eventService.isSingUp.subscribe( (newUser) => {
-      this.user =  newUser.email
-      this.password = newUser.password
-    })
+
+    if( localStorage.getItem('currentUser') )
+    {
+      this.router.navigate([''])
+
+    }
+    else
+    {
+
+
+      this.totalModulos = []
+      this.totalPM = []
+      this.user = ''
+      this.password = ''
+      this.isLoginable = true
+      this.eventService.isSingUp.subscribe( (newUser) => {
+        this.user =  newUser.email
+        this.password = newUser.password
+      })
+    }
+
+
+
   }
 
   ngOnInit() {
@@ -73,7 +87,7 @@ export class LoginComponent implements OnInit {
 
           this.roleId = currentUser[0].Role_id
 
-          var personaId=currentUser[0].Persona_id 
+          var personaId=currentUser[0].Persona_id
 
           this.servicioModulo.getModulos().subscribe(data => {
             var todo: any = data
@@ -104,7 +118,7 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('persona',test);
 
               this.eventService.singIn()
-              this.router.navigate(['moduloPacientes'])
+              this.router.navigate(['per'])
 
 
             })

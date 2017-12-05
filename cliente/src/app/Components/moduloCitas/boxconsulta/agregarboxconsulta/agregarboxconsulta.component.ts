@@ -16,11 +16,11 @@ export class AgregarboxconsultaComponent implements OnInit {
   constructor(
   	public dialogRef: MatDialogRef<AgregarboxconsultaComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any
-	
-  	) { 
+
+  	) {
 
   	this.nuevoBoxConsulta = new BoxConsulta();
-	this.totalTipoBoxes = data.totalTipoBoxes;
+	  this.totalTipoBoxes = data.totalTipoBoxes;
     this.servicioTipoBox = data.servicioTipoBox;
     this.servicioBoxConsulta = data.servicioBoxConsulta;
 
@@ -28,11 +28,11 @@ export class AgregarboxconsultaComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.servicioTipoBox.getTipoBoxes().subscribe( data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalTipoBoxes = todo;
-    });
+  	// this.servicioTipoBox.getTipoBoxes().subscribe( data => {
+   //    var todo: any = data;
+   //    todo = todo.data;
+   //    this.totalTipoBoxes = todo;
+   //  });
   }
 
   onNoClick()
@@ -42,16 +42,10 @@ export class AgregarboxconsultaComponent implements OnInit {
 
 	agregarBoxConsulta()
 	{
+    console.log(this.nuevoBoxConsulta)
 		this.servicioBoxConsulta.registerBoxConsulta(this.nuevoBoxConsulta).subscribe(data => {
 			console.log(data);
 			this.dialogRef.close();
 		});
 	}
-
-
-	tipoBoxSeleccionado(tipobox)
-	{
-		this.nuevoBoxConsulta.TipoBox_id = tipobox.id;
-	}
-
 }

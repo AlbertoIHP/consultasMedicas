@@ -46,11 +46,4 @@ export class AgregarprovinciaComponent implements OnInit{
 		});
 	}
 
-
-	regionSeleccionada(region)
-	{
-		this.nuevaProvincia.Region_id = region.id;
-	}
-
-
 }

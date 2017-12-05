@@ -4,8 +4,8 @@
 
   <p >Tipo Sangre</p>
   <mat-form-field style="width: 100% !important;" >
-    <mat-select placeholder="Tipo Sangre" style="width: 100% !important;">
-      <mat-option style="width: 100% !important;" *ngFor="let tiposangre of totalTS" [value]="tiposangre.id" (click)="tsSeleccionado(tiposangre)">
+    <mat-select placeholder="Tipo Sangre" [(ngModel)]="paciente.TipoSangre_id" style="width: 100% !important;">
+      <mat-option style="width: 100% !important;" *ngFor="let tiposangre of totalTS" [value]="tiposangre.id">
         {{ tiposangre.nombre }}
       </mat-option>
     </mat-select>
@@ -16,6 +16,6 @@
 
 
 <div mat-dialog-actions>
-  <button *ngIf="!isPersona"  mat-button (click)="editarPaciente()" tabindex="2">Actualizar Paciente</button>
+  <button *ngIf="!isPersona"  mat-button class="boton-aceptar" (click)="editarPaciente()" tabindex="2">Actualizar Paciente</button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

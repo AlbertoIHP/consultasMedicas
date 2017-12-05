@@ -98,6 +98,10 @@
     },
     {
         "type": "relation",
+        "relation": "1tm,Disponibilidad"
+    },
+    {
+        "type": "relation",
         "relation": "mtm,,Paciente"
     },
     {

@@ -19,8 +19,8 @@
     <div class="col s6">
       <p >Role</p>
       <mat-form-field style="width: 100% !important;" *ngIf="!isPersona">
-        <mat-select placeholder="Role" style="width: 100% !important;">
-          <mat-option style="width: 100% !important;" *ngFor="let role of totalRoles" [value]="role.id" (click)="roleSeleccionado(role)">
+        <mat-select placeholder="Role" [(ngModel)]="usuario.Role_id" style="width: 100% !important;">
+          <mat-option style="width: 100% !important;" *ngFor="let role of totalRoles" [value]="role.id">
             {{ role.nombre }}
           </mat-option>
         </mat-select>
@@ -41,8 +41,8 @@
 
 	<p *ngIf="!isPersona && !tienePersona">Persona Asociada</p>
 	<mat-form-field style="width: 100% !important;" *ngIf="!isPersona && !tienePersona">
-		<mat-select placeholder="Seleccione una Persona para asociar al usuario" style="width: 100% !important;">
-			<mat-option style="width: 100% !important;" *ngFor="let persona of personasDisponibles" [value]="persona.id" (click)="personaSeleccionada(persona)">
+		<mat-select placeholder="Seleccione una Persona para asociar al usuario" [(ngModel)]="usuario.Persona_id" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let persona of personasDisponibles" [value]="persona.id">
 			 ( {{ persona.rut }} ) {{persona.nombre1 }} {{persona.apellido1}}
 			</mat-option>
 		</mat-select>

@@ -47,10 +47,4 @@ export class EditarcomunaComponent implements OnInit{
 
 		});
 	}
-
-	provinciaSeleccionada(provincia)
-	{
-		this.comuna.Provincia_id = provincia.id;
-	}
-
 }

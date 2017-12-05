@@ -19,7 +19,7 @@ class BoxConsulta extends Migration
 
         $table->integer('TipoBox_id')->unsigned()->nullable();
 
-        $table->foreign('TipoBox_id')->references('id')->on('TipoBox')->onDelete('cascade');
+        $table->foreign('TipoBox_id')->references('id')->on('Especialidad')->onDelete('cascade');
 
 
         $table->rememberToken();

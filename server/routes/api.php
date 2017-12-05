@@ -73,7 +73,30 @@ Route::group(['middleware' => ['cors']], function(){
     Route::resource('v1/medicos', 'MedicoAPIController');
 
     Route::resource('v1/citas', 'CitaAPIController');
+
+    Route::resource('v1/disponibilidads', 'DisponibilidadAPIController');
+
+
+    Route::resource('v1/atencions', 'AtencionAPIController');
+
+    Route::resource('v1/diagnosticos', 'DiagnosticoAPIController');
+
+    Route::resource('v1/diagnosticosAtencions', 'DiagnosticosAtencionAPIController');
+
+    Route::resource('v1/viaAdministracionMedicamentos', 'ViaAdministracionMedicamentoAPIController');
+
+    Route::resource('v1/recetas', 'RecetaAPIController');
+
+    Route::resource('v1/medicamentos', 'MedicamentoAPIController');
+
+    Route::resource('v1/medicamentosRecetas', 'MedicamentosRecetaAPIController');
+
+    Route::resource('v1/alergiasPacientes', 'AlergiasPacienteAPIController');
 });
+
+
+
+
 
 
 

@@ -3,7 +3,9 @@ import { Role } from './Models/Role.model';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material';
-import { EventosService } from './Services/eventos/eventos.service'
+import { EventosService } from './Services/eventos/eventos.service';
+import {UsuarioActual} from './Components/Globals/usuarioactual.component';
+
 
 @Component({
 	selector: 'app-root',
@@ -12,21 +14,11 @@ import { EventosService } from './Services/eventos/eventos.service'
 })
 export class AppComponent {
   public isLogeado: boolean = false
+  public usuarioActual
 
 	constructor(public eventosService: EventosService,private router: Router,private iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
+     this.usuarioActual= new UsuarioActual();
     //iconos de toolbar
-    this.iconRegistry
-        .addSvgIcon('icono-paciente',
-            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/patient.svg'));
-
-    this.iconRegistry
-        .addSvgIcon('icono-agenda',
-            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/agenda.svg'));
-
-    this.iconRegistry
-        .addSvgIcon('icono-doctor',
-            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/doctor.svg'));
-
     this.iconRegistry
         .addSvgIcon('icono-logout',
             sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/exit.svg'));
@@ -35,34 +27,11 @@ export class AppComponent {
         .addSvgIcon('icono-editar-perfil',
             sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/tools.svg'));
 
-    //iconos para las acciones de las distintas secciones de módulos
-    this.iconRegistry
-        .addSvgIcon('icono-editar',
-            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/repair.svg'));
-
-    this.iconRegistry
-        .addSvgIcon('icono-desactivar',
-            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/cancel.svg'));
-
-    this.iconRegistry
-        .addSvgIcon('icono-ficha-medica',
-            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/curriculum.svg'));
-
-    this.iconRegistry
-        .addSvgIcon('icono-prevision',
-            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/commerce.svg'));
-
-    this.iconRegistry
-        .addSvgIcon('icono-agregar',
-            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/add-user.svg'));
-
-    this.iconRegistry
-        .addSvgIcon('icono-eliminar',
-            sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/trash.svg'));
-
     this.iconRegistry
         .addSvgIcon('icono-error',
             sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/warning.svg'));
+
+  
 
     if(localStorage.getItem('currentUser'))
     {
@@ -77,6 +46,7 @@ export class AppComponent {
 
     this.eventosService.isSingIn.subscribe( data => {
       this.isLogeado = true
+      this.usuarioActual.permisos=JSON.parse(localStorage.getItem('permisos'));
     })
   }
 
@@ -105,5 +75,12 @@ export class AppComponent {
     localStorage.clear()
     this.router.navigate(['/'])
   }
+
+  changeMenu(menu1, menu2)
+  {
+    menu1.close()
+    menu2.close()
+  }
+
 
 }

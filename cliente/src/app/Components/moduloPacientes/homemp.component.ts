@@ -26,11 +26,13 @@ export class Homemp implements OnInit {
   public isLogeado = false
   public usuarioActual;
 
-  constructor(public eventosService: EventosService, public router: Router, 
-                                                       public servicioUsuario: UserService) {
+  constructor(
+    public eventosService: EventosService,
+    public servicioUsuario: UserService,
+    public router: Router) {
     if( !(localStorage.getItem('currentUser')) )
     {
-      this.router.navigate(['/'])
+      this.router.navigate(['login'])
     }else{
       //se obtienen los datos asociados a permisos del usuario actual
       this.usuarioActual=new UsuarioActual();

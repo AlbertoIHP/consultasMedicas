@@ -1,105 +1,67 @@
-<div class="row">
-	<div class="col s1" >
-	<input (click)="cambiarBusqueda()" type="checkbox" id="test5" />
-	<label for="test5" class="selectRaro"></label>
+<div class="example-header" >
 
-	</div>
-	<div class="col s11">
-	<label for="miinput">Búsqueda por Ubicación</label>
-	<input matInput #filter style="width: 100% !important;" id="miinput">
-	</div>
+
+    <label for="finder">Buscar por nombre...</label>
+    <input id="finder" matInput #filter >
+
 </div>
 
 
 <div class="example-container mat-elevation-z8">
 
-	<mat-table #table *ngIf="!buscarPorNombre" [dataSource]="sourceDatatable">
+  <mat-table #table [dataSource]="dataSource" matSort>
 
-		<ng-container matColumnDef="Acciones">
-			<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+    <ng-container matColumnDef="Acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let row">
 
-			<mat-cell *matCellDef="let row" >
-
-							<button *ngIf="usuarioActual.obtenerPermisoUpdate('BoxConsulta')" mat-icon-button (click) = "edicionBoxConsulta(row)" >
-								<mat-icon svgIcon="icono-editar"></mat-icon>
-							</button>
-
-
-							<button *ngIf="usuarioActual.obtenerPermisoErase('BoxConsulta')" mat-icon-button (click) = "eliminarBoxConsulta(row)" >
-								<mat-icon svgIcon="icono-eliminar"></mat-icon>
-							</button>
-
-			</mat-cell>
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('BoxConsulta')" class="btn boton-editar" type="button" (click) = "edicionBoxConsulta(row)" matTooltip="Editar">
+                <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
+              </button>
 
 
-		</ng-container>
+              <button *ngIf="usuarioActual.obtenerPermisoErase('BoxConsulta')" class="btn boton-eliminar" type="button" (click) = "eliminarBoxConsulta(row)" matTooltip="Eliminar" >
+                <i class="fa fa-trash-o icono" aria-hidden="true"></i>
+              </button>
 
-		<!-- Progress Column -->
-		<ng-container matColumnDef="Ubicacion">
-			<mat-header-cell *matHeaderCellDef> Ubicación </mat-header-cell>
-			<mat-cell *matCellDef="let row"> {{row.ubicacion}} </mat-cell>
-		</ng-container>
-
-		<!-- Name Column -->
-		<ng-container matColumnDef="TipoBox">
-			<mat-header-cell *matHeaderCellDef> Tipo box </mat-header-cell>
-			<mat-cell *matCellDef="let row"> {{row.TipoBox_id}} </mat-cell>
-		</ng-container>
-
-		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-		<mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
-
-	</mat-table>
+       </mat-cell>
+    </ng-container>
 
 
- <mat-table #table *ngIf="buscarPorNombre" [dataSource]="sourcePorNombre">
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Ubicacion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ubicación </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.ubicacion}} </mat-cell>
+    </ng-container>
 
-		<ng-container matColumnDef="Acciones">
-			<mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-			<mat-cell *matCellDef="let row">
-
-							<button *ngIf="usuarioActual.obtenerPermisoUpdate('BoxConsulta')" mat-icon-button (click) = "edicionBoxConsulta(row)" >
-								<mat-icon svgIcon="icono-editar"></mat-icon>
-							</button>
-
-
-							<button *ngIf="usuarioActual.obtenerPermisoErase('BoxConsulta')" mat-icon-button (click) = "eliminarBoxConsulta(row)" >
-								<mat-icon svgIcon="icono-eliminar"></mat-icon>
-							</button>
-
-			 </mat-cell>
-		</ng-container>
-
-
-		<!-- Progress Column -->
-		<ng-container matColumnDef="Ubicacion">
-			<mat-header-cell *matHeaderCellDef> Ubicación </mat-header-cell>
-			<mat-cell *matCellDef="let row"> {{row.ubicacion}} </mat-cell>
-		</ng-container>
-
-				<!-- Name Column -->
-		<ng-container matColumnDef="TipoBox">
-			<mat-header-cell *matHeaderCellDef> Tipo box </mat-header-cell>
-			<mat-cell *matCellDef="let row"> {{row.TipoBox_id}} </mat-cell>
-		</ng-container>
-
-		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-		<mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
-	</mat-table>
+        <!-- Name Column -->
+    <ng-container matColumnDef="TipoBox">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo box </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.TipoBox_id}} </mat-cell>
+    </ng-container>
 
 
 
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
 
-	<mat-paginator #paginator
-								[length]="totalBoxConsultas.length"
-								[pageIndex]="0"
-								[pageSize]="5"
-								[pageSizeOptions]="[5, 10, 25, 100]">
-	</mat-paginator>
+  </mat-table>
+
+  <div class="example-no-results"
+       [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+       No hay registros con dicho nombre.
+  </div>
+
+  <mat-paginator #paginator
+                [length]="dataSource.filteredData.length"
+                [pageIndex]="0"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
 </div>
 
  <div class="fixed-action-btn">
-		<a class="btn-floating btn-large blue" *ngIf="usuarioActual.obtenerPermisoWrite('BoxConsulta')" (click)="agregacionBoxConsulta()">
+		<a class="btn-floating btn-large boton-agregar" *ngIf="usuarioActual.obtenerPermisoWrite('BoxConsulta')" (click)="agregacionBoxConsulta()">
 			<i class="large material-icons">add</i>
 		</a>
 	</div>

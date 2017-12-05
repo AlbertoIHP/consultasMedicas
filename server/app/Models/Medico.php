@@ -49,7 +49,8 @@ class Medico extends Model
 
     public $fillable = [
         'Especialidad_id',
-        'Persona_id'
+        'Persona_id',
+        'remember_token'
     ];
 
     /**
@@ -60,7 +61,8 @@ class Medico extends Model
     protected $casts = [
         'id' => 'integer',
         'Especialidad_id' => 'integer',
-        'Persona_id' => 'integer'
+        'Persona_id' => 'integer',
+        'remember_token' => 'string'
     ];
 
     /**
@@ -95,6 +97,13 @@ class Medico extends Model
     {
         return $this->hasMany(\App\Models\Citum::class);
     }
-    
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function disponibilidads()
+    {
+        return $this->hasMany(\App\Models\Disponibilidad::class);
+    }
     protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
 }

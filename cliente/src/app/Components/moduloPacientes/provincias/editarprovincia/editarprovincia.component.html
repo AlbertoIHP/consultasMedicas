@@ -6,12 +6,10 @@
 
 	<input matInput tabindex="1" [(ngModel)]="provincia.nombre">
 
-
-
 	<p>Región</p>
 	<mat-form-field style="width: 100% !important;">
-		<mat-select placeholder="Región" style="width: 100% !important;">
-			<mat-option style="width: 100% !important;" *ngFor="let region of totalRegiones" [value]="region.id" (click)="regionSeleccionada(region)">
+		<mat-select placeholder="Región" [(ngModel)]="provincia.Region_id" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let region of totalRegiones" [value]="region.id">
 				{{ region.nombre }}
 			</mat-option>
 		</mat-select>
@@ -21,6 +19,6 @@
 
 
 <div mat-dialog-actions>
-	<button mat-button (click)="editarProvincia()" tabindex="2">Editar Provincia</button>
+	<button mat-button class="boton-aceptar" (click)="editarProvincia()" tabindex="2">Editar Provincia</button>
 	<button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

@@ -1,71 +1,27 @@
-<div class="row">
-  <div class="col s1" >
-  <input (click)="cambiarBusqueda()" type="checkbox" id="test5" />
-  <label for="test5" class="selectRaro"></label>
+<div class="example-header" >
 
-  </div>
-  <div class="col s11">
-  <label for="miinput">Búsqueda por Nombre</label>
-  <input matInput #filter style="width: 100% !important;" id="miinput">
-  </div>
+
+    <label for="finder">Buscar por nombre...</label>
+    <input id="finder" matInput #filter >
+
 </div>
 
 
 <div class="example-container mat-elevation-z8">
 
-  <mat-table #table *ngIf="!buscarPorNombre" [dataSource]="sourceDatatable">
-
-    <ng-container matColumnDef="Acciones">
-      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-
-      <mat-cell *matCellDef="let row" >
-
-              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Provincias')" mat-icon-button (click) = "edicionProvincia(row)" >
-                <mat-icon svgIcon="icono-editar"></mat-icon>
-              </button>
-
-
-              <button *ngIf="usuarioActual.obtenerPermisoErase('Provincias')" mat-icon-button (click) = "eliminarProvincia(row)" >
-                <mat-icon svgIcon="icono-eliminar"></mat-icon>
-              </button>
-
-      </mat-cell>
-
-
-    </ng-container>
-
-    <!-- Progress Column -->
-    <ng-container matColumnDef="Nombre">
-      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="Region">
-      <mat-header-cell *matHeaderCellDef> Región </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.Region_id}} </mat-cell>
-    </ng-container>
-
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
-
-  </mat-table>
-
-
- <mat-table #table *ngIf="buscarPorNombre" [dataSource]="sourcePorNombre">
+  <mat-table #table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="Acciones">
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Provincias')" mat-icon-button (click) = "edicionProvincia(row)" >
-                <mat-icon svgIcon="icono-editar"></mat-icon>
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('Provincias')"  class="btn boton-editar" type="button" (click) = "edicionProvincia(row)" matTooltip="Editar">
+                <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
               </button>
 
 
-              <button *ngIf="usuarioActual.obtenerPermisoErase('Provincias')" mat-icon-button (click) = "eliminarProvincia(row)" >
-                <mat-icon svgIcon="icono-eliminar"></mat-icon>
+              <button *ngIf="usuarioActual.obtenerPermisoErase('Provincias')" class="btn boton-eliminar" type="button" (click) = "eliminarProvincia(row)" matTooltip="Eliminar">
+                <i class="fa fa-trash-o icono" aria-hidden="true"></i>
               </button>
 
        </mat-cell>
@@ -74,34 +30,37 @@
 
     <!-- Progress Column -->
     <ng-container matColumnDef="Nombre">
-      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="Region">
-      <mat-header-cell *matHeaderCellDef> Region </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Region </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.Region_id}} </mat-cell>
     </ng-container>
 
-
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
+
   </mat-table>
 
-
-
+  <div class="example-no-results"
+       [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+       No hay registros con dicho nombre.
+  </div>
 
   <mat-paginator #paginator
-                [length]="totalProvincias.length"
+                [length]="dataSource.filteredData.length"
                 [pageIndex]="0"
                 [pageSize]="5"
                 [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
 </div>
 
+
  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large blue" *ngIf="usuarioActual.obtenerPermisoWrite('Provincias')" (click)="agregacionProvincia()">
+    <a class="btn-floating btn-large boton-agregar" *ngIf="usuarioActual.obtenerPermisoWrite('Provincias')" (click)="agregacionProvincia()">
       <i class="large material-icons">add</i>
     </a>
   </div>

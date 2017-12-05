@@ -23,17 +23,61 @@ import { EspecialidadService } from './Services/especialidad/especialidad.servic
 import { EstadoCitaService } from './Services/estadocita/estado-cita.service';
 import { MedicoService } from './Services/medico/medico.service';
 import { TipoBoxService } from './Services/tipobox/tipo-box.service';
+import { DisponibilidadService } from './Services/disponibilidad/disponibilidad.service';
+
+//SERVICIOS MODULO ATENCIONES
+import { AtencionService } from './Services/atencion/atencion.service';
+import { DiagnosticoService } from './Services/diagnostico/diagnostico.service';
+import { DiagnosticosAtencionService } from './Services/diagnosticosatencion/diagnosticos-atencion.service';
+import { ViaAdministracionMedicamentoService } from './Services/viaAdministracionMedicamento/via-administracion-medicamento.service';
+import { MedicamentoService } from './Services/medicamento/medicamento.service';
+import { RecetaService } from './Services/receta/receta.service';
+import { MedicamentosRecetaService } from './Services/medicamentosReceta/medicamentos-receta.service';
+import { AlergiasPacienteService } from './Services/alergiasPaciente/alergias-paciente.service';
 
 
 //MODULOS
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing, appRoutingProviders } from './Routes/app-routing.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatListModule, MatStepperModule, MatCardModule, MatGridListModule, MatButtonToggleModule, MatTabsModule, MatInputModule , MatSelectModule, MatDialogModule, MatPaginatorModule, MatTableModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule } from '@angular/material';
-import { ReactiveFormsModule } from '@angular/forms'
+import { CalendarModule } from 'angular-calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatStepperModule,
+} from '@angular/material';
+import {CdkTableModule} from '@angular/cdk/table';
 
 
 // COMPONENTES
@@ -118,30 +162,71 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   import { BoxconsultaComponent } from './Components/moduloCitas/boxconsulta/boxconsulta.component';
   import { AgregarboxconsultaComponent } from './Components/moduloCitas/boxconsulta/agregarboxconsulta/agregarboxconsulta.component';
   import { EditarboxconsultaComponent } from './Components/moduloCitas/boxconsulta/editarboxconsulta/editarboxconsulta.component';
-  
+
   //Componente Estado Cita
   import { EstadocitaComponent } from './Components/moduloCitas/estadocita/estadocita.component';
   import { AgregarestadocitaComponent } from './Components/moduloCitas/estadocita/agregarestadocita/agregarestadocita.component';
   import { EditarestadocitaComponent } from './Components/moduloCitas/estadocita/editarestadocita/editarestadocita.component';
-  
+
   //Componente Especialidad
   import { EspecialidadComponent } from './Components/moduloCitas/especialidad/especialidad.component';
   import { AgregarespecialidadComponent } from './Components/moduloCitas/especialidad/agregarespecialidad/agregarespecialidad.component';
   import { EditarespecialidadComponent } from './Components/moduloCitas/especialidad/editarespecialidad/editarespecialidad.component';
-  
+
   //Componente Medico
   import { MedicoComponent } from './Components/moduloCitas/medico/medico.component';
   import { AgregarmedicoComponent } from './Components/moduloCitas/medico/agregarmedico/agregarmedico.component';
   import { EditarmedicoComponent } from './Components/moduloCitas/medico/editarmedico/editarmedico.component';
+  import { DisponibilidadComponent } from './Components/moduloCitas/medico/disponibilidad/disponibilidad.component';
 
   //Componente Cita
+  import { CalendarHeaderComponent } from './Components/moduloCitas/cita/header.component';
   import { CitaComponent } from './Components/moduloCitas/cita/cita.component';
   import { AgregarcitaComponent } from './Components/moduloCitas/cita/agregarcita/agregarcita.component';
   import { EditarcitaComponent } from './Components/moduloCitas/cita/editarcita/editarcita.component';
   import { VercitaComponent } from './Components/moduloCitas/cita/vercita/vercita.component';
-import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaje-error.component';
-  
+  import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaje-error.component';
 
+
+  //Módulo Atenciones
+  import { AtencionComponent } from './Components/moduloAtenciones/atencion/atencion.component';
+  import { AgregarAtencionComponent } from './Components/moduloAtenciones/atencion/agregar-atencion/agregar-atencion.component';
+  import { EditarAtencionComponent } from './Components/moduloAtenciones/atencion/editar-atencion/editar-atencion.component';
+
+  import { DiagnosticoComponent } from './Components/moduloAtenciones/diagnostico/diagnostico.component';
+  import { AgregarDiagnosticoComponent } from './Components/moduloAtenciones/diagnostico/agregar-diagnostico/agregar-diagnostico.component';
+  import { EditarDiagnosticoComponent } from './Components/moduloAtenciones/diagnostico/editar-diagnostico/editar-diagnostico.component';
+
+  import { RecetaComponent } from './Components/moduloAtenciones/receta/receta.component';
+  import { AgregarRecetaComponent } from './Components/moduloAtenciones/receta/agregar-receta/agregar-receta.component';
+  import { EditarRecetaComponent } from './Components/moduloAtenciones/receta/editar-receta/editar-receta.component';
+
+  import { MedicamentoComponent } from './Components/moduloAtenciones/medicamento/medicamento.component';
+  import { AgregarMedicamentoComponent } from './Components/moduloAtenciones/medicamento/agregar-medicamento/agregar-medicamento.component';
+  import { EditarMedicamentoComponent } from './Components/moduloAtenciones/medicamento/editar-medicamento/editar-medicamento.component';
+
+  import { DiagnosticosatencionComponent } from './Components/moduloAtenciones/diagnosticosatencion/diagnosticosatencion.component';
+  import { AgregarDiagnosticosAtencionComponent } from './Components/moduloAtenciones/diagnosticosatencion/agregar-diagnosticos-atencion/agregar-diagnosticos-atencion.component';
+  import { EditarDiagnosticosAtencionComponent } from './Components/moduloAtenciones/diagnosticosatencion/editar-diagnosticos-atencion/editar-diagnosticos-atencion.component';
+
+  import { ViaadministracionmedicamentoComponent } from './Components/moduloAtenciones/viaadministracionmedicamento/viaadministracionmedicamento.component';
+  import { AgregarViaAdministracionMedicamentoComponent } from './Components/moduloAtenciones/viaadministracionmedicamento/agregar-via-administracion-medicamento/agregar-via-administracion-medicamento.component';
+  import { EditarViaAdministracionMedicamentoComponent } from './Components/moduloAtenciones/viaadministracionmedicamento/editar-via-administracion-medicamento/editar-via-administracion-medicamento.component';
+
+  import { MedicamentosrecetaComponent } from './Components/moduloAtenciones/medicamentosreceta/medicamentosreceta.component';
+  import { AgregarMedicamentosRecetaComponent } from './Components/moduloAtenciones/medicamentosreceta/agregar-medicamentos-receta/agregar-medicamentos-receta.component';
+  import { EditarMedicamentosRecetaComponent } from './Components/moduloAtenciones/medicamentosreceta/editar-medicamentos-receta/editar-medicamentos-receta.component';
+
+  import { AlergiaspacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/alergiaspaciente.component';
+  import { AgregarAlergiasPacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/agregar-alergias-paciente/agregar-alergias-paciente.component';
+  import { EditarAlergiasPacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/editar-alergias-paciente/editar-alergias-paciente.component';
+
+
+import {
+  NgbDatepickerModule,
+  NgbTimepickerModule
+} from '@ng-bootstrap/ng-bootstrap';
+import { VerdisComponent } from './Components/moduloCitas/medico/verdis/verdis.component';
 
 
 @NgModule({
@@ -202,6 +287,7 @@ import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaj
     EspecialidadComponent,
     MedicoComponent,
     CitaComponent,
+    CalendarHeaderComponent,
 
     //Modulos hijos (CRUD)
     AgregarboxconsultaComponent,
@@ -217,7 +303,34 @@ import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaj
     EditarmedicoComponent,
     AgregartipoboxComponent,
     EditartipoboxComponent,
-    MensajeErrorComponent
+    MensajeErrorComponent,
+    DisponibilidadComponent,
+    VerdisComponent,
+    AtencionComponent,
+    DiagnosticoComponent,
+    RecetaComponent,
+    MedicamentoComponent,
+    DiagnosticosatencionComponent,
+    ViaadministracionmedicamentoComponent,
+    MedicamentosrecetaComponent,
+    AlergiaspacienteComponent,
+    AgregarAlergiasPacienteComponent,
+    EditarAlergiasPacienteComponent,
+    AgregarAtencionComponent,
+    EditarAtencionComponent,
+    AgregarDiagnosticoComponent,
+    EditarDiagnosticoComponent,
+    AgregarDiagnosticosAtencionComponent,
+    EditarDiagnosticosAtencionComponent,
+    AgregarMedicamentoComponent,
+    EditarMedicamentoComponent,
+    AgregarMedicamentosRecetaComponent,
+    EditarMedicamentosRecetaComponent,
+    AgregarRecetaComponent,
+    EditarRecetaComponent,
+    AgregarViaAdministracionMedicamentoComponent,
+    EditarViaAdministracionMedicamentoComponent
+    
   ],
 
   entryComponents:
@@ -263,7 +376,13 @@ import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaj
     EditarmedicoComponent,
     AgregartipoboxComponent,
     EditartipoboxComponent,
-    MensajeErrorComponent
+    MensajeErrorComponent,
+    DisponibilidadComponent,
+    VerdisComponent,
+    AgregarDiagnosticoComponent,
+    EditarDiagnosticoComponent,
+    AgregarViaAdministracionMedicamentoComponent,
+    EditarViaAdministracionMedicamentoComponent
   ],
 
 
@@ -275,23 +394,41 @@ import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaj
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
+    CdkTableModule,
+    MatAutocompleteModule,
     MatButtonModule,
-    MatCheckboxModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatIconModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatDialogModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTabsModule,
     MatButtonToggleModule,
-    MatGridListModule,
     MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
     MatStepperModule,
-    MatListModule
+    MatDatepickerModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    NgbDatepickerModule.forRoot(),
+    NgbTimepickerModule.forRoot(),
+    CalendarModule.forRoot()
   ],
 
   providers:
@@ -318,7 +455,17 @@ import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaj
     EspecialidadService,
     EstadoCitaService,
     MedicoService,
-    TipoBoxService
+    TipoBoxService,
+    DisponibilidadService,
+    AtencionService,
+    DiagnosticoService,
+    DiagnosticosAtencionService,
+    ViaAdministracionMedicamentoService,
+    MedicamentoService,
+    MedicamentosRecetaService,
+    RecetaService,
+    AlergiasPacienteService,
+
   ],
 
   bootstrap:
@@ -327,4 +474,5 @@ import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaj
   ]
 
 })
+
 export class AppModule { }

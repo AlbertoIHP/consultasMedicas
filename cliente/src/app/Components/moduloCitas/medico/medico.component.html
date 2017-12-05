@@ -1,92 +1,32 @@
+<div class="example-header" >
 
 
- <div class="row">
-  <div class="col s1" >
-  <input (click)="cambiarBusqueda()" type="checkbox" id="test5" />
-  <label for="test5" class="selectRaro"></label>
+    <label for="finder">Buscar por rut...</label>
+    <input id="finder" matInput #filter >
 
-  </div>
-  <div class="col s11">
-  <label for="miinput">Búsqueda por Nombre</label>
-  <input matInput #filter style="width: 100% !important;" id="miinput">
-  </div>
 </div>
 
 
 <div class="example-container mat-elevation-z8">
 
-  <mat-table #table *ngIf="!buscarPorNombre" [dataSource]="sourceDatatable">
-
-    <ng-container matColumnDef="Acciones">
-      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-
-      <mat-cell *matCellDef="let row" >
-
-              <button *ngIf="row.activado === 1 && usuarioActual.obtenerPermisoUpdate('Medico')" mat-icon-button (click) = "edicionMedico(row)" >
-                <mat-icon svgIcon="icono-editar"></mat-icon>
-
-              </button>
-
-              <button *ngIf="row.activado === 1 && usuarioActual.obtenerPermisoUpdate('Medico')" (click)="desactivarMedico(row)" mat-icon-button >
-                <mat-icon svgIcon="icono-desactivar"></mat-icon>
-
-              </button>
-
-              <button *ngIf="row.activado === 0 && usuarioActual.obtenerPermisoUpdate('Medico')" (click)="activarMedico(row)" mat-icon-button  >
-                <mat-icon>arrow_upward</mat-icon>
-              </button>
-      </mat-cell>
-
-
-    </ng-container>
-
-    <!-- Progress Column -->
-    <ng-container matColumnDef="Rut">
-      <mat-header-cell *matHeaderCellDef> Rut </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
-    </ng-container>
-
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="Persona">
-      <mat-header-cell *matHeaderCellDef> Persona Asociada al Médico </mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <button  mat-icon-button (click)="desplegarPersona(row)" >
-          <mat-icon>remove_red_eye</mat-icon>
-        </button>
-      </mat-cell>
-    </ng-container>
-
-    <!-- Progress Column -->
-    <ng-container matColumnDef="Especialidad">
-      <mat-header-cell *matHeaderCellDef> Especialidad </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.Especialidad_id}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
-
-  </mat-table>
-
-
- <mat-table #table *ngIf="buscarPorNombre" [dataSource]="sourcePorNombre">
+  <mat-table #table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="Acciones">
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-               <button *ngIf="row.activado === 1 && usuarioActual.obtenerPermisoUpdate('Medico')"  mat-icon-button (click) = "edicionMedico(row)" >
-                <mat-icon svgIcon="icono-editar"></mat-icon>
+               <button *ngIf="row.activado === 1 && usuarioActual.obtenerPermisoUpdate('Medico')" class="btn boton-editar" type="button" (click) = "edicionMedico(row)" matTooltip="Editar">
+                <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
 
               </button>
 
-              <button *ngIf="row.activado === 1 && usuarioActual.obtenerPermisoUpdate('Medico')" (click)="desactivarMedico(row)" mat-icon-button >
-                <mat-icon svgIcon="icono-desactivar"></mat-icon>
+              <button *ngIf="row.activado === 1 && usuarioActual.obtenerPermisoUpdate('Medico')" (click)="desactivarMedico(row)" class="btn boton-desactivar" type="button" matTooltip="Desactivar" >
+                <i class="fa fa-ban icono" aria-hidden="true"></i>
 
               </button>
 
-              <button *ngIf="row.activado === 0 && usuarioActual.obtenerPermisoUpdate('Medico')" (click)="activarMedico(row)" mat-icon-button  >
-                <mat-icon>arrow_upward</mat-icon>
+              <button *ngIf="row.activado === 0 && usuarioActual.obtenerPermisoUpdate('Medico')" (click)="activarMedico(row)" class="btn boton-activar" type="button" matTooltip="Activar">
+                <i class="fa fa-arrow-up icono" aria-hidden="true"></i>
               </button>
 
 
@@ -95,7 +35,7 @@
 
     <!-- Progress Column -->
     <ng-container matColumnDef="Rut">
-      <mat-header-cell *matHeaderCellDef> Rut </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Rut </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
     </ng-container>
 
@@ -104,36 +44,53 @@
     <ng-container matColumnDef="Persona">
       <mat-header-cell *matHeaderCellDef> Persona Asociada al Médico </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button  mat-icon-button (click)="desplegarPersona(row)" >
-          <mat-icon>remove_red_eye</mat-icon>
+        <button  mat-button class="boton-datos" (click)="desplegarPersona(row)" >
+          <span style="color:white;">Ver datos</span>
         </button>
       </mat-cell>
     </ng-container>
 
     <!-- Progress Column -->
     <ng-container matColumnDef="Especialidad">
-      <mat-header-cell *matHeaderCellDef> Especialidad </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Especialidad </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.Especialidad_id}} </mat-cell>
     </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Disponibilidad">
+      <mat-header-cell *matHeaderCellDef> Disponibilidad </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button  mat-button class="boton-datos" (click)="abrirDisponibilidad(row)" >
+            <span style="color:white;">Ver datos</span>
+          </button>
+        </mat-cell>
+    </ng-container>
+
+
+
 
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
+
   </mat-table>
 
-
-
+  <div class="example-no-results"
+       [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+       No hay registros con dicho rut.
+  </div>
 
   <mat-paginator #paginator
-                [length]="totalMedicos.length"
+                [length]="dataSource.filteredData.length"
                 [pageIndex]="0"
                 [pageSize]="5"
                 [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
 </div>
 
+
  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large blue" *ngIf="usuarioActual.obtenerPermisoWrite('Medico')" (click)="agregacionMedico()">
+    <a class="btn-floating btn-large boton-agregar" *ngIf="usuarioActual.obtenerPermisoWrite('Medico')" (click)="agregacionMedico()">
       <i class="large material-icons">add</i>
     </a>
   </div>

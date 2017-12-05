@@ -1,37 +1,54 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
+
 @Component({
   selector: 'app-editarmedico',
   templateUrl: './editarmedico.component.html',
   styleUrls: ['./editarmedico.component.css']
 })
 export class EditarmedicoComponent implements OnInit {
-  public medico: any;
-  public totalMedicos: any;
-  public totalPersonas: any;
-  public totalEspecialidades: any;
-  public servicioMedico: any;
-  public servicioPersona: any;
-  public servicioEspecialidad: any;
-  public personasDisponibles: any;
+  public medico: any
+  public totalMedicos: any
+  public totalPersonas: any
+  public totalEspecialidades: any
+  public servicioMedico: any
+  public servicioPersona: any
+  public servicioEspecialidad: any
+  public personasDisponibles: any
+  private servicioDisponibilidad: any
+  private horarios: any
+  private horasDia: any
+
+
 
   constructor(
     public dialogRef: MatDialogRef<EditarmedicoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-    ) {
-      this.personasDisponibles = [];
-      this.medico = data.medico;
-      this.totalMedicos = data.medicos;
-      this.totalPersonas = data.personas;
-      this.totalEspecialidades = data.especialidades;
-      this.servicioMedico = data.servicioMedico;
-      this.servicioPersona = data.servicioPersona;
-      this.servicioEspecialidad = data.servicioEspecialidad;
-      this.personasDisponibles = this.totalPersonas;
+    )
+  {
 
-     }
 
+      this.horasDia = [ '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00' ]
+
+      this.personasDisponibles = []
+      this.medico = data.medico
+      console.log(this.medico)
+      this.totalMedicos = data.medicos
+      this.totalPersonas = data.personas
+      this.totalEspecialidades = data.especialidades
+      this.servicioMedico = data.servicioMedico
+      this.servicioPersona = data.servicioPersona
+      this.servicioEspecialidad = data.servicioEspecialidad
+      this.personasDisponibles = this.totalPersonas
+      this.servicioDisponibilidad = data.servicioDisponibilidad
+
+      this.servicioDisponibilidad.getDisponibilidads().subscribe( data => {
+        let all = this.normalizeData( data )
+        this.horarios = all.filter( dis => parseInt(dis.Medico_id) === parseInt(this.medico.id) )
+      })
+
+    }
 
 
   ngOnInit()
@@ -58,19 +75,6 @@ export class EditarmedicoComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  especialidadSeleccionada(especialidad)
-  {
-
-    this.medico.Especialidad_id = especialidad.id;
-    console.log(this.medico);
-  }
-
-  personaSeleccionada(persona)
-  {
-    this.medico.Persona_id = persona.id;
-  }
-
-
   actualizarEspecialidades ()
   {
     this.servicioEspecialidad.getEspecialidads().subscribe(data => {
@@ -91,20 +95,25 @@ export class EditarmedicoComponent implements OnInit {
     });
   }
 
-
-  editarMedico()
+  normalizeData( todo : any )
   {
-    this.servicioMedico.editMedico(this.medico, this.medico.id).subscribe(data => {
-      this.dialogRef.close();
+    return todo.data
+  }
 
-    },
-    //Verificamos si es que se ha catcheado algun error y desplegamos alguna alerta
-    (err) => {
-    if (err === 'Used') {
-    alert("Esta persona ya tiene asignado un médico")
-    }
+  agregarMedico()
+  {
 
-  });
+    this.servicioMedico.editMedico(this.medico, this.medico.id).subscribe( data => {
+
+      for ( let horario of this.horarios)
+      {
+        this.servicioDisponibilidad.editDisponibilidad( horario, horario.id ).subscribe( data => {console.log(data) })
+      }
+      this.onNoClick()
+
+    })
+
+
   }
 
 

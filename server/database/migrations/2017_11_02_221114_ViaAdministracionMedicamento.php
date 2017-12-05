@@ -15,7 +15,7 @@ class ViaAdministracionMedicamento extends Migration
     {
         Schema::create('ViaAdministracionMedicamento', function (Blueprint $table) {
         $table->increments('id');
-        $table->string('descripcion');
+        $table->text('descripcion');
 
         $table->rememberToken();
         $table->timestamps();

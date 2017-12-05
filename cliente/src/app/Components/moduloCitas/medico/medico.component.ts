@@ -1,20 +1,5 @@
 import { Component, ElementRef, ViewChild, Inject, OnInit, Input } from '@angular/core';
 
-//DATATABLES
-import {DataSource} from '@angular/cdk/collections';
-import {MatPaginator} from '@angular/material';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/observable/fromEvent';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
-import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
-
 import { Persona } from '../../../Models/Persona.model';
 import { PersonaService } from '../../../Services/persona/persona.service';
 
@@ -23,11 +8,6 @@ import { EspecialidadService } from '../../../Services/especialidad/especialidad
 
 import { Medico } from '../../../Models/Medico.model';
 import { MedicoService } from '../../../Services/medico/medico.service';
-
-/*
-import { Cita } from '../../../Models/Cita.model';
-import { CitaService } from '../../../Services/cita/cita.service';
-*/
 
 import { Role } from '../../../Models/Role.model';
 
@@ -40,15 +20,34 @@ import { MensajeErrorComponent } from '../../Globals/mensaje-error/mensaje-error
 
 import { EventosService } from '../../../Services/eventos/eventos.service';
 
-import {UsuarioActual} from '../../Globals/usuarioactual.component';
+import { UsuarioActual } from '../../Globals/usuarioactual.component';
 
+import { DisponibilidadService } from '../../../Services/disponibilidad/disponibilidad.service';
+
+//DATATABLE
+import {DataSource} from '@angular/cdk/collections';
+import {MatPaginator, MatSort} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
+import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+
+import { DisponibilidadComponent } from './disponibilidad/disponibilidad.component'
 
 @Component({
   selector: 'app-medico',
   templateUrl: './medico.component.html',
   styleUrls: ['./medico.component.css']
 })
-export class MedicoComponent implements OnInit {
+export class MedicoComponent  {
 	public totalPersonas: Persona[];
 	public totalMedicos: Medico[];
 	public totalEspecialidad: Especialidad[];
@@ -56,27 +55,109 @@ export class MedicoComponent implements OnInit {
 
 	/*Temporal para validación
 	public totalCitas: Cita[];*/
+	displayedColumns = ['Acciones', 'Rut', 'Persona', 'Especialidad', 'Disponibilidad'];
 
-	//DATATABLE
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild('filter') filter: ElementRef;
-	public sourceDatatable: dataTable | null;
-	public sourcePorNombre: buscadorPorNombre | null;
-	public bdEstructura;
-	public buscarPorNombre: boolean;
-	displayedColumns = ['Acciones', 'Rut', 'Persona', 'Especialidad'];
+
+  //DATATABLE
+  exampleDatabase;
+  selection = new SelectionModel<string>(true, []);
+  dataSource: ExampleDataSource | null;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('filter') filter: ElementRef;
+
+  public AUX: any
+
+  abrirDisponibilidad(medico)
+  {
+    this.servicioDisponibilidad.getDisponibilidads().subscribe( data => {
+
+      var a = JSON.parse(JSON.stringify(medico));
+
+      this.pasarStringId(a);
+
+      this.AUX = a
+
+      let disponibilidadMedico = this.normalizeData(data)
+
+      console.log(disponibilidadMedico)
+
+      disponibilidadMedico = disponibilidadMedico.filter( dis => parseInt(dis.Medico_id) === this.AUX.id)
+
+
+
+      let dialogRef = this.dialog.open(DisponibilidadComponent, {
+        width: '700px',
+        data:
+        {
+          disponibilidad: disponibilidadMedico
+        }
+      });
+
+    })
+  }
+
+  normalizeData( todo: any )
+  {
+    return todo.data
+  }
+
+  ngOnInit()
+  {
+    this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Medico');
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+        .debounceTime(150)
+        .distinctUntilChanged()
+        .subscribe(() => {
+          if (!this.dataSource) { return; }
+          this.dataSource.filter = this.filter.nativeElement.value;
+        })
+
+
+    this.exampleDatabase = []
+
+  }
+
+
+  isAllSelected(): boolean
+  {
+    if (!this.dataSource) { return false; }
+    if (this.selection.isEmpty()) { return false; }
+
+    if (this.filter.nativeElement.value) {
+      return this.selection.selected.length == this.dataSource.renderedData.length;
+    } else {
+      return this.selection.selected.length == this.exampleDatabase.data.length;
+    }
+  }
+
+  masterToggle()
+  {
+    if (!this.dataSource) { return; }
+
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else if (this.filter.nativeElement.value) {
+      this.dataSource.renderedData.forEach(data => this.selection.select(data.id));
+    } else {
+      this.exampleDatabase.data.forEach(data => this.selection.select(data.id));
+    }
+  }
+
+
+
+
 
 	constructor(
 		public servicioPersona: PersonaService,
 		public servicioEspecialidad: EspecialidadService,
 		public servicioMedico: MedicoService,
-		//public servicioCita: CitaService,
 		public dialog: MatDialog,
-    	public servicioEventos: EventosService
+    public servicioEventos: EventosService,
+    private servicioDisponibilidad: DisponibilidadService
 	)
 	{
 		this.usuarioActual=new UsuarioActual();
-		this.buscarPorNombre = false;
 		this.totalEspecialidad = [];
 		this.totalMedicos = [];
 		this.totalPersonas = [];
@@ -87,9 +168,6 @@ export class MedicoComponent implements OnInit {
       		this.actualizarPersonas();
     	});
 
-	}
-
-	ngOnInit() {
 	}
 
 
@@ -131,17 +209,17 @@ export class MedicoComponent implements OnInit {
 
 			this.reemplazarIdPorString();
 
-		//DATATABLE
-			this.bdEstructura = new ExampleDatabase(this.totalMedicos );
-			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
-			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, "Medico");
-			Observable.fromEvent(this.filter.nativeElement, 'keyup')
-				.debounceTime(150)
-				.distinctUntilChanged()
-				.subscribe(() => {
-				if (!this.sourcePorNombre) { return; }
-				this.sourcePorNombre.filter = this.filter.nativeElement.value;
-				});
+      //DATATABLE
+      this.exampleDatabase  = new ExampleDatabase(this.totalMedicos);
+
+      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'Medico');
+      Observable.fromEvent(this.filter.nativeElement, 'keyup')
+          .debounceTime(150)
+          .distinctUntilChanged()
+          .subscribe(() => {
+            if (!this.dataSource) { return; }
+            this.dataSource.filter = this.filter.nativeElement.value;
+          })
 
 
 
@@ -187,51 +265,6 @@ export class MedicoComponent implements OnInit {
   }
 
 
-	cambiarBusqueda()
-	{
-	this.buscarPorNombre = !this.buscarPorNombre;
-	}
-
-	/* 
-	actualizarCitas()
-	{
-		//buscar en box consultas el box que tenga el tipo box asociado (cambiar en backend)
-		this.servicioCita.getCitas().subscribe((data)=>{
-			var todo:any= data;
-			todo = todo.data;
-			this.totalCitas=todo;
-		});
-	}
-
-	//Función temporal que retornará true en caso de que el médico esté en uso
-	verificarUsoMedico(medico):boolean{
-		
-		console.log(this.totalCitas.length);
-		for(let i=0;i<this.totalCitas.length;i++){
-			console.log(this.totalCitas[i].Medico_id+'-'+medico.id);
-				if(parseInt(this.totalCitas[i].Medico_id)===parseInt(medico.id)){
-					return true;
-				}
-			}
-		return false;
-	}
-
-
-	eliminarMedico (medico)
-	{	
-		console.log('click');
-		if(this.verificarUsoMedico(medico)==true){
-
-			this.mostrarMensaje("Esta estado cita está siendo usada por un médico.");
-
-		}else{
-			this.servicioMedico.deleteMedico(medico.id).subscribe( data => {
-				console.log(data);
-				this.actualizarMedicos();
-			});
-		}
-		
-	} */
 
 	eliminarMedico (medico)
 	{
@@ -254,14 +287,14 @@ export class MedicoComponent implements OnInit {
 		width: '700px',
 		data:
 		{
-     medicos: this.totalMedicos,
-		 medico: a,
-		 personas: this.totalPersonas,
-		 especialidades:this.totalEspecialidad,
-		 servicioMedico: this.servicioMedico,
-		 servicioPersona: this.servicioPersona,
-		 servicioEspecialidad: this.servicioEspecialidad
-
+       medicos: this.totalMedicos,
+       medico: a,
+       personas: this.totalPersonas,
+       especialidades:this.totalEspecialidad,
+       servicioMedico: this.servicioMedico,
+       servicioPersona: this.servicioPersona,
+       servicioEspecialidad: this.servicioEspecialidad,
+       servicioDisponibilidad: this.servicioDisponibilidad
 		}
 	});
 
@@ -282,7 +315,8 @@ export class MedicoComponent implements OnInit {
 			 especialidades:this.totalEspecialidad,
 			 servicioMedico: this.servicioMedico,
 			 servicioPersona: this.servicioPersona,
-			 servicioEspecialidad: this.servicioEspecialidad
+			 servicioEspecialidad: this.servicioEspecialidad,
+       servicioDisponibilidad: this.servicioDisponibilidad
 			 }
 		});
 
@@ -304,11 +338,6 @@ export class MedicoComponent implements OnInit {
 		let dialogRef = this.dialog.open(VerpersonaComponent, {
 		width: '700px',
 		data: { persona: persona }
-		});
-
-		dialogRef.afterClosed().subscribe(result => {
-
-		//this.actualizarPersonas();
 		});
 
 	});
@@ -380,19 +409,5 @@ export class MedicoComponent implements OnInit {
     });
  }
 
- /*mostrarMensaje(mensaje){
-		let dialogRef = this.dialog.open(MensajeErrorComponent, {
-			width: '400px',
-			data:{
-				mensajeError:mensaje
-			}
-		});
-
-		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarMedicos();
-		});
-
- } */
 
 }

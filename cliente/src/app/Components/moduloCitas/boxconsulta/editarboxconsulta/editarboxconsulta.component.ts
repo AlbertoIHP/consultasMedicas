@@ -18,23 +18,25 @@ export class EditarboxconsultaComponent implements OnInit {
   	public dialogRef: MatDialogRef<EditarboxconsultaComponent>,
 	@Inject(MAT_DIALOG_DATA) public data: any,
 	public servicioBoxConsulta: BoxConsultaService
-		
-  	) { 
+
+  	) {
 
   	this.boxConsulta=data.boxconsulta;
-  	this.totalTipoBoxes=data.totalTipoBoxes;
+  	this.totalTipoBoxes=data.tipoboxes;
   	this.servicioTipoBox=data.servicioTipoBox;
 
+  	console.log(this.boxConsulta);
+  	console.log(this.totalTipoBoxes);
 
   }
 
   ngOnInit() {
 
-  	this.servicioTipoBox.getTipoBoxes().subscribe( data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalTipoBoxes = todo;
-    });
+  	// this.servicioTipoBox.getTipoBoxes().subscribe( data => {
+   //    var todo: any = data;
+   //    todo = todo.data;
+   //    this.totalTipoBoxes = todo;
+   //  });
   }
 
   onNoClick()
@@ -50,11 +52,4 @@ export class EditarboxconsultaComponent implements OnInit {
 
 		});
 	}
-
-	tipoBoxSeleccionado(tipobox)
-	{
-		this.boxConsulta.TipoBox_id = tipobox.id;
-	}
-
-
 }

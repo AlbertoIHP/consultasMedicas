@@ -1,5 +1,7 @@
 import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 
+import {UsuarioActual} from '../../Globals/usuarioactual.component';
+import { Router } from '@angular/router';
 
 import { Comuna } from '../../../Models/Comuna.model';
 import { ComunaService } from '../../../Services/comuna/comuna.service';
@@ -13,20 +15,19 @@ import { EditarcomunaComponent } from './editarcomuna/editarcomuna.component';
 
 //DATATABLE
 import {DataSource} from '@angular/cdk/collections';
-import {MatPaginator} from '@angular/material';
+import {MatPaginator, MatSort} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
+import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import { ExampleDatabase, dataTable, buscadorPorNombre } from '../../Globals/datasource.component';
-
-import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
 @Component({
 	selector: 'app-comunas',
@@ -37,21 +38,104 @@ export class ComunasComponent {
 	public totalProvincias: Provincia[];
 	public totalComunas: Comuna[];
 	public usuarioActual;
+  displayedColumns = ['Acciones', 'Nombre', 'Provincia'];
+
 
 	//DATATABLE
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild('filter') filter: ElementRef;
-	public sourceDatatable: dataTable | null;
-	public sourcePorNombre: buscadorPorNombre | null;
-	public bdEstructura;
-	public buscarPorNombre: boolean;
-	displayedColumns = ['Acciones', 'Nombre', 'Provincia'];
+  exampleDatabase;
+  selection = new SelectionModel<string>(true, []);
+  dataSource: ExampleDataSource | null;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('filter') filter: ElementRef;
 
 
-	constructor (public servicioProvincia: ProvinciaService, public servicioComuna: ComunaService, public dialog: MatDialog)
-	{
+
+  ngOnInit()
+  {
+    this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Comuna');
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+        .debounceTime(150)
+        .distinctUntilChanged()
+        .subscribe(() => {
+          if (!this.dataSource) { return; }
+          this.dataSource.filter = this.filter.nativeElement.value;
+        })
+
+
+    this.exampleDatabase = []
+
+  }
+
+
+  isAllSelected(): boolean
+  {
+    if (!this.dataSource) { return false; }
+    if (this.selection.isEmpty()) { return false; }
+
+    if (this.filter.nativeElement.value) {
+      return this.selection.selected.length == this.dataSource.renderedData.length;
+    } else {
+      return this.selection.selected.length == this.exampleDatabase.data.length;
+    }
+  }
+
+  masterToggle()
+  {
+    if (!this.dataSource) { return; }
+
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else if (this.filter.nativeElement.value) {
+      this.dataSource.renderedData.forEach(data => this.selection.select(data.id));
+    } else {
+      this.exampleDatabase.data.forEach(data => this.selection.select(data.id));
+    }
+  }
+
+
+  actualizarComunas ()
+  {
+    this.servicioComuna.getComunas().subscribe(data => {
+      var todo: any = data;
+      todo = todo.data;
+      this.totalComunas = todo;
+      this.reemplazarIdPorString();
+
+      //DATATABLE
+      this.exampleDatabase  = new ExampleDatabase(this.totalComunas);
+
+      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'Comuna');
+      Observable.fromEvent(this.filter.nativeElement, 'keyup')
+          .debounceTime(150)
+          .distinctUntilChanged()
+          .subscribe(() => {
+            if (!this.dataSource) { return; }
+            this.dataSource.filter = this.filter.nativeElement.value;
+          })
+
+
+    });
+  }
+
+
+
+
+
+
+
+	constructor (
+    public servicioProvincia: ProvinciaService,
+    public servicioComuna: ComunaService,
+    public dialog: MatDialog,
+    public router: Router)
+  {
+    if( !(localStorage.getItem('currentUser')) )
+    {
+      this.router.navigate(['login'])
+    }
+
 		this.usuarioActual=new UsuarioActual();
-		this.buscarPorNombre = false;
 		this.totalProvincias = [];
 		this.totalComunas = [];
 		this.actualizarProvincias();
@@ -67,30 +151,6 @@ export class ComunasComponent {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalProvincias = todo;
-		});
-	}
-
-	actualizarComunas ()
-	{
-		this.servicioComuna.getComunas().subscribe(data => {
-			var todo: any = data;
-			todo = todo.data;
-			this.totalComunas = todo;
-			this.reemplazarIdPorString();
-
-			//DATATABLE
-			this.bdEstructura = new ExampleDatabase(this.totalComunas );
-			this.sourceDatatable = new dataTable(this.bdEstructura, this.paginator);
-			this.sourcePorNombre = new buscadorPorNombre(this.bdEstructura, 'Comuna');
-			Observable.fromEvent(this.filter.nativeElement, 'keyup')
-					.debounceTime(150)
-					.distinctUntilChanged()
-					.subscribe(() => {
-						if (!this.sourcePorNombre) { return; }
-						this.sourcePorNombre.filter = this.filter.nativeElement.value;
-					});
-
-
 		});
 	}
 
@@ -133,10 +193,6 @@ export class ComunasComponent {
 
 	}
 
-	cambiarBusqueda()
-	{
-		this.buscarPorNombre = !this.buscarPorNombre;
-	}
 
 
 
@@ -172,7 +228,8 @@ export class ComunasComponent {
 			width: '700px',
 			data: {
         provincias: this.totalProvincias,
-        servicioProvincia: this.servicioProvincia
+        servicioProvincia: this.servicioProvincia,
+        servicioComuna: this.servicioComuna
       }
 		});
 

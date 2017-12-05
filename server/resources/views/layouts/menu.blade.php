@@ -410,3 +410,43 @@
     <a href="{!! route('citas.index') !!}"><i class="fa fa-edit"></i><span>Citas</span></a>
 </li>
 
+<li class="{{ Request::is('disponibilidads*') ? 'active' : '' }}">
+    <a href="{!! route('disponibilidads.index') !!}"><i class="fa fa-edit"></i><span>Disponibilidads</span></a>
+</li>
+
+<li class="{{ Request::is('medicos*') ? 'active' : '' }}">
+    <a href="{!! route('medicos.index') !!}"><i class="fa fa-edit"></i><span>Medicos</span></a>
+</li>
+
+<li class="{{ Request::is('atencions*') ? 'active' : '' }}">
+    <a href="{!! route('atencions.index') !!}"><i class="fa fa-edit"></i><span>Atencions</span></a>
+</li>
+
+<li class="{{ Request::is('diagnosticos*') ? 'active' : '' }}">
+    <a href="{!! route('diagnosticos.index') !!}"><i class="fa fa-edit"></i><span>Diagnosticos</span></a>
+</li>
+
+<li class="{{ Request::is('diagnosticosAtencions*') ? 'active' : '' }}">
+    <a href="{!! route('diagnosticosAtencions.index') !!}"><i class="fa fa-edit"></i><span>Diagnosticos Atencions</span></a>
+</li>
+
+<li class="{{ Request::is('viaAdministracionMedicamentos*') ? 'active' : '' }}">
+    <a href="{!! route('viaAdministracionMedicamentos.index') !!}"><i class="fa fa-edit"></i><span>Via Administracion Medicamentos</span></a>
+</li>
+
+<li class="{{ Request::is('recetas*') ? 'active' : '' }}">
+    <a href="{!! route('recetas.index') !!}"><i class="fa fa-edit"></i><span>Recetas</span></a>
+</li>
+
+<li class="{{ Request::is('medicamentos*') ? 'active' : '' }}">
+    <a href="{!! route('medicamentos.index') !!}"><i class="fa fa-edit"></i><span>Medicamentos</span></a>
+</li>
+
+<li class="{{ Request::is('medicamentosRecetas*') ? 'active' : '' }}">
+    <a href="{!! route('medicamentosRecetas.index') !!}"><i class="fa fa-edit"></i><span>Medicamentos Recetas</span></a>
+</li>
+
+<li class="{{ Request::is('alergiasPacientes*') ? 'active' : '' }}">
+    <a href="{!! route('alergiasPacientes.index') !!}"><i class="fa fa-edit"></i><span>Alergias Pacientes</span></a>
+</li>
+
