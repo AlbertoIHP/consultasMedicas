@@ -97,7 +97,7 @@ import { LoginComponent } from '../Components/login/login.component'
 const routes: Routes =
 [
   { path: 'login',  component: LoginComponent },
-  { path: '',  component: PersonaComponent },
+  { path: '',  component: PersonaComponent, pathMatch: 'full' },
 
   //MÓDULO PACIENTES
   { path: 'ts',  component: TiposangreComponent },
