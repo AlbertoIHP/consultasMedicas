@@ -13,12 +13,12 @@
 
   <p>¿ Esta previsión es ISAPRE ?</p>
   <mat-form-field style="width: 100% !important;">
-    <mat-select placeholder="Seleccione una opción" style="width: 100% !important;">
-      <mat-option style="width: 100% !important;" [value]="1" (click)="isapreSeleccionado(1)">
+    <mat-select placeholder="Seleccione una opción" [(ngModel)]="prevision.isapre" style="width: 100% !important;">
+      <mat-option style="width: 100% !important;" [value]="1">
         Si
       </mat-option>
 
-      <mat-option style="width: 100% !important;" [value]="0" (click)="isapreSeleccionado(0)">
+      <mat-option style="width: 100% !important;" [value]="0">
         No
       </mat-option>
     </mat-select>

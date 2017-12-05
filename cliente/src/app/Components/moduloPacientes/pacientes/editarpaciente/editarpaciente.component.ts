@@ -58,19 +58,6 @@ export class EditarpacienteComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  tsSeleccionado(ts)
-  {
-
-    this.paciente.TipoSangre_id = ts.id;
-    console.log(this.paciente);
-  }
-
-  personaSeleccionada(persona)
-  {
-    this.paciente.Persona_id = persona.id;
-  }
-
-
   actualizarTS ()
   {
     this.servicioTS.getTipoSangres().subscribe(data => {

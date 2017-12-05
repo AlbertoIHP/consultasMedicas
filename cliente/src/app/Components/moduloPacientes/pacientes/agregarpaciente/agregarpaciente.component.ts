@@ -59,17 +59,6 @@ export class AgregarpacienteComponent implements OnInit {
 		this.dialogRef.close();
 	}
 
-	tsSeleccionado(ts)
-	{
-		this.paciente.TipoSangre_id = ts.id;
-	}
-
-	personaSeleccionada(persona)
-	{
-		this.paciente.Persona_id = persona.id;
-	}
-
-
   actualizarTS ()
   {
     this.servicioTS.getTipoSangres().subscribe(data => {

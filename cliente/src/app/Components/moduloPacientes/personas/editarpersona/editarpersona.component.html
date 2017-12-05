@@ -43,8 +43,8 @@
 
 	<p>Género</p>
 	<mat-form-field style="width: 100% !important;">
-		<mat-select placeholder="Genero" style="width: 100% !important;">
-			<mat-option style="width: 100% !important;" *ngFor="let genero of totalGeneros" [value]="genero.id" (click)="generoSeleccionado(genero)">
+		<mat-select placeholder="Género" [(ngModel)]="persona.Genero_id" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let genero of totalGeneros" [value]="genero.id">
 				{{ genero.nombre }}
 			</mat-option>
 		</mat-select>
@@ -52,8 +52,8 @@
 
 	<p>Estado Civil</p>
 	<mat-form-field style="width: 100% !important;">
-	<mat-select placeholder="Estado Civil" style="width: 100% !important;">
-		<mat-option style="width: 100% !important;" *ngFor="let ec of totalEstadoCiviles" [value]="ec.id" (click)="ecSeleccionado(ec)">
+	<mat-select placeholder="Estado Civil" [(ngModel)]="persona.EstadoCivil_id" style="width: 100% !important;">
+		<mat-option style="width: 100% !important;" *ngFor="let ec of totalEstadoCiviles" [value]="ec.id">
 		{{ ec.nombre }}
 		</mat-option>
 	</mat-select>
@@ -62,7 +62,7 @@
 
 
 
-	<p *ngIf="mostrarRegiones">Region</p>
+	<p *ngIf="mostrarRegiones">Región</p>
 
 	<mat-form-field style="width: 100% !important;" *ngIf="mostrarRegiones">
 	<mat-select placeholder="Region" style="width: 100% !important;">
@@ -86,7 +86,7 @@
 	<p *ngIf="mostrarComunas">Comuna</p>
 
 	<mat-form-field style="width: 100% !important;" *ngIf="mostrarComunas">
-	<mat-select placeholder="Comuna" style="width: 100% !important;" >
+	<mat-select placeholder="Comuna" [(ngModel)]="persona.Comuna_id" style="width: 100% !important;" >
 	<mat-option style="width: 100% !important;" *ngFor="let comuna of comunasMostrar" [value]="comuna.id" (click)="comunaSeleccionada(comuna)">
 	{{ comuna.nombre }}
 	</mat-option>

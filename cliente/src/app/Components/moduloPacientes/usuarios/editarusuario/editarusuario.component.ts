@@ -53,12 +53,6 @@ export class EditarusuarioComponent  implements OnInit{
     });
   }
 
-  roleSeleccionado(role)
-  {
-    console.log(this.usuario);
-    this.usuario.Role_id = role.id;
-  }
-
   validateEmail(email)
   {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
