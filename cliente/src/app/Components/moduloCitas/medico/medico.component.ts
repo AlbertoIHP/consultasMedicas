@@ -287,14 +287,14 @@ export class MedicoComponent  {
 		width: '700px',
 		data:
 		{
-     medicos: this.totalMedicos,
-		 medico: a,
-		 personas: this.totalPersonas,
-		 especialidades:this.totalEspecialidad,
-		 servicioMedico: this.servicioMedico,
-		 servicioPersona: this.servicioPersona,
-		 servicioEspecialidad: this.servicioEspecialidad
-
+       medicos: this.totalMedicos,
+       medico: a,
+       personas: this.totalPersonas,
+       especialidades:this.totalEspecialidad,
+       servicioMedico: this.servicioMedico,
+       servicioPersona: this.servicioPersona,
+       servicioEspecialidad: this.servicioEspecialidad,
+       servicioDisponibilidad: this.servicioDisponibilidad
 		}
 	});
 

@@ -1,0 +1,17 @@
+<h1 mat-dialog-title style="text-align: center;">Creación de diagnóstico</h1>
+
+<div mat-dialog-content>
+
+  <p>Diagnóstico</p>
+
+ 	<mat-form-field style="width: 100% !important;" >
+  		<textarea matInput tabindex="1" [(ngModel)]="nuevoDiagnostico.diagnostico"></textarea>
+ 	</mat-form-field>
+ 	
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button class="boton-aceptar" (click)="agregarDiagnostico()" tabindex="2">Agregar diagnóstico</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

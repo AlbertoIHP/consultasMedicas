@@ -1,21 +1,91 @@
-<h1  mat-dialog-title style="text-align: center;">Editar Médico</h1>
+<mat-horizontal-stepper style="max-height: 553px">
 
-<div mat-dialog-content>
-
-  <p>Especialidad</p>
-  <mat-form-field style="width: 100% !important;" >
-    <mat-select placeholder="Especialidad" style="width: 100% !important;">
-      <mat-option style="width: 100% !important;" *ngFor="let especialidad of totalEspecialidades" [value]="especialidad.id" (click)="especialidadSeleccionada(especialidad)">
-        {{ especialidad.nombre }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <mat-step >
 
 
-</div>
+      <ng-template matStepLabel>Informacion General</ng-template>
+
+      <mat-form-field style="width: 100% !important;" >
+        <mat-select placeholder="Especialidad" style="width: 100% !important;">
+          <mat-option style="width: 100% !important;" *ngFor="let especialidad of totalEspecialidades" [value]="especialidad.id" (click)="especialidadSeleccionada(especialidad)">
+            {{ especialidad.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
 
-<div mat-dialog-actions>
-  <button *ngIf="!isPersona" class="boton-aceptar" mat-button (click)="editarMedico()" tabindex="2">Actualizar Médico</button>
-  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
-</div>
+
+      <mat-form-field style="width: 100% !important;" >
+        <mat-select placeholder="Seleccione una Persona para asociar al Médico" style="width: 100% !important;">
+          <mat-option style="width: 100% !important;" *ngFor="let persona of personasDisponibles" [value]="persona.id" (click)="personaSeleccionada(persona)">
+           ( {{ persona.rut }} ) {{persona.nombre1 }} {{persona.apellido1}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+
+
+
+      <div class="row">
+
+        <div class="col s12">
+         <button mat-button matStepperNext style="width: 100%" >Siguiente <mat-icon>arrow_forward</mat-icon> </button>
+        </div>
+      </div>
+  </mat-step>
+
+
+
+  <mat-step >
+      <ng-template matStepLabel>Horarios de Atencion</ng-template>
+
+        <table class="striped">
+          <thead>
+            <tr>
+                <th>Dia</th>
+                <th>Hora Inicio Atencion</th>
+                <th>Hora Termino Atencion</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let hora of horarios">
+              <td>{{hora.dia}}</td>
+              <td>
+                <mat-form-field style="width: 100% !important;">
+                  <mat-select placeholder="Inicio" style="width: 100% !important;"  [(ngModel)]="hora.hora_inicio" >
+                    <mat-option style="width: 100% !important;" *ngFor="let hora of horasDia" [value]="hora" >
+                      {{ hora }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field style="width: 100% !important;">
+                  <mat-select placeholder="Termino" style="width: 100% !important;" [(ngModel)]="hora.hora_termino">
+                    <mat-option style="width: 100% !important;" *ngFor="let hora of horasDia" [value]="hora" >
+                      {{ hora }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+      <div class="row">
+        <div class="col s6">
+          <button mat-button matStepperPrevious style="width: 100%"><mat-icon>arrow_back</mat-icon>  Volver</button>
+        </div>
+
+        <div class="col s6">
+         <button mat-button matStepperNext style="width: 100%" (click)="agregarMedico()" >Actualizar <mat-icon>refresh</mat-icon>  </button>
+        </div>
+      </div>
+  </mat-step>
+
+
+</mat-horizontal-stepper>

@@ -188,6 +188,40 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   import { MensajeErrorComponent } from './Components/Globals/mensaje-error/mensaje-error.component';
 
 
+  //Módulo Atenciones
+  import { AtencionComponent } from './Components/moduloAtenciones/atencion/atencion.component';
+  import { AgregarAtencionComponent } from './Components/moduloAtenciones/atencion/agregar-atencion/agregar-atencion.component';
+  import { EditarAtencionComponent } from './Components/moduloAtenciones/atencion/editar-atencion/editar-atencion.component';
+
+  import { DiagnosticoComponent } from './Components/moduloAtenciones/diagnostico/diagnostico.component';
+  import { AgregarDiagnosticoComponent } from './Components/moduloAtenciones/diagnostico/agregar-diagnostico/agregar-diagnostico.component';
+  import { EditarDiagnosticoComponent } from './Components/moduloAtenciones/diagnostico/editar-diagnostico/editar-diagnostico.component';
+
+  import { RecetaComponent } from './Components/moduloAtenciones/receta/receta.component';
+  import { AgregarRecetaComponent } from './Components/moduloAtenciones/receta/agregar-receta/agregar-receta.component';
+  import { EditarRecetaComponent } from './Components/moduloAtenciones/receta/editar-receta/editar-receta.component';
+
+  import { MedicamentoComponent } from './Components/moduloAtenciones/medicamento/medicamento.component';
+  import { AgregarMedicamentoComponent } from './Components/moduloAtenciones/medicamento/agregar-medicamento/agregar-medicamento.component';
+  import { EditarMedicamentoComponent } from './Components/moduloAtenciones/medicamento/editar-medicamento/editar-medicamento.component';
+
+  import { DiagnosticosatencionComponent } from './Components/moduloAtenciones/diagnosticosatencion/diagnosticosatencion.component';
+  import { AgregarDiagnosticosAtencionComponent } from './Components/moduloAtenciones/diagnosticosatencion/agregar-diagnosticos-atencion/agregar-diagnosticos-atencion.component';
+  import { EditarDiagnosticosAtencionComponent } from './Components/moduloAtenciones/diagnosticosatencion/editar-diagnosticos-atencion/editar-diagnosticos-atencion.component';
+
+  import { ViaadministracionmedicamentoComponent } from './Components/moduloAtenciones/viaadministracionmedicamento/viaadministracionmedicamento.component';
+  import { AgregarViaAdministracionMedicamentoComponent } from './Components/moduloAtenciones/viaadministracionmedicamento/agregar-via-administracion-medicamento/agregar-via-administracion-medicamento.component';
+  import { EditarViaAdministracionMedicamentoComponent } from './Components/moduloAtenciones/viaadministracionmedicamento/editar-via-administracion-medicamento/editar-via-administracion-medicamento.component';
+
+  import { MedicamentosrecetaComponent } from './Components/moduloAtenciones/medicamentosreceta/medicamentosreceta.component';
+  import { AgregarMedicamentosRecetaComponent } from './Components/moduloAtenciones/medicamentosreceta/agregar-medicamentos-receta/agregar-medicamentos-receta.component';
+  import { EditarMedicamentosRecetaComponent } from './Components/moduloAtenciones/medicamentosreceta/editar-medicamentos-receta/editar-medicamentos-receta.component';
+
+  import { AlergiaspacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/alergiaspaciente.component';
+  import { AgregarAlergiasPacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/agregar-alergias-paciente/agregar-alergias-paciente.component';
+  import { EditarAlergiasPacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/editar-alergias-paciente/editar-alergias-paciente.component';
+
+
 import {
   NgbDatepickerModule,
   NgbTimepickerModule
@@ -271,7 +305,32 @@ import { VerdisComponent } from './Components/moduloCitas/medico/verdis/verdis.c
     EditartipoboxComponent,
     MensajeErrorComponent,
     DisponibilidadComponent,
-    VerdisComponent
+    VerdisComponent,
+    AtencionComponent,
+    DiagnosticoComponent,
+    RecetaComponent,
+    MedicamentoComponent,
+    DiagnosticosatencionComponent,
+    ViaadministracionmedicamentoComponent,
+    MedicamentosrecetaComponent,
+    AlergiaspacienteComponent,
+    AgregarAlergiasPacienteComponent,
+    EditarAlergiasPacienteComponent,
+    AgregarAtencionComponent,
+    EditarAtencionComponent,
+    AgregarDiagnosticoComponent,
+    EditarDiagnosticoComponent,
+    AgregarDiagnosticosAtencionComponent,
+    EditarDiagnosticosAtencionComponent,
+    AgregarMedicamentoComponent,
+    EditarMedicamentoComponent,
+    AgregarMedicamentosRecetaComponent,
+    EditarMedicamentosRecetaComponent,
+    AgregarRecetaComponent,
+    EditarRecetaComponent,
+    AgregarViaAdministracionMedicamentoComponent,
+    EditarViaAdministracionMedicamentoComponent
+    
   ],
 
   entryComponents:
@@ -319,7 +378,11 @@ import { VerdisComponent } from './Components/moduloCitas/medico/verdis/verdis.c
     EditartipoboxComponent,
     MensajeErrorComponent,
     DisponibilidadComponent,
-    VerdisComponent
+    VerdisComponent,
+    AgregarDiagnosticoComponent,
+    EditarDiagnosticoComponent,
+    AgregarViaAdministracionMedicamentoComponent,
+    EditarViaAdministracionMedicamentoComponent
   ],
 
 

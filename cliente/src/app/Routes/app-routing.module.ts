@@ -68,12 +68,38 @@ import { LoginComponent } from '../Components/login/login.component'
 
 
 
+  //Componente Alergias Paciente
+  import { AlergiaspacienteComponent } from '../Components/moduloAtenciones/alergiaspaciente/alergiaspaciente.component';
+
+  //Componente Atención
+  import { AtencionComponent } from '../Components/moduloAtenciones/atencion/atencion.component';
+  
+  //Componente Diagnóstico
+  import { DiagnosticoComponent } from '../Components/moduloAtenciones/diagnostico/diagnostico.component';
+  
+  //Componente Diagnoóticos Atención
+  import { DiagnosticosatencionComponent } from '../Components/moduloAtenciones/diagnosticosatencion/diagnosticosatencion.component';
+  
+  //Componente Medicamento
+  import { MedicamentoComponent } from '../Components/moduloAtenciones/medicamento/medicamento.component';
+  
+  //Componente Medicamentos Receta
+  import { MedicamentosrecetaComponent } from '../Components/moduloAtenciones/medicamentosreceta/medicamentosreceta.component';
+  
+  //Componente Receta
+  import { RecetaComponent } from '../Components/moduloAtenciones/receta/receta.component';
+  
+  //Componente Vía Administración Medicamento
+  import { ViaadministracionmedicamentoComponent } from '../Components/moduloAtenciones/viaadministracionmedicamento/viaadministracionmedicamento.component';
+
+
+
 const routes: Routes =
 [
   { path: 'login',  component: LoginComponent },
-  { path: '',  component: PersonaComponent },
+  { path: '',  component: PersonaComponent, pathMatch: 'full' },
 
-  //MODULO PACIENTES
+  //MÓDULO PACIENTES
   { path: 'ts',  component: TiposangreComponent },
   { path: 'pac',  component: PacientesComponent },
   { path: 'per',  component: PersonaComponent },
@@ -87,19 +113,24 @@ const routes: Routes =
   { path: 'ec',  component: EstadocivilComponent },
   { path: 'fm',  component: FichaMedicaComponent },
 
-  //MODULO CITAS
+  //MÓDULO CITAS
 
   { path: 'cit',  component: CitaComponent },
   { path: 'med',  component: MedicoComponent },
   { path: 'esp',  component: EspecialidadComponent },
   { path: 'es',  component: EstadocitaComponent },
-  { path: 'bc',  component: BoxconsultaComponent }
+  { path: 'bc',  component: BoxconsultaComponent },
 
 
-
-
-
-
+  //MÓDULO ATENCIONES
+  { path: 'alg', component: AlergiaspacienteComponent },
+  { path: 'atc', component: AtencionComponent },
+  { path: 'dia', component: DiagnosticoComponent },
+  { path: 'diat', component: DiagnosticosatencionComponent },
+  { path: 'mto', component: MedicamentoComponent },
+  { path: 'mre', component: MedicamentosrecetaComponent },
+  { path: 'rec', component: RecetaComponent },
+  { path: 'vam', component: ViaadministracionmedicamentoComponent }
 
 ];
 

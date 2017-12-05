@@ -20,8 +20,8 @@ export class UsuarioActual implements OnInit {
    public current:any;
 
   constructor() {
-     this.permisos=JSON.parse(localStorage.getItem('permisos')); 
-
+    
+      this.permisos=JSON.parse(localStorage.getItem('permisos')); 
    }
 
   ngOnInit() {

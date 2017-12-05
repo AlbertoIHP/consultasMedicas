@@ -13,19 +13,12 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { EspecialidadService } from '../../../../Services/especialidad/especialidad.service'
 import { PersonaService } from '../../../../Services/persona/persona.service'
 import { DisponibilidadService } from '../../../../Services/disponibilidad/disponibilidad.service'
+
 @Component({
   selector: 'app-agregarcita',
   templateUrl: './agregarcita.component.html',
   styleUrls: ['./agregarcita.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: [
-    `
-    .cal-day-selected,
-    .cal-day-selected:hover {
-      background-color: #19334d !important;
-    }
-  `
-  ],
   encapsulation: ViewEncapsulation.None
 
 })
@@ -37,33 +30,35 @@ export class AgregarcitaComponent {
   firstFormGroup: FormGroup
   secondFormGroup: FormGroup
   zeroFormGroup: FormGroup
-  private cita: any
-  private estados: any
-  private pacientes: any
-  private medicos: any
-  private boxs: any
-  private servicioCitas: any
-  private especialidades: any
-  private personas: any
-  private text = "hola"
+  protected cita: any
+  protected estados: any
+  protected pacientes: any
+  protected medicos: any
+  protected boxs: any
+  protected servicioCitas: any
+  protected especialidades: any
+  protected personas: any
+  protected text = "hola"
 
-  private fechaSeleccionada = true
+  protected fechaSeleccionada = true
 
-  private horasDia
+  protected horasDia
 
-  private mostrarMedicos: any
-  private mostrarBoxs: any
-  private especialidadSeleccionada: any
-  private disponibilidades: any
+  protected mostrarMedicos: any
+  protected mostrarBoxs: any
+  protected especialidadSeleccionada: any
+  protected disponibilidades: any
+
+  protected citas: any
 
 
   constructor(
     public dialogRef: MatDialogRef<AgregarcitaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _formBuilder: FormBuilder,
-    private servicioEspecialidad: EspecialidadService,
-    private servicioPersona: PersonaService,
-    private servicioDisponibilidad: DisponibilidadService
+    protected _formBuilder: FormBuilder,
+    protected servicioEspecialidad: EspecialidadService,
+    protected servicioPersona: PersonaService,
+    protected servicioDisponibilidad: DisponibilidadService
 
     )
   {
@@ -81,6 +76,10 @@ export class AgregarcitaComponent {
 
     this.horasDia = [ '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00' ]
 
+
+    this.servicioCitas.getCitas().subscribe( data => {
+      this.citas = this.normalizeData( data )
+    })
 
     this.servicioDisponibilidad.getDisponibilidads().subscribe( data => {
       this.disponibilidades = this.normalizeData(data)
@@ -120,7 +119,7 @@ export class AgregarcitaComponent {
     return todo.data
   }
 
-  private wardmeds
+  protected wardmeds
 
   filtrarMedicos(especialidad)
   {
@@ -228,16 +227,21 @@ export class AgregarcitaComponent {
 
   filtrarPorHora(hora)
   {
+
+      //Transformamos el formato de hora normal a numeros (EJ 14:00 -> 14000) para poder hacer calculos
       hora = hora.split(':')[0].toString()+hora.split(':')[1].toString()
-      console.log(hora)
 
+      //Obtenemos el dia de la cita, que esta programado para que al aplicar una division en la cadena de texto sea el espacio 0 el que contiene el dia en español
       let dia = this.cita.fecha.split(' ')[0]
-      console.log(dia)
 
+
+      //Buscamos en la tabla de disponibilidad aquellos valores que cumplan con los requisitos, en este caso solo el dia seleccionado
       let currentDisponibilidad = this.disponibilidades.filter( dis => dis.dia === dia  && dis.hora_inicio != 'No disponible')
-
       let auxDisponibilidad = []
 
+      //Como hemos filtrado ademas por aquellos que solo estan disponibles
+      //Transformamos la hora de inicio y termino a valores enteros para comparar
+      //Si es que la hora seleccionada por el usuario esta entre los rangos del medico
       for ( let dis of currentDisponibilidad )
       {
         let horas = dis.hora_inicio.split(':')[0]
@@ -248,27 +252,30 @@ export class AgregarcitaComponent {
         minutos = dis.hora_termino.split(':')[1]
         let totalTermino = horas.toString()+minutos.toString()
 
+        //Si cumple esta condicion, entonces este medico debe ser considerado, y se guarda
+        //el registro completo de la disponibilidad en el cual esta la ID del medico
         if( hora >= parseInt(totalInicio) && hora<= parseInt(totalTermino) )
         {
           auxDisponibilidad.push(dis)
         }
       }
 
-      console.log(auxDisponibilidad)
 
-
-
-
+      // Recorremos la lista configurada anteriormente
+      //Para extraer solamente la ID del medico de dicho registro
+      //Que en este caso es lo que importa
       let auxMedicoId = []
       for( let dis of auxDisponibilidad)
       {
         auxMedicoId.push(dis.Medico_id)
       }
 
+      //Esta linea permite eliminar registros duplicados, de manera que no tengasmo la misma id repetida
       auxMedicoId = auxMedicoId.filter( function(elem, index, self){ return index === self.indexOf(elem) } )
 
 
-
+      // Ahora filtramos la lista de medicos segun las id extraidas del proceso anterior
+      // Dichos medicos, seran mostrados en el SELECT por que si estan disponibles
       this.mostrarMedicos = []
 
       for( let id of auxMedicoId)
@@ -276,9 +283,33 @@ export class AgregarcitaComponent {
         this.mostrarMedicos.push( this.medicos.filter( med => med.id === parseInt( id ) )[0] )
       }
 
+      //Ahora filtraremos segun las citas agendadas y no concretadas donde podremos sobreescribir una cita
+      let filtroCitas = this.citas.filter( cita => cita.fecha === this.cita.fecha && cita.hora === this.cita.hora )
+      console.log(filtroCitas)
+
+      // Ocupamos nuevamente la variable para guardar las id de los medicos esta vez la reinicializamos
+      auxMedicoId = []
+      for( let dis of filtroCitas)
+      {
+        auxMedicoId.push(dis.Medico_id)
+      }
+
+      console.log(auxMedicoId)
+
+      //Ahora fitlraremos todos los ID de los medicos encontrados arriba
+      let auxMedicos = this.mostrarMedicos
+
+      for( let med of auxMedicoId )
+      {
+        auxMedicos = auxMedicos.filter( medico => parseInt( medico.id ) != parseInt( med ) )
+      }
+
+      console.log(auxMedicos)
+
+      //Finalmente asignamos los medicos filtrados a la variable global
+      this.mostrarMedicos = auxMedicos
+
       this.wardmeds = this.mostrarMedicos
-
-
 
   }
 
