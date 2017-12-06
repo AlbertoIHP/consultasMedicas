@@ -6,6 +6,7 @@ import {MatIconRegistry} from '@angular/material';
 import { EventosService } from './Services/eventos/eventos.service';
 import {UsuarioActual} from './Components/Globals/usuarioactual.component';
 
+import { Ng2DeviceService } from 'ng2-device-detector';
 
 @Component({
 	selector: 'app-root',
@@ -15,8 +16,32 @@ import {UsuarioActual} from './Components/Globals/usuarioactual.component';
 export class AppComponent {
   public isLogeado: boolean = false
   public usuarioActual
+  private deviceInfo
 
-	constructor(public eventosService: EventosService,private router: Router,private iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
+  goPacMobile()
+  {
+    this.router.navigate(['mobile/mp'])
+  }
+
+  goCitMobile()
+  {
+    this.router.navigate(['mobile/mc'])
+  }
+
+  goAteMobile()
+  {
+    this.router.navigate(['mobile/ma'])
+  }
+
+  private isMobile = false
+
+    epicFunction() {
+      console.log('hello `Home` component');
+      this.deviceInfo = this.deviceService.getDeviceInfo();
+      console.log(this.deviceInfo);
+    }
+
+	constructor(private deviceService: Ng2DeviceService, public eventosService: EventosService,private router: Router,private iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
      this.usuarioActual= new UsuarioActual();
     //iconos de toolbar
     this.iconRegistry
@@ -31,15 +56,16 @@ export class AppComponent {
         .addSvgIcon('icono-error',
             sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/warning.svg'));
 
-  
-
-    if(localStorage.getItem('currentUser'))
+     this.epicFunction()  
+    if(this.deviceInfo.device === 'android' || this.deviceInfo.device === 'iphone' || this.deviceInfo.device === 'ipad')
     {
-      this.isLogeado = true
+      //alert("Esto es un mobile")
+      this.isMobile = true
     }
 
 
-    if( localStorage.getItem('currentUser'))
+
+    if(localStorage.getItem('currentUser'))
     {
       this.isLogeado = true
     }

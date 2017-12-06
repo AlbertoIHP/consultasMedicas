@@ -1,5 +1,5 @@
 
-  <div class="bloqueSideNav" *ngIf="isLogeado">
+  <div class="bloqueSideNav" *ngIf="isLogeado && !isMobile">
     <mat-toolbar color=primary style="margin-bottom: 10px;background-color:#204060 !important;" *ngIf="isLogeado">
 
       <span><i class="fa fa-heartbeat" style="margin: 10px;" aria-hidden="true"></i>Clínica Web</span>
@@ -7,7 +7,7 @@
     </mat-toolbar>
   </div>
 
-<mat-sidenav-container >
+<mat-sidenav-container *ngIf="!isMobile">
 
   <mat-sidenav #sidenav mode="side" opened="true" class="sidenav-mod" *ngIf="isLogeado">
 
@@ -249,3 +249,47 @@
   <router-outlet></router-outlet>
 
 </mat-sidenav-container>
+
+
+<div *ngIf="isMobile">
+
+   <mat-toolbar color="primary" class="toolbar-act" *ngIf="isLogeado">
+     <span class="example-spacer"></span>
+
+        <button class="boton-act" mat-button>
+          <mat-icon>dialpad</mat-icon>
+          <span>Actividad</span>
+        </button>
+        <button mat-button class="boton-act">
+          <mat-icon svgIcon="icono-editar-perfil"></mat-icon>
+          <span>Editar Perfil</span>
+        </button>
+        <button mat-button class="boton-act" (click)="cerrarSesion()">
+          <mat-icon svgIcon="icono-logout"></mat-icon>
+          <span>Cerrar Sesión</span>
+        </button>
+
+    <mat-toolbar-row>
+    <mat-button-toggle-group #group="matButtonToggleGroup">
+      <mat-button-toggle value="left" (click)="goPacMobile()">
+        <i class="fa fa-wheelchair icono-nav" aria-hidden="true"></i>
+        Pacientes
+      </mat-button-toggle>
+
+      <mat-button-toggle value="center" (click)="goCitMobile()">
+        <i class="fa fa-address-book icono-nav" aria-hidden="true"></i>
+        Citas
+      </mat-button-toggle>
+
+      <mat-button-toggle value="right" (click)="goAteMobile()">
+        <i class="fa fa-stethoscope icono-nav" aria-hidden="true"></i>
+        Atenciones
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    </mat-toolbar-row>
+
+  </mat-toolbar>
+
+
+  <router-outlet></router-outlet> 
+</div>

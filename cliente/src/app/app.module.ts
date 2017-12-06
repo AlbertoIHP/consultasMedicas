@@ -1,3 +1,7 @@
+
+
+  import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
+
 //SERVICIOS
 import { ComunaService } from './Services/comuna/comuna.service';
 import { EstadocivilService } from './Services/estadocivil/estadocivil.service';
@@ -88,6 +92,7 @@ import { LoginComponent } from './Components/login/login.component';
 
 //Modulo Pacientes
 import { Homemp } from './Components/moduloPacientes/homemp.component';
+import { Homema } from './Components/moduloAtenciones/homema.component';
 
   //Componente Ficha Medica
   import { VerFichaMedicaComponent } from './Components/moduloPacientes/fichamedica/verfichamedica/verfichamedica.component';
@@ -152,11 +157,6 @@ import { Homemp } from './Components/moduloPacientes/homemp.component';
 
  //Modulo Citas
 import { HomemcComponent } from './Components/moduloCitas/homemc.component';
-
-  //Componentes Tipo Box
-  import { TipoboxComponent } from './Components/moduloCitas/tipobox/tipobox.component';
-  import { AgregartipoboxComponent } from './Components/moduloCitas/tipobox/agregartipobox/agregartipobox.component';
-  import { EditartipoboxComponent } from './Components/moduloCitas/tipobox/editartipobox/editartipobox.component';
 
   //Componente Box Consulta
   import { BoxconsultaComponent } from './Components/moduloCitas/boxconsulta/boxconsulta.component';
@@ -226,7 +226,6 @@ import {
   NgbDatepickerModule,
   NgbTimepickerModule
 } from '@ng-bootstrap/ng-bootstrap';
-import { VerdisComponent } from './Components/moduloCitas/medico/verdis/verdis.component';
 
 
 @NgModule({
@@ -237,6 +236,7 @@ import { VerdisComponent } from './Components/moduloCitas/medico/verdis/verdis.c
     LoginComponent,
     //Modulo MP y todos sus componentes
     Homemp,
+    Homema,
     PersonaComponent,
     PacientesComponent,
     EstadocivilComponent,
@@ -281,7 +281,6 @@ import { VerdisComponent } from './Components/moduloCitas/medico/verdis/verdis.c
 
     //Modulo Citas
     HomemcComponent,
-    TipoboxComponent,
     BoxconsultaComponent,
     EstadocitaComponent,
     EspecialidadComponent,
@@ -301,11 +300,8 @@ import { VerdisComponent } from './Components/moduloCitas/medico/verdis/verdis.c
     EditarestadocitaComponent,
     AgregarmedicoComponent,
     EditarmedicoComponent,
-    AgregartipoboxComponent,
-    EditartipoboxComponent,
     MensajeErrorComponent,
     DisponibilidadComponent,
-    VerdisComponent,
     AtencionComponent,
     DiagnosticoComponent,
     RecetaComponent,
@@ -374,11 +370,8 @@ import { VerdisComponent } from './Components/moduloCitas/medico/verdis/verdis.c
     EditarestadocitaComponent,
     AgregarmedicoComponent,
     EditarmedicoComponent,
-    AgregartipoboxComponent,
-    EditartipoboxComponent,
     MensajeErrorComponent,
     DisponibilidadComponent,
-    VerdisComponent,
     AgregarDiagnosticoComponent,
     EditarDiagnosticoComponent,
     AgregarViaAdministracionMedicamentoComponent,
@@ -428,7 +421,8 @@ import { VerdisComponent } from './Components/moduloCitas/medico/verdis/verdis.c
     MatTooltipModule,
     NgbDatepickerModule.forRoot(),
     NgbTimepickerModule.forRoot(),
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    Ng2DeviceDetectorModule.forRoot(),
   ],
 
   providers:
