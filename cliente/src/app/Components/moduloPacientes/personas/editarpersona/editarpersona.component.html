@@ -2,101 +2,119 @@
 
 <div mat-dialog-content>
 
-	<p>Rut</p>
+      <div class="row">
 
-	<input disabled matInput tabindex="1" [(ngModel)]="persona.rut">
+        <div class="col s4">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Rut"  required [(ngModel)]="persona.rut" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
+        </div>
 
+        <div class="col s4">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Primer Nombre"  required [(ngModel)]="persona.nombre1" (ngModelChange)="verificarRut()">
+          </mat-form-field>
+        </div>
 
-	<p>Primer Nombre</p>
-
-	<input matInput tabindex="1" [(ngModel)]="persona.nombre1">
-
-
-	<p>Segundo Nombre</p>
-	<input matInput tabindex="1" [(ngModel)]="persona.nombre2">
-
-
-	<p>Primer Apellido</p>
-
-	<input matInput tabindex="1" [(ngModel)]="persona.apellido1">
-
-
-	<p>Segundo Apellido</p>
-
-	<input matInput tabindex="1" [(ngModel)]="persona.apellido2">
+        <div class="col s4">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Segundo Nombre"  required [(ngModel)]="persona.nombre2" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
+        </div>
+      </div>
 
 
-	<p>Teléfono de Casa</p>
+      <div class="row">
+        <div class="col s6">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Primer Apellido"  required [(ngModel)]="persona.apellido1" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
+        </div>
 
-	<input matInput tabindex="1" [(ngModel)]="persona.fono_casa">
-
-
-	<p>Teléfono de Trabajo</p>
-
-	<input matInput tabindex="1" [(ngModel)]="persona.fono_trabajo">
-
-
-	<p>Celular</p>
-
-	<input matInput tabindex="1" [(ngModel)]="persona.movil">
-
-
-	<p>Género</p>
-	<mat-form-field style="width: 100% !important;">
-		<mat-select placeholder="Género" [(ngModel)]="persona.Genero_id" style="width: 100% !important;">
-			<mat-option style="width: 100% !important;" *ngFor="let genero of totalGeneros" [value]="genero.id">
-				{{ genero.nombre }}
-			</mat-option>
-		</mat-select>
-	</mat-form-field>
-
-	<p>Estado Civil</p>
-	<mat-form-field style="width: 100% !important;">
-	<mat-select placeholder="Estado Civil" [(ngModel)]="persona.EstadoCivil_id" style="width: 100% !important;">
-		<mat-option style="width: 100% !important;" *ngFor="let ec of totalEstadoCiviles" [value]="ec.id">
-		{{ ec.nombre }}
-		</mat-option>
-	</mat-select>
-	</mat-form-field>
+        <div class="col s6">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Segundo Apellido"  required [(ngModel)]="persona.apellido2" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
+        </div>
+      </div>
 
 
 
+      <div class="row">
+        <div class="col s4">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Teléfono de Casa"  required [(ngModel)]="persona.fono_casa" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
+        </div>
 
-	<p *ngIf="mostrarRegiones">Región</p>
+        <div class="col s4">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Teléfono de Trabajo"  required [(ngModel)]="persona.fono_trabajo" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
+        </div>
 
-	<mat-form-field style="width: 100% !important;" *ngIf="mostrarRegiones">
-	<mat-select placeholder="Region" style="width: 100% !important;">
-	<mat-option style="width: 100% !important;" *ngFor="let region of totalRegiones" [value]="region.id" (click)="regionSeleccionada(region)">
-	{{ region.nombre }}
-	</mat-option>
-	</mat-select>
-	</mat-form-field>
-
-	<p *ngIf="mostrarProvincias">Provincia</p>
-
-	<mat-form-field style="width: 100% !important;" *ngIf="mostrarProvincias">
-	<mat-select placeholder="Provincia" style="width: 100% !important;">
-	<mat-option style="width: 100% !important;" *ngFor="let provincia of provinciasMostrar" [value]="provincia.id" (click)="provinciaSeleccionada(provincia)">
-	{{ provincia.nombre }}
-	</mat-option>
-	</mat-select>
-	</mat-form-field>
+        <div class="col s4">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Teléfono Celular"  required [(ngModel)]="persona.movil" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
+        </div>
+      </div>
 
 
-	<p *ngIf="mostrarComunas">Comuna</p>
 
-	<mat-form-field style="width: 100% !important;" *ngIf="mostrarComunas">
-	<mat-select placeholder="Comuna" [(ngModel)]="persona.Comuna_id" style="width: 100% !important;" >
-	<mat-option style="width: 100% !important;" *ngFor="let comuna of comunasMostrar" [value]="comuna.id" (click)="comunaSeleccionada(comuna)">
-	{{ comuna.nombre }}
-	</mat-option>
-	</mat-select>
-	</mat-form-field>
+      <div class="row">
+        <div class="col s4">
+          <mat-form-field style="width: 100% !important;">
+            <mat-select  required placeholder="Género" [(ngModel)]="persona.Genero_id" style="width: 100% !important;">
+              <mat-option style="width: 100% !important;" *ngFor="let genero of totalGeneros" [value]="genero.id">
+                {{ genero.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col s4">
+          <mat-form-field style="width: 100% !important;">
+          <mat-select  required placeholder="Estado Civil" [(ngModel)]="persona.EstadoCivil_id" style="width: 100% !important;">
+            <mat-option style="width: 100% !important;" *ngFor="let ec of totalEstadoCiviles" [value]="ec.id">
+            {{ ec.nombre }}
+            </mat-option>
+          </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col s4">
+          <mat-form-field style="width: 100% !important;" *ngIf="mostrarRegiones">
+          <mat-select  required placeholder="Región" style="width: 100% !important;">
+          <mat-option style="width: 100% !important;" *ngFor="let region of totalRegiones" [value]="region.id" (click)="regionSeleccionada(region)">
+          {{ region.nombre }}
+          </mat-option>
+          </mat-select>
+          </mat-form-field>
+
+          <mat-form-field style="width: 100% !important;" *ngIf="mostrarProvincias">
+          <mat-select  required placeholder="Provincia" style="width: 100% !important;">
+          <mat-option style="width: 100% !important;" *ngFor="let provincia of provinciasMostrar" [value]="provincia.id" (click)="provinciaSeleccionada(provincia)">
+          {{ provincia.nombre }}
+          </mat-option>
+          </mat-select>
+          </mat-form-field>
+
+          <mat-form-field style="width: 100% !important;" *ngIf="mostrarComunas">
+          <mat-select  required placeholder="Comuna" style="width: 100% !important;" >
+          <mat-option style="width: 100% !important;" *ngFor="let comuna of comunasMostrar" [value]="comuna.id" (click)="comunaSeleccionada(comuna)">
+          {{ comuna.nombre }}
+          </mat-option>
+          </mat-select>
+          </mat-form-field>
+
+        </div>
+      </div>
 
 </div>
 
 
 <div mat-dialog-actions>
-	<button mat-button  class="boton-aceptar" (click)="actualizarPersona()" tabindex="2">Actualizar Persona</button>
+	<button mat-button  class="boton-aceptar" (click)="actualizarPersona()" tabindex="2">Actualizar Persona <mat-icon>refresh</mat-icon></button>
 	<button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

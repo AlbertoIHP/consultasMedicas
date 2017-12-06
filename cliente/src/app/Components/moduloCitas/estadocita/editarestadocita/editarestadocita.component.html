@@ -2,18 +2,18 @@
 
 <div mat-dialog-content>
 
-  <p>Nombre</p>
 
-  <input matInput tabindex="1" [(ngModel)]="estadocita.nombre">
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Nombre" [(ngModel)]="estadocita.nombre">
+    </mat-form-field>
 
-  <p>Descripción</p>
-
-  <input matInput tabindex="1" [(ngModel)]="estadocita.descripcion">
-
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Descripción" [(ngModel)]="estadocita.descripcion">
+    </mat-form-field>
 </div>
 
 
 <div mat-dialog-actions>
-  <button mat-button class="boton-aceptar" (click)="editarEstadoCita()" tabindex="2">Editar Estado Cita</button>
+  <button mat-button class="boton-aceptar" (click)="editarEstadoCita()" tabindex="2">Editar Estado Cita <mat-icon>refresh</mat-icon></button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

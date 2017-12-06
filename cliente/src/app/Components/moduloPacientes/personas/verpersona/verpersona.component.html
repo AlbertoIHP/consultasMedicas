@@ -2,31 +2,63 @@
 
 <div mat-dialog-content>
 
-  <p>Rut</p>
+      <div class="row">
 
-  <input disabled matInput tabindex="1" [(ngModel)]="persona.rut">
+        <div class="col s4">
+          <mat-form-field class="fullWidth">
+           <input disabled matInput placeholder="Rut"  required [(ngModel)]="persona.rut" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
+        </div>
 
+        <div class="col s4">
+          <mat-form-field class="fullWidth">
+           <input disabled matInput placeholder="Primer Nombre"  required [(ngModel)]="persona.nombre1" (ngModelChange)="verificarRut()">
+          </mat-form-field>
+        </div>
 
-  <p>Nombre</p>
-
-  <input disabled matInput tabindex="1" value="{{persona.nombre1+' '+persona.nombre2+' '+persona.apellido1+' '+persona.apellido2}}">
-
-
-  <p>Teléfono</p>
-
-  <input disabled matInput tabindex="1" [(ngModel)]="persona.fono_casa">
-
-
-  <p>Teléfono Trabajo</p>
-
-  <input disabled matInput tabindex="1" [(ngModel)]="persona.fono_trabajo">
-
-
-  <p>Celular</p>
-
-  <input disabled matInput tabindex="1" [(ngModel)]="persona.movil">
+        <div class="col s4">
+          <mat-form-field class="fullWidth">
+           <input disabled matInput placeholder="Segundo Nombre"  required [(ngModel)]="persona.nombre2" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
+        </div>
+      </div>
 
 
+      <div class="row">
+        <div class="col s6">
+          <mat-form-field class="fullWidth">
+           <input disabled matInput placeholder="Primer Apellido"  required [(ngModel)]="persona.apellido1" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
+        </div>
+
+        <div class="col s6">
+          <mat-form-field class="fullWidth">
+           <input disabled matInput placeholder="Segundo Apellido"  required [(ngModel)]="persona.apellido2" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col s4">
+          <mat-form-field class="fullWidth">
+           <input disabled matInput placeholder="Teléfono de Casa"  required [(ngModel)]="persona.fono_casa" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
+        </div>
+
+        <div class="col s4">
+          <mat-form-field class="fullWidth">
+           <input disabled matInput placeholder="Teléfono de Trabajo"  required [(ngModel)]="persona.fono_trabajo" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
+        </div>
+
+        <div class="col s4">
+          <mat-form-field class="fullWidth">
+           <input disabled matInput placeholder="Teléfono Celular"  required [(ngModel)]="persona.movil" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
+        </div>
+      </div>
 
 </div>
 
@@ -34,7 +66,7 @@
 <div mat-dialog-actions >
   <div class="row" style="text-align: center;">
     <div class="col s12">
-      <button mat-button (click)="onNoClick()" tabindex="-1">Aceptar</button>
+      <button class="boton-aceptar" mat-button (click)="onNoClick()" tabindex="-1">Aceptar</button>
     </div>
   </div>
 

@@ -4,21 +4,23 @@
 
   <div class="row">
     <div class="col s12" style="text-align: center">
-        <img src="assets/logo.png" alt="" class="circle responsive-img" style="max-width: 40%; max-height: 40%">
+        <img src="assets/logo.png" alt="" class="circle responsive-img" style="max-width: 30%; max-height: 20%">
     </div>
   </div>
 
   <div class="row">
     <div class="col s12">
-      <label for="email">Correo Electrónico</label>
-      <input type="email" id="email" matInput [(ngModel)]="user" (ngModelChange)="activeLogIn()">
+            <mat-form-field class="fullWidth">
+              <input matInput placeholder="Correo Electrónico" [(ngModel)]="user" (ngModelChange)="activeLogIn()">
+            </mat-form-field>
     </div>
   </div>
 
   <div class="row">
     <div class="col s12">
-      <label for="password">Contraseña</label>
-      <input type="password" id="password" matInput [(ngModel)]="password" (ngModelChange)="activeLogIn()" >
+            <mat-form-field class="fullWidth">
+              <input type="password" matInput placeholder="Contraseña" [(ngModel)]="password" (ngModelChange)="activeLogIn()">
+            </mat-form-field>
     </div>
   </div>
 

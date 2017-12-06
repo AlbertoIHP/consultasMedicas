@@ -2,12 +2,11 @@
 
 <div mat-dialog-content>
 
-	<p>Ubicación</p>
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Ubicación" [(ngModel)]="nuevoBoxConsulta.ubicacion">
+    </mat-form-field>
 
-	<input matInput tabindex="1" [(ngModel)]="nuevoBoxConsulta.ubicacion">
 
-
-	<p>Tipo box</p>
 	<mat-form-field style="width: 100% !important;">
 		<mat-select placeholder="Tipo box" [(ngModel)]="nuevoBoxConsulta.TipoBox_id" style="width: 100% !important;">
 			<mat-option style="width: 100% !important;" *ngFor="let tipobox of totalTipoBoxes" [value]="tipobox.id">
@@ -20,6 +19,6 @@
 
 
 <div mat-dialog-actions>
-	<button mat-button class="boton-aceptar" (click)="agregarBoxConsulta()" tabindex="2">Agregar box</button>
+	<button mat-button class="boton-aceptar" (click)="agregarBoxConsulta()" tabindex="2">Agregar box <mat-icon>add</mat-icon></button>
 	<button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

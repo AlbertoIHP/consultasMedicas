@@ -2,16 +2,14 @@
 
 <div mat-dialog-content>
 
-  <p>Nombre</p>
 
-  <input matInput tabindex="1" [(ngModel)]="genero.nombre">
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Nombre" [(ngModel)]="genero.nombre">
+    </mat-form-field>
 
-
-  <p>Descripción</p>
-
-  <input matInput tabindex="1" [(ngModel)]="genero.descripcion">
-
-
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Descripción" [(ngModel)]="genero.descripcion">
+    </mat-form-field>
 
 </div>
 
