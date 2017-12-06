@@ -218,17 +218,6 @@ export class AgregarpersonaComponent implements OnInit{
     }
 	}
 
-	ecSeleccionado(ec)
-	{
-		this.persona.EstadoCivil_id = ec.id;
-	}
-
-	generoSeleccionado(genero)
-	{
-		this.persona.Genero_id = genero.id;
-	}
-
-
   GeneratePassword()
   {
     var text = "";
@@ -284,15 +273,9 @@ export class AgregarpersonaComponent implements OnInit{
     }
   }
 
-
-
   verificarRut()
   {
     console.log("Esta funcion hasta ahora no tiene ninguna utilidad, deprecada en las proximas actualizacioens")
   }
-
-
-
-
 
 }

@@ -22,9 +22,11 @@ export class EditarboxconsultaComponent implements OnInit {
   	) {
 
   	this.boxConsulta=data.boxconsulta;
-  	this.totalTipoBoxes=data.totalTipoBoxes;
+  	this.totalTipoBoxes=data.tipoboxes;
   	this.servicioTipoBox=data.servicioTipoBox;
 
+  	console.log(this.boxConsulta);
+  	console.log(this.totalTipoBoxes);
 
   }
 
@@ -50,11 +52,4 @@ export class EditarboxconsultaComponent implements OnInit {
 
 		});
 	}
-
-	tipoBoxSeleccionado(tipobox)
-	{
-		this.boxConsulta.TipoBox_id = tipobox.id;
-	}
-
-
 }

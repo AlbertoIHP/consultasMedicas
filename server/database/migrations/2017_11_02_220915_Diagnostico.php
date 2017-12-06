@@ -15,7 +15,7 @@ class Diagnostico extends Migration
     {
         Schema::create('Diagnostico', function (Blueprint $table) {
         $table->increments('id');
-        $table->string('diagnostico');
+        $table->text('diagnostico');
 
         $table->rememberToken();
         $table->timestamps();

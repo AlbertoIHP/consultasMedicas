@@ -14,8 +14,8 @@
 
   <p>Role</p>
   <mat-form-field style="width: 100% !important;">
-    <mat-select placeholder="Role" style="width: 100% !important;">
-      <mat-option style="width: 100% !important;" *ngFor="let role of totalRoles" [value]="role.id" (click)="roleSeleccionado(role)">
+    <mat-select placeholder="Role" [(ngModel)]="usuario.Role_id" style="width: 100% !important;">
+      <mat-option style="width: 100% !important;" *ngFor="let role of totalRoles" [value]="role.id">
         {{ role.nombre }}
       </mat-option>
     </mat-select>

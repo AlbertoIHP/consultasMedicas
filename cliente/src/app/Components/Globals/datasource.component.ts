@@ -126,8 +126,18 @@ export class buscadorPorNombre extends DataSource<any> {
         {
            let searchStr = (item.rut ).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
-        }else if(this.filtro == "BoxConsulta"){
+
+        }else if(this.filtro === "BoxConsulta"){
            let searchStr = (item.ubicacion).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro === "Diagnostico"){
+           let searchStr = (item.diagnostico).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+           
+        }else if(this.filtro == "ViaAdminMed"){
+
+           let searchStr = (item.descripcion.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }
 
@@ -233,6 +243,16 @@ export class ExampleDataSource extends DataSource<any> {
         {
 
            let searchStr = (item.Medico_id.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "Diagnostico"){
+
+           let searchStr = (item.diagnostico.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "ViaAdminMed"){
+
+           let searchStr = (item.descripcion.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }
 
@@ -399,6 +419,20 @@ export class ExampleDataSource extends DataSource<any> {
             case 'Box': [propertyA, propertyB] = [a.BoxConsulta_id, b.BoxConsulta_id]; break;
             case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
             case 'Medico': [propertyA, propertyB] = [a.Medico_id, b.Medico_id]; break;
+          }
+        }
+        else if(this.filtro === "Diagnostico")
+        {
+           switch (this._sort.active)
+          {
+            case 'Diagnostico': [propertyA, propertyB] = [a.diagnostico, b.diagnostico]; break;
+          }
+        }
+        else if(this.filtro === "ViaAdminMed")
+        {
+           switch (this._sort.active)
+          {
+            case 'Descripcion': [propertyA, propertyB] = [a.descripcion, b.descripcion]; break;
           }
         }
 

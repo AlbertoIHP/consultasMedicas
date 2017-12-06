@@ -30,11 +30,4 @@ export class EditarprevisionComponent  {
 
 		});
 	}
-
-  isapreSeleccionado(respuesta)
-  {
-    this.prevision.isapre = respuesta;
-    console.log(this.prevision);
-  }
-
 }

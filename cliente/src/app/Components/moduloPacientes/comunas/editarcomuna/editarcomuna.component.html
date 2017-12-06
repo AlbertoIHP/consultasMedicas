@@ -6,11 +6,10 @@
 
 	<input matInput tabindex="1" [(ngModel)]="comuna.nombre">
 
-
 	<p>Provincia</p>
 	<mat-form-field style="width: 100% !important;">
-		<mat-select placeholder="Provincia" style="width: 100% !important;">
-			<mat-option style="width: 100% !important;" *ngFor="let provincia of totalProvincias" [value]="provincia.id" (click)="provinciaSeleccionada(provincia)">
+		<mat-select placeholder="Provincia" [(ngModel)]="comuna.Provincia_id" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let provincia of totalProvincias" [value]="provincia.id">
 				{{ provincia.nombre }}
 			</mat-option>
 		</mat-select>

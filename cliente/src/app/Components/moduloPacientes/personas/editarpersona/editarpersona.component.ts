@@ -160,14 +160,4 @@ export class EditarpersonaComponent implements OnInit{
 		this.persona.Comuna_id = comuna.id;
 	}
 
-	ecSeleccionado(ec)
-	{
-		this.persona.EstadoCivil_id = ec.id;
-	}
-
-	generoSeleccionado(genero)
-	{
-		this.persona.Genero_id = genero.id;
-	}
-
 }

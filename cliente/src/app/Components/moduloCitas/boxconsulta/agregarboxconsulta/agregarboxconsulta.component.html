@@ -9,8 +9,8 @@
 
 	<p>Tipo box</p>
 	<mat-form-field style="width: 100% !important;">
-		<mat-select placeholder="Tipo box" style="width: 100% !important;">
-			<mat-option style="width: 100% !important;" *ngFor="let tipobox of totalTipoBoxes" [value]="tipobox.id" (click)="tipoBoxSeleccionado(tipobox)">
+		<mat-select placeholder="Tipo box" [(ngModel)]="nuevoBoxConsulta.TipoBox_id" style="width: 100% !important;">
+			<mat-option style="width: 100% !important;" *ngFor="let tipobox of totalTipoBoxes" [value]="tipobox.id">
 				{{ tipobox.nombre }}
 			</mat-option>
 		</mat-select>

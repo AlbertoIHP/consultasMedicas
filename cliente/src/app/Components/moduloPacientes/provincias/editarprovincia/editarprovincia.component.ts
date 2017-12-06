@@ -48,10 +48,4 @@ export class EditarprovinciaComponent implements OnInit {
 		});
 	}
 
-	regionSeleccionada(region)
-	{
-		this.provincia.Region_id = region.id;
-	}
-
-
 }

@@ -14,7 +14,7 @@
 
 
 
-      <ng-template matStepLabel>Informacion Personal</ng-template>
+      <ng-template matStepLabel>Información Personal</ng-template>
 
 
 
@@ -73,8 +73,8 @@
       <div class="row">
         <div class="col s4">
           <mat-form-field style="width: 100% !important;">
-            <mat-select formControlName="firstCtrl" required placeholder="Género" style="width: 100% !important;">
-              <mat-option style="width: 100% !important;" *ngFor="let genero of totalGeneros" [value]="genero.id" (click)="generoSeleccionado(genero)">
+            <mat-select formControlName="firstCtrl" required placeholder="Género" [(ngModel)]="persona.Genero_id" style="width: 100% !important;">
+              <mat-option style="width: 100% !important;" *ngFor="let genero of totalGeneros" [value]="genero.id">
                 {{ genero.nombre }}
               </mat-option>
             </mat-select>
@@ -83,8 +83,8 @@
 
         <div class="col s4">
           <mat-form-field style="width: 100% !important;">
-          <mat-select formControlName="firstCtrl" required placeholder="Estado Civil" style="width: 100% !important;">
-            <mat-option style="width: 100% !important;" *ngFor="let ec of totalEstadoCiviles" [value]="ec.id" (click)="ecSeleccionado(ec)">
+          <mat-select formControlName="firstCtrl" required placeholder="Estado Civil" [(ngModel)]="persona.EstadoCivil_id" style="width: 100% !important;">
+            <mat-option style="width: 100% !important;" *ngFor="let ec of totalEstadoCiviles" [value]="ec.id">
             {{ ec.nombre }}
             </mat-option>
           </mat-select>
@@ -142,9 +142,9 @@
 
 
 
-        <p>Un email sera enviado a la direccion ingresada, el cual contendra la constraseña de acceso predeterminada para el usuario, una vez entre con dicha contraseña podra modificarla desde el sistema.</p>
+        <p>Un email sera enviado a la dirección ingresada, el cual contendrá la constraseña de acceso predeterminada para el usuario, una vez entre con dicha contraseña podrá modificarla desde el sistema.</p>
 
-        <label for="">Correo electronico</label>
+        <label for="">Correo electrónico</label>
         <input id="newEmaul" matInput type="email"  formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.email" (ngModelChange)="validateEmail(nuevoUsuario.email)">
 
 
@@ -164,14 +164,14 @@
 
 
   <mat-step>
-    <ng-template matStepLabel style="text-align: center">Verificacion de cuenta</ng-template>
+    <ng-template matStepLabel style="text-align: center">Verificación de cuenta</ng-template>
 
     <div style="text-align: center !important">
           <img src="https://lh3.googleusercontent.com/Vct_XSpNfhherziE-h0mSSpbrJf2jYM1nvPO2PVkcIECnqqUHCf-2-5j8EObefEmS0o7=w300" style="max-width: 300px; max-height: 300px">
 
               <p>
-      Un correo electronico ha sido enviado a la direccion registrada.
-      Una vez confirmes tu cuenta, podras tener acceso a la pagina web de la clinica.
+      Un correo electrónico ha sido enviado a la dirección registrada.
+      Una vez confirmes tu cuenta, podrás tener acceso a la pagina web de la clínica.
 
     </p>
 

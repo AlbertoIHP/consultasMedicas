@@ -378,7 +378,11 @@ import { VerdisComponent } from './Components/moduloCitas/medico/verdis/verdis.c
     EditartipoboxComponent,
     MensajeErrorComponent,
     DisponibilidadComponent,
-    VerdisComponent
+    VerdisComponent,
+    AgregarDiagnosticoComponent,
+    EditarDiagnosticoComponent,
+    AgregarViaAdministracionMedicamentoComponent,
+    EditarViaAdministracionMedicamentoComponent
   ],
 
 

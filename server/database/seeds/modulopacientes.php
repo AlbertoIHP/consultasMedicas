@@ -2497,6 +2497,40 @@ class modulopacientes extends Seeder
 			'name' => 'Cita',
 		]);
 
+		//Módulo atenciones
+		//19-26
+		DB::table('Modulo')->insert([
+			'name' => 'AlergiasPaciente',
+		]);
+
+		DB::table('Modulo')->insert([
+			'name' => 'Atencion',
+		]);
+
+		DB::table('Modulo')->insert([
+			'name' => 'Diagnostico',
+		]);
+
+		DB::table('Modulo')->insert([
+			'name' => 'DiagnosticosAtencion',
+		]);
+
+		DB::table('Modulo')->insert([
+			'name' => 'Medicamento',
+		]);
+
+		DB::table('Modulo')->insert([
+			'name' => 'MedicamentosReceta',
+		]);
+
+		DB::table('Modulo')->insert([
+			'name' => 'Receta',
+		]);
+
+		DB::table('Modulo')->insert([
+			'name' => 'ViaAdministracionMedicamento',
+		]);
+
 
 
 		//Jefatura
@@ -2641,6 +2675,78 @@ class modulopacientes extends Seeder
 		DB::table('PermisoModulo')->insert([
 			'Role_id' => 1,
 			'Modulo_id' => 18,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 1,
+			'Modulo_id' => 19,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 1,
+			'Modulo_id' => 20,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 1,
+			'Modulo_id' => 21,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 1,
+			'Modulo_id' => 22,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 1,
+			'Modulo_id' => 23,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 1,
+			'Modulo_id' => 24,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 1,
+			'Modulo_id' => 25,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 1,
+			'Modulo_id' => 26,
 			'write' => 1,
 			'erase' => 1,
 			'update' => 1,
@@ -2796,6 +2902,78 @@ class modulopacientes extends Seeder
 		DB::table('PermisoModulo')->insert([
 			'Role_id' => 2,
 			'Modulo_id' => 18,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 2,
+			'Modulo_id' => 19,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 2,
+			'Modulo_id' => 20,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 2,
+			'Modulo_id' => 21,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 2,
+			'Modulo_id' => 22,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 2,
+			'Modulo_id' => 23,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 2,
+			'Modulo_id' => 24,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 2,
+			'Modulo_id' => 25,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 2,
+			'Modulo_id' => 26,
 			'write' => 1,
 			'erase' => 1,
 			'update' => 1,

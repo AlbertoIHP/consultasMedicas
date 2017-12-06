@@ -228,7 +228,8 @@ export class ComunasComponent {
 			width: '700px',
 			data: {
         provincias: this.totalProvincias,
-        servicioProvincia: this.servicioProvincia
+        servicioProvincia: this.servicioProvincia,
+        servicioComuna: this.servicioComuna
       }
 		});
 
