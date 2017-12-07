@@ -69,7 +69,7 @@ import { LoginComponent } from '../Components/login/login.component'
 
 
   //Componente Alergias Paciente
-  import { AlergiaspacienteComponent } from '../Components/moduloAtenciones/alergiaspaciente/alergiaspaciente.component';
+  import { AlergiaspacienteComponent } from '../Components/moduloAtenciones/alergiasmedicamentospaciente/alergiaspaciente.component';
 
   //Componente Atención
   import { AtencionComponent } from '../Components/moduloAtenciones/atencion/atencion.component';

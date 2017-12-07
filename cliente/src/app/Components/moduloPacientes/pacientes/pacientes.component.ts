@@ -6,6 +6,12 @@ import { PersonaService } from '../../../Services/persona/persona.service';
 import { TipoSangre } from '../../../Models/TipoSangre.model';
 import { TipoSangreService } from '../../../Services/tiposangre/tiposangre.service';
 
+import { GrupoEtnico } from '../../../Models/GrupoEtnico.model';
+import { GrupoEtnicoService } from '../../../Services/grupoetnico/grupo-etnico.service';
+
+import { Ocupacion } from '../../../Models/Ocupacion.model';
+import { OcupacionService } from '../../../Services/ocupacion/ocupacion.service';
+
 import { Paciente } from '../../../Models/Paciente.model';
 import { PacienteService } from '../../../Services/paciente/paciente.service';
 
@@ -49,9 +55,11 @@ export class PacientesComponent implements OnInit {
 	public totalPersonas: Persona[];
 	public totalPacientes: Paciente[];
 	public totalTS: TipoSangre[];
+  public totalGruposEtnicos: GrupoEtnico[];
+  public totalOcupaciones: Ocupacion[];
 	public usuarioActual;
 
-	displayedColumns = ['Acciones', 'Rut', 'Persona', 'Tipo Sangre'];
+	displayedColumns = ['Acciones', 'Rut', 'Persona', 'Tipo Sangre', 'Grupo Etnico', 'Ocupacion'];
 
   //DATATABLE
   exampleDatabase;
@@ -119,7 +127,10 @@ export class PacientesComponent implements OnInit {
 		public servicioPaciente: PacienteService,
 		public dialog: MatDialog,
     public servicioEventos: EventosService,
-    public router: Router)
+    public router: Router,
+    public servicioGrupoEtnico: GrupoEtnicoService,
+    public servicioOcupacion: OcupacionService
+    )
   {
     if( !(localStorage.getItem('currentUser')) )
     {
@@ -129,10 +140,12 @@ export class PacientesComponent implements OnInit {
 
 		this.usuarioActual=new UsuarioActual();
 		this.totalTS = [];
+    this.totalGruposEtnicos=[];
+    this.totalOcupaciones=[];
 		this.totalPacientes = [];
 		this.totalPersonas = [];
 		this.actualizarPersonas();
-		this.actualizarTSs();
+		this.actualizarTotales();
     this.servicioEventos.seActivo.subscribe(() => {
       this.actualizarPersonas();
     });
@@ -156,13 +169,25 @@ export class PacientesComponent implements OnInit {
 
 
 
-	actualizarTSs ()
+	actualizarTotales ()
 	{
 		this.totalTS = [];
 		this.servicioTS.getTipoSangres().subscribe( data => {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalTS = todo;
+
+      this.servicioGrupoEtnico.getGrupoEtnicos().subscribe( data=>{
+        var todo: any = data;
+        todo = todo.data;
+        this.totalGruposEtnicos = todo;
+
+        this.servicioOcupacion.getOcupacions().subscribe(data=>{
+          var todo: any = data;
+          todo = todo.data;
+          this.totalOcupaciones = todo;
+        });
+      });
 		});
 	}
 
@@ -339,6 +364,26 @@ export class PacientesComponent implements OnInit {
 				}
 			}
 
+      for(let j = 0 ; j < this.totalGruposEtnicos.length ; j++)
+      {
+        if( parseInt(this.totalPacientes[i].GrupoEtnico_id) === this.totalGruposEtnicos[j].id)
+        {
+          this.totalPacientes[i].GrupoEtnico_id = this.totalGruposEtnicos[j].nombre;
+          break;
+        }
+      }
+
+      for(let j = 0 ; j < this.totalOcupaciones.length ; j++)
+      {
+        if( parseInt(this.totalPacientes[i].Ocupacion_id) === this.totalOcupaciones[j].id)
+        {
+          this.totalPacientes[i].Ocupacion_id = this.totalOcupaciones[j].nombre;
+          break;
+        }
+      }
+
+
+
 		}
 	}
 
@@ -352,6 +397,22 @@ export class PacientesComponent implements OnInit {
 				paciente.TipoSangre_id = this.totalTS[i].id;
 			}
 		}
+
+    for ( let i = 0 ; i < this.totalGruposEtnicos.length ; i ++)
+    {
+      if(paciente.GrupoEtnico_id === this.totalGruposEtnicos[i].nombre)
+      {
+        paciente.GrupoEtnico_id = this.totalGruposEtnicos[i].id;
+      }
+    }
+
+    for ( let i = 0 ; i < this.totalOcupaciones.length ; i ++)
+    {
+      if(paciente.Ocupacion_id === this.totalOcupaciones[i].nombre)
+      {
+        paciente.Ocupacion_id = this.totalOcupaciones[i].id;
+      }
+    }
 	}
 
   desactivarPaciente(paciente)

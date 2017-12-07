@@ -232,9 +232,9 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   import { AgregarMedicamentosRecetaComponent } from './Components/moduloAtenciones/medicamentosreceta/agregar-medicamentos-receta/agregar-medicamentos-receta.component';
   import { EditarMedicamentosRecetaComponent } from './Components/moduloAtenciones/medicamentosreceta/editar-medicamentos-receta/editar-medicamentos-receta.component';
 
-  import { AlergiaspacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/alergiaspaciente.component';
-  import { AgregarAlergiasPacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/agregar-alergias-paciente/agregar-alergias-paciente.component';
-  import { EditarAlergiasPacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/editar-alergias-paciente/editar-alergias-paciente.component';
+  import { AlergiaspacienteComponent } from './Components/moduloAtenciones/alergiasmedicamentospaciente/alergiaspaciente.component';
+  import { AgregarAlergiasPacienteComponent } from './Components/moduloAtenciones/alergiasmedicamentospaciente/agregar-alergias-paciente/agregar-alergias-paciente.component';
+  import { EditarAlergiasPacienteComponent } from './Components/moduloAtenciones/alergiasmedicamentospaciente/editar-alergias-paciente/editar-alergias-paciente.component';
 
 
 import {
