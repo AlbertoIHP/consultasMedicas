@@ -12,6 +12,7 @@ export class Persona {
 	EstadoCivil_id: string;
 	Comuna_id: string;
 	estado: number;
+	fechaNacimiento: string;
 
 	constructor()
 	{
@@ -28,5 +29,6 @@ export class Persona {
 		this.EstadoCivil_id = "";
 		this.Comuna_id = "";
 		this.estado = 1;
+		this.fechaNacimiento = "";
 	}
 }

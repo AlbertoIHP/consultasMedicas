@@ -6,6 +6,7 @@ export class Atencion {
 	estatura: string;
 	calificacion:number;
 	Paciente_id:string;
+	ExamenFisico_id:string;
 
 	constructor()
 	{
@@ -16,5 +17,6 @@ export class Atencion {
 		this.estatura = "";
 		this.calificacion = 0;
 		this.Paciente_id = "";
+		this.ExamenFisico_id = "";
 	}
 }

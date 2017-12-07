@@ -20,6 +20,21 @@ import { EventosService } from './Services/eventos/eventos.service';
 import { ModuloService } from './Services/modulo/modulo.service';
 import { PermisoModuloService } from './Services/permisomodulo/permisomodulo.service';
 
+import { VacunaService } from './Services/vacuna/vacuna.service';
+import { VacunasPacienteService } from './Services/vacunaspaciente/vacunaspaciente.service';
+import { HabitosSexualesPacienteService } from './Services/habitossexualespaciente/habitos-sexuales-paciente.service';
+import { HabitoSexualService } from './Services/habitosexual/habito-sexual.service';
+import { HabitosPacienteService } from './Services/habitospaciente/habitos-paciente.service';
+import { HabitoService } from './Services/habito/habito.service';
+import { EnfermedadCronicaService } from './Services/enfermedadcronica/enfermedad-cronica.service';
+import { EnfermedadesCronicasPacienteService } from './Services/enfermedadescronicaspaciente/enfermedades-cronicas-paciente.service';
+import { OcupacionService } from './Services/ocupacion/ocupacion.service';
+import { GrupoEtnicoService } from './Services/grupoetnico/grupo-etnico.service';
+import { UsoMedicamentoService } from './Services/usomedicamento/uso-medicamento.service';
+import { AlergiaService } from './Services/alergia/alergia.service';
+import { AlergiasComunesPacienteService } from './Services/alergiascomunespaciente/alergias-comunes-paciente.service';
+
+
 // SERVICIOS MODULO CITAS
 import { BoxConsultaService } from './Services/boxconsulta/box-consulta.service';
 import { CitaService } from './Services/cita/cita.service';
@@ -37,7 +52,7 @@ import { ViaAdministracionMedicamentoService } from './Services/viaAdministracio
 import { MedicamentoService } from './Services/medicamento/medicamento.service';
 import { RecetaService } from './Services/receta/receta.service';
 import { MedicamentosRecetaService } from './Services/medicamentosReceta/medicamentos-receta.service';
-import { AlergiasPacienteService } from './Services/alergiasPaciente/alergias-paciente.service';
+import { AlergiasMedicamentosPacienteService } from './Services/alergiasmedicamentospaciente/alergias-medicamentos-paciente.service';
 
 
 //MODULOS
@@ -458,8 +473,20 @@ import {
     MedicamentoService,
     MedicamentosRecetaService,
     RecetaService,
-    AlergiasPacienteService,
-
+    AlergiasMedicamentosPacienteService,
+    VacunaService,
+    VacunasPacienteService,
+    HabitosSexualesPacienteService,
+    HabitoSexualService,
+    HabitosPacienteService,
+    HabitoService,
+    EnfermedadCronicaService,
+    EnfermedadesCronicasPacienteService,
+    OcupacionService,
+    GrupoEtnicoService,
+    UsoMedicamentoService,
+    AlergiaService,
+    AlergiasComunesPacienteService,
   ],
 
   bootstrap:

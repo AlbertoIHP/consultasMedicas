@@ -2321,14 +2321,14 @@ class modulopacientes extends Seeder
 		'descripcion' => 'Este tipo de sangre tiene los tres marcadores: A, B y factor Rh.',
 		]);
 
-
+	  	/*
 		DB::table('Paciente')->insert([
 			'Persona_id' => 4,
 			'TipoSangre_id' => 1,
 			'GrupoEtnico_id' => 1,
 			'Ocupacion_id' => 1,
 			]);
-
+		*/
 
 		DB::table('PrevisionActual')->insert([
 		'fechaActualizacion' => Carbon::create('2017', '02', '01'),

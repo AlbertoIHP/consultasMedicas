@@ -92,6 +92,35 @@ Route::group(['middleware' => ['cors']], function(){
     Route::resource('v1/medicamentosRecetas', 'MedicamentosRecetaAPIController');
 
     Route::resource('v1/alergiasPacientes', 'AlergiasPacienteAPIController');
+
+
+    Route::resource('v1/vacunas', 'VacunaAPIController');
+
+    Route::resource('v1/habitoSexuals', 'HabitoSexualAPIController');
+
+    Route::resource('v1/habitos', 'HabitoAPIController');
+
+    Route::resource('v1/enfermedadCronicas', 'EnfermedadCronicaAPIController');
+
+    Route::resource('v1/ocupacions', 'OcupacionAPIController');
+
+    Route::resource('v1/alergias', 'AlergiaAPIController');
+
+    Route::resource('v1/grupoEtnicos', 'GrupoEtnicoAPIController');
+
+    Route::resource('v1/vacunasPacientes', 'VacunasPacienteAPIController');
+
+    Route::resource('v1/habitosSexualesPacientes', 'HabitosSexualesPacienteAPIController');
+
+    Route::resource('v1/habitosPacientes', 'HabitosPacienteAPIController');
+
+    Route::resource('v1/enfermedadesCronicasPacientes', 'EnfermedadesCronicasPacienteAPIController');
+
+    Route::resource('v1/alergiasComunesPacientes', 'AlergiasComunesPacienteAPIController');
+
+    Route::resource('v1/usoMedicamentos', 'UsoMedicamentoAPIController');
+
+    Route::resource('v1/alergiasMedicamentosPacientes', 'AlergiasMedicamentosPacienteAPIController');
 });
 
 
@@ -105,31 +134,3 @@ Route::group(['middleware' => ['cors']], function(){
 
 
 
-
-Route::resource('vacunas', 'VacunaAPIController');
-
-Route::resource('habito_sexuals', 'HabitoSexualAPIController');
-
-Route::resource('habitos', 'HabitoAPIController');
-
-Route::resource('enfermedad_cronicas', 'EnfermedadCronicaAPIController');
-
-Route::resource('ocupacions', 'OcupacionAPIController');
-
-Route::resource('alergias', 'AlergiaAPIController');
-
-Route::resource('grupo_etnicos', 'GrupoEtnicoAPIController');
-
-Route::resource('vacunas_pacientes', 'VacunasPacienteAPIController');
-
-Route::resource('habitos_sexuales_pacientes', 'HabitosSexualesPacienteAPIController');
-
-Route::resource('habitos_pacientes', 'HabitosPacienteAPIController');
-
-Route::resource('enfermedades_cronicas_pacientes', 'EnfermedadesCronicasPacienteAPIController');
-
-Route::resource('alergias_comunes_pacientes', 'AlergiasComunesPacienteAPIController');
-
-Route::resource('uso_medicamentos', 'UsoMedicamentoAPIController');
-
-Route::resource('alergias_medicamentos_pacientes', 'AlergiasMedicamentosPacienteAPIController');

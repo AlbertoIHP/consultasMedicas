@@ -1,7 +1,9 @@
 export class Paciente {
   id: number;
-	Persona_id: string;
-	TipoSangre_id: string;
+  Persona_id: string;
+  TipoSangre_id: string;
+  GrupoEtnico_id: string;
+  Ocupacion_id: string;
   rut: string;
   activado: number;
 
@@ -10,7 +12,7 @@ export class Paciente {
 		this.id = 0;
 		this.Persona_id = "";
 		this.TipoSangre_id = "";
-    this.rut = "";
-    this.activado = 0;
+    	this.rut = "";
+    	this.activado = 0;
 	}
 }
