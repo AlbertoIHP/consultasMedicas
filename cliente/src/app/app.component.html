@@ -98,6 +98,97 @@
         </button>
         </div>
 
+         <div class="col s12" *ngIf="usuarioActual.obtenerExistenciaPermiso('Alergia')">
+          <button mat-button class="sidenavBtn" routerLink="/als" routerLinkActive="active">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Alergias</span>
+        </button>
+        </div>
+
+         <div class="col s12" *ngIf="usuarioActual.obtenerExistenciaPermiso('AlergiasComunesPaciente')">
+          <button mat-button class="sidenavBtn" routerLink="/algc" routerLinkActive="active">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Alergias Comunes Pacientes</span>
+        </button>
+        </div>
+
+         <div class="col s12" *ngIf="usuarioActual.obtenerExistenciaPermiso('EnfermedadCronica')">
+          <button mat-button class="sidenavBtn" routerLink="/efc" routerLinkActive="active">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Enfermedades Crónicas</span>
+        </button>
+        </div>
+
+         <div class="col s12" *ngIf="usuarioActual.obtenerExistenciaPermiso('EnfermedadesCronicasPaciente')">
+          <button mat-button class="sidenavBtn" routerLink="/efcp" routerLinkActive="active">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Enfermedades Cŕonicas Pacientes</span>
+        </button>
+        </div>
+
+         <div class="col s12" *ngIf="usuarioActual.obtenerExistenciaPermiso('GrupoEtnico')">
+          <button mat-button class="sidenavBtn" routerLink="/gre" routerLinkActive="active">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Grupos Etnicos</span>
+        </button>
+        </div>
+
+         <div class="col s12" *ngIf="usuarioActual.obtenerExistenciaPermiso('Habito')">
+          <button mat-button class="sidenavBtn" routerLink="/ha" routerLinkActive="active">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Hábitos</span>
+        </button>
+        </div>
+
+         <div class="col s12" *ngIf="usuarioActual.obtenerExistenciaPermiso('HabitoSexual')">
+          <button mat-button class="sidenavBtn" routerLink="/has" routerLinkActive="active">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Hábitos Sexuales</span>
+        </button>
+        </div>
+
+         <div class="col s12" *ngIf="usuarioActual.obtenerExistenciaPermiso('HabitosPaciente')">
+          <button mat-button class="sidenavBtn" routerLink="/hap" routerLinkActive="active">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Hábitos Pacientes</span>
+        </button>
+        </div>
+
+         <div class="col s12" *ngIf="usuarioActual.obtenerExistenciaPermiso('HábitosSexualesPaciente')">
+          <button mat-button class="sidenavBtn" routerLink="/hasp" routerLinkActive="active">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Hábitos Sexuales Paciente</span>
+        </button>
+        </div>
+
+         <div class="col s12" *ngIf="usuarioActual.obtenerExistenciaPermiso('Ocupacion')">
+          <button mat-button class="sidenavBtn" routerLink="/ocp" routerLinkActive="active">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Ocupaciones</span>
+        </button>
+        </div>
+
+         <div class="col s12" *ngIf="usuarioActual.obtenerExistenciaPermiso('UsoMedicamento')">
+          <button mat-button class="sidenavBtn" routerLink="/ume" routerLinkActive="active">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Medicamentos Pacientes</span>
+        </button>
+        </div>
+
+         <div class="col s12" *ngIf="usuarioActual.obtenerExistenciaPermiso('Vacuna')">
+          <button mat-button class="sidenavBtn" routerLink="/vac" routerLinkActive="active">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">Vacunas</span>
+        </button>
+        </div>
+
+         <div class="col s12" *ngIf="usuarioActual.obtenerExistenciaPermiso('VacunasPaciente')">
+          <button mat-button class="sidenavBtn" routerLink="/vacp" routerLinkActive="active">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span style="margin-left: 10px;">VacunasPacientes</span>
+        </button>
+        </div>
+
 
       </div>
     </mat-expansion-panel>
