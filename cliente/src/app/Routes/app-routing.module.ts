@@ -46,6 +46,44 @@ import { LoginComponent } from '../Components/login/login.component'
   //Componente Provincias
   import { ProvinciasComponent } from '../Components/moduloPacientes/provincias/provincias.component';
 
+  //Componente Alergia
+  import { AlergiaComponent } from '../Components/moduloPacientes/alergia/alergia.component';
+
+  //Componente Alergias Comunes Paciente
+  import { AlergiasComunesPacienteComponent } from '../Components/moduloPacientes/alergias-comunes-paciente/alergias-comunes-paciente.component';
+
+  //Componente Enfermedad Crónica
+  import { EnfermedadCronicaComponent } from '../Components/moduloPacientes/enfermedad-cronica/enfermedad-cronica.component';
+
+  //Componente Enfermedades Crónicas Paciente 
+  import { EnfermedadesCronicasPacienteComponent } from '../Components/moduloPacientes/enfermedades-cronicas-paciente/enfermedades-cronicas-paciente.component';
+
+  //Componente Grupo Étnico
+  import { GrupoEtnicoComponent } from '../Components/moduloPacientes/grupo-etnico/grupo-etnico.component';
+
+  //Componente Hábito
+  import { HabitoComponent } from '../Components/moduloPacientes/habito/habito.component';
+
+  //Componente Hábito Sexual
+  import { HabitoSexualComponent } from '../Components/moduloPacientes/habito-sexual/habito-sexual.component';
+
+  //Componente Hábitos Paciente
+  import { HabitosPacienteComponent } from '../Components/moduloPacientes/habitos-paciente/habitos-paciente.component';
+
+  //Componente Hábitos Sexuales Paciente
+  import { HabitosSexualesPacienteComponent } from '../Components/moduloPacientes/habitos-sexuales-paciente/habitos-sexuales-paciente.component';
+
+  //Componente Ocupación
+  import { OcupacionComponent } from '../Components/moduloPacientes/ocupacion/ocupacion.component';
+
+  //Componente Uso Medicamento
+  import { UsoMedicamentoComponent } from '../Components/moduloPacientes/uso-medicamento/uso-medicamento.component';
+
+  //Componente Vacuna
+  import { VacunaComponent } from '../Components/moduloPacientes/vacuna/vacuna.component';
+
+  //Componente Vacunas Paciente
+  import { VacunasPacienteComponent } from '../Components/moduloPacientes/vacunas-paciente/vacunas-paciente.component';
 
 
 
@@ -122,6 +160,20 @@ const routes: Routes =
   { path: 'gen',  component: GenerosComponent },
   { path: 'ec',  component: EstadocivilComponent },
   { path: 'fm',  component: FichaMedicaComponent },
+
+  { path: 'als', component: AlergiaComponent },
+  { path: 'algc',  component: AlergiasComunesPacienteComponent },
+  { path: 'efc',  component: EnfermedadCronicaComponent },
+  { path: 'efcp',  component: EnfermedadesCronicasPacienteComponent },
+  { path: 'gre',  component: GrupoEtnicoComponent },
+  { path: 'ha',  component: HabitoComponent },
+  { path: 'has',  component: HabitoSexualComponent },
+  { path: 'hap',  component: HabitosPacienteComponent },
+  { path: 'hasp',  component: HabitosSexualesPacienteComponent },
+  { path: 'ocp',  component: OcupacionComponent },
+  { path: 'ume',  component: UsoMedicamentoComponent },
+  { path: 'vac',  component: VacunaComponent },
+  { path: 'vacp',  component: VacunasPacienteComponent },
 
   //MÓDULO CITAS
 
