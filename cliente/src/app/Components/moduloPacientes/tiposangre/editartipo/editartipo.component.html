@@ -2,19 +2,18 @@
 
 <div mat-dialog-content>
 
-  <p>Nombre</p>
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Nombre" [(ngModel)]="ts.nombre">
+    </mat-form-field>
 
-  <input matInput tabindex="1" [(ngModel)]="ts.nombre">
-
-  <p>Descripción</p>
-
-  <input matInput tabindex="1" [(ngModel)]="ts.descripcion">
-
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Descripción" [(ngModel)]="ts.descripcion">
+    </mat-form-field>
 
 </div>
 
 
 <div mat-dialog-actions>
-  <button mat-button class="boton-aceptar" (click)="editarTS()" tabindex="2">Actualizar Tipo de Sangre</button>
+  <button mat-button class="boton-aceptar" (click)="editarTS()" tabindex="2">Actualizar <mat-icon>refresh</mat-icon></button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

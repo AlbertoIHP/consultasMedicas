@@ -12,10 +12,6 @@
     <app-boxconsulta></app-boxconsulta>
   </mat-tab>
 
-  <mat-tab label="Tipo box" *ngIf="usuarioActual.obtenerExistenciaPermiso('TipoBox')">
-    <app-tipobox></app-tipobox>
-  </mat-tab>
-
   <mat-tab label="Médicos" *ngIf="usuarioActual.obtenerExistenciaPermiso('Medico')">
     <app-medico></app-medico>
   </mat-tab>

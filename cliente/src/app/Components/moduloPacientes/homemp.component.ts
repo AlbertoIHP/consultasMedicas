@@ -17,6 +17,9 @@ import { PermisoModuloService } from '../../Services/permisomodulo/permisomodulo
 
 import { Modulo } from '../../Models/Modulo.model';
 import { ModuloService } from '../../Services/modulo/modulo.service';
+
+
+import { Ng2DeviceService } from 'ng2-device-detector';
 @Component({
   selector: 'app-homemp',
   templateUrl: './homemp.component.html',
@@ -26,17 +29,26 @@ export class Homemp implements OnInit {
   public isLogeado = false
   public usuarioActual;
 
-  constructor(
+  private deviceInfo
+  constructor(    
+    private deviceService: Ng2DeviceService, 
     public eventosService: EventosService,
     public servicioUsuario: UserService,
-    public router: Router) {
+    public router: Router) 
+  {
+    this.deviceInfo = this.deviceService.getDeviceInfo();
     if( !(localStorage.getItem('currentUser')) )
     {
       this.router.navigate(['login'])
     }else{
       //se obtienen los datos asociados a permisos del usuario actual
+      console.log(this.deviceInfo)
       this.usuarioActual=new UsuarioActual();
-
+      if(this.deviceInfo.device != 'android' && this.deviceInfo.device != 'iphone' && this.deviceInfo.device != 'ipad')
+      {
+        console.log("HOLA")
+        this.router.navigate(['per'])
+      }
     }
 
    }

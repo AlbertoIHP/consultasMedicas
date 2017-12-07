@@ -151,7 +151,7 @@ class CitaAPIController extends AppBaseController
 
 
         // Correo para el PACIENTE
-        Mail::send('email.avisoCita', ['email' => $correoPaciente, 'nombre' => $nombrePaciente, 'fecha'=> $fecha, 'hora' => $hora ], function ($message) use ($correoPaciente, $correoPaciente, $nombreMedico) { 
+        Mail::send('email.avisoCita', ['email' => $correoPaciente, 'nombre' => $nombrePaciente, 'fecha'=> $fecha, 'hora' => $hora ], function ($message) use ($correoPaciente, $nombreMedico) { 
             $message->to( $correoPaciente, $correoPaciente)->subject('Se ha agendado una cita con '.$nombreMedico) ;
             
             });

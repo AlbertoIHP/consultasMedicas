@@ -19,13 +19,14 @@ import { Modulo } from '../../Models/Modulo.model';
 import { ModuloService } from '../../Services/modulo/modulo.service';
 
 
+
 import { Ng2DeviceService } from 'ng2-device-detector';
 @Component({
-  selector: 'app-homemc',
-  templateUrl: './homemc.component.html',
-  styleUrls: ['./homemc.component.css']
+  selector: 'app-homema',
+  templateUrl: './homema.component.html',
+  styleUrls: ['./homema.component.css']
 })
-export class HomemcComponent implements OnInit {
+export class Homema implements OnInit {
   public isLogeado = false
   public usuarioActual;
 
@@ -37,23 +38,19 @@ export class HomemcComponent implements OnInit {
     public servicioUsuario: UserService) 
   {
     this.deviceInfo = this.deviceService.getDeviceInfo();
+
     if( !(localStorage.getItem('currentUser')) )
     {
       this.router.navigate(['login'])
     }
     else
     {
-
-
       //se obtienen los datos asociados a permisos del usuario actual
       this.usuarioActual=new UsuarioActual();
-
-      if(this.deviceInfo.device != 'android' && this.deviceInfo.device != 'iphone' && this.deviceInfo.device != 'ipad')
+      if(this.deviceInfo.device != 'android' &&  this.deviceInfo.device != 'iphone' && this.deviceInfo.device != 'ipad')
       {
-        this.router.navigate(['cit'])
+        this.router.navigate(['alg'])
       }
-
-
     }
 
    }

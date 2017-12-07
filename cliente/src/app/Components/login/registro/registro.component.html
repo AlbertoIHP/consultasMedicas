@@ -7,20 +7,21 @@
 
       <div class="row">
         <div class="col s4">
-
-            <label for="rut">Rut</label>
-            <input id="rut" matInput formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.rut" (ngModelChange)="buscarRut()"  (keyup.enter)="buscarRut()" >
-
+            <mat-form-field class="fullWidth">
+              <input matInput placeholder="Rut" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.rut" (ngModelChange)="buscarRut()"  (keyup.enter)="buscarRut()">
+            </mat-form-field>
         </div>
 
         <div class="col s4">
-          <label for="pn">Primer nombre</label>
-          <input formControlName="firstCtrl" required id="pn" matInput [(ngModel)]="nuevaPersona.nombre1">
+            <mat-form-field class="fullWidth">
+              <input matInput placeholder="Primer nombre" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.nombre1">
+            </mat-form-field>
         </div>
 
         <div class="col s4">
-          <label for="sn">Segundo nombre</label>
-          <input formControlName="firstCtrl" required id="sn" matInput [(ngModel)]="nuevaPersona.nombre2">
+            <mat-form-field class="fullWidth">
+              <input matInput placeholder="Segundo nombre" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.nombre2">
+            </mat-form-field>
         </div>
       </div>
 
@@ -28,31 +29,36 @@
       <div class="row">
 
         <div class="col s6">
-          <label for="pa">Primer apellido</label>
-          <input formControlName="firstCtrl" required id="pa" matInput  [(ngModel)]="nuevaPersona.apellido1">
+            <mat-form-field class="fullWidth">
+              <input matInput placeholder="Primer apellido" formControlName="firstCtrl" required  [(ngModel)]="nuevaPersona.apellido1">
+            </mat-form-field>
         </div>
 
         <div class="col s6">
-          <label for="sa">Segundo apellido</label>
-          <input formControlName="firstCtrl" required id="sa" matInput  [(ngModel)]="nuevaPersona.apellido2">
+            <mat-form-field class="fullWidth">
+              <input matInput placeholder="Segundo apellido" formControlName="firstCtrl" required  [(ngModel)]="nuevaPersona.apellido2">
+            </mat-form-field>
         </div>
 
       </div>
 
       <div class="row">
         <div class="col s4">
-          <label for="rut">Telefono de casa</label>
-          <input formControlName="firstCtrl" required id="rut" matInput [(ngModel)]="nuevaPersona.fono_casa">
+            <mat-form-field class="fullWidth">
+              <input matInput placeholder="Telefono de casa" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.fono_casa">
+            </mat-form-field>
         </div>
 
         <div class="col s4">
-          <label for="pn">Telefono de trabajo</label>
-          <input formControlName="firstCtrl" required  id="pn" matInput [(ngModel)]="nuevaPersona.fono_trabajo">
+            <mat-form-field class="fullWidth">
+              <input matInput placeholder="Telefono de trabajo" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.fono_trabajo">
+            </mat-form-field>
         </div>
 
         <div class="col s4">
-          <label for="sn">Telefono movil</label>
-          <input formControlName="firstCtrl" required  id="sn" matInput  [(ngModel)]="nuevaPersona.movil">
+            <mat-form-field class="fullWidth">
+              <input matInput placeholder="Telefono movil" formControlName="firstCtrl" required  [(ngModel)]="nuevaPersona.movil">
+            </mat-form-field>
         </div>
       </div>
 
@@ -129,32 +135,21 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Informacion de usuario</ng-template>
 
       <div class="row">
         <div class="col s6">
-          <label for="email">Correo electronico</label>
-          <input id="email" matInput type="email" formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.email" (ngModelChange)="validateEmail(nuevoUsuario.email)" >
+            <mat-form-field class="fullWidth">
+              <input matInput placeholder="Correo electronico" type="email" formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.email" (ngModelChange)="validateEmail(nuevoUsuario.email)" >
+            </mat-form-field>
         </div>
-        <div class="col s6">
-          <label for="pass">Contraseña</label>
-          <input id="pass" matInput type="password" formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.password" (ngModelChange)="validateEmail(nuevoUsuario.email)">
 
+        <div class="col s6">
+            <mat-form-field class="fullWidth">
+              <input matInput placeholder="Contraseña" type="password" formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.password" (ngModelChange)="validateEmail(nuevoUsuario.email)">
+            </mat-form-field>
         </div>
       </div>
 

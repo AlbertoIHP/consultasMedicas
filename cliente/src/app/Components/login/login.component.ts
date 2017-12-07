@@ -20,6 +20,7 @@ import { UserService } from '../../Services/user/user.service'
 
 import { RoleService } from '../../Services/role/role.service'
 
+import { Ng2DeviceService } from 'ng2-device-detector';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +35,10 @@ export class LoginComponent implements OnInit {
   public totalPM: any
   public roleId: any
 
+  private deviceInfo
+
   constructor(
+    private deviceService: Ng2DeviceService, 
     public dialog: MatDialog,
     public eventService: EventosService,
     private router: Router,
@@ -44,10 +48,21 @@ export class LoginComponent implements OnInit {
     public servicioPM: PermisoModuloService,
     public servicioModulo: ModuloService)
   {
+    this.deviceInfo = this.deviceService.getDeviceInfo();
 
     if( localStorage.getItem('currentUser') )
     {
-      this.router.navigate([''])
+
+      if(this.deviceInfo.device === 'android' || this.deviceInfo.device === 'iphone' || this.deviceInfo.device === 'ipad')
+      {
+        this.router.navigate(['mobile/mp'])
+      }
+      else
+      {
+        this.router.navigate([''])
+      }
+
+      
 
     }
     else
@@ -118,7 +133,15 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('persona',test);
 
               this.eventService.singIn()
-              this.router.navigate(['per'])
+
+              if(this.deviceInfo.device === 'android' || this.deviceInfo.device === 'iphone' || this.deviceInfo.device === 'ipad')
+              {
+                this.router.navigate(['mobile/mp'])
+              }
+              else
+              {
+                this.router.navigate(['per'])
+              }
 
 
             })

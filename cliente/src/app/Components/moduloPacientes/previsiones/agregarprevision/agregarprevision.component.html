@@ -2,19 +2,16 @@
 
 <div mat-dialog-content>
 
-  <p>Nombre</p>
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Nombre" [(ngModel)]="nuevaPrevision.nombre">
+    </mat-form-field>
 
-  <input matInput tabindex="1" [(ngModel)]="nuevaPrevision.nombre">
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Descripción" [(ngModel)]="nuevaPrevision.descripcion">
+    </mat-form-field>
 
-
-  <p>Descripción</p>
-
-  <input matInput tabindex="1" [(ngModel)]="nuevaPrevision.descripcion">
-
-
-  <p>¿ Esta previsión es ISAPRE ?</p>
   <mat-form-field style="width: 100% !important;">
-    <mat-select placeholder="Seleccione una opción" [(ngModel)]="nuevaPrevision.isapre" style="width: 100% !important;">
+    <mat-select placeholder="¿ Esta previsión es ISAPRE ?" [(ngModel)]="nuevaPrevision.isapre" style="width: 100% !important;">
       <mat-option style="width: 100% !important;" [value]="1">
         Si
       </mat-option>
@@ -33,6 +30,6 @@
 
 
 <div mat-dialog-actions>
-  <button mat-button class="boton-aceptar" (click)="agregarPrevision()" tabindex="2">Agregar Previsión</button>
+  <button mat-button class="boton-aceptar" (click)="agregarPrevision()" tabindex="2">Agregar Previsión <mat-icon>add</mat-icon> </button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

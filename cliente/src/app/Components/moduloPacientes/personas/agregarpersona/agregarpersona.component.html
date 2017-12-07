@@ -21,31 +21,36 @@
       <div class="row">
 
         <div class="col s4">
-          <p>Rut</p>
-          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.rut" (ngModelChange)="verificarRut()" >
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Rut" formControlName="firstCtrl" required [(ngModel)]="persona.rut" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
         </div>
 
         <div class="col s4">
-          <p>Primer Nombre</p>
-          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.nombre1" (ngModelChange)="verificarRut()">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Primer Nombre" formControlName="firstCtrl" required [(ngModel)]="persona.nombre1" (ngModelChange)="verificarRut()">
+          </mat-form-field>
         </div>
 
         <div class="col s4">
-         <p>Segundo Nombre</p>
-          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.nombre2" (ngModelChange)="verificarRut()">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Segundo Nombre" formControlName="firstCtrl" required [(ngModel)]="persona.nombre2" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
         </div>
       </div>
 
 
       <div class="row">
         <div class="col s6">
-          <p>Primer Apellido</p>
-          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.apellido1" (ngModelChange)="verificarRut()">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Primer Apellido" formControlName="firstCtrl" required [(ngModel)]="persona.apellido1" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
         </div>
 
         <div class="col s6">
-          <p>Segundo Apellido</p>
-          <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.apellido2" (ngModelChange)="verificarRut()">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Segundo Apellido" formControlName="firstCtrl" required [(ngModel)]="persona.apellido2" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
         </div>
       </div>
 
@@ -53,18 +58,21 @@
 
       <div class="row">
         <div class="col s4">
-         <p>Teléfono de Casa</p>
-         <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.fono_casa" (ngModelChange)="verificarRut()">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Teléfono de Casa" formControlName="firstCtrl" required [(ngModel)]="persona.fono_casa" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
         </div>
 
         <div class="col s4">
-         <p>Teléfono de Trabajo</p>
-        <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.fono_trabajo" (ngModelChange)="verificarRut()">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Teléfono de Trabajo" formControlName="firstCtrl" required [(ngModel)]="persona.fono_trabajo" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
         </div>
 
         <div class="col s4">
-         <p>Celular</p>
-         <input formControlName="firstCtrl" required matInput tabindex="1" [(ngModel)]="persona.movil" (ngModelChange)="verificarRut()">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Teléfono Celular" formControlName="firstCtrl" required [(ngModel)]="persona.movil" (ngModelChange)="verificarRut()" >
+          </mat-form-field>
         </div>
       </div>
 
@@ -123,7 +131,7 @@
 
       <div class="row">
         <div class="col s12">
-          <button mat-button matStepperNext style="width: 100%" disabled="{{rutValido}}">Siguiente</button>
+          <button mat-button matStepperNext style="width: 100%" disabled="{{rutValido}}">Siguiente <mat-icon>arrow_forward</mat-icon> </button>
         </div>
 
 
@@ -144,17 +152,18 @@
 
         <p>Un email sera enviado a la dirección ingresada, el cual contendrá la constraseña de acceso predeterminada para el usuario, una vez entre con dicha contraseña podrá modificarla desde el sistema.</p>
 
-        <label for="">Correo electrónico</label>
-        <input id="newEmaul" matInput type="email"  formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.email" (ngModelChange)="validateEmail(nuevoUsuario.email)">
 
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Correo electrónico" type="email"  formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.email" (ngModelChange)="validateEmail(nuevoUsuario.email)">
+    </mat-form-field>
 
       <div class="row">
         <div class="col s6">
-          <button mat-button matStepperPrevious style="width: 100%">Volver</button>
+          <button mat-button matStepperPrevious style="width: 100%"><mat-icon>arrow_back</mat-icon>Volver</button>
         </div>
 
         <div class="col s6">
-         <button mat-button matStepperNext style="width: 100%" (click)="agregarPersona()" disabled="{{emailValido}}">Registrar</button>
+         <button mat-button matStepperNext style="width: 100%" (click)="agregarPersona()" disabled="{{emailValido}}">Registrar <mat-icon>add</mat-icon></button>
         </div>
       </div>
     </form>
@@ -182,7 +191,7 @@
 
      <div class="row">
           <div class="col s12">
-            <button mat-button (click)="onNoClick()" style="width: 100%">Cerrar</button>
+            <button class="boton-aceptar"  mat-button (click)="onNoClick()" style="width: 100%">Cerrar</button>
           </div>
         </div>
   </mat-step>

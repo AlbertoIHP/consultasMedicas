@@ -2,12 +2,11 @@
 
 <div mat-dialog-content>
 
-  <p>Nombre</p>
 
-  <input matInput tabindex="1" [(ngModel)]="nuevaComuna.nombre">
+  <mat-form-field class="fullWidth">
+   <input matInput placeholder="Nombre" [(ngModel)]="nuevaComuna.nombre">
+  </mat-form-field>
 
-
-  <p>Provincia</p>
   <mat-form-field style="width: 100% !important;">
     <mat-select placeholder="Provincia" style="width: 100% !important;">
       <mat-option style="width: 100% !important;" *ngFor="let provincia of totalProvincias" [value]="provincia.id" (click)="provinciaSeleccionada(provincia)">

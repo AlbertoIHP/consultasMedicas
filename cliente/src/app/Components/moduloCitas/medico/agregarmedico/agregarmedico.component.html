@@ -40,7 +40,8 @@
   <mat-step >
       <ng-template matStepLabel>Horarios de Atención</ng-template>
 
-        <table class="striped">
+      <div class="container" style="height: 350px; overflow-y: scroll;">
+          <table class="striped">
           <thead>
             <tr>
                 <th>Día</th>
@@ -72,7 +73,10 @@
               </td>
             </tr>
           </tbody>
-        </table>
+        </table>      
+      </div>
+
+
 
 
 
@@ -82,7 +86,7 @@
         </div>
 
         <div class="col s6">
-         <button mat-button matStepperNext style="width: 100%" (click)="agregarMedico()" >Agregar <mat-icon>add</mat-icon>  </button>
+         <button mat-button matStepperNext style="width: 100%" (click)="agregarMedico()" class="boton-aceptar">Agregar <mat-icon>add</mat-icon>  </button>
         </div>
       </div>
   </mat-step>

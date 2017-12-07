@@ -2,19 +2,18 @@
 
 <div mat-dialog-content>
 
-  <p>Email</p>
-
-  <input matInput tabindex="1" [(ngModel)]="usuario.email" (ngModelChange)="validateEmail(usuario.email)">
-
-  <p>Password</p>
-
-  <input type="password" matInput tabindex="1" [(ngModel)]="usuario.password">
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Email" [(ngModel)]="usuario.email" (ngModelChange)="validateEmail(usuario.email)">
+    </mat-form-field>
 
 
 
-  <p>Role</p>
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Password" [(ngModel)]="usuario.password" type="password">
+    </mat-form-field>
+
   <mat-form-field style="width: 100% !important;">
-    <mat-select placeholder="Role" [(ngModel)]="usuario.Role_id" style="width: 100% !important;">
+    <mat-select placeholder="Rol de usuario" [(ngModel)]="usuario.Role_id" style="width: 100% !important;">
       <mat-option style="width: 100% !important;" *ngFor="let role of totalRoles" [value]="role.id">
         {{ role.nombre }}
       </mat-option>
@@ -25,6 +24,6 @@
 
 
 <div mat-dialog-actions>
-  <button mat-button (click)="editarRole()" disabled="{{emailValido}}" tabindex="2">Editar Usuario</button>
+  <button class="boton-aceptar" mat-button (click)="editarRole()" disabled="{{emailValido}}" tabindex="2">Editar Usuario <mat-icon>refresh</mat-icon></button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

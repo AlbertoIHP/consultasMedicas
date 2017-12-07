@@ -92,10 +92,20 @@ import { LoginComponent } from '../Components/login/login.component'
   //Componente Vía Administración Medicamento
   import { ViaadministracionmedicamentoComponent } from '../Components/moduloAtenciones/viaadministracionmedicamento/viaadministracionmedicamento.component';
 
+//COMPONENTES MOBILE
+import { HomemcComponent } from '../Components/moduloCitas/homemc.component';
+import { Homemp } from '../Components/moduloPacientes/homemp.component';
+
+import { Homema } from '../Components/moduloAtenciones/homema.component';
 
 
 const routes: Routes =
 [
+  //RUTAS MOBILE
+  { path: 'mobile/mc',  component: HomemcComponent },
+  { path: 'mobile/mp',  component: Homemp },
+  { path: 'mobile/ma',  component: Homema },
+
   { path: 'login',  component: LoginComponent },
   { path: '',  component: PersonaComponent, pathMatch: 'full' },
 
