@@ -25,11 +25,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="TipoBox_id",
  *          type="integer",
  *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
  *      )
  * )
  */

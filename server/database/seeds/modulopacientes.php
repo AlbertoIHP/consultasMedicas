@@ -2166,6 +2166,7 @@ class modulopacientes extends Seeder
 		  'EstadoCivil_id' => 4,
 		  'Comuna_id'=> 10,
 		  'estado' => 1,
+		  'fechaNacimiento' => Carbon::create('1996', '04', '05'),
 		]);
 
 		DB::table('Persona')->insert([
@@ -2181,6 +2182,7 @@ class modulopacientes extends Seeder
 		  'EstadoCivil_id' => 2,
 		  'Comuna_id'=> 5,
 		  'estado' => 1,
+		  'fechaNacimiento' => Carbon::create('1995', '04', '05'),
 		]);
 
 		DB::table('Persona')->insert([
@@ -2196,6 +2198,7 @@ class modulopacientes extends Seeder
 		  'EstadoCivil_id' => 3,
 		  'Comuna_id'=> 15,
 		  'estado' => 1,
+		  'fechaNacimiento' => Carbon::create('1994', '04', '05'),
 		]);
 
 
@@ -2212,6 +2215,7 @@ class modulopacientes extends Seeder
 		  'EstadoCivil_id' => 4,
 		  'Comuna_id'=> 7,
 		  'estado' => 1,
+		  'fechaNacimiento' => Carbon::create('1990', '04', '05'),
 		]);
 
 		DB::table('Persona')->insert([
@@ -2227,6 +2231,7 @@ class modulopacientes extends Seeder
 		  'EstadoCivil_id' => 1,
 		  'Comuna_id'=> 13,
 		  'estado' => 1,
+		  'fechaNacimiento' => Carbon::create('1977', '04', '05'),
 		]);
 
 
@@ -2319,7 +2324,9 @@ class modulopacientes extends Seeder
 
 		DB::table('Paciente')->insert([
 			'Persona_id' => 4,
-			'TipoSangre_id' =>1,
+			'TipoSangre_id' => 1,
+			'GrupoEtnico_id' => 1,
+			'Ocupacion_id' => 1,
 			]);
 
 

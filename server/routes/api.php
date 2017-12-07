@@ -104,3 +104,32 @@ Route::group(['middleware' => ['cors']], function(){
 
 
 
+
+
+Route::resource('vacunas', 'VacunaAPIController');
+
+Route::resource('habito_sexuals', 'HabitoSexualAPIController');
+
+Route::resource('habitos', 'HabitoAPIController');
+
+Route::resource('enfermedad_cronicas', 'EnfermedadCronicaAPIController');
+
+Route::resource('ocupacions', 'OcupacionAPIController');
+
+Route::resource('alergias', 'AlergiaAPIController');
+
+Route::resource('grupo_etnicos', 'GrupoEtnicoAPIController');
+
+Route::resource('vacunas_pacientes', 'VacunasPacienteAPIController');
+
+Route::resource('habitos_sexuales_pacientes', 'HabitosSexualesPacienteAPIController');
+
+Route::resource('habitos_pacientes', 'HabitosPacienteAPIController');
+
+Route::resource('enfermedades_cronicas_pacientes', 'EnfermedadesCronicasPacienteAPIController');
+
+Route::resource('alergias_comunes_pacientes', 'AlergiasComunesPacienteAPIController');
+
+Route::resource('uso_medicamentos', 'UsoMedicamentoAPIController');
+
+Route::resource('alergias_medicamentos_pacientes', 'AlergiasMedicamentosPacienteAPIController');

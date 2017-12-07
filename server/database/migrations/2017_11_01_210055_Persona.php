@@ -24,13 +24,12 @@ class Persona extends Migration
         $table->string('fono_trabajo');
         $table->string('movil');
         $table->integer('estado')->default(1);
-
+        $table->date('fechaNacimiento');
 
         $table->integer('Genero_id')->unsigned()->nullable();
         $table->integer('Comuna_id')->unsigned()->nullable();
         $table->integer('EstadoCivil_id')->unsigned()->nullable();
         
-
         $table->foreign('Genero_id')->references('id')->on('Genero')->onDelete('cascade');
         $table->foreign('Comuna_id')->references('id')->on('Comuna')->onDelete('cascade');
         $table->foreign('EstadoCivil_id')->references('id')->on('EstadoCivil')->onDelete('cascade');

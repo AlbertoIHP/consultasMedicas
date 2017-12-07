@@ -48,11 +48,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="Paciente_id",
  *          type="integer",
  *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
  *      )
  * )
  */
@@ -75,8 +70,7 @@ class Atencion extends Model
         'calificacion',
         'BoxConsulta_id',
         'Cita_id',
-        'Paciente_id',
-        'remember_token'
+        'Paciente_id'
     ];
 
     /**
@@ -91,8 +85,7 @@ class Atencion extends Model
         'calificacion' => 'integer',
         'BoxConsulta_id' => 'integer',
         'Cita_id' => 'integer',
-        'Paciente_id' => 'integer',
-        'remember_token' => 'string'
+        'Paciente_id' => 'integer'
     ];
 
     /**
@@ -143,4 +136,7 @@ class Atencion extends Model
     {
         return $this->hasMany(\App\Models\Recetum::class);
     }
+
+    protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];   
+ 
 }

@@ -35,11 +35,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="Medico_id",
  *          type="integer",
  *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
  *      )
  * )
  */
@@ -60,8 +55,7 @@ class Disponibilidad extends Model
         'dia',
         'hora_inicio',
         'hora_termino',
-        'Medico_id',
-        'remember_token'
+        'Medico_id'
     ];
 
     /**
@@ -74,8 +68,7 @@ class Disponibilidad extends Model
         'dia' => 'string',
         'hora_inicio' => 'string',
         'hora_termino' => 'string',
-        'Medico_id' => 'integer',
-        'remember_token' => 'string'
+        'Medico_id' => 'integer'
     ];
 
     /**

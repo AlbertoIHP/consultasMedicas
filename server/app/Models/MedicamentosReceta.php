@@ -55,11 +55,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="Receta_id",
  *          type="integer",
  *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
  *      )
  * )
  */
@@ -83,8 +78,7 @@ class MedicamentosReceta extends Model
         'intervalo',
         'Medicamento_id',
         'ViaAdministracionMedicamento_id',
-        'Receta_id',
-        'remember_token'
+        'Receta_id'
     ];
 
     /**
@@ -100,8 +94,7 @@ class MedicamentosReceta extends Model
         'intervalo' => 'integer',
         'Medicamento_id' => 'integer',
         'ViaAdministracionMedicamento_id' => 'integer',
-        'Receta_id' => 'integer',
-        'remember_token' => 'string'
+        'Receta_id' => 'integer'
     ];
 
     /**
@@ -136,4 +129,7 @@ class MedicamentosReceta extends Model
     {
         return $this->belongsTo(\App\Models\ViaAdministracionMedicamento::class);
     }
+
+    protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];   
+
 }

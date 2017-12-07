@@ -31,11 +31,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="Diagnostico_id",
  *          type="integer",
  *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
  *      )
  * )
  */
@@ -55,8 +50,7 @@ class DiagnosticosAtencion extends Model
     public $fillable = [
         'Observacion',
         'Atencion_id',
-        'Diagnostico_id',
-        'remember_token'
+        'Diagnostico_id'
     ];
 
     /**
@@ -68,8 +62,7 @@ class DiagnosticosAtencion extends Model
         'id' => 'integer',
         'Observacion' => 'string',
         'Atencion_id' => 'integer',
-        'Diagnostico_id' => 'integer',
-        'remember_token' => 'string'
+        'Diagnostico_id' => 'integer'
     ];
 
     /**
@@ -96,4 +89,6 @@ class DiagnosticosAtencion extends Model
     {
         return $this->belongsTo(\App\Models\Diagnostico::class);
     }
+    protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];   
+    
 }

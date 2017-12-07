@@ -26,11 +26,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="Persona_id",
  *          type="integer",
  *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
  *      )
  * )
  */
@@ -49,8 +44,7 @@ class Medico extends Model
 
     public $fillable = [
         'Especialidad_id',
-        'Persona_id',
-        'remember_token'
+        'Persona_id'
     ];
 
     /**
@@ -61,8 +55,7 @@ class Medico extends Model
     protected $casts = [
         'id' => 'integer',
         'Especialidad_id' => 'integer',
-        'Persona_id' => 'integer',
-        'remember_token' => 'string'
+        'Persona_id' => 'integer'
     ];
 
     /**

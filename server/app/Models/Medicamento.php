@@ -24,11 +24,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="nombrecientifico",
  *          description="nombrecientifico",
  *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
  *      )
  * )
  */
@@ -47,8 +42,7 @@ class Medicamento extends Model
 
     public $fillable = [
         'nombrecomun',
-        'nombrecientifico',
-        'remember_token'
+        'nombrecientifico'
     ];
 
     /**
@@ -59,8 +53,7 @@ class Medicamento extends Model
     protected $casts = [
         'id' => 'integer',
         'nombrecomun' => 'string',
-        'nombrecientifico' => 'string',
-        'remember_token' => 'string'
+        'nombrecientifico' => 'string'
     ];
 
     /**
@@ -87,4 +80,7 @@ class Medicamento extends Model
     {
         return $this->hasMany(\App\Models\MedicamentosRecetum::class);
     }
+
+    protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];   
+
 }

@@ -78,6 +78,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="estado",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="fechaNacimiento",
+ *          description="fechaNacimiento",
+ *          type="string",
+ *          format="date"
  *      )
  * )
  */
@@ -106,7 +112,8 @@ class Persona extends Model
 		'Genero_id',
 		'Comuna_id',
 		'EstadoCivil_id',
-		'estado'
+		'estado',
+		'fechaNacimiento'
 	];
 
 	/**
@@ -127,7 +134,8 @@ class Persona extends Model
 		'Genero_id' => 'integer',
 		'Comuna_id' => 'integer',
 		'EstadoCivil_id' => 'integer',
-		'estado' => 'integer'
+		'estado' => 'integer',
+		'fechaNacimiento' => 'date'
 	];
 
 	/**

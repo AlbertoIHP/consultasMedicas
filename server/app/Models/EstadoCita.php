@@ -24,11 +24,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="descripcion",
  *          description="descripcion",
  *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
  *      )
  * )
  */

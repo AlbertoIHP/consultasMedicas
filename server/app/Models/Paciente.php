@@ -26,6 +26,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="TipoSangre_id",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="GrupoEtnico_id",
+ *          description="GrupoEtnico_id",
+ *          type="integer",
+ *          format="int32",
+ *      ),
+ *      @SWG\Property(
+ *          property="Ocupacion_id",
+ *          description="Ocupacion_id",
+ *          type="integer",
+ *          format="int32"
  *      )
  * )
  */
@@ -44,7 +56,9 @@ class Paciente extends Model
 
 	public $fillable = [
 		'Persona_id',
-		'TipoSangre_id'
+		'TipoSangre_id',
+		'GrupoEtnico_id',
+		'Ocupacion_id'
 	];
 
 	/**
@@ -55,7 +69,9 @@ class Paciente extends Model
 	protected $casts = [
 		'id' => 'integer',
 		'Persona_id' => 'integer',
-		'TipoSangre_id' => 'integer'
+		'TipoSangre_id' => 'integer',
+		'GrupoEtnico_id' => 'integer',
+		'Ocupacion_id' => 'integer',
 	];
 
 	/**
