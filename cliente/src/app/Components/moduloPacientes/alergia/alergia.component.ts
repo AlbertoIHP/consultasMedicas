@@ -58,8 +58,6 @@ export class AlergiaComponent {
           if (!this.dataSource) { return; }
           this.dataSource.filter = this.filter.nativeElement.value;
         })
-
-
     this.exampleDatabase = []
 
   }
