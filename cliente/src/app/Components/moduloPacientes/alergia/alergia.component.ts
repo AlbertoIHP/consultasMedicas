@@ -114,6 +114,8 @@ export class AlergiaComponent {
 			todo = todo.data;
 			this.totalAlergias = todo;
 
+      console.log(this.totalAlergias)
+
       //DATATABLE
       this.exampleDatabase  = new ExampleDatabase(this.totalAlergias);
 

@@ -1,3 +1,16 @@
-<p>
-  editar-alergia works!
-</p>
+<h1 mat-dialog-title style="text-align: center;">Edición de Alergía</h1>
+
+<div mat-dialog-content>
+
+
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Nombre" [(ngModel)]="alergia.nombre">
+    </mat-form-field>
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button class="boton-aceptar" (click)="editarAlergia()" tabindex="2">Editar Alergía</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

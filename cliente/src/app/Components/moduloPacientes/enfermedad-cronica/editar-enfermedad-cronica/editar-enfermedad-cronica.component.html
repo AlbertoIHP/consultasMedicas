@@ -1,3 +1,16 @@
-<p>
-  editar-enfermedad-cronica works!
-</p>
+<h1 mat-dialog-title style="text-align: center;">Edición de Enfermedad Crónica</h1>
+
+<div mat-dialog-content>
+
+
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Nombre" [(ngModel)]="enfermedadcronica.nombre">
+    </mat-form-field>
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button class="boton-aceptar" (click)="editarEnfermedadCronica()" tabindex="2">Editar Enfermedad Crónica</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

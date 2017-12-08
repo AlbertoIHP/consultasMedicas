@@ -107,7 +107,7 @@ export class buscadorPorNombre extends DataSource<any> {
            let searchStr = (item.nombre ).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }
-        else if( this.filtro === "EC" || this.filtro === "Region" || this.filtro === "Provincia" || this.filtro === "Comuna" || this.filtro === "Prevision" || this.filtro === "Genero" || this.filtro === "EstadoCita" || this.filtro === "Especialidad" || this.filtro === "TipoBox")
+        else if( this.filtro === "EC" || this.filtro === "Region" || this.filtro === "Provincia" || this.filtro === "Comuna" || this.filtro === "Prevision" || this.filtro === "Genero" || this.filtro === "EstadoCita" || this.filtro === "Especialidad" || this.filtro === "TipoBox" || this.filtro === "Alergia" || this.filtro === "EnfermedadCronica" || this.filtro === "GrupoEtnico")
         {
            let searchStr = (item.nombre ).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) != -1;
@@ -204,7 +204,7 @@ export class ExampleDataSource extends DataSource<any> {
            let searchStr = (item.nombre ).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }
-        else if( this.filtro === "EC" || this.filtro === "Region" || this.filtro === "Provincia" || this.filtro === "Comuna" || this.filtro === "Prevision" || this.filtro === "Genero" || this.filtro === "EstadoCita" || this.filtro === "Especialidad" || this.filtro === "TipoBox")
+        else if( this.filtro === "EC" || this.filtro === "Region" || this.filtro === "Provincia" || this.filtro === "Comuna" || this.filtro === "Prevision" || this.filtro === "Genero" || this.filtro === "EstadoCita" || this.filtro === "Especialidad" || this.filtro === "TipoBox" || this.filtro === "Alergia" || this.filtro === "EnfermedadCronica" || this.filtro === "GrupoEtnico")
         {
            let searchStr = (item.nombre ).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
@@ -433,6 +433,27 @@ export class ExampleDataSource extends DataSource<any> {
            switch (this._sort.active)
           {
             case 'Descripcion': [propertyA, propertyB] = [a.descripcion, b.descripcion]; break;
+          }
+        }
+        else if(this.filtro === "Alergia")
+        {
+           switch (this._sort.active)
+          {
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
+          }
+        }
+        else if(this.filtro === "EnfermedadCronica")
+        {
+           switch (this._sort.active)
+          {
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
+          }
+        }
+        else if(this.filtro === "GrupoEtnico")
+        {
+           switch (this._sort.active)
+          {
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
           }
         }
 
