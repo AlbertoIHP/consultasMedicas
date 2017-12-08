@@ -280,6 +280,9 @@ import { AgregarVacunaComponent } from './Components/moduloPacientes/vacuna/agre
 import { EditarVacunaComponent } from './Components/moduloPacientes/vacuna/editar-vacuna/editar-vacuna.component';
 import { AgregarVacunasPacienteComponent } from './Components/moduloPacientes/vacunas-paciente/agregar-vacunas-paciente/agregar-vacunas-paciente.component';
 import { EditarVacunasPacienteComponent } from './Components/moduloPacientes/vacunas-paciente/editar-vacunas-paciente/editar-vacunas-paciente.component';
+import { ExamenFisicoComponent } from './Components/moduloAtenciones/examen-fisico/examen-fisico.component';
+import { AgregarExamenFisicoComponent } from './Components/moduloAtenciones/examen-fisico/agregar-examen-fisico/agregar-examen-fisico.component';
+import { EditarExamenFisicoComponent } from './Components/moduloAtenciones/examen-fisico/editar-examen-fisico/editar-examen-fisico.component';
 
 
 @NgModule({
@@ -418,7 +421,10 @@ import { EditarVacunasPacienteComponent } from './Components/moduloPacientes/vac
     AgregarVacunaComponent,
     EditarVacunaComponent,
     AgregarVacunasPacienteComponent,
-    EditarVacunasPacienteComponent
+    EditarVacunasPacienteComponent,
+    ExamenFisicoComponent,
+    AgregarExamenFisicoComponent,
+    EditarExamenFisicoComponent
     
   ],
 

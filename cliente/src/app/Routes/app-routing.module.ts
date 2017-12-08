@@ -130,6 +130,11 @@ import { LoginComponent } from '../Components/login/login.component'
   //Componente Vía Administración Medicamento
   import { ViaadministracionmedicamentoComponent } from '../Components/moduloAtenciones/viaadministracionmedicamento/viaadministracionmedicamento.component';
 
+  //Componente Exámen Físico
+  import { ExamenFisicoComponent } from '../Components/moduloAtenciones/examen-fisico/examen-fisico.component';
+
+
+
 //COMPONENTES MOBILE
 import { HomemcComponent } from '../Components/moduloCitas/homemc.component';
 import { Homemp } from '../Components/moduloPacientes/homemp.component';
@@ -192,7 +197,8 @@ const routes: Routes =
   { path: 'mto', component: MedicamentoComponent },
   { path: 'mre', component: MedicamentosrecetaComponent },
   { path: 'rec', component: RecetaComponent },
-  { path: 'vam', component: ViaadministracionmedicamentoComponent }
+  { path: 'vam', component: ViaadministracionmedicamentoComponent },
+  { path: 'exf', component: ExamenFisicoComponent }
 
 ];
 
