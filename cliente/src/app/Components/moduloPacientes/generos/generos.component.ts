@@ -26,9 +26,6 @@ import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.com
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
-
-
-
 @Component({
 	selector: 'app-generos',
 	templateUrl: './generos.component.html',
@@ -92,27 +89,6 @@ export class GenerosComponent  {
       this.exampleDatabase.data.forEach(data => this.selection.select(data.id));
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	constructor (
@@ -194,9 +170,4 @@ export class GenerosComponent  {
 			this.actualizarGeneros();
 		});
 	}
-
-
-
 }
-
-
