@@ -13,6 +13,7 @@ export class Persona {
 	Comuna_id: string;
 	estado: number;
 	fechaNacimiento: string;
+	direccion: string;
 
 	constructor()
 	{
@@ -30,5 +31,6 @@ export class Persona {
 		this.Comuna_id = "";
 		this.estado = 1;
 		this.fechaNacimiento = "";
+		this.direccion = "";
 	}
 }
