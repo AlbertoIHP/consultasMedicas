@@ -3016,6 +3016,15 @@ class modulopacientes extends Seeder
 		]);
 
 		DB::table('PermisoModulo')->insert([
+			'Role_id' => 2,
+			'Modulo_id' => 17,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
 			'Role_id' => 1,
 			'Modulo_id' => 19,
 			'write' => 1,
@@ -3347,6 +3356,15 @@ class modulopacientes extends Seeder
 		DB::table('PermisoModulo')->insert([
 			'Role_id' => 2,
 			'Modulo_id' => 16,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 2,
+			'Modulo_id' => 17,
 			'write' => 1,
 			'erase' => 1,
 			'update' => 1,
