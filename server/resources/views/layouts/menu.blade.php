@@ -506,3 +506,31 @@
     <a href="{!! route('alergiasMedicamentosPacientes.index') !!}"><i class="fa fa-edit"></i><span>Alergias Medicamentos Pacientes</span></a>
 </li>
 
+<li class="{{ Request::is('examenFisicos*') ? 'active' : '' }}">
+    <a href="{!! route('examenFisicos.index') !!}"><i class="fa fa-edit"></i><span>Examen Fisicos</span></a>
+</li>
+
+<li class="{{ Request::is('atencions*') ? 'active' : '' }}">
+    <a href="{!! route('atencions.index') !!}"><i class="fa fa-edit"></i><span>Atencions</span></a>
+</li>
+
+<li class="{{ Request::is('examenFisicos*') ? 'active' : '' }}">
+    <a href="{!! route('examenFisicos.index') !!}"><i class="fa fa-edit"></i><span>Examen Fisicos</span></a>
+</li>
+
+<li class="{{ Request::is('atencions*') ? 'active' : '' }}">
+    <a href="{!! route('atencions.index') !!}"><i class="fa fa-edit"></i><span>Atencions</span></a>
+</li>
+
+<li class="{{ Request::is('examenFisicos*') ? 'active' : '' }}">
+    <a href="{!! route('examenFisicos.index') !!}"><i class="fa fa-edit"></i><span>Examen Fisicos</span></a>
+</li>
+
+<li class="{{ Request::is('pacientes*') ? 'active' : '' }}">
+    <a href="{!! route('pacientes.index') !!}"><i class="fa fa-edit"></i><span>Pacientes</span></a>
+</li>
+
+<li class="{{ Request::is('personas*') ? 'active' : '' }}">
+    <a href="{!! route('personas.index') !!}"><i class="fa fa-edit"></i><span>Personas</span></a>
+</li>
+

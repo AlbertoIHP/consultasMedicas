@@ -110,7 +110,6 @@ class PacienteAPIController extends AppBaseController
     {
         $input = $request->all();
 
-
         $pacientes = $this->pacienteRepository->create($input);
 
         return $this->sendResponse($pacientes->toArray(), 'Paciente saved successfully');

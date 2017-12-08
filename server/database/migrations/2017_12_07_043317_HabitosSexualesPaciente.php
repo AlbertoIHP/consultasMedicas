@@ -15,6 +15,7 @@ class HabitosSexualesPaciente extends Migration
     {
         Schema::create('HabitosSexualesPaciente', function (Blueprint $table) {
         $table->increments('id');
+        $table->date("fechaInicio");
         $table->integer("verdadero");
 
         $table->integer('HabitoSexual_id')->unsigned()->nullable();

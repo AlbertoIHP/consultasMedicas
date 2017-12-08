@@ -51,3 +51,17 @@ Route::resource('alergiasComunesPacientes', 'AlergiasComunesPacienteController')
 Route::resource('usoMedicamentos', 'UsoMedicamentoController');
 
 Route::resource('alergiasMedicamentosPacientes', 'AlergiasMedicamentosPacienteController');
+
+Route::resource('examenFisicos', 'ExamenFisicoController');
+
+Route::resource('atencions', 'AtencionController');
+
+Route::resource('examenFisicos', 'ExamenFisicoController');
+
+Route::resource('atencions', 'AtencionController');
+
+Route::resource('examenFisicos', 'ExamenFisicoController');
+
+Route::resource('pacientes', 'PacienteController');
+
+Route::resource('personas', 'PersonaController');

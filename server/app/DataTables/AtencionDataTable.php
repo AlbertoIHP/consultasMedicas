@@ -72,12 +72,11 @@ class AtencionDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'peso' => ['name' => 'peso', 'data' => 'peso'],
-            'estatura' => ['name' => 'estatura', 'data' => 'estatura'],
-            'calificacion' => ['name' => 'calificacion', 'data' => 'calificacion'],
+            'calificacionAtencionMedica' => ['name' => 'calificacionAtencionMedica', 'data' => 'calificacionAtencionMedica'],
             'BoxConsulta_id' => ['name' => 'BoxConsulta_id', 'data' => 'BoxConsulta_id'],
             'Cita_id' => ['name' => 'Cita_id', 'data' => 'Cita_id'],
             'Paciente_id' => ['name' => 'Paciente_id', 'data' => 'Paciente_id'],
+            'ExamenFisico_id' => ['name' => 'ExamenFisico_id', 'data' => 'ExamenFisico_id'],
             'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
         ];
     }

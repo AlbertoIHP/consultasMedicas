@@ -1,7 +1,7 @@
 [
     {
         "name": "id",
-        "dbType": "integer,true",
+        "dbType": "integer,true,true",
         "htmlType": null,
         "validations": null,
         "searchable": false,
@@ -12,7 +12,7 @@
     },
     {
         "name": "Persona_id",
-        "dbType": "integer,false",
+        "dbType": "integer,false,true",
         "htmlType": null,
         "validations": null,
         "searchable": true,
@@ -23,7 +23,7 @@
     },
     {
         "name": "TipoSangre_id",
-        "dbType": "integer,false",
+        "dbType": "integer,false,true",
         "htmlType": null,
         "validations": null,
         "searchable": true,
@@ -31,6 +31,80 @@
         "primary": false,
         "inForm": true,
         "inIndex": true
+    },
+    {
+        "name": "GrupoEtnico_id",
+        "dbType": "integer,false,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "Ocupacion_id",
+        "dbType": "integer,false,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "remember_token",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "created_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "deleted_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,GrupoEtnico"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Ocupacion"
     },
     {
         "type": "relation",
@@ -42,7 +116,11 @@
     },
     {
         "type": "relation",
-        "relation": "1tm,AlergiasPaciente"
+        "relation": "1tm,AlergiasComunesPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,AlergiasMedicamentosPaciente"
     },
     {
         "type": "relation",
@@ -58,11 +136,23 @@
     },
     {
         "type": "relation",
+        "relation": "1tm,EnfermedadesCronicasPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,HabitosPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,HabitosSexualesPaciente"
+    },
+    {
+        "type": "relation",
         "relation": "mtm,,Medico"
     },
     {
         "type": "relation",
-        "relation": "mtm,,Persona_has_Prevision"
+        "relation": "mtm,,PermisoModulo"
     },
     {
         "type": "relation",
@@ -70,6 +160,14 @@
     },
     {
         "type": "relation",
+        "relation": "1tm,UsoMedicamento"
+    },
+    {
+        "type": "relation",
         "relation": "mtm,,Usuario"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,VacunasPaciente"
     }
 ]

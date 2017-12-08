@@ -42,12 +42,11 @@ trait MakeAtencionTrait
         $fake = Faker::create();
 
         return array_merge([
-            'peso' => $fake->word,
-            'estatura' => $fake->word,
-            'calificacion' => $fake->randomDigitNotNull,
+            'calificacionAtencionMedica' => $fake->randomDigitNotNull,
             'BoxConsulta_id' => $fake->randomDigitNotNull,
             'Cita_id' => $fake->randomDigitNotNull,
             'Paciente_id' => $fake->randomDigitNotNull,
+            'ExamenFisico_id' => $fake->randomDigitNotNull,
             'remember_token' => $fake->word,
             'created_at' => $fake->date('Y-m-d H:i:s'),
             'updated_at' => $fake->date('Y-m-d H:i:s'),

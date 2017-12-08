@@ -15,17 +15,17 @@ class Atencion extends Migration
     {
         Schema::create('Atencion', function (Blueprint $table) {
         $table->increments('id');
-        $table->string('peso');
-        $table->string('estatura');
-        $table->integer('calificacion');
+        $table->integer('calificacionAtencionMedica');
 
         $table->integer('BoxConsulta_id')->unsigned()->nullable();
         $table->integer('Cita_id')->unsigned()->nullable();
         $table->integer('Paciente_id')->unsigned()->nullable();
-        
+        $table->integer('ExamenFisico_id')->unsigned()->nullable();
+
         $table->foreign('BoxConsulta_id')->references('id')->on('BoxConsulta')->onDelete('cascade');
         $table->foreign('Cita_id')->references('id')->on('Cita')->onDelete('cascade');
         $table->foreign('Paciente_id')->references('id')->on('Paciente')->onDelete('cascade');
+        $table->foreign('ExamenFisico_id')->references('id')->on('ExamenFisico')->onDelete('cascade');
 
         $table->rememberToken();
         $table->timestamps();

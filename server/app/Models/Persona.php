@@ -56,6 +56,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="estado",
+ *          description="estado",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="fechaNacimiento",
+ *          description="fechaNacimiento",
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
+ *          property="direccion",
+ *          description="direccion",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="Genero_id",
  *          description="Genero_id",
  *          type="integer",
@@ -72,136 +89,127 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="EstadoCivil_id",
  *          type="integer",
  *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="estado",
- *          description="estado",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="fechaNacimiento",
- *          description="fechaNacimiento",
- *          type="string",
- *          format="date"
  *      )
  * )
  */
 class Persona extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
 
-	public $table = 'Persona';
-	
-	const CREATED_AT = 'created_at';
-	const UPDATED_AT = 'updated_at';
-
-
-	protected $dates = ['deleted_at'];
+    public $table = 'Persona';
+    
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
 
 
-	public $fillable = [
-		'rut',
-		'nombre1',
-		'nombre2',
-		'apellido1',
-		'apellido2',
-		'fono_casa',
-		'fono_trabajo',
-		'movil',
-		'Genero_id',
-		'Comuna_id',
-		'EstadoCivil_id',
-		'estado',
-		'fechaNacimiento'
-	];
+    protected $dates = ['deleted_at'];
 
-	/**
-	 * The attributes that should be casted to native types.
-	 *
-	 * @var array
-	 */
-	protected $casts = [
-		'id' => 'integer',
-		'rut' => 'string',
-		'nombre1' => 'string',
-		'nombre2' => 'string',
-		'apellido1' => 'string',
-		'apellido2' => 'string',
-		'fono_casa' => 'string',
-		'fono_trabajo' => 'string',
-		'movil' => 'string',
-		'Genero_id' => 'integer',
-		'Comuna_id' => 'integer',
-		'EstadoCivil_id' => 'integer',
-		'estado' => 'integer',
-		'fechaNacimiento' => 'date'
-	];
 
-	/**
-	 * Validation rules
-	 *
-	 * @var array
-	 */
-	public static $rules = [
-		
-	];
+    public $fillable = [
+        'rut',
+        'nombre1',
+        'nombre2',
+        'apellido1',
+        'apellido2',
+        'fono_casa',
+        'fono_trabajo',
+        'movil',
+        'estado',
+        'fechaNacimiento',
+        'direccion',
+        'Genero_id',
+        'Comuna_id',
+        'EstadoCivil_id'
+    ];
 
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 **/
-	public function comuna()
-	{
-		return $this->belongsTo(\App\Models\Comuna::class);
-	}
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'rut' => 'string',
+        'nombre1' => 'string',
+        'nombre2' => 'string',
+        'apellido1' => 'string',
+        'apellido2' => 'string',
+        'fono_casa' => 'string',
+        'fono_trabajo' => 'string',
+        'movil' => 'string',
+        'estado' => 'integer',
+        'fechaNacimiento' => 'date',
+        'direccion' => 'string',
+        'Genero_id' => 'integer',
+        'Comuna_id' => 'integer',
+        'EstadoCivil_id' => 'integer'
+    ];
 
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 **/
-	public function estadoCivil()
-	{
-		return $this->belongsTo(\App\Models\EstadoCivil::class);
-	}
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        
+    ];
 
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 **/
-	public function genero()
-	{
-		return $this->belongsTo(\App\Models\Genero::class);
-	}
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function comuna()
+    {
+        return $this->belongsTo(\App\Models\Comuna::class);
+    }
 
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 **/
-	public function medicos()
-	{
-		return $this->hasMany(\App\Models\Medico::class);
-	}
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function estadoCivil()
+    {
+        return $this->belongsTo(\App\Models\EstadoCivil::class);
+    }
 
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 **/
-	public function pacientes()
-	{
-		return $this->hasMany(\App\Models\Paciente::class);
-	}
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function genero()
+    {
+        return $this->belongsTo(\App\Models\Genero::class);
+    }
 
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 **/
-	public function previsionActuals()
-	{
-		return $this->hasMany(\App\Models\PrevisionActual::class);
-	}
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function medicos()
+    {
+        return $this->hasMany(\App\Models\Medico::class);
+    }
 
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 **/
-	public function usuarios()
-	{
-		return $this->hasMany(\App\Models\Usuario::class);
-	}
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function pacientes()
+    {
+        return $this->hasMany(\App\Models\Paciente::class);
+    }
 
-	protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];	
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function previsionActuals()
+    {
+        return $this->hasMany(\App\Models\PrevisionActual::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function usuarios()
+    {
+        return $this->hasMany(\App\Models\Usuario::class);
+    }
+
+    protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];   
+
 }
