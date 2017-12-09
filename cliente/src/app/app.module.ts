@@ -53,7 +53,7 @@ import { MedicamentoService } from './Services/medicamento/medicamento.service';
 import { RecetaService } from './Services/receta/receta.service';
 import { MedicamentosRecetaService } from './Services/medicamentosReceta/medicamentos-receta.service';
 import { AlergiasMedicamentosPacienteService } from './Services/alergiasmedicamentospaciente/alergias-medicamentos-paciente.service';
-
+import { ExamenFisicoService } from './Services/examenfisico/examen-fisico.service';
 
 //MODULOS
 import { HttpModule } from '@angular/http';
@@ -425,6 +425,7 @@ import { EditarExamenFisicoComponent } from './Components/moduloAtenciones/exame
     ExamenFisicoComponent,
     AgregarExamenFisicoComponent,
     EditarExamenFisicoComponent
+
     
   ],
 
@@ -607,6 +608,7 @@ import { EditarExamenFisicoComponent } from './Components/moduloAtenciones/exame
     UsoMedicamentoService,
     AlergiaService,
     AlergiasComunesPacienteService,
+    ExamenFisicoService,
   ],
 
   bootstrap:

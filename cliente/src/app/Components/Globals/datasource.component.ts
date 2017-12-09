@@ -139,6 +139,26 @@ export class buscadorPorNombre extends DataSource<any> {
 
            let searchStr = (item.descripcion.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "Ocupacion"){
+
+           let searchStr = (item.nombre.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "Vacuna"){
+
+           let searchStr = (item.nombre.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "ExamenFisico"){
+
+           let searchStr = (item.fechaExamen.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "VacunasPaciente"){
+
+           let searchStr = (item.fechaVacunacion.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }
 
 
@@ -253,6 +273,26 @@ export class ExampleDataSource extends DataSource<any> {
         }else if(this.filtro == "ViaAdminMed"){
 
            let searchStr = (item.descripcion.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "Ocupacion"){
+
+           let searchStr = (item.nombre.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "Vacuna"){
+
+           let searchStr = (item.nombre.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "ExamenFisico"){
+
+           let searchStr = (item.fechaExamen.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "VacunasPaciente"){
+
+           let searchStr = (item.fechaVacunacion.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }
 
@@ -433,6 +473,38 @@ export class ExampleDataSource extends DataSource<any> {
            switch (this._sort.active)
           {
             case 'Descripcion': [propertyA, propertyB] = [a.descripcion, b.descripcion]; break;
+          }
+
+        }else if(this.filtro === "Ocupacion")
+        {
+           switch (this._sort.active)
+          {
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
+          }
+
+        }else if(this.filtro === "Vacuna")
+        {
+           switch (this._sort.active)
+          {
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
+          }
+
+        }else if(this.filtro === "ExamenFisico")
+        {
+           switch (this._sort.active)
+          {
+            case 'FechaExamen': [propertyA, propertyB] = [a.fechaExamen, b.fechaExamen]; break;
+            case 'Peso': [propertyA, propertyB] = [a.peso, b.peso]; break;
+            case 'Estatura': [propertyA, propertyB] = [a.estatura, b.estatura]; break;
+          }
+
+        }else if(this.filtro === "VacunasPaciente")
+        {
+           switch (this._sort.active)
+          {
+            case 'FechaVacunacion': [propertyA, propertyB] = [a.fechaVacunacion, b.fechaVacunacion]; break;
+            case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
+            case 'Vacuna': [propertyA, propertyB] = [a.Vacuna_id, b.Vacuna_id]; break;
           }
         }
 

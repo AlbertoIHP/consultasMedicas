@@ -1,0 +1,1 @@
+{"version":3,"file":"AlergiasComunesPaciente.model.js","sourceRoot":"","sources":["../../../../src/app/Models/AlergiasComunesPaciente.model.ts"],"names":[],"mappings":";;AAAA;IAMC;QAEC,IAAI,CAAC,EAAE,GAAG,CAAC,CAAC;QACZ,IAAI,CAAC,UAAU,GAAG,EAAE,CAAC;QACrB,IAAI,CAAC,WAAW,GAAG,EAAE,CAAC;QACtB,IAAI,CAAC,cAAc,GAAG,EAAE,CAAC;IAC1B,CAAC;IACF,8BAAC;AAAD,CAAC,AAbD,IAaC;AAbY,0DAAuB"}

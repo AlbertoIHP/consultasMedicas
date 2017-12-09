@@ -121,6 +121,8 @@ Route::group(['middleware' => ['cors']], function(){
     Route::resource('v1/usoMedicamentos', 'UsoMedicamentoAPIController');
 
     Route::resource('v1/alergiasMedicamentosPacientes', 'AlergiasMedicamentosPacienteAPIController');
+
+    Route::resource('v1/examenFisicos', 'ExamenFisicoAPIController');
 });
 
 
@@ -136,16 +138,3 @@ Route::group(['middleware' => ['cors']], function(){
 
 
 
-Route::resource('examen_fisicos', 'ExamenFisicoAPIController');
-
-Route::resource('atencions', 'AtencionAPIController');
-
-Route::resource('examen_fisicos', 'ExamenFisicoAPIController');
-
-Route::resource('atencions', 'AtencionAPIController');
-
-Route::resource('examen_fisicos', 'ExamenFisicoAPIController');
-
-Route::resource('pacientes', 'PacienteAPIController');
-
-Route::resource('personas', 'PersonaAPIController');
