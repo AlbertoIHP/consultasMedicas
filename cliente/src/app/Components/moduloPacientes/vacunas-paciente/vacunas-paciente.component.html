@@ -29,10 +29,20 @@
     </ng-container>
 
 
-    <ng-container matColumnDef="Paciente">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Paciente </mat-header-cell>
+    <ng-container matColumnDef="Rut Paciente">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Rut Paciente </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.Paciente_id}} </mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="Persona Asociada">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Persona asociada </mat-header-cell>
+       <mat-cell *matCellDef="let row">
+          <button  mat-button class="boton-datos" (click)="desplegarPersona(row)" >
+            <span style="color:white;">Ver datos</span>
+          </button>
+        </mat-cell>
+    </ng-container>
+
 
     <ng-container matColumnDef="Vacuna">
       <mat-header-cell *matHeaderCellDef  mat-sort-header> Vacuna </mat-header-cell>

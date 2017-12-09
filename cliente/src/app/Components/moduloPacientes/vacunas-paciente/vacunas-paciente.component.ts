@@ -1,6 +1,8 @@
 import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
+import { VerpersonaComponent } from '../../moduloPacientes/personas/verpersona/verpersona.component';
+
 import { Router } from '@angular/router';
 
 import { VacunasPaciente } from '../../../Models/VacunasPaciente.model';
@@ -11,6 +13,9 @@ import { VacunaService } from '../../../Services/vacuna/vacuna.service';
 
 import { Paciente } from '../../../Models/Paciente.model';
 import { PacienteService } from '../../../Services/paciente/paciente.service';
+
+import { Persona } from '../../../Models/Persona.model';
+import { PersonaService } from '../../../Services/persona/persona.service';
 
 
 import { AgregarVacunasPacienteComponent } from './agregar-vacunas-paciente/agregar-vacunas-paciente.component';
@@ -40,8 +45,9 @@ export class VacunasPacienteComponent {
 	public totalVacunas: Vacuna[];
 	public totalPacientes: Paciente[];
   public totalVacunasPaciente: VacunasPaciente[];
+  public totalPersonas: Persona[];
 	public usuarioActual;
-  displayedColumns = ['Acciones', 'Paciente', 'Vacuna','Fecha Vacunación'];
+  displayedColumns = ['Acciones', 'Rut Paciente','Persona Asociada', 'Vacuna','Fecha Vacunación'];
 
 
 	//DATATABLE
@@ -97,12 +103,14 @@ export class VacunasPacienteComponent {
 
   
   constructor(public servicioVacunasPaciente: VacunasPacienteService,public servicioVacuna: VacunaService,
-     public servicioPaciente: PacienteService, public dialog:MatDialog) {
+     public servicioPaciente: PacienteService, public servicioPersona: PersonaService, public dialog:MatDialog) {
 
       this.usuarioActual=new UsuarioActual();
       this.totalVacunas = [];
       this.totalVacunasPaciente = [];
       this.totalPacientes=[];
+      this.totalPersonas=[];
+      this.actualizarAtributos();
       this.actualizarVacunasPaciente();
 
 
@@ -115,8 +123,7 @@ actualizarVacunasPaciente ()
       var todo: any = data;
       todo = todo.data;
       this.totalVacunasPaciente = todo;
-      this.reemplazarIdPorString();
-
+      
       //DATATABLE
       this.exampleDatabase  = new ExampleDatabase(this.totalVacunasPaciente);
 
@@ -145,6 +152,16 @@ actualizarVacunasPaciente ()
           var todo: any = data;
           todo = todo.data;
           this.totalPacientes = todo;
+
+           this.servicioPersona.getPersonas().subscribe(data=>{
+               var todo: any = data;
+                todo = todo.data;
+                this.totalPersonas = todo;
+
+                this.reemplazarIdPorString();
+
+           });
+
       });
     });
   }
@@ -176,7 +193,8 @@ actualizarVacunasPaciente ()
       {
         if( parseInt(this.totalVacunasPaciente[i].Paciente_id) === this.totalPacientes[j].id)
         {
-          this.totalVacunasPaciente[i].Paciente_id = this.totalPacientes[j].GrupoEtnico_id;
+          let currentPersona = this.totalPersonas.filter( persona => persona.id === this.totalPacientes[j].id);
+          this.totalVacunasPaciente[i].Paciente_id = currentPersona[0].rut;
           break;
         }
       }
@@ -196,7 +214,9 @@ actualizarVacunasPaciente ()
 
     for ( let i = 0 ; i < this.totalPacientes.length ; i ++)
     {
-    if(vacunasPaciente.Paciente_id === this.totalPacientes[i].rut)
+    let currentPersona = this.totalPersonas.filter( persona => persona.id === this.totalPacientes[i].id);
+
+    if(vacunasPaciente.Paciente_id === currentPersona[0].rut)
     {
       vacunasPaciente.Paciente_id = this.totalPacientes[i].id;
     }
@@ -240,6 +260,7 @@ actualizarVacunasPaciente ()
       data: {
         vacunas: this.totalVacunas,
         pacientes: this.totalPacientes,
+        personas: this.totalPersonas,
         servicioVacunasPaciente: this.servicioVacunasPaciente,
         servicioVacuna: this.servicioVacuna,
         servicioPaciente: this.servicioPaciente
@@ -250,6 +271,36 @@ actualizarVacunasPaciente ()
       this.actualizarAtributos();
       this.actualizarVacunasPaciente();
     });
+  }
+
+  desplegarPersona(vacunasPaciente)
+  {
+  var a = JSON.parse( JSON.stringify(vacunasPaciente) );
+  var b;
+  this.pasarStringId(a);
+
+  this.servicioPaciente.getPaciente(a.Paciente_id).subscribe(data =>{
+    var todo: any = data;
+    todo = todo.data;
+    b=todo;
+
+    this.servicioPersona.getPersona(parseInt(b.Persona_id)).subscribe(data => {
+
+      var persona: any = data;
+      persona = persona.data;
+
+      console.log(persona);
+
+      let dialogRef = this.dialog.open(VerpersonaComponent, {
+      width: '700px',
+      data: { persona: persona }
+      });
+
+    });
+  });
+
+
+
   }
 
 

@@ -11,6 +11,7 @@ export class AgregarVacunasPacienteComponent implements OnInit {
 	public nuevaVacunasPaciente: VacunasPaciente;
 	public totalVacunas: any;
   	public totalPacientes: any;
+    public totalPersonas:any;
 
   	public servicioVacuna: any;
   	public servicioVacunasPaciente: any;
@@ -39,6 +40,7 @@ export class AgregarVacunasPacienteComponent implements OnInit {
   		this.nuevaVacunasPaciente = new VacunasPaciente();
 		  this.totalVacunas = data.vacunas;
     	this.totalPacientes = data.pacientes;
+      this.totalPersonas=data.personas;
     	this.servicioVacunasPaciente = data.servicioVacunasPaciente;
     	this.servicioVacuna = data.servicioVacuna;
     	this.servicioPaciente = data.servicioPaciente;

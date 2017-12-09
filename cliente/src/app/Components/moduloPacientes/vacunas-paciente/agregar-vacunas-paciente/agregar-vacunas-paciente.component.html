@@ -10,7 +10,7 @@
 -->
 	<div class="col s4">
 	 	<mat-form-field style="width: 100% !important;">
-			<mat-select placeholder="Paciente" style="width: 100% !important;">
+			<mat-select  [(ngModel)]="nuevaVacunasPaciente.Paciente_id" placeholder="Paciente" style="width: 100% !important;" required>
 		      <mat-option style="width: 100% !important;" *ngFor="let paciente of totalPacientes" [value]="paciente.id">
 		        <span>{{paciente.id}}</span>
 		      </mat-option>
@@ -20,7 +20,7 @@
 
 	<div class="col s4">
 		<mat-form-field style="width: 100% !important;">
-			<mat-select placeholder="Vacuna" style="width: 100% !important;">
+			<mat-select [(ngModel)]="nuevaVacunasPaciente.Vacuna_id" placeholder="Vacuna" style="width: 100% !important;" required>
 		      <mat-option style="width: 100% !important;" *ngFor="let vacuna of totalVacunas" [value]="vacuna.id">
 		        {{ vacuna.nombre }}
 		      </mat-option>

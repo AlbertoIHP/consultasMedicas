@@ -1,1 +1,0 @@
-{"version":3,"file":"VacunasPaciente.model.js","sourceRoot":"","sources":["../../../../src/app/Models/VacunasPaciente.model.ts"],"names":[],"mappings":";;AAAA;IAMC;QAEC,IAAI,CAAC,EAAE,GAAG,CAAC,CAAC;QACZ,IAAI,CAAC,WAAW,GAAG,EAAE,CAAC;QACtB,IAAI,CAAC,SAAS,GAAG,EAAE,CAAC;QACpB,IAAI,CAAC,eAAe,GAAG,EAAE,CAAC;IAC3B,CAAC;IACF,sBAAC;AAAD,CAAC,AAbD,IAaC;AAbY,0CAAe"}
