@@ -9,6 +9,6 @@ export class UsoMedicamento {
 		this.id = 0;
 		this.Paciente_id = "";
 		this.Medicamento_id = "";
-		this.fechaInicio = "";
+		this.fechaInicio = new Date().toISOString().slice(0, 19).replace('T', ' ');
 	}
 }

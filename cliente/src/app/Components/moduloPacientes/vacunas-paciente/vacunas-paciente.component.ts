@@ -4,8 +4,6 @@ import {UsuarioActual} from '../../Globals/usuarioactual.component';
 import { VerpersonaComponent } from '../../moduloPacientes/personas/verpersona/verpersona.component';
 import { VerFichaMedicaComponent } from '../fichamedica/verfichamedica/verfichamedica.component'
 
-import { Router } from '@angular/router';
-
 import { VacunasPaciente } from '../../../Models/VacunasPaciente.model';
 import { VacunasPacienteService } from '../../../Services/vacunaspaciente/vacunaspaciente.service';
 

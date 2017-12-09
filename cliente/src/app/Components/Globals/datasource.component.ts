@@ -159,6 +159,16 @@ export class buscadorPorNombre extends DataSource<any> {
 
            let searchStr = (item.fechaVacunacion.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "UsoMedicamento"){
+
+           let searchStr = (item.fechaInicio.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "HabitosPaciente"){
+
+           let searchStr = (item.fechaInicio.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }
 
 
@@ -293,6 +303,16 @@ export class ExampleDataSource extends DataSource<any> {
         }else if(this.filtro == "VacunasPaciente"){
 
            let searchStr = (item.fechaVacunacion.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "UsoMedicamento"){
+
+           let searchStr = (item.fechaInicio.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "HabitosPaciente"){
+
+           let searchStr = (item.fechaInicio.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }
 
@@ -528,7 +548,28 @@ export class ExampleDataSource extends DataSource<any> {
             case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
           }
         }
+        else if(this.filtro === "UsoMedicamento")
+        {
+           switch (this._sort.active)
+          {
+            case 'Medicamento': [propertyA, propertyB] = [a.Medicamento_id, b.Medicamento_id]; break;
+            case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
+            case 'FechaInicio': [propertyA, propertyB] = [a.fechaInicio, b.fechaInicio]; break;
 
+
+          }
+        }
+        else if(this.filtro === "HabitosPaciente")
+        {
+           switch (this._sort.active)
+          {
+            case 'Habito': [propertyA, propertyB] = [a.Habito_id, b.Habito_id]; break;
+            case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
+            case 'FechaInicio': [propertyA, propertyB] = [a.fechaInicio, b.fechaInicio]; break;
+
+
+          }
+        }
 
 
 

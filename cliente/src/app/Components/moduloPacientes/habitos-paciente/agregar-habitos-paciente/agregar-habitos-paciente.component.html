@@ -1,3 +1,39 @@
-<p>
-  agregar-habitos-paciente works!
-</p>
+<h1 mat-dialog-title style="text-align: center;">Creación de Hábitos Paciente</h1>
+
+<div class="row">
+<!--
+	<div class="col s4">
+		<mat-form-field class="fullWidth">
+			<input matInput placeholder="Fecha Vacunación" required [(ngModel)]="nuevaVacunasPaciente.fechaVacunacion">
+		</mat-form-field>
+	</div>
+-->
+	<div class="col s4">
+	 	<mat-form-field style="width: 100% !important;">
+			<mat-select  [(ngModel)]="nuevoHabitosPaciente.Paciente_id" placeholder="Paciente" style="width: 100% !important;" required>
+		      <mat-option style="width: 100% !important;" *ngFor="let personaTemp of totalPersonasTemp" [value]="personaTemp.Paciente_id">
+		        <span>({{personaTemp.rut}}) {{personaTemp.nombre1}} {{personaTemp.apellido1}}</span>
+		      </mat-option>
+		    </mat-select>
+		</mat-form-field>
+	</div>
+
+	<div class="col s4">
+		<mat-form-field style="width: 100% !important;">
+			<mat-select [(ngModel)]="nuevoHabitosPaciente.Habito_id" placeholder="Hábito" style="width: 100% !important;" required>
+		      <mat-option style="width: 100% !important;" *ngFor="let habito of totalHabitos" [value]="habito.id">
+		        {{ habito.nombre }}
+		      </mat-option>
+		    </mat-select>
+		</mat-form-field>
+	</div>
+
+	
+</div>
+
+
+
+<div mat-dialog-actions>
+  <button mat-button class="boton-aceptar" (click)="agregarHabitosPaciente()" tabindex="2">Agregar Hábitos Paciente</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

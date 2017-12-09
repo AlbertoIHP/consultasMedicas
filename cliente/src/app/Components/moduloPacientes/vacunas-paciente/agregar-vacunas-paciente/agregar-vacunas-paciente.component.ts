@@ -8,8 +8,8 @@ import { VacunasPaciente } from '../../../../Models/VacunasPaciente.model';
   styleUrls: ['./agregar-vacunas-paciente.component.css']
 })
 export class AgregarVacunasPacienteComponent implements OnInit {
-	public nuevaVacunasPaciente: VacunasPaciente;
-	public totalVacunas: any;
+	  public nuevaVacunasPaciente: VacunasPaciente;
+	  public totalVacunas: any;
   	public totalPacientes: any;
     public totalPersonas:any;
 
