@@ -4,15 +4,15 @@
 <!--
 	<div class="col s4">
 		<mat-form-field class="fullWidth">
-			<input matInput placeholder="Fecha Detección" required [(ngModel)]="nuevaVacunasPaciente.fechaDeteccion">
+			<input matInput placeholder="Fecha Vacunación" required [(ngModel)]="nuevaVacunasPaciente.fechaVacunacion">
 		</mat-form-field>
 	</div>
 -->
 	<div class="col s4">
 	 	<mat-form-field style="width: 100% !important;">
 			<mat-select  [(ngModel)]="nuevaVacunasPaciente.Paciente_id" placeholder="Paciente" style="width: 100% !important;" required>
-		      <mat-option style="width: 100% !important;" *ngFor="let paciente of totalPacientes" [value]="paciente.id">
-		        <span>{{paciente.id}}</span>
+		      <mat-option style="width: 100% !important;" *ngFor="let personaTemp of totalPersonasTemp" [value]="personaTemp.Paciente_id">
+		        <span>({{personaTemp.rut}}) {{personaTemp.nombre1}} {{personaTemp.apellido1}}</span>
 		      </mat-option>
 		    </mat-select>
 		</mat-form-field>

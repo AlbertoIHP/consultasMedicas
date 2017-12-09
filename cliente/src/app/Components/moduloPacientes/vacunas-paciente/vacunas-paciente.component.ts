@@ -216,7 +216,7 @@ actualizarVacunasPaciente ()
 
     for ( let i = 0 ; i < this.totalPacientes.length ; i ++)
     {
-    let currentPersona = this.totalPersonas.filter( persona => persona.id === this.totalPacientes[i].id);
+    let currentPersona = this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[i].Persona_id));
 
     if(vacunasPaciente.Paciente_id === currentPersona[0].rut)
     {
@@ -236,16 +236,17 @@ actualizarVacunasPaciente ()
     this.pasarStringId(a);
 
     let dialogRef = this.dialog.open(EditarVacunasPacienteComponent, {
-      width: '700px',
+      width: '800px',
       data:
       {
-       vacunasPaciente: vacunasPaciente,
+       vacunasPaciente: a,
        vacunas: this.totalVacunas,
        pacientes: this.totalPacientes,
-       persaons: this.totalPersonas,
-       servicioVacunas: this.servicioVacuna,
-       servicioPacientes: this.servicioPaciente,
-       servicioPersonas: this.servicioPersona
+       personas: this.totalPersonas,
+       servicioVacuna: this.servicioVacuna,
+       servicioPaciente: this.servicioPaciente,
+       servicioPersona: this.servicioPersona,
+       servicioVacunasPaciente: this.servicioVacunasPaciente
       }
     });
 
@@ -260,7 +261,7 @@ actualizarVacunasPaciente ()
   agregacionVacunasPaciente()
   {
     let dialogRef = this.dialog.open(AgregarVacunasPacienteComponent, {
-      width: '700px',
+      width: '800px',
       data: {
         vacunas: this.totalVacunas,
         pacientes: this.totalPacientes,
@@ -279,11 +280,11 @@ actualizarVacunasPaciente ()
 
 
   //función para mostrar la ficha médica del paciente correspondiente
- desplegarFichaPaciente(paciente)
+ desplegarFichaPaciente(vacunasPaciente)
   {
 
-   var a = JSON.parse( JSON.stringify(paciente) );
-  var b;
+   var a = JSON.parse( JSON.stringify(vacunasPaciente) );
+   var b;
   this.pasarStringId(a);
 
   this.servicioPaciente.getPaciente(a.Paciente_id).subscribe(data =>{

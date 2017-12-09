@@ -13,6 +13,8 @@ export class AgregarVacunasPacienteComponent implements OnInit {
   	public totalPacientes: any;
     public totalPersonas:any;
 
+    public totalPersonasTemp: any;
+
   	public servicioVacuna: any;
   	public servicioVacunasPaciente: any;
   	public servicioPaciente: any;
@@ -28,39 +30,44 @@ export class AgregarVacunasPacienteComponent implements OnInit {
       	var todo: any = data;
 	      todo = todo.data;
 	      this.totalPacientes = todo;
-        //this.reemplazarIdPorString();
+        this.reemplazarIdPorString();
       });
     });
   }
 
-/*
+
   reemplazarIdPorString()
   {
       var arrayTemp=[];
-      for(let j = 0 ; j < this.totalPacientes.length ; j++)
-      {
+      for (let i =0; i < this.totalPersonas.length; i++) {
+       
+        for(let j = 0 ; j < this.totalPacientes.length ; j++)
 
-        let currentPersona = this.totalPersonas.filter( persona => persona.id === this.totalPacientes[j].Persona_id);
-        arrayTemp.push(currentPersona[0]);
-      }
-      this.totalPacientes=arrayTemp;
+        {
+          if(this.totalPacientes[j].Persona_id===this.totalPersonas[i].id){
+            this.totalPersonas[i].Paciente_id=this.totalPacientes[j].id;
+            arrayTemp.push(this.totalPersonas[i]);
+          }
+          //let currentPersona = this.totalPersonas.filter( persona => persona.id === this.totalPacientes[j].Persona_id);
+          
+        }
+    }
+      this.totalPersonasTemp=arrayTemp;
 
     
   }
-
-   pasarStringId(persona)
+/*
+   pasarStringId()
   {
    
-    for ( let i = 0 ; i < this.totalPacientes.length ; i ++)
-    {
-        if(this.totalPacientes[i].Persona_id===persona.Paciente_id){
-          persona.Paciente_id=this.totalPacientes[i].id;
-        }
-    }
+    
+    let currentPaciente = this.totalPacientes.filter( paciente => paciente.Persona_id === this.nuevaVacunasPaciente.Paciente_id);
+    console.log(currentPaciente);
+    this.nuevaVacunasPaciente.Paciente_id=currentPaciente[0].id;
 
   }
-  */
   
+  */
 
   constructor(
   	public dialogRef: MatDialogRef<AgregarVacunasPacienteComponent>,
@@ -71,6 +78,9 @@ export class AgregarVacunasPacienteComponent implements OnInit {
 		  this.totalVacunas = data.vacunas;
     	this.totalPacientes = data.pacientes;
       this.totalPersonas=data.personas;
+
+      this.totalPersonasTemp=[];
+
     	this.servicioVacunasPaciente = data.servicioVacunasPaciente;
     	this.servicioVacuna = data.servicioVacuna;
     	this.servicioPaciente = data.servicioPaciente;
@@ -84,6 +94,7 @@ export class AgregarVacunasPacienteComponent implements OnInit {
 
 	agregarVacunasPaciente()
 	{
+   // this.pasarStringId();
 		this.servicioVacunasPaciente.registerVacunaPaciente(this.nuevaVacunasPaciente).subscribe(data => {
 			this.dialogRef.close();
 		});
