@@ -25,12 +25,42 @@ export class AgregarVacunasPacienteComponent implements OnInit {
       this.totalVacunas = todo;
 
       this.servicioPaciente.getPacientes().subscribe(data=>{
-      	  var todo: any = data;
+      	var todo: any = data;
 	      todo = todo.data;
 	      this.totalPacientes = todo;
+        //this.reemplazarIdPorString();
       });
     });
   }
+
+/*
+  reemplazarIdPorString()
+  {
+      var arrayTemp=[];
+      for(let j = 0 ; j < this.totalPacientes.length ; j++)
+      {
+
+        let currentPersona = this.totalPersonas.filter( persona => persona.id === this.totalPacientes[j].Persona_id);
+        arrayTemp.push(currentPersona[0]);
+      }
+      this.totalPacientes=arrayTemp;
+
+    
+  }
+
+   pasarStringId(persona)
+  {
+   
+    for ( let i = 0 ; i < this.totalPacientes.length ; i ++)
+    {
+        if(this.totalPacientes[i].Persona_id===persona.Paciente_id){
+          persona.Paciente_id=this.totalPacientes[i].id;
+        }
+    }
+
+  }
+  */
+  
 
   constructor(
   	public dialogRef: MatDialogRef<AgregarVacunasPacienteComponent>,

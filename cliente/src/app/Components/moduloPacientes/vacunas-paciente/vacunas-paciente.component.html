@@ -19,7 +19,11 @@
               <button *ngIf="usuarioActual.obtenerPermisoUpdate('VacunasPaciente')" (click) = "edicionVacunasPaciente(row)" class="btn boton-editar" type="button" matTooltip="Editar">
                 <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
               </button>
-
+              
+              <!--Aqui se llamará a la función de la ficha-->
+              <button (click) = "desplegarFichaPaciente(row)" class="btn boton-ficha" type="button" matTooltip="Ver ficha" >
+                <i class="fa fa-address-book-o icono" aria-hidden="true"></i>
+              </button>
 
               <button *ngIf="usuarioActual.obtenerPermisoErase('VacunasPaciente')" (click) = "eliminarVacunasPaciente(row)" class="btn boton-eliminar" type="button" matTooltip="Eliminar">
                 <i class="fa fa-trash-o icono" aria-hidden="true"></i>
@@ -33,16 +37,6 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Rut Paciente </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.Paciente_id}} </mat-cell>
     </ng-container>
-
-    <ng-container matColumnDef="Persona Asociada">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Persona asociada </mat-header-cell>
-       <mat-cell *matCellDef="let row">
-          <button  mat-button class="boton-datos" (click)="desplegarPersona(row)" >
-            <span style="color:white;">Ver datos</span>
-          </button>
-        </mat-cell>
-    </ng-container>
-
 
     <ng-container matColumnDef="Vacuna">
       <mat-header-cell *matHeaderCellDef  mat-sort-header> Vacuna </mat-header-cell>

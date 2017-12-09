@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 import { VerpersonaComponent } from '../../moduloPacientes/personas/verpersona/verpersona.component';
+import { VerFichaMedicaComponent } from '../fichamedica/verfichamedica/verfichamedica.component'
 
 import { Router } from '@angular/router';
 
@@ -47,7 +48,7 @@ export class VacunasPacienteComponent {
   public totalVacunasPaciente: VacunasPaciente[];
   public totalPersonas: Persona[];
 	public usuarioActual;
-  displayedColumns = ['Acciones', 'Rut Paciente','Persona Asociada', 'Vacuna','Fecha Vacunación'];
+  displayedColumns = ['Acciones', 'Rut Paciente', 'Vacuna','Fecha Vacunación'];
 
 
 	//DATATABLE
@@ -170,6 +171,7 @@ actualizarVacunasPaciente ()
   eliminarVacunasPaciente (vacunasPaciente)
   {
     this.servicioVacunasPaciente.deleteVacunaPaciente(vacunasPaciente.id).subscribe( data => {
+      this.actualizarAtributos();
       this.actualizarVacunasPaciente();
     });
   }
@@ -193,7 +195,7 @@ actualizarVacunasPaciente ()
       {
         if( parseInt(this.totalVacunasPaciente[i].Paciente_id) === this.totalPacientes[j].id)
         {
-          let currentPersona = this.totalPersonas.filter( persona => persona.id === this.totalPacientes[j].id);
+          let currentPersona = this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[j].Persona_id));
           this.totalVacunasPaciente[i].Paciente_id = currentPersona[0].rut;
           break;
         }
@@ -240,8 +242,10 @@ actualizarVacunasPaciente ()
        vacunasPaciente: vacunasPaciente,
        vacunas: this.totalVacunas,
        pacientes: this.totalPacientes,
+       persaons: this.totalPersonas,
        servicioVacunas: this.servicioVacuna,
-       servicioPacientes: this.servicioPaciente
+       servicioPacientes: this.servicioPaciente,
+       servicioPersonas: this.servicioPersona
       }
     });
 
@@ -273,9 +277,12 @@ actualizarVacunasPaciente ()
     });
   }
 
-  desplegarPersona(vacunasPaciente)
+
+  //función para mostrar la ficha médica del paciente correspondiente
+ desplegarFichaPaciente(paciente)
   {
-  var a = JSON.parse( JSON.stringify(vacunasPaciente) );
+
+   var a = JSON.parse( JSON.stringify(paciente) );
   var b;
   this.pasarStringId(a);
 
@@ -291,15 +298,14 @@ actualizarVacunasPaciente ()
 
       console.log(persona);
 
-      let dialogRef = this.dialog.open(VerpersonaComponent, {
-      width: '700px',
-      data: { persona: persona }
-      });
+       let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
+          width: '1000px',
+          height:'500px',
+          data: { persona: persona }
+        });
 
     });
   });
-
-
 
   }
 
