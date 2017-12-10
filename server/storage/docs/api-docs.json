@@ -9071,6 +9071,11 @@
                     "description": "Paciente_id",
                     "type": "integer",
                     "format": "int32"
+                },
+                "fechaInicio": {
+                    "description": "fechaInicio",
+                    "type": "string",
+                    "format": "date"
                 }
             }
         },

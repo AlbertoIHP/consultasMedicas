@@ -169,6 +169,11 @@ export class buscadorPorNombre extends DataSource<any> {
 
            let searchStr = (item.fechaInicio.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "HabitosSexualesPaciente"){ 
+
+           let searchStr = (item.fechaInicio.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }
 
 
@@ -314,7 +319,13 @@ export class ExampleDataSource extends DataSource<any> {
 
            let searchStr = (item.fechaInicio.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "HabitosSexualesPaciente"){
+
+           let searchStr = (item.fechaInicio.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }
+
 
 
 
@@ -567,6 +578,17 @@ export class ExampleDataSource extends DataSource<any> {
             case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
             case 'FechaInicio': [propertyA, propertyB] = [a.fechaInicio, b.fechaInicio]; break;
 
+
+          }
+        }
+        else if(this.filtro === "HabitosSexualesPaciente")
+        {
+           switch (this._sort.active)
+          {
+            case 'HabitoSexual': [propertyA, propertyB] = [a.HabitoSexual_id, b.HabitoSexual_id]; break;
+            case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
+            case 'FechaInicio': [propertyA, propertyB] = [a.fechaInicio, b.fechaInicio]; break;
+            case 'Verdadero': [propertyA, propertyB] = [a.verdadero, b.verdadero]; break;
 
           }
         }

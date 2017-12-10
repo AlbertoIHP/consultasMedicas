@@ -46,7 +46,7 @@ export class HabitosSexualesPacienteComponent {
 	public totalHabitosSexualesPaciente: HabitosSexualesPaciente[];
 	public totalPersonas: Persona[];
 	public usuarioActual;
-  	displayedColumns = ['Acciones', 'Rut Paciente', 'Habito Sexual','Verdadero'];
+  	displayedColumns = ['Acciones', 'Rut Paciente', 'Habito Sexual','Fecha Inicio'];
 
   	//DATATABLE
 	exampleDatabase;
@@ -109,8 +109,8 @@ export class HabitosSexualesPacienteComponent {
       this.totalHabitosSexualesPaciente = [];
       this.totalPacientes=[];
       this.totalPersonas=[];
-      //this.actualizarAtributos();
-      //this.actualizarHabitosSexualesPaciente();
+      this.actualizarAtributos();
+      this.actualizarHabitosSexualesPaciente();
 
 
 

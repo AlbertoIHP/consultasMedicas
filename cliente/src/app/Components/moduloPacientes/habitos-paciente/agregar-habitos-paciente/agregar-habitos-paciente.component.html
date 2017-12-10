@@ -8,7 +8,7 @@
 		</mat-form-field>
 	</div>
 -->
-	<div class="col s4">
+	<div class="col s6">
 	 	<mat-form-field style="width: 100% !important;">
 			<mat-select  [(ngModel)]="nuevoHabitosPaciente.Paciente_id" placeholder="Paciente" style="width: 100% !important;" required>
 		      <mat-option style="width: 100% !important;" *ngFor="let personaTemp of totalPersonasTemp" [value]="personaTemp.Paciente_id">
@@ -18,7 +18,7 @@
 		</mat-form-field>
 	</div>
 
-	<div class="col s4">
+	<div class="col s6">
 		<mat-form-field style="width: 100% !important;">
 			<mat-select [(ngModel)]="nuevoHabitosPaciente.Habito_id" placeholder="Hábito" style="width: 100% !important;" required>
 		      <mat-option style="width: 100% !important;" *ngFor="let habito of totalHabitos" [value]="habito.id">

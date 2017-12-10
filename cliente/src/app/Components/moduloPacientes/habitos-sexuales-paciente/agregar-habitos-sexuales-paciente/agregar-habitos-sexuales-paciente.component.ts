@@ -81,7 +81,7 @@ export class AgregarHabitosSexualesPacienteComponent implements OnInit {
 
 	agregarHabitosSexualesPaciente()
 	{
-   // this.pasarStringId();
+     this.nuevoHabitosSexualesPaciente.verdadero=1;
 		this.servicioHabitosSexualesPaciente.registerHabitosSexualesPaciente(this.nuevoHabitosSexualesPaciente).subscribe(data => {
 			this.dialogRef.close();
 		});
