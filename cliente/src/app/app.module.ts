@@ -1,6 +1,7 @@
 
 
-  import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
+import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 //SERVICIOS
 import { ComunaService } from './Services/comuna/comuna.service';
@@ -564,6 +565,7 @@ import {
     NgbTimepickerModule.forRoot(),
     CalendarModule.forRoot(),
     Ng2DeviceDetectorModule.forRoot(),
+    NgDatepickerModule,
   ],
 
   providers:

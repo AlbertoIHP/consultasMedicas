@@ -12,6 +12,8 @@ export class AgregarpacienteComponent implements OnInit {
 	public totalPacientes: any;
 	public totalPersonas: any;
 	public totalTS: any;
+	public totalGruposEtnicos: any;
+	public totalOcupaciones: any;
 	public servicioPaciente: any;
 	public servicioPersona: any;
 	public servicioTS: any;
@@ -27,6 +29,8 @@ export class AgregarpacienteComponent implements OnInit {
 			this.totalPacientes = data.pacientes;
 			this.totalPersonas = data.personas;
 			this.totalTS = data.tipoSangres;
+			this.totalGruposEtnicos = data.gruposEtnicos;
+			this.totalOcupaciones = data.ocupaciones;
 			this.servicioPaciente = data.servicioPaciente;
 			this.servicioPersona = data.servicioPersona;
 			this.servicioTS = data.servicioTS;
@@ -37,8 +41,8 @@ export class AgregarpacienteComponent implements OnInit {
 
 	ngOnInit()
 	{
-    this.actualizarPersonas();
-    this.actualizarTS();
+    	this.actualizarPersonas();
+    	this.actualizarTS();
 		this.actualizarPacientes();
 	}
 

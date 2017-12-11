@@ -2,6 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { HabitosPaciente } from '../../../../Models/HabitosPaciente.model';
+
+import { DatepickerOptions } from 'ng2-datepicker';
+
 @Component({
   selector: 'app-editar-habitos-paciente',
   templateUrl: './editar-habitos-paciente.component.html',
@@ -19,6 +22,15 @@ export class EditarHabitosPacienteComponent implements OnInit {
     public servicioHabito: any;
     public servicioPersona: any;
     public servicioHabitosPaciente:any;
+
+     options: DatepickerOptions = {
+      minYear: 1970,
+      maxYear: 2030,
+      displayFormat: 'YYYY[-]MM[-]DD',
+      barTitleFormat: 'MMMM YYYY',
+      firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
+  
+   };
 
 
     ngOnInit()
@@ -86,7 +98,7 @@ export class EditarHabitosPacienteComponent implements OnInit {
 
   editarHabitosPaciente()
   {
-    //this.pasarStringId();
+    this.habitosPaciente.fechaInicio=new Date(this.habitosPaciente.fechaInicio).toISOString().slice(0, 19).replace('T', ' ');
     this.servicioHabitosPaciente.editHabitosPaciente(this.habitosPaciente, this.habitosPaciente.id).subscribe( data => {
       console.log(data);
       this.dialogRef.close();

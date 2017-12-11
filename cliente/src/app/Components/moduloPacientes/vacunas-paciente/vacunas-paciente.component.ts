@@ -235,6 +235,7 @@ actualizarVacunasPaciente ()
 
     let dialogRef = this.dialog.open(EditarVacunasPacienteComponent, {
       width: '800px',
+      height: '500px',
       data:
       {
        vacunasPaciente: a,
@@ -260,6 +261,7 @@ actualizarVacunasPaciente ()
   {
     let dialogRef = this.dialog.open(AgregarVacunasPacienteComponent, {
       width: '800px',
+      height: '500px',
       data: {
         vacunas: this.totalVacunas,
         pacientes: this.totalPacientes,

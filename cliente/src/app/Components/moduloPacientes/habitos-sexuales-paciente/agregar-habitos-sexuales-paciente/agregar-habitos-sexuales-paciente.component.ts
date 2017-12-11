@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { HabitosSexualesPaciente } from '../../../../Models/HabitosSexualesPaciente.model';
+import { DatepickerOptions } from 'ng2-datepicker';
+
 @Component({
   selector: 'app-agregar-habitos-sexuales-paciente',
   templateUrl: './agregar-habitos-sexuales-paciente.component.html',
@@ -17,6 +19,15 @@ export class AgregarHabitosSexualesPacienteComponent implements OnInit {
   	public servicioHabitoSexual: any;
   	public servicioHabitosSexualesPaciente: any;
   	public servicioPaciente: any;
+
+    options: DatepickerOptions = {
+      minYear: 1970,
+      maxYear: 2030,
+      displayFormat: 'YYYY[-]MM[-]DD',
+      barTitleFormat: 'MMMM YYYY',
+      firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
+  
+   };
 
   	ngOnInit()
   {
@@ -82,6 +93,7 @@ export class AgregarHabitosSexualesPacienteComponent implements OnInit {
 	agregarHabitosSexualesPaciente()
 	{
      this.nuevoHabitosSexualesPaciente.verdadero=1;
+     this.nuevoHabitosSexualesPaciente.fechaInicio=new Date(this.nuevoHabitosSexualesPaciente.fechaInicio).toISOString().slice(0, 19).replace('T', ' ');
 		this.servicioHabitosSexualesPaciente.registerHabitosSexualesPaciente(this.nuevoHabitosSexualesPaciente).subscribe(data => {
 			this.dialogRef.close();
 		});

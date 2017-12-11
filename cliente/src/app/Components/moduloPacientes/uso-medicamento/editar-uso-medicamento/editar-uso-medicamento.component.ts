@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { UsoMedicamento } from '../../../../Models/UsoMedicamento.model';
+import { DatepickerOptions } from 'ng2-datepicker';
 
 @Component({
   selector: 'app-editar-uso-medicamento',
@@ -12,15 +13,24 @@ export class EditarUsoMedicamentoComponent implements OnInit {
 
 	public usoMedicamento:UsoMedicamento;
 
-	public totalPacientes: any;
-	public totalMedicamentos: any;
-	public totalPersonas: any;
+  	public totalPacientes: any;
+  	public totalMedicamentos: any;
+  	public totalPersonas: any;
     public totalPersonasTemp:any;
 
     public servicioPaciente: any;
     public servicioMedicamento: any;
     public servicioPersona: any;
     public servicioUsoMedicamento:any;
+
+    options: DatepickerOptions = {
+      minYear: 1970,
+      maxYear: 2030,
+      displayFormat: 'YYYY[-]MM[-]DD',
+      barTitleFormat: 'MMMM YYYY',
+      firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
+  
+   };
 
     ngOnInit()
   {
@@ -87,7 +97,7 @@ export class EditarUsoMedicamentoComponent implements OnInit {
 
   editarUsoMedicamento()
   {
-    //this.pasarStringId();
+    this.usoMedicamento.fechaInicio=new Date(this.usoMedicamento.fechaInicio).toISOString().slice(0, 19).replace('T', ' ');
     this.servicioUsoMedicamento.editUsoMedicamento(this.usoMedicamento, this.usoMedicamento.id).subscribe( data => {
       console.log(data);
       this.dialogRef.close();

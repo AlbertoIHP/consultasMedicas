@@ -236,6 +236,7 @@ export class HabitosSexualesPacienteComponent {
 
     let dialogRef = this.dialog.open(EditarHabitosSexualesPacienteComponent, {
       width: '800px',
+      height: '500px',
       data:
       {
        habitosSexualesPaciente: a,
@@ -261,6 +262,7 @@ export class HabitosSexualesPacienteComponent {
   {
     let dialogRef = this.dialog.open(AgregarHabitosSexualesPacienteComponent, {
       width: '800px',
+      height: '500px',
       data: {
         habitosSexuales: this.totalHabitosSexuales,
         pacientes: this.totalPacientes,

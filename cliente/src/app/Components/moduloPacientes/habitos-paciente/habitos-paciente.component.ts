@@ -231,6 +231,7 @@ actualizarHabitosPaciente ()
 
     let dialogRef = this.dialog.open(EditarHabitosPacienteComponent, {
       width: '800px',
+      height: '500px',
       data:
       {
        habitosPaciente: a,
@@ -256,6 +257,7 @@ actualizarHabitosPaciente ()
   {
     let dialogRef = this.dialog.open(AgregarHabitosPacienteComponent, {
       width: '800px',
+      height: '500px',
       data: {
         habitos: this.totalHabitos,
         pacientes: this.totalPacientes,

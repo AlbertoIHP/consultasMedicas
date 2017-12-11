@@ -1,26 +1,32 @@
 <h1 mat-dialog-title style="text-align: center;">Edición de Exámen Físico</h1>
 
+<div mat-dialog-content style="height: 80%;">
+
 <div class="row">
 
-	<div class="col s4">
-		<mat-form-field class="fullWidth">
-			<input matInput placeholder="Fecha Exámen" required [(ngModel)]="examenFisico.fechaExamen">
-		</mat-form-field>
-	</div>
-
-	<div class="col s4">
+	<div class="col s6">
 		<mat-form-field class="fullWidth">
 			<input matInput placeholder="Peso" required [(ngModel)]="examenFisico.peso">
 		</mat-form-field>
 	</div>
 
-	<div class="col s4">
+	<div class="col s6">
 		<mat-form-field class="fullWidth">
 			<input matInput placeholder="Estatura" required [(ngModel)]="examenFisico.estatura">
 		</mat-form-field>
 	</div>
 </div>
 
+<div class="row">
+	<div class="col s12">
+		<p>
+			<i class="fa fa-calendar" aria-hidden="true"></i>
+			<span>Fecha de exámen</span>
+		</p>
+		<ng-datepicker position='bottom-right' isOpened=true [options]="options" [(ngModel)]="examenFisico.fechaExamen"></ng-datepicker>
+	</div>
+</div>
+</div>
 
 <div mat-dialog-actions>
   <button mat-button class="boton-aceptar" (click)="editarExamenFisico()" tabindex="2">Editar Exámen Físico</button>

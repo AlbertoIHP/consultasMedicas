@@ -230,6 +230,7 @@ export class UsoMedicamentoComponent{
 
     let dialogRef = this.dialog.open(EditarUsoMedicamentoComponent, {
       width: '800px',
+      height: '500px',
       data:
       {
        usoMedicamentos: a,
@@ -255,6 +256,7 @@ export class UsoMedicamentoComponent{
   {
     let dialogRef = this.dialog.open(AgregarUsoMedicamentoComponent, {
       width: '800px',
+      height: '500px',
       data: {
         medicamentos: this.totalMedicamentos,
         pacientes: this.totalPacientes,

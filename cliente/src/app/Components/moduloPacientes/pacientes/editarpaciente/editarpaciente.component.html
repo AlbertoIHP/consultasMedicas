@@ -2,15 +2,43 @@
 
 <div mat-dialog-content>
 
-  <p >Tipo Sangre</p>
-  <mat-form-field style="width: 100% !important;" >
-    <mat-select placeholder="Tipo Sangre" [(ngModel)]="paciente.TipoSangre_id" style="width: 100% !important;">
-      <mat-option style="width: 100% !important;" *ngFor="let tiposangre of totalTS" [value]="tiposangre.id">
-        {{ tiposangre.nombre }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+ <div class="row">
+  <div class="col s4">
+    <p >Tipo Sangre</p>
+    <mat-form-field style="width: 100% !important;" >
+      <mat-select placeholder="Tipo Sangre" [(ngModel)]="paciente.TipoSangre_id" style="width: 100% !important;">
+        <mat-option style="width: 100% !important;" *ngFor="let tiposangre of totalTS" [value]="tiposangre.id">
+          {{ tiposangre.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
+
+  <div class="col s4">
+    <p >Grupo Étnico</p>
+    <mat-form-field style="width: 100% !important;" >
+      <mat-select placeholder="Seleccione un Grupo Étnico" [(ngModel)]="paciente.GrupoEtnico_id" style="width: 100% !important;">
+        <mat-option style="width: 100% !important;" *ngFor="let grupoEtnico of totalGruposEtnicos" [value]="grupoEtnico.id">
+          {{ grupoEtnico.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="col s4">
+    <p>Ocupación</p>
+    <mat-form-field style="width: 100% !important;" >
+      <mat-select placeholder="Seleccione una Ocupación" [(ngModel)]="paciente.Ocupacion_id" style="width: 100% !important;">
+        <mat-option style="width: 100% !important;" *ngFor="let ocupacion of totalOcupaciones" [value]="ocupacion.id">
+          {{ocupacion.nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+
+</div>
 
 </div>
 

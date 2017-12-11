@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
 import { VacunasPaciente } from '../../../../Models/VacunasPaciente.model';
+
+import { DatepickerOptions } from 'ng2-datepicker';
+
 @Component({
   selector: 'app-editar-vacunas-paciente',
   templateUrl: './editar-vacunas-paciente.component.html',
@@ -19,6 +21,15 @@ export class EditarVacunasPacienteComponent implements OnInit {
     public servicioVacuna: any;
     public servicioPersona: any;
     public servicioVacunasPaciente:any;
+
+    options: DatepickerOptions = {
+      minYear: 1970,
+      maxYear: 2030,
+      displayFormat: 'YYYY[-]MM[-]DD',
+      barTitleFormat: 'MMMM YYYY',
+      firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
+  
+   };
 
     ngOnInit()
   {
@@ -96,7 +107,10 @@ export class EditarVacunasPacienteComponent implements OnInit {
 
   editarVacunasPaciente()
   {
-    //this.pasarStringId();
+
+    this.vacunasPaciente.fechaVacunacion=new Date(this.vacunasPaciente.fechaVacunacion).toISOString().slice(0, 19).replace('T', ' ');
+
+
     this.servicioVacunasPaciente.editVacunaPaciente(this.vacunasPaciente, this.vacunasPaciente.id).subscribe( data => {
       console.log(data);
       this.dialogRef.close();

@@ -144,8 +144,9 @@ export class PacientesComponent implements OnInit {
     this.totalOcupaciones=[];
 		this.totalPacientes = [];
 		this.totalPersonas = [];
+    //this.actualizarTotales();
 		this.actualizarPersonas();
-		this.actualizarTotales();
+		
     this.servicioEventos.seActivo.subscribe(() => {
       this.actualizarPersonas();
     });
@@ -153,7 +154,7 @@ export class PacientesComponent implements OnInit {
 	}
 
 
-
+/*
 	actualizarPersonas()
 	{
 		this.totalPersonas = [];
@@ -166,22 +167,63 @@ export class PacientesComponent implements OnInit {
 		});
 
 	}
+*/
 
+
+actualizarPersonas()
+{
+  this.totalPersonas = [];
+  this.servicioPersona.getPersonas().subscribe( data => {
+    var todo: any = data;
+    todo = todo.data;
+    this.totalPersonas = todo;
+
+    this.totalTS = [];
+    this.servicioTS.getTipoSangres().subscribe( data => {
+      var todo: any = data;
+      todo = todo.data;
+      this.totalTS = todo;
+
+      this.totalGruposEtnicos=[];
+      this.servicioGrupoEtnico.getGrupoEtnicos().subscribe( data=>{
+        var todo: any = data;
+        todo = todo.data;
+        this.totalGruposEtnicos = todo;
+
+        this.totalOcupaciones=[]
+        this.servicioOcupacion.getOcupacions().subscribe(data=>{
+          var todo: any = data;
+          todo = todo.data;
+          this.totalOcupaciones = todo;
+          this.actualizarPacientes();
+        });
+      });
+
+    });
+
+
+  });
+
+
+}
 
 
 	actualizarTotales ()
 	{
+
 		this.totalTS = [];
 		this.servicioTS.getTipoSangres().subscribe( data => {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalTS = todo;
 
+      this.totalGruposEtnicos=[];
       this.servicioGrupoEtnico.getGrupoEtnicos().subscribe( data=>{
         var todo: any = data;
         todo = todo.data;
         this.totalGruposEtnicos = todo;
 
+        this.totalOcupaciones=[]
         this.servicioOcupacion.getOcupacions().subscribe(data=>{
           var todo: any = data;
           todo = todo.data;
@@ -290,6 +332,8 @@ export class PacientesComponent implements OnInit {
 		 paciente: a,
 		 personas: this.totalPersonas,
 		 tipoSangres:this.totalTS,
+     gruposEtnicos:this.totalGruposEtnicos,
+     ocupaciones: this.totalOcupaciones,
 		 servicioPaciente: this.servicioPaciente,
 		 servicioPersona: this.servicioPersona,
 		 servicioTS: this.servicioTS
@@ -312,6 +356,8 @@ export class PacientesComponent implements OnInit {
 			 paciente: new Paciente(),
 			 personas: this.totalPersonas,
 			 tipoSangres:this.totalTS,
+       gruposEtnicos:this.totalGruposEtnicos,
+       ocupaciones: this.totalOcupaciones,
 			 servicioPaciente: this.servicioPaciente,
 			 servicioPersona: this.servicioPersona,
 			 servicioTS: this.servicioTS
@@ -375,7 +421,7 @@ export class PacientesComponent implements OnInit {
 
       for(let j = 0 ; j < this.totalOcupaciones.length ; j++)
       {
-        if( parseInt(this.totalPacientes[i].Ocupacion_id) === this.totalOcupaciones[j].id)
+        if( parseInt(this.totalPacientes[i].Ocupacion_id) ===this.totalOcupaciones[j].id)
         {
           this.totalPacientes[i].Ocupacion_id = this.totalOcupaciones[j].nombre;
           break;

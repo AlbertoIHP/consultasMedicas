@@ -136,6 +136,7 @@ export class ExamenFisicoComponent {
 
 		let dialogRef = this.dialog.open(EditarExamenFisicoComponent, {
 			width: '700px',
+      height: '500px',
 			data:
 			{
 			 examenFisico: examenFisico,
@@ -154,6 +155,7 @@ export class ExamenFisicoComponent {
 	{
 		let dialogRef = this.dialog.open(AgregarExamenFisicoComponent, {
 			width: '700px',
+      height:'500px',
 		 	data: {
 		        servicioExamenFisico: this.servicioExamenFisico
       		}
