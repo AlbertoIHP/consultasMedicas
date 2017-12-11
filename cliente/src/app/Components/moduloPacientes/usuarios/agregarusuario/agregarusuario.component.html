@@ -59,6 +59,6 @@
       <button class="boton-aceptar" *ngIf="!isPersona"  mat-button (click)="agregarUsuario()" disabled="{{emailValido}}"  style="width: 100%">Agregar Usuario <mat-icon>add</mat-icon></button>
     </div>
     <div class="col s6">
-     <button mat-button (click)="onNoClick()" style="width: 100%">Cancelar</button>
+     <button mat-button (click)="onNoClick()" style="width: 100%" tabindex="-1">Cancelar</button>
     </div>
   </div>

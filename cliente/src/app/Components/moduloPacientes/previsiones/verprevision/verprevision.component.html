@@ -77,10 +77,10 @@
 			</div>
 		</div>
 			<div class="row">
-				<div class="col s6" *ngIf="usuarioActual.obtenerPermisoUpdate('Personas')">
+				<div class="col s7" *ngIf="usuarioActual.obtenerPermisoUpdate('Personas')">
 				 <button mat-button  class="boton-aceptar" (click)="cambiarPrevision()" >Agregar Previsión <mat-icon>add</mat-icon></button>
 				</div>
-				<div class="col s6">
+				<div class="col s3">
 						<button mat-button (click)="onNoClick()" >Cancelar</button>
 				</div>
 			</div>
