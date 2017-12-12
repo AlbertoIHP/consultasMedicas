@@ -48,26 +48,8 @@ export class LoginComponent implements OnInit {
     public servicioPM: PermisoModuloService,
     public servicioModulo: ModuloService)
   {
-    this.deviceInfo = this.deviceService.getDeviceInfo();
 
-    if( localStorage.getItem('currentUser') )
-    {
-
-      if(this.deviceInfo.device === 'android' || this.deviceInfo.device === 'iphone' || this.deviceInfo.device === 'ipad')
-      {
-        this.router.navigate(['mobile/mp'])
-      }
-      else
-      {
-        this.router.navigate([''])
-      }
-
-      
-
-    }
-    else
-    {
-
+      this.deviceInfo = this.deviceService.getDeviceInfo();
 
       this.totalModulos = []
       this.totalPM = []
@@ -78,7 +60,7 @@ export class LoginComponent implements OnInit {
         this.user =  newUser.email
         this.password = newUser.password
       })
-    }
+    
 
 
 

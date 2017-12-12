@@ -121,14 +121,7 @@ export class UsuariosComponent {
   public servicioEventos: EventosService,
     public router: Router)
   {
-    if( !(localStorage.getItem('currentUser')) )
-    {
-      this.router.navigate(['login'])
-    }
-
-
-
-
+   
   	this.usuarioActual=new UsuarioActual();
   	this.totalRoles = [];
   	this.totalPersonas = [];

@@ -98,11 +98,7 @@ export class HabitoComponent {
 
     )
   {
-    if( !(localStorage.getItem('currentUser')) )
-    {
-      this.router.navigate(['login'])
-    }
-
+    
 		this.usuarioActual=new UsuarioActual();
 		this.totalHabitos = [];
 		this.actualizarHabitos();

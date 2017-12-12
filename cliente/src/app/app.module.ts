@@ -3,6 +3,12 @@
 import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
 import { NgDatepickerModule } from 'ng2-datepicker';
 
+//GUARDS
+import { AuthGuard } from './Guards/auth.guard';
+import { LoginGuard } from './Guards/login.guard';
+import { InicioGuard } from './Guards/inicio.guard';
+
+
 //SERVICIOS
 import { ComunaService } from './Services/comuna/comuna.service';
 import { EstadocivilService } from './Services/estadocivil/estadocivil.service';
@@ -616,6 +622,9 @@ import {
     AlergiaService,
     AlergiasComunesPacienteService,
     ExamenFisicoService,
+    AuthGuard,
+    LoginGuard,
+    InicioGuard,
   ],
 
   bootstrap:

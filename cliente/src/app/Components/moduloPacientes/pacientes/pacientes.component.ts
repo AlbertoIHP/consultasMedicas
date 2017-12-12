@@ -133,12 +133,7 @@ export class PacientesComponent implements OnInit {
     public servicioOcupacion: OcupacionService
     )
   {
-    if( !(localStorage.getItem('currentUser')) )
-    {
-      this.router.navigate(['login'])
-    }
-
-
+    
 		this.usuarioActual=new UsuarioActual();
 		this.totalTS = [];
     this.totalGruposEtnicos=[];

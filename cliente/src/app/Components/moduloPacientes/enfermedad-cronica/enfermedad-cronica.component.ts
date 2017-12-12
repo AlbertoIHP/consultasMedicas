@@ -97,10 +97,6 @@ export class EnfermedadCronicaComponent {
 
     )
   {
-    if( !(localStorage.getItem('currentUser')) )
-    {
-      this.router.navigate(['login'])
-    }
 
 		this.usuarioActual=new UsuarioActual();
 		this.totalEnfermedadCronicas = [];
