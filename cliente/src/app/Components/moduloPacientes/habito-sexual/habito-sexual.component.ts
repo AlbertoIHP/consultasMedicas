@@ -98,11 +98,7 @@ export class HabitoSexualComponent {
 
     )
   {
-    if( !(localStorage.getItem('currentUser')) )
-    {
-      this.router.navigate(['login'])
-    }
-
+    
 		this.usuarioActual=new UsuarioActual();
 		this.totalHabitoSexuals = [];
 		this.actualizarHabitoSexuals();

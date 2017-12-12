@@ -142,63 +142,70 @@ import { Homemp } from '../Components/moduloPacientes/homemp.component';
 import { Homema } from '../Components/moduloAtenciones/homema.component';
 
 
+//GUARDS
+import { LoginGuard } from '../Guards/login.guard';
+import { AuthGuard } from '../Guards/auth.guard';
+import { InicioGuard } from '../Guards/inicio.guard';
+
+
+
 const routes: Routes =
 [
   //RUTAS MOBILE
-  { path: 'mobile/mc',  component: HomemcComponent },
-  { path: 'mobile/mp',  component: Homemp },
-  { path: 'mobile/ma',  component: Homema },
+  { path: 'mobile/mc',  component: HomemcComponent, canActivate: [AuthGuard],data:{nombre:'libre'}  },
+  { path: 'mobile/mp',  component: Homemp, canActivate: [AuthGuard], data:{nombre:'libre'}   },
+  { path: 'mobile/ma',  component: Homema, canActivate: [AuthGuard], data:{nombre:'libre'}   },
 
-  { path: 'login',  component: LoginComponent },
-  { path: '',  component: PersonaComponent, pathMatch: 'full' },
+  { path: 'login',  component: LoginComponent, canActivate: [LoginGuard] },
+  { path: '',  component: PersonaComponent, pathMatch: 'full', canActivate: [InicioGuard] },
 
   //MÓDULO PACIENTES
-  { path: 'ts',  component: TiposangreComponent },
-  { path: 'pac',  component: PacientesComponent },
-  { path: 'per',  component: PersonaComponent },
-  { path: 'usu',  component: UsuariosComponent },
-  { path: 'rol',  component: RolesComponent },
-  { path: 'reg',  component: RegionesComponent },
-  { path: 'pro',  component: ProvinciasComponent },
-  { path: 'pre',  component: PrevisionesComponent },
-  { path: 'com',  component: ComunasComponent },
-  { path: 'gen',  component: GenerosComponent },
-  { path: 'ec',  component: EstadocivilComponent },
-  { path: 'fm',  component: FichaMedicaComponent },
+  { path: 'ts',  component: TiposangreComponent, canActivate: [AuthGuard], data:{nombre:'TipoSangre'} },
+  { path: 'pac',  component: PacientesComponent, canActivate: [AuthGuard], data:{nombre:'Pacientes'} },
+  { path: 'per',  component: PersonaComponent, canActivate: [AuthGuard], data:{nombre:'Personas'} },
+  { path: 'usu',  component: UsuariosComponent, canActivate: [AuthGuard], data:{nombre:'Usuarios'} },
+  { path: 'rol',  component: RolesComponent, canActivate: [AuthGuard], data:{nombre:'Roles'} },
+  { path: 'reg',  component: RegionesComponent, canActivate: [AuthGuard], data:{nombre:'Regiones'} },
+  { path: 'pro',  component: ProvinciasComponent, canActivate: [AuthGuard], data:{nombre:'Provincias'} },
+  { path: 'pre',  component: PrevisionesComponent, canActivate: [AuthGuard], data:{nombre:'Previsiones'} },
+  { path: 'com',  component: ComunasComponent, canActivate: [AuthGuard], data:{nombre:'Comunas'} },
+  { path: 'gen',  component: GenerosComponent, canActivate: [AuthGuard], data:{nombre:'Generos'} },
+  { path: 'ec',  component: EstadocivilComponent, canActivate: [AuthGuard], data:{nombre:'EstadoCivil'} },
+  { path: 'fm',  component: FichaMedicaComponent, canActivate: [AuthGuard] },
 
-  { path: 'als', component: AlergiaComponent },
-  { path: 'algc',  component: AlergiasComunesPacienteComponent },
-  { path: 'efc',  component: EnfermedadCronicaComponent },
-  { path: 'efcp',  component: EnfermedadesCronicasPacienteComponent },
-  { path: 'gre',  component: GrupoEtnicoComponent },
-  { path: 'ha',  component: HabitoComponent },
-  { path: 'has',  component: HabitoSexualComponent },
-  { path: 'hap',  component: HabitosPacienteComponent },
-  { path: 'hasp',  component: HabitosSexualesPacienteComponent },
-  { path: 'ocp',  component: OcupacionComponent },
-  { path: 'ume',  component: UsoMedicamentoComponent },
-  { path: 'vac',  component: VacunaComponent },
-  { path: 'vacp',  component: VacunasPacienteComponent },
+  { path: 'als', component: AlergiaComponent, canActivate: [AuthGuard], data:{nombre:'Alergias'}  },
+  { path: 'algc',  component: AlergiasComunesPacienteComponent, canActivate: [AuthGuard], data:{nombre:'AlergiasComunesPaciente'}  },
+  { path: 'efc',  component: EnfermedadCronicaComponent, canActivate: [AuthGuard], data:{nombre:'EnfermedadCronica'}  },
+  { path: 'efcp',  component: EnfermedadesCronicasPacienteComponent, canActivate: [AuthGuard], data:{nombre:'EnfermedadesCronicasPaciente'}  },
+  { path: 'gre',  component: GrupoEtnicoComponent, canActivate: [AuthGuard], data:{nombre:'GrupoEtnico'}  },
+  { path: 'ha',  component: HabitoComponent, canActivate: [AuthGuard], data:{nombre:'Habitos'}  },
+  { path: 'has',  component: HabitoSexualComponent, canActivate: [AuthGuard], data:{nombre:'HabitoSexual'}  },
+  { path: 'hap',  component: HabitosPacienteComponent, canActivate: [AuthGuard], data:{nombre:'HabitosPaciente'}  },
+  { path: 'hasp',  component: HabitosSexualesPacienteComponent, canActivate: [AuthGuard], data:{nombre:'HabitosSexualesPaciente'}  },
+  { path: 'ocp',  component: OcupacionComponent, canActivate: [AuthGuard], data:{nombre:'Ocupaciones'}  },
+  { path: 'ume',  component: UsoMedicamentoComponent, canActivate: [AuthGuard], data:{nombre:'UsoMedicamento'}  },
+  { path: 'vac',  component: VacunaComponent, canActivate: [AuthGuard], data:{nombre:'Vacuna'}  },
+  { path: 'vacp',  component: VacunasPacienteComponent, canActivate: [AuthGuard], data:{nombre:'VacunasPaciente'}  },
 
   //MÓDULO CITAS
 
-  { path: 'cit',  component: CitaComponent },
-  { path: 'med',  component: MedicoComponent },
-  { path: 'esp',  component: EspecialidadComponent },
-  { path: 'es',  component: EstadocitaComponent },
-  { path: 'bc',  component: BoxconsultaComponent },
+  { path: 'cit',  component: CitaComponent, canActivate: [AuthGuard], data:{nombre:'Cita'}  },
+  { path: 'med',  component: MedicoComponent, canActivate: [AuthGuard], data:{nombre:'Medico'}  },
+  { path: 'esp',  component: EspecialidadComponent, canActivate: [AuthGuard], data:{nombre:'Especialidad'}  },
+  { path: 'es',  component: EstadocitaComponent, canActivate: [AuthGuard], data:{nombre:'EstadoCita'}  },
+  { path: 'bc',  component: BoxconsultaComponent, canActivate: [AuthGuard], data:{nombre:'BoxConsulta'}  },
 
 
   //MÓDULO ATENCIONES
-  { path: 'alg', component: AlergiaspacienteComponent },
-  { path: 'atc', component: AtencionComponent },
-  { path: 'dia', component: DiagnosticoComponent },
-  { path: 'diat', component: DiagnosticosatencionComponent },
-  { path: 'mto', component: MedicamentoComponent },
-  { path: 'mre', component: MedicamentosrecetaComponent },
-  { path: 'rec', component: RecetaComponent },
-  { path: 'vam', component: ViaadministracionmedicamentoComponent },
-  { path: 'exf', component: ExamenFisicoComponent }
+  { path: 'alg', component: AlergiaspacienteComponent, canActivate: [AuthGuard], data:{nombre:'AlergiasPaciente'}  },
+  { path: 'atc', component: AtencionComponent, canActivate: [AuthGuard], data:{nombre:'Atencion'}  },
+  { path: 'dia', component: DiagnosticoComponent, canActivate: [AuthGuard], data:{nombre:'Diagnostico'}  },
+  { path: 'diat', component: DiagnosticosatencionComponent, canActivate: [AuthGuard], data:{nombre:'DiagnosticosAtencion'}  },
+  { path: 'mto', component: MedicamentoComponent, canActivate: [AuthGuard], data:{nombre:'Medicamento'}  },
+  { path: 'mre', component: MedicamentosrecetaComponent, canActivate: [AuthGuard], data:{nombre:'MedicamentosReceta'}  },
+  { path: 'rec', component: RecetaComponent, canActivate: [AuthGuard] , data:{nombre:'Receta'} },
+  { path: 'vam', component: ViaadministracionmedicamentoComponent, canActivate: [AuthGuard], data:{nombre:'ViaAdministracionMedicamento'}  },
+  { path: 'exf', component: ExamenFisicoComponent, canActivate: [AuthGuard], data:{nombre:'ExamenFisico'}  }
 
 ];
 

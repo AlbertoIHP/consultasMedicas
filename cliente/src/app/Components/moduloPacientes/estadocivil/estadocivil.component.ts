@@ -99,11 +99,7 @@ export class EstadocivilComponent{
     public dialog: MatDialog,
     public router: Router)
   {
-    if( !(localStorage.getItem('currentUser')) )
-    {
-      this.router.navigate(['login'])
-    }
-
+   
 		this.usuarioActual=new UsuarioActual();
 		this.totalEstadoCiviles = [];
 		this.actualizarEstadoCiviles();

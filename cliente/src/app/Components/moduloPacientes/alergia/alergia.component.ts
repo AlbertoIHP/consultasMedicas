@@ -97,11 +97,7 @@ export class AlergiaComponent {
 
     )
   {
-    if( !(localStorage.getItem('currentUser')) )
-    {
-      this.router.navigate(['login'])
-    }
-
+    
 		this.usuarioActual=new UsuarioActual();
 		this.totalAlergias = [];
 		this.actualizarAlergias();
