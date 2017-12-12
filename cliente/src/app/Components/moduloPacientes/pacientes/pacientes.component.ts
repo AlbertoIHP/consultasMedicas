@@ -53,6 +53,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class PacientesComponent implements OnInit {
 	public totalPersonas: Persona[];
+  public personasDisponibles: Persona[];
 	public totalPacientes: Paciente[];
 	public totalTS: TipoSangre[];
   public totalGruposEtnicos: GrupoEtnico[];
@@ -144,6 +145,7 @@ export class PacientesComponent implements OnInit {
     this.totalOcupaciones=[];
 		this.totalPacientes = [];
 		this.totalPersonas = [];
+    this.personasDisponibles = [];
     //this.actualizarTotales();
 		this.actualizarPersonas();
 		
@@ -250,6 +252,9 @@ actualizarPersonas()
 
 			this.reemplazarIdPorString();
 
+      this.personasDisponibles = this.totalPersonas;
+
+      this.filtrarPacientesRegistrados();
       //DATATABLE
       this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
 
@@ -262,6 +267,8 @@ actualizarPersonas()
             this.dataSource.filter = this.filter.nativeElement.value;
           })
 
+
+      
 
 
 
@@ -355,6 +362,7 @@ actualizarPersonas()
 		data: {
 			 paciente: new Paciente(),
 			 personas: this.totalPersonas,
+       personasDisponibles: this.personasDisponibles,
 			 tipoSangres:this.totalTS,
        gruposEtnicos:this.totalGruposEtnicos,
        ocupaciones: this.totalOcupaciones,
@@ -518,6 +526,22 @@ actualizarPersonas()
   });
 
 
+  }
+
+  filtrarPacientesRegistrados()
+  {
+    for ( let i = 0 ; i < this.totalPacientes.length ; i ++ )
+    {
+      for ( let j = 0 ; j < this.personasDisponibles.length ; j ++ )
+      {
+        console.log("Hola")
+        if (parseInt(this.totalPacientes[i].Persona_id) === this.personasDisponibles[j].id)
+        {
+          console.log("Chao")
+          this.personasDisponibles.splice(j, 1);
+        }
+      }
+    }
   }
 
 }

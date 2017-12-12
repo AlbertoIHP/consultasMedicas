@@ -1,7 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { EventosService } from '../../../../Services/eventos/eventos.service';
+import {FormControl} from '@angular/forms';
 
+import {Observable} from 'rxjs/Observable';
+import {startWith} from 'rxjs/operators/startWith';
+import {map} from 'rxjs/operators/map';
 
 @Component({
 	selector: 'app-agregarusuario',
@@ -23,6 +27,9 @@ export class AgregarusuarioComponent implements OnInit{
   public tienePersona: any;
   public emailValido = true;
 
+  	// Necesarios para autocomplete
+	public personaCtrl: FormControl;
+  	public filteredPersonas: Observable<any[]>;
 
   GeneratePassword()
   {
@@ -44,7 +51,7 @@ export class AgregarusuarioComponent implements OnInit{
 		)
 	{
 	this.tienePersona = false;
-	this.personasDisponibles = this.totalPersonas;
+	this.personasDisponibles = data.personasDisponibles;
 	this.servicioPersona = data.servicioPersona;
 	this.servicioUsuario = data.servicioUsuario;
 	this.servicioRole = data.servicioRole;
@@ -75,7 +82,19 @@ export class AgregarusuarioComponent implements OnInit{
 	});
 
 	  this.actualizarPersonas();
+
+	  this.personaCtrl = new FormControl();
+		    this.filteredPersonas = this.personaCtrl.valueChanges
+		      .pipe(
+		        startWith(''),
+		        map(persona => persona ? this.filterPersonas(persona) : this.personasDisponibles.slice())
+		);
   }
+
+  	filterPersonas(rut: string) {
+	    return this.personasDisponibles.filter(persona =>
+	      persona.rut.toLowerCase().indexOf(rut.toLowerCase()) === 0);
+    }
 
 	onNoClick()
 	{
