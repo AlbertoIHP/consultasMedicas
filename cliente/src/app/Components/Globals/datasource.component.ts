@@ -174,6 +174,26 @@ export class buscadorPorNombre extends DataSource<any> {
 
            let searchStr = (item.fechaInicio.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "Habito"){
+
+           let searchStr = (item.nombre.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+        
+        }else if(this.filtro == "HabitoSexual"){
+
+           let searchStr = (item.nombre.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+        }else if(this.filtro == "EnfermedadesCronicasPaciente"){ 
+
+           let searchStr = (item.fechaDeteccion.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "AlergiasComunesPaciente"){ 
+
+           let searchStr = (item.fechaDeteccion.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
         }
 
 
@@ -324,6 +344,26 @@ export class ExampleDataSource extends DataSource<any> {
 
            let searchStr = (item.fechaInicio.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+           
+        }else if(this.filtro == "Habito"){
+
+           let searchStr = (item.nombre.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        } else if(this.filtro == "HabitoSexual"){
+
+           let searchStr = (item.nombre.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+        } else if(this.filtro == "EnfermedadesCronicasPaciente"){
+
+           let searchStr = (item.fechaDeteccion.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+           
+        } else if(this.filtro == "AlergiasComunesPaciente"){
+
+           let searchStr = (item.fechaDeteccion.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+           
         }
 
 
@@ -590,6 +630,40 @@ export class ExampleDataSource extends DataSource<any> {
             case 'FechaInicio': [propertyA, propertyB] = [a.fechaInicio, b.fechaInicio]; break;
             case 'Verdadero': [propertyA, propertyB] = [a.verdadero, b.verdadero]; break;
 
+          }
+        }
+
+        else if(this.filtro === "Habito")
+        {
+           switch (this._sort.active)
+          {
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
+          }
+        }
+
+        else if(this.filtro === "HabitoSexual")
+        {
+           switch (this._sort.active)
+          {
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
+          }
+        }
+        else if(this.filtro === "EnfermedadesCronicasPaciente")
+        {
+           switch (this._sort.active)
+          {
+            case 'EnfermedadCronica': [propertyA, propertyB] = [a.Enfermedad_id, b.Enfermedad_id]; break;
+            case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
+            case 'FechaDeteccion': [propertyA, propertyB] = [a.fechaDeteccion, b.fechaDeteccion]; break;
+          }
+        }
+        else if(this.filtro === "AlergiasComunesPaciente")
+        {
+           switch (this._sort.active)
+          {
+            case 'AlergiaComun': [propertyA, propertyB] = [a.Alergia_id, b.Alergia_id]; break;
+            case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
+            case 'FechaDeteccion': [propertyA, propertyB] = [a.fechaDeteccion, b.fechaDeteccion]; break;
           }
         }
 

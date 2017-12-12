@@ -1,3 +1,61 @@
-<p>
-  habito-sexual works!
-</p>
+<h3 class="title-section">Hábitos sexuales</h3>
+
+<div class="example-header" >
+
+
+    <label for="finder">Buscar por nombre...</label>
+    <input id="finder" matInput #filter >
+
+</div>
+
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="Acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('HabitoSexual')" class="btn boton-editar" type="button" (click) = "edicionHabitoSexual(row)" matTooltip="Editar">
+                <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
+              </button>
+
+
+              <button *ngIf="usuarioActual.obtenerPermisoErase('HabitoSexual')" class="btn boton-eliminar" type="button" (click) = "eliminarHabitoSexual(row)" matTooltip="Eliminar">
+                <i class="fa fa-trash-o icono" aria-hidden="true"></i>
+              </button>
+
+       </mat-cell>
+    </ng-container>
+
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
+
+  </mat-table>
+
+  <div class="example-no-results"
+       [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+       No hay registros con dicho nombre.
+  </div>
+
+  <mat-paginator #paginator
+                [length]="dataSource.filteredData.length"
+                [pageIndex]="0"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>
+ <div class="fixed-action-btn">
+		<a class="btn-floating btn-large boton-agregar" *ngIf="usuarioActual.obtenerPermisoWrite('HabitoSexual')" (click)="agregacionHabitoSexual()">
+			<i class="large material-icons">add</i>
+		</a>
+	</div>

@@ -1,15 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, Inject } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Habito } from '../../../../Models/Habito.model';
+import { HabitoService } from '../../../../Services/habito/habito.service';
 @Component({
   selector: 'app-agregar-habito',
   templateUrl: './agregar-habito.component.html',
   styleUrls: ['./agregar-habito.component.css']
 })
-export class AgregarHabitoComponent implements OnInit {
+export class AgregarHabitoComponent {
+	public nuevoHabito: Habito;
+	constructor(
+		public dialogRef: MatDialogRef<AgregarHabitoComponent>,
+		@Inject(MAT_DIALOG_DATA) public data: any,
+		public servicioHabito: HabitoService
+		)
+	{
+		this.nuevoHabito = new Habito();
+	}
 
-  constructor() { }
+	onNoClick()
+	{
+		this.dialogRef.close();
+	}
 
-  ngOnInit() {
-  }
-
+	agregarHabito()
+	{
+		this.servicioHabito.registerHabito(this.nuevoHabito).subscribe(data => {
+			console.log(data);
+			this.dialogRef.close();
+		});
+	}
 }
