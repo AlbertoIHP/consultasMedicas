@@ -9,6 +9,6 @@ export class AlergiasComunesPaciente {
 		this.id = 0;
 		this.Alergia_id = "";
 		this.Paciente_id = "";
-		this.fechaDeteccion = "";
+		this.fechaDeteccion = new Date().toISOString().slice(0, 19).replace('T', ' ');
 	}
 }

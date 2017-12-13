@@ -9,6 +9,6 @@ export class EnfermedadesCronicasPaciente {
 		this.id = 0;
 		this.EnfermedadCronica_id = "";
 		this.Paciente_id = "";
-		this.fechaDeteccion = "";
+		this.fechaDeteccion = new Date().toISOString().slice(0, 19).replace('T', ' ');
 	}
 }
