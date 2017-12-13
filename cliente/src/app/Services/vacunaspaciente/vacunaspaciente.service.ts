@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
-
+import { base } from '../const'
 
 //Servicios utilizados
 import { AuthenticationService } from '../authentication/authentication.service';
@@ -12,7 +12,7 @@ import { VacunasPaciente } from '../../Models/VacunasPaciente.model';
 
 @Injectable()
 export class VacunasPacienteService {
-	public base: string = "http://localhost:8000/api/v1/";
+	public base: string = base.api;
 	public options: RequestOptions;
 	public headers: Headers;
 
