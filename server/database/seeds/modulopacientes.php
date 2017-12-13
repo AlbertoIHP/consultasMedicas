@@ -25,2064 +25,29 @@ class modulopacientes extends Seeder
 			'nombre' =>'Region Meropolitana',
 		]);
 
-		DB::table('Region')->insert([
-			'nombre' =>'XV Arica y Parinacota',
-		]);
-
-		DB::table('Region')->insert([
-			'nombre' =>'I Tarapacá',
-		]);
 
 
-		DB::table('Region')->insert([
-			'nombre' =>'II Antofagasta',
-		]);
 
-		DB::table('Region')->insert([
-			'nombre' =>'III Atacama',
-		]);
 
-		DB::table('Region')->insert([
-			'nombre' =>'IV Coquimbo',
-		]);
 
-		DB::table('Region')->insert([
-			'nombre' =>'V Valparaíso',
-		]);
 
-		DB::table('Region')->insert([
-			'nombre' =>"VI  O'Higgins",
-		]);
-		DB::table('Region')->insert([
-			'nombre' =>'VII Maule',
-		]);
-		DB::table('Region')->insert([
-			'nombre' =>'VIII Biobío',
-		]);
-		DB::table('Region')->insert([
-			'nombre' =>'IX Araucanía',
-		]);
-
-		DB::table('Region')->insert([
-			'nombre' =>'XIV Los Ríos',
-		]);
-
-		DB::table('Region')->insert([
-			'nombre' =>'X Los Lagos',
-		]);
-
-		DB::table('Region')->insert([
-			'nombre' =>'XI Aysén',
-		]);
-
-		DB::table('Region')->insert([
-			'nombre' =>'XII Magallanes y Antártica',
-		]);
-
-		DB::table('Region')->insert([
-			'nombre' =>'XVI Ñuble',
-		]);
 
 		DB::table('Provincia')->insert([
 			'nombre' =>'Provincia de Arica',
-			'Region_id' => 101,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Parinacota',
-			'Region_id' => 101,
-		]);
-
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Iquique',
-			'Region_id' => 201,
-		]);
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Tamarugal',
-			'Region_id' => 201,
-		]);
-
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Tocopilla',
-			'Region_id' => 301,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de El Loa',
-			'Region_id' => 301,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Antofagasta',
-			'Region_id' => 301,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Chañaral',
-			'Region_id' => 401,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Copiapó',
-			'Region_id' => 401,
-		]);
-
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Huasco',
-			'Region_id' => 401,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Elqui',
-			'Region_id' => 501,
-		]);
-
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Limarí',
-			'Region_id' => 501,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Choapa',
-			'Region_id' => 501,
-		]);
-
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Petorca',
-			'Region_id' => 61,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Los Andes',
-			'Region_id' => 61,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de San Felipe de Aconcagua',
-			'Region_id' => 61,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Quillota',
-			'Region_id' => 61,
-		]);
-
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Valparaíso',
-			'Region_id' => 61,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de San Antonio',
-			'Region_id' => 61,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Isla de Pascua',
-			'Region_id' => 61,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Marga Marga',
-			'Region_id' => 61,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Chacabuco',
 			'Region_id' => 1,
 		]);
 
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Santiago',
-			'Region_id' => 1,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Cordillera',
-			'Region_id' => 1,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Maipo',
-			'Region_id' => 1,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Melipilla',
-			'Region_id' => 1,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Talagante',
-			'Region_id' => 1,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Cachapoal',
-			'Region_id' => 71,
-		]);
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Colchagua',
-			'Region_id' => 71,
-		]);
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Cardenal Caro',
-			'Region_id' => 71,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Curicó',
-			'Region_id' => 81,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Talca',
-			'Region_id' => 81,
-		]);
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Linares',
-			'Region_id' => 81,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Cauquenes',
-			'Region_id' => 81,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Biobío',
-			'Region_id' => 91,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Concepción',
-			'Region_id' => 91,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Arauco',
-			'Region_id' => 91,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Malleco',
-			'Region_id' => 101,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Cautín',
-			'Region_id' => 101,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Valdivia',
-			'Region_id' => 111,
-		]);
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Ranco',
-			'Region_id' => 111,
-		]);
 
 
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Osorno',
-			'Region_id' => 121,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Llanquihue',
-			'Region_id' => 121,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Chiloé',
-			'Region_id' => 121,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Palena',
-			'Region_id' => 121,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Coyhaique',
-			'Region_id' => 131,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Aysén',
-			'Region_id' => 131,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de General Carrera',
-			'Region_id' => 131,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Capitán Prat',
-			'Region_id' => 131,
-		]);
-
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Última Esperanza',
-			'Region_id' => 141,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Magallanes',
-			'Region_id' => 141,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Tierra del Fuego',
-			'Region_id' => 141,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Antártica chilena',
-			'Region_id' => 141,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Itata',
-			'Region_id' => 151,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Punilla',
-			'Region_id' => 151,
-		]);
-
-		DB::table('Provincia')->insert([
-			'nombre' =>'Provincia de Diguillín',
-			'Region_id' => 151,
-		]);
 
 		DB::table('Comuna')->insert([
 			'nombre' =>'Comuna de Arica',
 			'Provincia_id' => 1,
 		]);
 
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Camarones',
-			'Provincia_id' => 1,
-		]);
 
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de General Lagos',
-			'Provincia_id' => 101,
-		]);
 
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Putre',
-			'Provincia_id' => 101,
-		]);
 
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Alto Hospicio',
-			'Provincia_id' => 201,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Iquique',
-			'Provincia_id' => 201,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Camiña',
-			'Provincia_id' => 301,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Colchane',
-			'Provincia_id' => 301,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Huara',
-			'Provincia_id' => 301,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pica',
-			'Provincia_id' => 301,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pozo Almonte',
-			'Provincia_id' => 301,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de María Elena',
-			'Provincia_id' => 401,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Tocopilla',
-			'Provincia_id' => 401,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Calama',
-			'Provincia_id' => 501,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Ollague',
-			'Provincia_id' => 501,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Pedro de Atacama',
-			'Provincia_id' => 501,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Antofagasta',
-			'Provincia_id' => 61,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Mejillones',
-			'Provincia_id' => 61,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Sierra Gorda',
-			'Provincia_id' => 61,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Taltal',
-			'Provincia_id' => 61,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Chañaral',
-			'Provincia_id' => 71,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Diego de Almagro',
-			'Provincia_id' => 71,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Copiapó',
-			'Provincia_id' => 81,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Caldera',
-			'Provincia_id' => 81,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Tierra Amarilla',
-			'Provincia_id' => 81,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Vallenar',
-			'Provincia_id' => 91,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Feirina',
-			'Provincia_id' => 91,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Huasco',
-			'Provincia_id' => 91,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Alto del Carmen',
-			'Provincia_id' => 91,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de La Serena',
-			'Provincia_id' => 101,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Coquimbo',
-			'Provincia_id' => 101,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Andacollo',
-			'Provincia_id' => 101,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de La Higuera',
-			'Provincia_id' => 101,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Paihuano',
-			'Provincia_id' => 101,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Vicuña',
-			'Provincia_id' => 101,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Ovalle',
-			'Provincia_id' => 111,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Combarbalá',
-			'Provincia_id' => 111,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Monte Patria',
-			'Provincia_id' => 111,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Punitaqui',
-			'Provincia_id' => 111,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Rio Hurtado',
-			'Provincia_id' => 111,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Illapel',
-			'Provincia_id' => 121,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Canela',
-			'Provincia_id' => 121,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Los Vilos',
-			'Provincia_id' => 121,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Salamanca',
-			'Provincia_id' => 121,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de La Ligua',
-			'Provincia_id' => 131,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cabildo',
-			'Provincia_id' => 131,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Zapallar',
-			'Provincia_id' => 131,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Papudo',
-			'Provincia_id' => 131,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Petorca',
-			'Provincia_id' => 131,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Los Andes',
-			'Provincia_id' => 141,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Esteban',
-			'Provincia_id' => 141,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Calle Larga',
-			'Provincia_id' => 141,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Rinconada',
-			'Provincia_id' => 141,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Felipe ',
-			'Provincia_id' => 151,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Llaillay ',
-			'Provincia_id' => 151,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Putaendo ',
-			'Provincia_id' => 151,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Santa María ',
-			'Provincia_id' => 151,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Catemu ',
-			'Provincia_id' => 151,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Panquehue ',
-			'Provincia_id' => 151,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Quillota ',
-			'Provincia_id' => 161,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de La Cruz ',
-			'Provincia_id' => 161,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de La Calera ',
-			'Provincia_id' => 161,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Nogales ',
-			'Provincia_id' => 161,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Hijuelas ',
-			'Provincia_id' => 161,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Valparaíso ',
-			'Provincia_id' => 171,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Viña del Mar ',
-			'Provincia_id' => 171,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Concón ',
-			'Provincia_id' => 171,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Quintero ',
-			'Provincia_id' => 171,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Puchuncaví ',
-			'Provincia_id' => 171,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Casablanca ',
-			'Provincia_id' => 171,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Juan Fernández ',
-			'Provincia_id' => 171,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Antonio ',
-			'Provincia_id' => 181,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cartagena ',
-			'Provincia_id' => 181,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de El Tabo ',
-			'Provincia_id' => 181,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de El Quisco ',
-			'Provincia_id' => 181,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Algarrobo ',
-			'Provincia_id' => 181,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Santo Domingo ',
-			'Provincia_id' => 181,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Isla de Pascua ',
-			'Provincia_id' => 191,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Quilpué ',
-			'Provincia_id' => 201,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Limache ',
-			'Provincia_id' => 201,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Olmué ',
-			'Provincia_id' => 201,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Villa Alemana ',
-			'Provincia_id' => 201,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Colina ',
-			'Provincia_id' => 211,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Lampa ',
-			'Provincia_id' => 211,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Tiltil ',
-			'Provincia_id' => 211,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Santiago Centro ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Vitacura ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Ramón ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Miguel ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Joaquín ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Renca ',
-			'Provincia_id' => 221,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Recoleta ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Quinta Normal ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Quilicura ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pudahuel ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Providencia ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Peñalolén ',
-			'Provincia_id' => 221,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pedro Aguirre Cerda ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Ñuñoa ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Maipú ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Macul ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Lo Prado ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Lo Espejo ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Lo Barnchea ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Las Condes ',
-			'Provincia_id' => 221,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de La Reina ',
-			'Provincia_id' => 221,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de La Pintana ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de La Granja ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de La Florida ',
-			'Provincia_id' => 221,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de La Cisterna ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Independencia ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Huechuraba ',
-			'Provincia_id' => 221,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Estación Central ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de El Bosque ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Conchalí ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cerro Navia ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cerrillos ',
-			'Provincia_id' => 221,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Puente Alto ',
-			'Provincia_id' => 231,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San José de Maipo ',
-			'Provincia_id' => 231,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pirque ',
-			'Provincia_id' => 231,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Bernardo ',
-			'Provincia_id' => 241,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Buin ',
-			'Provincia_id' => 241,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Paine ',
-			'Provincia_id' => 241,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Calera de Tango ',
-			'Provincia_id' => 241,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Melipilla ',
-			'Provincia_id' => 251,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Alhué ',
-			'Provincia_id' => 251,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Curacaví ',
-			'Provincia_id' => 251,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Maria Pinto ',
-			'Provincia_id' => 251,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Pedro ',
-			'Provincia_id' => 251,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Isla de Maipo ',
-			'Provincia_id' => 261,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de El Monte ',
-			'Provincia_id' => 261,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Padre Hurtado ',
-			'Provincia_id' => 261,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Peñaflor ',
-			'Provincia_id' => 261,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Talagante ',
-			'Provincia_id' => 261,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Codegua ',
-			'Provincia_id' => 271,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Machalí ',
-			'Provincia_id' => 271,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Rancagua ',
-			'Provincia_id' => 271,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Coinco ',
-			'Provincia_id' => 271,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Malloa ',
-			'Provincia_id' => 271,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Requínoa ',
-			'Provincia_id' => 271,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Coltauco ',
-			'Provincia_id' => 271,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Olivar ',
-			'Provincia_id' => 271,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Rengo ',
-			'Provincia_id' => 271,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Doñihue ',
-			'Provincia_id' => 271,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Peumo ',
-			'Provincia_id' => 271,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Mostazal ',
-			'Provincia_id' => 271,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Graneros ',
-			'Provincia_id' => 271,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pichidegua ',
-			'Provincia_id' => 271,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Vicente de Tagua ',
-			'Provincia_id' => 271,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Las Cabras ',
-			'Provincia_id' => 271,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Quinta de Tilcoco ',
-			'Provincia_id' => 271,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Chépica ',
-			'Provincia_id' => 281,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Peralillo ',
-			'Provincia_id' => 281,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Placilla ',
-			'Provincia_id' => 281,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Chimbarongo ',
-			'Provincia_id' => 281,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Lolol ',
-			'Provincia_id' => 281,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pumanque ',
-			'Provincia_id' => 281,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Fernando ',
-			'Provincia_id' => 281,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Santa Cruz ',
-			'Provincia_id' => 281,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Nancagua ',
-			'Provincia_id' => 281,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Palmilla ',
-			'Provincia_id' => 281,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de La Estrella ',
-			'Provincia_id' => 291,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Litueche ',
-			'Provincia_id' => 291,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Marchigue ',
-			'Provincia_id' => 291,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Navidad ',
-			'Provincia_id' => 291,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Paredones ',
-			'Provincia_id' => 291,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pichilemu ',
-			'Provincia_id' => 291,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Curicó ',
-			'Provincia_id' => 301,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Molina ',
-			'Provincia_id' => 301,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Sagrada Familia ',
-			'Provincia_id' => 301,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Teno ',
-			'Provincia_id' => 301,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Vichuquén ',
-			'Provincia_id' => 301,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Romeral ',
-			'Provincia_id' => 301,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Rauco ',
-			'Provincia_id' => 301,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Hualañé ',
-			'Provincia_id' => 301,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Licantén ',
-			'Provincia_id' => 301,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Talca ',
-			'Provincia_id' => 311,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Clemente ',
-			'Provincia_id' => 311,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pelarco ',
-			'Provincia_id' => 311,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pencahue ',
-			'Provincia_id' => 311,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Maule ',
-			'Provincia_id' => 311,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Rafael ',
-			'Provincia_id' => 311,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Curepto ',
-			'Provincia_id' => 311,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Constitución ',
-			'Provincia_id' => 311,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Empedrado ',
-			'Provincia_id' => 311,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Río claro ',
-			'Provincia_id' => 311,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Linares ',
-			'Provincia_id' => 321,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Javier de Loncomilla ',
-			'Provincia_id' => 321,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Parral ',
-			'Provincia_id' => 321,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Villa Alegre ',
-			'Provincia_id' => 321,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Longaví ',
-			'Provincia_id' => 321,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Colbún ',
-			'Provincia_id' => 321,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Retiro ',
-			'Provincia_id' => 321,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Yerbas Buenas ',
-			'Provincia_id' => 321,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cauquenes ',
-			'Provincia_id' => 331,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Chanco ',
-			'Provincia_id' => 331,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pelluhue ',
-			'Provincia_id' => 331,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Alto Biobío ',
-			'Provincia_id' => 341,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Antuco ',
-			'Provincia_id' => 341,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cabrero ',
-			'Provincia_id' => 341,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Laja ',
-			'Provincia_id' => 341,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Los Ángeles ',
-			'Provincia_id' => 341,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Mulchén ',
-			'Provincia_id' => 341,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Nacimiento ',
-			'Provincia_id' => 341,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Negrete ',
-			'Provincia_id' => 341,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Quilaco ',
-			'Provincia_id' => 341,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Quilleco ',
-			'Provincia_id' => 341,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Rosendo ',
-			'Provincia_id' => 341,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Santa Bárbara ',
-			'Provincia_id' => 341,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Tucapel ',
-			'Provincia_id' => 341,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Yumbel ',
-			'Provincia_id' => 341,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Concepción ',
-			'Provincia_id' => 351,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Coronel ',
-			'Provincia_id' => 351,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Chiguayante ',
-			'Provincia_id' => 351,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Florida ',
-			'Provincia_id' => 351,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Hualpén ',
-			'Provincia_id' => 351,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Hualqui ',
-			'Provincia_id' => 351,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Lota ',
-			'Provincia_id' => 351,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Penco ',
-			'Provincia_id' => 351,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Pedro de la Paz ',
-			'Provincia_id' => 351,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Santa Juana ',
-			'Provincia_id' => 351,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Talcahuano ',
-			'Provincia_id' => 351,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Tomé ',
-			'Provincia_id' => 351,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Arauco ',
-			'Provincia_id' => 361,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cañete ',
-			'Provincia_id' => 361,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Contulmo ',
-			'Provincia_id' => 361,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Curanilahue ',
-			'Provincia_id' => 361,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Lebu ',
-			'Provincia_id' => 361,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Los Álamos ',
-			'Provincia_id' => 361,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Tirúa ',
-			'Provincia_id' => 361,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Angol ',
-			'Provincia_id' => 371,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Collipulli ',
-			'Provincia_id' => 371,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Curacautín ',
-			'Provincia_id' => 371,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Ercilla ',
-			'Provincia_id' => 371,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Lonquimay ',
-			'Provincia_id' => 371,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Los Sauces ',
-			'Provincia_id' => 371,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Lumaco ',
-			'Provincia_id' => 371,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Purén ',
-			'Provincia_id' => 371,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Renaico ',
-			'Provincia_id' => 371,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Traiguén ',
-			'Provincia_id' => 371,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Victoria ',
-			'Provincia_id' => 371,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Temuco ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Carahue ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cholchol ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cunco ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Curarrehue ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Freire ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Galvarino ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Gorbea ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Lautaro ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Loncoche ',
-			'Provincia_id' => 381,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Melipeuco ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Nueva Imperial ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Padre Las Casas ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Perquenco ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pitrufquén ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pucón ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Saavedra ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Teodoro Schmidt ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Toltén ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Vilcún ',
-			'Provincia_id' => 381,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Villarrica ',
-			'Provincia_id' => 381,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Corral ',
-			'Provincia_id' => 391,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Lanco ',
-			'Provincia_id' => 391,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Los Lagos ',
-			'Provincia_id' => 391,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Mariquina ',
-			'Provincia_id' => 391,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Máfil ',
-			'Provincia_id' => 391,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Paillaco ',
-			'Provincia_id' => 391,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Panguipulli ',
-			'Provincia_id' => 391,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Valdivia ',
-			'Provincia_id' => 391,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de La Unión ',
-			'Provincia_id' => 401,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Futrono ',
-			'Provincia_id' => 401,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Río Bueno ',
-			'Provincia_id' => 401,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Lago Ranco ',
-			'Provincia_id' => 401,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Osorno ',
-			'Provincia_id' => 411,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Puerto Octay ',
-			'Provincia_id' => 411,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Purranque ',
-			'Provincia_id' => 411,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Puyehue ',
-			'Provincia_id' => 411,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Río Negro ',
-			'Provincia_id' => 411,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Juan de la Costa ',
-			'Provincia_id' => 411,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Pablo ',
-			'Provincia_id' => 411,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Calbuco ',
-			'Provincia_id' => 421,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cochamó ',
-			'Provincia_id' => 421,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Fresia ',
-			'Provincia_id' => 421,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Frutillar ',
-			'Provincia_id' => 421,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Llanquihue ',
-			'Provincia_id' => 421,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Los Muermos ',
-			'Provincia_id' => 421,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Maullín ',
-			'Provincia_id' => 421,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Puerto Montt ',
-			'Provincia_id' => 421,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Puerto Varas ',
-			'Provincia_id' => 421,
-		]);
-
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Ancud ',
-			'Provincia_id' => 431,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Castro ',
-			'Provincia_id' => 431,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Chonchi ',
-			'Provincia_id' => 431,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Curaco de Vélez ',
-			'Provincia_id' => 431,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Dalcahue ',
-			'Provincia_id' => 431,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Puqueldón ',
-			'Provincia_id' => 431,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Queilén ',
-			'Provincia_id' => 431,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Quemchi ',
-			'Provincia_id' => 431,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Quellón ',
-			'Provincia_id' => 431,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Quinchao ',
-			'Provincia_id' => 431,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Chaitén ',
-			'Provincia_id' => 441,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de futaleufú ',
-			'Provincia_id' => 441,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Hualaihué ',
-			'Provincia_id' => 441,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Palena ',
-			'Provincia_id' => 441,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Lago Verde ',
-			'Provincia_id' => 451,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Coyhaique ',
-			'Provincia_id' => 451,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Aysén ',
-			'Provincia_id' => 461,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cisnes ',
-			'Provincia_id' => 461,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Guaitecas ',
-			'Provincia_id' => 461,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Río Ibáñez ',
-			'Provincia_id' => 471,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Chile Chico ',
-			'Provincia_id' => 471,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cochrane ',
-			'Provincia_id' => 481,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de O"Higgins ',
-			'Provincia_id' => 481,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Tortel ',
-			'Provincia_id' => 481,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Natales ',
-			'Provincia_id' => 491,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Torres del Paine ',
-			'Provincia_id' => 491,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Laguna Blanca ',
-			'Provincia_id' => 501,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Punta Arenas ',
-			'Provincia_id' => 501,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Río Verde ',
-			'Provincia_id' => 501,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Gregorio ',
-			'Provincia_id' => 501,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cochrane ',
-			'Provincia_id' => 511,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Porvenir ',
-			'Provincia_id' => 511,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Primavera ',
-			'Provincia_id' => 511,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Timaukel ',
-			'Provincia_id' => 511,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cabo de Hornos ',
-			'Provincia_id' => 521,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Antártica ',
-			'Provincia_id' => 521,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Cobquecura ',
-			'Provincia_id' => 531,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Coelemu ',
-			'Provincia_id' => 531,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Ninhue ',
-			'Provincia_id' => 531,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Portezuelo ',
-			'Provincia_id' => 531,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Quirihue ',
-			'Provincia_id' => 531,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Ránquil ',
-			'Provincia_id' => 531,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Treguaco ',
-			'Provincia_id' => 531,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Coihueco ',
-			'Provincia_id' => 541,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Ñiquén ',
-			'Provincia_id' => 541,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Carlos ',
-			'Provincia_id' => 541,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Fabián ',
-			'Provincia_id' => 541,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Nicolás ',
-			'Provincia_id' => 541,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Bulnes ',
-			'Provincia_id' => 551,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Chillán ',
-			'Provincia_id' => 551,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Chillán Viejo ',
-			'Provincia_id' => 551,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de El Carmen ',
-			'Provincia_id' => 551,
-		]);
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pemuco ',
-			'Provincia_id' => 551,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Pinto ',
-			'Provincia_id' => 551,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Quillón ',
-			'Provincia_id' => 551,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de San Ignacio ',
-			'Provincia_id' => 551,
-		]);
-
-		DB::table('Comuna')->insert([
-			'nombre' =>'Comuna de Yungay ',
-			'Provincia_id' => 551,
-		]);
 
 
 		DB::table('EstadoCivil')->insert([
@@ -2133,6 +98,11 @@ class modulopacientes extends Seeder
 			'descripcion' => 'La ISAPRE opera como un sistema de seguros de salud basado en contratos individuales, en el que los beneficios otorgados obedecen directamente al plan contratado que dependen del sexo, la edad, preexistencia de enfermedades, etc. de sus afiliados.',
 		]);
 
+
+
+
+
+
 		DB::table('Role')->insert([
 			'nombre' =>'Jefatura',
 		]);
@@ -2153,6 +123,13 @@ class modulopacientes extends Seeder
 		]);
 
 
+
+
+
+
+
+
+
 		DB::table('Persona')->insert([
 			'rut' => '19304736k',
 			'nombre1' => 'Alberto',
@@ -2162,9 +139,9 @@ class modulopacientes extends Seeder
 			'fono_casa' => 'none',
 			'fono_trabajo' => 'none',
 			'movil' => '981962000',
-			'Genero_id' => 101,
-			'EstadoCivil_id' => 301,
-			'Comuna_id'=> 91,
+			'Genero_id' => 11,
+			'EstadoCivil_id' => 31,
+			'Comuna_id'=> 1,
 			'estado' => 1,
 			'fechaNacimiento' => Carbon::create('1996', '04', '05'),
 			'direccion' => 'Javiera Carrera 123',
@@ -2179,9 +156,9 @@ class modulopacientes extends Seeder
 			'fono_casa' => 'none',
 			'fono_trabajo' => 'none',
 			'movil' => '981962000',
-			'Genero_id' => 101,
-			'EstadoCivil_id' => 101,
-			'Comuna_id'=> 401,
+			'Genero_id' => 11,
+			'EstadoCivil_id' => 11,
+			'Comuna_id'=> 1,
 			'estado' => 1,
 			'fechaNacimiento' => Carbon::create('1995', '04', '05'),
 			'direccion' => 'Javiera Carrera 121',
@@ -2196,9 +173,9 @@ class modulopacientes extends Seeder
 			'fono_casa' => 'none',
 			'fono_trabajo' => 'none',
 			'movil' => '981962000',
-			'Genero_id' => 101,
-			'EstadoCivil_id' => 201,
-			'Comuna_id'=> 141,
+			'Genero_id' => 11,
+			'EstadoCivil_id' => 21,
+			'Comuna_id'=> 1,
 			'estado' => 1,
 			'fechaNacimiento' => Carbon::create('1994', '04', '05'),
 			'direccion' => 'Javiera Carrera 021',
@@ -2214,9 +191,9 @@ class modulopacientes extends Seeder
 			'fono_casa' => 'none',
 			'fono_trabajo' => 'none',
 			'movil' => '981962000',
-			'Genero_id' => 101,
-			'EstadoCivil_id' => 301,
-			'Comuna_id'=> 61,
+			'Genero_id' => 11,
+			'EstadoCivil_id' => 31,
+			'Comuna_id'=> 1,
 			'estado' => 1,
 			'fechaNacimiento' => Carbon::create('1990', '04', '05'),
 			'direccion' => 'Javiera Carrera 243',
@@ -2231,13 +208,22 @@ class modulopacientes extends Seeder
 			'fono_casa' => 'none',
 			'fono_trabajo' => 'none',
 			'movil' => '981962000',
-			'Genero_id' => 101,
+			'Genero_id' => 11,
 			'EstadoCivil_id' => 1,
-			'Comuna_id'=> 121,
+			'Comuna_id'=> 1,
 			'estado' => 1,
 			'fechaNacimiento' => Carbon::create('1977', '04', '05'),
 			'direccion' => 'Javiera Carrera 323',
 		]);
+
+
+
+
+
+
+
+
+
 
 
 		DB::table('Usuario')->insert([
@@ -2251,34 +237,36 @@ class modulopacientes extends Seeder
 		DB::table('Usuario')->insert([
 			'email' =>'Administrador@Administrador.cl',
 			'password' => bcrypt('Administrador'),
-			'Role_id' => 101,
-			'Persona_id' => 101,
+			'Role_id' => 11,
+			'Persona_id' => 11,
 			'confirmed' => 1
 		]);
 
 		DB::table('Usuario')->insert([
 			'email' =>'Medico@Medico.cl',
 			'password' => bcrypt('Medico'),
-			'Role_id' => 201,
-			'Persona_id' => 201,
+			'Role_id' => 21,
+			'Persona_id' => 21,
 			'confirmed' => 1
 		]);
 
 		DB::table('Usuario')->insert([
 			'email' =>'Paciente@Paciente.cl',
 			'password' => bcrypt('Paciente'),
-			'Role_id' => 301,
-			'Persona_id' => 301,
+			'Role_id' => 31,
+			'Persona_id' => 31,
 			'confirmed' => 1
 		]);
 
 		DB::table('Usuario')->insert([
 			'email' =>'Secretaria@Secretaria.cl',
 			'password' => bcrypt('Secretaria'),
-			'Role_id' => 401,
-			'Persona_id' => 401,
+			'Role_id' => 41,
+			'Persona_id' => 41,
 			'confirmed' => 1
 		]);
+
+
 
 
 
@@ -2411,7 +399,7 @@ class modulopacientes extends Seeder
 		]);
 
 		DB::table('EnfermedadCronica')->insert([
-			'nombre' => 'Diabetes Mellitus Tipo 101',
+			'nombre' => 'Diabetes Mellitus Tipo 11',
 		]);
 
 		DB::table('EnfermedadCronica')->insert([
@@ -2436,10 +424,10 @@ class modulopacientes extends Seeder
 		
 
 		DB::table('Paciente')->insert([
-			'Persona_id' => 301,
+			'Persona_id' => 31,
 			'TipoSangre_id' => 1,
 			'GrupoEtnico_id' => 1,
-			'Ocupacion_id' => 101,
+			'Ocupacion_id' => 11,
 		]);
 		
 		DB::table('VacunasPaciente')->insert([
@@ -2449,7 +437,7 @@ class modulopacientes extends Seeder
 		]);
 
 		DB::table('VacunasPaciente')->insert([
-			'Vacuna_id' => 101,
+			'Vacuna_id' => 11,
 			'Paciente_id' => 1,
 			'fechaVacunacion' => Carbon::create('1999', '04', '01'),
 		]);
@@ -2480,7 +468,7 @@ class modulopacientes extends Seeder
 		]);
 
 		DB::table('AlergiasMedicamentosPaciente')->insert([
-			'Medicamento_id' => 101,
+			'Medicamento_id' => 11,
 			'Paciente_id' => 1,
 			'fechaInicio' => Carbon::create('1998', '02', '01'),
 		]);
@@ -2500,7 +488,7 @@ class modulopacientes extends Seeder
 
 		DB::table('PrevisionActual')->insert([
 			'fechaActualizacion' => Carbon::create('2017', '03', '01'),
-			'Prevision_id' => 101,
+			'Prevision_id' => 11,
 			'Persona_id' => 1,
 			'activado' => 0,
 		]);
@@ -2515,9 +503,11 @@ class modulopacientes extends Seeder
 
 
 
+
+
 		
 		//Modulo pacientes
-		//1-251
+		//1-26
 		DB::table('Modulo')->insert([
 			'name' => 'Personas',
 		]);
@@ -2557,7 +547,7 @@ class modulopacientes extends Seeder
 		DB::table('Modulo')->insert([
 			'name' => 'Roles',
 		]);
-		//101
+		//11
 		DB::table('Modulo')->insert([
 			'name' => 'TipoSangre',
 		]);
@@ -2623,7 +613,7 @@ class modulopacientes extends Seeder
 		]);
 
 		//Módulos de Cita
-		//261-311
+		//27-32
 		DB::table('Modulo')->insert([
 			'name' => 'EstadoCita',
 		]);
@@ -2650,7 +640,7 @@ class modulopacientes extends Seeder
 		]);
 
 		//Módulo atenciones
-		//321-391
+		//33-40
 
 		DB::table('Modulo')->insert([
 			'name' => 'Atencion',
@@ -2685,6 +675,29 @@ class modulopacientes extends Seeder
 		]);
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		//Jefatura
 
 		DB::table('PermisoModulo')->insert([
@@ -2698,7 +711,7 @@ class modulopacientes extends Seeder
 
 		DB::table('PermisoModulo')->insert([
 			'Role_id' => 1,
-			'Modulo_id' => 101,
+			'Modulo_id' => 11,
 			'write' => 1,
 			'erase' => 1,
 			'update' => 1,
@@ -2707,7 +720,7 @@ class modulopacientes extends Seeder
 
 		DB::table('PermisoModulo')->insert([
 			'Role_id' => 1,
-			'Modulo_id' => 201,
+			'Modulo_id' => 21,
 			'write' => 1,
 			'erase' => 1,
 			'update' => 1,
@@ -2715,7 +728,7 @@ class modulopacientes extends Seeder
 		]);
 		DB::table('PermisoModulo')->insert([
 			'Role_id' => 1,
-			'Modulo_id' => 301,
+			'Modulo_id' => 31,
 			'write' => 1,
 			'erase' => 1,
 			'update' => 1,
@@ -2724,7 +737,7 @@ class modulopacientes extends Seeder
 
 		DB::table('PermisoModulo')->insert([
 			'Role_id' => 1,
-			'Modulo_id' => 401,
+			'Modulo_id' => 41,
 			'write' => 1,
 			'erase' => 1,
 			'update' => 1,
@@ -2732,7 +745,7 @@ class modulopacientes extends Seeder
 		]);
 		DB::table('PermisoModulo')->insert([
 			'Role_id' => 1,
-			'Modulo_id' => 501,
+			'Modulo_id' => 51,
 			'write' => 1,
 			'erase' => 1,
 			'update' => 1,
@@ -3032,502 +1045,6 @@ class modulopacientes extends Seeder
 			'view' => 1,
 		]);
 
-		//Administrador
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 1,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 101,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 201,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 301,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 401,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 501,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 61,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 71,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 81,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 91,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 101,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 121,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 131,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 141,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 171,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 191,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 211,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 231,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 261,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 271,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 281,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 291,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 301,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 311,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 321,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 331,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 351,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 381,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		//Permisos cuestionables (antiéticos)
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 151,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 161,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 181,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 201,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 221,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 241,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 251,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 341,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 361,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 371,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 101,
-			'Modulo_id' => 391,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-
-		//Secretaria
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 401,
-			'Modulo_id' => 1,
-			'write' => 1,
-			'erase' => 0,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 401,
-			'Modulo_id' => 101,
-			'write' => 1,
-			'erase' => 0,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 401,
-			'Modulo_id' => 281,
-			'write' => 0,
-			'erase' => 0,
-			'update' => 0,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 401,
-			'Modulo_id' => 311,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		//Paciente
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 301,
-			'Modulo_id' => 281,
-			'write' => 0,
-			'erase' => 0,
-			'update' => 0,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 301,
-			'Modulo_id' => 311,
-			'write' => 1,
-			'erase' => 1,
-			'update' => 1,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 301,
-			'Modulo_id' => 111,
-			'write' => 0,
-			'erase' => 0,
-			'update' => 0,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 301,
-			'Modulo_id' => 321,
-			'write' => 0,
-			'erase' => 0,
-			'update' => 0,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 301,
-			'Modulo_id' => 341,
-			'write' => 0,
-			'erase' => 0,
-			'update' => 0,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 301,
-			'Modulo_id' => 371,
-			'write' => 0,
-			'erase' => 0,
-			'update' => 0,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 301,
-			'Modulo_id' => 391,
-			'write' => 0,
-			'erase' => 0,
-			'update' => 0,
-			'view' => 1,
-		]);
-
-		//Medico
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 201,
-			'Modulo_id' => 101,
-			'write' => 0,
-			'erase' => 0,
-			'update' => 0,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 201,
-			'Modulo_id' => 311,
-			'write' => 0,
-			'erase' => 0,
-			'update' => 0,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 201,
-			'Modulo_id' => 111,
-			'write' => 0,
-			'erase' => 0,
-			'update' => 0,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 201,
-			'Modulo_id' => 341,
-			'write' => 1,
-			'erase' => 0,
-			'update' => 0,
-			'view' => 1,
-		]);
-
-		DB::table('PermisoModulo')->insert([
-			'Role_id' => 201,
-			'Modulo_id' => 361,
-			'write' => 1,
-			'erase' => 0,
-			'update' => 0,
-			'view' => 1,
-		]);
 
 	}
 }
