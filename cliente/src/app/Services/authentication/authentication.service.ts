@@ -11,7 +11,7 @@ import { UserService } from '../user/user.service';
 @Injectable()
 export class AuthenticationService {
 	public token: string;
-	public base: string = "http://localhost:8000/api/";
+	public base: string = "https://consultasapi.herokuapp.com/api/";
 	public headers;
 	public options;
 

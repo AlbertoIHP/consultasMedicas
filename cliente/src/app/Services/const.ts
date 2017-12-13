@@ -1,3 +1,3 @@
 export const base = {
-	api: 'http://localhost:8000/api/v1/'
+	api: 'https://consultasapi.herokuapp.com/api/v1/'
 }
