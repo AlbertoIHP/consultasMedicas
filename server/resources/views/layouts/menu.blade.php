@@ -450,3 +450,87 @@
     <a href="{!! route('alergiasPacientes.index') !!}"><i class="fa fa-edit"></i><span>Alergias Pacientes</span></a>
 </li>
 
+<li class="{{ Request::is('vacunas*') ? 'active' : '' }}">
+    <a href="{!! route('vacunas.index') !!}"><i class="fa fa-edit"></i><span>Vacunas</span></a>
+</li>
+
+<li class="{{ Request::is('habitoSexuals*') ? 'active' : '' }}">
+    <a href="{!! route('habitoSexuals.index') !!}"><i class="fa fa-edit"></i><span>Habito Sexuals</span></a>
+</li>
+
+<li class="{{ Request::is('habitos*') ? 'active' : '' }}">
+    <a href="{!! route('habitos.index') !!}"><i class="fa fa-edit"></i><span>Habitos</span></a>
+</li>
+
+<li class="{{ Request::is('enfermedadCronicas*') ? 'active' : '' }}">
+    <a href="{!! route('enfermedadCronicas.index') !!}"><i class="fa fa-edit"></i><span>Enfermedad Cronicas</span></a>
+</li>
+
+<li class="{{ Request::is('ocupacions*') ? 'active' : '' }}">
+    <a href="{!! route('ocupacions.index') !!}"><i class="fa fa-edit"></i><span>Ocupacions</span></a>
+</li>
+
+<li class="{{ Request::is('alergias*') ? 'active' : '' }}">
+    <a href="{!! route('alergias.index') !!}"><i class="fa fa-edit"></i><span>Alergias</span></a>
+</li>
+
+<li class="{{ Request::is('grupoEtnicos*') ? 'active' : '' }}">
+    <a href="{!! route('grupoEtnicos.index') !!}"><i class="fa fa-edit"></i><span>Grupo Etnicos</span></a>
+</li>
+
+<li class="{{ Request::is('vacunasPacientes*') ? 'active' : '' }}">
+    <a href="{!! route('vacunasPacientes.index') !!}"><i class="fa fa-edit"></i><span>Vacunas Pacientes</span></a>
+</li>
+
+<li class="{{ Request::is('habitosSexualesPacientes*') ? 'active' : '' }}">
+    <a href="{!! route('habitosSexualesPacientes.index') !!}"><i class="fa fa-edit"></i><span>Habitos Sexuales Pacientes</span></a>
+</li>
+
+<li class="{{ Request::is('habitosPacientes*') ? 'active' : '' }}">
+    <a href="{!! route('habitosPacientes.index') !!}"><i class="fa fa-edit"></i><span>Habitos Pacientes</span></a>
+</li>
+
+<li class="{{ Request::is('enfermedadesCronicasPacientes*') ? 'active' : '' }}">
+    <a href="{!! route('enfermedadesCronicasPacientes.index') !!}"><i class="fa fa-edit"></i><span>Enfermedades Cronicas Pacientes</span></a>
+</li>
+
+<li class="{{ Request::is('alergiasComunesPacientes*') ? 'active' : '' }}">
+    <a href="{!! route('alergiasComunesPacientes.index') !!}"><i class="fa fa-edit"></i><span>Alergias Comunes Pacientes</span></a>
+</li>
+
+<li class="{{ Request::is('usoMedicamentos*') ? 'active' : '' }}">
+    <a href="{!! route('usoMedicamentos.index') !!}"><i class="fa fa-edit"></i><span>Uso Medicamentos</span></a>
+</li>
+
+<li class="{{ Request::is('alergiasMedicamentosPacientes*') ? 'active' : '' }}">
+    <a href="{!! route('alergiasMedicamentosPacientes.index') !!}"><i class="fa fa-edit"></i><span>Alergias Medicamentos Pacientes</span></a>
+</li>
+
+<li class="{{ Request::is('examenFisicos*') ? 'active' : '' }}">
+    <a href="{!! route('examenFisicos.index') !!}"><i class="fa fa-edit"></i><span>Examen Fisicos</span></a>
+</li>
+
+<li class="{{ Request::is('atencions*') ? 'active' : '' }}">
+    <a href="{!! route('atencions.index') !!}"><i class="fa fa-edit"></i><span>Atencions</span></a>
+</li>
+
+<li class="{{ Request::is('examenFisicos*') ? 'active' : '' }}">
+    <a href="{!! route('examenFisicos.index') !!}"><i class="fa fa-edit"></i><span>Examen Fisicos</span></a>
+</li>
+
+<li class="{{ Request::is('atencions*') ? 'active' : '' }}">
+    <a href="{!! route('atencions.index') !!}"><i class="fa fa-edit"></i><span>Atencions</span></a>
+</li>
+
+<li class="{{ Request::is('examenFisicos*') ? 'active' : '' }}">
+    <a href="{!! route('examenFisicos.index') !!}"><i class="fa fa-edit"></i><span>Examen Fisicos</span></a>
+</li>
+
+<li class="{{ Request::is('pacientes*') ? 'active' : '' }}">
+    <a href="{!! route('pacientes.index') !!}"><i class="fa fa-edit"></i><span>Pacientes</span></a>
+</li>
+
+<li class="{{ Request::is('personas*') ? 'active' : '' }}">
+    <a href="{!! route('personas.index') !!}"><i class="fa fa-edit"></i><span>Personas</span></a>
+</li>
+

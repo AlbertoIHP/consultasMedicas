@@ -1,0 +1,85 @@
+<h3 class="title-section">Vacunas Paciente</h3>
+
+<div class="example-header" >
+
+
+    <label for="finder">Buscar por fecha...</label>
+    <input id="finder" matInput #filter >
+
+</div>
+
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="Acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+
+              <button *ngIf="usuarioActual.obtenerPermisoUpdate('VacunasPaciente')" (click) = "edicionVacunasPaciente(row)" class="btn boton-editar" type="button" matTooltip="Editar">
+                <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
+              </button>
+              
+              <!--Aqui se llamará a la función de la ficha-->
+              <button (click) = "desplegarFichaPaciente(row)" class="btn boton-ficha" type="button" matTooltip="Ver ficha" >
+                <i class="fa fa-address-book-o icono" aria-hidden="true"></i>
+              </button>
+
+              <button *ngIf="usuarioActual.obtenerPermisoErase('VacunasPaciente')" (click) = "eliminarVacunasPaciente(row)" class="btn boton-eliminar" type="button" matTooltip="Eliminar">
+                <i class="fa fa-trash-o icono" aria-hidden="true"></i>
+              </button>
+
+       </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Rut Paciente">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Rut Paciente </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.Paciente_id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Vacuna">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header> Vacuna </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.Vacuna_id}} </mat-cell>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="Fecha Vacunación">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header> Fecha Vacunación </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.fechaVacunacion}} </mat-cell>
+    </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+  <div class="example-no-results"
+       [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+       No hay registros con dicha fecha.
+  </div>
+
+  <mat-paginator #paginator
+                [length]="dataSource.filteredData.length"
+                [pageIndex]="0"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>
+
+ <div class="fixed-action-btn">
+    <a class="btn-floating btn-large boton-agregar" *ngIf="usuarioActual.obtenerPermisoWrite('VacunasPaciente')" (click)="agregacionVacunasPaciente()">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>
+
+
+
+
+
+
+
+

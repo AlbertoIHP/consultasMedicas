@@ -95,13 +95,7 @@ displayedColumns = ['Acciones', 'Nombre'];
     public dialog: MatDialog,
     public router: Router)
   {
-    if( !(localStorage.getItem('currentUser')) )
-    {
-      this.router.navigate(['login'])
-    }
-
-
-
+   
 		this.usuarioActual=new UsuarioActual();
 		this.totalRoles = [];
 		this.actualizarRoles();

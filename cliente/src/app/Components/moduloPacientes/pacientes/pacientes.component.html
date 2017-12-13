@@ -1,3 +1,4 @@
+<h3 class="title-section">Pacientes</h3>
 <div class="example-header" >
 
 
@@ -62,7 +63,15 @@
       <mat-cell *matCellDef="let row"> {{row.TipoSangre_id}} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="Ocupacion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ocupación </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.Ocupacion_id}} </mat-cell>
+    </ng-container>
 
+    <ng-container matColumnDef="Grupo Etnico">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Grupo Étnico </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.GrupoEtnico_id}} </mat-cell>
+    </ng-container>
 
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

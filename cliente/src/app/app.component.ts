@@ -99,7 +99,7 @@ export class AppComponent {
   {
     this.isLogeado = false
     localStorage.clear()
-    this.router.navigate(['/'])
+    this.router.navigate(['login'])
   }
 
   changeMenu(menu1, menu2)

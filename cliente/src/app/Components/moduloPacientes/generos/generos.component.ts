@@ -26,9 +26,6 @@ import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.com
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
-
-
-
 @Component({
 	selector: 'app-generos',
 	templateUrl: './generos.component.html',
@@ -94,27 +91,6 @@ export class GenerosComponent  {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	constructor (
     public servicioGenero: GeneroService,
     public dialog: MatDialog,
@@ -123,11 +99,7 @@ export class GenerosComponent  {
 
     )
   {
-    if( !(localStorage.getItem('currentUser')) )
-    {
-      this.router.navigate(['login'])
-    }
-
+    
 		this.usuarioActual=new UsuarioActual();
 		this.totalGeneros = [];
 		this.actualizarGeneros();
@@ -194,9 +166,4 @@ export class GenerosComponent  {
 			this.actualizarGeneros();
 		});
 	}
-
-
-
 }
-
-

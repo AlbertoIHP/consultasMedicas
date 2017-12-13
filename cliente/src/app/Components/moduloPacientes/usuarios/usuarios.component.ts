@@ -46,6 +46,7 @@ export class UsuariosComponent {
 
 	public totalUsuarios: Usuario[];
 	public totalPersonas: Persona[];
+	public personasDisponibles: Persona[];
 	public totalRoles: Role[];
 	public usuarioActual;
   displayedColumns = ['Acciones','Email', 'Role', 'Persona'];
@@ -120,17 +121,11 @@ export class UsuariosComponent {
   public servicioEventos: EventosService,
     public router: Router)
   {
-    if( !(localStorage.getItem('currentUser')) )
-    {
-      this.router.navigate(['login'])
-    }
-
-
-
-
+   
   	this.usuarioActual=new UsuarioActual();
   	this.totalRoles = [];
   	this.totalPersonas = [];
+  	this.personasDisponibles = [];
   	this.totalUsuarios = [];
   	this.actualizarRoles();
   	this.actualizarPersonas();
@@ -168,6 +163,9 @@ export class UsuariosComponent {
 			todo = todo.data;
 			this.totalUsuarios = todo;
 			this.reemplazarIdPorString();
+
+			this.personasDisponibles = this.totalPersonas;
+			this.filtrarUsuariosRegistrados();
 
 
       //DATATABLE
@@ -263,6 +261,7 @@ export class UsuariosComponent {
 	usuario: new Usuario(),
 	  usuarios: this.totalUsuarios,
 	  personas: this.totalPersonas,
+	  personasDisponibles: this.personasDisponibles,
 	  roles:this.totalRoles,
 	  servicioUsuario: this.servicioUsuario,
 	  servicioPersona: this.servicioPersona,
@@ -299,6 +298,20 @@ export class UsuariosComponent {
 
 
   }
+
+  	filtrarUsuariosRegistrados()
+	{
+		for ( let i = 0 ; i < this.totalUsuarios.length ; i ++ )
+		{
+			for ( let j = 0 ; j < this.personasDisponibles.length ; j ++ )
+			{
+				if (parseInt(this.totalUsuarios[i].Persona_id) === this.personasDisponibles[j].id)
+				{
+					this.personasDisponibles.splice(j, 1);
+				}
+			}
+		}
+	}
 
 
 

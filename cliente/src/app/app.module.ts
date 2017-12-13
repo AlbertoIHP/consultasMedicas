@@ -1,6 +1,13 @@
 
 
-  import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
+import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
+import { NgDatepickerModule } from 'ng2-datepicker';
+
+//GUARDS
+import { AuthGuard } from './Guards/auth.guard';
+import { LoginGuard } from './Guards/login.guard';
+import { InicioGuard } from './Guards/inicio.guard';
+
 
 //SERVICIOS
 import { ComunaService } from './Services/comuna/comuna.service';
@@ -20,6 +27,21 @@ import { EventosService } from './Services/eventos/eventos.service';
 import { ModuloService } from './Services/modulo/modulo.service';
 import { PermisoModuloService } from './Services/permisomodulo/permisomodulo.service';
 
+import { VacunaService } from './Services/vacuna/vacuna.service';
+import { VacunasPacienteService } from './Services/vacunaspaciente/vacunaspaciente.service';
+import { HabitosSexualesPacienteService } from './Services/habitossexualespaciente/habitos-sexuales-paciente.service';
+import { HabitoSexualService } from './Services/habitosexual/habito-sexual.service';
+import { HabitosPacienteService } from './Services/habitospaciente/habitos-paciente.service';
+import { HabitoService } from './Services/habito/habito.service';
+import { EnfermedadCronicaService } from './Services/enfermedadcronica/enfermedad-cronica.service';
+import { EnfermedadesCronicasPacienteService } from './Services/enfermedadescronicaspaciente/enfermedades-cronicas-paciente.service';
+import { OcupacionService } from './Services/ocupacion/ocupacion.service';
+import { GrupoEtnicoService } from './Services/grupoetnico/grupo-etnico.service';
+import { UsoMedicamentoService } from './Services/usomedicamento/uso-medicamento.service';
+import { AlergiaService } from './Services/alergia/alergia.service';
+import { AlergiasComunesPacienteService } from './Services/alergiascomunespaciente/alergias-comunes-paciente.service';
+
+
 // SERVICIOS MODULO CITAS
 import { BoxConsultaService } from './Services/boxconsulta/box-consulta.service';
 import { CitaService } from './Services/cita/cita.service';
@@ -37,8 +59,8 @@ import { ViaAdministracionMedicamentoService } from './Services/viaAdministracio
 import { MedicamentoService } from './Services/medicamento/medicamento.service';
 import { RecetaService } from './Services/receta/receta.service';
 import { MedicamentosRecetaService } from './Services/medicamentosReceta/medicamentos-receta.service';
-import { AlergiasPacienteService } from './Services/alergiasPaciente/alergias-paciente.service';
-
+import { AlergiasMedicamentosPacienteService } from './Services/alergiasmedicamentospaciente/alergias-medicamentos-paciente.service';
+import { ExamenFisicoService } from './Services/examenfisico/examen-fisico.service';
 
 //MODULOS
 import { HttpModule } from '@angular/http';
@@ -217,9 +239,54 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   import { AgregarMedicamentosRecetaComponent } from './Components/moduloAtenciones/medicamentosreceta/agregar-medicamentos-receta/agregar-medicamentos-receta.component';
   import { EditarMedicamentosRecetaComponent } from './Components/moduloAtenciones/medicamentosreceta/editar-medicamentos-receta/editar-medicamentos-receta.component';
 
-  import { AlergiaspacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/alergiaspaciente.component';
-  import { AgregarAlergiasPacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/agregar-alergias-paciente/agregar-alergias-paciente.component';
-  import { EditarAlergiasPacienteComponent } from './Components/moduloAtenciones/alergiaspaciente/editar-alergias-paciente/editar-alergias-paciente.component';
+  import { AlergiaspacienteComponent } from './Components/moduloAtenciones/alergiasmedicamentospaciente/alergiaspaciente.component';
+  import { AgregarAlergiasPacienteComponent } from './Components/moduloAtenciones/alergiasmedicamentospaciente/agregar-alergias-paciente/agregar-alergias-paciente.component';
+  import { EditarAlergiasPacienteComponent } from './Components/moduloAtenciones/alergiasmedicamentospaciente/editar-alergias-paciente/editar-alergias-paciente.component';
+
+
+  import { VacunaComponent } from './Components/moduloPacientes/vacuna/vacuna.component';
+  import { VacunasPacienteComponent } from './Components/moduloPacientes/vacunas-paciente/vacunas-paciente.component';
+  import { HabitoSexualComponent } from './Components/moduloPacientes/habito-sexual/habito-sexual.component';
+  import { HabitosPacienteComponent } from './Components/moduloPacientes/habitos-paciente/habitos-paciente.component';
+  import { HabitoComponent } from './Components/moduloPacientes/habito/habito.component';
+  import { EnfermedadesCronicasPacienteComponent } from './Components/moduloPacientes/enfermedades-cronicas-paciente/enfermedades-cronicas-paciente.component';
+  import { EnfermedadCronicaComponent } from './Components/moduloPacientes/enfermedad-cronica/enfermedad-cronica.component';
+  import { OcupacionComponent } from './Components/moduloPacientes/ocupacion/ocupacion.component';
+  import { AlergiasComunesPacienteComponent } from './Components/moduloPacientes/alergias-comunes-paciente/alergias-comunes-paciente.component';
+  import { AlergiaComponent } from './Components/moduloPacientes/alergia/alergia.component';
+  import { GrupoEtnicoComponent } from './Components/moduloPacientes/grupo-etnico/grupo-etnico.component';
+  import { UsoMedicamentoComponent } from './Components/moduloPacientes/uso-medicamento/uso-medicamento.component';
+  import { AgregarAlergiaComponent } from './Components/moduloPacientes/alergia/agregar-alergia/agregar-alergia.component';
+  import { EditarAlergiaComponent } from './Components/moduloPacientes/alergia/editar-alergia/editar-alergia.component';
+  import { AgregarAlergiasComunesPacienteComponent } from './Components/moduloPacientes/alergias-comunes-paciente/agregar-alergias-comunes-paciente/agregar-alergias-comunes-paciente.component';
+  import { EditarAlergiasComunesPacienteComponent } from './Components/moduloPacientes/alergias-comunes-paciente/editar-alergias-comunes-paciente/editar-alergias-comunes-paciente.component';
+  import { AgregarEnfermedadCronicaComponent } from './Components/moduloPacientes/enfermedad-cronica/agregar-enfermedad-cronica/agregar-enfermedad-cronica.component';
+  import { EditarEnfermedadCronicaComponent } from './Components/moduloPacientes/enfermedad-cronica/editar-enfermedad-cronica/editar-enfermedad-cronica.component';
+  import { AgregarEnfermedadesCronicasPacienteComponent } from './Components/moduloPacientes/enfermedades-cronicas-paciente/agregar-enfermedades-cronicas-paciente/agregar-enfermedades-cronicas-paciente.component';
+  import { EditarEnfermedadesCronicasPacienteComponent } from './Components/moduloPacientes/enfermedades-cronicas-paciente/editar-enfermedades-cronicas-paciente/editar-enfermedades-cronicas-paciente.component';
+  import { AgregarGrupoEtnicoComponent } from './Components/moduloPacientes/grupo-etnico/agregar-grupo-etnico/agregar-grupo-etnico.component';
+  import { EditarGrupoEtnicoComponent } from './Components/moduloPacientes/grupo-etnico/editar-grupo-etnico/editar-grupo-etnico.component';
+  import { AgregarHabitoComponent } from './Components/moduloPacientes/habito/agregar-habito/agregar-habito.component';
+  import { EditarHabitoComponent } from './Components/moduloPacientes/habito/editar-habito/editar-habito.component';
+  import { AgregarHabitoSexualComponent } from './Components/moduloPacientes/habito-sexual/agregar-habito-sexual/agregar-habito-sexual.component';
+  import { EditarHabitoSexualComponent } from './Components/moduloPacientes/habito-sexual/editar-habito-sexual/editar-habito-sexual.component';
+  import { AgregarHabitosPacienteComponent } from './Components/moduloPacientes/habitos-paciente/agregar-habitos-paciente/agregar-habitos-paciente.component';
+  import { EditarHabitosPacienteComponent } from './Components/moduloPacientes/habitos-paciente/editar-habitos-paciente/editar-habitos-paciente.component';
+  import { HabitosSexualesPacienteComponent } from './Components/moduloPacientes/habitos-sexuales-paciente/habitos-sexuales-paciente.component';
+  import { AgregarHabitosSexualesPacienteComponent } from './Components/moduloPacientes/habitos-sexuales-paciente/agregar-habitos-sexuales-paciente/agregar-habitos-sexuales-paciente.component';
+  import { EditarHabitosSexualesPacienteComponent } from './Components/moduloPacientes/habitos-sexuales-paciente/editar-habitos-sexuales-paciente/editar-habitos-sexuales-paciente.component';
+  import { AgregarOcupacionComponent } from './Components/moduloPacientes/ocupacion/agregar-ocupacion/agregar-ocupacion.component';
+  import { EditarOcupacionComponent } from './Components/moduloPacientes/ocupacion/editar-ocupacion/editar-ocupacion.component';
+  import { AgregarUsoMedicamentoComponent } from './Components/moduloPacientes/uso-medicamento/agregar-uso-medicamento/agregar-uso-medicamento.component';
+  import { EditarUsoMedicamentoComponent } from './Components/moduloPacientes/uso-medicamento/editar-uso-medicamento/editar-uso-medicamento.component';
+  import { AgregarVacunaComponent } from './Components/moduloPacientes/vacuna/agregar-vacuna/agregar-vacuna.component';
+  import { EditarVacunaComponent } from './Components/moduloPacientes/vacuna/editar-vacuna/editar-vacuna.component';
+  import { AgregarVacunasPacienteComponent } from './Components/moduloPacientes/vacunas-paciente/agregar-vacunas-paciente/agregar-vacunas-paciente.component';
+  import { EditarVacunasPacienteComponent } from './Components/moduloPacientes/vacunas-paciente/editar-vacunas-paciente/editar-vacunas-paciente.component';
+  import { ExamenFisicoComponent } from './Components/moduloAtenciones/examen-fisico/examen-fisico.component';
+  import { AgregarExamenFisicoComponent } from './Components/moduloAtenciones/examen-fisico/agregar-examen-fisico/agregar-examen-fisico.component';
+  import { EditarExamenFisicoComponent } from './Components/moduloAtenciones/examen-fisico/editar-examen-fisico/editar-examen-fisico.component';
+
 
 
 import {
@@ -325,7 +392,50 @@ import {
     AgregarRecetaComponent,
     EditarRecetaComponent,
     AgregarViaAdministracionMedicamentoComponent,
-    EditarViaAdministracionMedicamentoComponent
+    EditarViaAdministracionMedicamentoComponent,
+    VacunaComponent,
+    VacunasPacienteComponent,
+    HabitoSexualComponent,
+    HabitosPacienteComponent,
+    HabitoComponent,
+    EnfermedadesCronicasPacienteComponent,
+    EnfermedadCronicaComponent,
+    OcupacionComponent,
+    AlergiasComunesPacienteComponent,
+    AlergiaComponent,
+    GrupoEtnicoComponent,
+    UsoMedicamentoComponent,
+    AgregarAlergiaComponent,
+    EditarAlergiaComponent,
+    AgregarAlergiasComunesPacienteComponent,
+    EditarAlergiasComunesPacienteComponent,
+    AgregarEnfermedadCronicaComponent,
+    EditarEnfermedadCronicaComponent,
+    AgregarEnfermedadesCronicasPacienteComponent,
+    EditarEnfermedadesCronicasPacienteComponent,
+    AgregarGrupoEtnicoComponent,
+    EditarGrupoEtnicoComponent,
+    AgregarHabitoComponent,
+    EditarHabitoComponent,
+    AgregarHabitoSexualComponent,
+    EditarHabitoSexualComponent,
+    AgregarHabitosPacienteComponent,
+    EditarHabitosPacienteComponent,
+    HabitosSexualesPacienteComponent,
+    AgregarHabitosSexualesPacienteComponent,
+    EditarHabitosSexualesPacienteComponent,
+    AgregarOcupacionComponent,
+    EditarOcupacionComponent,
+    AgregarUsoMedicamentoComponent,
+    EditarUsoMedicamentoComponent,
+    AgregarVacunaComponent,
+    EditarVacunaComponent,
+    AgregarVacunasPacienteComponent,
+    EditarVacunasPacienteComponent,
+    ExamenFisicoComponent,
+    AgregarExamenFisicoComponent,
+    EditarExamenFisicoComponent
+
     
   ],
 
@@ -375,7 +485,45 @@ import {
     AgregarDiagnosticoComponent,
     EditarDiagnosticoComponent,
     AgregarViaAdministracionMedicamentoComponent,
-    EditarViaAdministracionMedicamentoComponent
+    EditarViaAdministracionMedicamentoComponent,
+    AgregarAlergiaComponent,
+    EditarAlergiaComponent,
+    AgregarAlergiasComunesPacienteComponent,
+    EditarAlergiasComunesPacienteComponent,
+    AgregarEnfermedadCronicaComponent,
+    EditarEnfermedadCronicaComponent,
+    AgregarEnfermedadesCronicasPacienteComponent,
+    EditarEnfermedadesCronicasPacienteComponent,
+    AgregarGrupoEtnicoComponent,
+    EditarGrupoEtnicoComponent,
+    AgregarHabitoComponent,
+    EditarHabitoComponent,
+    AgregarHabitosPacienteComponent,
+    EditarHabitosPacienteComponent,
+    AgregarHabitoSexualComponent,
+    EditarHabitoSexualComponent,
+    AgregarHabitosSexualesPacienteComponent,
+    EditarHabitosSexualesPacienteComponent,
+    AgregarOcupacionComponent,
+    EditarOcupacionComponent,
+    AgregarVacunaComponent,
+    EditarVacunaComponent,
+    AgregarVacunasPacienteComponent,
+    EditarVacunasPacienteComponent,
+    AgregarAtencionComponent,
+    EditarAtencionComponent,
+    AgregarDiagnosticosAtencionComponent,
+    EditarDiagnosticosAtencionComponent,
+    AgregarMedicamentoComponent,
+    EditarMedicamentoComponent,
+    AgregarRecetaComponent,
+    EditarRecetaComponent,
+    AgregarMedicamentosRecetaComponent,
+    EditarMedicamentosRecetaComponent,
+    AgregarExamenFisicoComponent,
+    EditarExamenFisicoComponent,
+    AgregarUsoMedicamentoComponent,
+    EditarUsoMedicamentoComponent,
   ],
 
 
@@ -423,6 +571,7 @@ import {
     NgbTimepickerModule.forRoot(),
     CalendarModule.forRoot(),
     Ng2DeviceDetectorModule.forRoot(),
+    NgDatepickerModule,
   ],
 
   providers:
@@ -458,8 +607,24 @@ import {
     MedicamentoService,
     MedicamentosRecetaService,
     RecetaService,
-    AlergiasPacienteService,
-
+    AlergiasMedicamentosPacienteService,
+    VacunaService,
+    VacunasPacienteService,
+    HabitosSexualesPacienteService,
+    HabitoSexualService,
+    HabitosPacienteService,
+    HabitoService,
+    EnfermedadCronicaService,
+    EnfermedadesCronicasPacienteService,
+    OcupacionService,
+    GrupoEtnicoService,
+    UsoMedicamentoService,
+    AlergiaService,
+    AlergiasComunesPacienteService,
+    ExamenFisicoService,
+    AuthGuard,
+    LoginGuard,
+    InicioGuard,
   ],
 
   bootstrap:

@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class PacienteRepository
  * @package App\Repositories
- * @version October 16, 2017, 10:49 pm UTC
+ * @version December 8, 2017, 3:34 am UTC
  *
  * @method Paciente findWithoutFail($id, $columns = ['*'])
  * @method Paciente find($id, $columns = ['*'])
@@ -21,7 +21,10 @@ class PacienteRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'Persona_id',
-        'TipoSangre_id'
+        'TipoSangre_id',
+        'GrupoEtnico_id',
+        'Ocupacion_id',
+        'remember_token'
     ];
 
     /**

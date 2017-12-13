@@ -6,6 +6,12 @@ import { PersonaService } from '../../../Services/persona/persona.service';
 import { TipoSangre } from '../../../Models/TipoSangre.model';
 import { TipoSangreService } from '../../../Services/tiposangre/tiposangre.service';
 
+import { GrupoEtnico } from '../../../Models/GrupoEtnico.model';
+import { GrupoEtnicoService } from '../../../Services/grupoetnico/grupo-etnico.service';
+
+import { Ocupacion } from '../../../Models/Ocupacion.model';
+import { OcupacionService } from '../../../Services/ocupacion/ocupacion.service';
+
 import { Paciente } from '../../../Models/Paciente.model';
 import { PacienteService } from '../../../Services/paciente/paciente.service';
 
@@ -47,11 +53,14 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class PacientesComponent implements OnInit {
 	public totalPersonas: Persona[];
+  public personasDisponibles: Persona[];
 	public totalPacientes: Paciente[];
 	public totalTS: TipoSangre[];
+  public totalGruposEtnicos: GrupoEtnico[];
+  public totalOcupaciones: Ocupacion[];
 	public usuarioActual;
 
-	displayedColumns = ['Acciones', 'Rut', 'Persona', 'Tipo Sangre'];
+	displayedColumns = ['Acciones', 'Rut', 'Persona', 'Tipo Sangre', 'Grupo Etnico', 'Ocupacion'];
 
   //DATATABLE
   exampleDatabase;
@@ -119,20 +128,22 @@ export class PacientesComponent implements OnInit {
 		public servicioPaciente: PacienteService,
 		public dialog: MatDialog,
     public servicioEventos: EventosService,
-    public router: Router)
+    public router: Router,
+    public servicioGrupoEtnico: GrupoEtnicoService,
+    public servicioOcupacion: OcupacionService
+    )
   {
-    if( !(localStorage.getItem('currentUser')) )
-    {
-      this.router.navigate(['login'])
-    }
-
-
+    
 		this.usuarioActual=new UsuarioActual();
 		this.totalTS = [];
+    this.totalGruposEtnicos=[];
+    this.totalOcupaciones=[];
 		this.totalPacientes = [];
 		this.totalPersonas = [];
+    this.personasDisponibles = [];
+    //this.actualizarTotales();
 		this.actualizarPersonas();
-		this.actualizarTSs();
+		
     this.servicioEventos.seActivo.subscribe(() => {
       this.actualizarPersonas();
     });
@@ -140,7 +151,7 @@ export class PacientesComponent implements OnInit {
 	}
 
 
-
+/*
 	actualizarPersonas()
 	{
 		this.totalPersonas = [];
@@ -153,16 +164,69 @@ export class PacientesComponent implements OnInit {
 		});
 
 	}
+*/
 
 
+actualizarPersonas()
+{
+  this.totalPersonas = [];
+  this.servicioPersona.getPersonas().subscribe( data => {
+    var todo: any = data;
+    todo = todo.data;
+    this.totalPersonas = todo;
 
-	actualizarTSs ()
+    this.totalTS = [];
+    this.servicioTS.getTipoSangres().subscribe( data => {
+      var todo: any = data;
+      todo = todo.data;
+      this.totalTS = todo;
+
+      this.totalGruposEtnicos=[];
+      this.servicioGrupoEtnico.getGrupoEtnicos().subscribe( data=>{
+        var todo: any = data;
+        todo = todo.data;
+        this.totalGruposEtnicos = todo;
+
+        this.totalOcupaciones=[]
+        this.servicioOcupacion.getOcupacions().subscribe(data=>{
+          var todo: any = data;
+          todo = todo.data;
+          this.totalOcupaciones = todo;
+          this.actualizarPacientes();
+        });
+      });
+
+    });
+
+
+  });
+
+
+}
+
+
+	actualizarTotales ()
 	{
+
 		this.totalTS = [];
 		this.servicioTS.getTipoSangres().subscribe( data => {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalTS = todo;
+
+      this.totalGruposEtnicos=[];
+      this.servicioGrupoEtnico.getGrupoEtnicos().subscribe( data=>{
+        var todo: any = data;
+        todo = todo.data;
+        this.totalGruposEtnicos = todo;
+
+        this.totalOcupaciones=[]
+        this.servicioOcupacion.getOcupacions().subscribe(data=>{
+          var todo: any = data;
+          todo = todo.data;
+          this.totalOcupaciones = todo;
+        });
+      });
 		});
 	}
 
@@ -183,6 +247,9 @@ export class PacientesComponent implements OnInit {
 
 			this.reemplazarIdPorString();
 
+      this.personasDisponibles = this.totalPersonas;
+
+      this.filtrarPacientesRegistrados();
       //DATATABLE
       this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
 
@@ -195,6 +262,8 @@ export class PacientesComponent implements OnInit {
             this.dataSource.filter = this.filter.nativeElement.value;
           })
 
+
+      
 
 
 
@@ -265,6 +334,8 @@ export class PacientesComponent implements OnInit {
 		 paciente: a,
 		 personas: this.totalPersonas,
 		 tipoSangres:this.totalTS,
+     gruposEtnicos:this.totalGruposEtnicos,
+     ocupaciones: this.totalOcupaciones,
 		 servicioPaciente: this.servicioPaciente,
 		 servicioPersona: this.servicioPersona,
 		 servicioTS: this.servicioTS
@@ -286,7 +357,10 @@ export class PacientesComponent implements OnInit {
 		data: {
 			 paciente: new Paciente(),
 			 personas: this.totalPersonas,
+       personasDisponibles: this.personasDisponibles,
 			 tipoSangres:this.totalTS,
+       gruposEtnicos:this.totalGruposEtnicos,
+       ocupaciones: this.totalOcupaciones,
 			 servicioPaciente: this.servicioPaciente,
 			 servicioPersona: this.servicioPersona,
 			 servicioTS: this.servicioTS
@@ -339,6 +413,26 @@ export class PacientesComponent implements OnInit {
 				}
 			}
 
+      for(let j = 0 ; j < this.totalGruposEtnicos.length ; j++)
+      {
+        if( parseInt(this.totalPacientes[i].GrupoEtnico_id) === this.totalGruposEtnicos[j].id)
+        {
+          this.totalPacientes[i].GrupoEtnico_id = this.totalGruposEtnicos[j].nombre;
+          break;
+        }
+      }
+
+      for(let j = 0 ; j < this.totalOcupaciones.length ; j++)
+      {
+        if( parseInt(this.totalPacientes[i].Ocupacion_id) ===this.totalOcupaciones[j].id)
+        {
+          this.totalPacientes[i].Ocupacion_id = this.totalOcupaciones[j].nombre;
+          break;
+        }
+      }
+
+
+
 		}
 	}
 
@@ -352,6 +446,22 @@ export class PacientesComponent implements OnInit {
 				paciente.TipoSangre_id = this.totalTS[i].id;
 			}
 		}
+
+    for ( let i = 0 ; i < this.totalGruposEtnicos.length ; i ++)
+    {
+      if(paciente.GrupoEtnico_id === this.totalGruposEtnicos[i].nombre)
+      {
+        paciente.GrupoEtnico_id = this.totalGruposEtnicos[i].id;
+      }
+    }
+
+    for ( let i = 0 ; i < this.totalOcupaciones.length ; i ++)
+    {
+      if(paciente.Ocupacion_id === this.totalOcupaciones[i].nombre)
+      {
+        paciente.Ocupacion_id = this.totalOcupaciones[i].id;
+      }
+    }
 	}
 
   desactivarPaciente(paciente)
@@ -411,6 +521,22 @@ export class PacientesComponent implements OnInit {
   });
 
 
+  }
+
+  filtrarPacientesRegistrados()
+  {
+    for ( let i = 0 ; i < this.totalPacientes.length ; i ++ )
+    {
+      for ( let j = 0 ; j < this.personasDisponibles.length ; j ++ )
+      {
+        console.log("Hola")
+        if (parseInt(this.totalPacientes[i].Persona_id) === this.personasDisponibles[j].id)
+        {
+          console.log("Chao")
+          this.personasDisponibles.splice(j, 1);
+        }
+      }
+    }
   }
 
 }

@@ -16,18 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="peso",
- *          description="peso",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="estatura",
- *          description="estatura",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="calificacion",
- *          description="calificacion",
+ *          property="calificacionAtencionMedica",
+ *          description="calificacionAtencionMedica",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -50,9 +40,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="remember_token",
- *          description="remember_token",
- *          type="string"
+ *          property="ExamenFisico_id",
+ *          description="ExamenFisico_id",
+ *          type="integer",
+ *          format="int32"
  *      )
  * )
  */
@@ -70,13 +61,11 @@ class Atencion extends Model
 
 
     public $fillable = [
-        'peso',
-        'estatura',
-        'calificacion',
+        'calificacionAtencionMedica',
         'BoxConsulta_id',
         'Cita_id',
         'Paciente_id',
-        'remember_token'
+        'ExamenFisico_id'
     ];
 
     /**
@@ -86,13 +75,11 @@ class Atencion extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'peso' => 'string',
-        'estatura' => 'string',
-        'calificacion' => 'integer',
+        'calificacionAtencionMedica' => 'integer',
         'BoxConsulta_id' => 'integer',
         'Cita_id' => 'integer',
         'Paciente_id' => 'integer',
-        'remember_token' => 'string'
+        'ExamenFisico_id' => 'integer'
     ];
 
     /**
@@ -123,6 +110,14 @@ class Atencion extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
+    public function examenFisico()
+    {
+        return $this->belongsTo(\App\Models\ExamenFisico::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
     public function paciente()
     {
         return $this->belongsTo(\App\Models\Paciente::class);
@@ -143,4 +138,7 @@ class Atencion extends Model
     {
         return $this->hasMany(\App\Models\Recetum::class);
     }
+
+    protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];   
+
 }

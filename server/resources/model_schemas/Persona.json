@@ -1,7 +1,7 @@
 [
     {
         "name": "id",
-        "dbType": "integer,true",
+        "dbType": "integer,true,true",
         "htmlType": null,
         "validations": null,
         "searchable": false,
@@ -99,8 +99,41 @@
         "inIndex": true
     },
     {
-        "name": "Genero_id",
+        "name": "estado",
         "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "fechaNacimiento",
+        "dbType": "date",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "direccion",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "Genero_id",
+        "dbType": "integer,false,true",
         "htmlType": null,
         "validations": null,
         "searchable": true,
@@ -111,7 +144,7 @@
     },
     {
         "name": "Comuna_id",
-        "dbType": "integer,false",
+        "dbType": "integer,false,true",
         "htmlType": null,
         "validations": null,
         "searchable": true,
@@ -122,7 +155,7 @@
     },
     {
         "name": "EstadoCivil_id",
-        "dbType": "integer,false",
+        "dbType": "integer,false,true",
         "htmlType": null,
         "validations": null,
         "searchable": true,
@@ -132,15 +165,48 @@
         "inIndex": true
     },
     {
-        "name": "estado",
-        "dbType": "integer,false",
-        "htmlType": null,
+        "name": "remember_token",
+        "dbType": "string",
+        "htmlType": "text",
         "validations": null,
         "searchable": true,
         "fillable": true,
         "primary": false,
         "inForm": true,
         "inIndex": true
+    },
+    {
+        "name": "created_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "deleted_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
     },
     {
         "type": "relation",
@@ -156,11 +222,27 @@
     },
     {
         "type": "relation",
-        "relation": "mtm,,AlergiasPaciente"
+        "relation": "mtm,,AlergiasComunesPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,AlergiasMedicamentosPaciente"
     },
     {
         "type": "relation",
         "relation": "mtm,,DiagnosticosAtencion"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,EnfermedadesCronicasPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,HabitosPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,HabitosSexualesPaciente"
     },
     {
         "type": "relation",
@@ -172,10 +254,22 @@
     },
     {
         "type": "relation",
+        "relation": "mtm,,PermisoModulo"
+    },
+    {
+        "type": "relation",
         "relation": "1tm,PrevisionActual"
     },
     {
         "type": "relation",
+        "relation": "mtm,,UsoMedicamento"
+    },
+    {
+        "type": "relation",
         "relation": "1tm,Usuario"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,VacunasPaciente"
     }
 ]

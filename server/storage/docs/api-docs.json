@@ -6,13 +6,13 @@
     },
     "basePath": "/api/v1",
     "paths": {
-        "/alergiasPacientes": {
+        "/alergias": {
             "get": {
                 "tags": [
-                    "AlergiasPaciente"
+                    "Alergia"
                 ],
-                "summary": "Get a listing of the AlergiasPacientes.",
-                "description": "Get all AlergiasPacientes",
+                "summary": "Get a listing of the Alergias.",
+                "description": "Get all Alergias",
                 "produces": [
                     "application/json"
                 ],
@@ -27,7 +27,7 @@
                                 "data": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/AlergiasPaciente"
+                                        "$ref": "#/definitions/Alergia"
                                     }
                                 },
                                 "message": {
@@ -41,10 +41,10 @@
             },
             "post": {
                 "tags": [
-                    "AlergiasPaciente"
+                    "Alergia"
                 ],
-                "summary": "Store a newly created AlergiasPaciente in storage",
-                "description": "Store AlergiasPaciente",
+                "summary": "Store a newly created Alergia in storage",
+                "description": "Store Alergia",
                 "produces": [
                     "application/json"
                 ],
@@ -52,10 +52,10 @@
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "AlergiasPaciente that should be stored",
+                        "description": "Alergia that should be stored",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/AlergiasPaciente"
+                            "$ref": "#/definitions/Alergia"
                         }
                     }
                 ],
@@ -68,7 +68,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/AlergiasPaciente"
+                                    "$ref": "#/definitions/Alergia"
                                 },
                                 "message": {
                                     "type": "string"
@@ -80,13 +80,13 @@
                 }
             }
         },
-        "/alergiasPacientes/{id}": {
+        "/alergias/{id}": {
             "get": {
                 "tags": [
-                    "AlergiasPaciente"
+                    "Alergia"
                 ],
-                "summary": "Display the specified AlergiasPaciente",
-                "description": "Get AlergiasPaciente",
+                "summary": "Display the specified Alergia",
+                "description": "Get Alergia",
                 "produces": [
                     "application/json"
                 ],
@@ -94,7 +94,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of AlergiasPaciente",
+                        "description": "id of Alergia",
                         "required": true,
                         "type": "integer"
                     }
@@ -108,7 +108,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/AlergiasPaciente"
+                                    "$ref": "#/definitions/Alergia"
                                 },
                                 "message": {
                                     "type": "string"
@@ -121,10 +121,10 @@
             },
             "put": {
                 "tags": [
-                    "AlergiasPaciente"
+                    "Alergia"
                 ],
-                "summary": "Update the specified AlergiasPaciente in storage",
-                "description": "Update AlergiasPaciente",
+                "summary": "Update the specified Alergia in storage",
+                "description": "Update Alergia",
                 "produces": [
                     "application/json"
                 ],
@@ -132,17 +132,17 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of AlergiasPaciente",
+                        "description": "id of Alergia",
                         "required": true,
                         "type": "integer"
                     },
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "AlergiasPaciente that should be updated",
+                        "description": "Alergia that should be updated",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/AlergiasPaciente"
+                            "$ref": "#/definitions/Alergia"
                         }
                     }
                 ],
@@ -155,7 +155,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/AlergiasPaciente"
+                                    "$ref": "#/definitions/Alergia"
                                 },
                                 "message": {
                                     "type": "string"
@@ -168,10 +168,10 @@
             },
             "delete": {
                 "tags": [
-                    "AlergiasPaciente"
+                    "Alergia"
                 ],
-                "summary": "Remove the specified AlergiasPaciente from storage",
-                "description": "Delete AlergiasPaciente",
+                "summary": "Remove the specified Alergia from storage",
+                "description": "Delete Alergia",
                 "produces": [
                     "application/json"
                 ],
@@ -179,7 +179,405 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of AlergiasPaciente",
+                        "description": "id of Alergia",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/alergiasComunesPacientes": {
+            "get": {
+                "tags": [
+                    "AlergiasComunesPaciente"
+                ],
+                "summary": "Get a listing of the AlergiasComunesPacientes.",
+                "description": "Get all AlergiasComunesPacientes",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/AlergiasComunesPaciente"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "AlergiasComunesPaciente"
+                ],
+                "summary": "Store a newly created AlergiasComunesPaciente in storage",
+                "description": "Store AlergiasComunesPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "AlergiasComunesPaciente that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/AlergiasComunesPaciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/AlergiasComunesPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/alergiasComunesPacientes/{id}": {
+            "get": {
+                "tags": [
+                    "AlergiasComunesPaciente"
+                ],
+                "summary": "Display the specified AlergiasComunesPaciente",
+                "description": "Get AlergiasComunesPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AlergiasComunesPaciente",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/AlergiasComunesPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "AlergiasComunesPaciente"
+                ],
+                "summary": "Update the specified AlergiasComunesPaciente in storage",
+                "description": "Update AlergiasComunesPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AlergiasComunesPaciente",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "AlergiasComunesPaciente that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/AlergiasComunesPaciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/AlergiasComunesPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "AlergiasComunesPaciente"
+                ],
+                "summary": "Remove the specified AlergiasComunesPaciente from storage",
+                "description": "Delete AlergiasComunesPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AlergiasComunesPaciente",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/alergiasMedicamentosPacientes": {
+            "get": {
+                "tags": [
+                    "AlergiasMedicamentosPaciente"
+                ],
+                "summary": "Get a listing of the AlergiasMedicamentosPacientes.",
+                "description": "Get all AlergiasMedicamentosPacientes",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/AlergiasMedicamentosPaciente"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "AlergiasMedicamentosPaciente"
+                ],
+                "summary": "Store a newly created AlergiasMedicamentosPaciente in storage",
+                "description": "Store AlergiasMedicamentosPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "AlergiasMedicamentosPaciente that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/AlergiasMedicamentosPaciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/AlergiasMedicamentosPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/alergiasMedicamentosPacientes/{id}": {
+            "get": {
+                "tags": [
+                    "AlergiasMedicamentosPaciente"
+                ],
+                "summary": "Display the specified AlergiasMedicamentosPaciente",
+                "description": "Get AlergiasMedicamentosPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AlergiasMedicamentosPaciente",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/AlergiasMedicamentosPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "AlergiasMedicamentosPaciente"
+                ],
+                "summary": "Update the specified AlergiasMedicamentosPaciente in storage",
+                "description": "Update AlergiasMedicamentosPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AlergiasMedicamentosPaciente",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "AlergiasMedicamentosPaciente that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/AlergiasMedicamentosPaciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/AlergiasMedicamentosPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "AlergiasMedicamentosPaciente"
+                ],
+                "summary": "Remove the specified AlergiasMedicamentosPaciente from storage",
+                "description": "Delete AlergiasMedicamentosPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of AlergiasMedicamentosPaciente",
                         "required": true,
                         "type": "integer"
                     }
@@ -1598,6 +1996,404 @@
                 }
             }
         },
+        "/enfermedadCronicas": {
+            "get": {
+                "tags": [
+                    "EnfermedadCronica"
+                ],
+                "summary": "Get a listing of the EnfermedadCronicas.",
+                "description": "Get all EnfermedadCronicas",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/EnfermedadCronica"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "EnfermedadCronica"
+                ],
+                "summary": "Store a newly created EnfermedadCronica in storage",
+                "description": "Store EnfermedadCronica",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "EnfermedadCronica that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/EnfermedadCronica"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/EnfermedadCronica"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/enfermedadCronicas/{id}": {
+            "get": {
+                "tags": [
+                    "EnfermedadCronica"
+                ],
+                "summary": "Display the specified EnfermedadCronica",
+                "description": "Get EnfermedadCronica",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of EnfermedadCronica",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/EnfermedadCronica"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "EnfermedadCronica"
+                ],
+                "summary": "Update the specified EnfermedadCronica in storage",
+                "description": "Update EnfermedadCronica",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of EnfermedadCronica",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "EnfermedadCronica that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/EnfermedadCronica"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/EnfermedadCronica"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "EnfermedadCronica"
+                ],
+                "summary": "Remove the specified EnfermedadCronica from storage",
+                "description": "Delete EnfermedadCronica",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of EnfermedadCronica",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/enfermedadesCronicasPacientes": {
+            "get": {
+                "tags": [
+                    "EnfermedadesCronicasPaciente"
+                ],
+                "summary": "Get a listing of the EnfermedadesCronicasPacientes.",
+                "description": "Get all EnfermedadesCronicasPacientes",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/EnfermedadesCronicasPaciente"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "EnfermedadesCronicasPaciente"
+                ],
+                "summary": "Store a newly created EnfermedadesCronicasPaciente in storage",
+                "description": "Store EnfermedadesCronicasPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "EnfermedadesCronicasPaciente that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/EnfermedadesCronicasPaciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/EnfermedadesCronicasPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/enfermedadesCronicasPacientes/{id}": {
+            "get": {
+                "tags": [
+                    "EnfermedadesCronicasPaciente"
+                ],
+                "summary": "Display the specified EnfermedadesCronicasPaciente",
+                "description": "Get EnfermedadesCronicasPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of EnfermedadesCronicasPaciente",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/EnfermedadesCronicasPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "EnfermedadesCronicasPaciente"
+                ],
+                "summary": "Update the specified EnfermedadesCronicasPaciente in storage",
+                "description": "Update EnfermedadesCronicasPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of EnfermedadesCronicasPaciente",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "EnfermedadesCronicasPaciente that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/EnfermedadesCronicasPaciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/EnfermedadesCronicasPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "EnfermedadesCronicasPaciente"
+                ],
+                "summary": "Remove the specified EnfermedadesCronicasPaciente from storage",
+                "description": "Delete EnfermedadesCronicasPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of EnfermedadesCronicasPaciente",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/especialidads": {
             "get": {
                 "tags": [
@@ -2195,6 +2991,205 @@
                 }
             }
         },
+        "/examenFisicos": {
+            "get": {
+                "tags": [
+                    "ExamenFisico"
+                ],
+                "summary": "Get a listing of the ExamenFisicos.",
+                "description": "Get all ExamenFisicos",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ExamenFisico"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "ExamenFisico"
+                ],
+                "summary": "Store a newly created ExamenFisico in storage",
+                "description": "Store ExamenFisico",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ExamenFisico that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ExamenFisico"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ExamenFisico"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/examenFisicos/{id}": {
+            "get": {
+                "tags": [
+                    "ExamenFisico"
+                ],
+                "summary": "Display the specified ExamenFisico",
+                "description": "Get ExamenFisico",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ExamenFisico",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ExamenFisico"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "ExamenFisico"
+                ],
+                "summary": "Update the specified ExamenFisico in storage",
+                "description": "Update ExamenFisico",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ExamenFisico",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ExamenFisico that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ExamenFisico"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ExamenFisico"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "ExamenFisico"
+                ],
+                "summary": "Remove the specified ExamenFisico from storage",
+                "description": "Delete ExamenFisico",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ExamenFisico",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/generos": {
             "get": {
                 "tags": [
@@ -2369,6 +3364,1001 @@
                         "name": "id",
                         "in": "path",
                         "description": "id of Genero",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/grupoEtnicos": {
+            "get": {
+                "tags": [
+                    "GrupoEtnico"
+                ],
+                "summary": "Get a listing of the GrupoEtnicos.",
+                "description": "Get all GrupoEtnicos",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/GrupoEtnico"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "GrupoEtnico"
+                ],
+                "summary": "Store a newly created GrupoEtnico in storage",
+                "description": "Store GrupoEtnico",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "GrupoEtnico that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/GrupoEtnico"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/GrupoEtnico"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/grupoEtnicos/{id}": {
+            "get": {
+                "tags": [
+                    "GrupoEtnico"
+                ],
+                "summary": "Display the specified GrupoEtnico",
+                "description": "Get GrupoEtnico",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of GrupoEtnico",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/GrupoEtnico"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "GrupoEtnico"
+                ],
+                "summary": "Update the specified GrupoEtnico in storage",
+                "description": "Update GrupoEtnico",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of GrupoEtnico",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "GrupoEtnico that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/GrupoEtnico"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/GrupoEtnico"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "GrupoEtnico"
+                ],
+                "summary": "Remove the specified GrupoEtnico from storage",
+                "description": "Delete GrupoEtnico",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of GrupoEtnico",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/habitos": {
+            "get": {
+                "tags": [
+                    "Habito"
+                ],
+                "summary": "Get a listing of the Habitos.",
+                "description": "Get all Habitos",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Habito"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Habito"
+                ],
+                "summary": "Store a newly created Habito in storage",
+                "description": "Store Habito",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Habito that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Habito"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Habito"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/habitos/{id}": {
+            "get": {
+                "tags": [
+                    "Habito"
+                ],
+                "summary": "Display the specified Habito",
+                "description": "Get Habito",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Habito",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Habito"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Habito"
+                ],
+                "summary": "Update the specified Habito in storage",
+                "description": "Update Habito",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Habito",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Habito that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Habito"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Habito"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Habito"
+                ],
+                "summary": "Remove the specified Habito from storage",
+                "description": "Delete Habito",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Habito",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/habitoSexuals": {
+            "get": {
+                "tags": [
+                    "HabitoSexual"
+                ],
+                "summary": "Get a listing of the HabitoSexuals.",
+                "description": "Get all HabitoSexuals",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/HabitoSexual"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "HabitoSexual"
+                ],
+                "summary": "Store a newly created HabitoSexual in storage",
+                "description": "Store HabitoSexual",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "HabitoSexual that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/HabitoSexual"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/HabitoSexual"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/habitoSexuals/{id}": {
+            "get": {
+                "tags": [
+                    "HabitoSexual"
+                ],
+                "summary": "Display the specified HabitoSexual",
+                "description": "Get HabitoSexual",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of HabitoSexual",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/HabitoSexual"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "HabitoSexual"
+                ],
+                "summary": "Update the specified HabitoSexual in storage",
+                "description": "Update HabitoSexual",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of HabitoSexual",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "HabitoSexual that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/HabitoSexual"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/HabitoSexual"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "HabitoSexual"
+                ],
+                "summary": "Remove the specified HabitoSexual from storage",
+                "description": "Delete HabitoSexual",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of HabitoSexual",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/habitosPacientes": {
+            "get": {
+                "tags": [
+                    "HabitosPaciente"
+                ],
+                "summary": "Get a listing of the HabitosPacientes.",
+                "description": "Get all HabitosPacientes",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/HabitosPaciente"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "HabitosPaciente"
+                ],
+                "summary": "Store a newly created HabitosPaciente in storage",
+                "description": "Store HabitosPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "HabitosPaciente that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/HabitosPaciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/HabitosPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/habitosPacientes/{id}": {
+            "get": {
+                "tags": [
+                    "HabitosPaciente"
+                ],
+                "summary": "Display the specified HabitosPaciente",
+                "description": "Get HabitosPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of HabitosPaciente",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/HabitosPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "HabitosPaciente"
+                ],
+                "summary": "Update the specified HabitosPaciente in storage",
+                "description": "Update HabitosPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of HabitosPaciente",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "HabitosPaciente that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/HabitosPaciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/HabitosPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "HabitosPaciente"
+                ],
+                "summary": "Remove the specified HabitosPaciente from storage",
+                "description": "Delete HabitosPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of HabitosPaciente",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/habitosSexualesPacientes": {
+            "get": {
+                "tags": [
+                    "HabitosSexualesPaciente"
+                ],
+                "summary": "Get a listing of the HabitosSexualesPacientes.",
+                "description": "Get all HabitosSexualesPacientes",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/HabitosSexualesPaciente"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "HabitosSexualesPaciente"
+                ],
+                "summary": "Store a newly created HabitosSexualesPaciente in storage",
+                "description": "Store HabitosSexualesPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "HabitosSexualesPaciente that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/HabitosSexualesPaciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/HabitosSexualesPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/habitosSexualesPacientes/{id}": {
+            "get": {
+                "tags": [
+                    "HabitosSexualesPaciente"
+                ],
+                "summary": "Display the specified HabitosSexualesPaciente",
+                "description": "Get HabitosSexualesPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of HabitosSexualesPaciente",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/HabitosSexualesPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "HabitosSexualesPaciente"
+                ],
+                "summary": "Update the specified HabitosSexualesPaciente in storage",
+                "description": "Update HabitosSexualesPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of HabitosSexualesPaciente",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "HabitosSexualesPaciente that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/HabitosSexualesPaciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/HabitosSexualesPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "HabitosSexualesPaciente"
+                ],
+                "summary": "Remove the specified HabitosSexualesPaciente from storage",
+                "description": "Delete HabitosSexualesPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of HabitosSexualesPaciente",
                         "required": true,
                         "type": "integer"
                     }
@@ -3165,6 +5155,205 @@
                         "name": "id",
                         "in": "path",
                         "description": "id of Modulo",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/ocupacions": {
+            "get": {
+                "tags": [
+                    "Ocupacion"
+                ],
+                "summary": "Get a listing of the Ocupacions.",
+                "description": "Get all Ocupacions",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Ocupacion"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Ocupacion"
+                ],
+                "summary": "Store a newly created Ocupacion in storage",
+                "description": "Store Ocupacion",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Ocupacion that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Ocupacion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Ocupacion"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/ocupacions/{id}": {
+            "get": {
+                "tags": [
+                    "Ocupacion"
+                ],
+                "summary": "Display the specified Ocupacion",
+                "description": "Get Ocupacion",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Ocupacion",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Ocupacion"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Ocupacion"
+                ],
+                "summary": "Update the specified Ocupacion in storage",
+                "description": "Update Ocupacion",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Ocupacion",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Ocupacion that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Ocupacion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Ocupacion"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Ocupacion"
+                ],
+                "summary": "Remove the specified Ocupacion from storage",
+                "description": "Delete Ocupacion",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Ocupacion",
                         "required": true,
                         "type": "integer"
                     }
@@ -5578,6 +7767,603 @@
                 }
             }
         },
+        "/usoMedicamentos": {
+            "get": {
+                "tags": [
+                    "UsoMedicamento"
+                ],
+                "summary": "Get a listing of the UsoMedicamentos.",
+                "description": "Get all UsoMedicamentos",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/UsoMedicamento"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "UsoMedicamento"
+                ],
+                "summary": "Store a newly created UsoMedicamento in storage",
+                "description": "Store UsoMedicamento",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "UsoMedicamento that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/UsoMedicamento"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/UsoMedicamento"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/usoMedicamentos/{id}": {
+            "get": {
+                "tags": [
+                    "UsoMedicamento"
+                ],
+                "summary": "Display the specified UsoMedicamento",
+                "description": "Get UsoMedicamento",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of UsoMedicamento",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/UsoMedicamento"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "UsoMedicamento"
+                ],
+                "summary": "Update the specified UsoMedicamento in storage",
+                "description": "Update UsoMedicamento",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of UsoMedicamento",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "UsoMedicamento that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/UsoMedicamento"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/UsoMedicamento"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "UsoMedicamento"
+                ],
+                "summary": "Remove the specified UsoMedicamento from storage",
+                "description": "Delete UsoMedicamento",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of UsoMedicamento",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/vacunas": {
+            "get": {
+                "tags": [
+                    "Vacuna"
+                ],
+                "summary": "Get a listing of the Vacunas.",
+                "description": "Get all Vacunas",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Vacuna"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Vacuna"
+                ],
+                "summary": "Store a newly created Vacuna in storage",
+                "description": "Store Vacuna",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Vacuna that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Vacuna"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Vacuna"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/vacunas/{id}": {
+            "get": {
+                "tags": [
+                    "Vacuna"
+                ],
+                "summary": "Display the specified Vacuna",
+                "description": "Get Vacuna",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Vacuna",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Vacuna"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Vacuna"
+                ],
+                "summary": "Update the specified Vacuna in storage",
+                "description": "Update Vacuna",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Vacuna",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Vacuna that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Vacuna"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Vacuna"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Vacuna"
+                ],
+                "summary": "Remove the specified Vacuna from storage",
+                "description": "Delete Vacuna",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Vacuna",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/vacunasPacientes": {
+            "get": {
+                "tags": [
+                    "VacunasPaciente"
+                ],
+                "summary": "Get a listing of the VacunasPacientes.",
+                "description": "Get all VacunasPacientes",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/VacunasPaciente"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "VacunasPaciente"
+                ],
+                "summary": "Store a newly created VacunasPaciente in storage",
+                "description": "Store VacunasPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "VacunasPaciente that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/VacunasPaciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/VacunasPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/vacunasPacientes/{id}": {
+            "get": {
+                "tags": [
+                    "VacunasPaciente"
+                ],
+                "summary": "Display the specified VacunasPaciente",
+                "description": "Get VacunasPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of VacunasPaciente",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/VacunasPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "VacunasPaciente"
+                ],
+                "summary": "Update the specified VacunasPaciente in storage",
+                "description": "Update VacunasPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of VacunasPaciente",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "VacunasPaciente that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/VacunasPaciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/VacunasPaciente"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "VacunasPaciente"
+                ],
+                "summary": "Remove the specified VacunasPaciente from storage",
+                "description": "Delete VacunasPaciente",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of VacunasPaciente",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/viaAdministracionMedicamentos": {
             "get": {
                 "tags": [
@@ -5779,7 +8565,7 @@
         }
     },
     "definitions": {
-        "AlergiasPaciente": {
+        "Alergia": {
             "required": [
                 ""
             ],
@@ -5788,6 +8574,54 @@
                     "description": "id",
                     "type": "integer",
                     "format": "int32"
+                },
+                "nombre": {
+                    "description": "nombre",
+                    "type": "string"
+                }
+            }
+        },
+        "AlergiasComunesPaciente": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "fechaDeteccion": {
+                    "description": "fechaDeteccion",
+                    "type": "string",
+                    "format": "date"
+                },
+                "Alergia_id": {
+                    "description": "Alergia_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Paciente_id": {
+                    "description": "Paciente_id",
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "AlergiasMedicamentosPaciente": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "fechaInicio": {
+                    "description": "fechaInicio",
+                    "type": "string",
+                    "format": "date"
                 },
                 "Medicamento_id": {
                     "description": "Medicamento_id",
@@ -5798,10 +8632,6 @@
                     "description": "Paciente_id",
                     "type": "integer",
                     "format": "int32"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
                 }
             }
         },
@@ -5815,16 +8645,8 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "peso": {
-                    "description": "peso",
-                    "type": "string"
-                },
-                "estatura": {
-                    "description": "estatura",
-                    "type": "string"
-                },
-                "calificacion": {
-                    "description": "calificacion",
+                "calificacionAtencionMedica": {
+                    "description": "calificacionAtencionMedica",
                     "type": "integer",
                     "format": "int32"
                 },
@@ -5843,9 +8665,10 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
+                "ExamenFisico_id": {
+                    "description": "ExamenFisico_id",
+                    "type": "integer",
+                    "format": "int32"
                 }
             }
         },
@@ -5867,10 +8690,6 @@
                     "description": "TipoBox_id",
                     "type": "integer",
                     "format": "int32"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
                 }
             }
         },
@@ -5912,10 +8731,6 @@
                     "description": "Medico_id",
                     "type": "integer",
                     "format": "int32"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
                 }
             }
         },
@@ -5953,10 +8768,6 @@
                 "diagnostico": {
                     "description": "diagnostico",
                     "type": "string"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
                 }
             }
         },
@@ -5983,10 +8794,6 @@
                     "description": "Diagnostico_id",
                     "type": "integer",
                     "format": "int32"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
                 }
             }
         },
@@ -6016,10 +8823,49 @@
                     "description": "Medico_id",
                     "type": "integer",
                     "format": "int32"
+                }
+            }
+        },
+        "EnfermedadCronica": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
                 },
-                "remember_token": {
-                    "description": "remember_token",
+                "nombre": {
+                    "description": "nombre",
                     "type": "string"
+                }
+            }
+        },
+        "EnfermedadesCronicasPaciente": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "fechaDeteccion": {
+                    "description": "fechaDeteccion",
+                    "type": "string",
+                    "format": "date"
+                },
+                "EnfermedadCronica_id": {
+                    "description": "EnfermedadCronica_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Paciente_id": {
+                    "description": "Paciente_id",
+                    "type": "integer",
+                    "format": "int32"
                 }
             }
         },
@@ -6035,10 +8881,6 @@
                 },
                 "nombre": {
                     "description": "nombre",
-                    "type": "string"
-                },
-                "remember_token": {
-                    "description": "remember_token",
                     "type": "string"
                 }
             }
@@ -6059,10 +8901,6 @@
                 },
                 "descripcion": {
                     "description": "descripcion",
-                    "type": "string"
-                },
-                "remember_token": {
-                    "description": "remember_token",
                     "type": "string"
                 }
             }
@@ -6087,6 +8925,33 @@
                 }
             }
         },
+        "ExamenFisico": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "fechaExamen": {
+                    "description": "fechaExamen",
+                    "type": "string",
+                    "format": "date"
+                },
+                "peso": {
+                    "description": "peso",
+                    "type": "number",
+                    "format": "float"
+                },
+                "estatura": {
+                    "description": "estatura",
+                    "type": "number",
+                    "format": "float"
+                }
+            }
+        },
         "Genero": {
             "required": [
                 ""
@@ -6107,6 +8972,113 @@
                 }
             }
         },
+        "GrupoEtnico": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nombre": {
+                    "description": "nombre",
+                    "type": "string"
+                }
+            }
+        },
+        "Habito": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nombre": {
+                    "description": "nombre",
+                    "type": "string"
+                }
+            }
+        },
+        "HabitoSexual": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nombre": {
+                    "description": "nombre",
+                    "type": "string"
+                }
+            }
+        },
+        "HabitosPaciente": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "fechaInicio": {
+                    "description": "fechaInicio",
+                    "type": "string",
+                    "format": "date"
+                },
+                "Habito_id": {
+                    "description": "Habito_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Paciente_id": {
+                    "description": "Paciente_id",
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "HabitosSexualesPaciente": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "verdadero": {
+                    "description": "verdadero",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "HabitoSexual_id": {
+                    "description": "HabitoSexual_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Paciente_id": {
+                    "description": "Paciente_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "fechaInicio": {
+                    "description": "fechaInicio",
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        },
         "Medicamento": {
             "required": [
                 ""
@@ -6123,10 +9095,6 @@
                 },
                 "nombrecientifico": {
                     "description": "nombrecientifico",
-                    "type": "string"
-                },
-                "remember_token": {
-                    "description": "remember_token",
                     "type": "string"
                 }
             }
@@ -6174,10 +9142,6 @@
                     "description": "Receta_id",
                     "type": "integer",
                     "format": "int32"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
                 }
             }
         },
@@ -6200,10 +9164,6 @@
                     "description": "Persona_id",
                     "type": "integer",
                     "format": "int32"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
                 }
             }
         },
@@ -6219,6 +9179,22 @@
                 },
                 "name": {
                     "description": "name",
+                    "type": "string"
+                }
+            }
+        },
+        "Ocupacion": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nombre": {
+                    "description": "nombre",
                     "type": "string"
                 }
             }
@@ -6240,6 +9216,16 @@
                 },
                 "TipoSangre_id": {
                     "description": "TipoSangre_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "GrupoEtnico_id": {
+                    "description": "GrupoEtnico_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Ocupacion_id": {
+                    "description": "Ocupacion_id",
                     "type": "integer",
                     "format": "int32"
                 }
@@ -6329,6 +9315,20 @@
                     "description": "movil",
                     "type": "string"
                 },
+                "estado": {
+                    "description": "estado",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "fechaNacimiento": {
+                    "description": "fechaNacimiento",
+                    "type": "string",
+                    "format": "date"
+                },
+                "direccion": {
+                    "description": "direccion",
+                    "type": "string"
+                },
                 "Genero_id": {
                     "description": "Genero_id",
                     "type": "integer",
@@ -6341,11 +9341,6 @@
                 },
                 "EstadoCivil_id": {
                     "description": "EstadoCivil_id",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "estado": {
-                    "description": "estado",
                     "type": "integer",
                     "format": "int32"
                 }
@@ -6447,10 +9442,6 @@
                     "description": "Atencion_id",
                     "type": "integer",
                     "format": "int32"
-                },
-                "remember_token": {
-                    "description": "remember_token",
-                    "type": "string"
                 }
             }
         },
@@ -6502,10 +9493,6 @@
                 },
                 "descripcion": {
                     "description": "descripcion",
-                    "type": "string"
-                },
-                "remember_token": {
-                    "description": "remember_token",
                     "type": "string"
                 }
             }
@@ -6560,6 +9547,76 @@
                 }
             }
         },
+        "UsoMedicamento": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "fechaInicio": {
+                    "description": "fechaInicio",
+                    "type": "string",
+                    "format": "date"
+                },
+                "Medicamento_id": {
+                    "description": "Medicamento_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Paciente_id": {
+                    "description": "Paciente_id",
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "Vacuna": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nombre": {
+                    "description": "nombre",
+                    "type": "string"
+                }
+            }
+        },
+        "VacunasPaciente": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "fechaVacunacion": {
+                    "description": "fechaVacunacion",
+                    "type": "string",
+                    "format": "date"
+                },
+                "Vacuna_id": {
+                    "description": "Vacuna_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Paciente_id": {
+                    "description": "Paciente_id",
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
         "ViaAdministracionMedicamento": {
             "required": [
                 ""
@@ -6572,10 +9629,6 @@
                 },
                 "descripcion": {
                     "description": "descripcion",
-                    "type": "string"
-                },
-                "remember_token": {
-                    "description": "remember_token",
                     "type": "string"
                 }
             }

@@ -11,29 +11,7 @@
         "inIndex": false
     },
     {
-        "name": "peso",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": null,
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "estatura",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": null,
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "calificacion",
+        "name": "calificacionAtencionMedica",
         "dbType": "integer,false",
         "htmlType": null,
         "validations": null,
@@ -67,6 +45,17 @@
     },
     {
         "name": "Paciente_id",
+        "dbType": "integer,false,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "ExamenFisico_id",
         "dbType": "integer,false,true",
         "htmlType": null,
         "validations": null,
@@ -130,11 +119,19 @@
     },
     {
         "type": "relation",
+        "relation": "mt1,ExamenFisico"
+    },
+    {
+        "type": "relation",
         "relation": "mt1,Paciente"
     },
     {
         "type": "relation",
-        "relation": "mtm,,AlergiasPaciente"
+        "relation": "mtm,,AlergiasComunesPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,AlergiasMedicamentosPaciente"
     },
     {
         "type": "relation",
@@ -142,11 +139,19 @@
     },
     {
         "type": "relation",
-        "relation": "mtm,,Medico"
+        "relation": "mtm,,EnfermedadesCronicasPaciente"
     },
     {
         "type": "relation",
-        "relation": "mtm,,Paciente"
+        "relation": "mtm,,HabitosPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,HabitosSexualesPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Medico"
     },
     {
         "type": "relation",
@@ -162,6 +167,14 @@
     },
     {
         "type": "relation",
+        "relation": "mtm,,UsoMedicamento"
+    },
+    {
+        "type": "relation",
         "relation": "mtm,,Usuario"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,VacunasPaciente"
     }
 ]

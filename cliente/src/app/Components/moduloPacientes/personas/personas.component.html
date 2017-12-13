@@ -1,3 +1,5 @@
+<h3 class="title-section">Personas</h3>
+
 <div class="example-header" >
 
 
@@ -73,9 +75,12 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header> Comuna </mat-header-cell>
       <mat-cell *matCellDef="let row" > {{row.Comuna_id}} </mat-cell>
     </ng-container>
-
-
-
+<!--
+     <ng-container matColumnDef="Fecha Nacimiento" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Nacimiento </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.fechaNacimiento}} </mat-cell>
+    </ng-container>
+    -->
 
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

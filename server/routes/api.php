@@ -92,7 +92,41 @@ Route::group(['middleware' => ['cors']], function(){
     Route::resource('v1/medicamentosRecetas', 'MedicamentosRecetaAPIController');
 
     Route::resource('v1/alergiasPacientes', 'AlergiasPacienteAPIController');
+
+
+    Route::resource('v1/vacunas', 'VacunaAPIController');
+
+    Route::resource('v1/habitoSexuals', 'HabitoSexualAPIController');
+
+    Route::resource('v1/habitos', 'HabitoAPIController');
+
+    Route::resource('v1/enfermedadCronicas', 'EnfermedadCronicaAPIController');
+
+    Route::resource('v1/ocupacions', 'OcupacionAPIController');
+
+    Route::resource('v1/alergias', 'AlergiaAPIController');
+
+    Route::resource('v1/grupoEtnicos', 'GrupoEtnicoAPIController');
+
+    Route::resource('v1/vacunasPacientes', 'VacunasPacienteAPIController');
+
+    Route::resource('v1/habitosSexualesPacientes', 'HabitosSexualesPacienteAPIController');
+
+    Route::resource('v1/habitosPacientes', 'HabitosPacienteAPIController');
+
+    Route::resource('v1/enfermedadesCronicasPacientes', 'EnfermedadesCronicasPacienteAPIController');
+
+    Route::resource('v1/alergiasComunesPacientes', 'AlergiasComunesPacienteAPIController');
+
+    Route::resource('v1/usoMedicamentos', 'UsoMedicamentoAPIController');
+
+    Route::resource('v1/alergiasMedicamentosPacientes', 'AlergiasMedicamentosPacienteAPIController');
+
+    Route::resource('v1/examenFisicos', 'ExamenFisicoAPIController');
 });
+
+
+
 
 
 

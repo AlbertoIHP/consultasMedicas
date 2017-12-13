@@ -1,0 +1,16 @@
+<h1 mat-dialog-title style="text-align: center;">Creación de Enfermedad Crónica</h1>
+
+<div mat-dialog-content>
+
+
+    <mat-form-field class="fullWidth">
+     <input matInput placeholder="Nombre" [(ngModel)]="nuevaEnfermedadCronica.nombre">
+    </mat-form-field>
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button class="boton-aceptar" (click)="agregarEnfermedadCronica()" tabindex="2">Agregar Enfermedad Crónica <mat-icon>add</mat-icon></button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

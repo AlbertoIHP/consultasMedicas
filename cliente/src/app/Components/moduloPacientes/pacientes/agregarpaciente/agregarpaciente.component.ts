@@ -1,6 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {FormControl} from '@angular/forms';
 
+import {Observable} from 'rxjs/Observable';
+import {startWith} from 'rxjs/operators/startWith';
+import {map} from 'rxjs/operators/map';
 
 @Component({
 	selector: 'app-agregarpaciente',
@@ -12,10 +16,16 @@ export class AgregarpacienteComponent implements OnInit {
 	public totalPacientes: any;
 	public totalPersonas: any;
 	public totalTS: any;
+	public totalGruposEtnicos: any;
+	public totalOcupaciones: any;
 	public servicioPaciente: any;
 	public servicioPersona: any;
 	public servicioTS: any;
 	public personasDisponibles: any;
+
+	// Necesarios para autocomplete
+	public personaCtrl: FormControl;
+  	public filteredPersonas: Observable<any[]>;
 
 
 	constructor(
@@ -27,58 +37,35 @@ export class AgregarpacienteComponent implements OnInit {
 			this.totalPacientes = data.pacientes;
 			this.totalPersonas = data.personas;
 			this.totalTS = data.tipoSangres;
+			this.totalGruposEtnicos = data.gruposEtnicos;
+			this.totalOcupaciones = data.ocupaciones;
 			this.servicioPaciente = data.servicioPaciente;
 			this.servicioPersona = data.servicioPersona;
 			this.servicioTS = data.servicioTS;
-			this.personasDisponibles = this.totalPersonas;
-
+			this.personasDisponibles = data.personasDisponibles;
 
 		 }
 
 	ngOnInit()
 	{
-    this.actualizarPersonas();
-    this.actualizarTS();
-		this.actualizarPacientes();
+		this.personaCtrl = new FormControl();
+		    this.filteredPersonas = this.personaCtrl.valueChanges
+		      .pipe(
+		        startWith(''),
+		        map(persona => persona ? this.filterPersonas(persona) : this.personasDisponibles.slice())
+		);
 	}
 
-	actualizarPersonas()
-	{
-		this.servicioPersona.getPersonas().subscribe(data => {
-			var todo: any = data;
-			todo = todo.data;
-			this.totalPersonas = todo;
-			this.personasDisponibles = this.totalPersonas;
-			this.actualizarPacientes();
-		});
-	}
+	filterPersonas(rut: string) {
+	    return this.personasDisponibles.filter(persona =>
+	      persona.rut.toLowerCase().indexOf(rut.toLowerCase()) === 0);
+    }
 
 	onNoClick()
 	{
 
 		this.dialogRef.close();
 	}
-
-  actualizarTS ()
-  {
-    this.servicioTS.getTipoSangres().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalTS = todo;
-    });
-  }
-
-	actualizarPacientes()
-	{
-		this.servicioPaciente.getPacientes().subscribe(data => {
-		var todo: any = data;
-		todo = todo.data;
-		this.totalPacientes = todo;
-		this.filtrarPacientesRegistrados();
-
-		});
-	}
-
 
 	agregarPaciente()
 	{
@@ -93,21 +80,6 @@ export class AgregarpacienteComponent implements OnInit {
 		}
 
 	});
-	}
-
-
-	filtrarPacientesRegistrados()
-	{
-		for ( let i = 0 ; i < this.totalPacientes.length ; i ++ )
-		{
-			for ( let j = 0 ; j < this.personasDisponibles.length ; j ++ )
-			{
-				if (this.totalPacientes[i].Persona_id === this.personasDisponibles[j].id)
-				{
-					this.personasDisponibles.splice(j, 1);
-				}
-			}
-		}
 	}
 
 }
