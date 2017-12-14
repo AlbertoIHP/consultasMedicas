@@ -216,7 +216,7 @@ export class HabitosSexualesPacienteComponent {
   {
     for(let i=0;i<this.totalPacientes.length;i++){
       for(let j=0;j<this.totalHabitosSexualesPaciente.length;j++){
-        if(this.totalPacientes[i].id===parseInt(this.totalHabitosSexualesPaciente[j].Paciente_id)){
+        if(this.totalPacientes[i].id===this.totalHabitosSexualesPaciente[j].Paciente_id){
          let currentPersona= this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[i].Persona_id));
           this.totalPacientes[i].rut=currentPersona[0].rut;
           this.totalPacientes[i].nombre=currentPersona[0].nombre1+" "+currentPersona[0].nombre2+" "+currentPersona[0].apellido1+" "+currentPersona[0].apellido2;
