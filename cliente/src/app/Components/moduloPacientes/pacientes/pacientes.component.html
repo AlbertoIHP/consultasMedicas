@@ -43,7 +43,11 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header> Rut </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
     </ng-container>
-
+  
+    <ng-container matColumnDef="Nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+    </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="Persona">

@@ -5,13 +5,14 @@
 <div class="row">
 
   <div class="col s6">
-    <mat-form-field style="width: 100% !important;">
-      <mat-select  [(ngModel)]="nuevaAlergiasComunesPaciente.Paciente_id" placeholder="Paciente" style="width: 100% !important;" required>
-          <mat-option style="width: 100% !important;" *ngFor="let personaTemp of totalPersonasTemp" [value]="personaTemp.Paciente_id">
-            <span>({{personaTemp.rut}}) {{personaTemp.nombre1}} {{personaTemp.apellido1}}</span>
+      <mat-form-field style="width: 100% !important;">
+        <input matInput placeholder="Paciente" [matAutocomplete]="auto" [formControl]="personaCtrl" style="width: 100% !important;">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option style="width: 100% !important;" *ngFor="let persona of totalPersonasTemp | async" [value]="persona.rut" (onSelectionChange)="nuevaAlergiasComunesPaciente.Paciente_id = persona.Paciente_id">
+             <span>({{persona.rut}}) {{persona.nombre1}} {{persona.apellido1}}</span>
           </mat-option>
-        </mat-select>
-    </mat-form-field>
+        </mat-autocomplete>
+      </mat-form-field>
   </div>
 
   <div class="col s6">

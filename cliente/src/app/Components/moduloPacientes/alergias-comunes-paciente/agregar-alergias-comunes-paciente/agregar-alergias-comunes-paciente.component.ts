@@ -2,6 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { AlergiasComunesPaciente } from '../../../../Models/AlergiasComunesPaciente.model';
 import { DatepickerOptions } from 'ng2-datepicker';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
+import {startWith} from 'rxjs/operators/startWith';
+import {map} from 'rxjs/operators/map';
 
 @Component({
   selector: 'app-agregar-alergias-comunes-paciente',
@@ -19,6 +23,10 @@ export class AgregarAlergiasComunesPacienteComponent implements OnInit {
   	public servicioAlergiaComun: any;
   	public servicioAlergiasComunesPaciente: any;
   	public servicioPaciente: any;
+
+    // Necesarios para autocomplete
+    public personaCtrl: FormControl;
+    public filteredPersonas: Observable<any[]>;
 
     options: DatepickerOptions = {
       minYear: 1970,
@@ -44,7 +52,19 @@ export class AgregarAlergiasComunesPacienteComponent implements OnInit {
         this.reemplazarIdPorString();
       });
     });
+
+    this.personaCtrl = new FormControl();
+     this.filteredPersonas = this.personaCtrl.valueChanges
+      .pipe(
+        startWith(''),
+        map(persona => persona ? this.filterPersonas(persona) : this.totalPersonasTemp.slice())
+    );
   }
+
+    filterPersonas(rut: string) {
+      return this.totalPersonasTemp.filter(persona =>
+        persona.rut.toLowerCase().indexOf(rut.toLowerCase()) === 0);
+    }
 
 
   reemplazarIdPorString()
@@ -64,6 +84,7 @@ export class AgregarAlergiasComunesPacienteComponent implements OnInit {
         }
     }
       this.totalPersonasTemp=arrayTemp;
+      console.log(this.totalPersonasTemp);
 
     
   }
@@ -84,6 +105,9 @@ export class AgregarAlergiasComunesPacienteComponent implements OnInit {
     	this.servicioAlergiasComunesPaciente = data.servicioAlergiasComunesPaciente;
     	this.servicioAlergiaComun = data.servicioAlergiaComun;
     	this.servicioPaciente = data.servicioPaciente;
+
+      console.log(this.totalPersonas);
+      console.log(this.totalPacientes)
   	 }
 
 
