@@ -11,7 +11,7 @@ import { DatepickerOptions } from 'ng2-datepicker';
   styleUrls: ['./editar-habitos-sexuales-paciente.component.css']
 })
 export class EditarHabitosSexualesPacienteComponent implements OnInit {
-	  public habitosSexualesPaciente:HabitosSexualesPaciente;
+	  public paciente:any;
 
     public arrayHabitosSexualesPaciente:any;
 
@@ -26,7 +26,6 @@ export class EditarHabitosSexualesPacienteComponent implements OnInit {
     public servicioHabitosSexualesPaciente:any;
 
     public arrayPersonaSeleccionada:any;
-    public personaSeleccionada:Persona;
     options: DatepickerOptions = {
       minYear: 1970,
       maxYear: 2030,
@@ -82,16 +81,17 @@ export class EditarHabitosSexualesPacienteComponent implements OnInit {
     }
 
       this.totalPersonasTemp=arrayTemp;
-      this.arrayPersonaSeleccionada = this.totalPersonasTemp.filter( persona => persona.Paciente_id === this.habitosSexualesPaciente.Paciente_id);
-      this.personaSeleccionada=this.arrayPersonaSeleccionada[0];
-    
+      /*
+      this.arrayPersonaSeleccionada = this.totalPersonasTemp.filter( persona => persona.Paciente_id === this.paciente.id);
+      this.arrayPersonaSeleccionada=this.arrayPersonaSeleccionada[0];
+       */
   }
 
   constructor(
   	public dialogRef: MatDialogRef<EditarHabitosSexualesPacienteComponent>,
 	@Inject(MAT_DIALOG_DATA) public data: any
   	) {
-        this.habitosSexualesPaciente=data.habitosSexualesPaciente;
+        this.paciente=data.paciente;
 
         this.arrayHabitosSexualesPaciente=data.arrayHabitosSexualesPaciente;
 
@@ -100,7 +100,6 @@ export class EditarHabitosSexualesPacienteComponent implements OnInit {
     		this.totalPersonas=data.personas;
       	this.totalPersonasTemp=[];
         this.arrayPersonaSeleccionada=[];
-        this.personaSeleccionada=new Persona();
     		this.servicioPaciente=data.servicioPaciente;
     		this.servicioHabitoSexual=data.servicioHabitoSexual;
     		this.servicioPersona=data.servicioPersona;
@@ -128,7 +127,9 @@ export class EditarHabitosSexualesPacienteComponent implements OnInit {
 
     for(let i=0;i<this.arrayHabitosSexualesPaciente.length;i++){
 
-  
+      if(this.arrayHabitosSexualesPaciente[i].fechaInicio!=null){
+      this.arrayHabitosSexualesPaciente[i].fechaInicio=new Date(this.arrayHabitosSexualesPaciente[i].fechaInicio).toISOString().slice(0, 19).replace('T', ' ');
+      }
       this.servicioHabitosSexualesPaciente.editHabitosSexualesPaciente(this.arrayHabitosSexualesPaciente[i], this.arrayHabitosSexualesPaciente[i].id).subscribe( data => {
         console.log(data);
         this.dialogRef.close();

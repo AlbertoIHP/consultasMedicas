@@ -172,7 +172,7 @@ export class buscadorPorNombre extends DataSource<any> {
 
         }else if(this.filtro == "HabitosSexualesPaciente"){ 
 
-           let searchStr = (item.Paciente_id.toString()).toLowerCase();
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "Habito"){
@@ -342,7 +342,7 @@ export class ExampleDataSource extends DataSource<any> {
 
         }else if(this.filtro == "HabitosSexualesPaciente"){
 
-           let searchStr = (item.Paciente_id.toString()).toLowerCase();
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
            
         }else if(this.filtro == "Habito"){
@@ -625,11 +625,9 @@ export class ExampleDataSource extends DataSource<any> {
         {
            switch (this._sort.active)
           {
-            case 'HabitoSexual': [propertyA, propertyB] = [a.HabitoSexual_id, b.HabitoSexual_id]; break;
-            case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
-            case 'FechaInicio': [propertyA, propertyB] = [a.fechaInicio, b.fechaInicio]; break;
-            case 'Verdadero': [propertyA, propertyB] = [a.verdadero, b.verdadero]; break;
-
+            case 'Rut': [propertyA, propertyB] = [a.rut, b.rut]; break;
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
+            
           }
         }
 

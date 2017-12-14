@@ -42,7 +42,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class HabitosSexualesPacienteComponent {
   
 	public totalHabitosSexuales: HabitoSexual[];
-	public totalPacientes: Paciente[];
+	public totalPacientes: any;
 	public totalHabitosSexualesPaciente: HabitosSexualesPaciente[];
 
   //arreglo con todos los registron que contengan al paciente parametrizado y sus hábitos
@@ -50,7 +50,7 @@ export class HabitosSexualesPacienteComponent {
 
 	public totalPersonas: Persona[];
 	public usuarioActual;
-  	displayedColumns = ['Acciones', 'Rut Paciente', 'Habito Sexual','Fecha Inicio'];
+  	displayedColumns = ['Acciones', 'Rut Paciente','Nombre','Habitos Sexuales'];
 
   	//DATATABLE
 	exampleDatabase;
@@ -131,8 +131,13 @@ export class HabitosSexualesPacienteComponent {
       todo = todo.data;
       this.totalHabitosSexualesPaciente = todo;
       
-      //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalHabitosSexualesPaciente);
+      this.servicioPaciente.getPacientes().subscribe(data=>{
+         var todo: any = data;
+        todo = todo.data;
+        this.totalPacientes = todo;
+
+        //DATATABLE
+      this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
 
       this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'HabitosSexualesPaciente');
       Observable.fromEvent(this.filter.nativeElement, 'keyup')
@@ -144,25 +149,33 @@ export class HabitosSexualesPacienteComponent {
           })
 
 
+      });
+      
+
     });
   }
 
   //función para setear el array con los registros del paciente correspondiente
   obtenerHabitosSexualesPaciente(idPaciente){
     for(let i=0;i<this.totalHabitosSexualesPaciente.length;i++){
-      this.pasarStringId(this.totalHabitosSexualesPaciente[i]);
+
       if(this.totalHabitosSexualesPaciente[i].Paciente_id==idPaciente){
+
         this.arrayHabitosSexualesPaciente.push(this.totalHabitosSexualesPaciente[i]);
       }
 
       if(this.totalHabitosSexualesPaciente[i].fechaInicio != null){
+
         this.totalHabitosSexualesPaciente[i].esVerdadero=true;
+
       }else if(this.totalHabitosSexualesPaciente[i].fechaInicio==null){
+
         this.totalHabitosSexualesPaciente[i].esVerdadero=false;
       }
     }
 
   }
+
 
   actualizarAtributos ()
   {
@@ -201,28 +214,15 @@ export class HabitosSexualesPacienteComponent {
 
   reemplazarIdPorString()
   {
-    for(let i = 0 ; i < this.totalHabitosSexualesPaciente.length ; i ++)
-    {
-
-      for(let j = 0 ; j < this.totalHabitosSexuales.length ; j++)
-      {
-        if( parseInt(this.totalHabitosSexualesPaciente[i].HabitoSexual_id) === this.totalHabitosSexuales[j].id)
-        {
-          this.totalHabitosSexualesPaciente[i].HabitoSexual_id = this.totalHabitosSexuales[j].nombre;
+    for(let i=0;i<this.totalPacientes.length;i++){
+      for(let j=0;j<this.totalHabitosSexualesPaciente.length;j++){
+        if(this.totalPacientes[i].id===parseInt(this.totalHabitosSexualesPaciente[j].Paciente_id)){
+         let currentPersona= this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[i].Persona_id));
+          this.totalPacientes[i].rut=currentPersona[0].rut;
+          this.totalPacientes[i].nombre=currentPersona[0].nombre1+" "+currentPersona[0].nombre2+" "+currentPersona[0].apellido1+" "+currentPersona[0].apellido2;
           break;
         }
       }
-
-      for(let j = 0 ; j < this.totalPacientes.length ; j++)
-      {
-        if( parseInt(this.totalHabitosSexualesPaciente[i].Paciente_id) === this.totalPacientes[j].id)
-        {
-          let currentPersona = this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[j].Persona_id));
-          this.totalHabitosSexualesPaciente[i].Paciente_id = currentPersona[0].rut;
-          break;
-        }
-      }
-
     }
   }
 
@@ -250,21 +250,21 @@ export class HabitosSexualesPacienteComponent {
 
 
 
-  edicionHabitosSexualesPaciente (habitosSexualesPaciente)
+  edicionHabitosSexualesPaciente (paciente)
   {
 
-    var a = JSON.parse( JSON.stringify(habitosSexualesPaciente) );
+    var a = JSON.parse( JSON.stringify(paciente) );
 
-    this.pasarStringId(a);
+    //this.pasarStringId(a);
 
-    this.obtenerHabitosSexualesPaciente(a.Paciente_id);
+    this.obtenerHabitosSexualesPaciente(a.id);
 
     let dialogRef = this.dialog.open(EditarHabitosSexualesPacienteComponent, {
       width: '800px',
       height: '500px',
       data:
       {
-       habitosSexualesPaciente: a,
+       paciente: a,
        habitosSexuales: this.totalHabitosSexuales,
        arrayHabitosSexualesPaciente: this.arrayHabitosSexualesPaciente,
        pacientes: this.totalPacientes,
@@ -308,14 +308,14 @@ export class HabitosSexualesPacienteComponent {
 
 
   //función para mostrar la ficha médica del paciente correspondiente
- desplegarFichaPaciente(vacunasPaciente)
+ desplegarFichaPaciente(paciente)
   {
 
-   var a = JSON.parse( JSON.stringify(vacunasPaciente) );
+   var a = JSON.parse( JSON.stringify(paciente) );
    var b;
   this.pasarStringId(a);
 
-  this.servicioPaciente.getPaciente(a.Paciente_id).subscribe(data =>{
+  this.servicioPaciente.getPaciente(a.id).subscribe(data =>{
     var todo: any = data;
     todo = todo.data;
     b=todo;
