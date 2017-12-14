@@ -44,6 +44,10 @@ export class HabitosSexualesPacienteComponent {
 	public totalHabitosSexuales: HabitoSexual[];
 	public totalPacientes: Paciente[];
 	public totalHabitosSexualesPaciente: HabitosSexualesPaciente[];
+
+  //arreglo con todos los registron que contengan al paciente parametrizado y sus hábitos
+  public arrayHabitosSexualesPaciente: HabitosSexualesPaciente[];
+
 	public totalPersonas: Persona[];
 	public usuarioActual;
   	displayedColumns = ['Acciones', 'Rut Paciente', 'Habito Sexual','Fecha Inicio'];
@@ -107,6 +111,9 @@ export class HabitosSexualesPacienteComponent {
       this.usuarioActual=new UsuarioActual();
       this.totalHabitosSexuales = [];
       this.totalHabitosSexualesPaciente = [];
+
+      this.arrayHabitosSexualesPaciente =[];
+
       this.totalPacientes=[];
       this.totalPersonas=[];
       this.actualizarAtributos();
@@ -140,6 +147,22 @@ export class HabitosSexualesPacienteComponent {
     });
   }
 
+  //función para setear el array con los registros del paciente correspondiente
+  obtenerHabitosSexualesPaciente(idPaciente){
+    for(let i=0;i<this.totalHabitosSexualesPaciente.length;i++){
+      this.pasarStringId(this.totalHabitosSexualesPaciente[i]);
+      if(this.totalHabitosSexualesPaciente[i].Paciente_id==idPaciente){
+        this.arrayHabitosSexualesPaciente.push(this.totalHabitosSexualesPaciente[i]);
+      }
+
+      if(this.totalHabitosSexualesPaciente[i].fechaInicio != null){
+        this.totalHabitosSexualesPaciente[i].esVerdadero=true;
+      }else if(this.totalHabitosSexualesPaciente[i].fechaInicio==null){
+        this.totalHabitosSexualesPaciente[i].esVerdadero=false;
+      }
+    }
+
+  }
 
   actualizarAtributos ()
   {
@@ -234,6 +257,8 @@ export class HabitosSexualesPacienteComponent {
 
     this.pasarStringId(a);
 
+    this.obtenerHabitosSexualesPaciente(a.Paciente_id);
+
     let dialogRef = this.dialog.open(EditarHabitosSexualesPacienteComponent, {
       width: '800px',
       height: '500px',
@@ -241,6 +266,7 @@ export class HabitosSexualesPacienteComponent {
       {
        habitosSexualesPaciente: a,
        habitosSexuales: this.totalHabitosSexuales,
+       arrayHabitosSexualesPaciente: this.arrayHabitosSexualesPaciente,
        pacientes: this.totalPacientes,
        personas: this.totalPersonas,
        servicioHabitoSexual: this.servicioHabitoSexual,
@@ -254,6 +280,7 @@ export class HabitosSexualesPacienteComponent {
 
       this.actualizarAtributos();
       this.actualizarHabitosSexualesPaciente();
+      this.arrayHabitosSexualesPaciente=[];
       
     });
   }

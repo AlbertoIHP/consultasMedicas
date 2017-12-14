@@ -2389,7 +2389,7 @@ class modulopacientes extends Seeder
 		DB::table('Habito')->insert([
 			'nombre' => 'Consume drogas',
 		]);
-
+		//Hábito sexual 1-3
 		DB::table('HabitoSexual')->insert([
 			'nombre' => 'Usa preservativo',
 		]);
@@ -2459,12 +2459,36 @@ class modulopacientes extends Seeder
 			'fechaInicio' => Carbon::create('2005', '02', '01'),
 		]);
 
+		//Hábitos sexuales paciente
+		/*
 		DB::table('HabitosSexualesPaciente')->insert([
 			'HabitoSexual_id' => 1,
 			'Paciente_id' => 1,
 			'fechaInicio' => Carbon::create('2009', '02', '01'),
 			'verdadero' => 1,
+		]);*/
+
+		DB::table('HabitosSexualesPaciente')->insert([
+			'HabitoSexual_id' => 1,
+			'Paciente_id' => 1,
+			'fechaInicio' => null,
+			'verdadero' => 1,
 		]);
+
+		DB::table('HabitosSexualesPaciente')->insert([
+			'HabitoSexual_id' => 2,
+			'Paciente_id' => 1,
+			'fechaInicio' => null,
+			'verdadero' => 1,
+		]);
+
+		DB::table('HabitosSexualesPaciente')->insert([
+			'HabitoSexual_id' => 3,
+			'Paciente_id' => 1,
+			'fechaInicio' => null,
+			'verdadero' => 1,
+		]);
+		//----
 
 		DB::table('EnfermedadesCronicasPaciente')->insert([
 			'EnfermedadCronica_id' => 1,
