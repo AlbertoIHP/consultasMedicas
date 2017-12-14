@@ -3,12 +3,13 @@ export class EnfermedadesCronicasPaciente {
 	EnfermedadCronica_id: string;
 	Paciente_id: string;
 	fechaDeteccion: string;
-
+	esVerdadero: boolean;
 	constructor()
 	{
 		this.id = 0;
 		this.EnfermedadCronica_id = "";
 		this.Paciente_id = "";
-		this.fechaDeteccion = new Date().toISOString().slice(0, 19).replace('T', ' ');
+		this.fechaDeteccion = null;
+		this.esVerdadero = false;
 	}
 }

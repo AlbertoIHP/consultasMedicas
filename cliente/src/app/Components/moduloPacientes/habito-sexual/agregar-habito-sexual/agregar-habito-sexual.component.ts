@@ -18,7 +18,7 @@ import { PacienteService } from '../../../../Services/paciente/paciente.service'
 export class AgregarHabitoSexualComponent {
 	public nuevoHabitoSexual: HabitoSexual;
 	public totalPacientes: Paciente[];
-	public habitosSexualesPaciente:HabitosSexualesPaciente;
+	public nuevoHabitosSexualesPaciente:HabitosSexualesPaciente;
 	public totalHabitosSexuales:HabitoSexual[];
 	constructor(
 		public dialogRef: MatDialogRef<AgregarHabitoSexualComponent>,
@@ -29,7 +29,7 @@ export class AgregarHabitoSexualComponent {
 		)
 	{
 		this.totalPacientes=[];
-		this.habitosSexualesPaciente= new HabitosSexualesPaciente();
+		this.nuevoHabitosSexualesPaciente= new HabitosSexualesPaciente();
 		this.nuevoHabitoSexual = new HabitoSexual();
 		this.totalHabitosSexuales=[];
 	}
@@ -53,20 +53,20 @@ export class AgregarHabitoSexualComponent {
 					todo = todo.data;
 					this.totalHabitosSexuales = todo;
 
-					for(let i=0;i<this.totalPacientes.length;i++){
+					let currentHabitoSexual=this.totalHabitosSexuales.filter( habitoSexual => habitoSexual.nombre === this.nuevoHabitoSexual.nombre);
 
-						this.habitosSexualesPaciente.Paciente_id=this.totalPacientes[i].id;
+					
+					// Agregar nuevo habito sexual a cada paciente
+					for (let i = 0; i < this.totalPacientes.length; i++) {
+						this.nuevoHabitosSexualesPaciente.Paciente_id = this.totalPacientes[i].id;
+						this.nuevoHabitosSexualesPaciente.HabitoSexual_id = currentHabitoSexual[0].id;
+						this.servicioHabitosSexualesPaciente.registerHabitosSexualesPaciente(this.nuevoHabitosSexualesPaciente).subscribe(data => {
 
-						let currentHabitoSexual=this.totalHabitosSexuales.filter( habitoSexual => habitoSexual.nombre === this.nuevoHabitoSexual.nombre);
-
-						this.habitosSexualesPaciente.HabitoSexual_id=currentHabitoSexual[0].id;
-						
-						this.servicioHabitosSexualesPaciente.registerHabitosSexualesPaciente(this.habitosSexualesPaciente);
+						});
 					}
-
-				});
-
+					
 				
+				});
 
 				console.log(data);
 				this.dialogRef.close();
