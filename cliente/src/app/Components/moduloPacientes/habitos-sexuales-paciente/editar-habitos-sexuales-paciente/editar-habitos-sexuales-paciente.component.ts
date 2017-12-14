@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { HabitosSexualesPaciente } from '../../../../Models/HabitosSexualesPaciente.model';
+import { Persona } from '../../../../Models/Persona.model';
 import { DatepickerOptions } from 'ng2-datepicker';
 
 @Component({
@@ -10,11 +11,13 @@ import { DatepickerOptions } from 'ng2-datepicker';
   styleUrls: ['./editar-habitos-sexuales-paciente.component.css']
 })
 export class EditarHabitosSexualesPacienteComponent implements OnInit {
-	public habitosSexualesPaciente:HabitosSexualesPaciente;
+	  public habitosSexualesPaciente:HabitosSexualesPaciente;
 
-	public totalPacientes: any;
-	public totalHabitosSexuales: any;
-	public totalPersonas: any;
+    public arrayHabitosSexualesPaciente:any;
+
+	  public totalPacientes: any;
+	  public totalHabitosSexuales: any;
+	  public totalPersonas: any;
     public totalPersonasTemp:any;
 
     public servicioPaciente: any;
@@ -22,6 +25,8 @@ export class EditarHabitosSexualesPacienteComponent implements OnInit {
     public servicioPersona: any;
     public servicioHabitosSexualesPaciente:any;
 
+    public arrayPersonaSeleccionada:any;
+    public personaSeleccionada:Persona;
     options: DatepickerOptions = {
       minYear: 1970,
       maxYear: 2030,
@@ -67,8 +72,18 @@ export class EditarHabitosSexualesPacienteComponent implements OnInit {
           
         }
     }
-      this.totalPersonasTemp=arrayTemp;
 
+    for(let i=0;i<this.totalHabitosSexuales.length;i++){
+      for(let j=0;j<this.arrayHabitosSexualesPaciente.length;j++){
+        if(this.totalHabitosSexuales[i].id==this.arrayHabitosSexualesPaciente[j].HabitoSexual_id){
+          this.arrayHabitosSexualesPaciente[j].nombreHabito=this.totalHabitosSexuales[i].nombre;
+        }
+      }
+    }
+
+      this.totalPersonasTemp=arrayTemp;
+      this.arrayPersonaSeleccionada = this.totalPersonasTemp.filter( persona => persona.Paciente_id === this.habitosSexualesPaciente.Paciente_id);
+      this.personaSeleccionada=this.arrayPersonaSeleccionada[0];
     
   }
 
@@ -76,17 +91,20 @@ export class EditarHabitosSexualesPacienteComponent implements OnInit {
   	public dialogRef: MatDialogRef<EditarHabitosSexualesPacienteComponent>,
 	@Inject(MAT_DIALOG_DATA) public data: any
   	) {
-      this.habitosSexualesPaciente=data.habitosSexualesPaciente;
+        this.habitosSexualesPaciente=data.habitosSexualesPaciente;
 
-  		this.totalPacientes=data.pacientes;
-  		this.totalHabitosSexuales=data.habitosSexuales;
-  		this.totalPersonas=data.personas;
+        this.arrayHabitosSexualesPaciente=data.arrayHabitosSexualesPaciente;
+
+    		this.totalPacientes=data.pacientes;
+    		this.totalHabitosSexuales=data.habitosSexuales;
+    		this.totalPersonas=data.personas;
       	this.totalPersonasTemp=[];
-
-  		this.servicioPaciente=data.servicioPaciente;
-  		this.servicioHabitoSexual=data.servicioHabitoSexual;
-  		this.servicioPersona=data.servicioPersona;
-      	this.servicioHabitosSexualesPaciente=data.servicioHabitosSexualesPaciente;
+        this.arrayPersonaSeleccionada=[];
+        this.personaSeleccionada=new Persona();
+    		this.servicioPaciente=data.servicioPaciente;
+    		this.servicioHabitoSexual=data.servicioHabitoSexual;
+    		this.servicioPersona=data.servicioPersona;
+        this.servicioHabitosSexualesPaciente=data.servicioHabitosSexualesPaciente;
 
   	 }
 
@@ -95,13 +113,29 @@ export class EditarHabitosSexualesPacienteComponent implements OnInit {
       this.dialogRef.close();
     }
 
+
+  obtenerFecha(habsPaciente){
+    if(habsPaciente.esVerdadero){
+      habsPaciente.fechaInicio=new Date().toISOString().slice(0, 19).replace('T', ' ');
+    }else if(habsPaciente.esVerdadero==false){
+      habsPaciente.fechaInicio=null;
+    }
+
+  }
+
   editarHabitosSexualesPaciente()
   {
-    this.habitosSexualesPaciente.fechaInicio=new Date(this.habitosSexualesPaciente.fechaInicio).toISOString().slice(0, 19).replace('T', ' ');
-    this.servicioHabitosSexualesPaciente.editHabitosSexualesPaciente(this.habitosSexualesPaciente, this.habitosSexualesPaciente.id).subscribe( data => {
-      console.log(data);
-      this.dialogRef.close();
 
-    });
+    for(let i=0;i<this.arrayHabitosSexualesPaciente.length;i++){
+
+  
+      this.servicioHabitosSexualesPaciente.editHabitosSexualesPaciente(this.arrayHabitosSexualesPaciente[i], this.arrayHabitosSexualesPaciente[i].id).subscribe( data => {
+        console.log(data);
+        this.dialogRef.close();
+
+      });
+
+    }
+
   }
 }

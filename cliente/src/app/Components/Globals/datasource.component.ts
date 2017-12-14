@@ -172,7 +172,7 @@ export class buscadorPorNombre extends DataSource<any> {
 
         }else if(this.filtro == "HabitosSexualesPaciente"){ 
 
-           let searchStr = (item.fechaInicio.toString()).toLowerCase();
+           let searchStr = (item.Paciente_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "Habito"){
@@ -342,7 +342,7 @@ export class ExampleDataSource extends DataSource<any> {
 
         }else if(this.filtro == "HabitosSexualesPaciente"){
 
-           let searchStr = (item.fechaInicio.toString()).toLowerCase();
+           let searchStr = (item.Paciente_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
            
         }else if(this.filtro == "Habito"){
