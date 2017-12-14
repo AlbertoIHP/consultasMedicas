@@ -17,17 +17,9 @@
       <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
       <mat-cell *matCellDef="let row">
 
-              <button *ngIf="usuarioActual.obtenerPermisoUpdate('HabitosSexualesPaciente')" (click) = "edicionHabitosSexualesPaciente(row)" class="btn boton-editar" type="button" matTooltip="Editar">
-                <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
-              </button>
-              
               <!--Aqui se llamará a la función de la ficha-->
               <button (click) = "desplegarFichaPaciente(row)" class="btn boton-ficha" type="button" matTooltip="Ver ficha" >
                 <i class="fa fa-address-book-o icono" aria-hidden="true"></i>
-              </button>
-
-              <button *ngIf="usuarioActual.obtenerPermisoErase('HabitosSexualesPaciente')" (click) = "eliminarHabitosSexualesPaciente(row)" class="btn boton-eliminar" type="button" matTooltip="Eliminar">
-                <i class="fa fa-trash-o icono" aria-hidden="true"></i>
               </button>
 
        </mat-cell>
@@ -36,9 +28,28 @@
 
     <ng-container matColumnDef="Rut Paciente">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Rut Paciente </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.Paciente_id}} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="Nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Habitos Sexuales">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Hábitos Sexuales </mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+
+         <button  mat-button class="boton-datos" *ngIf="usuarioActual.obtenerPermisoUpdate('HabitosSexualesPaciente')" (click)="edicionHabitosSexualesPaciente(row)" >
+          <span style="color:white;">Ver Hábitos Sexuales</span>
+        </button>
+
+
+      </mat-cell>
+    </ng-container>
+
+    
+<!--
     <ng-container matColumnDef="Habito Sexual">
       <mat-header-cell *matHeaderCellDef  mat-sort-header> Hábito Sexual </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.HabitoSexual_id}} </mat-cell>
@@ -50,7 +61,7 @@
       <mat-cell *matCellDef="let row"> {{row.fechaInicio}} </mat-cell>
     </ng-container>
 
-
+-->
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -70,11 +81,7 @@
   </mat-paginator>
 </div>
 
- <div class="fixed-action-btn">
-    <a class="btn-floating btn-large boton-agregar" *ngIf="usuarioActual.obtenerPermisoWrite('HabitosSexualesPaciente')" (click)="agregacionHabitosSexualesPaciente()">
-      <i class="large material-icons">add</i>
-    </a>
-  </div>
+
 
 
 
