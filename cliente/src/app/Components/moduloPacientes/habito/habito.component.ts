@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
 
+import { HabitosPaciente } from '../../../Models/HabitosPaciente.model';
+import { HabitosPacienteService } from '../../../Services/habitospaciente/habitos-paciente.service';
 
 import { Habito } from '../../../Models/Habito.model';
 import { HabitoService } from '../../../Services/habito/habito.service';
@@ -91,6 +93,7 @@ export class HabitoComponent {
 
 
 	constructor (
+    public servicioHabitosPaciente: HabitosPacienteService,
     public servicioHabito: HabitoService,
     public dialog: MatDialog,
     public router: Router
@@ -127,13 +130,30 @@ export class HabitoComponent {
 		});
 	}
 
-	eliminarHabito (habito)
-	{
-		this.servicioHabito.deleteHabito(habito.id).subscribe( data => {
-			console.log(data);
-			this.actualizarHabitos();
-		});
-	}
+  eliminarHabito (habito)
+  {
+
+   this.servicioHabitosPaciente.getHabitosPacientes().subscribe(data=>{
+      var todo: any = data;
+      todo = todo.data;
+      var totalHabitosPaciente = todo;
+
+      for(let i=0; i<totalHabitosPaciente.length;i++){
+        if(totalHabitosPaciente[i].Habito_id===habito.id){
+          this.servicioHabitosPaciente.deleteHabitosPaciente(totalHabitosPaciente[i].id).subscribe(data=>{
+
+          });
+        }
+      }
+
+     this.servicioHabito.deleteHabito(habito.id).subscribe( data => {
+      console.log(data);
+      this.actualizarHabitos();
+    });
+
+   });
+    
+  }
 
 
 

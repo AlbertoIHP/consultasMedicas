@@ -17,14 +17,14 @@ import { PacienteService } from '../../../../Services/paciente/paciente.service'
 export class AgregarAlergiaComponent {
 	public nuevaAlergia: Alergia;
 	public totalPacientes: Paciente[];
-	public nuevaAlergiasComunesPaciente:AlergiasComunesPaciente;
-	public totalAlergiasComunes:Alergia[];
+	public nuevaAlergiasComunesPaciente: AlergiasComunesPaciente;
+	public totalAlergiasComunes: Alergia[];
 	constructor(
 		public dialogRef: MatDialogRef<AgregarAlergiaComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		public servicioAlergia: AlergiaService,
-		public servicioAlergiasComunesPaciente:AlergiasComunesPacienteService,
-		public servicioPacientes:PacienteService
+		public servicioAlergiasComunesPaciente: AlergiasComunesPacienteService,
+		public servicioPacientes: PacienteService
 		)
 	{
 		this.nuevaAlergia = new Alergia();

@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { Vacuna } from '../../../Models/Vacuna.model';
 import { VacunaService } from '../../../Services/vacuna/vacuna.service';
 
+import { VacunasPaciente } from '../../../Models/VacunasPaciente.model';
+import { VacunasPacienteService } from '../../../Services/vacunaspaciente/vacunaspaciente.service';
+
 import { AgregarVacunaComponent } from './agregar-vacuna/agregar-vacuna.component';
 import { EditarVacunaComponent } from './editar-vacuna/editar-vacuna.component';
 
@@ -87,7 +90,7 @@ export class VacunaComponent {
 
 
 
-  constructor(public servicioVacuna: VacunaService, public dialog:MatDialog) {
+  constructor(public servicioVacuna: VacunaService, public servicioVacunasPaciente: VacunasPacienteService, public dialog:MatDialog) {
   		this.totalVacunas=[];
   		this.usuarioActual=new UsuarioActual();
   		this.actualizarVacunas();
@@ -118,14 +121,30 @@ export class VacunaComponent {
 	}
 
 
-	eliminarVacuna (vacuna)
-	{
-		this.servicioVacuna.deleteVacuna(vacuna.id).subscribe( data => {
-			this.actualizarVacunas();
-		});
-	}
+  eliminarVacuna (vacuna)
+  {
 
+   this.servicioVacunasPaciente.getVacunasPaciente().subscribe(data=>{
+      var todo: any = data;
+      todo = todo.data;
+      var totalVacunasPaciente = todo;
 
+      for(let i=0; i<totalVacunasPaciente.length;i++){
+        if(totalVacunasPaciente[i].Vacuna_id===vacuna.id){
+          this.servicioVacunasPaciente.deleteVacunaPaciente(totalVacunasPaciente[i].id).subscribe(data=>{
+
+          });
+        }
+      }
+
+     this.servicioVacuna.deleteVacuna(vacuna.id).subscribe( data => {
+      console.log(data);
+      this.actualizarVacunas();
+    });
+
+   });
+    
+  }
 
 	edicionVacuna (vacuna)
 	{
