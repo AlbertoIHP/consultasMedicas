@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { AlergiasComunesPaciente } from '../../../../Models/AlergiasComunesPaciente.model';
-
+import { Persona } from '../../../../Models/Persona.model';
 import { DatepickerOptions } from 'ng2-datepicker';
 
 @Component({
@@ -10,17 +10,18 @@ import { DatepickerOptions } from 'ng2-datepicker';
   styleUrls: ['./editar-alergias-comunes-paciente.component.css']
 })
 export class EditarAlergiasComunesPacienteComponent implements OnInit {
-	public alergiasComunesPaciente:AlergiasComunesPaciente;
+	public paciente:any;
+  public arrayAlergiasComunesPaciente: any;
 
 	public totalPacientes: any;
 	public totalAlergiasComunes: any;
 	public totalPersonas: any;
-    public totalPersonasTemp:any;
+  public totalPersonasTemp:any;
 
-    public servicioPaciente: any;
-    public servicioAlergiaComun: any;
-    public servicioPersona: any;
-    public servicioAlergiasComunesPaciente:any;
+  public servicioPaciente: any;
+  public servicioAlergiaComun: any;
+  public servicioPersona: any;
+  public servicioAlergiasComunesPaciente:any;
 
     options: DatepickerOptions = {
       minYear: 1970,
@@ -66,6 +67,14 @@ export class EditarAlergiasComunesPacienteComponent implements OnInit {
           
         }
     }
+
+    for(let i=0;i<this.totalAlergiasComunes.length;i++){
+      for(let j=0;j<this.arrayAlergiasComunesPaciente.length;j++){
+        if(this.totalAlergiasComunes[i].id==this.arrayAlergiasComunesPaciente[j].Alergia_id){
+          this.arrayAlergiasComunesPaciente[j].nombreAlergia=this.totalAlergiasComunes[i].nombre;
+        }
+      }
+    }
       this.totalPersonasTemp=arrayTemp;
 
     
@@ -75,7 +84,9 @@ export class EditarAlergiasComunesPacienteComponent implements OnInit {
   	public dialogRef: MatDialogRef<EditarAlergiasComunesPacienteComponent>,
 	@Inject(MAT_DIALOG_DATA) public data: any
   	) {
-      this.alergiasComunesPaciente=data.alergiasComunesPaciente;
+      this.paciente = data.paciente;
+      
+      this.arrayAlergiasComunesPaciente = data.arrayAlergiasComunesPaciente;
 
   		this.totalPacientes=data.pacientes;
   		this.totalAlergiasComunes=data.alergiasComunes;
@@ -94,17 +105,29 @@ export class EditarAlergiasComunesPacienteComponent implements OnInit {
       this.dialogRef.close();
     }
 
+  obtenerFecha(alergiaPaciente){
+    if(alergiaPaciente.esVerdadero){
+      alergiaPaciente.fechaDeteccion=new Date().toISOString().slice(0, 19).replace('T', ' ');
+    }else if(alergiaPaciente.esVerdadero==false){
+      alergiaPaciente.fechaDeteccion=null;
+    }
+
+  }
   editarAlergiasComunesPaciente()
   {
 
-    this.alergiasComunesPaciente.fechaDeteccion=new Date(this.alergiasComunesPaciente.fechaDeteccion).toISOString().slice(0, 19).replace('T', ' ');
+    for(let i=0;i<this.arrayAlergiasComunesPaciente.length;i++){
 
+      if(this.arrayAlergiasComunesPaciente[i].fechaDeteccion!=null){
+      this.arrayAlergiasComunesPaciente[i].fechaDeteccion=new Date(this.arrayAlergiasComunesPaciente[i].fechaDeteccion).toISOString().slice(0, 19).replace('T', ' ');
+      }
+      this.servicioAlergiasComunesPaciente.editAlergiasComunesPaciente(this.arrayAlergiasComunesPaciente[i], this.arrayAlergiasComunesPaciente[i].id).subscribe( data => {
+        console.log(data);
+        this.dialogRef.close();
 
-    this.servicioAlergiasComunesPaciente.editAlergiasComunesPaciente(this.alergiasComunesPaciente, this.alergiasComunesPaciente.id).subscribe( data => {
-      console.log(data);
-      this.dialogRef.close();
+      });
 
-    });
+    }
   }
 
 }

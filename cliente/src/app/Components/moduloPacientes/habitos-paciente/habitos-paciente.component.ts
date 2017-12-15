@@ -41,11 +41,14 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class HabitosPacienteComponent {
 	public totalHabitos: Habito[];
-	public totalPacientes: Paciente[];
+	public totalPacientes: any;
   	public totalHabitosPaciente: HabitosPaciente[];
   	public totalPersonas: Persona[];
 	public usuarioActual;
-  	displayedColumns = ['Acciones', 'Rut Paciente', 'Habito','Fecha Inicio'];
+
+  //arreglo con todos los registron que contengan al paciente parametrizado y sus hábitos
+  public arrayHabitosPaciente: HabitosPaciente[];
+  	displayedColumns = ['Acciones', 'Rut Paciente', 'Nombre' ,'Habitos'];
 
   //DATATABLE
   exampleDatabase;
@@ -105,6 +108,7 @@ export class HabitosPacienteComponent {
       this.totalHabitosPaciente = [];
       this.totalPacientes=[];
       this.totalPersonas=[];
+      this.arrayHabitosPaciente =[];
       this.actualizarAtributos();
       this.actualizarHabitosPaciente();
 
@@ -112,15 +116,20 @@ export class HabitosPacienteComponent {
 
       }
 
-actualizarHabitosPaciente ()
+    actualizarHabitosPaciente ()
   {
     this.servicioHabitosPaciente.getHabitosPacientes().subscribe(data => {
       var todo: any = data;
       todo = todo.data;
       this.totalHabitosPaciente = todo;
       
-      //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalHabitosPaciente);
+      this.servicioPaciente.getPacientes().subscribe(data=>{
+         var todo: any = data;
+        todo = todo.data;
+        this.totalPacientes = todo;
+
+        //DATATABLE
+      this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
 
       this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'HabitosPaciente');
       Observable.fromEvent(this.filter.nativeElement, 'keyup')
@@ -132,9 +141,32 @@ actualizarHabitosPaciente ()
           })
 
 
+      });
+      
+
     });
   }
 
+  //función para setear el array con los registros del paciente correspondiente
+  obtenerHabitosPaciente(idPaciente){
+    for(let i=0;i<this.totalHabitosPaciente.length;i++){
+
+      if(this.totalHabitosPaciente[i].Paciente_id==idPaciente){
+
+        this.arrayHabitosPaciente.push(this.totalHabitosPaciente[i]);
+      }
+
+      if(this.totalHabitosPaciente[i].fechaInicio != null){
+
+        this.totalHabitosPaciente[i].esVerdadero=true;
+
+      }else if(this.totalHabitosPaciente[i].fechaInicio==null){
+
+        this.totalHabitosPaciente[i].esVerdadero=false;
+      }
+    }
+
+  }
 
   actualizarAtributos ()
   {
@@ -170,33 +202,20 @@ actualizarHabitosPaciente ()
     });
   }
 
-
   reemplazarIdPorString()
   {
-    for(let i = 0 ; i < this.totalHabitosPaciente.length ; i ++)
-    {
-
-      for(let j = 0 ; j < this.totalHabitos.length ; j++)
-      {
-        if( parseInt(this.totalHabitosPaciente[i].Habito_id) === this.totalHabitos[j].id)
-        {
-          this.totalHabitosPaciente[i].Habito_id = this.totalHabitos[j].nombre;
+    for(let i=0;i<this.totalPacientes.length;i++){
+      for(let j=0;j<this.totalHabitosPaciente.length;j++){
+        if(this.totalPacientes[i].id===this.totalHabitosPaciente[j].Paciente_id){
+         let currentPersona= this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[i].Persona_id));
+          this.totalPacientes[i].rut=currentPersona[0].rut;
+          this.totalPacientes[i].nombre=currentPersona[0].nombre1+" "+currentPersona[0].nombre2+" "+currentPersona[0].apellido1+" "+currentPersona[0].apellido2;
           break;
         }
       }
-
-      for(let j = 0 ; j < this.totalPacientes.length ; j++)
-      {
-        if( parseInt(this.totalHabitosPaciente[i].Paciente_id) === this.totalPacientes[j].id)
-        {
-          let currentPersona = this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[j].Persona_id));
-          this.totalHabitosPaciente[i].Paciente_id = currentPersona[0].rut;
-          break;
-        }
-      }
-
     }
   }
+
 
   pasarStringId(habitosPaciente)
   {
@@ -222,20 +241,23 @@ actualizarHabitosPaciente ()
 
 
 
-  edicionHabitosPaciente (habitosPaciente)
+  edicionHabitosPaciente (paciente)
   {
 
-    var a = JSON.parse( JSON.stringify(habitosPaciente) );
+    var a = JSON.parse( JSON.stringify(paciente) );
 
-    this.pasarStringId(a);
+    //this.pasarStringId(a);
+
+    this.obtenerHabitosPaciente(a.id);
 
     let dialogRef = this.dialog.open(EditarHabitosPacienteComponent, {
       width: '800px',
       height: '500px',
       data:
       {
-       habitosPaciente: a,
+       paciente: a,
        habitos: this.totalHabitos,
+       arrayHabitosPaciente: this.arrayHabitosPaciente,
        pacientes: this.totalPacientes,
        personas: this.totalPersonas,
        servicioHabito: this.servicioHabito,
@@ -249,7 +271,7 @@ actualizarHabitosPaciente ()
 
       this.actualizarAtributos();
       this.actualizarHabitosPaciente();
-      
+      this.arrayHabitosPaciente = [];
     });
   }
 

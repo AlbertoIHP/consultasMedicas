@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { EnfermedadesCronicasPaciente } from '../../../../Models/EnfermedadesCronicasPaciente.model';
-
+import { Persona } from '../../../../Models/Persona.model';
 import { DatepickerOptions } from 'ng2-datepicker';
 
 @Component({
@@ -11,7 +11,8 @@ import { DatepickerOptions } from 'ng2-datepicker';
 })
 export class EditarEnfermedadesCronicasPacienteComponent implements OnInit {
 
-  	public enfermedadesCronicasPaciente:EnfermedadesCronicasPaciente;
+  public paciente:any;
+  public arrayEnfermedadesCronicasPaciente: any;
 
 	public totalPacientes: any;
 	public totalEnfermedadesCronicas: any;
@@ -21,7 +22,7 @@ export class EditarEnfermedadesCronicasPacienteComponent implements OnInit {
     public servicioPaciente: any;
     public servicioEnfermedadCronica: any;
     public servicioPersona: any;
-    public servicioEnfermedadesCronciasPaciente:any;
+    public servicioEnfermedadesCronicasPaciente:any;
 
     options: DatepickerOptions = {
       minYear: 1970,
@@ -67,6 +68,14 @@ export class EditarEnfermedadesCronicasPacienteComponent implements OnInit {
           
         }
     }
+
+    for(let i=0;i<this.totalEnfermedadesCronicas.length;i++){
+      for(let j=0;j<this.arrayEnfermedadesCronicasPaciente.length;j++){
+        if(this.totalEnfermedadesCronicas[i].id==this.arrayEnfermedadesCronicasPaciente[j].EnfermedadCronica_id){
+          this.arrayEnfermedadesCronicasPaciente[j].nombreEnfermedadCronica=this.totalEnfermedadesCronicas[i].nombre;
+        }
+      }
+    }
       this.totalPersonasTemp=arrayTemp;
 
     
@@ -76,7 +85,9 @@ export class EditarEnfermedadesCronicasPacienteComponent implements OnInit {
   	public dialogRef: MatDialogRef<EditarEnfermedadesCronicasPacienteComponent>,
 	@Inject(MAT_DIALOG_DATA) public data: any
   	) {
-      	this.enfermedadesCronicasPaciente=data.enfermedadesCronicasPaciente;
+      
+      this.paciente = data.paciente;
+      this.arrayEnfermedadesCronicasPaciente = data.arrayEnfermedadesCronicasPaciente;
 
   		this.totalPacientes=data.pacientes;
   		this.totalEnfermedadesCronicas=data.enfermedadesCronicas;
@@ -86,7 +97,7 @@ export class EditarEnfermedadesCronicasPacienteComponent implements OnInit {
   		this.servicioPaciente=data.servicioPaciente;
   		this.servicioEnfermedadCronica=data.servicioEnfermedadCronica;
   		this.servicioPersona=data.servicioPersona;
-      	this.servicioEnfermedadesCronciasPaciente=data.servicioEnfermedadesCronicasPaciente;
+      	this.servicioEnfermedadesCronicasPaciente=data.servicioEnfermedadesCronicasPaciente;
 
   	 }
 
@@ -95,17 +106,29 @@ export class EditarEnfermedadesCronicasPacienteComponent implements OnInit {
       this.dialogRef.close();
     }
 
+  obtenerFecha(enfermedadCronicaPaciente){
+    if(enfermedadCronicaPaciente.esVerdadero){
+      enfermedadCronicaPaciente.fechaDeteccion=new Date().toISOString().slice(0, 19).replace('T', ' ');
+    }else if(enfermedadCronicaPaciente.esVerdadero==false){
+      enfermedadCronicaPaciente.fechaDeteccion=null;
+    }
+
+  }
+
   editarEnfermedadesCronicasPaciente()
   {
 
-    this.enfermedadesCronicasPaciente.fechaDeteccion=new Date(this.enfermedadesCronicasPaciente.fechaDeteccion).toISOString().slice(0, 19).replace('T', ' ');
+    for(let i=0;i<this.arrayEnfermedadesCronicasPaciente.length;i++){
 
+      if(this.arrayEnfermedadesCronicasPaciente[i].fechaDeteccion!=null){
+      this.arrayEnfermedadesCronicasPaciente[i].fechaDeteccion=new Date(this.arrayEnfermedadesCronicasPaciente[i].fechaDeteccion).toISOString().slice(0, 19).replace('T', ' ');
+      }
+      this.servicioEnfermedadesCronicasPaciente.editEnfermedadesCronicasPaciente(this.arrayEnfermedadesCronicasPaciente[i], this.arrayEnfermedadesCronicasPaciente[i].id).subscribe( data => {
+        console.log(data);
+        this.dialogRef.close();
 
-    this.servicioEnfermedadesCronciasPaciente.editEnfermedadesCronicasPaciente(this.enfermedadesCronicasPaciente, this.enfermedadesCronicasPaciente.id).subscribe( data => {
-      console.log(data);
-      this.dialogRef.close();
+      });
 
-    });
-  }
+    }  }
   	
 }

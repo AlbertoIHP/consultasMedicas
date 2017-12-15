@@ -280,7 +280,7 @@ export class HabitosSexualesPacienteComponent {
 
       this.actualizarAtributos();
       this.actualizarHabitosSexualesPaciente();
-      this.arrayHabitosSexualesPaciente=[];
+      this.arrayHabitosSexualesPaciente = [];
       
     });
   }

@@ -40,11 +40,14 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class UsoMedicamentoComponent{
 	public totalMedicamentos: Medicamento[];
-	public totalPacientes: Paciente[];
+	public totalPacientes: any;
   	public totalUsoMedicamentos: UsoMedicamento[];
   	public totalPersonas: Persona[];
 	public usuarioActual;
-  	displayedColumns = ['Acciones', 'Rut Paciente', 'Medicamento','Fecha Inicio'];
+
+  //arreglo con todos los registron que contengan al paciente parametrizado y sus hábitos
+  public arrayUsoMedicamentos: UsoMedicamento[];
+  	displayedColumns = ['Acciones', 'Rut Paciente', 'Nombre', 'Medicamentos'];
 
 
 	//DATATABLE
@@ -106,20 +109,26 @@ export class UsoMedicamentoComponent{
       this.totalUsoMedicamentos = [];
       this.totalPacientes=[];
       this.totalPersonas=[];
+      this.arrayUsoMedicamentos = [];
       this.actualizarAtributos();
       this.actualizarUsoMedicamentos();
 
   	  }
 
-  actualizarUsoMedicamentos ()
+    actualizarUsoMedicamentos ()
   {
     this.servicioUsoMedicamento.getUsoMedicamentos().subscribe(data => {
       var todo: any = data;
       todo = todo.data;
       this.totalUsoMedicamentos = todo;
       
-      //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalUsoMedicamentos);
+      this.servicioPaciente.getPacientes().subscribe(data=>{
+         var todo: any = data;
+        todo = todo.data;
+        this.totalPacientes = todo;
+
+        //DATATABLE
+      this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
 
       this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'UsoMedicamento');
       Observable.fromEvent(this.filter.nativeElement, 'keyup')
@@ -131,9 +140,32 @@ export class UsoMedicamentoComponent{
           })
 
 
+      });
+      
+
     });
   }
 
+  //función para setear el array con los registros del paciente correspondiente
+  obtenerUsoMedicamentos(idPaciente){
+    for(let i=0;i<this.totalUsoMedicamentos.length;i++){
+
+      if(this.totalUsoMedicamentos[i].Paciente_id==idPaciente){
+
+        this.arrayUsoMedicamentos.push(this.totalUsoMedicamentos[i]);
+      }
+
+      if(this.totalUsoMedicamentos[i].fechaInicio != null){
+
+        this.totalUsoMedicamentos[i].esVerdadero=true;
+
+      }else if(this.totalUsoMedicamentos[i].fechaInicio==null){
+
+        this.totalUsoMedicamentos[i].esVerdadero=false;
+      }
+    }
+
+  }
 
   actualizarAtributos ()
   {
@@ -169,33 +201,20 @@ export class UsoMedicamentoComponent{
     });
   }
 
-
   reemplazarIdPorString()
   {
-    for(let i = 0 ; i < this.totalUsoMedicamentos.length ; i ++)
-    {
-
-      for(let j = 0 ; j < this.totalMedicamentos.length ; j++)
-      {
-        if( parseInt(this.totalUsoMedicamentos[i].Medicamento_id) === this.totalMedicamentos[j].id)
-        {
-          this.totalUsoMedicamentos[i].Medicamento_id = this.totalMedicamentos[j].nombrecomun;
+    for(let i=0;i<this.totalPacientes.length;i++){
+      for(let j=0;j<this.totalUsoMedicamentos.length;j++){
+        if(this.totalPacientes[i].id===this.totalUsoMedicamentos[j].Paciente_id){
+         let currentPersona= this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[i].Persona_id));
+          this.totalPacientes[i].rut=currentPersona[0].rut;
+          this.totalPacientes[i].nombre=currentPersona[0].nombre1+" "+currentPersona[0].nombre2+" "+currentPersona[0].apellido1+" "+currentPersona[0].apellido2;
           break;
         }
       }
-
-      for(let j = 0 ; j < this.totalPacientes.length ; j++)
-      {
-        if( parseInt(this.totalUsoMedicamentos[i].Paciente_id) === this.totalPacientes[j].id)
-        {
-          let currentPersona = this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[j].Persona_id));
-          this.totalUsoMedicamentos[i].Paciente_id = currentPersona[0].rut;
-          break;
-        }
-      }
-
     }
   }
+
 
   pasarStringId(usoMedicamentos)
   {
@@ -221,20 +240,23 @@ export class UsoMedicamentoComponent{
 
 
 
-  edicionUsoMedicamento (usoMedicamentos)
+  edicionUsoMedicamento (paciente)
   {
 
-    var a = JSON.parse( JSON.stringify(usoMedicamentos) );
+    var a = JSON.parse( JSON.stringify(paciente) );
 
-    this.pasarStringId(a);
+    //this.pasarStringId(a);
+
+    this.obtenerUsoMedicamentos(a.id);
 
     let dialogRef = this.dialog.open(EditarUsoMedicamentoComponent, {
       width: '800px',
       height: '500px',
       data:
       {
-       usoMedicamentos: a,
+       paciente: a,
        medicamentos: this.totalMedicamentos,
+       arrayUsoMedicamentos: this.arrayUsoMedicamentos,
        pacientes: this.totalPacientes,
        personas: this.totalPersonas,
        servicioMedicamento: this.servicioMedicamento,
@@ -248,6 +270,7 @@ export class UsoMedicamentoComponent{
 
       this.actualizarAtributos();
       this.actualizarUsoMedicamentos();
+      this.arrayUsoMedicamentos = [];
       
     });
   }

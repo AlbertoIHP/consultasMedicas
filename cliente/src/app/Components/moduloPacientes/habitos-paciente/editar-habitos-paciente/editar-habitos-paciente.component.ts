@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { HabitosPaciente } from '../../../../Models/HabitosPaciente.model';
-
+import { Persona } from '../../../../Models/Persona.model';
 import { DatepickerOptions } from 'ng2-datepicker';
 
 @Component({
@@ -11,7 +11,8 @@ import { DatepickerOptions } from 'ng2-datepicker';
   styleUrls: ['./editar-habitos-paciente.component.css']
 })
 export class EditarHabitosPacienteComponent implements OnInit {
-	public habitosPaciente:HabitosPaciente;
+  public paciente:any;
+  public arrayHabitosPaciente:any;
 
 	public totalPacientes: any;
 	public totalHabitos: any;
@@ -68,6 +69,14 @@ export class EditarHabitosPacienteComponent implements OnInit {
           
         }
     }
+
+    for(let i=0;i<this.totalHabitos.length;i++){
+      for(let j=0;j<this.arrayHabitosPaciente.length;j++){
+        if(this.totalHabitos[i].id==this.arrayHabitosPaciente[j].Habito_id){
+          this.arrayHabitosPaciente[j].nombreHabito=this.totalHabitos[i].nombre;
+        }
+      }
+    }
       this.totalPersonasTemp=arrayTemp;
 
     
@@ -77,10 +86,12 @@ export class EditarHabitosPacienteComponent implements OnInit {
   	public dialogRef: MatDialogRef<EditarHabitosPacienteComponent>,
 	@Inject(MAT_DIALOG_DATA) public data: any
   	) {
-      	this.habitosPaciente=data.habitosPaciente;
+      
+        this.paciente=data.paciente;
+        this.arrayHabitosPaciente=data.arrayHabitosPaciente;
 
   		this.totalPacientes=data.pacientes;
-  		this.totalHabitos=data.vacunas;
+  		this.totalHabitos=data.habitos;
   		this.totalPersonas=data.personas;
       	this.totalPersonasTemp=[];
 
@@ -96,17 +107,31 @@ export class EditarHabitosPacienteComponent implements OnInit {
       this.dialogRef.close();
     }
 
+
+  obtenerFecha(habitoPaciente){
+    if(habitoPaciente.esVerdadero){
+      habitoPaciente.fechaInicio=new Date().toISOString().slice(0, 19).replace('T', ' ');
+    }else if(habitoPaciente.esVerdadero==false){
+      habitoPaciente.fechaInicio=null;
+    }
+
+  }
+
   editarHabitosPaciente()
   {
-    this.habitosPaciente.fechaInicio=new Date(this.habitosPaciente.fechaInicio).toISOString().slice(0, 19).replace('T', ' ');
-    this.servicioHabitosPaciente.editHabitosPaciente(this.habitosPaciente, this.habitosPaciente.id).subscribe( data => {
-      console.log(data);
-      this.dialogRef.close();
 
-    });
+    for(let i=0;i<this.arrayHabitosPaciente.length;i++){
+
+      if(this.arrayHabitosPaciente[i].fechaInicio!=null){
+      this.arrayHabitosPaciente[i].fechaInicio=new Date(this.arrayHabitosPaciente[i].fechaInicio).toISOString().slice(0, 19).replace('T', ' ');
+      }
+      this.servicioHabitosPaciente.editHabitosPaciente(this.arrayHabitosPaciente[i], this.arrayHabitosPaciente[i].id).subscribe( data => {
+        console.log(data);
+        this.dialogRef.close();
+
+      });
+
+    }
+
   }
-  	
-
-  
-
 }
