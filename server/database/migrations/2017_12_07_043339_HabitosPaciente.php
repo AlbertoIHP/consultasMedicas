@@ -15,7 +15,7 @@ class HabitosPaciente extends Migration
     {
         Schema::create('HabitosPaciente', function (Blueprint $table) {
         $table->increments('id');
-        $table->date("fechaInicio");
+        $table->date("fechaInicio")->nullable();
 
         $table->integer('Habito_id')->unsigned()->nullable();
         $table->integer('Paciente_id')->unsigned()->nullable();        

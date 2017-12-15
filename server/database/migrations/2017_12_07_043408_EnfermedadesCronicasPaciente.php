@@ -15,7 +15,7 @@ class EnfermedadesCronicasPaciente extends Migration
     {
         Schema::create('EnfermedadesCronicasPaciente', function (Blueprint $table) {
         $table->increments('id');
-        $table->date("fechaDeteccion");
+        $table->date("fechaDeteccion")->nullable();
 
         $table->integer('EnfermedadCronica_id')->unsigned()->nullable();
         $table->integer('Paciente_id')->unsigned()->nullable();        

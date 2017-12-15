@@ -2458,7 +2458,7 @@ class modulopacientes extends Seeder
 			'Paciente_id' => 1,
 			'fechaInicio' => Carbon::create('2005', '02', '01'),
 		]);
-
+		
 		//Hábitos sexuales paciente
 		/*
 		DB::table('HabitosSexualesPaciente')->insert([
