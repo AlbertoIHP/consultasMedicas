@@ -18,6 +18,12 @@ import { AlergiasComunesPacienteService } from '../../../../Services/alergiascom
 import { Alergia } from '../../../../Models/Alergia.model';
 import { AlergiaService } from '../../../../Services/alergia/alergia.service';
 
+import { AlergiasMedicamentosPaciente } from '../../../../Models/AlergiasMedicamentosPaciente.model';
+import { AlergiasMedicamentosPacienteService } from '../../../../Services/alergiasmedicamentospaciente/alergias-medicamentos-paciente.service';
+
+import { Medicamento } from '../../../../Models/Medicamento.model';
+import { MedicamentoService } from '../../../../Services/medicamento/medicamento.service';
+
 @Component({
 	selector: 'app-agregarpaciente',
 	templateUrl: './agregarpaciente.component.html',
@@ -41,6 +47,8 @@ export class AgregarpacienteComponent implements OnInit {
 	public nuevaAlergiaComunPaciente: any;
 	public alergias: Alergia[];
 
+	public nuevaAlergiaMedicamentoPaciente: any;
+	public medicamentos: Medicamento[];
 
 	// Necesarios para autocomplete
 	public personaCtrl: FormControl;
@@ -53,6 +61,8 @@ export class AgregarpacienteComponent implements OnInit {
   		public servicioHabitoSexual: HabitoSexualService,
   		public servicioAlergiasComunesPaciente: AlergiasComunesPacienteService,
   		public servicioAlergia: AlergiaService,
+  		public servicioAlergiasMedicamentosPaciente: AlergiasMedicamentosPacienteService,
+  		public servicioMedicamento: MedicamentoService,
 		@Inject(MAT_DIALOG_DATA) public data: any
 		) {
 			this.personasDisponibles = [];
@@ -66,10 +76,16 @@ export class AgregarpacienteComponent implements OnInit {
 			this.servicioPersona = data.servicioPersona;
 			this.servicioTS = data.servicioTS;
 			this.personasDisponibles = data.personasDisponibles;
+			
 			this.habitosSexuales = [];
 			this.nuevoHabitosSexualesPaciente = new HabitosSexualesPaciente();
+			
 			this.alergias = [];
 			this.nuevaAlergiaComunPaciente = new AlergiasComunesPaciente();
+			
+			this.medicamentos = [];
+			this.nuevaAlergiaMedicamentoPaciente = new AlergiasMedicamentosPaciente();
+
 			this.actualizarAtributos();
 
 		 }
@@ -107,7 +123,13 @@ export class AgregarpacienteComponent implements OnInit {
 		      todo = todo.data;
 		      this.alergias = todo;
 
+		      this.servicioMedicamento.getMedicamentos().subscribe(data => {
+		      var todo: any = data;
+		      todo = todo.data;
+		      this.medicamentos = todo;
+
 	    	});
+	      });
 	    });
  	}
 
@@ -125,19 +147,28 @@ export class AgregarpacienteComponent implements OnInit {
 				pacienteAgregado = this.totalPacientes.filter(paciente => paciente.Persona_id === this.paciente.Persona_id);
 				console.log(pacienteAgregado[0]);
 				
-				// Crear habitossexuales paciente
+				// Crear habitos sexuales del paciente en null
 				for (let i = 0; i < this.habitosSexuales.length; i++) {
 					this.nuevoHabitosSexualesPaciente.Paciente_id = pacienteAgregado[0].id;
 					this.nuevoHabitosSexualesPaciente.HabitoSexual_id = this.habitosSexuales[i].id;
 					this.servicioHabitosSexualesPaciente.registerHabitosSexualesPaciente(this.nuevoHabitosSexualesPaciente).subscribe(data => {});
 				}
 
-				// Crear alergías comunes paciente
+				// Crear alergías comunes del paciente en null
 				for (let i = 0; i < this.alergias.length; i++) {
 					this.nuevaAlergiaComunPaciente.Paciente_id = pacienteAgregado[0].id;
 					this.nuevaAlergiaComunPaciente.Alergia_id = this.alergias[i].id;
 					this.servicioAlergiasComunesPaciente.registerAlergiasComunesPaciente(this.nuevaAlergiaComunPaciente).subscribe(data => {});
 				}
+
+				// Crear alergías medicamentos del paciente en null
+				for (let i = 0; i < this.medicamentos.length; i++) {
+					this.nuevaAlergiaMedicamentoPaciente.Paciente_id = pacienteAgregado[0].id;
+					this.nuevaAlergiaMedicamentoPaciente.Alergia_id = this.medicamentos[i].id;
+					this.servicioAlergiasMedicamentosPaciente.registerAlergiasMedicamentosPaciente(this.nuevaAlergiaMedicamentoPaciente).subscribe(data => {});
+				}
+
+
 
 			});
 			
