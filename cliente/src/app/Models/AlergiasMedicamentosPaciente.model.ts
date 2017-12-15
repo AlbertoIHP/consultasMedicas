@@ -13,4 +13,5 @@ export class AlergiasMedicamentosPaciente {
 		this.fechaInicio = null;
 		this.esVerdadero = false;
 	}
-	}
+	
+}
