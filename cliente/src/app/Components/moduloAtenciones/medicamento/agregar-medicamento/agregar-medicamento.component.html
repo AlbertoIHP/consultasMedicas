@@ -1,3 +1,26 @@
-<p>
-  agregar-medicamento works!
-</p>
+<h1 mat-dialog-title style="text-align: center;">Creación de Medicamento</h1>
+
+<div mat-dialog-content>
+
+<div class="row">
+
+	<div class="col s6">
+	    <mat-form-field class="fullWidth">
+	     <input matInput placeholder="Nombre Común" [(ngModel)]="nuevoMedicamento.nombrecomun" required>
+	    </mat-form-field>
+	</div>
+
+	<div class="col s6">
+	     <mat-form-field class="fullWidth">
+	     <input matInput placeholder="Nombre Científico" [(ngModel)]="nuevoMedicamento.nombrecientifico" required>
+	    </mat-form-field>
+	</div>
+</div>
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button class="boton-aceptar" (click)="agregarMedicamento()" tabindex="2">Agregar Medicamento <mat-icon>add</mat-icon></button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

@@ -226,30 +226,6 @@ export class HabitosSexualesPacienteComponent {
     }
   }
 
-  pasarStringId(habitosSexualesPaciente)
-  {
-    for ( let i = 0 ; i < this.totalHabitosSexuales.length ; i ++)
-    {
-    if(habitosSexualesPaciente.HabitoSexual_id === this.totalHabitosSexuales[i].nombre)
-    {
-      habitosSexualesPaciente.HabitoSexual_id = this.totalHabitosSexuales[i].id;
-    }
-    }
-
-    for ( let i = 0 ; i < this.totalPacientes.length ; i ++)
-    {
-    let currentPersona = this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[i].Persona_id));
-
-    if(habitosSexualesPaciente.Paciente_id === currentPersona[0].rut)
-    {
-      habitosSexualesPaciente.Paciente_id = this.totalPacientes[i].id;
-    }
-    }
-
-  }
-
-
-
   edicionHabitosSexualesPaciente (paciente)
   {
 
@@ -313,7 +289,6 @@ export class HabitosSexualesPacienteComponent {
 
    var a = JSON.parse( JSON.stringify(paciente) );
    var b;
-  this.pasarStringId(a);
 
   this.servicioPaciente.getPaciente(a.id).subscribe(data =>{
     var todo: any = data;
@@ -329,10 +304,9 @@ export class HabitosSexualesPacienteComponent {
 
        let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
           width: '1000px',
-          height:'500px',
+          height:'700px',
           data: { persona: persona }
         });
-
     });
   });
 

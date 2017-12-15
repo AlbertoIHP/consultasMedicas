@@ -205,30 +205,6 @@ export class AlergiasComunesPacienteComponent {
     }
   }
 
-  pasarStringId(alergiasComunesPaciente)
-  {
-    for ( let i = 0 ; i < this.totalAlergiasComunes.length ; i ++)
-    {
-    if(alergiasComunesPaciente.Alergia_id === this.totalAlergiasComunes[i].nombre)
-    {
-      alergiasComunesPaciente.Alergia_id = this.totalAlergiasComunes[i].id;
-    }
-    }
-
-    for ( let i = 0 ; i < this.totalPacientes.length ; i ++)
-    {
-    let currentPersona = this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[i].Persona_id));
-
-    if(alergiasComunesPaciente.Paciente_id === currentPersona[0].rut)
-    {
-      alergiasComunesPaciente.Paciente_id = this.totalPacientes[i].id;
-    }
-    }
-
-  }
-
-
-
   edicionAlergiasComunesPaciente (paciente)
   {
 
@@ -287,14 +263,14 @@ export class AlergiasComunesPacienteComponent {
 
 
   //función para mostrar la ficha médica del paciente correspondiente
- desplegarFichaPaciente(alergiasPaciente)
+ desplegarFichaPaciente(paciente)
   {
 
-   var a = JSON.parse( JSON.stringify(alergiasPaciente) );
+   var a = JSON.parse( JSON.stringify(paciente) );
    var b;
-  this.pasarStringId(a);
+ 
 
-  this.servicioPaciente.getPaciente(a.Paciente_id).subscribe(data =>{
+  this.servicioPaciente.getPaciente(a.id).subscribe(data =>{
     var todo: any = data;
     todo = todo.data;
     b=todo;
@@ -308,7 +284,7 @@ export class AlergiasComunesPacienteComponent {
 
        let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
           width: '1000px',
-          height:'500px',
+          height:'700px',
           data: { persona: persona }
         });
 

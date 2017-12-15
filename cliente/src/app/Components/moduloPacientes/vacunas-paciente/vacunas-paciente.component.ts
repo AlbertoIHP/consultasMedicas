@@ -222,29 +222,6 @@ export class VacunasPacienteComponent {
     }
   }
 
-  pasarStringId(vacunasPaciente)
-  {
-    for ( let i = 0 ; i < this.totalVacunas.length ; i ++)
-    {
-    if(vacunasPaciente.Vacuna_id === this.totalVacunas[i].nombre)
-    {
-      vacunasPaciente.Vacuna_id = this.totalVacunas[i].id;
-    }
-    }
-
-    for ( let i = 0 ; i < this.totalPacientes.length ; i ++)
-    {
-    let currentPersona = this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[i].Persona_id));
-
-    if(vacunasPaciente.Paciente_id === currentPersona[0].rut)
-    {
-      vacunasPaciente.Paciente_id = this.totalPacientes[i].id;
-    }
-    }
-
-  }
-
-
 
   edicionVacunasPaciente (paciente)
   {
@@ -304,14 +281,13 @@ export class VacunasPacienteComponent {
 
 
   //función para mostrar la ficha médica del paciente correspondiente
- desplegarFichaPaciente(vacunasPaciente)
+ desplegarFichaPaciente(paciente)
   {
 
-   var a = JSON.parse( JSON.stringify(vacunasPaciente) );
+   var a = JSON.parse( JSON.stringify(paciente) );
    var b;
-  this.pasarStringId(a);
 
-  this.servicioPaciente.getPaciente(a.Paciente_id).subscribe(data =>{
+  this.servicioPaciente.getPaciente(a.id).subscribe(data =>{
     var todo: any = data;
     todo = todo.data;
     b=todo;
@@ -325,7 +301,7 @@ export class VacunasPacienteComponent {
 
        let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
           width: '1000px',
-          height:'500px',
+          height:'700px',
           data: { persona: persona }
         });
 

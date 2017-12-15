@@ -5,6 +5,8 @@
   </div>
 </div>
 
+<div mat-dialog-content style="height: 100% !important;">
+
 <mat-tab-group>
   <mat-tab label="Datos generales">
 
@@ -115,7 +117,7 @@
 
     </mat-table>
   </div>
-
+<!--
   <div class="row" *ngIf="esPaciente">
 
     <mat-table #table [dataSource]="personaTabla4">
@@ -140,6 +142,7 @@
 
     </mat-table>
   </div>
+-->
 </mat-tab>
 <!--Deberá ser un componente a parte-->
 <mat-tab label="Alergias">
@@ -174,3 +177,9 @@
 </mat-tab>
 
 </mat-tab-group>
+
+</div>
+
+<div mat-dialog-actions style="margin-top: 25px !important;">
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>
