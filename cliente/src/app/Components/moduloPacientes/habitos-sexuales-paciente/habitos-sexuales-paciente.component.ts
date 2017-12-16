@@ -117,43 +117,10 @@ export class HabitosSexualesPacienteComponent {
       this.totalPacientes=[];
       this.totalPersonas=[];
       this.actualizarAtributos();
-      this.actualizarHabitosSexualesPaciente();
 
 
 
       }
-
-
-    actualizarHabitosSexualesPaciente ()
-  {
-    this.servicioHabitosSexualesPaciente.getHabitosSexualesPacientes().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalHabitosSexualesPaciente = todo;
-      
-      this.servicioPaciente.getPacientes().subscribe(data=>{
-         var todo: any = data;
-        todo = todo.data;
-        this.totalPacientes = todo;
-
-        //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
-
-      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'HabitosSexualesPaciente');
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          })
-
-
-      });
-      
-
-    });
-  }
 
   //función para setear el array con los registros del paciente correspondiente
   obtenerHabitosSexualesPaciente(idPaciente){
@@ -176,7 +143,6 @@ export class HabitosSexualesPacienteComponent {
 
   }
 
-
   actualizarAtributos ()
   {
     this.servicioHabitoSexual.getHabitoSexuales().subscribe(data => {
@@ -194,7 +160,29 @@ export class HabitosSexualesPacienteComponent {
                 todo = todo.data;
                 this.totalPersonas = todo;
 
-                this.reemplazarIdPorString();
+                this.servicioHabitosSexualesPaciente.getHabitosSexualesPacientes().subscribe(data => {
+                  var todo: any = data;
+                  todo = todo.data;
+                  this.totalHabitosSexualesPaciente = todo;
+        
+                  this.reemplazarIdPorString();
+
+                    //DATATABLE
+                  this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
+
+                  this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'HabitosSexualesPaciente');
+                  Observable.fromEvent(this.filter.nativeElement, 'keyup')
+                      .debounceTime(150)
+                      .distinctUntilChanged()
+                      .subscribe(() => {
+                        if (!this.dataSource) { return; }
+                        this.dataSource.filter = this.filter.nativeElement.value;
+                      })
+
+
+               
+                  
+              });
 
            });
 
@@ -245,7 +233,6 @@ export class HabitosSexualesPacienteComponent {
     dialogRef.afterClosed().subscribe(result => {
 
       this.actualizarAtributos();
-      this.actualizarHabitosSexualesPaciente();
       this.arrayHabitosSexualesPaciente = [];
       
     });

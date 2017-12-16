@@ -116,41 +116,8 @@ export class EnfermedadesCronicasPacienteComponent {
       this.totalPersonas=[];
       this.arrayEnfermedadesCronicasPaciente = [];
       this.actualizarAtributos();
-      this.actualizarEnfermedadesCronicasPaciente();
 
       }
-
-
-    actualizarEnfermedadesCronicasPaciente ()
-  {
-    this.servicioEnfermedadesCronicasPaciente.getEnfermedadesCronicasPacientes().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalEnfermedadesCronicasPaciente = todo;
-      
-      this.servicioPaciente.getPacientes().subscribe(data=>{
-         var todo: any = data;
-        todo = todo.data;
-        this.totalPacientes = todo;
-
-        //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
-
-      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'EnfermedadesCronicasPaciente');
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          })
-
-
-      });
-      
-
-    });
-  }
 
   //función para setear el array con los registros del paciente correspondiente
   obtenerEnfermedadesCronicasPaciente(idPaciente){
@@ -173,7 +140,6 @@ export class EnfermedadesCronicasPacienteComponent {
 
   }
 
-
   actualizarAtributos ()
   {
     this.servicioEnfermedadCronica.getEnfermedadesCronicas().subscribe(data => {
@@ -191,7 +157,29 @@ export class EnfermedadesCronicasPacienteComponent {
                 todo = todo.data;
                 this.totalPersonas = todo;
 
-                this.reemplazarIdPorString();
+                this.servicioEnfermedadesCronicasPaciente.getEnfermedadesCronicasPacientes().subscribe(data => {
+                  var todo: any = data;
+                  todo = todo.data;
+                  this.totalEnfermedadesCronicasPaciente = todo;
+        
+                  this.reemplazarIdPorString();
+
+                    //DATATABLE
+                  this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
+
+                  this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'EnfermedadesCronicasPaciente');
+                  Observable.fromEvent(this.filter.nativeElement, 'keyup')
+                      .debounceTime(150)
+                      .distinctUntilChanged()
+                      .subscribe(() => {
+                        if (!this.dataSource) { return; }
+                        this.dataSource.filter = this.filter.nativeElement.value;
+                      })
+
+
+               
+                  
+              });
 
            });
 
@@ -243,7 +231,6 @@ export class EnfermedadesCronicasPacienteComponent {
     dialogRef.afterClosed().subscribe(result => {
 
       this.actualizarAtributos();
-      this.actualizarEnfermedadesCronicasPaciente();
       this.arrayEnfermedadesCronicasPaciente = [];
       
     });

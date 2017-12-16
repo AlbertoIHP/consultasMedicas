@@ -111,40 +111,8 @@ export class UsoMedicamentoComponent{
       this.totalPersonas=[];
       this.arrayUsoMedicamentos = [];
       this.actualizarAtributos();
-      this.actualizarUsoMedicamentos();
 
   	  }
-
-    actualizarUsoMedicamentos ()
-  {
-    this.servicioUsoMedicamento.getUsoMedicamentos().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalUsoMedicamentos = todo;
-      
-      this.servicioPaciente.getPacientes().subscribe(data=>{
-         var todo: any = data;
-        todo = todo.data;
-        this.totalPacientes = todo;
-
-        //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
-
-      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'UsoMedicamento');
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          })
-
-
-      });
-      
-
-    });
-  }
 
   //función para setear el array con los registros del paciente correspondiente
   obtenerUsoMedicamentos(idPaciente){
@@ -184,7 +152,29 @@ export class UsoMedicamentoComponent{
                 todo = todo.data;
                 this.totalPersonas = todo;
 
-                this.reemplazarIdPorString();
+                this.servicioUsoMedicamento.getUsoMedicamentos().subscribe(data => {
+                  var todo: any = data;
+                  todo = todo.data;
+                  this.totalUsoMedicamentos = todo;
+        
+                  this.reemplazarIdPorString();
+
+                    //DATATABLE
+                  this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
+
+                  this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'UsoMedicamento');
+                  Observable.fromEvent(this.filter.nativeElement, 'keyup')
+                      .debounceTime(150)
+                      .distinctUntilChanged()
+                      .subscribe(() => {
+                        if (!this.dataSource) { return; }
+                        this.dataSource.filter = this.filter.nativeElement.value;
+                      })
+
+
+               
+                  
+              });
 
            });
 
@@ -237,7 +227,6 @@ export class UsoMedicamentoComponent{
     dialogRef.afterClosed().subscribe(result => {
 
       this.actualizarAtributos();
-      this.actualizarUsoMedicamentos();
       this.arrayUsoMedicamentos = [];
       
     });

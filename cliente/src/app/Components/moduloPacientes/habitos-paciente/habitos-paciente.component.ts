@@ -110,42 +110,10 @@ export class HabitosPacienteComponent {
       this.totalPersonas=[];
       this.arrayHabitosPaciente =[];
       this.actualizarAtributos();
-      this.actualizarHabitosPaciente();
 
 
 
       }
-
-    actualizarHabitosPaciente ()
-  {
-    this.servicioHabitosPaciente.getHabitosPacientes().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalHabitosPaciente = todo;
-      
-      this.servicioPaciente.getPacientes().subscribe(data=>{
-         var todo: any = data;
-        todo = todo.data;
-        this.totalPacientes = todo;
-
-        //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
-
-      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'HabitosPaciente');
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          })
-
-
-      });
-      
-
-    });
-  }
 
   //función para setear el array con los registros del paciente correspondiente
   obtenerHabitosPaciente(idPaciente){
@@ -185,7 +153,29 @@ export class HabitosPacienteComponent {
                 todo = todo.data;
                 this.totalPersonas = todo;
 
-                this.reemplazarIdPorString();
+                this.servicioHabitosPaciente.getHabitosPacientes().subscribe(data => {
+                  var todo: any = data;
+                  todo = todo.data;
+                  this.totalHabitosPaciente = todo;
+        
+                  this.reemplazarIdPorString();
+
+                    //DATATABLE
+                  this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
+
+                  this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'HabitosPaciente');
+                  Observable.fromEvent(this.filter.nativeElement, 'keyup')
+                      .debounceTime(150)
+                      .distinctUntilChanged()
+                      .subscribe(() => {
+                        if (!this.dataSource) { return; }
+                        this.dataSource.filter = this.filter.nativeElement.value;
+                      })
+
+
+               
+                  
+              });
 
            });
 
@@ -236,7 +226,6 @@ export class HabitosPacienteComponent {
     dialogRef.afterClosed().subscribe(result => {
 
       this.actualizarAtributos();
-      this.actualizarHabitosPaciente();
       this.arrayHabitosPaciente = [];
     });
   }

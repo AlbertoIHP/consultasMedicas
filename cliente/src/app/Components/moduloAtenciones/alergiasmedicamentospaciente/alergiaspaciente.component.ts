@@ -116,43 +116,8 @@ export class AlergiaspacienteComponent {
       this.totalPacientes=[];
       this.totalPersonas=[];
       this.actualizarAtributos();
-      this.actualizarAlergiasMedicamentosPaciente();
-
-
 
       }
-
-
-    actualizarAlergiasMedicamentosPaciente ()
-  {
-    this.servicioAlergiasMedicamentosPaciente.getAlergiasMedicamentosPacientes().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalAlergiasMedicamentosPaciente = todo;
-      
-      this.servicioPaciente.getPacientes().subscribe(data=>{
-         var todo: any = data;
-        todo = todo.data;
-        this.totalPacientes = todo;
-
-        //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
-
-      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'AlergiasMedicamentosPaciente');
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          })
-
-
-      });
-      
-
-    });
-  }
 
   //función para setear el array con los registros del paciente correspondiente
   obtenerAlergiasMedicamentosPaciente(idPaciente){
@@ -193,7 +158,29 @@ export class AlergiaspacienteComponent {
                 todo = todo.data;
                 this.totalPersonas = todo;
 
-                this.reemplazarIdPorString();
+                this.servicioAlergiasMedicamentosPaciente.getAlergiasMedicamentosPacientes().subscribe(data => {
+                  var todo: any = data;
+                  todo = todo.data;
+                  this.totalAlergiasMedicamentosPaciente = todo;
+        
+                  this.reemplazarIdPorString();
+
+                    //DATATABLE
+                  this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
+
+                  this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'AlergiasMedicamentosPaciente');
+                  Observable.fromEvent(this.filter.nativeElement, 'keyup')
+                      .debounceTime(150)
+                      .distinctUntilChanged()
+                      .subscribe(() => {
+                        if (!this.dataSource) { return; }
+                        this.dataSource.filter = this.filter.nativeElement.value;
+                      })
+
+
+               
+                  
+              });
 
            });
 
@@ -220,8 +207,6 @@ export class AlergiaspacienteComponent {
 
     var a = JSON.parse( JSON.stringify(paciente) );
 
-    //this.pasarStringId(a);
-
     this.obtenerAlergiasMedicamentosPaciente(a.id);
 
     let dialogRef = this.dialog.open(EditarAlergiasPacienteComponent, {
@@ -244,7 +229,6 @@ export class AlergiaspacienteComponent {
     dialogRef.afterClosed().subscribe(result => {
 
       this.actualizarAtributos();
-      this.actualizarAlergiasMedicamentosPaciente();
       this.arrayAlergiasMedicamentosPaciente = [];
       
     });

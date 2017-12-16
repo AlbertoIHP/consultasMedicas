@@ -116,44 +116,10 @@ export class AlergiasComunesPacienteComponent {
       this.totalPersonas=[];
       this.arrayAlergiasComunesPaciente = [];
       this.actualizarAtributos();
-      this.actualizarAlergiasComunesPaciente();
 
 
 
       }
-
-
-    actualizarAlergiasComunesPaciente ()
-  {
-    this.servicioAlergiasComunesPaciente.getAlergiasComunesPacientes().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalAlergiasComunesPaciente = todo;
-      
-      this.servicioPaciente.getPacientes().subscribe(data=>{
-         var todo: any = data;
-        todo = todo.data;
-        this.totalPacientes = todo;
-
-        //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
-
-      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'AlergiasComunesPaciente');
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          })
-
-
-      });
-      
-
-    });
-  }
-
 
   actualizarAtributos ()
   {
@@ -172,7 +138,29 @@ export class AlergiasComunesPacienteComponent {
                 todo = todo.data;
                 this.totalPersonas = todo;
 
-                this.reemplazarIdPorString();
+                this.servicioAlergiasComunesPaciente.getAlergiasComunesPacientes().subscribe(data => {
+                  var todo: any = data;
+                  todo = todo.data;
+                  this.totalAlergiasComunesPaciente = todo;
+        
+                  this.reemplazarIdPorString();
+
+                    //DATATABLE
+                  this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
+
+                  this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'AlergiasComunesPaciente');
+                  Observable.fromEvent(this.filter.nativeElement, 'keyup')
+                      .debounceTime(150)
+                      .distinctUntilChanged()
+                      .subscribe(() => {
+                        if (!this.dataSource) { return; }
+                        this.dataSource.filter = this.filter.nativeElement.value;
+                      })
+
+
+               
+                  
+              });
 
            });
 
@@ -223,7 +211,6 @@ export class AlergiasComunesPacienteComponent {
     dialogRef.afterClosed().subscribe(result => {
 
       this.actualizarAtributos();
-      this.actualizarAlergiasComunesPaciente();
       this.arrayAlergiasComunesPaciente = [];
       
     });

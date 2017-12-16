@@ -126,9 +126,7 @@ export class AlergiaComponent {
           .subscribe(() => {
             if (!this.dataSource) { return; }
             this.dataSource.filter = this.filter.nativeElement.value;
-          })
-
-
+          });
 		});
 	}
 
@@ -156,8 +154,6 @@ export class AlergiaComponent {
    });
     
   }
-
-
 
 
 	edicionAlergia (alergia)

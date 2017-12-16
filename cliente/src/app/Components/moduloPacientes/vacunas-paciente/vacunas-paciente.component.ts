@@ -115,42 +115,10 @@ export class VacunasPacienteComponent {
       this.totalPersonas=[];
       this.arrayVacunasPaciente = [];
       this.actualizarAtributos();
-      this.actualizarVacunasPaciente();
 
 
 
       }
-
-    actualizarVacunasPaciente ()
-  {
-    this.servicioVacunasPaciente.getVacunasPaciente().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalVacunasPaciente = todo;
-      
-      this.servicioPaciente.getPacientes().subscribe(data=>{
-         var todo: any = data;
-        todo = todo.data;
-        this.totalPacientes = todo;
-
-        //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
-
-      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'VacunasPaciente');
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          })
-
-
-      });
-      
-
-    });
-  }
 
   //función para setear el array con los registros del paciente correspondiente
   obtenerVacunasPaciente(idPaciente){
@@ -173,6 +141,7 @@ export class VacunasPacienteComponent {
 
   }
 
+
   actualizarAtributos ()
   {
     this.servicioVacuna.getVacunas().subscribe(data => {
@@ -190,7 +159,29 @@ export class VacunasPacienteComponent {
                 todo = todo.data;
                 this.totalPersonas = todo;
 
-                this.reemplazarIdPorString();
+                this.servicioVacunasPaciente.getVacunasPaciente().subscribe(data => {
+                  var todo: any = data;
+                  todo = todo.data;
+                  this.totalVacunasPaciente = todo;
+        
+                  this.reemplazarIdPorString();
+
+                    //DATATABLE
+                  this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
+
+                  this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'VacunasPaciente');
+                  Observable.fromEvent(this.filter.nativeElement, 'keyup')
+                      .debounceTime(150)
+                      .distinctUntilChanged()
+                      .subscribe(() => {
+                        if (!this.dataSource) { return; }
+                        this.dataSource.filter = this.filter.nativeElement.value;
+                      })
+
+
+               
+                  
+              });
 
            });
 
@@ -242,7 +233,6 @@ export class VacunasPacienteComponent {
     dialogRef.afterClosed().subscribe(result => {
 
       this.actualizarAtributos();
-      this.actualizarVacunasPaciente();
       this.arrayVacunasPaciente = [];
       
     });
