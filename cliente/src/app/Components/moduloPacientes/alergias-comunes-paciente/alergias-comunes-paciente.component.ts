@@ -180,17 +180,6 @@ export class AlergiasComunesPacienteComponent {
     });
   }
 
-
-  eliminarAlergiasComunesPaciente (alergiasComunesPaciente)
-  {
-    this.servicioAlergiasComunesPaciente.deleteAlergiasComunesPaciente(alergiasComunesPaciente.id).subscribe( data => {
-      this.actualizarAtributos();
-      this.actualizarAlergiasComunesPaciente();
-    });
-  }
-
-
-
   reemplazarIdPorString()
   {
     for(let i=0;i<this.totalPacientes.length;i++){

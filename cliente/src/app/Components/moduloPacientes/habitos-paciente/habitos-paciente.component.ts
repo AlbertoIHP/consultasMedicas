@@ -193,15 +193,6 @@ export class HabitosPacienteComponent {
     });
   }
 
-
-  eliminarHabitosPaciente (habitosPaciente)
-  {
-    this.servicioHabitosPaciente.deleteHabitosPaciente(habitosPaciente.id).subscribe( data => {
-      this.actualizarAtributos();
-      this.actualizarHabitosPaciente();
-    });
-  }
-
   reemplazarIdPorString()
   {
     for(let i=0;i<this.totalPacientes.length;i++){

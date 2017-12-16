@@ -198,16 +198,6 @@ export class VacunasPacienteComponent {
     });
   }
 
-
-  eliminarVacunasPaciente (vacunasPaciente)
-  {
-    this.servicioVacunasPaciente.deleteVacunaPaciente(vacunasPaciente.id).subscribe( data => {
-      this.actualizarAtributos();
-      this.actualizarVacunasPaciente();
-    });
-  }
-
-
   reemplazarIdPorString()
   {
     for(let i=0;i<this.totalPacientes.length;i++){

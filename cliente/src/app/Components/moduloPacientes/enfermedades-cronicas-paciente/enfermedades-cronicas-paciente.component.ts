@@ -199,15 +199,6 @@ export class EnfermedadesCronicasPacienteComponent {
     });
   }
 
-
-  eliminarEnfermedadesCronicasPaciente (enfermedadesCronicasPaciente)
-  {
-    this.servicioEnfermedadesCronicasPaciente.deleteEnfermedadesCronicasPaciente(enfermedadesCronicasPaciente.id).subscribe( data => {
-      this.actualizarAtributos();
-      this.actualizarEnfermedadesCronicasPaciente();
-    });
-  }
-
   reemplazarIdPorString()
   {
     for(let i=0;i<this.totalPacientes.length;i++){

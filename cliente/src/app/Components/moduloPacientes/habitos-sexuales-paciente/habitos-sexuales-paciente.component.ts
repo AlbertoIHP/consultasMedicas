@@ -202,16 +202,6 @@ export class HabitosSexualesPacienteComponent {
     });
   }
 
-
-  eliminarHabitosSexualesPaciente (habitosSexualesPaciente)
-  {
-    this.servicioHabitosSexualesPaciente.deleteHabitosSexualesPaciente(habitosSexualesPaciente.id).subscribe( data => {
-      this.actualizarAtributos();
-      this.actualizarHabitosSexualesPaciente();
-    });
-  }
-
-
   reemplazarIdPorString()
   {
     for(let i=0;i<this.totalPacientes.length;i++){

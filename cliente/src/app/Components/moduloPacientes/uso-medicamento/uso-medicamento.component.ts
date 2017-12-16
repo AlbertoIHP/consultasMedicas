@@ -192,15 +192,6 @@ export class UsoMedicamentoComponent{
     });
   }
 
-
-  eliminarUsoMedicamento (usoMedicamento)
-  {
-    this.servicioUsoMedicamento.deleteUsoMedicamento(usoMedicamento.id).subscribe( data => {
-      this.actualizarAtributos();
-      this.actualizarUsoMedicamentos();
-    });
-  }
-
   reemplazarIdPorString()
   {
     for(let i=0;i<this.totalPacientes.length;i++){
