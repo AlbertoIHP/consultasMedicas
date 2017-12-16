@@ -240,28 +240,6 @@ export class AlergiasComunesPacienteComponent {
     });
   }
 
-  agregacionAlergiasComunesPaciente()
-  {
-    let dialogRef = this.dialog.open(AgregarAlergiasComunesPacienteComponent, {
-      width: '800px',
-      height: '500px',
-      data: {
-        alergiasComunes: this.totalAlergiasComunes,
-        pacientes: this.totalPacientes,
-        personas: this.totalPersonas,
-        servicioAlergiasComunesPaciente: this.servicioAlergiasComunesPaciente,
-        servicioAlergiaComun: this.servicioAlergiaComun,
-        servicioPaciente: this.servicioPaciente
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.actualizarAtributos();
-      this.actualizarAlergiasComunesPaciente();
-    });
-  }
-
-
   //función para mostrar la ficha médica del paciente correspondiente
  desplegarFichaPaciente(paciente)
   {

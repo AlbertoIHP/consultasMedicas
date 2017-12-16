@@ -25,7 +25,6 @@ export class EditarHabitosSexualesPacienteComponent implements OnInit {
     public servicioPersona: any;
     public servicioHabitosSexualesPaciente:any;
 
-    public arrayPersonaSeleccionada:any;
     options: DatepickerOptions = {
       minYear: 1970,
       maxYear: 2030,
@@ -81,10 +80,7 @@ export class EditarHabitosSexualesPacienteComponent implements OnInit {
     }
 
       this.totalPersonasTemp=arrayTemp;
-      /*
-      this.arrayPersonaSeleccionada = this.totalPersonasTemp.filter( persona => persona.Paciente_id === this.paciente.id);
-      this.arrayPersonaSeleccionada=this.arrayPersonaSeleccionada[0];
-       */
+     
   }
 
   constructor(
@@ -99,7 +95,6 @@ export class EditarHabitosSexualesPacienteComponent implements OnInit {
     		this.totalHabitosSexuales=data.habitosSexuales;
     		this.totalPersonas=data.personas;
       	this.totalPersonasTemp=[];
-        this.arrayPersonaSeleccionada=[];
     		this.servicioPaciente=data.servicioPaciente;
     		this.servicioHabitoSexual=data.servicioHabitoSexual;
     		this.servicioPersona=data.servicioPersona;

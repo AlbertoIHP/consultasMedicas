@@ -74,7 +74,7 @@ export class EditarUsoMedicamentoComponent implements OnInit {
     for(let i=0;i<this.totalMedicamentos.length;i++){
       for(let j=0;j<this.arrayMedicamentosPaciente.length;j++){
         if(this.totalMedicamentos[i].id==this.arrayMedicamentosPaciente[j].Medicamento_id){
-          this.arrayMedicamentosPaciente[j].nombreMedicamento=this.totalMedicamentos[i].nombrecomun;
+          this.arrayMedicamentosPaciente[j].nombreMedicamento=this.totalMedicamentos[i].nombrecomun+" / "+this.totalMedicamentos[i].nombrecientifico;
         }
       }
     }

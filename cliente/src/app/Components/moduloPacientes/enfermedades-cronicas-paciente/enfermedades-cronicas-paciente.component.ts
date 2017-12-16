@@ -258,28 +258,6 @@ export class EnfermedadesCronicasPacienteComponent {
     });
   }
 
-  agregacionEnfermedadesCronicasPaciente()
-  {
-    let dialogRef = this.dialog.open(AgregarEnfermedadesCronicasPacienteComponent, {
-      width: '800px',
-      height: '500px',
-      data: {
-        enfermedadesCronicas: this.totalEnfermedadesCronicas,
-        pacientes: this.totalPacientes,
-        personas: this.totalPersonas,
-        servicioEnfermedadesCronicasPaciente: this.servicioEnfermedadesCronicasPaciente,
-        servicioEnfermedadCronica: this.servicioEnfermedadCronica,
-        servicioPaciente: this.servicioPaciente
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.actualizarAtributos();
-      this.actualizarEnfermedadesCronicasPaciente();
-    });
-  }
-
-
   //función para mostrar la ficha médica del paciente correspondiente
  desplegarFichaPaciente(paciente)
   {

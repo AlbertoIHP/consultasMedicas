@@ -199,6 +199,11 @@ export class buscadorPorNombre extends DataSource<any> {
            let searchStr = (item.nombrecomun.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
+        }else if(this.filtro == "AlergiasMedicamentosPaciente"){ 
+
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
         }
 
 
@@ -374,7 +379,13 @@ export class ExampleDataSource extends DataSource<any> {
            let searchStr = (item.nombrecomun.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
            
+        }else if(this.filtro == "AlergiasMedicamentosPaciente"){
+
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+           
         }
+
 
 
 
@@ -677,7 +688,14 @@ export class ExampleDataSource extends DataSource<any> {
             case 'NombreCientifico': [propertyA, propertyB] = [a.nombrecientifico, b.nombrecientifico]; break;
           }
         }
-
+         else if(this.filtro === "AlergiasMedicamentosPaciente")
+        {
+           switch (this._sort.active)
+          {
+            case 'Rut': [propertyA, propertyB] = [a.rut, b.rut]; break;
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
+          }
+        }
 
 
 

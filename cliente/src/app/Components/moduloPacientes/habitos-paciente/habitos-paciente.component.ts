@@ -250,28 +250,6 @@ export class HabitosPacienteComponent {
     });
   }
 
-  agregacionHabitosPaciente()
-  {
-    let dialogRef = this.dialog.open(AgregarHabitosPacienteComponent, {
-      width: '800px',
-      height: '500px',
-      data: {
-        habitos: this.totalHabitos,
-        pacientes: this.totalPacientes,
-        personas: this.totalPersonas,
-        servicioHabitosPaciente: this.servicioHabitosPaciente,
-        servicioHabito: this.servicioHabito,
-        servicioPaciente: this.servicioPaciente
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.actualizarAtributos();
-      this.actualizarHabitosPaciente();
-    });
-  }
-
-
   //función para mostrar la ficha médica del paciente correspondiente
  desplegarFichaPaciente(paciente)
   {

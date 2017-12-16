@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 import { VerpersonaComponent } from '../../moduloPacientes/personas/verpersona/verpersona.component';
-import { VerFichaMedicaComponent } from '../fichamedica/verfichamedica/verfichamedica.component'
+import { VerFichaMedicaComponent } from '../fichamedica/verfichamedica/verfichamedica.component';
 
 import { HabitosSexualesPaciente } from '../../../Models/HabitosSexualesPaciente.model';
 import { HabitosSexualesPacienteService } from '../../../Services/habitossexualespaciente/habitos-sexuales-paciente.service';
@@ -258,27 +258,6 @@ export class HabitosSexualesPacienteComponent {
       this.actualizarHabitosSexualesPaciente();
       this.arrayHabitosSexualesPaciente = [];
       
-    });
-  }
-
-  agregacionHabitosSexualesPaciente()
-  {
-    let dialogRef = this.dialog.open(AgregarHabitosSexualesPacienteComponent, {
-      width: '800px',
-      height: '500px',
-      data: {
-        habitosSexuales: this.totalHabitosSexuales,
-        pacientes: this.totalPacientes,
-        personas: this.totalPersonas,
-        servicioHabitosSexualesPaciente: this.servicioHabitosSexualesPaciente,
-        servicioHabitoSexual: this.servicioHabitoSexual,
-        servicioPaciente: this.servicioPaciente
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.actualizarAtributos();
-      this.actualizarHabitosSexualesPaciente();
     });
   }
 

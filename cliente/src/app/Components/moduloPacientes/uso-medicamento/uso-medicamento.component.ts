@@ -252,28 +252,6 @@ export class UsoMedicamentoComponent{
     });
   }
 
-  agregacionUsoMedicamentos()
-  {
-    let dialogRef = this.dialog.open(AgregarUsoMedicamentoComponent, {
-      width: '800px',
-      height: '500px',
-      data: {
-        medicamentos: this.totalMedicamentos,
-        pacientes: this.totalPacientes,
-        personas: this.totalPersonas,
-        servicioUsoMedicamento: this.servicioUsoMedicamento,
-        servicioMedicamento: this.servicioMedicamento,
-        servicioPaciente: this.servicioPaciente
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.actualizarAtributos();
-      this.actualizarUsoMedicamentos();
-    });
-  }
-
-
   //función para mostrar la ficha médica del paciente correspondiente
  desplegarFichaPaciente(paciente)
   {

@@ -258,28 +258,7 @@ export class VacunasPacienteComponent {
     });
   }
 
-  agregacionVacunasPaciente()
-  {
-    let dialogRef = this.dialog.open(AgregarVacunasPacienteComponent, {
-      width: '800px',
-      height: '500px',
-      data: {
-        vacunas: this.totalVacunas,
-        pacientes: this.totalPacientes,
-        personas: this.totalPersonas,
-        servicioVacunasPaciente: this.servicioVacunasPaciente,
-        servicioVacuna: this.servicioVacuna,
-        servicioPaciente: this.servicioPaciente
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.actualizarAtributos();
-      this.actualizarVacunasPaciente();
-    });
-  }
-
-
+  
   //función para mostrar la ficha médica del paciente correspondiente
  desplegarFichaPaciente(paciente)
   {

@@ -80,18 +80,7 @@ export class EditarVacunasPacienteComponent implements OnInit {
 
     
   }
-/*
-   pasarStringId()
-  {
-   
-    
-    let currentPaciente = this.totalPacientes.filter( paciente => paciente.Persona_id === this.vacunasPaciente.Paciente_id);
-    console.log(currentPaciente);
-    this.vacunasPaciente.Paciente_id=currentPaciente[0].id;
 
-  }
-
-*/
   constructor(
   	public dialogRef: MatDialogRef<EditarVacunasPacienteComponent>,
 	@Inject(MAT_DIALOG_DATA) public data: any
