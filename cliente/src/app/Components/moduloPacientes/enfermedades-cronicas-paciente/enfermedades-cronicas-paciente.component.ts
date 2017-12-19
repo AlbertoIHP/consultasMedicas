@@ -213,7 +213,7 @@ export class EnfermedadesCronicasPacienteComponent {
 
     let dialogRef = this.dialog.open(EditarEnfermedadesCronicasPacienteComponent, {
       width: '800px',
-      height: '500px',
+      height: '700px',
       data:
       {
        paciente: a,

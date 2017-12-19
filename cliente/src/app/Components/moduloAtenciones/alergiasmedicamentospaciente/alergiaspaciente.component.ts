@@ -211,7 +211,7 @@ export class AlergiaspacienteComponent {
 
     let dialogRef = this.dialog.open(EditarAlergiasPacienteComponent, {
       width: '800px',
-      height: '500px',
+      height: '700px',
       data:
       {
        paciente: a,

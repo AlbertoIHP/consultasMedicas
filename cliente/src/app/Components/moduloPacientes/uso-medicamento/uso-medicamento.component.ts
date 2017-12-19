@@ -209,7 +209,7 @@ export class UsoMedicamentoComponent{
 
     let dialogRef = this.dialog.open(EditarUsoMedicamentoComponent, {
       width: '800px',
-      height: '500px',
+      height: '700px',
       data:
       {
        paciente: a,
