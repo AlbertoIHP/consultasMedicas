@@ -15,7 +15,7 @@ class VacunasPaciente extends Migration
     {
         Schema::create('VacunasPaciente', function (Blueprint $table) {
         $table->increments('id');
-        $table->date("fechaVacunacion");
+        $table->date("fechaVacunacion")->nullable();
 
         $table->integer('Vacuna_id')->unsigned()->nullable();
         $table->integer('Paciente_id')->unsigned()->nullable();        

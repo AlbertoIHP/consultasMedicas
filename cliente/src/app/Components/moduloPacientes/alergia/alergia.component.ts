@@ -3,6 +3,9 @@ import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core'
 import { Alergia } from '../../../Models/Alergia.model';
 import { AlergiaService } from '../../../Services/alergia/alergia.service';
 
+import { AlergiasComunesPaciente } from '../../../Models/AlergiasComunesPaciente.model';
+import { AlergiasComunesPacienteService } from '../../../Services/alergiascomunespaciente/alergias-comunes-paciente.service';
+
 import { AgregarAlergiaComponent } from './agregar-alergia/agregar-alergia.component';
 import { EditarAlergiaComponent } from './editar-alergia/editar-alergia.component';
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
@@ -90,6 +93,7 @@ export class AlergiaComponent {
 
 
 	constructor (
+    public servicioAlergiasComunesPaciente: AlergiasComunesPacienteService,
     public servicioAlergia: AlergiaService,
     public dialog: MatDialog,
     public router: Router
@@ -122,20 +126,34 @@ export class AlergiaComponent {
           .subscribe(() => {
             if (!this.dataSource) { return; }
             this.dataSource.filter = this.filter.nativeElement.value;
-          })
-
-
+          });
 		});
 	}
 
-	eliminarAlergia (alergia)
-	{
-		this.servicioAlergia.deleteAlergia(alergia.id).subscribe( data => {
-			console.log(data);
-			this.actualizarAlergias();
-		});
-	}
+  eliminarAlergia (alergia)
+  {
 
+   this.servicioAlergiasComunesPaciente.getAlergiasComunesPacientes().subscribe(data=>{
+      var todo: any = data;
+      todo = todo.data;
+      var totalAlergiasComunesPaciente = todo;
+
+      for(let i=0; i<totalAlergiasComunesPaciente.length;i++){
+        if(totalAlergiasComunesPaciente[i].Alergia_id===alergia.id){
+          this.servicioAlergiasComunesPaciente.deleteAlergiasComunesPaciente(totalAlergiasComunesPaciente[i].id).subscribe(data=>{
+
+          });
+        }
+      }
+
+     this.servicioAlergia.deleteAlergia(alergia.id).subscribe( data => {
+      console.log(data);
+      this.actualizarAlergias();
+    });
+
+   });
+    
+  }
 
 
 	edicionAlergia (alergia)

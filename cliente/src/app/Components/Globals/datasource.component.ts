@@ -157,22 +157,22 @@ export class buscadorPorNombre extends DataSource<any> {
 
         }else if(this.filtro == "VacunasPaciente"){
 
-           let searchStr = (item.fechaVacunacion.toString()).toLowerCase();
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "UsoMedicamento"){
 
-           let searchStr = (item.fechaInicio.toString()).toLowerCase();
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "HabitosPaciente"){
 
-           let searchStr = (item.fechaInicio.toString()).toLowerCase();
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "HabitosSexualesPaciente"){ 
 
-           let searchStr = (item.fechaInicio.toString()).toLowerCase();
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "Habito"){
@@ -186,12 +186,22 @@ export class buscadorPorNombre extends DataSource<any> {
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }else if(this.filtro == "EnfermedadesCronicasPaciente"){ 
 
-           let searchStr = (item.fechaDeteccion.toString()).toLowerCase();
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "AlergiasComunesPaciente"){ 
 
-           let searchStr = (item.fechaDeteccion.toString()).toLowerCase();
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "Medicamento"){ 
+
+           let searchStr = (item.nombrecomun.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "AlergiasMedicamentosPaciente"){ 
+
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }
@@ -327,22 +337,22 @@ export class ExampleDataSource extends DataSource<any> {
 
         }else if(this.filtro == "VacunasPaciente"){
 
-           let searchStr = (item.fechaVacunacion.toString()).toLowerCase();
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "UsoMedicamento"){
 
-           let searchStr = (item.fechaInicio.toString()).toLowerCase();
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "HabitosPaciente"){
 
-           let searchStr = (item.fechaInicio.toString()).toLowerCase();
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "HabitosSexualesPaciente"){
 
-           let searchStr = (item.fechaInicio.toString()).toLowerCase();
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
            
         }else if(this.filtro == "Habito"){
@@ -356,15 +366,26 @@ export class ExampleDataSource extends DataSource<any> {
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         } else if(this.filtro == "EnfermedadesCronicasPaciente"){
 
-           let searchStr = (item.fechaDeteccion.toString()).toLowerCase();
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
            
         } else if(this.filtro == "AlergiasComunesPaciente"){
 
-           let searchStr = (item.fechaDeteccion.toString()).toLowerCase();
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+           
+        }else if(this.filtro == "Medicamento"){
+
+           let searchStr = (item.nombrecomun.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+           
+        }else if(this.filtro == "AlergiasMedicamentosPaciente"){
+
+           let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
            
         }
+
 
 
 
@@ -573,9 +594,8 @@ export class ExampleDataSource extends DataSource<any> {
         {
            switch (this._sort.active)
           {
-            case 'FechaVacunacion': [propertyA, propertyB] = [a.fechaVacunacion, b.fechaVacunacion]; break;
-            case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
-            case 'Vacuna': [propertyA, propertyB] = [a.Vacuna_id, b.Vacuna_id]; break;
+            case 'Rut': [propertyA, propertyB] = [a.rut, b.rut]; break;
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
           }
         }
         else if(this.filtro === "Alergia")
@@ -603,9 +623,8 @@ export class ExampleDataSource extends DataSource<any> {
         {
            switch (this._sort.active)
           {
-            case 'Medicamento': [propertyA, propertyB] = [a.Medicamento_id, b.Medicamento_id]; break;
-            case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
-            case 'FechaInicio': [propertyA, propertyB] = [a.fechaInicio, b.fechaInicio]; break;
+            case 'Rut': [propertyA, propertyB] = [a.rut, b.rut]; break;
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
 
 
           }
@@ -614,9 +633,8 @@ export class ExampleDataSource extends DataSource<any> {
         {
            switch (this._sort.active)
           {
-            case 'Habito': [propertyA, propertyB] = [a.Habito_id, b.Habito_id]; break;
-            case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
-            case 'FechaInicio': [propertyA, propertyB] = [a.fechaInicio, b.fechaInicio]; break;
+            case 'Rut': [propertyA, propertyB] = [a.rut, b.rut]; break;
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
 
 
           }
@@ -625,11 +643,9 @@ export class ExampleDataSource extends DataSource<any> {
         {
            switch (this._sort.active)
           {
-            case 'HabitoSexual': [propertyA, propertyB] = [a.HabitoSexual_id, b.HabitoSexual_id]; break;
-            case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
-            case 'FechaInicio': [propertyA, propertyB] = [a.fechaInicio, b.fechaInicio]; break;
-            case 'Verdadero': [propertyA, propertyB] = [a.verdadero, b.verdadero]; break;
-
+            case 'Rut': [propertyA, propertyB] = [a.rut, b.rut]; break;
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
+            
           }
         }
 
@@ -652,21 +668,34 @@ export class ExampleDataSource extends DataSource<any> {
         {
            switch (this._sort.active)
           {
-            case 'EnfermedadCronica': [propertyA, propertyB] = [a.Enfermedad_id, b.Enfermedad_id]; break;
-            case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
-            case 'FechaDeteccion': [propertyA, propertyB] = [a.fechaDeteccion, b.fechaDeteccion]; break;
+            case 'Rut': [propertyA, propertyB] = [a.rut, b.rut]; break;
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
           }
         }
         else if(this.filtro === "AlergiasComunesPaciente")
         {
            switch (this._sort.active)
           {
-            case 'AlergiaComun': [propertyA, propertyB] = [a.Alergia_id, b.Alergia_id]; break;
-            case 'Paciente': [propertyA, propertyB] = [a.Paciente_id, b.Paciente_id]; break;
-            case 'FechaDeteccion': [propertyA, propertyB] = [a.fechaDeteccion, b.fechaDeteccion]; break;
+            case 'Rut': [propertyA, propertyB] = [a.rut, b.rut]; break;
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
           }
         }
-
+         else if(this.filtro === "Medicamento")
+        {
+           switch (this._sort.active)
+          {
+            case 'NombreComun': [propertyA, propertyB] = [a.nombrecomun, b.nombrecomun]; break;
+            case 'NombreCientifico': [propertyA, propertyB] = [a.nombrecientifico, b.nombrecientifico]; break;
+          }
+        }
+         else if(this.filtro === "AlergiasMedicamentosPaciente")
+        {
+           switch (this._sort.active)
+          {
+            case 'Rut': [propertyA, propertyB] = [a.rut, b.rut]; break;
+            case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
+          }
+        }
 
 
 

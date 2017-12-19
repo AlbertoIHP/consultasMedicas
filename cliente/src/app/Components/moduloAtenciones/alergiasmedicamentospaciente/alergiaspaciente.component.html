@@ -1,3 +1,92 @@
-<p>
-  alergiaspaciente works!
-</p>
+<h3 class="title-section">Alergias Medicamentos Paciente</h3>
+
+<div class="example-header" >
+
+
+    <label for="finder">Buscar por fecha...</label>
+    <input id="finder" matInput #filter >
+
+</div>
+
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="Acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+
+              <!--Aqui se llamará a la función de la ficha-->
+              <button (click) = "desplegarFichaPaciente(row)" class="btn boton-ficha" type="button" matTooltip="Ver ficha" >
+                <i class="fa fa-address-book-o icono" aria-hidden="true"></i>
+              </button>
+
+       </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Rut Paciente">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Rut Paciente </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Medicamento">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Medicamento </mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+
+         <button  mat-button class="boton-datos" *ngIf="usuarioActual.obtenerPermisoUpdate('AlergiasMedicamentosPaciente')" (click)="edicionAlergiasMedicamentosPaciente(row)" >
+          <span style="color:white;">Ver Alergias Medicamentos</span>
+        </button>
+
+
+      </mat-cell>
+    </ng-container>
+
+    
+<!--
+    <ng-container matColumnDef="Habito Sexual">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header> Hábito Sexual </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.HabitoSexual_id}} </mat-cell>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="Fecha Inicio">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header> Fecha Inicio </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.fechaInicio}} </mat-cell>
+    </ng-container>
+
+-->
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+  <div class="example-no-results"
+       [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+       No hay registros con dicha fecha.
+  </div>
+
+  <mat-paginator #paginator
+                [length]="dataSource.filteredData.length"
+                [pageIndex]="0"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>
+
+
+
+
+
+
+
+
+
+

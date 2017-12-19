@@ -3,6 +3,9 @@ import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core'
 import { EnfermedadCronica } from '../../../Models/EnfermedadCronica.model';
 import { EnfermedadCronicaService } from '../../../Services/enfermedadcronica/enfermedad-cronica.service';
 
+import { EnfermedadesCronicasPaciente } from '../../../Models/EnfermedadesCronicasPaciente.model';
+import { EnfermedadesCronicasPacienteService } from '../../../Services/enfermedadescronicaspaciente/enfermedades-cronicas-paciente.service';
+
 import { AgregarEnfermedadCronicaComponent } from './agregar-enfermedad-cronica/agregar-enfermedad-cronica.component';
 import { EditarEnfermedadCronicaComponent } from './editar-enfermedad-cronica/editar-enfermedad-cronica.component';
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
@@ -91,6 +94,7 @@ export class EnfermedadCronicaComponent {
 
 	constructor (
     public servicioEnfermedadCronica: EnfermedadCronicaService,
+    public servicioEnfermedadesCronicasPaciente: EnfermedadesCronicasPacienteService,
     public dialog: MatDialog,
     public router: Router
 
@@ -128,13 +132,31 @@ export class EnfermedadCronicaComponent {
 		});
 	}
 
-	eliminarEnfermedadCronica (enfermedadcronica)
-	{
-		this.servicioEnfermedadCronica.deleteEnfermedadCronica(enfermedadcronica.id).subscribe( data => {
-			console.log(data);
-			this.actualizarEnfermedadCronicas();
-		});
-	}
+
+  eliminarEnfermedadCronica (enfermedadcronica)
+  {
+
+   this.servicioEnfermedadesCronicasPaciente.getEnfermedadesCronicasPacientes().subscribe(data=>{
+      var todo: any = data;
+      todo = todo.data;
+      var totalEnfermedadesCronicasPaciente = todo;
+
+      for(let i=0; i<totalEnfermedadesCronicasPaciente.length;i++){
+        if(totalEnfermedadesCronicasPaciente[i].EnfermedadCronica_id===enfermedadcronica.id){
+          this.servicioEnfermedadesCronicasPaciente.deleteEnfermedadesCronicasPaciente(totalEnfermedadesCronicasPaciente[i].id).subscribe(data=>{
+
+          });
+        }
+      }
+
+     this.servicioEnfermedadCronica.deleteEnfermedadCronica(enfermedadcronica.id).subscribe( data => {
+      console.log(data);
+      this.actualizarEnfermedadCronicas();
+    });
+
+   });
+    
+  }
 
 
 

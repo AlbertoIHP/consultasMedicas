@@ -15,17 +15,17 @@
     <!--- Note that these columns can be defined in any order.
       The actual rendered columns are set as a property on the row definition" -->
       <ng-container matColumnDef="Nombres">
-        <mat-header-cell *matHeaderCellDef> Nombres </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.nombres}}</mat-cell>
+        <mat-header-cell *matHeaderCellDef>Nombres</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.nombres}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="Apellidos">
-        <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.apellidos}} {{row.apellido2}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef>Apellidos</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.apellidos}} {{row.apellido2}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="RUT">
-        <mat-header-cell *matHeaderCellDef> RUT </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>RUT</mat-header-cell>
         <mat-cell *matCellDef="let row">{{row.rut}}</mat-cell>
       </ng-container>
 
@@ -41,17 +41,17 @@
     <mat-table #table [dataSource]="personaTabla2">
 
       <ng-container matColumnDef="Genero">
-        <mat-header-cell *matHeaderCellDef> Genero </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.genero}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef>Género</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.genero}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="EstadoCivil">
-        <mat-header-cell *matHeaderCellDef> Estado Civil </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.estadoCivil}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef>Estado Civil</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.estadoCivil}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="FonoCasa">
-        <mat-header-cell *matHeaderCellDef> Fono Casa </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Fono Casa</mat-header-cell>
 
         <mat-cell *matCellDef="let row">
           <span *ngIf="existeFonoCasa">{{row.fonoCasa}}</span>
@@ -61,17 +61,17 @@
       </ng-container>
 
       <ng-container matColumnDef="FonoTrabajo">
-        <mat-header-cell *matHeaderCellDef> Fono Trabajo </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Fono Trabajo</mat-header-cell>
 
         <mat-cell *matCellDef="let row">
-          <span *ngIf="existeFonoTrabajo"> {{row.fonoTrabajo}} </span>
-          <span *ngIf="existeFonoTrabajo==false" class="letraAlerta"> Sin registro</span>
+          <span *ngIf="existeFonoTrabajo">{{row.fonoTrabajo}}</span>
+          <span *ngIf="existeFonoTrabajo==false" class="letraAlerta">Sin registro</span>
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="Movil">
-        <mat-header-cell *matHeaderCellDef> Móvil </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.movil}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef>Móvil</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.movil}}</mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
@@ -85,28 +85,27 @@
     <mat-table #table [dataSource]="personaTabla3">
 
       <ng-container matColumnDef="Comuna">
-        <mat-header-cell *matHeaderCellDef> Comuna </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.comuna}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef>Comuna</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.comuna}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="Provincia">
-        <mat-header-cell *matHeaderCellDef> Provincia </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.provincia}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef>Provincia</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.provincia}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="Region">
-        <mat-header-cell *matHeaderCellDef> Región </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.region}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef>Región</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.region}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="Prevision">
-        <mat-header-cell *matHeaderCellDef> Prevision </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Previsión</mat-header-cell>
 
         <mat-cell *matCellDef="let row">
           <span *ngIf="existePrevision">{{row.prevision}}</span>
           <span *ngIf="existePrevision==false" class="letraAlerta">Sin registro</span>
         </mat-cell>
-
 
       </ng-container>
 
@@ -121,18 +120,18 @@
     <mat-table #table [dataSource]="personaTabla4">
 
       <ng-container matColumnDef="Peso">
-        <mat-header-cell *matHeaderCellDef> Peso </mat-header-cell>
-        <mat-cell *matCellDef="let row"> pesokg </mat-cell>
+        <mat-header-cell *matHeaderCellDef>Peso</mat-header-cell>
+        <mat-cell *matCellDef="let row">pesokg</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="Estatura">
-        <mat-header-cell *matHeaderCellDef> Estatura </mat-header-cell>
-        <mat-cell *matCellDef="let row"> estaturam </mat-cell>
+        <mat-header-cell *matHeaderCellDef>Estatura</mat-header-cell>
+        <mat-cell *matCellDef="let row">estaturam</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="TipoSangre">
-        <mat-header-cell *matHeaderCellDef> Tipo Sangre </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.tipoSangre}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef>Tipo Sangre</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.tipoSangre}}</mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns4"></mat-header-row>
@@ -152,18 +151,18 @@
     <mat-table #table [dataSource]="alergiaTabla">
 
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="NombreComun">
-        <mat-header-cell *matHeaderCellDef> Nombre Común </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.nombrecomun}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef>Nombre Común</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.nombrecomun}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="NombreCientifico">
-        <mat-header-cell *matHeaderCellDef> Nombre Científico </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.nombrecientifico}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef>Nombre Científico</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.nombrecientifico}}</mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="columnasAlergia"></mat-header-row>
@@ -171,8 +170,6 @@
 
     </mat-table>
   </div>
-
-
 
 </mat-tab>
 </mat-tab-group>

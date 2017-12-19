@@ -1,19 +1,17 @@
 <h3 class="title-section">Pacientes</h3>
 <div class="example-header" >
 
-
     <label for="finder">Buscar por rut...</label>
     <input id="finder" matInput #filter >
 
 </div>
-
 
 <div class="example-container mat-elevation-z8">
 
   <mat-table #table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="Acciones">
-      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
       <mat-cell *matCellDef="let row">
 
                <button *ngIf="row.activado === 1 && usuarioActual.obtenerPermisoUpdate('Pacientes')"  class="btn boton-editar" type="button" (click) = "edicionPaciente(row)"  matTooltip="Editar">
@@ -34,20 +32,23 @@
                 <i class="fa fa-arrow-up icono" aria-hidden="true"></i>
               </button>
 
-
        </mat-cell>
     </ng-container>
 
     <!-- Progress Column -->
     <ng-container matColumnDef="Rut">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Rut </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Rut</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.rut}}</mat-cell>
     </ng-container>
-
+  
+    <ng-container matColumnDef="Nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.nombre}}</mat-cell>
+    </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="Persona">
-      <mat-header-cell *matHeaderCellDef> Persona Asociada al Paciente </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Persona Asociada al Paciente</mat-header-cell>
       <mat-cell *matCellDef="let row">
 
         <button  mat-button class="boton-datos" (click)="desplegarPersona(row)" >
@@ -59,23 +60,22 @@
 
     <!-- Progress Column -->
     <ng-container matColumnDef="Tipo Sangre">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Sangre </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.TipoSangre_id}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Tipo Sangre</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.TipoSangre_id}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Ocupacion">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Ocupación </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.Ocupacion_id}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Ocupación</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.Ocupacion_id}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Grupo Etnico">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Grupo Étnico </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.GrupoEtnico_id}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Grupo Étnico</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.GrupoEtnico_id}}</mat-cell>
     </ng-container>
 
-
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
   </mat-table>
 

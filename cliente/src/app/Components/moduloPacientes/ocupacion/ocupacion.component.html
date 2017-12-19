@@ -2,25 +2,22 @@
 
 <div class="example-header" >
 
-
     <label for="finder">Buscar por nombre...</label>
     <input id="finder" matInput #filter >
 
 </div>
-
 
 <div class="example-container mat-elevation-z8">
 
   <mat-table #table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="Acciones">
-      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
       <mat-cell *matCellDef="let row">
 
               <button *ngIf="usuarioActual.obtenerPermisoUpdate('Ocupaciones')" (click) = "edicionOcupacion(row)" class="btn boton-editar" type="button" matTooltip="Editar">
                 <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
               </button>
-
 
               <button *ngIf="usuarioActual.obtenerPermisoErase('Ocupaciones')" (click) = "eliminarOcupacion(row)" class="btn boton-eliminar" type="button" matTooltip="Eliminar">
                 <i class="fa fa-trash-o icono" aria-hidden="true"></i>
@@ -29,12 +26,10 @@
        </mat-cell>
     </ng-container>
 
-
     <ng-container matColumnDef="Nombre">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.nombre}}</mat-cell>
     </ng-container>
-
    
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -59,11 +54,3 @@
       <i class="large material-icons">add</i>
     </a>
   </div>
-
-
-
-
-
-
-
-

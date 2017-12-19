@@ -70,6 +70,11 @@ mwl-calendar-month-cell
   background-color: #40bf80 !important;
 }
 
+/*Títulos de secciones*/
+.title-section{
+  font-size: 35px;
+  margin: 20px 10px 20px 10px;
+}
 
 /*Boostrap plus plus*/
 .btn{

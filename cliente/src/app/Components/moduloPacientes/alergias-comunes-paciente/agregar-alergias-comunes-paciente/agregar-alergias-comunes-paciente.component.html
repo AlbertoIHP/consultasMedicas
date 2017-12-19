@@ -1,14 +1,25 @@
-<h1 mat-dialog-title style="text-align: center;">Creación de Alergía Común Paciente</h1>
+<h1 mat-dialog-title style="text-align: center;">Creación de Alergia Común Paciente</h1>
 
 <div mat-dialog-content style="height: 80%;">
 
 <div class="row">
 
   <div class="col s6">
+      <mat-form-field style="width: 100% !important;">
+        <input matInput placeholder="Paciente" [matAutocomplete]="auto" [formControl]="personaCtrl" style="width: 100% !important;">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option style="width: 100% !important;" *ngFor="let persona of totalPersonasTemp | async" [value]="persona.rut" (onSelectionChange)="nuevaAlergiasComunesPaciente.Paciente_id = persona.Paciente_id">
+             <span>({{persona.rut}}) {{persona.nombre1}} {{persona.apellido1}}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+  </div>
+
+  <div class="col s6">
     <mat-form-field style="width: 100% !important;">
-      <mat-select  [(ngModel)]="nuevoAlergiasComunesPaciente.Paciente_id" placeholder="Paciente" style="width: 100% !important;" required>
-          <mat-option style="width: 100% !important;" *ngFor="let personaTemp of totalPersonasTemp" [value]="personaTemp.Paciente_id">
-            <span>({{personaTemp.rut}}) {{personaTemp.nombre1}} {{personaTemp.apellido1}}</span>
+      <mat-select  [(ngModel)]="nuevaAlergiasComunesPaciente.Alergia_id" placeholder="Alergia" style="width: 100% !important;" required>
+          <mat-option style="width: 100% !important;" *ngFor="let alergiaComun of totalAlergiasComunes" [value]="alergiaComun.id">
+            <span>{{alergiaComun.nombre}}</span>
           </mat-option>
         </mat-select>
     </mat-form-field>
@@ -20,9 +31,9 @@
   <div class="col s12">
     <p>
       <i class="fa fa-calendar" aria-hidden="true"></i>
-      <span>Fecha detección de la alergía</span>
+      <span>Fecha detección de la alergia</span>
     </p>
-    <ng-datepicker position='bottom-right' isOpened=true [options]="options" [(ngModel)]="nuevoAlergiasComunesPaciente.fechaDeteccion"></ng-datepicker>
+    <ng-datepicker position='bottom-right' isOpened=true [options]="options" [(ngModel)]="nuevaAlergiasComunesPaciente.fechaDeteccion"></ng-datepicker>
   </div>
 </div>
 
@@ -31,6 +42,6 @@
 
 
 <div mat-dialog-actions>
-  <button mat-button class="boton-aceptar" (click)="agregarAlergiasComunesPaciente()" tabindex="2">Agregar Alergía Común Paciente <mat-icon>add</mat-icon></button>
+  <button mat-button class="boton-aceptar" (click)="agregarAlergiasComunesPaciente()" tabindex="2">Agregar Alergia Común Paciente <mat-icon>add</mat-icon></button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

@@ -43,11 +43,15 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class AlergiasComunesPacienteComponent {
 
 	public totalAlergiasComunes: Alergia[];
-	public totalPacientes: Paciente[];
+	public totalPacientes: any;
 	public totalAlergiasComunesPaciente: AlergiasComunesPaciente[];
 	public totalPersonas: Persona[];
 	public usuarioActual;
-  	displayedColumns = ['Acciones', 'Rut Paciente', 'Alergia Comun','Fecha Deteccion'];
+  
+  //Arreglo con todos los registros que contengan al paciente parametrizado y sus hábitos
+  public arrayAlergiasComunesPaciente: AlergiasComunesPaciente[];
+
+  	displayedColumns = ['Acciones', 'Rut Paciente', 'Nombre', 'Alergias Comunes'];
 
   	//DATATABLE
 	exampleDatabase;
@@ -110,37 +114,12 @@ export class AlergiasComunesPacienteComponent {
       this.totalAlergiasComunesPaciente = [];
       this.totalPacientes=[];
       this.totalPersonas=[];
+      this.arrayAlergiasComunesPaciente = [];
       this.actualizarAtributos();
-      this.actualizarAlergiasComunesPaciente();
 
 
 
       }
-
-
-    actualizarAlergiasComunesPaciente ()
-  {
-    this.servicioAlergiasComunesPaciente.getAlergiasComunesPacientes().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalAlergiasComunesPaciente = todo;
-      
-      //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalAlergiasComunesPaciente);
-
-      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'AlergiasComunesPaciente');
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          })
-
-
-    });
-  }
-
 
   actualizarAtributos ()
   {
@@ -159,7 +138,29 @@ export class AlergiasComunesPacienteComponent {
                 todo = todo.data;
                 this.totalPersonas = todo;
 
-                this.reemplazarIdPorString();
+                this.servicioAlergiasComunesPaciente.getAlergiasComunesPacientes().subscribe(data => {
+                  var todo: any = data;
+                  todo = todo.data;
+                  this.totalAlergiasComunesPaciente = todo;
+        
+                  this.reemplazarIdPorString();
+
+                    //DATATABLE
+                  this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
+
+                  this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'AlergiasComunesPaciente');
+                  Observable.fromEvent(this.filter.nativeElement, 'keyup')
+                      .debounceTime(150)
+                      .distinctUntilChanged()
+                      .subscribe(() => {
+                        if (!this.dataSource) { return; }
+                        this.dataSource.filter = this.filter.nativeElement.value;
+                      })
+
+
+               
+                  
+              });
 
            });
 
@@ -167,86 +168,37 @@ export class AlergiasComunesPacienteComponent {
     });
   }
 
-
-  eliminarAlergiasComunesPaciente (alergiasComunesPaciente)
-  {
-    this.servicioAlergiasComunesPaciente.deleteAlergiasComunesPaciente(alergiasComunesPaciente.id).subscribe( data => {
-      this.actualizarAtributos();
-      this.actualizarAlergiasComunesPaciente();
-    });
-  }
-
-
   reemplazarIdPorString()
   {
-    for(let i = 0 ; i < this.totalAlergiasComunesPaciente.length ; i ++)
-    {
-
-      for(let j = 0 ; j < this.totalAlergiasComunes.length ; j++)
-      {
-        console.log("ec")
-        console.log(this.totalAlergiasComunesPaciente[i].Alergia_id)
-        console.log("id")
-        console.log(this.totalAlergiasComunes[j].id)
-        if( parseInt(this.totalAlergiasComunesPaciente[i].Alergia_id) === this.totalAlergiasComunes[j].id)
-        {
-          this.totalAlergiasComunesPaciente[i].Alergia_id = this.totalAlergiasComunes[j].nombre;
-          console.log(this.totalAlergiasComunesPaciente[i].Alergia_id);
+    for(let i=0;i<this.totalPacientes.length;i++){
+      for(let j=0;j<this.totalAlergiasComunesPaciente.length;j++){
+        if(this.totalPacientes[i].id===this.totalAlergiasComunesPaciente[j].Paciente_id){
+         let currentPersona= this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[i].Persona_id));
+          this.totalPacientes[i].rut=currentPersona[0].rut;
+          this.totalPacientes[i].nombre=currentPersona[0].nombre1+" "+currentPersona[0].nombre2+" "+currentPersona[0].apellido1+" "+currentPersona[0].apellido2;
           break;
         }
       }
-
-      for(let j = 0 ; j < this.totalPacientes.length ; j++)
-      {
-        if( parseInt(this.totalAlergiasComunesPaciente[i].Paciente_id) === this.totalPacientes[j].id)
-        {
-          let currentPersona = this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[j].Persona_id));
-          this.totalAlergiasComunesPaciente[i].Paciente_id = currentPersona[0].rut;
-          break;
-        }
-      }
-
     }
   }
 
-  pasarStringId(alergiasComunesPaciente)
-  {
-    for ( let i = 0 ; i < this.totalAlergiasComunes.length ; i ++)
-    {
-    if(alergiasComunesPaciente.Alergia_id === this.totalAlergiasComunes[i].nombre)
-    {
-      alergiasComunesPaciente.Alergia_id = this.totalAlergiasComunes[i].id;
-    }
-    }
-
-    for ( let i = 0 ; i < this.totalPacientes.length ; i ++)
-    {
-    let currentPersona = this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[i].Persona_id));
-
-    if(alergiasComunesPaciente.Paciente_id === currentPersona[0].rut)
-    {
-      alergiasComunesPaciente.Paciente_id = this.totalPacientes[i].id;
-    }
-    }
-
-  }
-
-
-
-  edicionAlergiasComunesPaciente (alergiasComunesPaciente)
+  edicionAlergiasComunesPaciente (paciente)
   {
 
-    var a = JSON.parse( JSON.stringify(alergiasComunesPaciente) );
+    var a = JSON.parse( JSON.stringify(paciente) );
 
-    this.pasarStringId(a);
+    //this.pasarStringId(a);
+
+    this.obtenerAlergiasComunesPaciente(a.id);
 
     let dialogRef = this.dialog.open(EditarAlergiasComunesPacienteComponent, {
       width: '800px',
       height: '500px',
       data:
       {
-       alergiasComunesPaciente: a,
+       paciente: a,
        alergiasComunes: this.totalAlergiasComunes,
+       arrayAlergiasComunesPaciente: this.arrayAlergiasComunesPaciente,
        pacientes: this.totalPacientes,
        personas: this.totalPersonas,
        servicioAlergiaComun: this.servicioAlergiaComun,
@@ -259,42 +211,20 @@ export class AlergiasComunesPacienteComponent {
     dialogRef.afterClosed().subscribe(result => {
 
       this.actualizarAtributos();
-      this.actualizarAlergiasComunesPaciente();
+      this.arrayAlergiasComunesPaciente = [];
       
     });
   }
 
-  agregacionAlergiasComunesPaciente()
-  {
-    let dialogRef = this.dialog.open(AgregarAlergiasComunesPacienteComponent, {
-      width: '800px',
-      height: '500px',
-      data: {
-        alergiasComunes: this.totalAlergiasComunes,
-        pacientes: this.totalPacientes,
-        personas: this.totalPersonas,
-        servicioAlergiasComunesPaciente: this.servicioAlergiasComunesPaciente,
-        servicioAlergiaComun: this.servicioAlergiaComun,
-        servicioPaciente: this.servicioPaciente
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.actualizarAtributos();
-      this.actualizarAlergiasComunesPaciente();
-    });
-  }
-
-
   //función para mostrar la ficha médica del paciente correspondiente
- desplegarFichaPaciente(alergiasPaciente)
+ desplegarFichaPaciente(paciente)
   {
 
-   var a = JSON.parse( JSON.stringify(alergiasPaciente) );
+   var a = JSON.parse( JSON.stringify(paciente) );
    var b;
-  this.pasarStringId(a);
+ 
 
-  this.servicioPaciente.getPaciente(a.Paciente_id).subscribe(data =>{
+  this.servicioPaciente.getPaciente(a.id).subscribe(data =>{
     var todo: any = data;
     todo = todo.data;
     b=todo;
@@ -308,7 +238,7 @@ export class AlergiasComunesPacienteComponent {
 
        let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
           width: '1000px',
-          height:'500px',
+          height:'700px',
           data: { persona: persona }
         });
 
@@ -316,4 +246,26 @@ export class AlergiasComunesPacienteComponent {
   });
 
   }
+
+  //función para setear el array con los registros del paciente correspondiente
+  obtenerAlergiasComunesPaciente(idPaciente){
+    for(let i=0;i<this.totalAlergiasComunesPaciente.length;i++){
+
+      if(this.totalAlergiasComunesPaciente[i].Paciente_id==idPaciente){
+
+        this.arrayAlergiasComunesPaciente.push(this.totalAlergiasComunesPaciente[i]);
+      }
+
+      if(this.totalAlergiasComunesPaciente[i].fechaDeteccion != null){
+
+        this.totalAlergiasComunesPaciente[i].esVerdadero=true;
+
+      }else if(this.totalAlergiasComunesPaciente[i].fechaDeteccion==null){
+
+        this.totalAlergiasComunesPaciente[i].esVerdadero=false;
+      }
+    }
+
+  }
+
 }

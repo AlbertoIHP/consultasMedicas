@@ -4,6 +4,9 @@ import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core'
 import { HabitoSexual } from '../../../Models/HabitoSexual.model';
 import { HabitoSexualService } from '../../../Services/habitosexual/habito-sexual.service';
 
+import { HabitosSexualesPacienteService } from '../../../Services/habitossexualespaciente/habitos-sexuales-paciente.service';
+
+
 import { AgregarHabitoSexualComponent } from './agregar-habito-sexual/agregar-habito-sexual.component';
 import { EditarHabitoSexualComponent } from './editar-habito-sexual/editar-habito-sexual.component';
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
@@ -93,7 +96,8 @@ export class HabitoSexualComponent {
 	constructor (
     public servicioHabitoSexual: HabitoSexualService,
     public dialog: MatDialog,
-    public router: Router
+    public router: Router,
+    public servicioHabitosSexualesPaciente:HabitosSexualesPacienteService
 
 
     )
@@ -129,10 +133,27 @@ export class HabitoSexualComponent {
 
 	eliminarHabitoSexual (habitosexual)
 	{
-		this.servicioHabitoSexual.deleteHabitoSexual(habitosexual.id).subscribe( data => {
-			console.log(data);
-			this.actualizarHabitoSexuals();
-		});
+
+   this.servicioHabitosSexualesPaciente.getHabitosSexualesPacientes().subscribe(data=>{
+      var todo: any = data;
+      todo = todo.data;
+      var totalHabitosSexualesPaciente = todo;
+
+      for(let i=0; i<totalHabitosSexualesPaciente.length;i++){
+        if(totalHabitosSexualesPaciente[i].HabitoSexual_id===habitosexual.id){
+          this.servicioHabitosSexualesPaciente.deleteHabitosSexualesPaciente(totalHabitosSexualesPaciente[i].id).subscribe(data=>{
+
+          });
+        }
+      }
+
+     this.servicioHabitoSexual.deleteHabitoSexual(habitosexual.id).subscribe( data => {
+      console.log(data);
+      this.actualizarHabitoSexuals();
+    });
+
+   });
+		
 	}
 
 

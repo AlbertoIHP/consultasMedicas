@@ -54,13 +54,13 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class PacientesComponent implements OnInit {
 	public totalPersonas: Persona[];
   public personasDisponibles: Persona[];
-	public totalPacientes: Paciente[];
+	public totalPacientes: any;
 	public totalTS: TipoSangre[];
   public totalGruposEtnicos: GrupoEtnico[];
   public totalOcupaciones: Ocupacion[];
 	public usuarioActual;
 
-	displayedColumns = ['Acciones', 'Rut', 'Persona', 'Tipo Sangre', 'Grupo Etnico', 'Ocupacion'];
+	displayedColumns = ['Acciones', 'Rut', 'Nombre', 'Persona', 'Tipo Sangre', 'Grupo Etnico', 'Ocupacion'];
 
   //DATATABLE
   exampleDatabase;
@@ -401,6 +401,7 @@ actualizarPersonas()
 
 	reemplazarIdPorString()
 	{
+    //this.totalPacientes.filter( ts => ts.id === this.totalPacientes[j].TipoSangre_id);
 		for(let i = 0 ; i < this.totalPacientes.length ; i ++)
 		{
 
@@ -431,7 +432,13 @@ actualizarPersonas()
         }
       }
 
-
+      for(let j = 0; j < this.totalPersonas.length; j++) {
+        if( parseInt(this.totalPacientes[i].Persona_id) === this.totalPersonas[j].id ) {
+          this.totalPacientes[i].nombre = this.totalPersonas[j].nombre1 + " " + this.totalPersonas[j].nombre2 + " "
+          + " " + this.totalPersonas[j].apellido1 + " " +this.totalPersonas[j].apellido2;
+          break;
+        }
+      }
 
 		}
 	}
@@ -509,7 +516,7 @@ actualizarPersonas()
 
     let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
     width: '1000px',
-    height:'500px',
+    height:'700px',
     data: { persona: persona }
     });
 
@@ -529,10 +536,8 @@ actualizarPersonas()
     {
       for ( let j = 0 ; j < this.personasDisponibles.length ; j ++ )
       {
-        console.log("Hola")
         if (parseInt(this.totalPacientes[i].Persona_id) === this.personasDisponibles[j].id)
         {
-          console.log("Chao")
           this.personasDisponibles.splice(j, 1);
         }
       }

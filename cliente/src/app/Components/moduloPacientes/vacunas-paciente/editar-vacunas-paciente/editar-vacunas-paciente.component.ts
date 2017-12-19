@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { VacunasPaciente } from '../../../../Models/VacunasPaciente.model';
-
+import { Persona } from '../../../../Models/Persona.model';
 import { DatepickerOptions } from 'ng2-datepicker';
 
 @Component({
@@ -10,7 +10,9 @@ import { DatepickerOptions } from 'ng2-datepicker';
   styleUrls: ['./editar-vacunas-paciente.component.css']
 })
 export class EditarVacunasPacienteComponent implements OnInit {
-    public vacunasPaciente:VacunasPaciente;
+    public paciente:any;
+
+    public arrayVacunasPaciente:any;
 
 	  public totalPacientes: any;
 	  public totalVacunas: any;
@@ -66,27 +68,25 @@ export class EditarVacunasPacienteComponent implements OnInit {
           
         }
     }
+
+    for(let i=0;i<this.totalVacunas.length;i++){
+      for(let j=0;j<this.arrayVacunasPaciente.length;j++){
+        if(this.totalVacunas[i].id==this.arrayVacunasPaciente[j].Vacuna_id){
+          this.arrayVacunasPaciente[j].nombreVacuna=this.totalVacunas[i].nombre;
+        }
+      }
+    }
       this.totalPersonasTemp=arrayTemp;
 
     
   }
-/*
-   pasarStringId()
-  {
-   
-    
-    let currentPaciente = this.totalPacientes.filter( paciente => paciente.Persona_id === this.vacunasPaciente.Paciente_id);
-    console.log(currentPaciente);
-    this.vacunasPaciente.Paciente_id=currentPaciente[0].id;
 
-  }
-
-*/
   constructor(
   	public dialogRef: MatDialogRef<EditarVacunasPacienteComponent>,
 	@Inject(MAT_DIALOG_DATA) public data: any
   	) {
-      this.vacunasPaciente=data.vacunasPaciente;
+      this.paciente=data.paciente;
+      this.arrayVacunasPaciente=data.arrayVacunasPaciente;
 
   		this.totalPacientes=data.pacientes;
   		this.totalVacunas=data.vacunas;
@@ -105,20 +105,32 @@ export class EditarVacunasPacienteComponent implements OnInit {
       this.dialogRef.close();
     }
 
+
+  obtenerFecha(vacunaPaciente){
+    if(vacunaPaciente.esVerdadero){
+      vacunaPaciente.fechaVacunacion=new Date().toISOString().slice(0, 19).replace('T', ' ');
+    }else if(vacunaPaciente.esVerdadero==false){
+      vacunaPaciente.fechaVacunacion=null;
+    }
+
+  }
+
   editarVacunasPaciente()
   {
 
-    this.vacunasPaciente.fechaVacunacion=new Date(this.vacunasPaciente.fechaVacunacion).toISOString().slice(0, 19).replace('T', ' ');
+    for(let i=0;i<this.arrayVacunasPaciente.length;i++){
 
+      if(this.arrayVacunasPaciente[i].fechaVacunacion!=null){
+      this.arrayVacunasPaciente[i].fechaVacunacion=new Date(this.arrayVacunasPaciente[i].fechaVacunacion).toISOString().slice(0, 19).replace('T', ' ');
+      }
+      this.servicioVacunasPaciente.editVacunaPaciente(this.arrayVacunasPaciente[i], this.arrayVacunasPaciente[i].id).subscribe( data => {
+        console.log(data);
+        this.dialogRef.close();
 
-    this.servicioVacunasPaciente.editVacunaPaciente(this.vacunasPaciente, this.vacunasPaciente.id).subscribe( data => {
-      console.log(data);
-      this.dialogRef.close();
+      });
 
-    });
+    }
+
   }
-  	
-
- 
-
 }
+

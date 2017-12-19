@@ -1,22 +1,9 @@
-
-
-
-
-
-
-
-
 <mat-horizontal-stepper [linear]="true">
-
 
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
 
-
-
       <ng-template matStepLabel>Información Personal</ng-template>
-
-
 
       <div class="row">
 
@@ -39,7 +26,6 @@
         </div>
       </div>
 
-
       <div class="row">
         <div class="col s6">
           <mat-form-field class="fullWidth">
@@ -53,8 +39,6 @@
           </mat-form-field>
         </div>
       </div>
-
-
 
       <div class="row">
         <div class="col s4">
@@ -75,8 +59,6 @@
           </mat-form-field>
         </div>
       </div>
-
-
 
       <div class="row">
         <div class="col s4">
@@ -127,14 +109,10 @@
         </div>
       </div>
 
-
-
       <div class="row">
         <div class="col s12">
           <button mat-button matStepperNext style="width: 100%" disabled="{{rutValido}}">Siguiente <mat-icon>arrow_forward</mat-icon> </button>
         </div>
-
-
 
       </div>
     </form>
@@ -142,16 +120,11 @@
 
 
 
-
-
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Generacion de Usuario</ng-template>
 
-
-
-        <p>Un email sera enviado a la dirección ingresada, el cual contendrá la constraseña de acceso predeterminada para el usuario, una vez entre con dicha contraseña podrá modificarla desde el sistema.</p>
-
+        <p>Un email será enviado a la dirección ingresada, el cual contendrá la contraseña de acceso predeterminada para el usuario, una vez entre con dicha contraseña podrá modificarla desde el sistema.</p>
 
     <mat-form-field class="fullWidth">
      <input matInput placeholder="Correo electrónico" type="email"  formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.email" (ngModelChange)="validateEmail(nuevoUsuario.email)">
@@ -171,23 +144,18 @@
 
 
 
-
   <mat-step>
     <ng-template matStepLabel style="text-align: center">Verificación de cuenta</ng-template>
 
     <div style="text-align: center !important">
           <img src="https://lh3.googleusercontent.com/Vct_XSpNfhherziE-h0mSSpbrJf2jYM1nvPO2PVkcIECnqqUHCf-2-5j8EObefEmS0o7=w300" style="max-width: 300px; max-height: 300px">
 
-              <p>
-      Un correo electrónico ha sido enviado a la dirección registrada.
-      Una vez confirmes tu cuenta, podrás tener acceso a la pagina web de la clínica.
-
-    </p>
+          <p>
+            Un correo electrónico ha sido enviado a la dirección registrada.
+            Una vez confirmes tu cuenta, podrás tener acceso a la página web de la clínica.
+          </p>
 
     </div>
-
-
-
 
      <div class="row">
           <div class="col s12">

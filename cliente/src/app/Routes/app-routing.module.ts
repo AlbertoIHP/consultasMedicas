@@ -197,7 +197,7 @@ const routes: Routes =
 
 
   //MÓDULO ATENCIONES
-  { path: 'alg', component: AlergiaspacienteComponent, canActivate: [AuthGuard], data:{nombre:'AlergiasPaciente'}  },
+  { path: 'algm', component: AlergiaspacienteComponent, canActivate: [AuthGuard], data:{nombre:'AlergiasMedicamentosPaciente'}  },
   { path: 'atc', component: AtencionComponent, canActivate: [AuthGuard], data:{nombre:'Atencion'}  },
   { path: 'dia', component: DiagnosticoComponent, canActivate: [AuthGuard], data:{nombre:'Diagnostico'}  },
   { path: 'diat', component: DiagnosticosatencionComponent, canActivate: [AuthGuard], data:{nombre:'DiagnosticosAtencion'}  },

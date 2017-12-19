@@ -1,3 +1,27 @@
-<p>
-  editar-medicamento works!
-</p>
+<h1 mat-dialog-title style="text-align: center;">Edición de Medicamento</h1>
+
+<div mat-dialog-content>
+
+<div class="row">
+
+	<div class="col s6">
+	    <mat-form-field class="fullWidth">
+	     <input matInput placeholder="Nombre Común" [(ngModel)]="medicamento.nombrecomun" required>
+	    </mat-form-field>
+	</div>
+
+	<div class="col s6">
+	     <mat-form-field class="fullWidth">
+	     <input matInput placeholder="Nombre Científico" [(ngModel)]="medicamento.nombrecientifico" required>
+	    </mat-form-field>
+	</div>
+</div>
+
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button class="boton-aceptar" (click)="editarMedicamento()" tabindex="2">Actualizar Medicamento <mat-icon>refresh</mat-icon></button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

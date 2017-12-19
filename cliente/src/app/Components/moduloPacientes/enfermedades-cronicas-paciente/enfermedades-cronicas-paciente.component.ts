@@ -43,11 +43,15 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class EnfermedadesCronicasPacienteComponent {
   
 	public totalEnfermedadesCronicas: EnfermedadCronica[];
-	public totalPacientes: Paciente[];
+	public totalPacientes: any;
 	public totalEnfermedadesCronicasPaciente: EnfermedadesCronicasPaciente[];
 	public totalPersonas: Persona[];
 	public usuarioActual;
-  	displayedColumns = ['Acciones', 'Rut Paciente', 'Enfermedad Cronica','Fecha Deteccion'];
+
+  //arreglo con todos los registron que contengan al paciente parametrizado y sus hábitos
+  public arrayEnfermedadesCronicasPaciente: EnfermedadesCronicasPaciente[];
+
+  	displayedColumns = ['Acciones', 'Rut Paciente', 'Nombre', 'Enfermedades Cronicas'];
 
   	//DATATABLE
 	exampleDatabase;
@@ -110,37 +114,31 @@ export class EnfermedadesCronicasPacienteComponent {
       this.totalEnfermedadesCronicasPaciente = [];
       this.totalPacientes=[];
       this.totalPersonas=[];
+      this.arrayEnfermedadesCronicasPaciente = [];
       this.actualizarAtributos();
-      this.actualizarEnfermedadesCronicasPaciente();
-
-
 
       }
 
+  //función para setear el array con los registros del paciente correspondiente
+  obtenerEnfermedadesCronicasPaciente(idPaciente){
+    for(let i=0;i<this.totalEnfermedadesCronicasPaciente.length;i++){
 
-    actualizarEnfermedadesCronicasPaciente ()
-  {
-    this.servicioEnfermedadesCronicasPaciente.getEnfermedadesCronicasPacientes().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalEnfermedadesCronicasPaciente = todo;
-      
-      //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalEnfermedadesCronicasPaciente);
+      if(this.totalEnfermedadesCronicasPaciente[i].Paciente_id==idPaciente){
 
-      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'EnfermedadesCronicasPaciente');
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          })
+        this.arrayEnfermedadesCronicasPaciente.push(this.totalEnfermedadesCronicasPaciente[i]);
+      }
 
+      if(this.totalEnfermedadesCronicasPaciente[i].fechaDeteccion != null){
 
-    });
+        this.totalEnfermedadesCronicasPaciente[i].esVerdadero=true;
+
+      }else if(this.totalEnfermedadesCronicasPaciente[i].fechaDeteccion==null){
+
+        this.totalEnfermedadesCronicasPaciente[i].esVerdadero=false;
+      }
+    }
+
   }
-
 
   actualizarAtributos ()
   {
@@ -159,7 +157,29 @@ export class EnfermedadesCronicasPacienteComponent {
                 todo = todo.data;
                 this.totalPersonas = todo;
 
-                this.reemplazarIdPorString();
+                this.servicioEnfermedadesCronicasPaciente.getEnfermedadesCronicasPacientes().subscribe(data => {
+                  var todo: any = data;
+                  todo = todo.data;
+                  this.totalEnfermedadesCronicasPaciente = todo;
+        
+                  this.reemplazarIdPorString();
+
+                    //DATATABLE
+                  this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
+
+                  this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'EnfermedadesCronicasPaciente');
+                  Observable.fromEvent(this.filter.nativeElement, 'keyup')
+                      .debounceTime(150)
+                      .distinctUntilChanged()
+                      .subscribe(() => {
+                        if (!this.dataSource) { return; }
+                        this.dataSource.filter = this.filter.nativeElement.value;
+                      })
+
+
+               
+                  
+              });
 
            });
 
@@ -167,86 +187,38 @@ export class EnfermedadesCronicasPacienteComponent {
     });
   }
 
-
-  eliminarEnfermedadesCronicasPaciente (enfermedadesCronicasPaciente)
-  {
-    this.servicioEnfermedadesCronicasPaciente.deleteEnfermedadesCronicasPaciente(enfermedadesCronicasPaciente.id).subscribe( data => {
-      this.actualizarAtributos();
-      this.actualizarEnfermedadesCronicasPaciente();
-    });
-  }
-
-
   reemplazarIdPorString()
   {
-    for(let i = 0 ; i < this.totalEnfermedadesCronicasPaciente.length ; i ++)
-    {
-
-      for(let j = 0 ; j < this.totalEnfermedadesCronicas.length ; j++)
-      {
-        console.log("ec")
-        console.log(this.totalEnfermedadesCronicasPaciente[i].EnfermedadCronica_id)
-        console.log("id")
-        console.log(this.totalEnfermedadesCronicas[j].id)
-        if( parseInt(this.totalEnfermedadesCronicasPaciente[i].EnfermedadCronica_id) === this.totalEnfermedadesCronicas[j].id)
-        {
-          this.totalEnfermedadesCronicasPaciente[i].EnfermedadCronica_id = this.totalEnfermedadesCronicas[j].nombre;
-          console.log(this.totalEnfermedadesCronicasPaciente[i].EnfermedadCronica_id);
+    for(let i=0;i<this.totalPacientes.length;i++){
+      for(let j=0;j<this.totalEnfermedadesCronicasPaciente.length;j++){
+        if(this.totalPacientes[i].id===this.totalEnfermedadesCronicasPaciente[j].Paciente_id){
+         let currentPersona= this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[i].Persona_id));
+          this.totalPacientes[i].rut=currentPersona[0].rut;
+          this.totalPacientes[i].nombre=currentPersona[0].nombre1+" "+currentPersona[0].nombre2+" "+currentPersona[0].apellido1+" "+currentPersona[0].apellido2;
           break;
         }
       }
-
-      for(let j = 0 ; j < this.totalPacientes.length ; j++)
-      {
-        if( parseInt(this.totalEnfermedadesCronicasPaciente[i].Paciente_id) === this.totalPacientes[j].id)
-        {
-          let currentPersona = this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[j].Persona_id));
-          this.totalEnfermedadesCronicasPaciente[i].Paciente_id = currentPersona[0].rut;
-          break;
-        }
-      }
-
     }
   }
 
-  pasarStringId(enfermedadesCronicasPaciente)
-  {
-    for ( let i = 0 ; i < this.totalEnfermedadesCronicas.length ; i ++)
-    {
-    if(enfermedadesCronicasPaciente.EnfermedadCronica_id === this.totalEnfermedadesCronicas[i].nombre)
-    {
-      enfermedadesCronicasPaciente.EnfermedadCronica_id = this.totalEnfermedadesCronicas[i].id;
-    }
-    }
 
-    for ( let i = 0 ; i < this.totalPacientes.length ; i ++)
-    {
-    let currentPersona = this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[i].Persona_id));
-
-    if(enfermedadesCronicasPaciente.Paciente_id === currentPersona[0].rut)
-    {
-      enfermedadesCronicasPaciente.Paciente_id = this.totalPacientes[i].id;
-    }
-    }
-
-  }
-
-
-
-  edicionEnfermedadesCronicasPaciente (enfermedadesCronicasPaciente)
+  edicionEnfermedadesCronicasPaciente (paciente)
   {
 
-    var a = JSON.parse( JSON.stringify(enfermedadesCronicasPaciente) );
+    var a = JSON.parse( JSON.stringify(paciente) );
 
-    this.pasarStringId(a);
+    //this.pasarStringId(a);
+
+    this.obtenerEnfermedadesCronicasPaciente(a.id);
 
     let dialogRef = this.dialog.open(EditarEnfermedadesCronicasPacienteComponent, {
       width: '800px',
       height: '500px',
       data:
       {
-       enfermedadesCronicasPaciente: a,
+       paciente: a,
        enfermedadesCronicas: this.totalEnfermedadesCronicas,
+       arrayEnfermedadesCronicasPaciente: this.arrayEnfermedadesCronicasPaciente,
        pacientes: this.totalPacientes,
        personas: this.totalPersonas,
        servicioEnfermedadCronica: this.servicioEnfermedadCronica,
@@ -259,42 +231,19 @@ export class EnfermedadesCronicasPacienteComponent {
     dialogRef.afterClosed().subscribe(result => {
 
       this.actualizarAtributos();
-      this.actualizarEnfermedadesCronicasPaciente();
+      this.arrayEnfermedadesCronicasPaciente = [];
       
     });
   }
 
-  agregacionEnfermedadesCronicasPaciente()
-  {
-    let dialogRef = this.dialog.open(AgregarEnfermedadesCronicasPacienteComponent, {
-      width: '800px',
-      height: '500px',
-      data: {
-        enfermedadesCronicas: this.totalEnfermedadesCronicas,
-        pacientes: this.totalPacientes,
-        personas: this.totalPersonas,
-        servicioEnfermedadesCronicasPaciente: this.servicioEnfermedadesCronicasPaciente,
-        servicioEnfermedadCronica: this.servicioEnfermedadCronica,
-        servicioPaciente: this.servicioPaciente
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.actualizarAtributos();
-      this.actualizarEnfermedadesCronicasPaciente();
-    });
-  }
-
-
   //función para mostrar la ficha médica del paciente correspondiente
- desplegarFichaPaciente(enfermedadesPaciente)
+ desplegarFichaPaciente(paciente)
   {
 
-   var a = JSON.parse( JSON.stringify(enfermedadesPaciente) );
+   var a = JSON.parse( JSON.stringify(paciente) );
    var b;
-  this.pasarStringId(a);
 
-  this.servicioPaciente.getPaciente(a.Paciente_id).subscribe(data =>{
+  this.servicioPaciente.getPaciente(a.id).subscribe(data =>{
     var todo: any = data;
     todo = todo.data;
     b=todo;
@@ -308,7 +257,7 @@ export class EnfermedadesCronicasPacienteComponent {
 
        let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
           width: '1000px',
-          height:'500px',
+          height:'700px',
           data: { persona: persona }
         });
 

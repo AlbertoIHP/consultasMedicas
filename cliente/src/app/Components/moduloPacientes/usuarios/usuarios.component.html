@@ -1,27 +1,23 @@
 <h3 class="title-section">Usuarios</h3>
 
-
 <div class="example-header" >
-
 
     <label for="finder">Buscar por nombre...</label>
     <input id="finder" matInput #filter >
 
 </div>
 
-
 <div class="example-container mat-elevation-z8">
 
   <mat-table #table [dataSource]="dataSource" matSort>
 
   <ng-container matColumnDef="Acciones">
-    <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
     <mat-cell *matCellDef="let row">
 
         <button *ngIf="usuarioActual.obtenerPermisoUpdate('Usuarios')" class="btn boton-editar" type="button" (click) = "edicionUsuario(row)" matTooltip="Editar">
           <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
         </button>
-
 
         <button *ngIf="usuarioActual.obtenerPermisoErase('Usuarios')" class="btn boton-eliminar" type="button" (click) = "eliminarUsuario(row)" matTooltip="Eliminar">
           <i class="fa fa-trash-o icono" aria-hidden="true"></i>
@@ -30,23 +26,21 @@
      </mat-cell>
   </ng-container>
 
-
   <!-- Progress Column -->
   <ng-container matColumnDef="Email">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="Role">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.Role_id}} </mat-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.Role_id}}</mat-cell>
   </ng-container>
-
 
   <!-- Name Column -->
   <ng-container matColumnDef="Persona">
-    <mat-header-cell *matHeaderCellDef> Persona Asociada a la Cuenta </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Persona Asociada a la Cuenta</mat-header-cell>
     <mat-cell *matCellDef="let row">
 
     <button  mat-button class="boton-datos" (click)="desplegarPersona(row)" >
@@ -56,12 +50,8 @@
     </mat-cell>
   </ng-container>
 
-
-
-
-
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
   </mat-table>
 

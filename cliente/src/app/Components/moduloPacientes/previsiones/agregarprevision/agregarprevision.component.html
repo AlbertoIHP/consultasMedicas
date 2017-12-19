@@ -11,7 +11,7 @@
     </mat-form-field>
 
   <mat-form-field style="width: 100% !important;">
-    <mat-select placeholder="¿ Esta previsión es ISAPRE ?" [(ngModel)]="nuevaPrevision.isapre" style="width: 100% !important;">
+    <mat-select placeholder="¿Esta previsión es ISAPRE?" [(ngModel)]="nuevaPrevision.isapre" style="width: 100% !important;">
       <mat-option style="width: 100% !important;" [value]="1">
         Si
       </mat-option>
@@ -21,13 +21,9 @@
       </mat-option>
     </mat-select>
 
-
-
   </mat-form-field>
 
-
 </div>
-
 
 <div mat-dialog-actions>
   <button mat-button class="boton-aceptar" (click)="agregarPrevision()" tabindex="2">Agregar Previsión <mat-icon>add</mat-icon> </button>

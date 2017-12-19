@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 import { VerpersonaComponent } from '../../moduloPacientes/personas/verpersona/verpersona.component';
-import { VerFichaMedicaComponent } from '../fichamedica/verfichamedica/verfichamedica.component'
+import { VerFichaMedicaComponent } from '../fichamedica/verfichamedica/verfichamedica.component';
 
 import { HabitosSexualesPaciente } from '../../../Models/HabitosSexualesPaciente.model';
 import { HabitosSexualesPacienteService } from '../../../Services/habitossexualespaciente/habitos-sexuales-paciente.service';
@@ -42,11 +42,15 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class HabitosSexualesPacienteComponent {
   
 	public totalHabitosSexuales: HabitoSexual[];
-	public totalPacientes: Paciente[];
+	public totalPacientes: any;
 	public totalHabitosSexualesPaciente: HabitosSexualesPaciente[];
+
+  //arreglo con todos los registron que contengan al paciente parametrizado y sus hábitos
+  public arrayHabitosSexualesPaciente: HabitosSexualesPaciente[];
+
 	public totalPersonas: Persona[];
 	public usuarioActual;
-  	displayedColumns = ['Acciones', 'Rut Paciente', 'Habito Sexual','Fecha Inicio'];
+  	displayedColumns = ['Acciones', 'Rut Paciente','Nombre','Habitos Sexuales'];
 
   	//DATATABLE
 	exampleDatabase;
@@ -107,39 +111,37 @@ export class HabitosSexualesPacienteComponent {
       this.usuarioActual=new UsuarioActual();
       this.totalHabitosSexuales = [];
       this.totalHabitosSexualesPaciente = [];
+
+      this.arrayHabitosSexualesPaciente =[];
+
       this.totalPacientes=[];
       this.totalPersonas=[];
       this.actualizarAtributos();
-      this.actualizarHabitosSexualesPaciente();
 
 
 
       }
 
+  //función para setear el array con los registros del paciente correspondiente
+  obtenerHabitosSexualesPaciente(idPaciente){
+    for(let i=0;i<this.totalHabitosSexualesPaciente.length;i++){
 
-    actualizarHabitosSexualesPaciente ()
-  {
-    this.servicioHabitosSexualesPaciente.getHabitosSexualesPacientes().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalHabitosSexualesPaciente = todo;
-      
-      //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalHabitosSexualesPaciente);
+      if(this.totalHabitosSexualesPaciente[i].Paciente_id==idPaciente){
 
-      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'HabitosSexualesPaciente');
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          })
+        this.arrayHabitosSexualesPaciente.push(this.totalHabitosSexualesPaciente[i]);
+      }
 
+      if(this.totalHabitosSexualesPaciente[i].fechaInicio != null){
 
-    });
+        this.totalHabitosSexualesPaciente[i].esVerdadero=true;
+
+      }else if(this.totalHabitosSexualesPaciente[i].fechaInicio==null){
+
+        this.totalHabitosSexualesPaciente[i].esVerdadero=false;
+      }
+    }
+
   }
-
 
   actualizarAtributos ()
   {
@@ -158,7 +160,29 @@ export class HabitosSexualesPacienteComponent {
                 todo = todo.data;
                 this.totalPersonas = todo;
 
-                this.reemplazarIdPorString();
+                this.servicioHabitosSexualesPaciente.getHabitosSexualesPacientes().subscribe(data => {
+                  var todo: any = data;
+                  todo = todo.data;
+                  this.totalHabitosSexualesPaciente = todo;
+        
+                  this.reemplazarIdPorString();
+
+                    //DATATABLE
+                  this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
+
+                  this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'HabitosSexualesPaciente');
+                  Observable.fromEvent(this.filter.nativeElement, 'keyup')
+                      .debounceTime(150)
+                      .distinctUntilChanged()
+                      .subscribe(() => {
+                        if (!this.dataSource) { return; }
+                        this.dataSource.filter = this.filter.nativeElement.value;
+                      })
+
+
+               
+                  
+              });
 
            });
 
@@ -166,81 +190,37 @@ export class HabitosSexualesPacienteComponent {
     });
   }
 
-
-  eliminarHabitosSexualesPaciente (habitosSexualesPaciente)
-  {
-    this.servicioHabitosSexualesPaciente.deleteHabitosSexualesPaciente(habitosSexualesPaciente.id).subscribe( data => {
-      this.actualizarAtributos();
-      this.actualizarHabitosSexualesPaciente();
-    });
-  }
-
-
   reemplazarIdPorString()
   {
-    for(let i = 0 ; i < this.totalHabitosSexualesPaciente.length ; i ++)
-    {
-
-      for(let j = 0 ; j < this.totalHabitosSexuales.length ; j++)
-      {
-        if( parseInt(this.totalHabitosSexualesPaciente[i].HabitoSexual_id) === this.totalHabitosSexuales[j].id)
-        {
-          this.totalHabitosSexualesPaciente[i].HabitoSexual_id = this.totalHabitosSexuales[j].nombre;
+    for(let i=0;i<this.totalPacientes.length;i++){
+      for(let j=0;j<this.totalHabitosSexualesPaciente.length;j++){
+        if(this.totalPacientes[i].id===this.totalHabitosSexualesPaciente[j].Paciente_id){
+         let currentPersona= this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[i].Persona_id));
+          this.totalPacientes[i].rut=currentPersona[0].rut;
+          this.totalPacientes[i].nombre=currentPersona[0].nombre1+" "+currentPersona[0].nombre2+" "+currentPersona[0].apellido1+" "+currentPersona[0].apellido2;
           break;
         }
       }
-
-      for(let j = 0 ; j < this.totalPacientes.length ; j++)
-      {
-        if( parseInt(this.totalHabitosSexualesPaciente[i].Paciente_id) === this.totalPacientes[j].id)
-        {
-          let currentPersona = this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[j].Persona_id));
-          this.totalHabitosSexualesPaciente[i].Paciente_id = currentPersona[0].rut;
-          break;
-        }
-      }
-
     }
   }
 
-  pasarStringId(habitosSexualesPaciente)
-  {
-    for ( let i = 0 ; i < this.totalHabitosSexuales.length ; i ++)
-    {
-    if(habitosSexualesPaciente.HabitoSexual_id === this.totalHabitosSexuales[i].nombre)
-    {
-      habitosSexualesPaciente.HabitoSexual_id = this.totalHabitosSexuales[i].id;
-    }
-    }
-
-    for ( let i = 0 ; i < this.totalPacientes.length ; i ++)
-    {
-    let currentPersona = this.totalPersonas.filter( persona => persona.id === parseInt(this.totalPacientes[i].Persona_id));
-
-    if(habitosSexualesPaciente.Paciente_id === currentPersona[0].rut)
-    {
-      habitosSexualesPaciente.Paciente_id = this.totalPacientes[i].id;
-    }
-    }
-
-  }
-
-
-
-  edicionHabitosSexualesPaciente (habitosSexualesPaciente)
+  edicionHabitosSexualesPaciente (paciente)
   {
 
-    var a = JSON.parse( JSON.stringify(habitosSexualesPaciente) );
+    var a = JSON.parse( JSON.stringify(paciente) );
 
-    this.pasarStringId(a);
+    //this.pasarStringId(a);
+
+    this.obtenerHabitosSexualesPaciente(a.id);
 
     let dialogRef = this.dialog.open(EditarHabitosSexualesPacienteComponent, {
       width: '800px',
       height: '500px',
       data:
       {
-       habitosSexualesPaciente: a,
+       paciente: a,
        habitosSexuales: this.totalHabitosSexuales,
+       arrayHabitosSexualesPaciente: this.arrayHabitosSexualesPaciente,
        pacientes: this.totalPacientes,
        personas: this.totalPersonas,
        servicioHabitoSexual: this.servicioHabitoSexual,
@@ -253,42 +233,20 @@ export class HabitosSexualesPacienteComponent {
     dialogRef.afterClosed().subscribe(result => {
 
       this.actualizarAtributos();
-      this.actualizarHabitosSexualesPaciente();
+      this.arrayHabitosSexualesPaciente = [];
       
-    });
-  }
-
-  agregacionHabitosSexualesPaciente()
-  {
-    let dialogRef = this.dialog.open(AgregarHabitosSexualesPacienteComponent, {
-      width: '800px',
-      height: '500px',
-      data: {
-        habitosSexuales: this.totalHabitosSexuales,
-        pacientes: this.totalPacientes,
-        personas: this.totalPersonas,
-        servicioHabitosSexualesPaciente: this.servicioHabitosSexualesPaciente,
-        servicioHabitoSexual: this.servicioHabitoSexual,
-        servicioPaciente: this.servicioPaciente
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.actualizarAtributos();
-      this.actualizarHabitosSexualesPaciente();
     });
   }
 
 
   //función para mostrar la ficha médica del paciente correspondiente
- desplegarFichaPaciente(vacunasPaciente)
+ desplegarFichaPaciente(paciente)
   {
 
-   var a = JSON.parse( JSON.stringify(vacunasPaciente) );
+   var a = JSON.parse( JSON.stringify(paciente) );
    var b;
-  this.pasarStringId(a);
 
-  this.servicioPaciente.getPaciente(a.Paciente_id).subscribe(data =>{
+  this.servicioPaciente.getPaciente(a.id).subscribe(data =>{
     var todo: any = data;
     todo = todo.data;
     b=todo;
@@ -302,10 +260,9 @@ export class HabitosSexualesPacienteComponent {
 
        let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
           width: '1000px',
-          height:'500px',
+          height:'700px',
           data: { persona: persona }
         });
-
     });
   });
 

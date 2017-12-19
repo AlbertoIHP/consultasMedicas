@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { UsoMedicamento } from '../../../../Models/UsoMedicamento.model';
+import { Persona } from '../../../../Models/Persona.model';
+
 import { DatepickerOptions } from 'ng2-datepicker';
 
 @Component({
@@ -11,7 +13,9 @@ import { DatepickerOptions } from 'ng2-datepicker';
 })
 export class EditarUsoMedicamentoComponent implements OnInit {
 
-	public usoMedicamento:UsoMedicamento;
+    public paciente:any;
+
+    public arrayMedicamentosPaciente:any;
 
   	public totalPacientes: any;
   	public totalMedicamentos: any;
@@ -66,6 +70,15 @@ export class EditarUsoMedicamentoComponent implements OnInit {
           
         }
     }
+
+    for(let i=0;i<this.totalMedicamentos.length;i++){
+      for(let j=0;j<this.arrayMedicamentosPaciente.length;j++){
+        if(this.totalMedicamentos[i].id==this.arrayMedicamentosPaciente[j].Medicamento_id){
+          this.arrayMedicamentosPaciente[j].nombreMedicamento=this.totalMedicamentos[i].nombrecomun+" / "+this.totalMedicamentos[i].nombrecientifico;
+        }
+      }
+    }
+
       this.totalPersonasTemp=arrayTemp;
 
     
@@ -76,7 +89,9 @@ export class EditarUsoMedicamentoComponent implements OnInit {
   	public dialogRef: MatDialogRef<EditarUsoMedicamentoComponent>,
 	@Inject(MAT_DIALOG_DATA) public data: any
   	) {
-      	this.usoMedicamento=data.usoMedicamentos;
+        this.paciente=data.paciente;
+
+        this.arrayMedicamentosPaciente=data.arrayUsoMedicamentos;
 
   		this.totalPacientes=data.pacientes;
   		this.totalMedicamentos=data.medicamentos;
@@ -95,16 +110,31 @@ export class EditarUsoMedicamentoComponent implements OnInit {
       this.dialogRef.close();
     }
 
-  editarUsoMedicamento()
-  {
-    this.usoMedicamento.fechaInicio=new Date(this.usoMedicamento.fechaInicio).toISOString().slice(0, 19).replace('T', ' ');
-    this.servicioUsoMedicamento.editUsoMedicamento(this.usoMedicamento, this.usoMedicamento.id).subscribe( data => {
-      console.log(data);
-      this.dialogRef.close();
 
-    });
+  obtenerFecha(medicamentoPaciente){
+    if(medicamentoPaciente.esVerdadero){
+      medicamentoPaciente.fechaInicio=new Date().toISOString().slice(0, 19).replace('T', ' ');
+    }else if(medicamentoPaciente.esVerdadero==false){
+      medicamentoPaciente.fechaInicio=null;
+    }
+
   }
 
- 
+ editarMedicamentosPaciente()
+  {
 
+    for(let i=0;i<this.arrayMedicamentosPaciente.length;i++){
+
+      if(this.arrayMedicamentosPaciente[i].fechaInicio!=null){
+      this.arrayMedicamentosPaciente[i].fechaInicio=new Date(this.arrayMedicamentosPaciente[i].fechaInicio).toISOString().slice(0, 19).replace('T', ' ');
+      }
+      this.servicioUsoMedicamento.editUsoMedicamento(this.arrayMedicamentosPaciente[i], this.arrayMedicamentosPaciente[i].id).subscribe( data => {
+        console.log(data);
+        this.dialogRef.close();
+
+      });
+
+    }
+
+  }
 }

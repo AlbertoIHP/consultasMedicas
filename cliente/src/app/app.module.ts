@@ -524,6 +524,8 @@ import {
     EditarExamenFisicoComponent,
     AgregarUsoMedicamentoComponent,
     EditarUsoMedicamentoComponent,
+    AgregarAlergiasPacienteComponent,
+    EditarAlergiasPacienteComponent
   ],
 
 

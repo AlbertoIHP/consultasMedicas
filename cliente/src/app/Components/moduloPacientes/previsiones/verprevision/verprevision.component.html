@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col s12">
-		<h1 mat-dialog-title style="text-align: center;"> Paciente  {{pacienteActual.nombre1}} {{pacienteActual.apellido1}}</h1>
+		<h1 mat-dialog-title style="text-align: center;">Paciente {{pacienteActual.nombre1}} {{pacienteActual.apellido1}}</h1>
 	</div>
 </div>
 
@@ -8,34 +8,30 @@
 
 <div class="row">
 	<div class="col s6">
-		<h1 mat-dialog-title style="text-align: center;"> Historial de Previsiones </h1>
+		<h1 mat-dialog-title style="text-align: center;">Historial de Previsiones</h1>
 	<div class="example-container mat-elevation-z8">
-
 
 <div class="example-container mat-elevation-z8">
 
 	<mat-table #table *ngIf="!buscarPorNombre" [dataSource]="sourceDatatable">
 
 			<ng-container matColumnDef="Fecha Actualizacion">
-				<mat-header-cell *matHeaderCellDef> Fecha Actualización </mat-header-cell>
-				<mat-cell *matCellDef="let element"> {{element.fechaActualizacion}} </mat-cell>
+				<mat-header-cell *matHeaderCellDef>Fecha Actualización</mat-header-cell>
+				<mat-cell *matCellDef="let element">{{element.fechaActualizacion}}</mat-cell>
 			</ng-container>
-
 
 			<ng-container matColumnDef="Prevision">
-				<mat-header-cell *matHeaderCellDef> Previsión </mat-header-cell>
-				<mat-cell *matCellDef="let element"> {{element.Prevision_id}} </mat-cell>
+				<mat-header-cell *matHeaderCellDef>Previsión</mat-header-cell>
+				<mat-cell *matCellDef="let element">{{element.Prevision_id}}</mat-cell>
 			</ng-container>
 
-
 			<ng-container matColumnDef="Estado">
-				<mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+				<mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
 				<mat-cell *matCellDef="let element">
 				 <i *ngIf="element.activado === 1" class="material-icons">done</i>
 				 <i *ngIf="element.activado === 0" class="material-icons">clear</i>
 				 </mat-cell>
 			</ng-container>
-
 
 		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 		<mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="['odd', 'highlight'][row.id %2]"></mat-row>
@@ -50,17 +46,12 @@
 </div>
 
 
-
-
-
-
-
 	</div>
 
 	</div>
 	<div class="col s6">
 		<div *ngIf="usuarioActual.obtenerPermisoUpdate('Personas')">
-			<h1 mat-dialog-title style="text-align: center;"> Nueva Previsión</h1>
+			<h1 mat-dialog-title style="text-align: center;">Nueva Previsión</h1>
 
 			<div class="row">
 				<div class="col s12">
@@ -88,6 +79,4 @@
 	</div>
 </div>
 
-
 </div>
-
