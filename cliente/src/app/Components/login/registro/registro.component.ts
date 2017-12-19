@@ -221,7 +221,10 @@ export class RegistroComponent implements OnInit {
     if( !this.seEncontro )
     {
 
+      this.nuevaPersona.direccion = "Direccion default 322";
+      this.nuevaPersona.fechaNacimiento = new Date().toISOString().slice(0, 19).replace('T', ' ');
       console.log(this.nuevaPersona)
+
       this.servicioPersona.registerPersona(this.nuevaPersona).subscribe(data => {
 
 

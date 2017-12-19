@@ -6,8 +6,6 @@
      <input matInput placeholder="Email" [(ngModel)]="usuario.email" (ngModelChange)="validateEmail(usuario.email)">
     </mat-form-field>
 
-
-
     <mat-form-field class="fullWidth">
      <input matInput placeholder="Password" [(ngModel)]="usuario.password" type="password">
     </mat-form-field>
@@ -21,7 +19,6 @@
   </mat-form-field>
 
 </div>
-
 
 <div mat-dialog-actions>
   <button class="boton-aceptar" mat-button (click)="editarRole()" disabled="{{emailValido}}" tabindex="2">Actualizar Usuario <mat-icon>refresh</mat-icon></button>

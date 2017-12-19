@@ -171,7 +171,9 @@ export class AgregarpersonaComponent implements OnInit{
 
 	agregarPersona()
 	{
-
+    console.log(this.persona)
+    this.persona.direccion = "Direccion default 322";
+    this.persona.fechaNacimiento = new Date().toISOString().slice(0, 19).replace('T', ' ');
 		this.servicioPersona.registerPersona(this.persona).subscribe(data => {
 
       this.servicioPersona.getPersonas().subscribe(data => {

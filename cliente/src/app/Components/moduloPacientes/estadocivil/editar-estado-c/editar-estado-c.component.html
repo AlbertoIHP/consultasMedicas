@@ -2,24 +2,17 @@
 
 <div mat-dialog-content>
 
-
-
     <mat-form-field class="fullWidth">
      <input matInput placeholder="Nombre" [(ngModel)]="EC.nombre">
     </mat-form-field>
-
-
 
     <mat-form-field class="fullWidth">
      <input matInput placeholder="Descripción" [(ngModel)]="EC.descripcion">
     </mat-form-field>
 
-
-
 </div>
 
-
 <div mat-dialog-actions>
-  <button mat-button class="boton-aceptar" (click)="editarEC()" tabindex="2">Actualizar Estado Civil <mat-icon>refresh</mat-icon></button>
+  <button mat-button class="boton-aceptar" (click)="editarEC()" tabindex="2">Actualizar Estado Civil<mat-icon>refresh</mat-icon></button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

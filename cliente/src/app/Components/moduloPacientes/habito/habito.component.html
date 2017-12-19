@@ -14,13 +14,12 @@
   <mat-table #table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="Acciones">
-      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
       <mat-cell *matCellDef="let row">
 
               <button *ngIf="usuarioActual.obtenerPermisoUpdate('Habitos')" class="btn boton-editar" type="button" (click) = "edicionHabito(row)" matTooltip="Editar">
                 <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
               </button>
-
 
               <button *ngIf="usuarioActual.obtenerPermisoErase('Habitos')" class="btn boton-eliminar" type="button" (click) = "eliminarHabito(row)" matTooltip="Eliminar">
                 <i class="fa fa-trash-o icono" aria-hidden="true"></i>
@@ -29,13 +28,11 @@
        </mat-cell>
     </ng-container>
 
-
     <!-- Progress Column -->
     <ng-container matColumnDef="Nombre">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.nombre}}</mat-cell>
     </ng-container>
-
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

@@ -1,14 +1,11 @@
 <h3 class="title-section">Provincias</h3>
 
-
 <div class="example-header" >
-
 
     <label for="finder">Buscar por nombre...</label>
     <input id="finder" matInput #filter >
 
 </div>
-
 
 <div class="example-container mat-elevation-z8">
 
@@ -22,7 +19,6 @@
                 <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
               </button>
 
-
               <button *ngIf="usuarioActual.obtenerPermisoErase('Provincias')" class="btn boton-eliminar" type="button" (click) = "eliminarProvincia(row)" matTooltip="Eliminar">
                 <i class="fa fa-trash-o icono" aria-hidden="true"></i>
               </button>
@@ -30,17 +26,16 @@
        </mat-cell>
     </ng-container>
 
-
     <!-- Progress Column -->
     <ng-container matColumnDef="Nombre">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.nombre}}</mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="Region">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Region </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.Region_id}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Región</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.Region_id}}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -60,7 +55,6 @@
                 [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
 </div>
-
 
  <div class="fixed-action-btn">
     <a class="btn-floating btn-large boton-agregar" *ngIf="usuarioActual.obtenerPermisoWrite('Provincias')" (click)="agregacionProvincia()">
