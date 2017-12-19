@@ -4,7 +4,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { AlergiasMedicamentosPaciente } from '../../../../Models/AlergiasMedicamentosPaciente.model';
 import { Persona } from '../../../../Models/Persona.model';
 import { DatepickerOptions } from 'ng2-datepicker';
-
+import * as esLocale from 'date-fns/locale/es';
 
 @Component({
   selector: 'app-editar-alergias-paciente',
@@ -29,11 +29,11 @@ export class EditarAlergiasPacienteComponent implements OnInit {
 
     options: DatepickerOptions = {
       minYear: 1970,
-      maxYear: 2030,
+      maxYear: new Date().getFullYear() + 1 ,
       displayFormat: 'YYYY[-]MM[-]DD',
       barTitleFormat: 'MMMM YYYY',
       firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
-  
+      locale: esLocale
    };
 
 

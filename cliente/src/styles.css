@@ -176,3 +176,8 @@ html
   /*padding: 0px 57px 0 0 !important;*/
   padding: 0px 20px 0 0 !important;
 }
+
+
+/* ng2 datepicker */
+.ngx-datepicker-container { z-index: inherit !important; }
+.ngx-datepicker-calendar-container { z-index: 1; }
