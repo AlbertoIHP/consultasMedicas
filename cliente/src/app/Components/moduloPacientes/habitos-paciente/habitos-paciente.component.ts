@@ -208,7 +208,7 @@ export class HabitosPacienteComponent {
 
     let dialogRef = this.dialog.open(EditarHabitosPacienteComponent, {
       width: '800px',
-      height: '500px',
+      height: '700px',
       data:
       {
        paciente: a,
