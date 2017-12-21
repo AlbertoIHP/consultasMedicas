@@ -517,7 +517,10 @@ actualizarPersonas()
     let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
     width: '1000px',
     height:'700px',
-    data: { persona: persona }
+    data: { 
+      persona: persona,
+      paciente: paciente 
+    }
     });
 
     dialogRef.afterClosed().subscribe(result => {

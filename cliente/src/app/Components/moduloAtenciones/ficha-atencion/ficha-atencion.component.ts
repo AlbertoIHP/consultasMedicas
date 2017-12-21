@@ -199,6 +199,9 @@ export class FichaAtencionComponent {
       this.totalAlergiasMedicamentosPaciente = [];
       this.arrayAlergiasMedicamentosPaciente =[];
 
+      this.totalPrevisionActual=[];
+      this.historialPrevisionesPacientes=[];
+
       this.existePrevision=false;
 
       this.actualizarAtributos();
@@ -704,7 +707,7 @@ obtenerProvinciaPaciente(id){
     this.servicioPrevision.getPrevision(ultimo.Prevision_id).subscribe((data)=>{
       var todo: any=data
       todo=todo.data;
-      this.paciente.prevision=todo.nombre;
+      this.paciente.previsionPaciente=todo.nombre;
 
     });
   }else{

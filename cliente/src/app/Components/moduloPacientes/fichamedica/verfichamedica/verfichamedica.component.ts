@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject,AfterViewInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { Persona } from '../../../../Models/Persona.model';
@@ -34,6 +34,7 @@ import { PacienteService } from '../../../../Services/paciente/paciente.service'
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { EventosService } from '../../../../Services/eventos/eventos.service'
 
 export interface Element extends Persona{
 }
@@ -45,7 +46,7 @@ export interface Element extends Persona{
 })
 export class VerFichaMedicaComponent {
   public persona: any;
-
+  public pacienteTest:any;
   //variables básicas
 
 	public idPersona:number=4;
@@ -132,13 +133,12 @@ export class VerFichaMedicaComponent {
     public servicioPrevision: PrevisionService,
     public servicioPaciente:PacienteService,
     public dialogRef: MatDialogRef<VerFichaMedicaComponent>,
+    public servicioEventos:EventosService,
     @Inject(MAT_DIALOG_DATA) public data: any
 
     ) {
-
-
-    //this.personaPaciente= new Persona();
-
+    
+    this.pacienteTest=data.paciente;
     this.personaPaciente=[];
 
     this.paciente=new Paciente();
@@ -168,11 +168,22 @@ export class VerFichaMedicaComponent {
     this.idPersona=this.persona.id;
     this.obtenerPersonaPaciente(this.idPersona);
     this.obtenerListaPacientes(this.idPersona);
+    
 
   	 }
 
 
 //-------Datos Paciente
+/*
+  setPacienteTest(){
+    this.mensaje="hola";
+     this.servicioEventos.activarFicha(this.mensaje);
+  }
+
+  ngAfterViewInit() {
+    this.setPacienteTest();
+  }*/
+
 
   obtenerListaPacientes(id){
     this.servicioPaciente.getPacientes().subscribe((data)=>{
