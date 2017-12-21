@@ -2,7 +2,7 @@
 
 <div mat-dialog-content style="height: 800px;">
 
-<div class="row" class="menu-scroll">
+<div class="row" class="menu-scroll" style="margin-bottom: 25px;margin-top: 25px">
 
 	
 		 <button mat-button class="boton-aceptar" (click)="edicionAlergiasComunesPaciente(paciente)" tabindex="-2">Alergias comunes</button>
@@ -35,17 +35,98 @@
 
 </div>
 
+<div class="row">
+	<div class="col s12">
+		 <table class="striped">
+        <thead>
+          <tr>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>RUT</th>
+              <th>Tipo sangre</th>
+          </tr>
+        </thead>
 
+        <tbody>
+          <tr >
+            <td>{{paciente.nombres}}</td>
+            <td>{{paciente.apellidos}}</td>
+            <td>{{paciente.rut}}</td>
+            <td>{{paciente.tipoSangrePaciente}}</td>
+            
+          </tr>
+        </tbody>
+      </table>
+	</div>
+</div>
 
 <div class="row">
-    <div class="col s12">
-      <p>Nombre Paciente</p>
-      <span style="font-weight: bold;">
-      ({{paciente.rut}}) {{paciente.nombre}}
-    </span>
-    </div>
+	<div class="col s12">
+		 <table class="striped">
+        <thead>
+          <tr>
+              <th>Género</th>
+              <th>Estado civil</th>
+              <th>Fono casa</th>
+              <th>Fono trabajo</th>
+              <th>Móvil</th>
+             
+
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr >
+            <td>{{paciente.generoPaciente}}</td>
+            <td>{{paciente.estadoCivilPaciente}}</td>
+
+            <td *ngIf="personaActual.fono_casa!='none'">{{personaActual.fono_casa}}</td>
+            <td *ngIf="personaActual.fono_casa=='none'"><span class="letraAlerta">sin registro</span></td>
+
+            <td *ngIf="personaActual.fono_trabajo!='none'">{{personaActual.fono_trabajo}}</td>
+            <td *ngIf="personaActual.fono_trabajo=='none'"><span class="letraAlerta">sin registro</span></td>
+            
+            <td *ngIf="personaActual.movil!='none'">{{personaActual.movil}}</td>
+            <td *ngIf="personaActual.movil=='none'"><span class="letraAlerta">sin registro</span></td>
+            
+          </tr>
+        </tbody>
+      </table>
+	</div>
+</div>
+
+<div class="row">
+  <div class="col s12">
+     <table class="striped">
+        <thead>
+          <tr>
+              <th>Comuna</th>
+              <th>Provincia</th>
+              <th>Región</th>
+              <th>Previsión</th>
+              
+             
+
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr >
+            <td>{{paciente.comunaPaciente}}</td>
+            <td>{{paciente.provinciaPaciente}}</td>
+            <td>{{paciente.regionPaciente}}</td>
+            <td *ngIf="existePrevision">{{paciente.previsionPaciente}}</td>
+            <td *ngIf="existePrevision==false"><span class="letraAlerta">sin registro</span></td>
+          </tr>
+        </tbody>
+      </table>
   </div>
 </div>
+
+
+</div>
+
+
 
 
 

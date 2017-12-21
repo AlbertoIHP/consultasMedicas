@@ -224,16 +224,17 @@ export class AlergiasComunesPacienteComponent {
 
    var a = JSON.parse( JSON.stringify(paciente) );
  
-   /*
+   
       for(let j=0;j<this.totalAlergiasComunesPaciente.length;j++){
         if(a.id===this.totalAlergiasComunesPaciente[j].Paciente_id){
          let currentPersona= this.totalPersonas.filter( persona => persona.id === parseInt(a.id));
           a.rut=currentPersona[0].rut;
-          a.nombre=currentPersona[0].nombre1+" "+currentPersona[0].nombre2+" "+currentPersona[0].apellido1+" "+currentPersona[0].apellido2;
+          a.nombres=currentPersona[0].nombre1+" "+currentPersona[0].nombre2;
+          a.apellidos=currentPersona[0].apellido1+" "+currentPersona[0].apellido2;
           break;
         }
       }
-    */
+    
 
        let dialogRef = this.dialog.open(FichaAtencionComponent, {
           width: '1000px',
