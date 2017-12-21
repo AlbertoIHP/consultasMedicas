@@ -50,7 +50,7 @@ export class HabitosSexualesPacienteComponent {
 
 	public totalPersonas: Persona[];
 	public usuarioActual;
-  	displayedColumns = ['Acciones', 'Rut Paciente','Nombre','Habitos Sexuales'];
+  	displayedColumns = ['Rut Paciente','Nombre','Habitos Sexuales'];
 
   	//DATATABLE
 	exampleDatabase;

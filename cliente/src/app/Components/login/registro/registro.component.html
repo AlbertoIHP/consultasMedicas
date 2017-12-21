@@ -3,7 +3,7 @@
   <mat-step [stepControl]="firstFormGroup">
 <form [formGroup]="firstFormGroup">
 
-      <ng-template matStepLabel>Informacion personal</ng-template>
+      <ng-template matStepLabel>Información personal</ng-template>
 
       <div class="row">
         <div class="col s4">
@@ -45,24 +45,22 @@
       <div class="row">
         <div class="col s4">
             <mat-form-field class="fullWidth">
-              <input matInput placeholder="Telefono de casa" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.fono_casa">
+              <input matInput placeholder="Teléfono de casa" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.fono_casa">
             </mat-form-field>
         </div>
 
         <div class="col s4">
             <mat-form-field class="fullWidth">
-              <input matInput placeholder="Telefono de trabajo" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.fono_trabajo">
+              <input matInput placeholder="Teléfono de trabajo" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.fono_trabajo">
             </mat-form-field>
         </div>
 
         <div class="col s4">
             <mat-form-field class="fullWidth">
-              <input matInput placeholder="Telefono movil" formControlName="firstCtrl" required  [(ngModel)]="nuevaPersona.movil">
+              <input matInput placeholder="Teléfono móvil" formControlName="firstCtrl" required  [(ngModel)]="nuevaPersona.movil">
             </mat-form-field>
         </div>
       </div>
-
-
 
 
       <div class="row" >
@@ -134,15 +132,14 @@
 
 
 
-
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Informacion de usuario</ng-template>
+      <ng-template matStepLabel>Información de usuario</ng-template>
 
       <div class="row">
         <div class="col s6">
             <mat-form-field class="fullWidth">
-              <input matInput placeholder="Correo electronico" type="email" formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.email" (ngModelChange)="validateEmail(nuevoUsuario.email)" >
+              <input matInput placeholder="Correo electrónico" type="email" formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.email" (ngModelChange)="validateEmail(nuevoUsuario.email)" >
             </mat-form-field>
         </div>
 
@@ -152,9 +149,6 @@
             </mat-form-field>
         </div>
       </div>
-
-
-
 
       <div class="row">
 
@@ -170,29 +164,18 @@
   </mat-step>
 
 
-
-
-
-
-
-
-
   <mat-step style="text-align: center">
     <ng-template matStepLabel style="text-align: center">Verificacion de cuenta</ng-template>
 
     <div style="text-align: center !important">
           <img src="https://lh3.googleusercontent.com/Vct_XSpNfhherziE-h0mSSpbrJf2jYM1nvPO2PVkcIECnqqUHCf-2-5j8EObefEmS0o7=w300" style="max-width: 300px; max-height: 300px">
 
-              <p>
-      Un correo electronico ha sido enviado a la direccion registrada.
-      Una vez confirmes tu cuenta, podras tener acceso a la pagina web de la clinica.
-
-    </p>
+          <p>
+            Un correo electrónico ha sido enviado a la dirección registrada.
+            Una vez confirmes tu cuenta, podrás tener acceso a la página web de la clínica.
+          </p>
 
     </div>
-
-
-
 
     <div class="row">
       <div class="col s12">
@@ -200,6 +183,5 @@
       </div>
     </div>
   </mat-step>
-
 
 </mat-horizontal-stepper>

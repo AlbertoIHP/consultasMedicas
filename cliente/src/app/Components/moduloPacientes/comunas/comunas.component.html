@@ -14,7 +14,7 @@
   <mat-table #table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="Acciones">
-      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
       <mat-cell *matCellDef="let row">
 
               <button *ngIf="usuarioActual.obtenerPermisoUpdate('Comunas')" (click) = "edicionComuna(row)" class="btn boton-editar" type="button" matTooltip="Editar">
@@ -31,13 +31,13 @@
 
 
     <ng-container matColumnDef="Nombre">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.nombre}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Provincia">
-      <mat-header-cell *matHeaderCellDef  mat-sort-header> Provincia </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.Provincia_id}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef  mat-sort-header>Provincia</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.Provincia_id}}</mat-cell>
     </ng-container>
 
 

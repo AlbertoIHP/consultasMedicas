@@ -50,7 +50,7 @@ export class AlergiaspacienteComponent {
 
 	public totalPersonas: Persona[];
 	public usuarioActual;
-  	displayedColumns = ['Acciones', 'Rut Paciente','Nombre','Medicamento'];
+  	displayedColumns = ['Rut Paciente','Nombre','Medicamento'];
 
   	//DATATABLE
 	exampleDatabase;

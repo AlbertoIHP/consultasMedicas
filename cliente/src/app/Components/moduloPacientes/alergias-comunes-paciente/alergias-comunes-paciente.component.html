@@ -25,22 +25,21 @@
        </mat-cell>
     </ng-container>
 
-
     <ng-container matColumnDef="Rut Paciente">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Rut Paciente </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Rut Paciente</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.rut}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Nombre">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.nombre}}</mat-cell>
     </ng-container>
     
     <ng-container matColumnDef="Alergias Comunes">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Alergias Comunes</mat-header-cell>
       <mat-cell *matCellDef="let row"> 
 
-         <button  mat-button class="boton-datos" *ngIf="usuarioActual.obtenerPermisoUpdate('AlergiasComunesPaciente')" (click)="edicionAlergiasComunesPaciente(row)" >
+         <button  mat-button class="boton-datos" *ngIf="usuarioActual.obtenerPermisoUpdate('AlergiasComunesPaciente')" (click)="edicionAlergiasComunesPaciente(row)">
           <span style="color:white;">Ver Alergias Comunes</span>
         </button>
 

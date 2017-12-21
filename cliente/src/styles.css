@@ -25,6 +25,10 @@ mwl-calendar-month-cell
 	color:white !important;
 }
 
+.boton-aceptar:focus{
+  background-color: #2d5986;
+}
+
 /*Acciones*/
 
 /*datos--*/

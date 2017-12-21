@@ -114,10 +114,6 @@ export class FichaMedicaComponent implements OnInit{
   //datos básicos del paciente para la cuarta tabla
   public datosPacienteT4:any=[{}];
 
-  //elementos de la tabla alergias
-  columnasAlergia=['id','NombreComun','NombreCientifico'];
-  alergiaTabla;
-
   constructor(
 
     public servicioPersona: PersonaService,

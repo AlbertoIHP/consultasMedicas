@@ -286,6 +286,7 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   import { ExamenFisicoComponent } from './Components/moduloAtenciones/examen-fisico/examen-fisico.component';
   import { AgregarExamenFisicoComponent } from './Components/moduloAtenciones/examen-fisico/agregar-examen-fisico/agregar-examen-fisico.component';
   import { EditarExamenFisicoComponent } from './Components/moduloAtenciones/examen-fisico/editar-examen-fisico/editar-examen-fisico.component';
+  import { FichaAtencionComponent } from './Components/moduloAtenciones/ficha-atencion/ficha-atencion.component';
 
 
 
@@ -434,7 +435,8 @@ import {
     EditarVacunasPacienteComponent,
     ExamenFisicoComponent,
     AgregarExamenFisicoComponent,
-    EditarExamenFisicoComponent
+    EditarExamenFisicoComponent,
+    FichaAtencionComponent
 
     
   ],
@@ -525,7 +527,8 @@ import {
     AgregarUsoMedicamentoComponent,
     EditarUsoMedicamentoComponent,
     AgregarAlergiasPacienteComponent,
-    EditarAlergiasPacienteComponent
+    EditarAlergiasPacienteComponent,
+    FichaAtencionComponent
   ],
 
 

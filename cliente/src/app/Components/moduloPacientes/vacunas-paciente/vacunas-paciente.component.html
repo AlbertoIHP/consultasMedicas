@@ -2,55 +2,36 @@
 
 <div class="example-header" >
 
-
     <label for="finder">Buscar por fecha...</label>
     <input id="finder" matInput #filter >
 
 </div>
 
-
 <div class="example-container mat-elevation-z8">
 
   <mat-table #table [dataSource]="dataSource" matSort>
 
-    <ng-container matColumnDef="Acciones">
-      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-      <mat-cell *matCellDef="let row">
-
-              <!--Aqui se llamará a la función de la ficha-->
-              <button (click) = "desplegarFichaPaciente(row)" class="btn boton-ficha" type="button" matTooltip="Ver ficha" >
-                <i class="fa fa-address-book-o icono" aria-hidden="true"></i>
-              </button>
-
-       </mat-cell>
-    </ng-container>
-
-
     <ng-container matColumnDef="Rut Paciente">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Rut Paciente </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.rut}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Rut Paciente</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.rut}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Nombre">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.nombre}}</mat-cell>
     </ng-container>
 
     
     <ng-container matColumnDef="Vacunas">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Vacunas </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Vacunas</mat-header-cell>
       <mat-cell *matCellDef="let row"> 
 
          <button  mat-button class="boton-datos" *ngIf="usuarioActual.obtenerPermisoUpdate('VacunasPaciente')" (click)="edicionVacunasPaciente(row)" >
           <span style="color:white;">Ver Vacunas</span>
         </button>
 
-
       </mat-cell>
     </ng-container>
-
-
-
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

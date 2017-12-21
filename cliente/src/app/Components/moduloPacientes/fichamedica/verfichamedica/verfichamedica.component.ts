@@ -97,7 +97,7 @@ export class VerFichaMedicaComponent {
 
 
   //elemetos de la tabla (ficha)
-  displayedColumns1= ['Nombres', 'Apellidos', 'RUT'];
+  displayedColumns1= ['Nombres', 'Apellidos', 'RUT','TipoSangre'];
   displayedColumns2=['Genero','EstadoCivil','FonoCasa','FonoTrabajo','Movil'];
   displayedColumns3=['Comuna','Provincia','Region','Prevision'];
   displayedColumns4=['Peso','Estatura','TipoSangre'];
@@ -214,7 +214,7 @@ export class VerFichaMedicaComponent {
       console.log(this.tipoSangrePaciente);
 
       //asignación del tipo de sangre para la tabla 4
-      this.datosPacienteT4[0].tipoSangre=this.tipoSangrePaciente.nombre;
+      this.datosPacienteT1[0].tipoSangre=this.tipoSangrePaciente.nombre;
   	});
 
   }

@@ -3,6 +3,8 @@ import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 import { VerpersonaComponent } from '../../moduloPacientes/personas/verpersona/verpersona.component';
 import { VerFichaMedicaComponent } from '../fichamedica/verfichamedica/verfichamedica.component'
+import { FichaAtencionComponent } from '../../moduloAtenciones/ficha-atencion/ficha-atencion.component'
+
 
 import { AlergiasComunesPaciente } from '../../../Models/AlergiasComunesPaciente.model';
 import { AlergiasComunesPacienteService } from '../../../Services/alergiascomunespaciente/alergias-comunes-paciente.service';
@@ -51,7 +53,7 @@ export class AlergiasComunesPacienteComponent {
   //Arreglo con todos los registros que contengan al paciente parametrizado y sus hábitos
   public arrayAlergiasComunesPaciente: AlergiasComunesPaciente[];
 
-  	displayedColumns = ['Acciones', 'Rut Paciente', 'Nombre', 'Alergias Comunes'];
+  	displayedColumns = ['Acciones','Rut Paciente', 'Nombre', 'Alergias Comunes'];
 
   	//DATATABLE
 	exampleDatabase;
@@ -221,29 +223,25 @@ export class AlergiasComunesPacienteComponent {
   {
 
    var a = JSON.parse( JSON.stringify(paciente) );
-   var b;
  
+   /*
+      for(let j=0;j<this.totalAlergiasComunesPaciente.length;j++){
+        if(a.id===this.totalAlergiasComunesPaciente[j].Paciente_id){
+         let currentPersona= this.totalPersonas.filter( persona => persona.id === parseInt(a.id));
+          a.rut=currentPersona[0].rut;
+          a.nombre=currentPersona[0].nombre1+" "+currentPersona[0].nombre2+" "+currentPersona[0].apellido1+" "+currentPersona[0].apellido2;
+          break;
+        }
+      }
+    */
 
-  this.servicioPaciente.getPaciente(a.id).subscribe(data =>{
-    var todo: any = data;
-    todo = todo.data;
-    b=todo;
-
-    this.servicioPersona.getPersona(parseInt(b.Persona_id)).subscribe(data => {
-
-      var persona: any = data;
-      persona = persona.data;
-
-      console.log(persona);
-
-       let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
+       let dialogRef = this.dialog.open(FichaAtencionComponent, {
           width: '1000px',
           height:'700px',
-          data: { persona: persona }
+          data: { paciente: a }
         });
 
-    });
-  });
+ 
 
   }
 
