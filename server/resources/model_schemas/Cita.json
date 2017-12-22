@@ -12,8 +12,8 @@
     },
     {
         "name": "fecha",
-        "dbType": "date",
-        "htmlType": "date",
+        "dbType": "string",
+        "htmlType": "text",
         "validations": null,
         "searchable": true,
         "fillable": true,
@@ -77,6 +77,17 @@
         "inIndex": true
     },
     {
+        "name": "Disponibilidad_id",
+        "dbType": "integer,false,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
         "name": "remember_token",
         "dbType": "string",
         "htmlType": "text",
@@ -126,6 +137,10 @@
     },
     {
         "type": "relation",
+        "relation": "mt1,Disponibilidad"
+    },
+    {
+        "type": "relation",
         "relation": "mt1,EstadoCitum"
     },
     {
@@ -138,7 +153,11 @@
     },
     {
         "type": "relation",
-        "relation": "mtm,,AlergiasPaciente"
+        "relation": "mtm,,AlergiasComunesPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,AlergiasMedicamentosPaciente"
     },
     {
         "type": "relation",
@@ -150,11 +169,23 @@
     },
     {
         "type": "relation",
-        "relation": "mtm,,Medico"
+        "relation": "mtm,,Disponibilidad"
     },
     {
         "type": "relation",
-        "relation": "mtm,,Paciente"
+        "relation": "mtm,,EnfermedadesCronicasPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,HabitosPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,HabitosSexualesPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Medico"
     },
     {
         "type": "relation",
@@ -166,6 +197,14 @@
     },
     {
         "type": "relation",
+        "relation": "mtm,,UsoMedicamento"
+    },
+    {
+        "type": "relation",
         "relation": "mtm,,Usuario"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,VacunasPaciente"
     }
 ]

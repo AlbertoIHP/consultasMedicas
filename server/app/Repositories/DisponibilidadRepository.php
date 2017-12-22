@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class DisponibilidadRepository
  * @package App\Repositories
- * @version November 14, 2017, 5:49 am UTC
+ * @version December 22, 2017, 2:13 am UTC
  *
  * @method Disponibilidad findWithoutFail($id, $columns = ['*'])
  * @method Disponibilidad find($id, $columns = ['*'])
@@ -20,10 +20,9 @@ class DisponibilidadRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'dia',
-        'hora_inicio',
-        'hora_termino',
+        'disponible',
         'Medico_id',
+        'Horario_id',
         'remember_token'
     ];
 

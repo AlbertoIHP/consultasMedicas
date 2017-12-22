@@ -2781,7 +2781,11 @@ class modulopacientes extends Seeder
 			'name' => 'ExamenFisico',
 		]);
 
-
+		// Modulo Cita
+		// 41
+		DB::table('Modulo')->insert([
+			'name' => 'Feriado',
+		]);
 		//Jefatura
 
 		DB::table('PermisoModulo')->insert([
@@ -3023,6 +3027,15 @@ class modulopacientes extends Seeder
 		DB::table('PermisoModulo')->insert([
 			'Role_id' => 1,
 			'Modulo_id' => 39,
+			'write' => 1,
+			'erase' => 1,
+			'update' => 1,
+			'view' => 1,
+		]);
+
+		DB::table('PermisoModulo')->insert([
+			'Role_id' => 1,
+			'Modulo_id' => 41,
 			'write' => 1,
 			'erase' => 1,
 			'update' => 1,

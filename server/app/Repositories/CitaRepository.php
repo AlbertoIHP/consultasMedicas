@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class CitaRepository
  * @package App\Repositories
- * @version November 3, 2017, 12:44 am UTC
+ * @version December 22, 2017, 2:33 am UTC
  *
  * @method Cita findWithoutFail($id, $columns = ['*'])
  * @method Cita find($id, $columns = ['*'])
@@ -25,7 +25,9 @@ class CitaRepository extends BaseRepository
         'EstadoCita_id',
         'BoxConsulta_id',
         'Paciente_id',
-        'Medico_id'
+        'Medico_id',
+        'Disponibilidad_id',
+        'remember_token'
     ];
 
     /**

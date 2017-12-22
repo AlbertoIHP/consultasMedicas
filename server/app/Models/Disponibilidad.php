@@ -16,23 +16,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="dia",
- *          description="dia",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="hora_inicio",
- *          description="hora_inicio",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="hora_termino",
- *          description="hora_termino",
- *          type="string"
+ *          property="disponible",
+ *          description="disponible",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="Medico_id",
  *          description="Medico_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="Horario_id",
+ *          description="Horario_id",
  *          type="integer",
  *          format="int32"
  *      )
@@ -52,10 +49,9 @@ class Disponibilidad extends Model
 
 
     public $fillable = [
-        'dia',
-        'hora_inicio',
-        'hora_termino',
-        'Medico_id'
+        'disponible',
+        'Medico_id',
+        'Horario_id'
     ];
 
     /**
@@ -65,10 +61,9 @@ class Disponibilidad extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'dia' => 'string',
-        'hora_inicio' => 'string',
-        'hora_termino' => 'string',
-        'Medico_id' => 'integer'
+        'disponible' => 'integer',
+        'Medico_id' => 'integer',
+        'Horario_id' => 'integer'
     ];
 
     /**
@@ -83,9 +78,27 @@ class Disponibilidad extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
+    public function horario()
+    {
+        return $this->belongsTo(\App\Models\Horario::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
     public function medico()
     {
         return $this->belongsTo(\App\Models\Medico::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function cita()
+    {
+        return $this->hasMany(\App\Models\Citum::class);
+    }
+
     protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
+    
 }

@@ -11,11 +11,6 @@ use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-use Illuminate\Support\Facades\DB;
-
-//CORREO TIII
-use Illuminate\Support\Facades\Mail;
-use Input;
 
 /**
  * Class CitaController
@@ -116,47 +111,6 @@ class CitaAPIController extends AppBaseController
         $input = $request->all();
 
         $citas = $this->citaRepository->create($input);
-
-        //Nos quedamos con las ID de ambos elementos
-        $idMedico = $citas['Medico_id'];
-        $idPaciente = $citas['Paciente_id'];
-
-        //Buscamos en la tabla Medico y Paciente, los registros con los id capturados y nos quedamos solo con la id de la persona asociada
-        $Medico = DB::table('Medico')->where('id', $idMedico)->value('Persona_id');
-        $Paciente = DB::table('Paciente')->where('id', $idPaciente)->value('Persona_id');
-
-        $nombreMedico = DB::table('Persona')->where('id', $Medico)->value('nombre1') .' '. DB::table('Persona')->where('id', $Medico)->value('apellido1') ;
-
-        $nombrePaciente = DB::table('Persona')->where('id', $Paciente)->value('nombre1') .' '. DB::table('Persona')->where('id', $Paciente)->value('apellido1');
-
-        //Extraemos de la tabla Usuario el correo de ambos 
-        $correoMedico = DB::table('Usuario')->where('Persona_id', $Medico)->value('email');
-        $correoPaciente = DB::table('Usuario')->where('Persona_id', $Paciente)->value('email');
-
-
-        //Enviamos un correo con la vista guardada en email-> avisoCita.blade.php, entregamos las variables
-        //a la vista que son el nombre del medico, fecha y hora de la cita. Ademas con message
-        //le damos un nombre al correo
-
-        $hora = $citas['hora'];
-        $fecha = $citas['fecha'];
-
-        error_log($hora);
-        error_log($fecha);
-
-        //Correo para el MEDICO
-        Mail::send('email.avisoCita', ['email' => $correoMedico, 'nombre' => $nombreMedico, 'fecha'=> $fecha, 'hora' => $hora ], function ($message) use ($correoMedico, $nombreMedico) {
-            $message->to($correoMedico, $nombreMedico)->subject('Se ha agendado una cita');
-        });
-
-
-        // Correo para el PACIENTE
-        Mail::send('email.avisoCita', ['email' => $correoPaciente, 'nombre' => $nombrePaciente, 'fecha'=> $fecha, 'hora' => $hora ], function ($message) use ($correoPaciente, $nombreMedico) { 
-            $message->to( $correoPaciente, $correoPaciente)->subject('Se ha agendado una cita con '.$nombreMedico) ;
-            
-            });
-
-
 
         return $this->sendResponse($citas->toArray(), 'Cita saved successfully');
     }

@@ -104,6 +104,9 @@ import { LoginComponent } from '../Components/login/login.component'
   //Componente Cita
   import { CitaComponent } from '../Components/moduloCitas/cita/cita.component';
 
+  //Componente Feriados
+  import { FeriadosComponent } from '../Components/moduloCitas/feriados/feriados.component';
+
 
 
   //Componente Alergias Paciente
@@ -194,6 +197,7 @@ const routes: Routes =
   { path: 'esp',  component: EspecialidadComponent, canActivate: [AuthGuard], data:{nombre:'Especialidad'}  },
   { path: 'es',  component: EstadocitaComponent, canActivate: [AuthGuard], data:{nombre:'EstadoCita'}  },
   { path: 'bc',  component: BoxconsultaComponent, canActivate: [AuthGuard], data:{nombre:'BoxConsulta'}  },
+  { path: 'fer', component: FeriadosComponent, canActivate: [AuthGuard], data:{nombre:'Feriado'} },
 
 
   //MÓDULO ATENCIONES

@@ -534,3 +534,43 @@
     <a href="{!! route('personas.index') !!}"><i class="fa fa-edit"></i><span>Personas</span></a>
 </li>
 
+<li class="{{ Request::is('disponibilidads*') ? 'active' : '' }}">
+    <a href="{!! route('disponibilidads.index') !!}"><i class="fa fa-edit"></i><span>Disponibilidads</span></a>
+</li>
+
+<li class="{{ Request::is('citas*') ? 'active' : '' }}">
+    <a href="{!! route('citas.index') !!}"><i class="fa fa-edit"></i><span>Citas</span></a>
+</li>
+
+<li class="{{ Request::is('citas*') ? 'active' : '' }}">
+    <a href="{!! route('citas.index') !!}"><i class="fa fa-edit"></i><span>Citas</span></a>
+</li>
+
+<li class="{{ Request::is('disponibilidads*') ? 'active' : '' }}">
+    <a href="{!! route('disponibilidads.index') !!}"><i class="fa fa-edit"></i><span>Disponibilidads</span></a>
+</li>
+
+<li class="{{ Request::is('horarios*') ? 'active' : '' }}">
+    <a href="{!! route('horarios.index') !!}"><i class="fa fa-edit"></i><span>Horarios</span></a>
+</li>
+
+<li class="{{ Request::is('feriados*') ? 'active' : '' }}">
+    <a href="{!! route('feriados.index') !!}"><i class="fa fa-edit"></i><span>Feriados</span></a>
+</li>
+
+<li class="{{ Request::is('disponibilidads*') ? 'active' : '' }}">
+    <a href="{!! route('disponibilidads.index') !!}"><i class="fa fa-edit"></i><span>Disponibilidads</span></a>
+</li>
+
+<li class="{{ Request::is('citas*') ? 'active' : '' }}">
+    <a href="{!! route('citas.index') !!}"><i class="fa fa-edit"></i><span>Citas</span></a>
+</li>
+
+<li class="{{ Request::is('citas*') ? 'active' : '' }}">
+    <a href="{!! route('citas.index') !!}"><i class="fa fa-edit"></i><span>Citas</span></a>
+</li>
+
+<li class="{{ Request::is('horarios*') ? 'active' : '' }}">
+    <a href="{!! route('horarios.index') !!}"><i class="fa fa-edit"></i><span>Horarios</span></a>
+</li>
+

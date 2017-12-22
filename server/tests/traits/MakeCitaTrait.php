@@ -48,6 +48,7 @@ trait MakeCitaTrait
             'BoxConsulta_id' => $fake->randomDigitNotNull,
             'Paciente_id' => $fake->randomDigitNotNull,
             'Medico_id' => $fake->randomDigitNotNull,
+            'Disponibilidad_id' => $fake->randomDigitNotNull,
             'remember_token' => $fake->word,
             'created_at' => $fake->date('Y-m-d H:i:s'),
             'updated_at' => $fake->date('Y-m-d H:i:s'),
