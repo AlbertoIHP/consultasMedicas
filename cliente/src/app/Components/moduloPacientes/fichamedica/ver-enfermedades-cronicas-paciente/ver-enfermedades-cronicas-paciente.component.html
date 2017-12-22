@@ -2,7 +2,7 @@
 <div class="example-header" >
 
 
-    <label for="finder">Buscar por alergia...</label>
+    <label for="finder">Buscar por enfermedad...</label>
     <input id="finder" matInput #filter >
 
 </div>
@@ -12,11 +12,11 @@
 
   <mat-table #table [dataSource]="dataSource" matSort>
     
-    <ng-container matColumnDef="Alergias">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Alergia</mat-header-cell>
+    <ng-container matColumnDef="Enfermedad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Enfermedad</mat-header-cell>
       <mat-cell *matCellDef="let row"> 
 
-      {{row.nombreAlergia}}
+      {{row.nombreEnfermedad}}
 
       </mat-cell>
     </ng-container>
@@ -50,7 +50,7 @@
 
   <div class="example-no-results"
        [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
-       No hay registros con dicha alergia.
+       No hay registros con dicha enfermedad.
   </div>
 
   <mat-paginator #paginator

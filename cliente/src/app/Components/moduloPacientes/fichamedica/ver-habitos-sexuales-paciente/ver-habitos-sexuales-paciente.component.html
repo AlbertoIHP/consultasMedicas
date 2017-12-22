@@ -2,7 +2,7 @@
 <div class="example-header" >
 
 
-    <label for="finder">Buscar por alergia...</label>
+    <label for="finder">Buscar por hábito sexual...</label>
     <input id="finder" matInput #filter >
 
 </div>
@@ -12,11 +12,11 @@
 
   <mat-table #table [dataSource]="dataSource" matSort>
     
-    <ng-container matColumnDef="Alergias">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Alergia</mat-header-cell>
+    <ng-container matColumnDef="Habito sexual">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Hábito sexual</mat-header-cell>
       <mat-cell *matCellDef="let row"> 
 
-      {{row.nombreAlergia}}
+      {{row.nombreHabitoSexual}}
 
       </mat-cell>
     </ng-container>
@@ -31,11 +31,11 @@
       </mat-cell>
     </ng-container>
 
-     <ng-container matColumnDef="Fecha deteccion">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha detección</mat-header-cell>
+     <ng-container matColumnDef="Fecha inicio">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha inicio</mat-header-cell>
       <mat-cell *matCellDef="let row"> 
 
-       <span *ngIf="row.esVerdadero==true">{{row.fechaDeteccion}}</span>
+       <span *ngIf="row.esVerdadero==true">{{row.fechaInicio}}</span>
       <span *ngIf="row.esVerdadero!=true">No posee</span>
 
       </mat-cell>
@@ -50,7 +50,7 @@
 
   <div class="example-no-results"
        [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
-       No hay registros con dicha alergia.
+       No hay registros con dicho hábito sexual.
   </div>
 
   <mat-paginator #paginator

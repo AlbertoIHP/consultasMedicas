@@ -295,6 +295,12 @@ import {
   NgbDatepickerModule,
   NgbTimepickerModule
 } from '@ng-bootstrap/ng-bootstrap';
+import { VerEnfermedadesCronicasPacienteComponent } from './Components/moduloPacientes/fichamedica/ver-enfermedades-cronicas-paciente/ver-enfermedades-cronicas-paciente.component';
+import { VerHabitosPacienteComponent } from './Components/moduloPacientes/fichamedica/ver-habitos-paciente/ver-habitos-paciente.component';
+import { VerHabitosSexualesPacienteComponent } from './Components/moduloPacientes/fichamedica/ver-habitos-sexuales-paciente/ver-habitos-sexuales-paciente.component';
+import { VerUsoMedicamentoComponent } from './Components/moduloPacientes/fichamedica/ver-uso-medicamento/ver-uso-medicamento.component';
+import { VerVacunasPacienteComponent } from './Components/moduloPacientes/fichamedica/ver-vacunas-paciente/ver-vacunas-paciente.component';
+import { VerAlergiasMedicamentosPacienteComponent } from './Components/moduloPacientes/fichamedica/ver-alergias-medicamentos-paciente/ver-alergias-medicamentos-paciente.component';
 
 
 @NgModule({
@@ -438,7 +444,13 @@ import {
     AgregarExamenFisicoComponent,
     EditarExamenFisicoComponent,
     FichaAtencionComponent,
-    VerAlergiasComunesPacienteComponent
+    VerAlergiasComunesPacienteComponent,
+    VerEnfermedadesCronicasPacienteComponent,
+    VerHabitosPacienteComponent,
+    VerHabitosSexualesPacienteComponent,
+    VerUsoMedicamentoComponent,
+    VerVacunasPacienteComponent,
+    VerAlergiasMedicamentosPacienteComponent
 
     
   ],

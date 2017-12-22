@@ -149,8 +149,33 @@
 -->
 </mat-tab>
 <!--Deberá ser un componente a parte-->
+
 <mat-tab label="Alergias comunes">
   <app-ver-alergias-comunes-paciente [pacienteTest]="pacienteTest"></app-ver-alergias-comunes-paciente>
+</mat-tab>
+
+<mat-tab label="Enfermedades crónicas">
+ <app-ver-enfermedades-cronicas-paciente [pacienteTest]="pacienteTest"></app-ver-enfermedades-cronicas-paciente>
+</mat-tab>
+
+<mat-tab label="Hábitos">
+ <app-ver-habitos-paciente [pacienteTest]="pacienteTest"></app-ver-habitos-paciente>
+</mat-tab>
+
+<mat-tab label="Hábitos sexuales">
+ <app-ver-habitos-sexuales-paciente [pacienteTest]="pacienteTest"></app-ver-habitos-sexuales-paciente>
+</mat-tab>
+
+<mat-tab label="Medicamentos">
+ <app-ver-uso-medicamento [pacienteTest]="pacienteTest"></app-ver-uso-medicamento>
+</mat-tab>
+
+<mat-tab label="Vacunas">
+ <app-ver-vacunas-paciente [pacienteTest]="pacienteTest"></app-ver-vacunas-paciente>
+</mat-tab>
+
+<mat-tab label="Alergias medicamentos">
+ <app-ver-alergias-medicamentos-paciente [pacienteTest]="pacienteTest"></app-ver-alergias-medicamentos-paciente>
 </mat-tab>
 
 </mat-tab-group>

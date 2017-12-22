@@ -1,10 +1,13 @@
 import { Component, OnInit, Input, ElementRef, ViewChild, Inject } from '@angular/core';
 
-import { AlergiasComunesPaciente } from '../../../../Models/AlergiasComunesPaciente.model';
-import { AlergiasComunesPacienteService } from '../../../../Services/alergiascomunespaciente/alergias-comunes-paciente.service';
+import { AlergiasMedicamentosPaciente } from '../../../../Models/AlergiasMedicamentosPaciente.model';
+import { AlergiasMedicamentosPacienteService } from '../../../../Services/alergiasmedicamentospaciente/alergias-medicamentos-paciente.service';
 
-import { Alergia } from '../../../../Models/Alergia.model';
-import { AlergiaService } from '../../../../Services/alergia/alergia.service';
+import { Medicamento } from '../../../../Models/Medicamento.model';
+import { MedicamentoService } from '../../../../Services/medicamento/medicamento.service';
+
+import { Paciente } from '../../../../Models/Paciente.model';
+import { PacienteService } from '../../../../Services/paciente/paciente.service';
 
 //DATATABLE
 import {DataSource} from '@angular/cdk/collections';
@@ -20,28 +23,25 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/debounceTime';
 import { ExampleDatabase, ExampleDataSource } from '../../../Globals/datasource.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
-
 @Component({
-  selector: 'app-ver-alergias-comunes-paciente',
-  templateUrl: './ver-alergias-comunes-paciente.component.html',
-  styleUrls: ['./ver-alergias-comunes-paciente.component.css']
+  selector: 'app-ver-alergias-medicamentos-paciente',
+  templateUrl: './ver-alergias-medicamentos-paciente.component.html',
+  styleUrls: ['./ver-alergias-medicamentos-paciente.component.css']
 })
-export class VerAlergiasComunesPacienteComponent implements OnInit{
+export class VerAlergiasMedicamentosPacienteComponent implements OnInit {
 
-@Input() pacienteTest:any;
+  
+ @Input() pacienteTest:any;
 
-public mensajePrevio:any;
-
-  public totalAlergiasComunes: Alergia[];
-  public totalAlergiasComunesPaciente:any[];
+  public totalMedicamentos: Medicamento[];
+  public totalAlergiasMedicamentosPaciente:any[];
   
   //Arreglo con todos los registros que contengan al paciente parametrizado y sus hábitos
-  public arrayAlergiasComunesPaciente: any[];
+  public arrayAlergiasMedicamentosPaciente: any[];
 
-    displayedColumns = ['Alergias','Estado','Fecha deteccion'];
+    displayedColumns = ['Medicamento','Estado','Fecha inicio'];
 
-    //DATATABLE
+  //DATATABLE
   exampleDatabase;
   selection = new SelectionModel<string>(true, []);
   dataSource: ExampleDataSource | null;
@@ -52,13 +52,13 @@ public mensajePrevio:any;
   ngOnInit() {
 
 
-      this.totalAlergiasComunes = [];
-      this.totalAlergiasComunesPaciente = [];
-      this.arrayAlergiasComunesPaciente = [];
+      this.totalMedicamentos = [];
+      this.totalAlergiasMedicamentosPaciente= [];
+      this.arrayAlergiasMedicamentosPaciente = [];
 
      this.actualizarAtributos();
 
-     this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'VerAlergiasComunesPaciente');
+     this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'VerAlergiasMedicamentosPaciente');
       Observable.fromEvent(this.filter.nativeElement, 'keyup')
         .debounceTime(150)
         .distinctUntilChanged()
@@ -100,29 +100,29 @@ public mensajePrevio:any;
   }
 
 
-  constructor(public servicioAlergiasComunesPaciente: AlergiasComunesPacienteService,
-    public servicioAlergiaComun: AlergiaService,public dialog:MatDialog) {
+  constructor(public servicioAlergiasMedicamentosPaciente:AlergiasMedicamentosPacienteService,
+    public servicioMedicamento:MedicamentoService,  public dialog:MatDialog) {
 
       }
 
   actualizarAtributos ()
   {
-    this.servicioAlergiaComun.getAlergias().subscribe(data => {
+    this.servicioMedicamento.getMedicamentos().subscribe(data => {
       var todo: any = data;
       todo = todo.data;
-      this.totalAlergiasComunes = todo;
+      this.totalMedicamentos = todo;
 
-         this.servicioAlergiasComunesPaciente.getAlergiasComunesPacientes().subscribe(data => {
+         this.servicioAlergiasMedicamentosPaciente.getAlergiasMedicamentosPacientes().subscribe(data => {
                   var todo: any = data;
                   todo = todo.data;
-                  this.totalAlergiasComunesPaciente = todo;
+                  this.totalAlergiasMedicamentosPaciente = todo;
 
                   this.reemplazarIdPorString();
         
                     //DATATABLE
-                  this.exampleDatabase  = new ExampleDatabase(this.arrayAlergiasComunesPaciente);
+                  this.exampleDatabase  = new ExampleDatabase(this.arrayAlergiasMedicamentosPaciente);
 
-                  this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'VerAlergiasComunesPaciente');
+                  this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'VerUsoMedicamentosPaciente');
                   Observable.fromEvent(this.filter.nativeElement, 'keyup')
                       .debounceTime(150)
                       .distinctUntilChanged()
@@ -136,12 +136,12 @@ public mensajePrevio:any;
 
    reemplazarIdPorString()
   {
-    this.obtenerAlergiasComunesPaciente(this.pacienteTest.id);
+    this.obtenerAlergiasMedicamentosPaciente(this.pacienteTest.id);
 
-    for(let i=0;i<this.totalAlergiasComunes.length;i++){
-      for(let j=0;j<this.arrayAlergiasComunesPaciente.length;j++){
-        if(this.totalAlergiasComunes[i].id===this.arrayAlergiasComunesPaciente[j].Alergia_id){
-          this.arrayAlergiasComunesPaciente[j].nombreAlergia=this.totalAlergiasComunes[i].nombre;
+    for(let i=0;i<this.totalMedicamentos.length;i++){
+      for(let j=0;j<this.arrayAlergiasMedicamentosPaciente.length;j++){
+        if(this.totalMedicamentos[i].id===this.arrayAlergiasMedicamentosPaciente[j].Medicamento_id){
+          this.arrayAlergiasMedicamentosPaciente[j].nombreMedicamento=this.totalMedicamentos[i].nombrecomun;
           break;
 
         }
@@ -150,28 +150,26 @@ public mensajePrevio:any;
   }
 
  //función para setear el array con los registros del paciente correspondiente
-  obtenerAlergiasComunesPaciente(idPaciente){
-    for(let i=0;i<this.totalAlergiasComunesPaciente.length;i++){
+  obtenerAlergiasMedicamentosPaciente(idPaciente){
+    for(let i=0;i<this.totalAlergiasMedicamentosPaciente.length;i++){
 
-      if(this.totalAlergiasComunesPaciente[i].Paciente_id==idPaciente){
+      if(this.totalAlergiasMedicamentosPaciente[i].Paciente_id==idPaciente){
 
-        this.arrayAlergiasComunesPaciente.push(this.totalAlergiasComunesPaciente[i]);
+        this.arrayAlergiasMedicamentosPaciente.push(this.totalAlergiasMedicamentosPaciente[i]);
 
       }
 
-      if(this.totalAlergiasComunesPaciente[i].fechaDeteccion != null){
+      if(this.totalAlergiasMedicamentosPaciente[i].fechaInicio != null){
 
-        this.totalAlergiasComunesPaciente[i].esVerdadero=true;
+        this.totalAlergiasMedicamentosPaciente[i].esVerdadero=true;
 
-      }else if(this.totalAlergiasComunesPaciente[i].fechaDeteccion==null){
+      }else if(this.totalAlergiasMedicamentosPaciente[i].fechaInicio==null){
 
-        this.totalAlergiasComunesPaciente[i].esVerdadero=false;
+        this.totalAlergiasMedicamentosPaciente[i].esVerdadero=false;
       }
     }
 
 
   }
-
-  
 
 }

@@ -202,9 +202,6 @@ export class VerFichaMedicaComponent {
 
         this.paciente=this.totalPacientes[i];
 
-        console.log("PACIENTE");
-        console.log(this.paciente);
-
   			this.obtenerTipoSangre(this.paciente.TipoSangre_id);
         this.reconocerActivado();
         //this.obtenerAlergias(this.paciente.id);
@@ -221,9 +218,6 @@ export class VerFichaMedicaComponent {
       todo = todo.data;
       this.tipoSangrePaciente=todo;
 
-      console.log("SANGRE");
-      console.log(this.tipoSangrePaciente);
-
       //asignación del tipo de sangre para la tabla 4
       this.datosPacienteT1[0].tipoSangre=this.tipoSangrePaciente.nombre;
   	});
@@ -233,8 +227,7 @@ export class VerFichaMedicaComponent {
    reconocerActivado (){
      var persona=new Persona();
      persona=this.personaPaciente[0];
-     console.log("ESTADO");
-     console.log(persona.estado);
+ 
       persona.estado === 0 ? this.paciente.activado = 0 : this.paciente.activado = 1;
           
   }
@@ -343,8 +336,7 @@ ordenarAtenciones(atenciones){
       var todo: any = data;
       todo = todo.data;
       this.personaPaciente.push(todo);
-      console.log("PERSONA");
-      console.log(this.personaPaciente);
+
 
         //se obtiene teléfono casa (puede no estar registrado)
         this.fonoCasaPaciente=this.personaPaciente[0].fono_casa;
@@ -396,8 +388,6 @@ obtenerComunaPaciente(id){
     todo = todo.data;
     this.comunaPaciente=todo;
 
-    console.log("COMUNA");
-    console.log(this.comunaPaciente);
     //se asigna el nombre de la comuna a los datos geográficos
     this.ubicacionPaciente[0].comuna=this.comunaPaciente.nombre;
     this.obtenerProvinciaPaciente(this.comunaPaciente.Provincia_id);
@@ -410,9 +400,6 @@ obtenerProvinciaPaciente(id){
       var todo: any = data;
     todo = todo.data;
     this.provinciaPaciente=todo;
-
-    console.log("PROVINCIA");
-    console.log(this.provinciaPaciente);
 
     //se asigna el nombre de la provincia a los datos geográficos
     this.ubicacionPaciente[0].provincia=this.provinciaPaciente.nombre;
@@ -428,9 +415,6 @@ obtenerProvinciaPaciente(id){
     todo = todo.data;
     this.regionPaciente=todo;
 
-    console.log("REGION");
-    console.log(this.regionPaciente);
-
     //se asigna el nombre de la región a los datos geográficos
     this.ubicacionPaciente[0].region=this.regionPaciente.nombre;
 
@@ -445,9 +429,6 @@ obtenerProvinciaPaciente(id){
     todo = todo.data;
     this.generoPaciente=todo;
 
-    console.log("GENERO");
-    console.log(this.generoPaciente);
-
     //se asigna el nombre del género a los datos del paciente para la t2
     this.datosPacienteT2[0].genero=this.generoPaciente.nombre;
     });
@@ -458,9 +439,6 @@ obtenerProvinciaPaciente(id){
     var todo: any = data;
     todo = todo.data;
     this.estadoCivilPaciente=todo;
-
-    console.log("ESTCIVIL");
-    console.log(this.estadoCivilPaciente);
 
     //se asigna el nombre del estado civil a los datos del paciente para la t2
     this.datosPacienteT2[0].estadoCivil=this.estadoCivilPaciente.nombre;
@@ -511,10 +489,6 @@ obtenerProvinciaPaciente(id){
       var todo: any=data
       todo=todo.data;
       this.previsionPaciente=todo;
-
-
-      console.log("PREVISION");
-      console.log(this.previsionPaciente);
 
       //se asigna la previsión del paciente a los datos de la tabla 1
       this.ubicacionPaciente[0].prevision=this.previsionPaciente.nombre;
