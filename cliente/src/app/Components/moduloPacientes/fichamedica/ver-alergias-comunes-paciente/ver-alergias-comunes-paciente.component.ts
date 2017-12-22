@@ -29,7 +29,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class VerAlergiasComunesPacienteComponent implements OnInit{
 
-@Input() pacienteTest:any;
+@Input() paciente:any;
 
 public mensajePrevio:any;
 
@@ -136,7 +136,7 @@ public mensajePrevio:any;
 
    reemplazarIdPorString()
   {
-    this.obtenerAlergiasComunesPaciente(this.pacienteTest.id);
+    this.obtenerAlergiasComunesPaciente(this.paciente.id);
 
     for(let i=0;i<this.totalAlergiasComunes.length;i++){
       for(let j=0;j<this.arrayAlergiasComunesPaciente.length;j++){

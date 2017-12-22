@@ -507,19 +507,17 @@ actualizarPersonas()
 //función para mostrar la ficha médica del paciente correspondiente
  desplegarFichaPaciente(paciente)
   {
-  this.servicioPersona.getPersona(parseInt(paciente.Persona_id)).subscribe(data => {
 
-    var persona: any = data;
-    persona = persona.data;
+   var a = JSON.parse(JSON.stringify(paciente));
 
-    console.log(persona);
+  this.pasarStringId(a);
 
-    let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
+   let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
     width: '1000px',
     height:'700px',
     data: { 
-      persona: persona,
-      paciente: paciente 
+     
+      paciente: a 
     }
     });
 
@@ -528,7 +526,7 @@ actualizarPersonas()
      //this.actualizarPersonas();
     });
 
-  });
+
 
 
   }

@@ -230,10 +230,8 @@ export class FichaAtencionComponent {
               this.totalAlergiasComunes = todo;
                
                this.reemplazarIdPorString();
-               this.obtenerComunaPaciente();
-               //this.obtenerGeneroPaciente();
-               //this.obtenerEstadoCivilPaciente();
-               //this.obtenerTipoSangre();
+               this.obtenerPersona();
+              
 
            });
 
@@ -242,19 +240,34 @@ export class FichaAtencionComponent {
   }
 
 
+
+obtenerPersona(){
+  for(let i=0;i<this.totalPersonas.length;i++){
+    if(this.paciente.Persona_id==this.totalPersonas[i].id){
+      this.personaActual=this.totalPersonas[i];
+      this.paciente.rut=this.personaActual.rut;
+      this.paciente.nombres=this.personaActual.nombre1+" "+this.personaActual.nombre2;
+      this.paciente.apellidos=this.personaActual.apellido1+" "+this.personaActual.apellido2;
+      break;
+    }
+  }
+   this.obtenerComunaPaciente();
+}
+
+
   reemplazarIdPorString()
   {
     for(let i=0;i<this.totalPacientes.length;i++){
       for(let j=0;j<this.totalPersonas.length;j++){
         if(this.totalPacientes[i].Persona_id===this.totalPersonas[j].id){
           this.totalPacientes[i].rut=this.totalPersonas[j].rut;
-          this.totalPacientes[i].nombre=this.totalPersonas[j].nombre1+" "+this.totalPersonas[j].nombre2+" "+this.totalPersonas[j].apellido1+" "+this.totalPersonas[j].apellido2;
-          this.personaActual=this.totalPersonas[j];
-          break;
+          this.totalPacientes[i].nombre=this.totalPersonas[j].nombre1+" "+this.totalPersonas[j].nombre2+" "+this.totalPersonas[j].apellido1+" "+this.totalPersonas[j].apellido2;          break;
         }
       }
     }
   }
+
+
 
   edicionAlergiasComunesPaciente (paciente)
   {

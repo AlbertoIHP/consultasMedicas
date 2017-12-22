@@ -31,7 +31,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class VerVacunasPacienteComponent implements OnInit {
 
   
- @Input() pacienteTest:any;
+ @Input() paciente:any;
 
   public totalVacunas: Vacuna[];
   public totalVacunasPaciente:any[];
@@ -136,7 +136,7 @@ export class VerVacunasPacienteComponent implements OnInit {
 
    reemplazarIdPorString()
   {
-    this.obtenerVacunasPaciente(this.pacienteTest.id);
+    this.obtenerVacunasPaciente(this.paciente.id);
 
     for(let i=0;i<this.totalVacunas.length;i++){
       for(let j=0;j<this.arrayVacunasPaciente.length;j++){

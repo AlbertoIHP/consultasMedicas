@@ -30,7 +30,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class VerHabitosSexualesPacienteComponent implements OnInit {
 
- @Input() pacienteTest:any;
+ @Input() paciente:any;
 
   public totalHabitosSexuales: HabitoSexual[];
   public totalHabitosSexualesPaciente:any[];
@@ -135,7 +135,7 @@ export class VerHabitosSexualesPacienteComponent implements OnInit {
 
    reemplazarIdPorString()
   {
-    this.obtenerHabitosSexualesPaciente(this.pacienteTest.id);
+    this.obtenerHabitosSexualesPaciente(this.paciente.id);
 
     for(let i=0;i<this.totalHabitosSexuales.length;i++){
       for(let j=0;j<this.arrayHabitosSexualesPaciente.length;j++){

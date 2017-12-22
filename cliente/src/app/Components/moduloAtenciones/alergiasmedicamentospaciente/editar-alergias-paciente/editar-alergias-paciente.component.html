@@ -1,6 +1,6 @@
 <h1 mat-dialog-title style="text-align: center;">Edición de Alergias Medicamentos Paciente</h1>
 
-<div mat-dialog-content style="height: 80%;">
+<div mat-dialog-content style="height: 500px !important;">
 
 
 <div class="row">
@@ -23,6 +23,8 @@
           <tr>
               <th>Medicamento</th>
               <th>Estado</th>
+              <th>Fecha detección</th>
+
           </tr>
         </thead>
 
@@ -30,24 +32,14 @@
           <tr  *ngFor="let medicamentosPaciente of arrayAlergiasMedicamentosPaciente">
             <td> {{medicamentosPaciente.nombreMedicamento}}</td>
             <td>
-            <div class="row">
-
-				        <div class="col s3">
 	              	<mat-checkbox [(ngModel)]="medicamentosPaciente.esVerdadero" (ngModelChange)="obtenerFecha(medicamentosPaciente)">Posee</mat-checkbox>
 					 
-	              </div>
-
-	              <div class="col s9" *ngIf="medicamentosPaciente.esVerdadero">
-					       <p>
-    					      <i class="fa fa-calendar" aria-hidden="true"></i>
-    					      <span>Fecha detección de alergia al medicamento</span>
-					       </p>
-					       <ng-datepicker position='bottom-right' [options]="options" [(ngModel)]="medicamentosPaciente.fechaInicio"></ng-datepicker>
-					     </div>
-				
-            
-            </div>
-
+            </td>
+            <td>
+               <div *ngIf="medicamentosPaciente.esVerdadero">
+                 
+                 <ng-datepicker position='bottom-right' [options]="options" [(ngModel)]="medicamentosPaciente.fechaInicio"></ng-datepicker>
+               </div>
             </td>
           </tr>
         </tbody>

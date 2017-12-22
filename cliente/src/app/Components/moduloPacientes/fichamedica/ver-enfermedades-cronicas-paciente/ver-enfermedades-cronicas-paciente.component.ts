@@ -30,7 +30,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
   styleUrls: ['./ver-enfermedades-cronicas-paciente.component.css']
 })
 export class VerEnfermedadesCronicasPacienteComponent implements OnInit {
-@Input() pacienteTest:any;
+@Input() paciente:any;
 
   public totalEnfermedadesCronicas: EnfermedadCronica[];
   public totalEnfermedadesCronicasPaciente:any[];
@@ -135,7 +135,7 @@ export class VerEnfermedadesCronicasPacienteComponent implements OnInit {
 
    reemplazarIdPorString()
   {
-    this.obtenerEnfermedadesCronicasPaciente(this.pacienteTest.id);
+    this.obtenerEnfermedadesCronicasPaciente(this.paciente.id);
 
     for(let i=0;i<this.totalEnfermedadesCronicas.length;i++){
       for(let j=0;j<this.arrayEnfermedadesCronicasPaciente.length;j++){
