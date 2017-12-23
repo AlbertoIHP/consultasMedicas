@@ -8,6 +8,8 @@ import { AuthGuard } from './Guards/auth.guard';
 import { LoginGuard } from './Guards/login.guard';
 import { InicioGuard } from './Guards/inicio.guard';
 
+//PAGINATOR
+import {NgxPaginationModule} from 'ngx-pagination';
 
 //SERVICIOS
 import { ComunaService } from './Services/comuna/comuna.service';
@@ -50,6 +52,7 @@ import { EstadoCitaService } from './Services/estadocita/estado-cita.service';
 import { MedicoService } from './Services/medico/medico.service';
 import { TipoBoxService } from './Services/tipobox/tipo-box.service';
 import { DisponibilidadService } from './Services/disponibilidad/disponibilidad.service';
+import { FeriadoService } from './Services/feriado/feriado.service';
 
 //SERVICIOS MODULO ATENCIONES
 import { AtencionService } from './Services/atencion/atencion.service';
@@ -200,6 +203,13 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   import { AgregarmedicoComponent } from './Components/moduloCitas/medico/agregarmedico/agregarmedico.component';
   import { EditarmedicoComponent } from './Components/moduloCitas/medico/editarmedico/editarmedico.component';
   import { DisponibilidadComponent } from './Components/moduloCitas/medico/disponibilidad/disponibilidad.component';
+
+  //Componente Feriado
+  import { FeriadosComponent } from './Components/moduloCitas/feriados/feriados.component';
+  import { AgregarferiadoComponent } from './Components/moduloCitas/feriados/agregarferiado/agregarferiado.component';
+  import { EditarferiadoComponent } from './Components/moduloCitas/feriados/editarferiado/editarferiado.component';
+
+
 
   //Componente Cita
   import { CalendarHeaderComponent } from './Components/moduloCitas/cita/header.component';
@@ -369,6 +379,7 @@ import { SetAlergiasMedicamentosPacienteComponent } from './Components/moduloAte
     MedicoComponent,
     CitaComponent,
     CalendarHeaderComponent,
+    FeriadosComponent,
 
     //Modulos hijos (CRUD)
     AgregarboxconsultaComponent,
@@ -464,7 +475,9 @@ import { SetAlergiasMedicamentosPacienteComponent } from './Components/moduloAte
     SetHabitosSexualesPacienteComponent,
     SetUsoMedicamentosPacienteComponent,
     SetVacunasPacienteComponent,
-    SetAlergiasMedicamentosPacienteComponent
+    SetAlergiasMedicamentosPacienteComponent,
+    AgregarferiadoComponent,
+    EditarferiadoComponent
 
     
   ],
@@ -556,7 +569,10 @@ import { SetAlergiasMedicamentosPacienteComponent } from './Components/moduloAte
     EditarUsoMedicamentoComponent,
     AgregarAlergiasPacienteComponent,
     EditarAlergiasPacienteComponent,
-    FichaAtencionComponent
+    FichaAtencionComponent,
+    AgregarferiadoComponent,
+    EditarferiadoComponent
+
   ],
 
 
@@ -605,6 +621,7 @@ import { SetAlergiasMedicamentosPacienteComponent } from './Components/moduloAte
     CalendarModule.forRoot(),
     Ng2DeviceDetectorModule.forRoot(),
     NgDatepickerModule,
+    NgxPaginationModule,
   ],
 
   providers:
@@ -658,6 +675,7 @@ import { SetAlergiasMedicamentosPacienteComponent } from './Components/moduloAte
     AuthGuard,
     LoginGuard,
     InicioGuard,
+    FeriadoService,
   ],
 
   bootstrap:

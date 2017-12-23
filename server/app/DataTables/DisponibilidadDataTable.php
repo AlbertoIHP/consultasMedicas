@@ -72,10 +72,9 @@ class DisponibilidadDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'dia' => ['name' => 'dia', 'data' => 'dia'],
-            'hora_inicio' => ['name' => 'hora_inicio', 'data' => 'hora_inicio'],
-            'hora_termino' => ['name' => 'hora_termino', 'data' => 'hora_termino'],
+            'disponible' => ['name' => 'disponible', 'data' => 'disponible'],
             'Medico_id' => ['name' => 'Medico_id', 'data' => 'Medico_id'],
+            'Horario_id' => ['name' => 'Horario_id', 'data' => 'Horario_id'],
             'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
         ];
     }

@@ -44,36 +44,55 @@
           <table class="striped">
           <thead>
             <tr>
-                <th>Día</th>
-                <th>Hora Inicio Atención</th>
-                <th>Hora Termino Atención</th>
+                <th>Día Atencion</th>
+                <th>Hora Inicio </th>
+                <th>Hora Termino</th>
             </tr>
           </thead>
 
           <tbody>
             <tr *ngFor="let hora of horarios">
-              <td>{{hora.dia}}</td>
+
               <td>
                 <mat-form-field style="width: 100% !important;">
-                  <mat-select placeholder="Inicio" style="width: 100% !important;"  [(ngModel)]="hora.hora_inicio" >
+                  <mat-select placeholder="Día" style="width: 100% !important;"  [(ngModel)]="hora.dia" >
+                    <mat-option style="width: 100% !important;" *ngFor="let dia of dias" [value]="dia" >
+                      {{ dia }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>                
+
+              </td>
+
+              <td>
+                <mat-form-field style="width: 100% !important;">
+                  <mat-select placeholder="Inicio" style="width: 100% !important;"  [(ngModel)]="hora.horaInicio" >
                     <mat-option style="width: 100% !important;" *ngFor="let hora of horasDia" [value]="hora" >
                       {{ hora }}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
               </td>
+
+
               <td>
                 <mat-form-field style="width: 100% !important;">
-                  <mat-select placeholder="Termino" style="width: 100% !important;" [(ngModel)]="hora.hora_termino">
+                  <mat-select placeholder="Termino" style="width: 100% !important;" [(ngModel)]="hora.horaFin">
                     <mat-option style="width: 100% !important;" *ngFor="let hora of horasDia" [value]="hora" >
                       {{ hora }}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
               </td>
+
             </tr>
           </tbody>
-        </table>      
+        </table>
+  
+      <div style="text-align: center">
+        <button mat-button style="width: 100%" (click)="agregarHorario()"><mat-icon>add</mat-icon>  </button>
+      </div>
+
       </div>
 
 

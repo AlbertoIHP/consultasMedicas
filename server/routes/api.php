@@ -76,6 +76,10 @@ Route::group(['middleware' => ['cors']], function(){
 
     Route::resource('v1/disponibilidads', 'DisponibilidadAPIController');
 
+    Route::resource('v1/feriados', 'FeriadoAPIController');
+
+    Route::resource('v1/horarios', 'HorarioAPIController');
+
 
     Route::resource('v1/atencions', 'AtencionAPIController');
 
@@ -124,17 +128,3 @@ Route::group(['middleware' => ['cors']], function(){
 
     Route::resource('v1/examenFisicos', 'ExamenFisicoAPIController');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-

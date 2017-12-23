@@ -42,10 +42,9 @@ trait MakeDisponibilidadTrait
         $fake = Faker::create();
 
         return array_merge([
-            'dia' => $fake->word,
-            'hora_inicio' => $fake->word,
-            'hora_termino' => $fake->word,
+            'disponible' => $fake->randomDigitNotNull,
             'Medico_id' => $fake->randomDigitNotNull,
+            'Horario_id' => $fake->randomDigitNotNull,
             'remember_token' => $fake->word,
             'created_at' => $fake->date('Y-m-d H:i:s'),
             'updated_at' => $fake->date('Y-m-d H:i:s'),

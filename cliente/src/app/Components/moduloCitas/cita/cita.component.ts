@@ -179,7 +179,7 @@ export class CitaComponent {
 
   idToString()
   {
-    for( let cita = 0 ; cita < this.totalCitas.length ; cita ++ )
+    /*for( let cita = 0 ; cita < this.totalCitas.length ; cita ++ )
     {
       let currentEstado = this.totalEstados.filter( estado => estado.id === parseInt( this.totalCitas[ cita ].EstadoCita_id ))
       let currentBox = this.totalBoxs.filter( box => box.id === parseInt( this.totalCitas[ cita ].BoxConsulta_id ))
@@ -199,7 +199,7 @@ export class CitaComponent {
       })
 
     }
-
+*/
       //DATATABLE
       this.exampleDatabase  = new ExampleDatabase(this.totalCitas);
 

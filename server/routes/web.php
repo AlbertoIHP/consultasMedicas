@@ -65,3 +65,23 @@ Route::resource('examenFisicos', 'ExamenFisicoController');
 Route::resource('pacientes', 'PacienteController');
 
 Route::resource('personas', 'PersonaController');
+
+Route::resource('disponibilidads', 'DisponibilidadController');
+
+Route::resource('citas', 'CitaController');
+
+Route::resource('citas', 'CitaController');
+
+Route::resource('disponibilidads', 'DisponibilidadController');
+
+Route::resource('horarios', 'HorarioController');
+
+Route::resource('feriados', 'FeriadoController');
+
+Route::resource('disponibilidads', 'DisponibilidadController');
+
+Route::resource('citas', 'CitaController');
+
+Route::resource('citas', 'CitaController');
+
+Route::resource('horarios', 'HorarioController');

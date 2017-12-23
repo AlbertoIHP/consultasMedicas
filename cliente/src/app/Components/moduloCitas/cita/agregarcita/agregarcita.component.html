@@ -1,12 +1,61 @@
 <mat-horizontal-stepper [linear]="true" style="max-height: 553px">
 
 
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Especialidad</ng-template>
+
+
+
+      <div class="row">
+        <div class="col s12">
+          <mat-form-field style="width: 100% !important;">
+            <mat-select formControlName="firstCtrl" required placeholder="Especialidad" style="width: 100% !important;">
+              <mat-option (click)="filtrarMedicos(especialidad)" style="width: 100% !important;" *ngFor="let especialidad of especialidades" [value]="especialidad.id" >
+                {{ especialidad.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col s12">
+          <mat-form-field style="width: 100% !important;">
+            <mat-select formControlName="firstCtrl" required placeholder="Paciente" style="width: 100% !important;" [(ngModel)]="cita.Paciente_id" >
+              <mat-option style="width: 100% !important;" *ngFor="let paciente of pacientes" [value]="paciente.id" >
+                {{ paciente.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+
+      </div>
+
+
+
+      <div class="row">
+
+        <div class="col s12">
+         <button mat-button matStepperNext style="width: 100%" >Siguiente <mat-icon>arrow_forward</mat-icon></button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+
+
+
+
+
+
+
+
+
+
   <mat-step [stepControl]="zeroFormGroup">
       <form [formGroup]="zeroFormGroup">
         <input formControlName="zeroCtrl" type="hidden" [(ngModel)]="text">
       </form>
 
-      <ng-template matStepLabel>Selección de Fecha</ng-template>
+      <ng-template matStepLabel>Fecha</ng-template>
 
 
       <div class="row" style="text-align: center;">
@@ -49,31 +98,51 @@
 
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Hora e Información del Paciente</ng-template>
+      <ng-template matStepLabel>Medico/Horario</ng-template>
+      <div class="main-div">
+        <mat-card class="tarjeta-medico" *ngFor="let medico of medicos | paginate: { itemsPerPage: 2, currentPage: p }">
+         <mat-card-header>
+         
+
+            <img mat-card-avatar src="https://icon-icons.com/icons2/944/PNG/512/medical-59_icon-icons.com_73933.png">
+             <mat-card-title>{{ medico.nombres }} {{medico.apellidos}}</mat-card-title>
+             <mat-card-subtitle>Especialidad: {{medico.especialidad}}</mat-card-subtitle>
+             
+
+        </mat-card-header>
+
+          <mat-card-content>
+
+            <span><p>RUT: {{medico.rut}}</p></span>
+
+               <table class="striped">
+                <thead>
+                  <tr>
+                      <th>Dia</th>
+                      <th>Hora Inicio Atencion</th>
+                      <th>Hora Termino Atencion</th>
+                  </tr>
+                </thead>
+
+                  <tbody>
+                    <tr *ngFor="let hora of medico.disponibilidad">
+                      <td>{{hora.dia}}</td>
+                      <td>
+                        {{ hora.horaInicio}}
+                      </td>
+                      <td>
+                         {{ hora.horaFin}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
 
 
-
-      <div class="row">
-        <div class="col s6">
-          <mat-form-field style="width: 100% !important;">
-            <mat-select formControlName="secondCtrl" required placeholder="Paciente" style="width: 100% !important;" [(ngModel)]="cita.Paciente_id" >
-              <mat-option style="width: 100% !important;" *ngFor="let paciente of pacientes" [value]="paciente.id" >
-                {{ paciente.nombre }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <div class="col s6">
-          <mat-form-field style="width: 100% !important;">
-            <mat-select formControlName="secondCtrl" required placeholder="Hora de la consulta" style="width: 100% !important;" [(ngModel)]="cita.hora" >
-              <mat-option style="width: 100% !important;" *ngFor="let hora of horasDia" [value]="hora" (click)="filtrarPorHora(hora)" >
-              {{ hora }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+          </mat-card-content>
+        </mat-card>
       </div>
+      
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
 
       <div class="row">
@@ -97,58 +166,7 @@
 
 
 
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Selección de Especialidad</ng-template>
 
-
-
-      <div class="row">
-        <div class="col s4">
-          <mat-form-field style="width: 100% !important;">
-            <mat-select formControlName="firstCtrl" required placeholder="Especialidad" style="width: 100% !important;">
-              <mat-option (click)="filtrarMedicos(especialidad)" style="width: 100% !important;" *ngFor="let especialidad of especialidades" [value]="especialidad.id" >
-                {{ especialidad.nombre }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <div class="col s4">
-          <mat-form-field style="width: 100% !important;">
-            <mat-select formControlName="firstCtrl" required placeholder="Médico" style="width: 100% !important;" [(ngModel)]="cita.Medico_id" >
-              <mat-option style="width: 100% !important;" *ngFor="let medico of mostrarMedicos" [value]="medico.id" >
-              {{ medico.nombre }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <div class="col s4">
-          <mat-form-field style="width: 100% !important;">
-            <mat-select formControlName="firstCtrl" required placeholder="Box" style="width: 100% !important;" >
-              <mat-option style="width: 100% !important;" *ngFor="let box of mostrarBoxs" [value]="box.id" (click)="visualizarCita(box)" >
-              {{ box.ubicacion }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-        </div>
-      </div>
-
-
-
-      <div class="row">
-        <div class="col s6">
-          <button mat-button matStepperPrevious style="width: 100%"> <mat-icon>arrow_back</mat-icon>Volver</button>
-        </div>
-
-        <div class="col s6">
-         <button mat-button matStepperNext style="width: 100%" (click)="agendarCita()" >Agendar Cita <mat-icon>add</mat-icon></button>
-        </div>
-      </div>
-    </form>
-  </mat-step>
 
 
   <mat-step>
