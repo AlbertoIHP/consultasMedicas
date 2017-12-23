@@ -125,9 +125,10 @@ export class AgregarcitaComponent {
   {
     this.especialidadSeleccionada = especialidad
 
+    this.wardmeds = this.medicos
+
     this.mostrarMedicos = this.wardmeds.filter( medico => parseInt( medico.Especialidad_id ) === this.especialidadSeleccionada.id )
 
-    this.mostrarBoxs = this.boxs.filter( box => parseInt( box.TipoBox_id ) === this.especialidadSeleccionada.id )
   }
 
 

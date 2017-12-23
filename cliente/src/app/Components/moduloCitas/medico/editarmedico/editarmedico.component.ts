@@ -20,7 +20,8 @@ export class EditarmedicoComponent implements OnInit {
   private horarios: any
   private horasDia: any
 
-
+  private dispo: any
+  private dias: any
 
   constructor(
     public dialogRef: MatDialogRef<EditarmedicoComponent>,
@@ -28,7 +29,15 @@ export class EditarmedicoComponent implements OnInit {
     )
   {
 
-
+      this.dias = [
+        'Lunes', 
+        'Martes', 
+        'Miercoles', 
+        'Jueves', 
+        'Viernes', 
+        'Sabado', 
+        'Domingo']
+      this.dispo = []
       this.horasDia = [ '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00' ]
 
       this.personasDisponibles = []
@@ -84,6 +93,11 @@ export class EditarmedicoComponent implements OnInit {
     });
   }
 
+     agregarHorario()
+     {
+         this.dispo.push({id: 0, Medico_id: 0, dia: '', horaInicio: '', horaFin: ''})
+     }
+
   actualizarMedicos()
   {
     this.servicioMedico.getMedicos().subscribe(data => {
@@ -109,6 +123,22 @@ export class EditarmedicoComponent implements OnInit {
       {
         this.servicioDisponibilidad.editDisponibilidad( horario, horario.id ).subscribe( data => {console.log(data) })
       }
+
+      if( this.dispo.length > 0)
+      {
+        for ( let horario of this.dispo)
+        {
+
+                horario.Medico_id = this.medico.id
+                this.servicioDisponibilidad.registerDisponibilidad(horario).subscribe( data => {
+                    console.log(data)
+                })
+
+        }        
+      }
+
+
+
       this.onNoClick()
 
     })

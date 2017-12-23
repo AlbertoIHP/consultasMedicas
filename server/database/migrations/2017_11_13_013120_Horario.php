@@ -16,8 +16,8 @@ class Horario extends Migration
         Schema::create('Horario', function (Blueprint $table) {
         $table->increments('id');
         $table->string("dia");
-        $table->integer("horaInicio");
-        $table->integer("improvisado")->nullable();
+        $table->string("horaInicio");
+        $table->string("horaFin")->nullable();
 
         $table->rememberToken();
         $table->timestamps();

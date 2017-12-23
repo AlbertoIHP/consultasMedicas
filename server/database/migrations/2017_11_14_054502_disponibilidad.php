@@ -15,13 +15,13 @@ class Disponibilidad extends Migration
     {
         Schema::create('Disponibilidad', function (Blueprint $table) {
         $table->increments('id');
-        $table->integer('disponible');
+        $table->string('dia');
+        $table->string('horaInicio');
+        $table->string('horaFin');
 
         $table->integer('Medico_id')->unsigned()->nullable();
         $table->foreign('Medico_id')->references('id')->on('Medico')->onDelete('cascade');
 
-        $table->integer('Horario_id')->unsigned()->nullable();
-        $table->foreign('Horario_id')->references('id')->on('Horario')->onDelete('cascade');
 
         $table->rememberToken();
         $table->timestamps();

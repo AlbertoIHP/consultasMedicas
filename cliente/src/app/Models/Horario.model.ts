@@ -1,14 +1,14 @@
 export class Horario {
   id: number
   dia: string
-  horaInicio: number
-  improvisado: number
+  horaInicio: string
+  improvisado: string
 
   constructor ()
   {
   this.id = 0
-  this.dia = ""
-  this.horaInicio = 0
-  this.improvisado = null
+  this.dia = ''
+  this.horaInicio = ''
+  this.improvisado = ''
   }
 }

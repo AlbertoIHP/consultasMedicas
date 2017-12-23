@@ -61,9 +61,9 @@ class Horario extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'dia' => 'integer',
-        'horaInicio' => 'integer',
-        'improvisado' => 'integer'
+        'dia' => 'string',
+        'horaInicio' => 'string',
+        'horaFin' => 'string'
     ];
 
     /**

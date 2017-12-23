@@ -49,9 +49,10 @@ class Disponibilidad extends Model
 
 
     public $fillable = [
-        'disponible',
         'Medico_id',
-        'Horario_id'
+        'dia',
+        'horaInicio',
+        'horaFin'
     ];
 
     /**
@@ -61,9 +62,10 @@ class Disponibilidad extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'disponible' => 'integer',
         'Medico_id' => 'integer',
-        'Horario_id' => 'integer'
+        'dia' => 'string',
+        'horaInicio' => 'string',
+        'horaFin' => 'string'
     ];
 
     /**
