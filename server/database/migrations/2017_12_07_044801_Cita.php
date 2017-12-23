@@ -15,19 +15,19 @@ class Cita extends Migration
     {
         Schema::create('Cita', function (Blueprint $table) {
         $table->increments('id');
-        $table->string('fecha');
-        $table->string('hora');
 
         $table->integer('EstadoCita_id')->unsigned()->nullable();
         $table->integer('BoxConsulta_id')->unsigned()->nullable();
         $table->integer('Paciente_id')->unsigned()->nullable();
         $table->integer('Medico_id')->unsigned()->nullable();
+        $table->integer('Disponibilidad_id')->unsigned()->nullable();
         
 
         $table->foreign('EstadoCita_id')->references('id')->on('EstadoCita')->onDelete('cascade');
         $table->foreign('BoxConsulta_id')->references('id')->on('BoxConsulta')->onDelete('cascade');
         $table->foreign('Paciente_id')->references('id')->on('Paciente')->onDelete('cascade');
         $table->foreign('Medico_id')->references('id')->on('Medico')->onDelete('cascade');
+        $table->foreign('Disponibilidad_id')->references('id')->on('Disponibilidad')->onDelete('cascade');
 
         $table->rememberToken();
         $table->timestamps();

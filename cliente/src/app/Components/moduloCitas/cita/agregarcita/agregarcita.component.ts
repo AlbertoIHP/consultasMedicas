@@ -288,7 +288,7 @@ export class AgregarcitaComponent {
       console.log(filtroCitas)
 
       // Ocupamos nuevamente la variable para guardar las id de los medicos esta vez la reinicializamos
-      auxMedicoId = []
+      /*auxMedicoId = []
       for( let dis of filtroCitas)
       {
         auxMedicoId.push(dis.Medico_id)
@@ -310,7 +310,7 @@ export class AgregarcitaComponent {
       this.mostrarMedicos = auxMedicos
 
       this.wardmeds = this.mostrarMedicos
-
+*/
   }
 
 

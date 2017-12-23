@@ -11,31 +11,9 @@
         "inIndex": false
     },
     {
-        "name": "dia",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": null,
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "hora_inicio",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": null,
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "hora_termino",
-        "dbType": "string",
-        "htmlType": "text",
+        "name": "disponible",
+        "dbType": "integer,false",
+        "htmlType": null,
         "validations": null,
         "searchable": true,
         "fillable": true,
@@ -45,6 +23,17 @@
     },
     {
         "name": "Medico_id",
+        "dbType": "integer,false,true",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "Horario_id",
         "dbType": "integer,false,true",
         "htmlType": null,
         "validations": null,
@@ -100,11 +89,23 @@
     },
     {
         "type": "relation",
+        "relation": "mt1,Horario"
+    },
+    {
+        "type": "relation",
         "relation": "mt1,Medico"
     },
     {
         "type": "relation",
-        "relation": "mtm,,AlergiasPaciente"
+        "relation": "mtm,,AlergiasComunesPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,AlergiasMedicamentosPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,Citum"
     },
     {
         "type": "relation",
@@ -112,11 +113,19 @@
     },
     {
         "type": "relation",
-        "relation": "mtm,,Medico"
+        "relation": "mtm,,EnfermedadesCronicasPaciente"
     },
     {
         "type": "relation",
-        "relation": "mtm,,Paciente"
+        "relation": "mtm,,HabitosPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,HabitosSexualesPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Medico"
     },
     {
         "type": "relation",
@@ -128,6 +137,14 @@
     },
     {
         "type": "relation",
+        "relation": "mtm,,UsoMedicamento"
+    },
+    {
+        "type": "relation",
         "relation": "mtm,,Usuario"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,VacunasPaciente"
     }
 ]

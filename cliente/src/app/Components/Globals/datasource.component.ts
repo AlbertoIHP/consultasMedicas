@@ -204,6 +204,11 @@ export class buscadorPorNombre extends DataSource<any> {
            let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
+        } else if(this.filtro == "Feriado"){
+
+           let searchStr = (item.dia.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
         }
 
 
@@ -384,6 +389,11 @@ export class ExampleDataSource extends DataSource<any> {
            let searchStr = (item.Persona_id.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
            
+        } else if(this.filtro == "Feriado"){
+
+           let searchStr = (item.dia.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
         }
 
 
@@ -696,7 +706,14 @@ export class ExampleDataSource extends DataSource<any> {
             case 'Nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
           }
         }
-
+        else if(this.filtro === "Feriado")
+        {
+           switch (this._sort.active)
+          {
+            case 'fecha': [propertyA, propertyB] = [a.dia, b.dia]; break;
+            case 'descripcion': [propertyA, propertyB] = [a.descripcion, b.descripcion]; break;
+          }
+        }
 
 
 

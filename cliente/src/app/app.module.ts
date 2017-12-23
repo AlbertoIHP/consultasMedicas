@@ -50,6 +50,7 @@ import { EstadoCitaService } from './Services/estadocita/estado-cita.service';
 import { MedicoService } from './Services/medico/medico.service';
 import { TipoBoxService } from './Services/tipobox/tipo-box.service';
 import { DisponibilidadService } from './Services/disponibilidad/disponibilidad.service';
+import { FeriadoService } from './Services/feriado/feriado.service';
 
 //SERVICIOS MODULO ATENCIONES
 import { AtencionService } from './Services/atencion/atencion.service';
@@ -200,6 +201,13 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   import { AgregarmedicoComponent } from './Components/moduloCitas/medico/agregarmedico/agregarmedico.component';
   import { EditarmedicoComponent } from './Components/moduloCitas/medico/editarmedico/editarmedico.component';
   import { DisponibilidadComponent } from './Components/moduloCitas/medico/disponibilidad/disponibilidad.component';
+
+  //Componente Feriado
+  import { FeriadosComponent } from './Components/moduloCitas/feriados/feriados.component';
+  import { AgregarferiadoComponent } from './Components/moduloCitas/feriados/agregarferiado/agregarferiado.component';
+  import { EditarferiadoComponent } from './Components/moduloCitas/feriados/editarferiado/editarferiado.component';
+
+
 
   //Componente Cita
   import { CalendarHeaderComponent } from './Components/moduloCitas/cita/header.component';
@@ -354,6 +362,7 @@ import {
     MedicoComponent,
     CitaComponent,
     CalendarHeaderComponent,
+    FeriadosComponent,
 
     //Modulos hijos (CRUD)
     AgregarboxconsultaComponent,
@@ -434,8 +443,9 @@ import {
     EditarVacunasPacienteComponent,
     ExamenFisicoComponent,
     AgregarExamenFisicoComponent,
-    EditarExamenFisicoComponent
-
+    EditarExamenFisicoComponent,
+    AgregarferiadoComponent,
+    EditarferiadoComponent
     
   ],
 
@@ -525,7 +535,9 @@ import {
     AgregarUsoMedicamentoComponent,
     EditarUsoMedicamentoComponent,
     AgregarAlergiasPacienteComponent,
-    EditarAlergiasPacienteComponent
+    EditarAlergiasPacienteComponent,
+    AgregarferiadoComponent,
+    EditarferiadoComponent
   ],
 
 
@@ -627,6 +639,7 @@ import {
     AuthGuard,
     LoginGuard,
     InicioGuard,
+    FeriadoService,
   ],
 
   bootstrap:

@@ -1,16 +1,14 @@
 export class Disponibilidad {
   id: number
-  dia: string
-  hora_inicio: string
-  hora_termino: string
+  disponible: number
+  Horario_id: string
   Medico_id: string
 
   constructor ()
   {
   this.id = 0
-  this.dia = ""
-  this.hora_inicio = ""
-  this.hora_termino = ""
+  this.disponible = 0
+  this.Horario_id = ""
   this.Medico_id = ""
   }
 }

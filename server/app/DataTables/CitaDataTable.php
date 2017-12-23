@@ -78,6 +78,7 @@ class CitaDataTable extends DataTable
             'BoxConsulta_id' => ['name' => 'BoxConsulta_id', 'data' => 'BoxConsulta_id'],
             'Paciente_id' => ['name' => 'Paciente_id', 'data' => 'Paciente_id'],
             'Medico_id' => ['name' => 'Medico_id', 'data' => 'Medico_id'],
+            'Disponibilidad_id' => ['name' => 'Disponibilidad_id', 'data' => 'Disponibilidad_id'],
             'remember_token' => ['name' => 'remember_token', 'data' => 'remember_token']
         ];
     }

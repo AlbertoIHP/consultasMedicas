@@ -18,8 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      @SWG\Property(
  *          property="fecha",
  *          description="fecha",
- *          type="string",
- *          format="date"
+ *          type="string"
  *      ),
  *      @SWG\Property(
  *          property="hora",
@@ -49,6 +48,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="Medico_id",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="Disponibilidad_id",
+ *          description="Disponibilidad_id",
+ *          type="integer",
+ *          format="int32"
  *      )
  * )
  */
@@ -71,7 +76,8 @@ class Cita extends Model
         'EstadoCita_id',
         'BoxConsulta_id',
         'Paciente_id',
-        'Medico_id'
+        'Medico_id',
+        'Disponibilidad_id'
     ];
 
     /**
@@ -86,7 +92,8 @@ class Cita extends Model
         'EstadoCita_id' => 'integer',
         'BoxConsulta_id' => 'integer',
         'Paciente_id' => 'integer',
-        'Medico_id' => 'integer'
+        'Medico_id' => 'integer',
+        'Disponibilidad_id' => 'integer'
     ];
 
     /**
@@ -104,6 +111,14 @@ class Cita extends Model
     public function boxConsultum()
     {
         return $this->belongsTo(\App\Models\BoxConsultum::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function disponibilidad()
+    {
+        return $this->belongsTo(\App\Models\Disponibilidad::class);
     }
 
     /**
@@ -137,5 +152,7 @@ class Cita extends Model
     {
         return $this->hasMany(\App\Models\Atencion::class);
     }
+
     protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
+    
 }
