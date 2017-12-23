@@ -2,42 +2,12 @@
 
 <div mat-dialog-content style="height: 500px;">
 
-<div class="row" class="menu-scroll" style="margin-bottom: 25px;margin-top: 25px">
+<mat-tab-group>
+  <mat-tab label="Datos generales">
 
-	
-		 <button mat-button class="boton-aceptar" (click)="edicionAlergiasComunesPaciente(paciente)" tabindex="-2">Alergias comunes</button>
-	
-
-	
-		 <button mat-button class="boton-aceptar" (click)="edicionEnfermedadesCronicasPaciente(paciente)" tabindex="-2">Enfermedades cŕoncias</button>
-	
-
-	
-		 <button mat-button class="boton-aceptar" (click)="edicionHabitosPaciente(paciente)" tabindex="-2">Hábitos</button>
-
-
-	
-		 <button mat-button class="boton-aceptar" (click)="edicionHabitosSexualesPaciente(paciente)" tabindex="-2">Hábitos sexuales</button>
-
-
-	
-		 <button mat-button class="boton-aceptar" (click)="edicionUsoMedicamento(paciente)" tabindex="-2">Medicamentos</button>
-
-	
-		 <button mat-button class="boton-aceptar" (click)="edicionVacunasPaciente(paciente)" tabindex="-2">Vacunas</button>
-
-	
-		 <button mat-button class="boton-aceptar" (click)="edicionAlergiasMedicamentosPaciente(paciente)" tabindex="-2">Alergias medicamentos</button>
-	
-
-
-	
-
-</div>
-
-<div class="row">
-	<div class="col s12">
-		 <table class="striped">
+    <div class="row" style="margin-top: 25px !important;">
+  <div class="col s12">
+     <table class="striped">
         <thead>
           <tr>
               <th>Nombres</th>
@@ -57,12 +27,12 @@
           </tr>
         </tbody>
       </table>
-	</div>
+  </div>
 </div>
 
 <div class="row">
-	<div class="col s12">
-		 <table class="striped">
+  <div class="col s12">
+     <table class="striped">
         <thead>
           <tr>
               <th>Género</th>
@@ -92,7 +62,7 @@
           </tr>
         </tbody>
       </table>
-	</div>
+  </div>
 </div>
 
 <div class="row">
@@ -123,13 +93,40 @@
   </div>
 </div>
 
+</mat-tab>
+
+  <mat-tab label="Alergias comunes">
+    <app-set-alergias-comunes-paciente [paciente]="paciente"></app-set-alergias-comunes-paciente>
+  </mat-tab>
+
+   <mat-tab label="Enfermedades crónicas">
+    <app-set-enfermedades-cronicas-paciente [paciente]="paciente"></app-set-enfermedades-cronicas-paciente>
+    </mat-tab>
+
+    <mat-tab label="Hábitos">
+      <app-set-habitos-paciente [paciente]="paciente"></app-set-habitos-paciente>
+   </mat-tab>
+
+    <mat-tab label="Hábitos sexuales">
+      <app-set-habitos-sexuales-paciente [paciente]="paciente"></app-set-habitos-sexuales-paciente>
+   </mat-tab>
+
+    <mat-tab label="Medicamentos">
+      <app-set-uso-medicamentos-paciente [paciente]="paciente"></app-set-uso-medicamentos-paciente>
+   </mat-tab>
+
+    <mat-tab label="Vacunas">
+      <app-set-vacunas-paciente [paciente]="paciente"></app-set-vacunas-paciente>
+   </mat-tab>
+
+   <mat-tab label="Alergias medicamentos">
+      <app-set-alergias-medicamentos-paciente [paciente]="paciente"></app-set-alergias-medicamentos-paciente>
+   </mat-tab>
+
+</mat-tab-group>
 
 </div>
 
-
-
-
-
 <div mat-dialog-actions style="margin-top: 50px !important;">
-  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Aceptar</button>
 </div>

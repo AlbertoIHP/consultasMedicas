@@ -301,6 +301,13 @@ import { VerHabitosSexualesPacienteComponent } from './Components/moduloPaciente
 import { VerUsoMedicamentoComponent } from './Components/moduloPacientes/fichamedica/ver-uso-medicamento/ver-uso-medicamento.component';
 import { VerVacunasPacienteComponent } from './Components/moduloPacientes/fichamedica/ver-vacunas-paciente/ver-vacunas-paciente.component';
 import { VerAlergiasMedicamentosPacienteComponent } from './Components/moduloPacientes/fichamedica/ver-alergias-medicamentos-paciente/ver-alergias-medicamentos-paciente.component';
+import { SetAlergiasComunesPacienteComponent } from './Components/moduloAtenciones/ficha-atencion/set-alergias-comunes-paciente/set-alergias-comunes-paciente.component';
+import { SetEnfermedadesCronicasPacienteComponent } from './Components/moduloAtenciones/ficha-atencion/set-enfermedades-cronicas-paciente/set-enfermedades-cronicas-paciente.component';
+import { SetHabitosPacienteComponent } from './Components/moduloAtenciones/ficha-atencion/set-habitos-paciente/set-habitos-paciente.component';
+import { SetHabitosSexualesPacienteComponent } from './Components/moduloAtenciones/ficha-atencion/set-habitos-sexuales-paciente/set-habitos-sexuales-paciente.component';
+import { SetUsoMedicamentosPacienteComponent } from './Components/moduloAtenciones/ficha-atencion/set-uso-medicamentos-paciente/set-uso-medicamentos-paciente.component';
+import { SetVacunasPacienteComponent } from './Components/moduloAtenciones/ficha-atencion/set-vacunas-paciente/set-vacunas-paciente.component';
+import { SetAlergiasMedicamentosPacienteComponent } from './Components/moduloAtenciones/ficha-atencion/set-alergias-medicamentos-paciente/set-alergias-medicamentos-paciente.component';
 
 
 @NgModule({
@@ -450,7 +457,14 @@ import { VerAlergiasMedicamentosPacienteComponent } from './Components/moduloPac
     VerHabitosSexualesPacienteComponent,
     VerUsoMedicamentoComponent,
     VerVacunasPacienteComponent,
-    VerAlergiasMedicamentosPacienteComponent
+    VerAlergiasMedicamentosPacienteComponent,
+    SetAlergiasComunesPacienteComponent,
+    SetEnfermedadesCronicasPacienteComponent,
+    SetHabitosPacienteComponent,
+    SetHabitosSexualesPacienteComponent,
+    SetUsoMedicamentosPacienteComponent,
+    SetVacunasPacienteComponent,
+    SetAlergiasMedicamentosPacienteComponent
 
     
   ],

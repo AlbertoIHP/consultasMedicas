@@ -123,6 +123,7 @@ export class FichaAtencionComponent {
    public paciente:any;
    public personaActual:any;
 
+
   constructor(
 
     public dialogRef: MatDialogRef<FichaAtencionComponent>,
@@ -203,8 +204,8 @@ export class FichaAtencionComponent {
       this.historialPrevisionesPacientes=[];
 
       this.existePrevision=false;
-
       this.actualizarAtributos();
+      
 
 
   }
@@ -228,18 +229,17 @@ export class FichaAtencionComponent {
               var todo: any = data;
               todo = todo.data;
               this.totalAlergiasComunes = todo;
-               
                this.reemplazarIdPorString();
                this.obtenerPersona();
-              
+               
+             
+                          
 
            });
 
       });
     });
   }
-
-
 
 obtenerPersona(){
   for(let i=0;i<this.totalPersonas.length;i++){
