@@ -1,28 +1,25 @@
-import { Component, Inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Feriado } from '../../../../Models/Feriado.model';
 import { FeriadoService } from '../../../../Services/feriado/feriado.service';
-import { DatepickerOptions } from 'ng2-datepicker';
-import * as esLocale from 'date-fns/locale/es';
+import { CalendarEvent, CalendarMonthViewDay } from 'angular-calendar';
+
 
 @Component({
   selector: 'app-editarferiado',
   templateUrl: './editarferiado.component.html',
-  styleUrls: ['./editarferiado.component.css']
+  styleUrls: ['./editarferiado.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class EditarferiadoComponent {
 
 	public feriado: Feriado;
+	viewDate: Date = new Date()
+    selectedDay: CalendarMonthViewDay
+    events: CalendarEvent[] = []
+    protected fechaSeleccionada = false
 
-	options: DatepickerOptions = {
-      minYear: 2017,
-      maxYear: new Date().getFullYear() + 1 ,
-      displayFormat: 'YYYY[-]MM[-]DD',
-      barTitleFormat: 'MMMM YYYY',
-      firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
-      locale: esLocale
-
-   };
 
 	constructor(
 		public dialogRef: MatDialogRef<EditarferiadoComponent>,
@@ -31,6 +28,41 @@ export class EditarferiadoComponent {
 		)
 	{
 		this.feriado = data.feriado;
+
+		let dia = this.feriado.dia.split(' ')[0];
+		console.log(dia);
+
+		if( dia === 'Domingo')
+	      {
+	        dia = 'Sun'
+	      }
+	      else if( dia === 'Lunes' )
+	      {
+	        dia = 'Mon'
+	      }
+	      else if( dia === 'Martes')
+	      {
+	        dia = 'Tue'
+	      }
+	      else if( dia === 'Miercoles' )
+	      {
+	        dia = 'Wed'
+	      }
+	      else if( dia === 'Jueves')
+	      {
+	        dia = 'Thu'
+	      }
+	      else if( dia === 'Viernes')
+	      {
+	        dia = 'Fri'
+	      }
+	      else if( dia === 'Sabado' )
+	      {
+	        dia = 'Sat'
+	      }
+	    
+	    //this.selectedDay = dia + ' ' + this.feriado.dia.split('/')[1] + ' ' + this.feriado.dia.split('/')[0].split(' ')[1] + ' ' + this.feriado.dia.split('/')[2];
+		
 	}
 
 	onNoClick()
@@ -40,7 +72,6 @@ export class EditarferiadoComponent {
 
 	editarFeriado()
 	{
-		this.feriado.dia = new Date(this.feriado.dia).toISOString().slice(0, 10).replace('T', ' ');
 		this.servicioFeriado.editFeriado(this.feriado, this.feriado.id).subscribe( data => {
 			console.log(data);
 			this.dialogRef.close();
@@ -48,4 +79,72 @@ export class EditarferiadoComponent {
 		});
 	}
 
+	dayClicked(day: CalendarMonthViewDay): void
+	  {
+	    if (this.selectedDay)
+	    {
+	      delete this.selectedDay.cssClass;
+	    }
+
+	    this.selectedDay = day
+
+	    if( this.selectedDay.isFuture )
+	    {
+	      this.fechaSeleccionada = false
+	      day.cssClass = 'cal-day-selected'
+
+	      let dia = this.selectedDay.date.toString().split(' ')[0]
+
+
+	      if( dia === 'Sun')
+	      {
+	        dia = 'Domingo'
+	      }
+	      else if( dia === 'Mon' )
+	      {
+	        dia = 'Lunes'
+	      }
+	      else if( dia === 'Tue')
+	      {
+	        dia = 'Martes'
+	      }
+	      else if( dia === 'Wed' )
+	      {
+	        dia = 'Miercoles'
+	      }
+	      else if( dia === 'Thu')
+	      {
+	        dia = 'Jueves'
+	      }
+	      else if( dia === 'Fri')
+	      {
+	        dia = 'Viernes'
+	      }
+	      else if( dia === 'Sat' )
+	      {
+	        dia = 'Sabado'
+	      }
+
+	      this.feriado.dia = dia+' '+this.selectedDay.date.toString().split(' ')[2]+'/'+this.selectedDay.date.toString().split(' ')[1]+'/'+this.selectedDay.date.toString().split(' ')[3]
+
+	    }
+	    else
+	    {
+	      alert("Ha seleccionado una fecha pasada")
+	    }
+
+	  }
+
+	beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void
+	  {
+	    body.forEach(day => {
+
+	      if ( this.selectedDay && day.date.getTime() === this.selectedDay.date.getTime() )
+	      {
+	        day.cssClass = 'cal-day-selected';
+	        this.selectedDay = day;
+	      }
+
+	    });
+	  }
 }
