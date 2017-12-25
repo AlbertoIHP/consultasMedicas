@@ -2,13 +2,34 @@
 
 <div mat-dialog-content>
 
-	<div class="col s12">
-	    <p>
-		    <i class="fa fa-calendar" aria-hidden="true"></i>
-		    <span>Fecha</span>
-	    </p>
-	    <ng-datepicker position='bottom-right' isOpened=true [options]="options" [(ngModel)]="feriado.dia"></ng-datepicker>
-	</div>
+	<ng-template matStepLabel>Selección de Fecha</ng-template>
+
+
+      <div class="row" style="text-align: center;">
+
+        <div class="col s4" mwlCalendarPreviousView view="month" [(viewDate)]="viewDate" >
+          <button mat-button>
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>
+
+        <div class="col s4">
+          <h6>{{ viewDate | calendarDate:'monthViewTitle':'es' }}</h6>
+        </div>
+
+        <div class="col s4" mwlCalendarNextView  view="month" [(viewDate)]="viewDate" >
+          <button mat-button>
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <mwl-calendar-month-view
+        [viewDate]="viewDate"
+        [events]="events"
+        (beforeViewRender)="beforeMonthViewRender($event)"
+        (dayClicked)="dayClicked($event.day)">
+      </mwl-calendar-month-view>
 
     <mat-form-field class="fullWidth">
      <input matInput placeholder="Descripción" [(ngModel)]="feriado.descripcion">

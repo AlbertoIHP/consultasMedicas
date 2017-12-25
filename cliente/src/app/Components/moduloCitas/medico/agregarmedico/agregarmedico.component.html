@@ -66,8 +66,8 @@
 
               <td>
                 <mat-form-field style="width: 100% !important;">
-                  <mat-select placeholder="Inicio" style="width: 100% !important;"  [(ngModel)]="hora.horaInicio" >
-                    <mat-option style="width: 100% !important;" *ngFor="let hora of horasDia" [value]="hora" >
+                  <mat-select placeholder="Inicio" style="width: 100% !important;"  [(ngModel)]="hora.horaInicio">
+                    <mat-option style="width: 100% !important;" *ngFor="let hora of horasInicio" [value]="hora">
                       {{ hora }}
                     </mat-option>
                   </mat-select>
@@ -78,7 +78,7 @@
               <td>
                 <mat-form-field style="width: 100% !important;">
                   <mat-select placeholder="Termino" style="width: 100% !important;" [(ngModel)]="hora.horaFin">
-                    <mat-option style="width: 100% !important;" *ngFor="let hora of horasDia" [value]="hora" >
+                    <mat-option style="width: 100% !important;" *ngFor="let hora of horasFin" [value]="hora">
                       {{ hora }}
                     </mat-option>
                   </mat-select>
