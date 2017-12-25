@@ -21,10 +21,25 @@ export class AgregarmedicoComponent implements OnInit {
       private horasDia: any
       private horarios: any
      private horario: any
+     private horasInicio: any;
+     private horasFin: any;
 
      agregarHorario()
      {
-         this.horarios.push({id: 0, Medico_id: 0, dia: '', horaInicio: '', horaFin: ''})
+
+      let validacion = [];
+      validacion = this.verificarHoras();
+
+      if(validacion[0]) {
+        alert("Hay campos vacíos")
+      } else if (!validacion[1]){
+        alert("La hora de inicio debe ser menor que la hora de término");
+      } else {
+        this.horarios.push({id: 0, Medico_id: 0, dia: '', horaInicio: '', horaFin: ''})
+      }
+         
+         //this.horasInicio = this.horasDia;
+         //this.horasFin = this.horasDia;
      }
 
 
@@ -71,6 +86,9 @@ export class AgregarmedicoComponent implements OnInit {
             this.servicioEspecialidad = data.servicioEspecialidad
             this.personasDisponibles = this.totalPersonas
             this.servicioDisponibilidad = data.servicioDisponibilidad
+            this.horasInicio = this.horasDia;
+            this.horasFin = this.horasDia;
+     
     }
 
     ngOnInit()
@@ -120,6 +138,14 @@ export class AgregarmedicoComponent implements OnInit {
 
     agregarMedico()
     {
+      let validacion = [];
+      validacion = this.verificarHoras();
+
+      if(validacion[0]) {
+        alert("Hay campos vacíos")
+      } else if (!validacion[1]){
+        alert("La hora de inicio debe ser menor que la hora de término");
+      } else {
           this.servicioMedico.registerMedico(this.medico).subscribe(data => {
 
           this.servicioMedico.getMedicos().subscribe( data => {
@@ -140,13 +166,7 @@ export class AgregarmedicoComponent implements OnInit {
 
             }
 
-            this.onNoClick()
-
-
-
-
-
-            
+            this.onNoClick()  
 
       })
 
@@ -159,6 +179,8 @@ export class AgregarmedicoComponent implements OnInit {
         }
 
     });
+      }
+
     }
 
 
@@ -176,4 +198,92 @@ export class AgregarmedicoComponent implements OnInit {
         }
     }
 
+    verificarHoras() {
+      let inicio = [];
+      let fin = [];
+      let dia = [];
+      let correcto = true;
+      let vacio = false;
+
+      for (let i = 0; i < this.horarios.length; i++) {
+        dia.push(this.horarios[i].dia)
+        for(let j = 0; j < this.horasDia.length; j++) {
+        
+          if (this.horasDia[j] === this.horarios[i].horaInicio || this.horarios[i].horaInicio === '') {
+            inicio.push(j);
+          }
+        }
+        for(let k = 0; k < this.horasDia.length; k++) {
+        
+          if (this.horasDia[k] === this.horarios[i].horaFin || this.horarios[i].horaFin === '') {
+            fin.push(k);
+          }
+        }
+      }
+
+      for (let l = 0; l < inicio.length; l++) {
+        if (fin[l] === '' || inicio[l] === '' || dia[l] === '') {
+          vacio = true;
+        }
+
+        if(fin[l] <= inicio[l]) {
+          correcto = false;
+          break;
+        }
+      }
+
+      let validacion = [];
+      validacion.push(vacio);
+      validacion.push(correcto);
+
+      console.log(validacion);
+
+      return validacion;
+    }
+
+    /*validarFin() {
+      let flag = false;
+      
+      if (this.horarios[this.horarios.length - 1].horaInicio != '' && this.horarios[this.horarios.length - 1].horaFin === '') {
+        this.horasFin = [];
+        console.log(this.horasDia.length)
+        for(let i = 0; i < this.horasDia.length; i++) {
+        console.log(flag);
+        if (this.horasDia[i] === this.horarios[this.horarios.length - 1].horaInicio) {
+          flag = true;
+          i++;
+        }
+
+        if(flag) {
+          this.horasFin.push(this.horasDia[i]);
+          console.log(this.horasFin);
+        }
+      }
+      }
+
+    }
+
+
+    validarInicio() {
+      let flag = true;
+      
+      if (this.horarios[this.horarios.length - 1].horaFin != '' && this.horarios[this.horarios.length - 1].horaInicio === '') {
+        this.horasInicio = [];
+        console.log(this.horasDia.length)
+        for(let i = 0; i < this.horasDia.length; i++) {
+        console.log(flag);
+        if (this.horasDia[i] === this.horarios[this.horarios.length - 1].horaFin) {
+          flag = false;
+          i++;
+        }
+
+        if(flag) {
+          this.horasInicio.push(this.horasDia[i]);
+          console.log(this.horasInicio);
+        }
+      }
+      }
+
+    }
+*/
 }
