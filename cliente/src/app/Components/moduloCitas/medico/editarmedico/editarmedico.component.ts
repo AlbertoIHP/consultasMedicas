@@ -95,7 +95,20 @@ export class EditarmedicoComponent implements OnInit {
 
      agregarHorario()
      {
-         this.dispo.push({id: 0, Medico_id: 0, dia: '', horaInicio: '', horaFin: ''})
+
+      let validacion = [];
+      validacion = this.verificarHoras();
+
+      if(validacion[0]) {
+        alert("Hay campos vacíos")
+      } else if (!validacion[1]){
+        alert("La hora de inicio debe ser menor que la hora de término");
+      } else {
+        this.horarios.push({id: 0, Medico_id: 0, dia: '', horaInicio: '', horaFin: ''})
+      }
+         
+         //this.horasInicio = this.horasDia;
+         //this.horasFin = this.horasDia;
      }
 
   actualizarMedicos()
@@ -115,34 +128,54 @@ export class EditarmedicoComponent implements OnInit {
   }
 
   agregarMedico()
-  {
+    {
+      let duplicado = false;
+      let validacion = [];
+      validacion = this.verificarHoras();
 
-    this.servicioMedico.editMedico(this.medico, this.medico.id).subscribe( data => {
+      for (let m = 0; m < this.horarios.length; m++) {
+        for (let n = 0; n < this.horarios.length; n++) {
 
-      for ( let horario of this.horarios)
-      {
-        this.servicioDisponibilidad.editDisponibilidad( horario, horario.id ).subscribe( data => {console.log(data) })
+          if (m != n && this.horarios[m].horaInicio === this.horarios[n].horaInicio &&
+            this.horarios[m].horaFin === this.horarios[n].horaFin &&
+            this.horarios[m].dia === this.horarios[n].dia) {
+            duplicado = true;
+          }
+        }      
       }
 
-      if( this.dispo.length > 0)
-      {
-        for ( let horario of this.dispo)
-        {
+      if(validacion[0]) {
+        alert("Hay campos vacíos")
+      } else if (!validacion[1]) {
+        alert("La hora de inicio debe ser menor que la hora de término");
+      } else if (duplicado) {
+        alert("No pueden existir horarios duplicados")
+      } else {
 
-                horario.Medico_id = this.medico.id
-                this.servicioDisponibilidad.registerDisponibilidad(horario).subscribe( data => {
-                    console.log(data)
-                })
+        this.servicioMedico.editMedico(this.medico, this.medico.id).subscribe( data => {
 
-        }        
-      }
+          for ( let horario of this.horarios)
+          {
+            this.servicioDisponibilidad.editDisponibilidad( horario, horario.id ).subscribe( data => {console.log(data) })
+          }
 
+          if( this.dispo.length > 0)
+          {
+            for ( let horario of this.dispo)
+            {
 
+              horario.Medico_id = this.medico.id
+              this.servicioDisponibilidad.registerDisponibilidad(horario).subscribe( data => {
+                  console.log(data)
+              })
 
-      this.onNoClick()
+            }        
+          }
 
-    })
+          this.onNoClick()
 
+        })
+    }
 
   }
 
@@ -161,5 +194,47 @@ export class EditarmedicoComponent implements OnInit {
     }
   }
 
+    verificarHoras() {
+      let inicio = [];
+      let fin = [];
+      let dia = [];
+      let correcto = true;
+      let vacio = false;
+
+      for (let i = 0; i < this.horarios.length; i++) {
+        dia.push(this.horarios[i].dia)
+        for(let j = 0; j < this.horasDia.length; j++) {
+        
+          if (this.horasDia[j] === this.horarios[i].horaInicio || this.horarios[i].horaInicio === '') {
+            inicio.push(j);
+          }
+        }
+        for(let k = 0; k < this.horasDia.length; k++) {
+        
+          if (this.horasDia[k] === this.horarios[i].horaFin || this.horarios[i].horaFin === '') {
+            fin.push(k);
+          }
+        }
+      }
+
+      for (let l = 0; l < inicio.length; l++) {
+        if (fin[l] === '' || inicio[l] === '' || dia[l] === '') {
+          vacio = true;
+        }
+
+        if(fin[l] <= inicio[l]) {
+          correcto = false;
+          break;
+        }
+      }
+
+      let validacion = [];
+      validacion.push(vacio);
+      validacion.push(correcto);
+
+      console.log(validacion);
+
+      return validacion;
+    }
 
 }

@@ -86,8 +86,8 @@ export class AgregarmedicoComponent implements OnInit {
             this.servicioEspecialidad = data.servicioEspecialidad
             this.personasDisponibles = this.totalPersonas
             this.servicioDisponibilidad = data.servicioDisponibilidad
-            this.horasInicio = this.horasDia;
-            this.horasFin = this.horasDia;
+            //this.horasInicio = this.horasDia;
+            //this.horasFin = this.horasDia;
      
     }
 
@@ -138,13 +138,27 @@ export class AgregarmedicoComponent implements OnInit {
 
     agregarMedico()
     {
+      let duplicado = false;
       let validacion = [];
       validacion = this.verificarHoras();
 
+      for (let m = 0; m < this.horarios.length; m++) {
+        for (let n = 0; n < this.horarios.length; n++) {
+
+          if (m != n && this.horarios[m].horaInicio === this.horarios[n].horaInicio &&
+            this.horarios[m].horaFin === this.horarios[n].horaFin &&
+            this.horarios[m].dia === this.horarios[n].dia) {
+            duplicado = true;
+          }
+        }      
+      }
+
       if(validacion[0]) {
         alert("Hay campos vacíos")
-      } else if (!validacion[1]){
+      } else if (!validacion[1]) {
         alert("La hora de inicio debe ser menor que la hora de término");
+      } else if (duplicado) {
+        alert("No pueden existir horarios duplicados")
       } else {
           this.servicioMedico.registerMedico(this.medico).subscribe(data => {
 
