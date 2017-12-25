@@ -11,18 +11,6 @@
 
   <mat-table #table [dataSource]="dataSource" matSort>
 
-    <ng-container matColumnDef="Acciones">
-      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
-      <mat-cell *matCellDef="let row">
-
-              <!--Aqui se llamará a la función de la ficha-->
-              <button (click) = "desplegarFichaPaciente(row)" class="btn boton-ficha" type="button" matTooltip="Ver ficha" >
-                <i class="fa fa-address-book-o icono" aria-hidden="true"></i>
-              </button>
-
-       </mat-cell>
-    </ng-container>
-
     <ng-container matColumnDef="Rut Paciente">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Rut Paciente</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.rut}}</mat-cell>

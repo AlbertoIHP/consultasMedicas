@@ -30,6 +30,7 @@
     "ng2-datepicker": "^2.1.6",
     "ng2-device-detector": "^1.0.0",
     "ng2-pickadate": "^0.3.30",
+    "ngx-pagination": "^3.0.3",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },

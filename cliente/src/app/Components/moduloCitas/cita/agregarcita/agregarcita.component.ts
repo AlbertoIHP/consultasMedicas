@@ -13,7 +13,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { EspecialidadService } from '../../../../Services/especialidad/especialidad.service'
 import { PersonaService } from '../../../../Services/persona/persona.service'
 import { DisponibilidadService } from '../../../../Services/disponibilidad/disponibilidad.service'
-
+//paginator
+import {NgxPaginationModule} from 'ngx-pagination';
 @Component({
   selector: 'app-agregarcita',
   templateUrl: './agregarcita.component.html',
@@ -50,6 +51,9 @@ export class AgregarcitaComponent {
   protected disponibilidades: any
 
   protected citas: any
+
+  //pagina de paginator
+  protected p:number=1;
 
 
   constructor(
@@ -96,8 +100,13 @@ export class AgregarcitaComponent {
       for( let j = 0 ; j < this.medicos.length ; j ++ )
       {
         let currentPersona = totalPersonas.filter( persona => persona.id === parseInt(this.medicos[j].Persona_id))
+        let currentEspecialidad = this.especialidades.filter( especialidad => especialidad.id === parseInt(this.medicos[j].Especialidad_id))
 
-        this.medicos[j].nombre = '('+currentPersona[0].rut+') '+currentPersona[0].nombre1+' '+currentPersona[0].apellido1
+        this.medicos[j].nombres = currentPersona[0].nombre1+' '+currentPersona[0].nombre2
+        this.medicos[j].apellidos = currentPersona[0].apellido1+' '+currentPersona[0].apellido2
+        this.medicos[j].rut = currentPersona[0].rut
+        this.medicos[j].especialidad = currentEspecialidad[0].nombre
+        this.obtenerDisponibilidad(this.medicos[j]);
         console.log(this.medicos[j])
 
       }
@@ -313,6 +322,26 @@ export class AgregarcitaComponent {
       this.wardmeds = this.mostrarMedicos
 */
   }
+
+  //disponibilidad médico
+
+  
+  obtenerDisponibilidad(medico)
+  {
+    this.servicioDisponibilidad.getDisponibilidads().subscribe( data => {
+
+      var a = JSON.parse(JSON.stringify(medico));
+
+      let disponibilidadMedico = this.normalizeData(data)
+
+      console.log(disponibilidadMedico)
+
+      medico.disponibilidad = disponibilidadMedico.filter( dis => parseInt(dis.Medico_id) === a.id)
+
+
+    })
+  }
+
 
 
 

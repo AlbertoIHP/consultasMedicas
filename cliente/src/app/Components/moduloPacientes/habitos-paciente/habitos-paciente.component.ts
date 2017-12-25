@@ -48,7 +48,7 @@ export class HabitosPacienteComponent {
 
   //arreglo con todos los registron que contengan al paciente parametrizado y sus hábitos
   public arrayHabitosPaciente: HabitosPaciente[];
-  	displayedColumns = ['Acciones', 'Rut Paciente', 'Nombre' ,'Habitos'];
+  	displayedColumns = ['Rut Paciente', 'Nombre' ,'Habitos'];
 
   //DATATABLE
   exampleDatabase;

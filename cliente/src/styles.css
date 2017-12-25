@@ -25,6 +25,10 @@ mwl-calendar-month-cell
 	color:white !important;
 }
 
+.boton-aceptar:focus{
+  background-color: #2d5986;
+}
+
 /*Acciones*/
 
 /*datos--*/
@@ -68,6 +72,10 @@ mwl-calendar-month-cell
 
 .boton-ficha{
   background-color: #40bf80 !important;
+}
+
+.letraAlerta{
+  color:red;
 }
 
 /*Títulos de secciones*/
@@ -181,3 +189,26 @@ html
 /* ng2 datepicker */
 .ngx-datepicker-container { z-index: inherit !important; }
 .ngx-datepicker-calendar-container { z-index: 1; }
+
+/* Imágenes */
+
+.img-perfil{
+  width: 100px;
+  height: 100px;
+}
+
+/*Cards*/
+.tarjeta-medico{
+  width: 80vh;
+  background-color: #f2f2f2;
+  margin: 0px 10px 10px 10px;
+  /*display: inline-block;*/
+}
+
+.main-div{
+  /* height: 100vh;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}

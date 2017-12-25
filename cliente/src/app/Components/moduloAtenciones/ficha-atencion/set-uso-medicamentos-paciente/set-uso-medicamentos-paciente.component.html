@@ -1,0 +1,45 @@
+
+
+  <div class="row" style="margin-top: 25px !important; height: 375px !important;">
+
+  	 <div class="col s12">
+
+
+      <table class="striped">
+        <thead>
+          <tr>
+              <th>Medicamento</th>
+              <th>Estado</th>
+              <th>Fecha inicio</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr  *ngFor="let medicamento of arrayUsoMedicamentosPaciente">
+            <td> {{medicamento.nombre}}</td>
+            <td>
+
+	              	<mat-checkbox [(ngModel)]="medicamento.esVerdadero" (ngModelChange)="obtenerFecha(medicamento)">Posee</mat-checkbox>
+					 
+            </td>
+            <td>
+              
+                <div *ngIf="medicamento.esVerdadero">
+                
+                 <ng-datepicker position='bottom-right' [options]="options" [(ngModel)]="medicamento.fechaInicio" (ngModelChange)="editarUsoMedicamentosPaciente()"></ng-datepicker>
+               </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+
+  	
+    
+  </div>
+
+
+
+

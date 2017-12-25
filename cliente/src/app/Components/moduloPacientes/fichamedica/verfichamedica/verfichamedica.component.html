@@ -5,177 +5,133 @@
   </div>
 </div>
 
-<div mat-dialog-content style="height: 100% !important;">
+<div mat-dialog-content style="height:500px !important;">
 
 <mat-tab-group>
   <mat-tab label="Datos generales">
 
-    <div class="row" style="margin-top: 25px;">
+  <div class="row" style="margin-top: 25px !important;">
+  <div class="col s12">
+     <table class="striped">
+        <thead>
+          <tr>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>RUT</th>
+              <th>Tipo sangre</th>
+          </tr>
+        </thead>
 
-      <mat-table #table [dataSource]="personaTabla1">
-
-    <!--- Note that these columns can be defined in any order.
-      The actual rendered columns are set as a property on the row definition" -->
-      <ng-container matColumnDef="Nombres">
-        <mat-header-cell *matHeaderCellDef>Nombres</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.nombres}}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="Apellidos">
-        <mat-header-cell *matHeaderCellDef>Apellidos</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.apellidos}} {{element.apellido2}}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="RUT">
-        <mat-header-cell *matHeaderCellDef>RUT</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.rut}}</mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns1;" class="highlight"></mat-row>
-
-    </mat-table>
+        <tbody>
+          <tr >
+            <td>{{paciente.nombres}}</td>
+            <td>{{paciente.apellidos}}</td>
+            <td>{{paciente.rut}}</td>
+            <td>{{paciente.tipoSangrePaciente}}</td>
+            
+          </tr>
+        </tbody>
+      </table>
   </div>
+</div>
 
-  <div class="row">
+<div class="row">
+  <div class="col s12">
+     <table class="striped">
+        <thead>
+          <tr>
+              <th>Género</th>
+              <th>Estado civil</th>
+              <th>Fono casa</th>
+              <th>Fono trabajo</th>
+              <th>Móvil</th>
+             
 
-    <mat-table #table [dataSource]="personaTabla2">
+          </tr>
+        </thead>
 
-      <ng-container matColumnDef="Genero">
-        <mat-header-cell *matHeaderCellDef>Género</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.genero}}</mat-cell>
-      </ng-container>
+        <tbody>
+          <tr >
+            <td>{{paciente.generoPaciente}}</td>
+            <td>{{paciente.estadoCivilPaciente}}</td>
 
-      <ng-container matColumnDef="EstadoCivil">
-        <mat-header-cell *matHeaderCellDef>Estado Civil</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.estadoCivil}}</mat-cell>
-      </ng-container>
+            <td *ngIf="personaActual.fono_casa!='none'">{{personaActual.fono_casa}}</td>
+            <td *ngIf="personaActual.fono_casa=='none'"><span class="letraAlerta">sin registro</span></td>
 
-      <ng-container matColumnDef="FonoCasa">
-        <mat-header-cell *matHeaderCellDef>Fono Casa</mat-header-cell>
-
-        <mat-cell *matCellDef="let element">
-          <span *ngIf="existeFonoCasa">{{element.fonoCasa}}</span>
-          <span *ngIf="existeFonoCasa==false" class="letraAlerta">Sin registro</span>
-        </mat-cell>
-
-      </ng-container>
-
-      <ng-container matColumnDef="FonoTrabajo">
-        <mat-header-cell *matHeaderCellDef>Fono Trabajo</mat-header-cell>
-
-        <mat-cell *matCellDef="let element">
-          <span *ngIf="existeFonoTrabajo">{{element.fonoTrabajo}}</span>
-          <span *ngIf="existeFonoTrabajo==false" class="letraAlerta">Sin registro</span>
-        </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="Movil">
-        <mat-header-cell *matHeaderCellDef>Móvil</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.movil}}</mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns2;" class="highlight"></mat-row>
-
-    </mat-table>
+            <td *ngIf="personaActual.fono_trabajo!='none'">{{personaActual.fono_trabajo}}</td>
+            <td *ngIf="personaActual.fono_trabajo=='none'"><span class="letraAlerta">sin registro</span></td>
+            
+            <td *ngIf="personaActual.movil!='none'">{{personaActual.movil}}</td>
+            <td *ngIf="personaActual.movil=='none'"><span class="letraAlerta">sin registro</span></td>
+            
+          </tr>
+        </tbody>
+      </table>
   </div>
+</div>
 
-  <div class="row">
+<div class="row">
+  <div class="col s12">
+     <table class="striped">
+        <thead>
+          <tr>
+              <th>Comuna</th>
+              <th>Provincia</th>
+              <th>Región</th>
+              <th>Previsión</th>
+              
+             
 
-    <mat-table #table [dataSource]="personaTabla3">
+          </tr>
+        </thead>
 
-      <ng-container matColumnDef="Comuna">
-        <mat-header-cell *matHeaderCellDef>Comuna</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.comuna}}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="Provincia">
-        <mat-header-cell *matHeaderCellDef>Provincia</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.provincia}}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="Region">
-        <mat-header-cell *matHeaderCellDef>Región</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.region}}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="Prevision">
-        <mat-header-cell *matHeaderCellDef>Previsión</mat-header-cell>
-
-        <mat-cell *matCellDef="let element">
-          <span *ngIf="existePrevision">{{element.prevision}}</span>
-          <span *ngIf="existePrevision==false" class="letraAlerta">Sin registro</span>
-        </mat-cell>
-
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns3"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns3;" class="highlight"></mat-row>
-
-    </mat-table>
+        <tbody>
+          <tr >
+            <td>{{paciente.comunaPaciente}}</td>
+            <td>{{paciente.provinciaPaciente}}</td>
+            <td>{{paciente.regionPaciente}}</td>
+            <td *ngIf="existePrevision">{{paciente.previsionPaciente}}</td>
+            <td *ngIf="existePrevision==false"><span class="letraAlerta">sin registro</span></td>
+          </tr>
+        </tbody>
+      </table>
   </div>
-<!--
-  <div class="row" *ngIf="esPaciente">
-
-    <mat-table #table [dataSource]="personaTabla4">
-
-      <ng-container matColumnDef="Peso">
-        <mat-header-cell *matHeaderCellDef> Peso </mat-header-cell>
-        <mat-cell *matCellDef="let element"> pesokg </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="Estatura">
-        <mat-header-cell *matHeaderCellDef> Estatura </mat-header-cell>
-        <mat-cell *matCellDef="let element"> estaturam </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="TipoSangre">
-        <mat-header-cell *matHeaderCellDef> Tipo Sangre </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.tipoSangre}} </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns4"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns4;" class="highlight"></mat-row>
-
-    </mat-table>
-  </div>
--->
+</div>
 </mat-tab>
 <!--Deberá ser un componente a parte-->
-<mat-tab label="Alergias">
 
-  <div class="row" style="margin-top: 25px;">
+<mat-tab label="Alergias comunes">
+  <app-ver-alergias-comunes-paciente [paciente]="paciente"></app-ver-alergias-comunes-paciente>
+</mat-tab>
 
-    <mat-table #table [dataSource]="alergiaTabla">
+<mat-tab label="Enfermedades crónicas">
+ <app-ver-enfermedades-cronicas-paciente [paciente]="paciente"></app-ver-enfermedades-cronicas-paciente>
+</mat-tab>
 
-      <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
-      </ng-container>
+<mat-tab label="Hábitos">
+ <app-ver-habitos-paciente [paciente]="paciente"></app-ver-habitos-paciente>
+</mat-tab>
 
-      <ng-container matColumnDef="NombreComun">
-        <mat-header-cell *matHeaderCellDef>Nombre Común</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.nombrecomun}}</mat-cell>
-      </ng-container>
+<mat-tab label="Hábitos sexuales">
+ <app-ver-habitos-sexuales-paciente [paciente]="paciente"></app-ver-habitos-sexuales-paciente>
+</mat-tab>
 
-      <ng-container matColumnDef="NombreCientifico">
-        <mat-header-cell *matHeaderCellDef>Nombre Científico</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.nombrecientifico}}</mat-cell>
-      </ng-container>
+<mat-tab label="Medicamentos">
+ <app-ver-uso-medicamento [paciente]="paciente"></app-ver-uso-medicamento>
+</mat-tab>
 
-      <mat-header-row *matHeaderRowDef="columnasAlergia"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: columnasAlergia;"></mat-row>
+<mat-tab label="Vacunas">
+ <app-ver-vacunas-paciente [paciente]="paciente"></app-ver-vacunas-paciente>
+</mat-tab>
 
-    </mat-table>
-  </div>
-
+<mat-tab label="Alergias medicamentos">
+ <app-ver-alergias-medicamentos-paciente [paciente]="paciente"></app-ver-alergias-medicamentos-paciente>
 </mat-tab>
 
 </mat-tab-group>
 
 </div>
 
-<div mat-dialog-actions style="margin-top: 25px !important;">
-  <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Aceptar</button>
 </div>

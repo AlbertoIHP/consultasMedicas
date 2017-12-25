@@ -47,7 +47,7 @@ export class UsoMedicamentoComponent{
 
   //arreglo con todos los registron que contengan al paciente parametrizado y sus hábitos
   public arrayUsoMedicamentos: UsoMedicamento[];
-  	displayedColumns = ['Acciones', 'Rut Paciente', 'Nombre', 'Medicamentos'];
+  	displayedColumns = ['Rut Paciente', 'Nombre', 'Medicamentos'];
 
 
 	//DATATABLE

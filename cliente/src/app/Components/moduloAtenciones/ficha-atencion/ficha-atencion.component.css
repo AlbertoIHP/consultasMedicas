@@ -1,0 +1,4 @@
+.menu-scroll {
+    overflow: auto !important;
+    white-space: nowrap !important;
+}

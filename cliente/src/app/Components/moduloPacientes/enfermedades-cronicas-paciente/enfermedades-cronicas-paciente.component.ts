@@ -51,7 +51,7 @@ export class EnfermedadesCronicasPacienteComponent {
   //arreglo con todos los registron que contengan al paciente parametrizado y sus hábitos
   public arrayEnfermedadesCronicasPaciente: EnfermedadesCronicasPaciente[];
 
-  	displayedColumns = ['Acciones', 'Rut Paciente', 'Nombre', 'Enfermedades Cronicas'];
+  	displayedColumns = ['Rut Paciente', 'Nombre', 'Enfermedades Cronicas'];
 
   	//DATATABLE
 	exampleDatabase;

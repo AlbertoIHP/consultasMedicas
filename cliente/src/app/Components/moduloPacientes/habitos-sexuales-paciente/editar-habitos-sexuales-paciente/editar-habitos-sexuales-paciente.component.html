@@ -1,6 +1,6 @@
 <h1 mat-dialog-title style="text-align: center;">Edición de Hábitos Sexuales Paciente</h1>
 
-<div mat-dialog-content style="height: 80%;">
+<div mat-dialog-content style="height: 500px !important;">
 
 
 <div class="row">
@@ -23,6 +23,7 @@
           <tr>
               <th>Hábito Sexual</th>
               <th>Estado</th>
+              <th>Fecha inicio</th>
           </tr>
         </thead>
 
@@ -30,25 +31,19 @@
           <tr  *ngFor="let habsPaciente of arrayHabitosSexualesPaciente">
             <td> {{habsPaciente.nombreHabito}}</td>
             <td>
-            <div class="row">
-
-				        <div class="col s3">
 	              	<mat-checkbox [(ngModel)]="habsPaciente.esVerdadero" (ngModelChange)="obtenerFecha(habsPaciente)">Posee</mat-checkbox>
 					 
-	              </div>
-
-	              <div class="col s9" *ngIf="habsPaciente.esVerdadero">
-					       <p>
-    					      <i class="fa fa-calendar" aria-hidden="true"></i>
-    					      <span>Fecha inicio del hábito</span>
-					       </p>
-					       <ng-datepicker position='bottom-right' isOpened=true [options]="options" [(ngModel)]="habsPaciente.fechaInicio"></ng-datepicker>
-					     </div>
-				
+            </td>
             
-            </div>
+            <td>
+              
+                <div *ngIf="habsPaciente.esVerdadero">
+               
+                 <ng-datepicker position='bottom-right' [options]="options" [(ngModel)]="habsPaciente.fechaInicio"></ng-datepicker>
+               </div>
 
             </td>
+
           </tr>
         </tbody>
       </table>

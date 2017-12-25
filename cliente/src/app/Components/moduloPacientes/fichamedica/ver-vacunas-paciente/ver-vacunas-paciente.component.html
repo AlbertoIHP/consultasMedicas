@@ -1,0 +1,62 @@
+
+<div class="example-header" >
+
+
+    <label for="finder">Buscar por vacuna...</label>
+    <input id="finder" matInput #filter >
+
+</div>
+
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table #table [dataSource]="dataSource" matSort>
+    
+    <ng-container matColumnDef="Vacuna">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Vacuna</mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+
+      {{row.nombreVacuna}}
+
+      </mat-cell>
+    </ng-container>
+
+     <ng-container matColumnDef="Estado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Estado</mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+
+        <span *ngIf="row.esVerdadero==true">Posee</span>
+        <span *ngIf="row.esVerdadero!=true">No posee</span>
+
+      </mat-cell>
+    </ng-container>
+
+     <ng-container matColumnDef="Fecha vacunacion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha vacunación</mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+
+       <span *ngIf="row.esVerdadero==true">{{row.fechaVacunacion}}</span>
+      <span *ngIf="row.esVerdadero!=true">No posee</span>
+
+      </mat-cell>
+    </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+  <div class="example-no-results"
+       [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+       No hay registros con dicha vacuna.
+  </div>
+
+  <mat-paginator #paginator
+                [length]="dataSource.filteredData.length"
+                [pageIndex]="0"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>

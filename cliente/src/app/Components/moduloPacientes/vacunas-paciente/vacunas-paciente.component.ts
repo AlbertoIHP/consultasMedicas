@@ -50,7 +50,7 @@ export class VacunasPacienteComponent {
   //arreglo con todos los registron que contengan al paciente parametrizado y sus hábitos
   public arrayVacunasPaciente: VacunasPaciente[];
 
-  displayedColumns = ['Acciones', 'Rut Paciente', 'Nombre','Vacunas'];
+  displayedColumns = ['Rut Paciente', 'Nombre','Vacunas'];
 
 
 	//DATATABLE

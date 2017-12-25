@@ -8,6 +8,8 @@ import { AuthGuard } from './Guards/auth.guard';
 import { LoginGuard } from './Guards/login.guard';
 import { InicioGuard } from './Guards/inicio.guard';
 
+//PAGINATOR
+import {NgxPaginationModule} from 'ngx-pagination';
 
 //SERVICIOS
 import { ComunaService } from './Services/comuna/comuna.service';
@@ -294,13 +296,28 @@ import { HomemcComponent } from './Components/moduloCitas/homemc.component';
   import { ExamenFisicoComponent } from './Components/moduloAtenciones/examen-fisico/examen-fisico.component';
   import { AgregarExamenFisicoComponent } from './Components/moduloAtenciones/examen-fisico/agregar-examen-fisico/agregar-examen-fisico.component';
   import { EditarExamenFisicoComponent } from './Components/moduloAtenciones/examen-fisico/editar-examen-fisico/editar-examen-fisico.component';
+  import { FichaAtencionComponent } from './Components/moduloAtenciones/ficha-atencion/ficha-atencion.component';
 
+  import { VerAlergiasComunesPacienteComponent } from './Components/moduloPacientes/fichamedica/ver-alergias-comunes-paciente/ver-alergias-comunes-paciente.component';
 
 
 import {
   NgbDatepickerModule,
   NgbTimepickerModule
 } from '@ng-bootstrap/ng-bootstrap';
+import { VerEnfermedadesCronicasPacienteComponent } from './Components/moduloPacientes/fichamedica/ver-enfermedades-cronicas-paciente/ver-enfermedades-cronicas-paciente.component';
+import { VerHabitosPacienteComponent } from './Components/moduloPacientes/fichamedica/ver-habitos-paciente/ver-habitos-paciente.component';
+import { VerHabitosSexualesPacienteComponent } from './Components/moduloPacientes/fichamedica/ver-habitos-sexuales-paciente/ver-habitos-sexuales-paciente.component';
+import { VerUsoMedicamentoComponent } from './Components/moduloPacientes/fichamedica/ver-uso-medicamento/ver-uso-medicamento.component';
+import { VerVacunasPacienteComponent } from './Components/moduloPacientes/fichamedica/ver-vacunas-paciente/ver-vacunas-paciente.component';
+import { VerAlergiasMedicamentosPacienteComponent } from './Components/moduloPacientes/fichamedica/ver-alergias-medicamentos-paciente/ver-alergias-medicamentos-paciente.component';
+import { SetAlergiasComunesPacienteComponent } from './Components/moduloAtenciones/ficha-atencion/set-alergias-comunes-paciente/set-alergias-comunes-paciente.component';
+import { SetEnfermedadesCronicasPacienteComponent } from './Components/moduloAtenciones/ficha-atencion/set-enfermedades-cronicas-paciente/set-enfermedades-cronicas-paciente.component';
+import { SetHabitosPacienteComponent } from './Components/moduloAtenciones/ficha-atencion/set-habitos-paciente/set-habitos-paciente.component';
+import { SetHabitosSexualesPacienteComponent } from './Components/moduloAtenciones/ficha-atencion/set-habitos-sexuales-paciente/set-habitos-sexuales-paciente.component';
+import { SetUsoMedicamentosPacienteComponent } from './Components/moduloAtenciones/ficha-atencion/set-uso-medicamentos-paciente/set-uso-medicamentos-paciente.component';
+import { SetVacunasPacienteComponent } from './Components/moduloAtenciones/ficha-atencion/set-vacunas-paciente/set-vacunas-paciente.component';
+import { SetAlergiasMedicamentosPacienteComponent } from './Components/moduloAtenciones/ficha-atencion/set-alergias-medicamentos-paciente/set-alergias-medicamentos-paciente.component';
 
 
 @NgModule({
@@ -444,8 +461,24 @@ import {
     ExamenFisicoComponent,
     AgregarExamenFisicoComponent,
     EditarExamenFisicoComponent,
+    FichaAtencionComponent,
+    VerAlergiasComunesPacienteComponent,
+    VerEnfermedadesCronicasPacienteComponent,
+    VerHabitosPacienteComponent,
+    VerHabitosSexualesPacienteComponent,
+    VerUsoMedicamentoComponent,
+    VerVacunasPacienteComponent,
+    VerAlergiasMedicamentosPacienteComponent,
+    SetAlergiasComunesPacienteComponent,
+    SetEnfermedadesCronicasPacienteComponent,
+    SetHabitosPacienteComponent,
+    SetHabitosSexualesPacienteComponent,
+    SetUsoMedicamentosPacienteComponent,
+    SetVacunasPacienteComponent,
+    SetAlergiasMedicamentosPacienteComponent,
     AgregarferiadoComponent,
     EditarferiadoComponent
+
     
   ],
 
@@ -536,8 +569,10 @@ import {
     EditarUsoMedicamentoComponent,
     AgregarAlergiasPacienteComponent,
     EditarAlergiasPacienteComponent,
+    FichaAtencionComponent,
     AgregarferiadoComponent,
     EditarferiadoComponent
+
   ],
 
 
@@ -586,6 +621,7 @@ import {
     CalendarModule.forRoot(),
     Ng2DeviceDetectorModule.forRoot(),
     NgDatepickerModule,
+    NgxPaginationModule,
   ],
 
   providers:
