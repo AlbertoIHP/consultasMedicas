@@ -28,6 +28,8 @@ import { EventosService } from '../../../Services/eventos/eventos.service';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 import { Router } from '@angular/router';
+import { FichaAtencionComponent } from '../../moduloAtenciones/ficha-atencion/ficha-atencion.component'
+
 
 //DATATABLE
 import {DataSource} from '@angular/cdk/collections';
@@ -523,11 +525,23 @@ actualizarPersonas()
 
     dialogRef.afterClosed().subscribe(result => {
 
-     //this.actualizarPersonas();
     });
 
+  }
+//funcion temporal para desplegar una ficha editable
+  desplegarFichaAtencionPaciente(paciente)
+  {
 
+   var a = JSON.parse( JSON.stringify(paciente) );
+   this.pasarStringId(a);
 
+       let dialogRef = this.dialog.open(FichaAtencionComponent, {
+          width: '1000px',
+          height:'700px',
+          data: { paciente: a }
+        });
+
+ 
 
   }
 

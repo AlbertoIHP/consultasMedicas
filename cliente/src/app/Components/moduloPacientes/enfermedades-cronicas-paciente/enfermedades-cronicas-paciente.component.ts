@@ -120,22 +120,24 @@ export class EnfermedadesCronicasPacienteComponent {
       }
 
   //función para setear el array con los registros del paciente correspondiente
-  obtenerEnfermedadesCronicasPaciente(idPaciente){
-    for(let i=0;i<this.totalEnfermedadesCronicasPaciente.length;i++){
+  obtenerArrayDeteccion(idPaciente,array,total){
+    for(let i=0;i<total.length;i++){
 
-      if(this.totalEnfermedadesCronicasPaciente[i].Paciente_id==idPaciente){
 
-        this.arrayEnfermedadesCronicasPaciente.push(this.totalEnfermedadesCronicasPaciente[i]);
+      if(total[i].Paciente_id===idPaciente){
+
+       if(total[i].fechaDeteccion != null){
+        total[i].fechaTemp = new Date(total[i].fechaDeteccion);
+        total[i].esVerdadero=true;
+      }else if(total[i].fechaDeteccion==null){
+        total[i].fechaTemp=null;
+        total[i].esVerdadero=false;
       }
 
-      if(this.totalEnfermedadesCronicasPaciente[i].fechaDeteccion != null){
 
-        this.totalEnfermedadesCronicasPaciente[i].esVerdadero=true;
-
-      }else if(this.totalEnfermedadesCronicasPaciente[i].fechaDeteccion==null){
-
-        this.totalEnfermedadesCronicasPaciente[i].esVerdadero=false;
+        array.push(total[i]);
       }
+
     }
 
   }
@@ -209,21 +211,17 @@ export class EnfermedadesCronicasPacienteComponent {
 
     //this.pasarStringId(a);
 
-    this.obtenerEnfermedadesCronicasPaciente(a.id);
+    this.obtenerArrayDeteccion(a.id,this.arrayEnfermedadesCronicasPaciente,this.totalEnfermedadesCronicasPaciente);
 
     let dialogRef = this.dialog.open(EditarEnfermedadesCronicasPacienteComponent, {
-      width: '800px',
+      width: '1000px',
       height: '700px',
       data:
       {
        paciente: a,
        enfermedadesCronicas: this.totalEnfermedadesCronicas,
        arrayEnfermedadesCronicasPaciente: this.arrayEnfermedadesCronicasPaciente,
-       pacientes: this.totalPacientes,
-       personas: this.totalPersonas,
        servicioEnfermedadCronica: this.servicioEnfermedadCronica,
-       servicioPaciente: this.servicioPaciente,
-       servicioPersona: this.servicioPersona,
        servicioEnfermedadesCronicasPaciente: this.servicioEnfermedadesCronicasPaciente
       }
     });

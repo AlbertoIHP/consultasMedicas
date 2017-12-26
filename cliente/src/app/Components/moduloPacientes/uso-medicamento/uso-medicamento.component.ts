@@ -115,22 +115,24 @@ export class UsoMedicamentoComponent{
   	  }
 
   //función para setear el array con los registros del paciente correspondiente
-  obtenerUsoMedicamentos(idPaciente){
-    for(let i=0;i<this.totalUsoMedicamentos.length;i++){
+  obtenerArrayInicio(idPaciente,array,total){
+    for(let i=0;i<total.length;i++){
 
-      if(this.totalUsoMedicamentos[i].Paciente_id==idPaciente){
+      if(total[i].Paciente_id===idPaciente){
 
-        this.arrayUsoMedicamentos.push(this.totalUsoMedicamentos[i]);
+        if(total[i].fechaInicio != null){
+          total[i].fechaTemp = new Date(total[i].fechaInicio);
+          total[i].esVerdadero=true;
+
+        }else if(total[i].fechaInicio==null){
+          total[i].fechaTemp=null;
+          total[i].esVerdadero=false;
+        }
+
+        array.push(total[i]);
       }
 
-      if(this.totalUsoMedicamentos[i].fechaInicio != null){
-
-        this.totalUsoMedicamentos[i].esVerdadero=true;
-
-      }else if(this.totalUsoMedicamentos[i].fechaInicio==null){
-
-        this.totalUsoMedicamentos[i].esVerdadero=false;
-      }
+      
     }
 
   }
@@ -205,21 +207,17 @@ export class UsoMedicamentoComponent{
 
     //this.pasarStringId(a);
 
-    this.obtenerUsoMedicamentos(a.id);
+    this.obtenerArrayInicio(a.id,this.arrayUsoMedicamentos,this.totalUsoMedicamentos);
 
     let dialogRef = this.dialog.open(EditarUsoMedicamentoComponent, {
-      width: '800px',
+      width: '1000px',
       height: '700px',
       data:
       {
        paciente: a,
        medicamentos: this.totalMedicamentos,
        arrayUsoMedicamentos: this.arrayUsoMedicamentos,
-       pacientes: this.totalPacientes,
-       personas: this.totalPersonas,
        servicioMedicamento: this.servicioMedicamento,
-       servicioPaciente: this.servicioPaciente,
-       servicioPersona: this.servicioPersona,
        servicioUsoMedicamento: this.servicioUsoMedicamento
       }
     });

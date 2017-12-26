@@ -53,7 +53,7 @@ export class AlergiasComunesPacienteComponent {
   //Arreglo con todos los registros que contengan al paciente parametrizado y sus hábitos
   public arrayAlergiasComunesPaciente: AlergiasComunesPaciente[];
 
-  	displayedColumns = ['Acciones','Rut Paciente', 'Nombre', 'Alergias Comunes'];
+  	displayedColumns = ['Rut Paciente', 'Nombre', 'Alergias Comunes'];
 
   	//DATATABLE
 	exampleDatabase;
@@ -191,21 +191,17 @@ export class AlergiasComunesPacienteComponent {
 
     //this.pasarStringId(a);
 
-    this.obtenerAlergiasComunesPaciente(a.id);
-
+    this.obtenerArrayDeteccion(a.id,this.arrayAlergiasComunesPaciente,this.totalAlergiasComunesPaciente);
+    console.log(this.arrayAlergiasComunesPaciente);
     let dialogRef = this.dialog.open(EditarAlergiasComunesPacienteComponent, {
-      width: '800px',
+      width: '1000px',
       height: '700px',
       data:
       {
        paciente: a,
        alergiasComunes: this.totalAlergiasComunes,
        arrayAlergiasComunesPaciente: this.arrayAlergiasComunesPaciente,
-       pacientes: this.totalPacientes,
-       personas: this.totalPersonas,
        servicioAlergiaComun: this.servicioAlergiaComun,
-       servicioPaciente: this.servicioPaciente,
-       servicioPersona: this.servicioPersona,
        servicioAlergiasComunesPaciente: this.servicioAlergiasComunesPaciente
       }
     });
@@ -236,22 +232,24 @@ export class AlergiasComunesPacienteComponent {
   }
 
   //función para setear el array con los registros del paciente correspondiente
-  obtenerAlergiasComunesPaciente(idPaciente){
-    for(let i=0;i<this.totalAlergiasComunesPaciente.length;i++){
+   obtenerArrayDeteccion(idPaciente,array,total){
+    for(let i=0;i<total.length;i++){
 
-      if(this.totalAlergiasComunesPaciente[i].Paciente_id==idPaciente){
 
-        this.arrayAlergiasComunesPaciente.push(this.totalAlergiasComunesPaciente[i]);
+      if(total[i].Paciente_id===idPaciente){
+
+       if(total[i].fechaDeteccion != null){
+        total[i].fechaTemp = new Date(total[i].fechaDeteccion);
+        total[i].esVerdadero=true;
+      }else if(total[i].fechaDeteccion==null){
+        total[i].fechaTemp=null;
+        total[i].esVerdadero=false;
       }
 
-      if(this.totalAlergiasComunesPaciente[i].fechaDeteccion != null){
 
-        this.totalAlergiasComunesPaciente[i].esVerdadero=true;
-
-      }else if(this.totalAlergiasComunesPaciente[i].fechaDeteccion==null){
-
-        this.totalAlergiasComunesPaciente[i].esVerdadero=false;
+        array.push(total[i]);
       }
+
     }
 
   }

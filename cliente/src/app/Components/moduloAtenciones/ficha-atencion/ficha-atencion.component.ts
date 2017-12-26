@@ -203,7 +203,7 @@ obtenerProvinciaPaciente(id){
   }
 //se obtiene el estado civil del paciente
   obtenerEstadoCivilPaciente(){
-    this.servicioEstadoCivil.getEstadoCivil(this.personaActual.Genero_id).subscribe((data)=>{
+    this.servicioEstadoCivil.getEstadoCivil(this.personaActual.EstadoCivil_id).subscribe((data)=>{
     var todo: any = data;
     todo = todo.data;
     this.paciente.estadoCivilPaciente=todo.nombre;

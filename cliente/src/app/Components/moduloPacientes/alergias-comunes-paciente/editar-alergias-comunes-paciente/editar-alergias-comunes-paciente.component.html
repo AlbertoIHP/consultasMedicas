@@ -1,63 +1,93 @@
-<h1 mat-dialog-title style="text-align: center;">Edición de Alergias Comunes Paciente</h1>
-
-<div mat-dialog-content style="height: 500px !important;">
-
-
 <div class="row">
     <div class="col s12">
-      <p>Nombre Paciente</p>
+      <p>Nombre Paciente: </p>
       <span style="font-weight: bold;">
       ({{paciente.rut}}) {{paciente.nombre}}
     </span>
     </div>
   </div>
 
+<div mat-dialog-content style="height: 500px;">
+<mat-tab-group>
 
-  <div class="row">
-
-  	 <div class="col s12">
-
-
-      <table class="striped">
-        <thead>
-          <tr>
-              <th>Alergia</th>
-              <th>Estado</th>
-              <th>Fecha detección</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr  *ngFor="let alergiaPaciente of arrayAlergiasComunesPaciente">
-            <td> {{alergiaPaciente.nombreAlergia}}</td>
-            <td>
-
-	              	<mat-checkbox [(ngModel)]="alergiaPaciente.esVerdadero" (ngModelChange)="obtenerFecha(alergiaPaciente)">Posee</mat-checkbox>
-					 
-            </td>
-            <td>
-              
-                <div *ngIf="alergiaPaciente.esVerdadero">
-                
-                 <ng-datepicker position='bottom-right' [options]="options" [(ngModel)]="alergiaPaciente.fechaDeteccion"></ng-datepicker>
-               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+   <mat-tab label="Alergias comunes">
+    <div class="example-header" >
 
 
-    </div>
-
-  	
-    
-  </div>
-
+    <label for="finder">Buscar por alergia...</label>
+    <input id="finder" matInput #filter >
 
 </div>
 
 
-<div mat-dialog-actions style="margin-top: 50px !important;">
+<div class="example-container mat-elevation-z8">
+
+  <mat-table #table [dataSource]="dataSource" matSort  style="height: 320px !important;">
+    
+    <ng-container matColumnDef="Alergias">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Alergia</mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+
+      {{row.nombreAlergia}}
+
+      </mat-cell>
+    </ng-container>
+
+     <ng-container matColumnDef="Estado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Estado</mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+        
+        <mat-checkbox [(ngModel)]="row.esVerdadero" (ngModelChange)="obtenerFecha(row)">Posee</mat-checkbox>
+       
+      </mat-cell>
+    </ng-container>
+
+     <ng-container matColumnDef="Fecha deteccion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha detección</mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+
+         <div *ngIf="row.esVerdadero">
+  
+            <mat-form-field>
+
+              <input matInput [matDatepicker]="dp3" disabled [(ngModel)]="row.fechaTemp">
+              <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+              <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                
+            </mat-form-field>
+          </div>
+
+      </mat-cell>
+    </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+  <div class="example-no-results"
+       [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+       No hay registros con dicha alergia.
+  </div>
+
+  <mat-paginator #paginator
+                [length]="dataSource.filteredData.length"
+                [pageIndex]="0"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>
+
+   </mat-tab>
+
+</mat-tab-group>
+
+
+</div>
+
+<div mat-dialog-actions style="margin-top: 25px !important;">
   <button mat-button class="boton-aceptar" (click)="editarAlergiasComunesPaciente()" tabindex="2">Actualizar Alergias Comunes Paciente <mat-icon>refresh</mat-icon></button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

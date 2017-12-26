@@ -28,6 +28,10 @@
                 <i class="fa fa-address-book-o icono" aria-hidden="true"></i>
               </button>
 
+              <button *ngIf="row.activado === 1 && usuarioActual.obtenerPermisoUpdate('Pacientes')" (click) = "desplegarFichaAtencionPaciente(row)" class="btn boton-ficha" type="button" matTooltip="Ver ficha editable" >
+                <i class="fa fa-address-book-o icono" aria-hidden="true"></i>
+              </button>
+
               <button *ngIf="row.activado === 0 && usuarioActual.obtenerPermisoUpdate('Pacientes')" (click)="activarPaciente(row)" class="btn boton-activar" type="button" matTooltip="Activar">
                 <i class="fa fa-arrow-up icono" aria-hidden="true"></i>
               </button>
