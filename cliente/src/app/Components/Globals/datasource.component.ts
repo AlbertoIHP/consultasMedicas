@@ -244,8 +244,42 @@ export class buscadorPorNombre extends DataSource<any> {
            let searchStr = (item.dia.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
-        }
+        }else if(this.filtro == "SetAlergiasComunesPaciente"){ 
 
+           let searchStr = (item.nombreAlergia.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "SetAlergiasMedicamentosPaciente"){ 
+
+           let searchStr = (item.nombreMedicamento.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "SetEnfermedadesCronicasPaciente"){ 
+
+           let searchStr = (item.nombreEnfermedad.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "SetHabitosPaciente"){ 
+
+           let searchStr = (item.nombreHabito.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "SetHabitosSexualesPaciente"){ 
+
+           let searchStr = (item.nombreHabitoSexual.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "SetUsoMedicamentosPaciente"){ 
+
+           let searchStr = (item.nombreMedicamento.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "SetVacunasPaciente"){ 
+
+           let searchStr = (item.nombreVacuna.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }
 
       });
     });
@@ -458,10 +492,46 @@ export class ExampleDataSource extends DataSource<any> {
         }else if(this.filtro == "VerAlergiasMedicamentosPaciente"){ 
 
            let searchStr = (item.nombreMedicamento.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         } else if(this.filtro == "Feriado"){
 
            let searchStr = (item.dia.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "SetAlergiasComunesPaciente"){ 
+
+           let searchStr = (item.nombreAlergia.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "SetAlergiasMedicamentosPaciente"){ 
+
+           let searchStr = (item.nombreMedicamento.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "SetEnfermedadesCronicasPaciente"){ 
+
+           let searchStr = (item.nombreEnfermedad.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "SetHabitosPaciente"){ 
+
+           let searchStr = (item.nombreHabito.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "SetHabitosSexualesPaciente"){ 
+
+           let searchStr = (item.nombreHabitoSexual.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "SetUsoMedicamentosPaciente"){ 
+
+           let searchStr = (item.nombreMedicamento.toString()).toLowerCase();
+           return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+
+        }else if(this.filtro == "SetVacunasPaciente"){ 
+
+           let searchStr = (item.nombreVacuna.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }
@@ -843,7 +913,62 @@ export class ExampleDataSource extends DataSource<any> {
           }
         }
 
-
+         else if(this.filtro === "SetAlergiasComunesPaciente")
+        {
+           switch (this._sort.active)
+          {
+            case 'NombreAlergia': [propertyA, propertyB] = [a.nombreAlergia, b.nombreAlergia]; break;
+            
+          }
+        }
+         else if(this.filtro === "SetAlergiasMedicamentosPaciente")
+        {
+           switch (this._sort.active)
+          {
+            case 'NombreMedicamento': [propertyA, propertyB] = [a.nombreMedicamento, b.nombreMedicamento]; break;
+            
+          }
+        }
+        else if(this.filtro === "SetEnfermedadesCronicasPaciente")
+        {
+           switch (this._sort.active)
+          {
+            case 'NombreEnfermedad': [propertyA, propertyB] = [a.nombreEnfermedad, b.nombreEnfermedad]; break;
+            
+          }
+        }
+        else if(this.filtro === "SetHabitosPaciente")
+        {
+           switch (this._sort.active)
+          {
+            case 'NombreHabito': [propertyA, propertyB] = [a.nombreHabito, b.nombreHabito]; break;
+            
+          }
+        }
+        else if(this.filtro === "SetHabitosSexualesPaciente")
+        {
+           switch (this._sort.active)
+          {
+            case 'NombreHabitoSexual': [propertyA, propertyB] = [a.nombreHabitoSexual, b.nombreHabitoSexual]; break;
+            
+          }
+        }
+        else if(this.filtro === "SetUsoMedicamentosPaciente")
+        {
+           switch (this._sort.active)
+          {
+            case 'NombreMedicamento': [propertyA, propertyB] = [a.nombreMedicamento, b.nombreMedicamento]; break;
+            
+          }
+        }
+        else if(this.filtro === "SetVacunasPaciente")
+        {
+           switch (this._sort.active)
+          {
+            case 'NombreVacuna': [propertyA, propertyB] = [a.nombreVacuna, b.nombreVacuna]; break;
+            
+          }
+        }
 
 
       let valueA = isNaN(+propertyA) ? propertyA : +propertyA;
