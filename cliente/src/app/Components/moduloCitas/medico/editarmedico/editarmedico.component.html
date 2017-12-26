@@ -52,7 +52,16 @@
 
           <tbody>
             <tr *ngFor="let hora of horarios">
-              <td>{{hora.dia}}</td>
+              <td>
+                <mat-form-field style="width: 100% !important;">
+                  <mat-select placeholder="Día" style="width: 100% !important;"  [(ngModel)]="hora.dia" >
+                    <mat-option style="width: 100% !important;" *ngFor="let dia of dias" [value]="dia" >
+                      {{ dia }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>                
+
+              </td>
               <td>
                 <mat-form-field style="width: 100% !important;">
                   <mat-select placeholder="Inicio" style="width: 100% !important;"  [(ngModel)]="hora.horaInicio" >
