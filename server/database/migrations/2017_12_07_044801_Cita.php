@@ -21,6 +21,9 @@ class Cita extends Migration
         $table->integer('Paciente_id')->unsigned()->nullable();
         $table->integer('Medico_id')->unsigned()->nullable();
         $table->integer('Disponibilidad_id')->unsigned()->nullable();
+        $table->string('fecha');
+
+        $table->string('hora');
         
 
         $table->foreign('EstadoCita_id')->references('id')->on('EstadoCita')->onDelete('cascade');
