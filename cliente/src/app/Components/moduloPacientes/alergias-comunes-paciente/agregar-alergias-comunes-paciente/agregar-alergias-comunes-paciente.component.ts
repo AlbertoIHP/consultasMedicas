@@ -115,6 +115,7 @@ export class AgregarAlergiasComunesPacienteComponent implements OnInit {
 	{
 		this.dialogRef.close();
 	}
+  /*
 
 	agregarAlergiasComunesPaciente()
 	{
@@ -124,4 +125,5 @@ export class AgregarAlergiasComunesPacienteComponent implements OnInit {
 			this.dialogRef.close();
 		});
 	}
+  */
 }

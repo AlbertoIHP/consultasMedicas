@@ -116,22 +116,24 @@ export class HabitosPacienteComponent {
       }
 
   //función para setear el array con los registros del paciente correspondiente
-  obtenerHabitosPaciente(idPaciente){
-    for(let i=0;i<this.totalHabitosPaciente.length;i++){
+  obtenerArrayInicio(idPaciente,array,total){
+    for(let i=0;i<total.length;i++){
 
-      if(this.totalHabitosPaciente[i].Paciente_id==idPaciente){
+      if(total[i].Paciente_id===idPaciente){
 
-        this.arrayHabitosPaciente.push(this.totalHabitosPaciente[i]);
+        if(total[i].fechaInicio != null){
+          total[i].fechaTemp = new Date(total[i].fechaInicio);
+          total[i].esVerdadero=true;
+
+        }else if(total[i].fechaInicio==null){
+          total[i].fechaTemp=null;
+          total[i].esVerdadero=false;
+        }
+
+        array.push(total[i]);
       }
 
-      if(this.totalHabitosPaciente[i].fechaInicio != null){
-
-        this.totalHabitosPaciente[i].esVerdadero=true;
-
-      }else if(this.totalHabitosPaciente[i].fechaInicio==null){
-
-        this.totalHabitosPaciente[i].esVerdadero=false;
-      }
+      
     }
 
   }
@@ -204,21 +206,17 @@ export class HabitosPacienteComponent {
 
     //this.pasarStringId(a);
 
-    this.obtenerHabitosPaciente(a.id);
+    this.obtenerArrayInicio(a.id,this.arrayHabitosPaciente,this.totalHabitosPaciente);
 
     let dialogRef = this.dialog.open(EditarHabitosPacienteComponent, {
-      width: '800px',
+      width: '1000px',
       height: '700px',
       data:
       {
        paciente: a,
        habitos: this.totalHabitos,
        arrayHabitosPaciente: this.arrayHabitosPaciente,
-       pacientes: this.totalPacientes,
-       personas: this.totalPersonas,
        servicioHabito: this.servicioHabito,
-       servicioPaciente: this.servicioPaciente,
-       servicioPersona: this.servicioPersona,
        servicioHabitosPaciente: this.servicioHabitosPaciente
       }
     });
@@ -250,7 +248,7 @@ export class HabitosPacienteComponent {
       console.log(persona);
 
        let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
-          width: '1000px',
+          width: '800px',
           height:'700px',
           data: { persona: persona }
         });

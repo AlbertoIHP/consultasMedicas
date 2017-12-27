@@ -123,22 +123,24 @@ export class HabitosSexualesPacienteComponent {
       }
 
   //función para setear el array con los registros del paciente correspondiente
-  obtenerHabitosSexualesPaciente(idPaciente){
-    for(let i=0;i<this.totalHabitosSexualesPaciente.length;i++){
+  obtenerArrayInicio(idPaciente,array,total){
+    for(let i=0;i<total.length;i++){
 
-      if(this.totalHabitosSexualesPaciente[i].Paciente_id==idPaciente){
+      if(total[i].Paciente_id===idPaciente){
 
-        this.arrayHabitosSexualesPaciente.push(this.totalHabitosSexualesPaciente[i]);
+        if(total[i].fechaInicio != null){
+          total[i].fechaTemp = new Date(total[i].fechaInicio);
+          total[i].esVerdadero=true;
+
+        }else if(total[i].fechaInicio==null){
+          total[i].fechaTemp=null;
+          total[i].esVerdadero=false;
+        }
+
+        array.push(total[i]);
       }
 
-      if(this.totalHabitosSexualesPaciente[i].fechaInicio != null){
-
-        this.totalHabitosSexualesPaciente[i].esVerdadero=true;
-
-      }else if(this.totalHabitosSexualesPaciente[i].fechaInicio==null){
-
-        this.totalHabitosSexualesPaciente[i].esVerdadero=false;
-      }
+      
     }
 
   }
@@ -211,21 +213,17 @@ export class HabitosSexualesPacienteComponent {
 
     //this.pasarStringId(a);
 
-    this.obtenerHabitosSexualesPaciente(a.id);
+    this.obtenerArrayInicio(a.id,this.arrayHabitosSexualesPaciente,this.totalHabitosSexualesPaciente);
 
     let dialogRef = this.dialog.open(EditarHabitosSexualesPacienteComponent, {
-      width: '800px',
+      width: '1000px',
       height: '700px',
       data:
       {
        paciente: a,
        habitosSexuales: this.totalHabitosSexuales,
        arrayHabitosSexualesPaciente: this.arrayHabitosSexualesPaciente,
-       pacientes: this.totalPacientes,
-       personas: this.totalPersonas,
        servicioHabitoSexual: this.servicioHabitoSexual,
-       servicioPaciente: this.servicioPaciente,
-       servicioPersona: this.servicioPersona,
        servicioHabitosSexualesPaciente: this.servicioHabitosSexualesPaciente
       }
     });

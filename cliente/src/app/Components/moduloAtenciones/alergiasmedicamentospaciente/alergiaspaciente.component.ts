@@ -120,22 +120,24 @@ export class AlergiaspacienteComponent {
       }
 
   //función para setear el array con los registros del paciente correspondiente
-  obtenerAlergiasMedicamentosPaciente(idPaciente){
-    for(let i=0;i<this.totalAlergiasMedicamentosPaciente.length;i++){
+   obtenerArrayInicio(idPaciente,array,total){
+    for(let i=0;i<total.length;i++){
 
-      if(this.totalAlergiasMedicamentosPaciente[i].Paciente_id==idPaciente){
+      if(total[i].Paciente_id===idPaciente){
 
-        this.arrayAlergiasMedicamentosPaciente.push(this.totalAlergiasMedicamentosPaciente[i]);
+        if(total[i].fechaInicio != null){
+          total[i].fechaTemp = new Date(total[i].fechaInicio);
+          total[i].esVerdadero=true;
+
+        }else if(total[i].fechaInicio==null){
+          total[i].fechaTemp=null;
+          total[i].esVerdadero=false;
+        }
+
+        array.push(total[i]);
       }
 
-      if(this.totalAlergiasMedicamentosPaciente[i].fechaInicio != null){
-
-        this.totalAlergiasMedicamentosPaciente[i].esVerdadero=true;
-
-      }else if(this.totalAlergiasMedicamentosPaciente[i].fechaInicio==null){
-
-        this.totalAlergiasMedicamentosPaciente[i].esVerdadero=false;
-      }
+     
     }
 
   }
@@ -207,21 +209,17 @@ export class AlergiaspacienteComponent {
 
     var a = JSON.parse( JSON.stringify(paciente) );
 
-    this.obtenerAlergiasMedicamentosPaciente(a.id);
+    this.obtenerArrayInicio(a.id,this.arrayAlergiasMedicamentosPaciente,this.totalAlergiasMedicamentosPaciente);
 
     let dialogRef = this.dialog.open(EditarAlergiasPacienteComponent, {
-      width: '800px',
+      width: '1000px',
       height: '700px',
       data:
       {
        paciente: a,
        medicamentos: this.totalMedicamentos,
        arrayAlergiasMedicamentosPaciente: this.arrayAlergiasMedicamentosPaciente,
-       pacientes: this.totalPacientes,
-       personas: this.totalPersonas,
        servicioMedicamento: this.servicioMedicamento,
-       servicioPaciente: this.servicioPaciente,
-       servicioPersona: this.servicioPersona,
        servicioAlergiasMedicamentosPaciente: this.servicioAlergiasMedicamentosPaciente
       }
     });

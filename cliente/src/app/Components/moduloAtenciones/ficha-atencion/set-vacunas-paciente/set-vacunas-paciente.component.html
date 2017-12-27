@@ -1,44 +1,74 @@
 
-
-  <div class="row" style="margin-top: 25px !important; height: 375px !important;">
-
-  	 <div class="col s12">
+<div class="example-header" >
 
 
-      <table class="striped">
-        <thead>
-          <tr>
-              <th>Vacuna</th>
-              <th>Estado</th>
-              <th>Fecha vacunación</th>
-          </tr>
-        </thead>
+    <label for="finder">Buscar por vacuna...</label>
+    <input id="finder" matInput #filter >
 
-        <tbody>
-          <tr  *ngFor="let vacuna of arrayVacunasPaciente">
-            <td> {{vacuna.nombreVacuna}}</td>
-            <td>
-
-	              	<mat-checkbox [(ngModel)]="vacuna.esVerdadero" (ngModelChange)="obtenerFecha(vacuna)">Posee</mat-checkbox>
-					 
-            </td>
-            <td>
-              
-                <div *ngIf="vacuna.esVerdadero">
-                
-                 <ng-datepicker position='bottom-right' [options]="options" [(ngModel)]="vacuna.fechaVacunacion" (ngModelChange)="editarVacunasPaciente()"></ng-datepicker>
-               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+</div>
 
 
-    </div>
+<div class="example-container mat-elevation-z8">
 
-  	
+  <mat-table #table [dataSource]="dataSource" matSort  style="height: 320px !important;">
     
+    <ng-container matColumnDef="Vacuna">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Vacuna</mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+
+      {{row.nombreVacuna}}
+
+      </mat-cell>
+    </ng-container>
+
+     <ng-container matColumnDef="Estado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Estado</mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+        
+        <mat-checkbox [(ngModel)]="row.esVerdadero" (ngModelChange)="obtenerFecha(row)">Posee</mat-checkbox>
+       
+      </mat-cell>
+    </ng-container>
+
+     <ng-container matColumnDef="Fecha vacunacion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha vacunación</mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+
+         <div *ngIf="row.esVerdadero">
+  
+            <mat-form-field>
+
+              <input matInput [matDatepicker]="dp3" disabled [(ngModel)]="row.fechaTemp" (ngModelChange)="editarVacunasPaciente()">
+              <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+              <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                
+            </mat-form-field>
+          </div>
+
+      </mat-cell>
+    </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+  <div class="example-no-results"
+       [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+       No hay registros con dicha vacuna.
   </div>
+
+  <mat-paginator #paginator
+                [length]="dataSource.filteredData.length"
+                [pageIndex]="0"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>
+
+
 
 
 

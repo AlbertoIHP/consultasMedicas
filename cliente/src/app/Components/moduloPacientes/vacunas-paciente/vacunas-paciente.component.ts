@@ -43,7 +43,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class VacunasPacienteComponent {
 	public totalVacunas: Vacuna[];
 	public totalPacientes: any;
-  public totalVacunasPaciente: VacunasPaciente[];
+  public totalVacunasPaciente: any;
   public totalPersonas: Persona[];
 	public usuarioActual;
 
@@ -124,23 +124,25 @@ export class VacunasPacienteComponent {
   obtenerVacunasPaciente(idPaciente){
     for(let i=0;i<this.totalVacunasPaciente.length;i++){
 
-      if(this.totalVacunasPaciente[i].Paciente_id==idPaciente){
+      if(this.totalVacunasPaciente[i].Paciente_id===idPaciente){
+
+        if(this.totalVacunasPaciente[i].fechaVacunacion != null){
+
+          this.totalVacunasPaciente[i].fechaTemp = new Date(this.totalVacunasPaciente[i].fechaVacunacion);
+          this.totalVacunasPaciente[i].esVerdadero=true;
+
+        }else if(this.totalVacunasPaciente[i].fechaVacunacion==null){
+          this.totalVacunasPaciente[i].fechaTemp=null;
+          this.totalVacunasPaciente[i].esVerdadero=false;
+        }
 
         this.arrayVacunasPaciente.push(this.totalVacunasPaciente[i]);
       }
 
-      if(this.totalVacunasPaciente[i].fechaVacunacion != null){
-
-        this.totalVacunasPaciente[i].esVerdadero=true;
-
-      }else if(this.totalVacunasPaciente[i].fechaVacunacion==null){
-
-        this.totalVacunasPaciente[i].esVerdadero=false;
-      }
+      
     }
 
   }
-
 
   actualizarAtributos ()
   {
@@ -214,18 +216,14 @@ export class VacunasPacienteComponent {
     this.obtenerVacunasPaciente(a.id);
 
     let dialogRef = this.dialog.open(EditarVacunasPacienteComponent, {
-      width: '800px',
+      width: '1000px',
       height: '700px',
       data:
       {
        paciente: a,
        vacunas: this.totalVacunas,
        arrayVacunasPaciente: this.arrayVacunasPaciente,
-       pacientes: this.totalPacientes,
-       personas: this.totalPersonas,
        servicioVacuna: this.servicioVacuna,
-       servicioPaciente: this.servicioPaciente,
-       servicioPersona: this.servicioPersona,
        servicioVacunasPaciente: this.servicioVacunasPaciente
       }
     });
