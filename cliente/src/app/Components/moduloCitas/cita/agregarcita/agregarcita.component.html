@@ -119,7 +119,7 @@
                   </tr>
                 </thead>
 
-                  <tbody>
+                  <tbody *ngIf="!medico.mostrarTodasFechas">
                     <tr *ngFor="let hora of medico.disponibilidad"  >
 
 
@@ -136,7 +136,39 @@
 
 
                     </tr>
+                    <tr>
+                      <td>
+                        <button mat-button  style="width: 100%" (click)="mostrarTodos(medico)" >  Ver Disponibilidad completa<mat-icon>remove_red_eye</mat-icon></button>
+                      </td>
+                    </tr>
                   </tbody>
+
+
+
+                  <tbody *ngIf="medico.mostrarTodasFechas">
+                    <tr *ngFor="let hora of medico.disponibilidad"  >
+
+
+                          <td >{{hora.dia}}</td>
+                          <td>
+                            {{ hora.horaInicio}}
+                          </td>
+                          <td>
+                             {{ hora.horaFin}}
+                          </td>
+                          <td>
+                            <label>Debes cambiar el dia en el paso 2.</label>
+                          </td> 
+
+
+                    </tr>
+                    <tr>
+                      <td>
+                        <button mat-button  style="width: 100%" (click)="mostrarTodos(medico)" >  Ver solo dia seleccionado<mat-icon>remove_red_eye</mat-icon></button>
+                      </td>
+                    </tr>
+                  </tbody>
+
                 </table>
 
 
@@ -166,7 +198,7 @@
         <div class="col s12">
                 <mat-form-field style="width: 100% !important;">
                   <mat-select placeholder="Seleccione un Box de Atencion..." style="width: 100% !important;"  [(ngModel)]="cita.BoxConsulta_id">
-                    <mat-option style="width: 100% !important;" *ngFor="let box of mostrarBoxs" [value]="box.id">
+                    <mat-option style="width: 100% !important;" *ngFor="let box of mostrarBoxs" [value]="box.id"  (click)="estaTodoListo()" >
                       {{ box.ubicacion }}
                     </mat-option>
                   </mat-select>
@@ -176,7 +208,7 @@
         <div class="col s12">
                 <mat-form-field style="width: 100% !important;">
                   <mat-select placeholder="Seleccione Hora de Atencion..." style="width: 100% !important;"  [(ngModel)]="cita.hora">
-                    <mat-option style="width: 100% !important;" *ngFor="let hora of horasMedicos" [value]="hora">
+                    <mat-option style="width: 100% !important;" *ngFor="let hora of horasMedicos" [value]="hora" (click)="estaTodoListo()" >
                       {{ hora }}
                     </mat-option>
                   </mat-select>
@@ -190,7 +222,7 @@
         </div>
 
         <div class="col s6">
-         <button mat-button matStepperNext style="width: 100%" class="boton-aceptar" (click)="agendarCita()" >Agendar   <mat-icon>add</mat-icon></button>
+         <button mat-button matStepperNext style="width: 100%" class="boton-aceptar" (click)="agendarCita()" disabled="{{todoListo}}">Agendar   <mat-icon>add</mat-icon></button>
         </div>
       </div>
   </mat-step>

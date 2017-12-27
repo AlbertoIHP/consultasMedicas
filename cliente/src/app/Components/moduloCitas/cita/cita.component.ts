@@ -179,27 +179,6 @@ export class CitaComponent {
 
   idToString()
   {
-    /*for( let cita = 0 ; cita < this.totalCitas.length ; cita ++ )
-    {
-      let currentEstado = this.totalEstados.filter( estado => estado.id === parseInt( this.totalCitas[ cita ].EstadoCita_id ))
-      let currentBox = this.totalBoxs.filter( box => box.id === parseInt( this.totalCitas[ cita ].BoxConsulta_id ))
-      let currentPaciente = this.totalPacientes.filter( paciente => paciente.id === parseInt( this.totalCitas[ cita ].Paciente_id ))
-      let currentMedico = this.totalMedicos.filter( doc => doc.id === parseInt( this.totalCitas[ cita ].Medico_id ))
-
-      this.totalCitas[ cita ].EstadoCita_id  = currentEstado[0].nombre.toString()
-      this.totalCitas[ cita ].BoxConsulta_id = currentBox[0].ubicacion.toString()
-
-      this.servicioPersona.getPersona(currentPaciente[0].id).subscribe( data => {
-        this.totalCitas[ cita ].Paciente_id = this.normalizeData(data).rut.toString()
-        console.log(this.normalizeData(data))
-        this.servicioPersona.getPersona(currentMedico[0].id).subscribe( data => {
-          this.totalCitas[ cita ].Medico_id = this.normalizeData(data).rut.toString()
-        })
-
-      })
-
-    }
-*/
       //DATATABLE
       this.exampleDatabase  = new ExampleDatabase(this.totalCitas);
 
@@ -230,21 +209,19 @@ export class CitaComponent {
   abrirModal(funcion, cita)
   {
     let currentCita
-
-    if( !( currentCita = cita ) )
-    {
-      currentCita = new Cita()
-    }
-
     let modal
 
     if( funcion === 'agregar' )
     {
       modal = AgregarcitaComponent
+      currentCita = new Cita()
     }
     else
     {
       modal = EditarcitaComponent
+      currentCita = cita
+
+      console.log(currentCita)
     }
 
 

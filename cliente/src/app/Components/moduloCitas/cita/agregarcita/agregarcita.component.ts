@@ -25,12 +25,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
 })
 export class AgregarcitaComponent {
 
-  viewDate: Date = new Date()
-  selectedDay: CalendarMonthViewDay
-  events: CalendarEvent[] = []
-  firstFormGroup: FormGroup
-  secondFormGroup: FormGroup
-  zeroFormGroup: FormGroup
+  protected viewDate: Date = new Date()
+  protected selectedDay: CalendarMonthViewDay
+  protected events: CalendarEvent[] = []
+  protected firstFormGroup: FormGroup
+  protected secondFormGroup: FormGroup
+  protected zeroFormGroup: FormGroup
   protected cita: any
   protected estados: any
   protected pacientes: any
@@ -51,11 +51,26 @@ export class AgregarcitaComponent {
   protected disponibilidades: any
 
   protected citas: any
-  private diaSeleccionado: any
+  protected diaSeleccionado: any
   protected horasMedicos: any
   protected wardmeds: any
   //pagina de paginator
   protected p:number=1;
+  protected todoListo = true
+  protected warBoxs: any
+  protected seSeleccionoMedico = true
+
+  estaTodoListo()
+  {
+    if( this.cita.BoxConsulta_id != 0 && this.cita.hora != '' )
+    {
+      this.todoListo = false
+    }
+    else
+    {
+      this.todoListo = true
+    }
+  }
 
   constructor(
     public dialogRef: MatDialogRef<AgregarcitaComponent>,
@@ -72,6 +87,19 @@ export class AgregarcitaComponent {
     this.especialidades = []
     this.disponibilidades = []
     this.cita = data.cita
+
+    if( !(this.cita.BoxConsulta_id != 0) )
+    {
+      this.cita.BoxConsulta_id = 0
+    }
+
+      if( !(this.cita.hora  != '') )
+    {
+      this.cita.hora = ''
+    }  
+    
+    
+
     this.estados = data.estados
     this.pacientes = data.pacientes
     this.medicos = data.medicos
@@ -124,7 +152,7 @@ export class AgregarcitaComponent {
     })
   }
 
-  private seSeleccionoMedico = true
+  
 
   horaSeleccionada( disponibilidad, medico )
   {
@@ -146,20 +174,50 @@ export class AgregarcitaComponent {
     for( let i = inicio ; i <= fin ; i++)
     {
 
-       if( inicio2 === '30' )
-       {   
-         if( fin2 === '30' || i < fin)
+      if( inicio2 === '00' && fin2 === '00')
+      {
+        this.horasMedicos.push(i.toString()+':00')       
+        if( i != fin )
+        {
+          this.horasMedicos.push(i.toString()+':30') 
+        }
+
+      }
+      else if( inicio2 === '30' && fin2 === '30')
+      {
+        this.horasMedicos.push(i.toString()+':30')
+        if( (i+1) < fin )
+        {
+          this.horasMedicos.push(i.toString()+':00')
+        }
+
+      }
+      else if ( inicio2 === '00' && fin2 === '30')
+      {
+        this.horasMedicos.push(i.toString()+':00')
+        this.horasMedicos.push(i.toString()+':30')
+      }
+      else if( inicio2 === '30' && fin2 === '00')
+      {
+         if( (i+1) < fin )
          {
-         console.log(i.toString()+':30' )
-         this.horasMedicos.push(i.toString()+':30')              
+           this.horasMedicos.push(i.toString()+':30')
+           this.horasMedicos.push(i.toString()+':00')        
          }
 
-         if( (i+1) <= fin )
-         {
-         console.log( (i+1).toString()+':00' )    
-         this.horasMedicos.push((i+1).toString()+':00' )           
-         }
-       }
+      }
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 
@@ -173,7 +231,6 @@ export class AgregarcitaComponent {
   }
 
 
-  protected warBoxs: any
 
   filtrarMedicos(especialidad)
   {
@@ -295,6 +352,10 @@ export class AgregarcitaComponent {
 
 
 
+  mostrarTodos(medico)
+  {
+    medico.mostrarTodasFechas = !medico.mostrarTodasFechas
+  }
 
   
   obtenerDisponibilidad(medico)
@@ -308,6 +369,7 @@ export class AgregarcitaComponent {
       console.log(disponibilidadMedico)
 
       medico.disponibilidad = disponibilidadMedico.filter( dis => parseInt(dis.Medico_id) === a.id)
+      medico.mostrarTodasFechas = false
 
 
     })

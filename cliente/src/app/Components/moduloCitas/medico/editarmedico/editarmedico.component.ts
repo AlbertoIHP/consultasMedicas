@@ -104,11 +104,13 @@ export class EditarmedicoComponent implements OnInit {
       } else if (!validacion[1]){
         alert("La hora de inicio debe ser menor que la hora de término");
       } else {
-        this.horarios.push({id: 0, Medico_id: 0, dia: '', horaInicio: '', horaFin: ''})
+        this.dispo.push({id: 0, Medico_id: 0, dia: '', horaInicio: '', horaFin: ''})
       }
          
          //this.horasInicio = this.horasDia;
          //this.horasFin = this.horasDia;
+
+         
      }
 
   actualizarMedicos()
@@ -159,18 +161,18 @@ export class EditarmedicoComponent implements OnInit {
             this.servicioDisponibilidad.editDisponibilidad( horario, horario.id ).subscribe( data => {console.log(data) })
           }
 
-          if( this.dispo.length > 0)
-          {
+
             for ( let horario of this.dispo)
             {
 
               horario.Medico_id = this.medico.id
+              console.log(horario)
               this.servicioDisponibilidad.registerDisponibilidad(horario).subscribe( data => {
                   console.log(data)
               })
 
             }        
-          }
+       
 
           this.onNoClick()
 
