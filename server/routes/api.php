@@ -127,4 +127,6 @@ Route::group(['middleware' => ['cors']], function(){
     Route::resource('v1/alergiasMedicamentosPacientes', 'AlergiasMedicamentosPacienteAPIController');
 
     Route::resource('v1/examenFisicos', 'ExamenFisicoAPIController');
+
+    Route::resource('v1/vistaPacientes', 'VistaPacienteAPIController');
 });
