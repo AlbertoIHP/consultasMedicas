@@ -1,5 +1,6 @@
 export class VistaPaciente {
 	id: number;
+	Paciente_id: string;
 	nombre1: string;
 	nombre2: string;
 	apellido1: string;
@@ -8,6 +9,7 @@ export class VistaPaciente {
 	fono_casa: string;
 	fono_trabajo: string;
 	movil: string;
+	estado: string;
 	fechaNacimiento: string;
 	direccion: string;
 	Comuna: string;
@@ -23,6 +25,7 @@ export class VistaPaciente {
 	constructor()
 	{
 		this.id = 0;
+		this.Paciente_id = "";
 		this.rut = "";
 		this.nombre1 = "";
 		this.nombre2 = "";
@@ -31,6 +34,7 @@ export class VistaPaciente {
 		this.fono_casa = "";
 		this.fono_trabajo = "";
 		this.movil = "";
+		this.estado = "";
 		this.fechaNacimiento = "";
 		this.direccion = "";
 		this.Genero = "";

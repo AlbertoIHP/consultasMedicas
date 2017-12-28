@@ -17,26 +17,19 @@ import 'rxjs/add/observable/of';
 })
 export class VerFichaMedicaComponent{
 
-
- 
-   public paciente:any;
-   public datosPaciente:VistaPaciente;
-   public arrayPaciente:any;
+  public paciente:any;
+  public datosPaciente:VistaPaciente;
+  public arrayPaciente:any;
 
 
   constructor(
-
-   
     public dialogRef: MatDialogRef<VerFichaMedicaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public servicioVistaPaciente: VistaPacienteService
-
     ) {
       this.datosPaciente=new VistaPaciente();
       this.obtenerDatosPaciente();
-      
- 
-  	 }
+  	}
 
   obtenerDatosPaciente(){
     this.servicioVistaPaciente.getVistaPaciente(this.data.paciente.id).subscribe(data=>{

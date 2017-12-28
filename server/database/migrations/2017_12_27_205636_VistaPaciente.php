@@ -15,7 +15,7 @@ class VistaPaciente extends Migration
     {
         DB::statement("CREATE VIEW VistaPaciente AS (
                         SELECT
-                        Paciente.id, nombre1,nombre2,apellido1,apellido2,rut, fono_casa, fono_trabajo, movil, fechaNacimiento, direccion, Genero.nombre as Genero, Comuna.nombre as Comuna, Provincia.nombre as Provincia, Region.nombre as Region, EstadoCivil.nombre as EstadoCivil, TipoSangre.nombre AS TipoSangre, Ocupacion.nombre AS Ocupacion, GrupoEtnico.nombre AS GrupoEtnico, Prevision.nombre AS Prevision
+                        Paciente.id, Paciente.Persona_id, nombre1,nombre2,apellido1,apellido2,rut, fono_casa, fono_trabajo, movil, estado, fechaNacimiento, direccion, Genero.nombre as Genero, Comuna.nombre as Comuna, Provincia.nombre as Provincia, Region.nombre as Region, EstadoCivil.nombre as EstadoCivil, TipoSangre.nombre AS TipoSangre, Ocupacion.nombre AS Ocupacion, GrupoEtnico.nombre AS GrupoEtnico, Prevision.nombre AS Prevision
                         FROM 
                         Paciente 
                         INNER JOIN 
