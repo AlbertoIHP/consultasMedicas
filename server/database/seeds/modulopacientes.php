@@ -2133,6 +2133,11 @@ class modulopacientes extends Seeder
 			'descripcion' => 'La ISAPRE opera como un sistema de seguros de salud basado en contratos individuales, en el que los beneficios otorgados obedecen directamente al plan contratado que dependen del sexo, la edad, preexistencia de enfermedades, etc. de sus afiliados.',
 		]);
 
+		DB::table('Prevision')->insert([
+			'nombre' =>'ninguna',
+			'descripcion' => 'No posee previsión.',
+		]);
+
 		DB::table('Role')->insert([
 			'nombre' =>'Jefatura',
 		]);
@@ -2534,6 +2539,37 @@ class modulopacientes extends Seeder
 			'Prevision_id' => 1,
 			'Persona_id' => 1,
 		]);
+
+		DB::table('PrevisionActual')->insert([
+			'fechaActualizacion' => Carbon::create('2017', '02', '01'),
+			'Prevision_id' => 2,
+			'Persona_id' => 2,
+			'activado' => 1,
+		]);
+
+		DB::table('PrevisionActual')->insert([
+			'fechaActualizacion' => Carbon::create('2017', '02', '01'),
+			'Prevision_id' => 1,
+			'Persona_id' => 3,
+			'activado' => 1,
+		]);
+
+		DB::table('PrevisionActual')->insert([
+			'fechaActualizacion' => Carbon::create('2017', '02', '01'),
+			'Prevision_id' => 3,
+			'Persona_id' => 4,
+			'activado' => 1,
+		]);
+
+
+		DB::table('PrevisionActual')->insert([
+			'fechaActualizacion' => Carbon::create('2017', '02', '01'),
+			'Prevision_id' => 3,
+			'Persona_id' => 5,
+			'activado' => 1,
+		]);
+
+
 
 
 

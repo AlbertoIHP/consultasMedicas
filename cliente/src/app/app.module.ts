@@ -108,7 +108,9 @@ import {
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 
-
+//idioma paginator
+import {MatPaginatorIntl} from '@angular/material';
+import { getEspPaginatorIntl } from './Components/Globals/es-paginator-intl';
 // COMPONENTES
 
 //Componentes Raices
@@ -677,6 +679,7 @@ import {
     LoginGuard,
     InicioGuard,
     FeriadoService,
+    { provide: MatPaginatorIntl, useValue: getEspPaginatorIntl() },
   ],
 
   bootstrap:

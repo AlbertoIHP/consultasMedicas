@@ -5,7 +5,6 @@ import { AlergiasComunesPacienteService } from '../../../../Services/alergiascom
 import { AlergiaService } from '../../../../Services/alergia/alergia.service';
 import { PacienteService } from '../../../../Services/paciente/paciente.service';
 
-import {MatDatepickerModule} from '@angular/material/datepicker';
 import { LOCALE_ID } from '@angular/core';
 import { DateAdapter } from '@angular/material';
 //DATATABLE
@@ -22,16 +21,14 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/debounceTime';
 import { ExampleDatabase, ExampleDataSource } from '../../../Globals/datasource.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
 @Component({
   selector: 'app-set-alergias-comunes-paciente',
   templateUrl: './set-alergias-comunes-paciente.component.html',
   styleUrls: ['./set-alergias-comunes-paciente.component.css'],
   providers: [
    
-    {provide: LOCALE_ID,
-    useValue: 'es-MX'},
-
+    {provide: LOCALE_ID,useValue: 'es-MX'},
+   
   ],
 })
 export class SetAlergiasComunesPacienteComponent implements OnInit {
@@ -189,7 +186,7 @@ export class SetAlergiasComunesPacienteComponent implements OnInit {
     public servicioAlergiaComun:AlergiaService,
     public servicioAlergiasComunesPaciente:AlergiasComunesPacienteService,
     public servicioPaciente:PacienteService,
-    public dateAdapter: DateAdapter<any>    
+    public dateAdapter: DateAdapter<any>,    
     ) 
   {
        dateAdapter.setLocale('es-MX');
