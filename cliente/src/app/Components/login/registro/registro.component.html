@@ -43,6 +43,23 @@
       </div>
 
       <div class="row">
+        <div class="col s6">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Dirección" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.direccion">
+          </mat-form-field>
+        </div>
+
+        <div class="col s6">
+          <mat-form-field class="fullWidth">
+            <input matInput placeholder="Elegir fecha de nacimiento" [formControl]="date" [matDatepicker]="dp3">
+            <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+            <mat-datepicker #dp3></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="row">
         <div class="col s4">
             <mat-form-field class="fullWidth">
               <input matInput placeholder="Teléfono de casa" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.fono_casa">
