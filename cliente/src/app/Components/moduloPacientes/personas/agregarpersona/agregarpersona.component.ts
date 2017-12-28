@@ -1,18 +1,25 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Component, Inject, OnInit, LOCALE_ID } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, DateAdapter } from '@angular/material';
 import { Persona } from '../../../../Models/Persona.model';
 import { Usuario } from '../../../../Models/Usuario.model';
 import { UserService } from '../../../../Services/user/user.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 
 @Component({
 	selector: 'app-agregarpersona',
 	templateUrl: './agregarpersona.component.html',
-	styleUrls: ['./agregarpersona.component.css']
+	styleUrls: ['./agregarpersona.component.css'],
+  providers: [
+   
+    {provide: LOCALE_ID,useValue: 'es-MX'},
+   
+  ],
 })
 
 export class AgregarpersonaComponent implements OnInit{
+
+  public date;
 	public persona: any;
 	public totalPersonas: any[];
 	public totalRegiones: any[];
@@ -49,10 +56,11 @@ export class AgregarpersonaComponent implements OnInit{
 		public dialogRef: MatDialogRef<AgregarpersonaComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
     private _formBuilder: FormBuilder,
-    public servicioUsuario: UserService
+    public servicioUsuario: UserService,
+    public dateAdapter: DateAdapter<any>, 
 		)
 	{
-
+    dateAdapter.setLocale('es-MX');
     this.servicioRegion = this.data.servicioRegion;
     this.servicioProvincia = this.data.servicioProvincia;
     this.servicioComuna = this.data.servicioComuna;
@@ -60,6 +68,7 @@ export class AgregarpersonaComponent implements OnInit{
     this.servicioEC = this.data.servicioEC;
     this.servicioPersona = this.data.servicioPersona;
     this.nuevoUsuario = new Usuario();
+    this.date = new FormControl(new Date());
 		this.defaultValues();
 	}
 
@@ -171,9 +180,7 @@ export class AgregarpersonaComponent implements OnInit{
 
 	agregarPersona()
 	{
-    console.log(this.persona)
-    this.persona.direccion = "Direccion default 322";
-    this.persona.fechaNacimiento = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    this.persona.fechaNacimiento = new Date(this.date.value).toISOString().slice(0, 19).replace('T', ' ');
 		this.servicioPersona.registerPersona(this.persona).subscribe(data => {
 
       this.servicioPersona.getPersonas().subscribe(data => {

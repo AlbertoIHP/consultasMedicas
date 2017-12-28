@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Inject, LOCALE_ID } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, DateAdapter } from '@angular/material';
 import { Usuario } from '../../../Models/Usuario.model';
 import { UserService } from '../../../Services/user/user.service';
 
@@ -34,9 +34,15 @@ import { ComunaService } from '../../../Services/comuna/comuna.service';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
+  styleUrls: ['./registro.component.css'],
+  providers: [
+   
+    {provide: LOCALE_ID,useValue: 'es-MX'},
+   
+  ],
 })
 export class RegistroComponent implements OnInit {
+  public date;
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -78,11 +84,16 @@ export class RegistroComponent implements OnInit {
     public router: Router,
     public servicioEventos: EventosService,
     public servicioUsuario: UserService,
-    public servicioRole: RoleService
+    public servicioRole: RoleService,
+    public dateAdapter: DateAdapter<any>, 
     )
   {
+    dateAdapter.setLocale('es-MX');
+
     this.nuevoUsuario = new Usuario();
     this.nuevaPersona = new Persona();
+    this.date = new FormControl(new Date());
+
     this.actualizarRegiones();
 
     this.actualizarProvincias();
@@ -221,9 +232,7 @@ export class RegistroComponent implements OnInit {
     if( !this.seEncontro )
     {
 
-      this.nuevaPersona.direccion = "Direccion default 322";
-      this.nuevaPersona.fechaNacimiento = new Date().toISOString().slice(0, 19).replace('T', ' ');
-      console.log(this.nuevaPersona)
+      this.nuevaPersona.fechaNacimiento = new Date(this.date.value).toISOString().slice(0, 19).replace('T', ' ');      console.log(this.nuevaPersona)
 
       this.servicioPersona.registerPersona(this.nuevaPersona).subscribe(data => {
 
