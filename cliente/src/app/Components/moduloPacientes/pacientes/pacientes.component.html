@@ -39,7 +39,6 @@
        </mat-cell>
     </ng-container>
 
-    <!-- Progress Column -->
     <ng-container matColumnDef="Rut">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Rut</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.rut}}</mat-cell>
@@ -50,19 +49,6 @@
       <mat-cell *matCellDef="let row">{{row.nombre}}</mat-cell>
     </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="Persona">
-      <mat-header-cell *matHeaderCellDef>Persona Asociada al Paciente</mat-header-cell>
-      <mat-cell *matCellDef="let row">
-
-        <button  mat-button class="boton-datos" (click)="desplegarPersona(row)" >
-          <span style="color:white;">Ver datos</span>
-        </button>
-
-      </mat-cell>
-    </ng-container>
-
-    <!-- Progress Column -->
     <ng-container matColumnDef="Tipo Sangre">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Tipo Sangre</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.TipoSangre_id}}</mat-cell>

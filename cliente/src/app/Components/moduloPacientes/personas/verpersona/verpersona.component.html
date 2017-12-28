@@ -6,33 +6,45 @@
 
         <div class="col s4">
           <mat-form-field class="fullWidth">
-           <input disabled matInput placeholder="Rut"  required [(ngModel)]="persona.rut" (ngModelChange)="verificarRut()" >
+           <input disabled matInput placeholder="Rut"  required [(ngModel)]="persona.rut">
           </mat-form-field>
         </div>
 
         <div class="col s4">
           <mat-form-field class="fullWidth">
-           <input disabled matInput placeholder="Primer Nombre"  required [(ngModel)]="persona.nombre1" (ngModelChange)="verificarRut()">
+           <input disabled matInput placeholder="Primer Nombre"  required [(ngModel)]="persona.nombre1">
           </mat-form-field>
         </div>
 
         <div class="col s4">
           <mat-form-field class="fullWidth">
-           <input disabled matInput placeholder="Segundo Nombre"  required [(ngModel)]="persona.nombre2" (ngModelChange)="verificarRut()" >
+           <input disabled matInput placeholder="Segundo Nombre"  required [(ngModel)]="persona.nombre2">
           </mat-form-field>
         </div>
       </div>
 
       <div class="row">
-        <div class="col s6">
+        <div class="col s3">
           <mat-form-field class="fullWidth">
-           <input disabled matInput placeholder="Primer Apellido"  required [(ngModel)]="persona.apellido1" (ngModelChange)="verificarRut()" >
+           <input disabled matInput placeholder="Primer Apellido"  required [(ngModel)]="persona.apellido1">
           </mat-form-field>
         </div>
 
-        <div class="col s6">
+        <div class="col s3">
           <mat-form-field class="fullWidth">
-           <input disabled matInput placeholder="Segundo Apellido"  required [(ngModel)]="persona.apellido2" (ngModelChange)="verificarRut()" >
+           <input disabled matInput placeholder="Segundo Apellido" [(ngModel)]="persona.apellido2">
+          </mat-form-field>
+        </div>
+
+         <div class="col s3">
+          <mat-form-field class="fullWidth">
+           <input disabled matInput placeholder="Fecha Nacimiento" [(ngModel)]="persona.fechaNacimiento" >
+          </mat-form-field>
+        </div>
+
+         <div class="col s3">
+          <mat-form-field class="fullWidth">
+           <input disabled matInput placeholder="Dirección" [(ngModel)]="persona.direccion">
           </mat-form-field>
         </div>
       </div>
@@ -40,19 +52,19 @@
       <div class="row">
         <div class="col s4">
           <mat-form-field class="fullWidth">
-           <input disabled matInput placeholder="Teléfono de Casa"  required [(ngModel)]="persona.fono_casa" (ngModelChange)="verificarRut()" >
+           <input disabled matInput placeholder="Teléfono de Casa" [(ngModel)]="persona.fono_casa">
           </mat-form-field>
         </div>
 
         <div class="col s4">
           <mat-form-field class="fullWidth">
-           <input disabled matInput placeholder="Teléfono de Trabajo"  required [(ngModel)]="persona.fono_trabajo" (ngModelChange)="verificarRut()" >
+           <input disabled matInput placeholder="Teléfono de Trabajo" [(ngModel)]="persona.fono_trabajo">
           </mat-form-field>
         </div>
 
         <div class="col s4">
           <mat-form-field class="fullWidth">
-           <input disabled matInput placeholder="Teléfono Celular"  required [(ngModel)]="persona.movil" (ngModelChange)="verificarRut()" >
+           <input disabled matInput placeholder="Teléfono Celular"  [(ngModel)]="persona.movil">
           </mat-form-field>
         </div>
       </div>
