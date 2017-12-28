@@ -62,7 +62,7 @@ export class PacientesComponent implements OnInit {
   public totalOcupaciones: Ocupacion[];
 	public usuarioActual;
 
-	displayedColumns = ['Acciones', 'Rut', 'Nombre', 'Persona', 'Tipo Sangre', 'Grupo Etnico', 'Ocupacion'];
+	displayedColumns = ['Acciones', 'Rut', 'Nombre', 'Tipo Sangre', 'Grupo Etnico', 'Ocupacion'];
 
   //DATATABLE
   exampleDatabase;
