@@ -43,6 +43,8 @@ import { UsoMedicamentoService } from './Services/usomedicamento/uso-medicamento
 import { AlergiaService } from './Services/alergia/alergia.service';
 import { AlergiasComunesPacienteService } from './Services/alergiascomunespaciente/alergias-comunes-paciente.service';
 
+import { VistaPacienteService } from './Services/vistas/vista-paciente.service';
+
 
 // SERVICIOS MODULO CITAS
 import { BoxConsultaService } from './Services/boxconsulta/box-consulta.service';
@@ -480,7 +482,7 @@ import {
     SetVacunasPacienteComponent,
     SetAlergiasMedicamentosPacienteComponent,
     AgregarferiadoComponent,
-    EditarferiadoComponent
+    EditarferiadoComponent,
 
     
   ],
@@ -680,6 +682,7 @@ import {
     InicioGuard,
     FeriadoService,
     { provide: MatPaginatorIntl, useValue: getEspPaginatorIntl() },
+    VistaPacienteService,
   ],
 
   bootstrap:
