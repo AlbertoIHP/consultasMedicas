@@ -49,7 +49,7 @@
 
         <div class="col s6">
           <mat-form-field class="fullWidth">
-            <input matInput placeholder="Elegir fecha de nacimiento" [formControl]="date" [matDatepicker]="dp3">
+            <input matInput [matDatepicker]="dp3" placeholder="Elegir fecha de nacimiento" [formControl]="date">
             <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
             <mat-datepicker #dp3></mat-datepicker>
           </mat-form-field>

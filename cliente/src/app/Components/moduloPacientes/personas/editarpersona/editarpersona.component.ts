@@ -1,16 +1,25 @@
 
-import { Component, Inject, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Component, Inject, OnInit, LOCALE_ID } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, DateAdapter } from '@angular/material';
 import { Persona } from '../../../../Models/Persona.model';
 import { Provincia } from '../../../../Models/Provincia.model';
 import { Comuna } from '../../../../Models/Comuna.model';
 import { PersonaService } from '../../../../Services/persona/persona.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { EspDateAdapter } from '../../../Globals/EspDateAdapter';
+
+
 @Component({
 	selector: 'app-editarpersona',
 	templateUrl: './editarpersona.component.html',
-	styleUrls: ['./editarpersona.component.css']
+	styleUrls: ['./editarpersona.component.css'],
+	providers:[
+		{provide: LOCALE_ID,useValue: 'es-MX'},
+    	{provide: DateAdapter, useClass: EspDateAdapter},	
+	],
 })
 export class EditarpersonaComponent implements OnInit{
+	public date;
 	public persona: any;
 	public totalPersonas: any[];
 	public totalRegiones: any[];
@@ -86,15 +95,19 @@ export class EditarpersonaComponent implements OnInit{
 	constructor(
 		public dialogRef: MatDialogRef<EditarpersonaComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
-		public servicioPersona: PersonaService
+		public servicioPersona: PersonaService,
+		public dateAdapter: DateAdapter<any>,
 		)
 	{
+		dateAdapter.setLocale('es-MX');
+
 		this.defaultValues();
+
+		this.date = new FormControl(new Date(this.persona.fechaNacimiento));
 	}
 
 	defaultValues()
 	{
-
     this.servicioRegion = this.data.servicioRegion;
     this.servicioProvincia = this.data.servicioProvincia;
     this.servicioComuna = this.data.servicioComuna;
@@ -149,6 +162,7 @@ export class EditarpersonaComponent implements OnInit{
 	actualizarPersona()
 	{
 		console.log(this.persona);
+		this.persona.fechaNacimiento = new Date(this.date.value).toISOString().slice(0, 19).replace('T', ' ');
 		this.servicioPersona.editPersona(this.persona, this.persona.id).subscribe(data => {
 			this.defaultValues();
 			this.onNoClick();

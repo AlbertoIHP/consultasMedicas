@@ -5,6 +5,7 @@ import { Usuario } from '../../../../Models/Usuario.model';
 import { UserService } from '../../../../Services/user/user.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
+import { EspDateAdapter } from '../../../Globals/EspDateAdapter';
 
 @Component({
 	selector: 'app-agregarpersona',
@@ -13,6 +14,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   providers: [
    
     {provide: LOCALE_ID,useValue: 'es-MX'},
+    {provide: DateAdapter, useClass: EspDateAdapter},
    
   ],
 })
