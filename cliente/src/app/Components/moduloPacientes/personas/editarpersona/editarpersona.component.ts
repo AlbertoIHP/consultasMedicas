@@ -34,6 +34,10 @@ export class EditarpersonaComponent implements OnInit{
 	public mostrarProvincias: boolean;
 	public mostrarComunas: boolean;
 
+	public provinciaPersona:any;
+	public regionPersona:any;
+	public comunaPersona:any;
+
 	public provinciasMostrar: Provincia[];
 	public comunasMostrar: Comuna[];
 
@@ -104,6 +108,8 @@ export class EditarpersonaComponent implements OnInit{
 		this.defaultValues();
 
 		this.date = new FormControl(new Date(this.persona.fechaNacimiento));
+
+		this.obtenerUbicacionPersona();
 	}
 
 	defaultValues()
@@ -131,8 +137,25 @@ export class EditarpersonaComponent implements OnInit{
 	 this.dialogRef.close();
 	}
 
+	obtenerUbicacionPersona(){
+		var currentComuna=this.totalComunas.filter( comuna => comuna.id === this.persona.Comuna_id);
+		this.comunaPersona=currentComuna[0];
+		
+		var currentProvincia=this.totalProvincias.filter( provincia => provincia.id === this.comunaPersona.Provincia_id);
+		this.provinciaPersona=currentProvincia[0];
+		
+		var currentRegion=this.totalRegiones.filter( region => region.id === this.provinciaPersona.Region_id);
+		this.regionPersona=currentRegion[0];
+
+		this.regionSeleccionada(this.regionPersona);
+		this.provinciaSeleccionada(this.provinciaPersona);
+		this.comunaSeleccionada(this.comunaPersona);
+
+	}
 	regionSeleccionada(region)
 	{
+		this.provinciasMostrar=[];
+		this.comunasMostrar=[];
 		for ( let i = 0 ; i < this.totalProvincias.length ; i ++)
 		{
 			if(this.totalProvincias[i].Region_id === region.id)
@@ -141,12 +164,13 @@ export class EditarpersonaComponent implements OnInit{
 			}
 		}
 
-		this.mostrarRegiones = false;
 		this.mostrarProvincias = true;
+
 	}
 
 	provinciaSeleccionada(provincia)
 	{
+		this.comunasMostrar=[];
 		for ( let i = 0 ; i < this.totalComunas.length ; i ++)
 		{
 			if(this.totalComunas[i].Provincia_id === provincia.id)
@@ -155,7 +179,7 @@ export class EditarpersonaComponent implements OnInit{
 			}
 		}
 
-		this.mostrarProvincias = false;
+		
 		this.mostrarComunas = true;
 	}
 
@@ -163,10 +187,15 @@ export class EditarpersonaComponent implements OnInit{
 	{
 		console.log(this.persona);
 		this.persona.fechaNacimiento = new Date(this.date.value).toISOString().slice(0, 19).replace('T', ' ');
+		
 		this.servicioPersona.editPersona(this.persona, this.persona.id).subscribe(data => {
 			this.defaultValues();
 			this.onNoClick();
 		});
+	}
+
+	nuevaProvincia(){
+		this.mostrarProvincias=true;
 	}
 
 	comunaSeleccionada(comuna)
