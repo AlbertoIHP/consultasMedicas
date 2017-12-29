@@ -228,7 +228,8 @@ export class PersonaComponent{
     this.pasarStringId(a);
 
   let dialogRef = this.dialog.open(EditarpersonaComponent, {
-    width: '500px',
+    width: '1000px',
+    height: '600px',
   data: {
   persona: a,
   regiones: this.totalRegiones,
