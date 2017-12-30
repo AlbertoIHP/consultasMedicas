@@ -77,7 +77,7 @@
       </div>
 
       <div class="row">
-        <div class="col s4">
+        <div class="col s6">
           <mat-form-field style="width: 100% !important;">
             <mat-select formControlName="firstCtrl" required placeholder="Género" [(ngModel)]="persona.Genero_id" style="width: 100% !important;">
               <mat-option style="width: 100% !important;" *ngFor="let genero of totalGeneros" [value]="genero.id">
@@ -87,7 +87,7 @@
           </mat-form-field>
         </div>
 
-        <div class="col s4">
+        <div class="col s6">
           <mat-form-field style="width: 100% !important;">
           <mat-select formControlName="firstCtrl" required placeholder="Estado Civil" [(ngModel)]="persona.EstadoCivil_id" style="width: 100% !important;">
             <mat-option style="width: 100% !important;" *ngFor="let ec of totalEstadoCiviles" [value]="ec.id">
@@ -96,35 +96,45 @@
           </mat-select>
           </mat-form-field>
         </div>
-
-        <div class="col s4">
-          <mat-form-field style="width: 100% !important;" *ngIf="mostrarRegiones">
-          <mat-select formControlName="firstCtrl" required placeholder="Región" style="width: 100% !important;">
-          <mat-option style="width: 100% !important;" *ngFor="let region of totalRegiones" [value]="region.id" (click)="regionSeleccionada(region)">
-          {{ region.nombre }}
-          </mat-option>
-          </mat-select>
-          </mat-form-field>
-
-          <mat-form-field style="width: 100% !important;" *ngIf="mostrarProvincias">
-          <mat-select formControlName="firstCtrl" required placeholder="Provincia" style="width: 100% !important;">
-          <mat-option style="width: 100% !important;" *ngFor="let provincia of provinciasMostrar" [value]="provincia.id" (click)="provinciaSeleccionada(provincia)">
-          {{ provincia.nombre }}
-          </mat-option>
-          </mat-select>
-          </mat-form-field>
-
-          <mat-form-field style="width: 100% !important;" *ngIf="mostrarComunas">
-          <mat-select formControlName="firstCtrl" required placeholder="Comuna" style="width: 100% !important;" >
-          <mat-option style="width: 100% !important;" *ngFor="let comuna of comunasMostrar" [value]="comuna.id" (click)="comunaSeleccionada(comuna)">
-          {{ comuna.nombre }}
-          </mat-option>
-          </mat-select>
-          </mat-form-field>
-
-        </div>
       </div>
+      
+       <div class="row">
+        <div class="col s4">
+          <mat-form-field style="width: 100% !important;">
+            <mat-select  required placeholder="Región" style="width: 100% !important;" formControlName="region">
+              <mat-option style="width: 100% !important;" *ngFor="let region of totalRegiones" [value]="region.id" (click)="regionSeleccionada(region)">
+              {{ region.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        
+        <div class="col s4">
+          <mat-form-field style="width: 100% !important;">
+            <mat-select  required placeholder="Provincia" style="width: 100% !important;" formControlName="provincia">
+              
+                <mat-option style="width: 100% !important;" *ngFor="let provincia of provinciasMostrar" [value]="provincia.id" (click)="provinciaSeleccionada(provincia)">
+                {{ provincia.nombre }}
+                </mat-option>
+              
+            </mat-select>
+          </mat-form-field>
+        </div>
+        
+        <div class="col s4">
+          <mat-form-field style="width: 100% !important;">
+            <mat-select  required placeholder="Comuna" style="width: 100% !important;" formControlName="comuna">
 
+                <mat-option  style="width: 100% !important;" *ngFor="let comuna of comunasMostrar" [value]="comuna.id" (click)="comunaSeleccionada(comuna)">
+                {{ comuna.nombre }}
+                </mat-option>
+       
+            </mat-select>
+            
+          </mat-form-field>
+        </div>
+        
+      </div>
       <div class="row">
         <div class="col s12">
           <button mat-button matStepperNext style="width: 100%" disabled="{{rutValido}}">Siguiente <mat-icon>arrow_forward</mat-icon> </button>
