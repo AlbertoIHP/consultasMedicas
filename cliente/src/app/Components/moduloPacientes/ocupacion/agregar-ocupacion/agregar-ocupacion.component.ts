@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Ocupacion } from '../../../../Models/Ocupacion.model';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-agregar-ocupacion',
@@ -8,8 +9,17 @@ import { Ocupacion } from '../../../../Models/Ocupacion.model';
   styleUrls: ['./agregar-ocupacion.component.css']
 })
 export class AgregarOcupacionComponent implements OnInit {
+	agregarForm: FormGroup;
 	public nuevaOcupacion: Ocupacion;
 	public servicioOcupacion: any; 
+
+	ngOnInit(){
+
+	    this.agregarForm = new FormGroup({
+	          nombre: new FormControl('', [Validators.required]),
+	         
+	      });
+  	}
 
   constructor(
   		public dialogRef: MatDialogRef<AgregarOcupacionComponent>,
@@ -20,8 +30,6 @@ export class AgregarOcupacionComponent implements OnInit {
   		this.servicioOcupacion=data.servicioOcupacion;
   }
 
-  ngOnInit() {
-  }
 
   onNoClick()
 	{

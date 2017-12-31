@@ -1,8 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
-
 import { EventosService } from '../../../../Services/eventos/eventos.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -11,6 +10,7 @@ import { EventosService } from '../../../../Services/eventos/eventos.service';
   styleUrls: ['./editarusuario.component.css']
 })
 export class EditarusuarioComponent  implements OnInit{
+  editarForm: FormGroup;
   public usuario: any;
   public totalRoles: any;
   public servicio: any;
@@ -25,6 +25,14 @@ export class EditarusuarioComponent  implements OnInit{
       this.totalRoles = todo;
 
     });
+
+     this.editarForm = new FormGroup({
+          email: new FormControl(this.usuario.email, [Validators.required]),
+          pass: new FormControl(this.usuario.password, [Validators.required]),
+          rol: new FormControl(this.usuario.Role_id, [Validators.required]),
+          personaAsociada: new FormControl(this.usuario.Persona_id, [Validators.required])
+    
+      });
   }
 
   constructor(

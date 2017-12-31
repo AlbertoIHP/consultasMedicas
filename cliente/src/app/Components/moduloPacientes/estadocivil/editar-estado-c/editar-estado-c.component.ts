@@ -1,15 +1,27 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject,OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { EstadoCivil } from '../../../../Models/EstadoCivil.model';
 import { EstadocivilService } from '../../../../Services/estadocivil/estadocivil.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
 	selector: 'app-editar-estado-c',
 	templateUrl: './editar-estado-c.component.html',
 	styleUrls: ['./editar-estado-c.component.css']
 })
-export class EditarEstadoCComponent  {
+export class EditarEstadoCComponent implements OnInit  {
+	editarForm: FormGroup;
+
 	public EC: EstadoCivil;
+
+	ngOnInit(){
+
+      this.editarForm = new FormGroup({
+        nombre: new FormControl(this.EC.nombre, [Validators.required]),
+        descripcion: new FormControl(this.EC.descripcion, [Validators.required]),
+     
+    });
+  }
 
 	constructor(
 		public dialogRef: MatDialogRef<EditarEstadoCComponent>,

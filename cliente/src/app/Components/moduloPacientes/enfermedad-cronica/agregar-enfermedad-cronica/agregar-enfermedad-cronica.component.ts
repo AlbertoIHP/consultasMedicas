@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { EnfermedadCronica } from '../../../../Models/EnfermedadCronica.model';
 import { EnfermedadCronicaService } from '../../../../Services/enfermedadcronica/enfermedad-cronica.service';
@@ -7,16 +7,28 @@ import { EnfermedadesCronicasPacienteService } from '../../../../Services/enferm
 import { Paciente } from '../../../../Models/Paciente.model';
 import { PacienteService } from '../../../../Services/paciente/paciente.service';
 
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-agregar-enfermedad-cronica',
   templateUrl: './agregar-enfermedad-cronica.component.html',
   styleUrls: ['./agregar-enfermedad-cronica.component.css']
 })
-export class AgregarEnfermedadCronicaComponent {
+export class AgregarEnfermedadCronicaComponent implements OnInit {
+	agregarForm: FormGroup;
 	public nuevaEnfermedadCronica: EnfermedadCronica;
 	public totalPacientes: Paciente[];
 	public nuevaEnfermedadesCronicasPaciente: EnfermedadesCronicasPaciente;
 	public totalEnfermedadesCronicas: EnfermedadCronica[];
+
+	ngOnInit(){
+
+	    this.agregarForm = new FormGroup({
+	          nombre: new FormControl('', [Validators.required]),
+	         
+	      });
+  	}
+
 	constructor(
 		public dialogRef: MatDialogRef<AgregarEnfermedadCronicaComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,

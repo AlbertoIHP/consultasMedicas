@@ -8,17 +8,29 @@ import { VacunasPacienteService } from '../../../../Services/vacunaspaciente/vac
 import { Paciente } from '../../../../Models/Paciente.model';
 import { PacienteService } from '../../../../Services/paciente/paciente.service';
 
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
+
 @Component({
   selector: 'app-agregar-vacuna',
   templateUrl: './agregar-vacuna.component.html',
   styleUrls: ['./agregar-vacuna.component.css']
 })
-export class AgregarVacunaComponent {
+export class AgregarVacunaComponent implements OnInit {
+  agregarForm: FormGroup;
   public nuevaVacuna: Vacuna;
   public servicioVacuna: any;
   public totalPacientes: Paciente[];
   public nuevaVacunasPaciente: VacunasPaciente;
   public totalVacunas: Vacuna[];
+
+  ngOnInit(){
+
+      this.agregarForm = new FormGroup({
+            nombre: new FormControl('', [Validators.required]),
+           
+        });
+    }
 
   constructor(
   	public dialogRef: MatDialogRef<AgregarVacunaComponent>,

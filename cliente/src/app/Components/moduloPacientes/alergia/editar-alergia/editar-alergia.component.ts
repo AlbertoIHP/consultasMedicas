@@ -1,15 +1,25 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Alergia } from '../../../../Models/Alergia.model';
 import { AlergiaService } from '../../../../Services/alergia/alergia.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-editar-alergia',
   templateUrl: './editar-alergia.component.html',
   styleUrls: ['./editar-alergia.component.css']
 })
-export class EditarAlergiaComponent {
+export class EditarAlergiaComponent implements OnInit {
+	editarForm: FormGroup;
 	public alergia: Alergia;
+
+	ngOnInit(){
+
+	    this.editarForm = new FormGroup({
+	          nombre: new FormControl(this.alergia.nombre, [Validators.required]),
+	         
+	      });
+  	}
 
 	constructor(
 		public dialogRef: MatDialogRef<EditarAlergiaComponent>,

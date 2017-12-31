@@ -1,18 +1,21 @@
 <h1 mat-dialog-title style="text-align: center;">Creación de Género</h1>
 
 <div mat-dialog-content>
+	<form [formGroup]="agregarForm">
 
-    <mat-form-field class="fullWidth">
-     <input matInput placeholder="Nombre" [(ngModel)]="nuevoGenero.nombre">
-    </mat-form-field>
+	    <mat-form-field class="fullWidth">
+	     <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="nuevoGenero.nombre">
+	    </mat-form-field>
 
-    <mat-form-field class="fullWidth">
-     <input matInput placeholder="Descripción" [(ngModel)]="nuevoGenero.descripcion">
-    </mat-form-field>
+	    <mat-form-field class="fullWidth">
+	     <input matInput placeholder="Descripción" formControlName="descripcion" [(ngModel)]="nuevoGenero.descripcion">
+	    </mat-form-field>
+
+	</form>
 
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button class="boton-aceptar" (click)="agregarGenero()" tabindex="2">Agregar Género<mat-icon>add</mat-icon></button>
+  <button mat-button class="boton-aceptar" [disabled]="!agregarForm.valid" (click)="agregarGenero()" tabindex="2">Agregar Género<mat-icon>add</mat-icon></button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

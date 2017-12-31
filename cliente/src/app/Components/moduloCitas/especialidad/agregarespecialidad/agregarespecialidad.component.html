@@ -1,13 +1,19 @@
 <h1 mat-dialog-title style="text-align: center;">Creación de especialidad</h1>
 
 <div mat-dialog-content>
-    <mat-form-field class="fullWidth">
-     <input matInput placeholder="Nombre" [(ngModel)]="nuevaEspecialidad.nombre">
-    </mat-form-field>
+
+	<form [formGroup]="agregarForm">
+
+	    <mat-form-field class="fullWidth">
+	     <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="nuevaEspecialidad.nombre" required>
+	    </mat-form-field>
+
+	</form>
+
 </div>
 
 
 <div mat-dialog-actions>
-  <button mat-button class="boton-aceptar" (click)="agregarEspecialidad()" tabindex="2">Agregar especialidad <mat-icon>add</mat-icon></button>
+  <button mat-button class="boton-aceptar" [disabled]="!agregarForm.valid" (click)="agregarEspecialidad()" tabindex="2">Agregar especialidad <mat-icon>add</mat-icon></button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

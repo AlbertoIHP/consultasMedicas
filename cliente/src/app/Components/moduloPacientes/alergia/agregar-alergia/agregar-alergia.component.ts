@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Alergia } from '../../../../Models/Alergia.model';
 import { AlergiaService } from '../../../../Services/alergia/alergia.service';
@@ -9,16 +9,30 @@ import { AlergiasComunesPaciente } from '../../../../Models/AlergiasComunesPacie
 import { Paciente } from '../../../../Models/Paciente.model';
 import { PacienteService } from '../../../../Services/paciente/paciente.service';
 
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
+
 @Component({
   selector: 'app-agregar-alergia',
   templateUrl: './agregar-alergia.component.html',
   styleUrls: ['./agregar-alergia.component.css']
 })
-export class AgregarAlergiaComponent {
+export class AgregarAlergiaComponent implements OnInit {
+	agregarForm: FormGroup;
 	public nuevaAlergia: Alergia;
 	public totalPacientes: Paciente[];
 	public nuevaAlergiasComunesPaciente: AlergiasComunesPaciente;
 	public totalAlergiasComunes: Alergia[];
+
+
+	ngOnInit(){
+
+	    this.agregarForm = new FormGroup({
+	          nombre: new FormControl('', [Validators.required]),
+	         
+	      });
+  	}
+
 	constructor(
 		public dialogRef: MatDialogRef<AgregarAlergiaComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,

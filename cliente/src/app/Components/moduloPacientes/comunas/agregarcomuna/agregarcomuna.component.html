@@ -2,23 +2,26 @@
 
 <div mat-dialog-content>
 
+<form [formGroup]="agregarForm">
 
   <mat-form-field class="fullWidth">
-   <input matInput placeholder="Nombre" [(ngModel)]="nuevaComuna.nombre">
+   <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="nuevaComuna.nombre">
   </mat-form-field>
 
   <mat-form-field style="width: 100% !important;">
-    <mat-select placeholder="Provincia" style="width: 100% !important;">
+    <mat-select placeholder="Provincia" formControlName="provincia" style="width: 100% !important;">
       <mat-option style="width: 100% !important;" *ngFor="let provincia of totalProvincias" [value]="provincia.id" (click)="provinciaSeleccionada(provincia)">
         {{ provincia.nombre }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
+</form>
+
 </div>
 
 
 <div mat-dialog-actions>
-  <button mat-button class="boton-aceptar" (click)="agregarComuna()" tabindex="2">Agregar Comuna<mat-icon>add</mat-icon></button>
+  <button mat-button class="boton-aceptar" [disabled]="!agregarForm.valid" (click)="agregarComuna()" tabindex="2">Agregar Comuna<mat-icon>add</mat-icon></button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

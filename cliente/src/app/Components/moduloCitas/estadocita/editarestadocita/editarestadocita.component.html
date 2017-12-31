@@ -2,18 +2,22 @@
 
 <div mat-dialog-content>
 
+	<form [formGroup]="editarForm">
 
-    <mat-form-field class="fullWidth">
-     <input matInput placeholder="Nombre" [(ngModel)]="estadocita.nombre">
-    </mat-form-field>
+	    <mat-form-field class="fullWidth">
+	     <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="estadocita.nombre" required>
+	    </mat-form-field>
 
-    <mat-form-field class="fullWidth">
-     <input matInput placeholder="Descripción" [(ngModel)]="estadocita.descripcion">
-    </mat-form-field>
+	    <mat-form-field class="fullWidth">
+	     <input matInput placeholder="Descripción" formControlName="descripcion" [(ngModel)]="estadocita.descripcion" required>
+	    </mat-form-field>
+
+	</form>
+
 </div>
 
 
 <div mat-dialog-actions>
-  <button mat-button class="boton-aceptar" (click)="editarEstadoCita()" tabindex="2">Actualizar Estado Cita <mat-icon>refresh</mat-icon></button>
+  <button mat-button class="boton-aceptar" [disabled]="!editarForm.valid" (click)="editarEstadoCita()" tabindex="2">Actualizar Estado Cita <mat-icon>refresh</mat-icon></button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

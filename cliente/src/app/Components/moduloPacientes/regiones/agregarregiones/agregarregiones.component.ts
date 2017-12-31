@@ -1,9 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
 import { RegionService } from '../../../../Services/region/region.service';
-
 import { Region } from '../../../../Models/Region.model';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
 @Component({
 	selector: 'app-agregarregiones',
 	templateUrl: './agregarregiones.component.html',
@@ -11,9 +11,18 @@ import { Region } from '../../../../Models/Region.model';
 })
 
 
-export class AgregarregionesComponent {
-
+export class AgregarregionesComponent implements OnInit {
+	agregarForm: FormGroup;
 	public nuevaRegion: any;
+
+
+	ngOnInit(){
+
+		this.agregarForm = new FormGroup({
+	        nombre: new FormControl('', [Validators.required])
+    
+    	});
+	}
 
 	constructor(
 		public dialogRef: MatDialogRef<AgregarregionesComponent>,

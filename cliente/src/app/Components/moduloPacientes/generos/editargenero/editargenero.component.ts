@@ -1,7 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject,OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Genero } from '../../../../Models/Genero.model';
 import { GeneroService } from '../../../../Services/genero/genero.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
 
 @Component({
 	selector: 'app-editargenero',
@@ -9,8 +11,19 @@ import { GeneroService } from '../../../../Services/genero/genero.service';
 	styleUrls: ['./editargenero.component.css']
 })
 
-export class EditargeneroComponent {
+export class EditargeneroComponent implements OnInit {
+	editarForm: FormGroup;
+
 	public genero: Genero;
+
+	ngOnInit(){
+
+      this.editarForm = new FormGroup({
+        nombre: new FormControl('', [Validators.required]),
+        descripcion: new FormControl('', [Validators.required]),
+     
+   		});
+ 	}
 
 	constructor(
 		public dialogRef: MatDialogRef<EditargeneroComponent>,

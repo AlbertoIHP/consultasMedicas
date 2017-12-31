@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
 import { ProvinciaService } from '../../../../Services/provincia/provincia.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
 	selector: 'app-editarprovincia',
@@ -10,9 +10,10 @@ import { ProvinciaService } from '../../../../Services/provincia/provincia.servi
 })
 export class EditarprovinciaComponent implements OnInit {
 
+	editarForm: FormGroup;
 	public provincia: any;
 	public totalRegiones: any;
-  public servicioRegion: any;
+  	public servicioRegion: any;
 
   ngOnInit()
   {
@@ -20,6 +21,12 @@ export class EditarprovinciaComponent implements OnInit {
       var todo: any = data;
       todo = todo.data;
       this.totalRegiones = todo;
+    });
+
+    this.editarForm = new FormGroup({
+        nombre: new FormControl(this.provincia.nombre, [Validators.required]),
+        region: new FormControl(this.provincia.Region_id, [Validators.required]),
+     
     });
   }
 
