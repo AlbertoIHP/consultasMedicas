@@ -32,6 +32,13 @@ export class EditarrolesComponent{
   public totalModulos: Modulo[]
   public totalPM: PermisoModulo[]
 
+obtenerNombre():boolean{
+    if(this.role.nombre!=""){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
 	constructor(
 		public dialogRef: MatDialogRef<EditarrolesComponent>,

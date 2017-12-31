@@ -1,8 +1,9 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Inject, OnInit  } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Feriado } from '../../../../Models/Feriado.model';
 import { FeriadoService } from '../../../../Services/feriado/feriado.service';
 import { CalendarEvent, CalendarMonthViewDay } from 'angular-calendar';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -12,13 +13,22 @@ import { CalendarEvent, CalendarMonthViewDay } from 'angular-calendar';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class EditarferiadoComponent {
+export class EditarferiadoComponent implements OnInit {
 
+	editarForm: FormGroup;
 	public feriado: Feriado;
 	viewDate: Date = new Date()
     selectedDay: CalendarMonthViewDay
     events: CalendarEvent[] = []
     protected fechaSeleccionada = false
+
+    ngOnInit(){
+
+      this.editarForm = new FormGroup({
+            descripcion: new FormControl(this.feriado.descripcion, [Validators.required]),
+           
+        });
+    }
 
 
 	constructor(

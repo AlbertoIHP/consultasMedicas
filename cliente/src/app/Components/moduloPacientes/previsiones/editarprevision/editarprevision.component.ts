@@ -1,15 +1,25 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { PrevisionService } from '../../../../Services/prevision/prevision.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
 	selector: 'app-editarprevision',
 	templateUrl: './editarprevision.component.html',
 	styleUrls: ['./editarprevision.component.css']
 })
-export class EditarprevisionComponent  {
-
+export class EditarprevisionComponent implements OnInit {
+	editarForm: FormGroup;
 	public prevision: any;
+
+	ngOnInit(){
+
+		this.editarForm = new FormGroup({
+	        nombre: new FormControl(this.prevision.nombre, [Validators.required]),
+	        descripcion: new FormControl(this.prevision.descripcion, [Validators.required]),
+	        isapre: new FormControl(this.prevision.isapre, [Validators.required]),
+    	});
+	}
 
 	constructor(
 		public dialogRef: MatDialogRef<EditarprevisionComponent>,

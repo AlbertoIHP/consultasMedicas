@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { HabitosPaciente } from '../../../../Models/HabitosPaciente.model';
@@ -9,16 +9,29 @@ import { HabitoService } from '../../../../Services/habito/habito.service';
 
 import { Paciente } from '../../../../Models/Paciente.model';
 import { PacienteService } from '../../../../Services/paciente/paciente.service';
+
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-agregar-habito',
   templateUrl: './agregar-habito.component.html',
   styleUrls: ['./agregar-habito.component.css']
 })
-export class AgregarHabitoComponent {
+export class AgregarHabitoComponent implements OnInit {
+	agregarForm: FormGroup;
 	public nuevoHabito: Habito;
 	public totalPacientes: Paciente[];
 	public nuevoHabitosPaciente: HabitosPaciente;
 	public totalHabitos: Habito[];
+
+	ngOnInit(){
+
+	    this.agregarForm = new FormGroup({
+	          nombre: new FormControl('', [Validators.required]),
+	         
+	      });
+  	}
+
 	constructor(
 		public dialogRef: MatDialogRef<AgregarHabitoComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,

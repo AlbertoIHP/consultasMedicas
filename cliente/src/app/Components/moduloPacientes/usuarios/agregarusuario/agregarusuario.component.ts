@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { EventosService } from '../../../../Services/eventos/eventos.service';
-import {FormControl} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
 
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
@@ -13,6 +14,7 @@ import {map} from 'rxjs/operators/map';
 	styleUrls: ['./agregarusuario.component.css']
 })
 export class AgregarusuarioComponent implements OnInit{
+	agregarForm: FormGroup;
 	public usuario: any;
 	public totalUsuarios: any;
 	public totalRoles: any;
@@ -83,8 +85,16 @@ export class AgregarusuarioComponent implements OnInit{
 
 	  this.actualizarPersonas();
 
-	  this.personaCtrl = new FormControl();
-		    this.filteredPersonas = this.personaCtrl.valueChanges
+	  this.agregarForm = new FormGroup({
+	        email: new FormControl('', [Validators.required]),
+	        pass: new FormControl('', [Validators.required]),
+	        rol: new FormControl('', [Validators.required]),
+	        personaAsociada: new FormControl('', [Validators.required])
+    
+    	});
+
+	 
+		    this.filteredPersonas = this.agregarForm.controls['personaAsociada'].valueChanges
 		      .pipe(
 		        startWith(''),
 		        map(persona => persona ? this.filterPersonas(persona) : this.personasDisponibles.slice())

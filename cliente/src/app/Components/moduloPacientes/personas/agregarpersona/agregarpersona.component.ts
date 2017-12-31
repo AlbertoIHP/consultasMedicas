@@ -5,6 +5,7 @@ import { Usuario } from '../../../../Models/Usuario.model';
 import { UserService } from '../../../../Services/user/user.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
+import { EspDateAdapter } from '../../../Globals/EspDateAdapter';
 
 @Component({
 	selector: 'app-agregarpersona',
@@ -13,6 +14,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   providers: [
    
     {provide: LOCALE_ID,useValue: 'es-MX'},
+    {provide: DateAdapter, useClass: EspDateAdapter},
    
   ],
 })
@@ -36,6 +38,10 @@ export class AgregarpersonaComponent implements OnInit{
 
 	public provinciasMostrar: any[];
 	public comunasMostrar: any[];
+
+  public provinciaPersona:any;
+  public regionPersona:any;
+  public comunaPersona:any;
 
   public servicioComuna: any;
   public servicioEC: any;
@@ -74,14 +80,6 @@ export class AgregarpersonaComponent implements OnInit{
 
   ngOnInit()
   {
-
-        this.firstFormGroup = this._formBuilder.group({
-          firstCtrl: ['', Validators.required]
-        });
-        this.secondFormGroup = this._formBuilder.group({
-          secondCtrl: ['', Validators.required]
-        });
-
 
       this.servicioGenero.getGeneros().subscribe(data => {
           var todo: any;
@@ -126,6 +124,19 @@ export class AgregarpersonaComponent implements OnInit{
 
     });
 
+   this.firstFormGroup = new FormGroup({
+          firstCtrl: new FormControl ('', [Validators.required]),
+          comuna: new FormControl('', [Validators.required]),
+          region: new FormControl('', [Validators.required]),
+          provincia: new FormControl('', [Validators.required])
+      });
+
+       
+
+        this.secondFormGroup = this._formBuilder.group({
+          secondCtrl: ['', Validators.required]
+        });
+
 
   }
 
@@ -150,33 +161,38 @@ export class AgregarpersonaComponent implements OnInit{
 	 this.dialogRef.close();
 	}
 
-	regionSeleccionada(region)
-	{
-		for ( let i = 0 ; i < this.totalProvincias.length ; i ++)
-		{
-			if(this.totalProvincias[i].Region_id === region.id)
-			{
-				this.provinciasMostrar.push(this.totalProvincias[i]);
-			}
-		}
+  regionSeleccionada(region)
+  {
+    this.provinciasMostrar=[];
+    this.comunasMostrar=[];
+    this.firstFormGroup.controls['provincia'].setValue('');
+    this.firstFormGroup.controls['comuna'].setValue('');
+    for ( let i = 0 ; i < this.totalProvincias.length ; i ++)
+    {
+      if(this.totalProvincias[i].Region_id === region.id)
+      {
+        this.provinciasMostrar.push(this.totalProvincias[i]);
+      }
+    }
 
-		this.mostrarRegiones = false;
-		this.mostrarProvincias = true;
-	}
+    this.mostrarProvincias = true;
 
-	provinciaSeleccionada(provincia)
-	{
-		for ( let i = 0 ; i < this.totalComunas.length ; i ++)
-		{
-			if(this.totalComunas[i].Provincia_id === provincia.id)
-			{
-				this.comunasMostrar.push(this.totalComunas[i]);
-			}
-		}
+  }
 
-		this.mostrarProvincias = false;
-		this.mostrarComunas = true;
-	}
+  provinciaSeleccionada(provincia)
+  {
+    this.comunasMostrar=[];
+    this.firstFormGroup.controls['comuna'].setValue('');
+    for ( let i = 0 ; i < this.totalComunas.length ; i ++)
+    {
+      if(this.totalComunas[i].Provincia_id === provincia.id)
+      {
+        this.comunasMostrar.push(this.totalComunas[i]);
+      }
+    }
+
+    this.mostrarComunas = true;
+  }
 
 	agregarPersona()
 	{

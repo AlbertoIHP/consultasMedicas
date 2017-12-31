@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import {FormControl} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
@@ -51,6 +51,7 @@ import { VacunaService } from '../../../../Services/vacuna/vacuna.service';
 	styleUrls: ['./agregarpaciente.component.css']
 })
 export class AgregarpacienteComponent implements OnInit {
+	editarForm: FormGroup;
 	public paciente: any;
 	public totalPacientes: any;
 	public totalPersonas: any;
@@ -142,8 +143,16 @@ export class AgregarpacienteComponent implements OnInit {
 
 	ngOnInit()
 	{
-		this.personaCtrl = new FormControl();
-		    this.filteredPersonas = this.personaCtrl.valueChanges
+		 this.editarForm = new FormGroup({
+	      // tslint:disable-next-line
+	      tipoSangre: new FormControl('', [Validators.required]),
+	      personaAsociada: new FormControl('', [Validators.required]),
+	      grupoEtnico: new FormControl('', [Validators.required]),
+	      ocupacion: new FormControl('', [Validators.required])
+	     
+     
+    	});
+		    this.filteredPersonas = this.editarForm.controls['personaAsociada'].valueChanges
 		      .pipe(
 		        startWith(''),
 		        map(persona => persona ? this.filterPersonas(persona) : this.personasDisponibles.slice())

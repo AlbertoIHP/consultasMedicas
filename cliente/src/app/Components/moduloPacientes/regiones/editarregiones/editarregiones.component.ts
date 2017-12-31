@@ -1,6 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { RegionService } from '../../../../Services/region/region.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -8,9 +9,18 @@ import { RegionService } from '../../../../Services/region/region.service';
 	templateUrl: './editarregiones.component.html',
 	styleUrls: ['./editarregiones.component.css']
 })
-export class EditarregionesComponent{
+export class EditarregionesComponent implements OnInit {
 
+	editarForm: FormGroup;
 	public region: any;
+
+	ngOnInit(){
+
+		this.editarForm = new FormGroup({
+	        nombre: new FormControl(this.region.nombre, [Validators.required])
+    
+    	});
+	}
 
 	constructor(
 		public dialogRef: MatDialogRef<EditarregionesComponent>,

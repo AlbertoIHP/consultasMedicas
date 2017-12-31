@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { HabitoSexual } from '../../../../Models/HabitoSexual.model';
 import { HabitoSexualService } from '../../../../Services/habitosexual/habito-sexual.service';
@@ -8,6 +8,7 @@ import { HabitosSexualesPaciente } from '../../../../Models/HabitosSexualesPacie
 
 import { Paciente } from '../../../../Models/Paciente.model';
 import { PacienteService } from '../../../../Services/paciente/paciente.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -15,11 +16,21 @@ import { PacienteService } from '../../../../Services/paciente/paciente.service'
   templateUrl: './agregar-habito-sexual.component.html',
   styleUrls: ['./agregar-habito-sexual.component.css']
 })
-export class AgregarHabitoSexualComponent {
+export class AgregarHabitoSexualComponent implements OnInit {
+	agregarForm: FormGroup;
 	public nuevoHabitoSexual: HabitoSexual;
 	public totalPacientes: Paciente[];
 	public nuevoHabitosSexualesPaciente:HabitosSexualesPaciente;
 	public totalHabitosSexuales:HabitoSexual[];
+
+	ngOnInit(){
+
+	    this.agregarForm = new FormGroup({
+	          nombre: new FormControl('', [Validators.required]),
+	         
+	      });
+  	}
+	
 	constructor(
 		public dialogRef: MatDialogRef<AgregarHabitoSexualComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,

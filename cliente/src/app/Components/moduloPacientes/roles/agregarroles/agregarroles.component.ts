@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { RoleService } from '../../../../Services/role/role.service';
@@ -10,13 +10,6 @@ import { Modulo } from '../../../../Models/Modulo.model';
 import { PermisoModuloService } from '../../../../Services/permisomodulo/permisomodulo.service';
 import { PermisoModulo } from '../../../../Models/PermisoModulo.model';
 
-
-
-
-
-
-
-
 @Component({
 	selector: 'app-agregarroles',
 	templateUrl: './agregarroles.component.html',
@@ -24,12 +17,20 @@ import { PermisoModulo } from '../../../../Models/PermisoModulo.model';
 })
 
 
-export class AgregarrolesComponent  {
+export class AgregarrolesComponent{
 	public nuevoRole: any;
 
 
   public totalModulos: Modulo[]
   public totalPM: PermisoModulo[]
+
+  obtenerNombre():boolean{
+    if(this.nuevoRole.nombre!=""){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
 	constructor(
 		public dialogRef: MatDialogRef<AgregarrolesComponent>,

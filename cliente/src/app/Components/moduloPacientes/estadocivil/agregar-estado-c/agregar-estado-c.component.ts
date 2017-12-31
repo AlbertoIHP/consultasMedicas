@@ -1,20 +1,37 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject,OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { EstadoCivil } from '../../../../Models/EstadoCivil.model';
 import { EstadocivilService } from '../../../../Services/estadocivil/estadocivil.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-agregar-estado-c',
   templateUrl: './agregar-estado-c.component.html',
   styleUrls: ['./agregar-estado-c.component.css']
 })
-export class AgregarEstadoCComponent {
+export class AgregarEstadoCComponent implements OnInit{
+
+  agregarForm: FormGroup;
+
   public nuevoEC: EstadoCivil;
+
+  ngOnInit(){
+
+      this.agregarForm = new FormGroup({
+        nombre: new FormControl('', [Validators.required]),
+        descripcion: new FormControl('', [Validators.required]),
+     
+    });
+  }
+
   constructor(
+
     public dialogRef: MatDialogRef<AgregarEstadoCComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public servicioEC: EstadocivilService
+
     )
+
     {
       this.nuevoEC = new EstadoCivil();
     }

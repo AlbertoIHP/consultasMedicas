@@ -1,18 +1,20 @@
 <h1 mat-dialog-title style="text-align: center;">Edición de Estado Civil</h1>
 
 <div mat-dialog-content>
+	<form [formGroup]="editarForm">
 
-    <mat-form-field class="fullWidth">
-     <input matInput placeholder="Nombre" [(ngModel)]="EC.nombre">
-    </mat-form-field>
+	    <mat-form-field class="fullWidth">
+	     <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="EC.nombre">
+	    </mat-form-field>
 
-    <mat-form-field class="fullWidth">
-     <input matInput placeholder="Descripción" [(ngModel)]="EC.descripcion">
-    </mat-form-field>
+	    <mat-form-field class="fullWidth">
+	     <input matInput placeholder="Descripción" formControlName="descripcion" [(ngModel)]="EC.descripcion">
+	    </mat-form-field>
+	</form>
 
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button class="boton-aceptar" (click)="editarEC()" tabindex="2">Actualizar Estado Civil<mat-icon>refresh</mat-icon></button>
+  <button mat-button class="boton-aceptar" [disabled]="!editarForm.valid" (click)="editarEC()" tabindex="2">Actualizar Estado Civil<mat-icon>refresh</mat-icon></button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Provincia } from '../../../../Models/Provincia.model';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
 	selector: 'app-agregarprovincia',
@@ -8,10 +9,12 @@ import { Provincia } from '../../../../Models/Provincia.model';
 	styleUrls: ['./agregarprovincia.component.css']
 })
 export class AgregarprovinciaComponent implements OnInit{
+
+	agregarForm: FormGroup;
 	public nuevaProvincia: any;
 	public totalRegiones: any;
-  public servicioRegion: any;
-  public servicioProvincia: any;
+	public servicioRegion: any;
+	public servicioProvincia: any;
 
   ngOnInit()
   {
@@ -19,6 +22,12 @@ export class AgregarprovinciaComponent implements OnInit{
       var todo: any = data;
       todo = todo.data;
       this.totalRegiones = todo;
+    });
+
+    this.agregarForm = new FormGroup({
+        nombre: new FormControl('', [Validators.required]),
+        region: new FormControl('', [Validators.required]),
+     
     });
   }
 

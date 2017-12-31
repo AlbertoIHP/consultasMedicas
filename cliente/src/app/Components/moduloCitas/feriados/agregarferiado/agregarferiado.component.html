@@ -4,41 +4,44 @@
 
 	<ng-template matStepLabel>Fecha</ng-template>
 
+      <form [formGroup]="agregarForm">
 
-      <div class="row" style="text-align: center;">
+        <div class="row" style="text-align: center;">
 
-        <div class="col s4" mwlCalendarPreviousView view="month" [(viewDate)]="viewDate" >
-          <button mat-button>
-            <mat-icon>arrow_back</mat-icon>
-          </button>
+          <div class="col s4" mwlCalendarPreviousView view="month" [(viewDate)]="viewDate" >
+            <button mat-button>
+              <mat-icon>arrow_back</mat-icon>
+            </button>
+          </div>
+
+          <div class="col s4">
+            <h6>{{ viewDate | calendarDate:'monthViewTitle':'es' }}</h6>
+          </div>
+
+          <div class="col s4" mwlCalendarNextView  view="month" [(viewDate)]="viewDate" >
+            <button mat-button>
+              <mat-icon>arrow_forward</mat-icon>
+            </button>
+          </div>
         </div>
 
-        <div class="col s4">
-          <h6>{{ viewDate | calendarDate:'monthViewTitle':'es' }}</h6>
-        </div>
+        <mwl-calendar-month-view
+          [viewDate]="viewDate"
+          [events]="events"
+          (beforeViewRender)="beforeMonthViewRender($event)"
+          (dayClicked)="dayClicked($event.day)">
+        </mwl-calendar-month-view>
 
-        <div class="col s4" mwlCalendarNextView  view="month" [(viewDate)]="viewDate" >
-          <button mat-button>
-            <mat-icon>arrow_forward</mat-icon>
-          </button>
-        </div>
-      </div>
+      <mat-form-field class="fullWidth">
+       <input matInput placeholder="Descripción" formControlName="descripcion"  [(ngModel)]="nuevoFeriado.descripcion" required>
+      </mat-form-field>
 
-      <mwl-calendar-month-view
-        [viewDate]="viewDate"
-        [events]="events"
-        (beforeViewRender)="beforeMonthViewRender($event)"
-        (dayClicked)="dayClicked($event.day)">
-      </mwl-calendar-month-view>
-
-    <mat-form-field class="fullWidth">
-     <input matInput placeholder="Descripción" [(ngModel)]="nuevoFeriado.descripcion">
-    </mat-form-field>
+    </form>
 
 </div>
 
 
 <div mat-dialog-actions>
-  <button mat-button class="boton-aceptar" (click)="agregarFeriado()" tabindex="2">Agregar feriado <mat-icon>add</mat-icon></button>
+  <button mat-button class="boton-aceptar" [disabled]="!agregarForm.valid" (click)="agregarFeriado()" tabindex="2">Agregar feriado <mat-icon>add</mat-icon></button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>
