@@ -28,6 +28,7 @@ import { Ng2DeviceService } from 'ng2-device-detector';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  public hide = true;
   public user: string
   public password: string
   public isLoginable: boolean

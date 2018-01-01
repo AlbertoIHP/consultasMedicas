@@ -11,8 +11,10 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 export class EditarprevisionComponent implements OnInit {
 	editarForm: FormGroup;
 	public prevision: any;
+	public opciones: any;
 
 	ngOnInit(){
+		this.opciones = [{id: '1', nombre: 'Si'},{id: '0', nombre: 'No'}];
 
 		this.editarForm = new FormGroup({
 	        nombre: new FormControl(this.prevision.nombre, [Validators.required]),
@@ -25,7 +27,9 @@ export class EditarprevisionComponent implements OnInit {
 		public dialogRef: MatDialogRef<EditarprevisionComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		public servicioPrevision: PrevisionService
-		) { this.prevision = data.prevision; }
+		) { 
+		this.prevision = data.prevision; 
+		}
 
 	onNoClick()
 	{

@@ -14,12 +14,8 @@
     
   <mat-form-field style="width: 100% !important;">
     <mat-select placeholder="¿Esta previsión es ISAPRE?" required formControlName="isapre" [(ngModel)]="prevision.isapre" style="width: 100% !important;">
-      <mat-option style="width: 100% !important;" [value]="1">
-        Si
-      </mat-option>
-
-      <mat-option style="width: 100% !important;" [value]="0">
-        No
+      <mat-option style="width: 100% !important;" *ngFor="let opcion of opciones" [value]="opcion.id">
+        {{opcion.nombre}}
       </mat-option>
     </mat-select>
   </mat-form-field>

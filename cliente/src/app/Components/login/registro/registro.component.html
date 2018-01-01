@@ -162,7 +162,8 @@
 
         <div class="col s6">
             <mat-form-field class="fullWidth">
-              <input matInput placeholder="Contraseña" type="password" formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.password" (ngModelChange)="validateEmail(nuevoUsuario.email)">
+              <input matInput placeholder="Contraseña" type="password" [type]="hide ? 'password' : 'text'" formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.password" (ngModelChange)="validateEmail(nuevoUsuario.email)">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
             </mat-form-field>
         </div>
       </div>
@@ -182,7 +183,7 @@
 
 
   <mat-step style="text-align: center">
-    <ng-template matStepLabel style="text-align: center">Verificacion de cuenta</ng-template>
+    <ng-template matStepLabel style="text-align: center">Verificación de cuenta</ng-template>
 
     <div style="text-align: center !important">
           <img src="https://lh3.googleusercontent.com/Vct_XSpNfhherziE-h0mSSpbrJf2jYM1nvPO2PVkcIECnqqUHCf-2-5j8EObefEmS0o7=w300" style="max-width: 300px; max-height: 300px">

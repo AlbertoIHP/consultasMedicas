@@ -42,6 +42,7 @@ import { ComunaService } from '../../../Services/comuna/comuna.service';
   ],
 })
 export class RegistroComponent implements OnInit {
+  hide = true;
   public date;
   isLinear = true;
   firstFormGroup: FormGroup;

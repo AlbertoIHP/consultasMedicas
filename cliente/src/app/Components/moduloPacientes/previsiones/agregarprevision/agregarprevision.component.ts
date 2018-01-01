@@ -13,13 +13,14 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 export class AgregarprevisionComponent implements OnInit {
 	agregarForm: FormGroup;
 	public nuevaPrevision: any;
+	public opciones: any;
 
 	ngOnInit(){
-
+		this.opciones = [{id: '1', nombre: 'Si'},{id: '2', nombre: 'No'}];
 		this.agregarForm = new FormGroup({
 	        nombre: new FormControl('', [Validators.required]),
 	        descripcion: new FormControl('', [Validators.required]),
-	        isapre: new FormControl(null, [Validators.required]),
+	        isapre: new FormControl('', [Validators.required]),
     	});
 	}
 
@@ -39,6 +40,11 @@ export class AgregarprevisionComponent implements OnInit {
 
 	agregarPrevision()
 	{
+		//Esto lo hice, porque el ngFor usa el id 0 como valor por defecto para mostrar en el select
+		//entonces como la id = 0 es No, siempre está seleccionado el No por default
+		if (this.nuevaPrevision.isapre === '2') {
+			this.nuevaPrevision.isapre === '0';
+		}
 		this.servicioPrevision.registerPrevision(this.nuevaPrevision).subscribe(data => {
 			console.log(data);
 			this.dialogRef.close();

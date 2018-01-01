@@ -5,11 +5,11 @@
   <form [formGroup]="editarForm">
 
     <mat-form-field class="fullWidth">
-     <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="comuna.nombre">
+     <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="comuna.nombre" required>
     </mat-form-field>
 
 	<mat-form-field style="width: 100% !important;">
-		<mat-select placeholder="Provincia" formControlName="provincia" [(ngModel)]="comuna.Provincia_id" style="width: 100% !important;">
+		<mat-select placeholder="Provincia" formControlName="provincia" [(ngModel)]="comuna.Provincia_id" style="width: 100% !important;" required>
 			<mat-option style="width: 100% !important;" *ngFor="let provincia of totalProvincias" [value]="provincia.id">
 				{{ provincia.nombre }}
 			</mat-option>
