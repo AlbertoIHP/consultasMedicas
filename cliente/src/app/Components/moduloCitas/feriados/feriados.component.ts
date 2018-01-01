@@ -8,11 +8,6 @@ import { AgregarferiadoComponent } from './agregarferiado/agregarferiado.compone
 import { Router } from '@angular/router';
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
-///
-import { VistaPaciente } from '../../../Models/VistaPaciente.model';
-import { VistaPacienteService } from '../../../Services/vistas/vista-paciente.service';
-///
-
 //DATATABLE
 import {DataSource} from '@angular/cdk/collections';
 import {MatPaginator, MatSort} from '@angular/material';
@@ -99,8 +94,7 @@ export class FeriadosComponent {
 	constructor (
     public servicioFeriado: FeriadoService,
     public dialog: MatDialog,
-    public router: Router,
-    public servicioVistaPaciente: VistaPacienteService)
+    public router: Router)
   {
    
 		this.usuarioActual=new UsuarioActual();
@@ -159,13 +153,6 @@ export class FeriadosComponent {
 
 	agregacionFeriado()
 	{
-    this.servicioVistaPaciente.getVistaPacientes().subscribe(data => {
-      console.log(data)
-      var todo: any = data;
-      todo = todo.data;
-
-      console.log(todo[0].nombre1)
-    })
 		let dialogRef = this.dialog.open(AgregarferiadoComponent, {
 			width: '700px'
 		});

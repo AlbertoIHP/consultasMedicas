@@ -176,6 +176,7 @@ actualizarPersonas()
     var todo: any = data;
     todo = todo.data;
     this.totalPersonas = todo;
+    console.log(this.totalPersonas)
 
     this.totalTS = [];
     this.servicioTS.getTipoSangres().subscribe( data => {

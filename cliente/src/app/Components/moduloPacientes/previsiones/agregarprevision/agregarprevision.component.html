@@ -5,15 +5,15 @@
   <form [formGroup]="agregarForm">
 
     <mat-form-field class="fullWidth">
-     <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="nuevaPrevision.nombre">
+     <input matInput placeholder="Nombre" required formControlName="nombre" [(ngModel)]="nuevaPrevision.nombre">
     </mat-form-field>
 
     <mat-form-field class="fullWidth">
-     <input matInput placeholder="Descripción" formControlName="descripcion" [(ngModel)]="nuevaPrevision.descripcion">
+     <input matInput placeholder="Descripción" required formControlName="descripcion" [(ngModel)]="nuevaPrevision.descripcion">
     </mat-form-field>
 
   <mat-form-field style="width: 100% !important;">
-    <mat-select placeholder="¿Esta previsión es ISAPRE?" formControlName="isapre" [(ngModel)]="nuevaPrevision.isapre" style="width: 100% !important;">
+    <mat-select placeholder="¿Esta previsión es ISAPRE?" required formControlName="isapre" [(ngModel)]="nuevaPrevision.isapre" style="width: 100% !important;">
       <mat-option style="width: 100% !important;" [value]="1">
         Si
       </mat-option>

@@ -100,8 +100,12 @@ export class AgregarferiadoComponent implements OnInit {
 	        dia = 'Sabado'
 	      }
 
-	      this.nuevoFeriado.dia = dia+' '+this.selectedDay.date.toString().split(' ')[2]+'/'+this.selectedDay.date.toString().split(' ')[1]+'/'+this.selectedDay.date.toString().split(' ')[3]
-
+	      //this.nuevoFeriado.dia = dia+' '+this.selectedDay.date.toString().split(' ')[2]+'/'+this.selectedDay.date.toString().split(' ')[1]+'/'+this.selectedDay.date.toString().split(' ')[3]
+	      this.nuevoFeriado.dia = this.selectedDay.date.getFullYear().toString();
+	      console.log(this.selectedDay.date.getFullYear())
+	      console.log(this.selectedDay.date.getDate())
+	      console.log(this.selectedDay.date.getMonth())
+	      console.log(this.selectedDay.date.getTime())
 	    }
 	    else
 	    {

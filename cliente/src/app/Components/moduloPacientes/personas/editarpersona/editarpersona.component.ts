@@ -96,20 +96,20 @@ export class EditarpersonaComponent implements OnInit{
 
       this.editarForm = new FormGroup({
       // tslint:disable-next-line
-      rut: new FormControl(this.persona.rut, [Validators.required]),
-      primerNombre: new FormControl(this.persona.nombre1, [Validators.required]),
-      segundoNombre: new FormControl(this.persona.nombre2, [Validators.required]),
-      primerApellido: new FormControl(this.persona.apellido1, [Validators.required]),
-      segundoApellido: new FormControl(this.persona.apellido2, [Validators.required]),
-      fonoCasa: new FormControl(this.persona.fono_casa, [Validators.required]),
-      fonoTrabajo: new FormControl(this.persona.fono_trabajo, [Validators.required]),
-      fonoMovil: new FormControl(this.persona.movil, [Validators.required]),
-      direccion: new FormControl(this.persona.direccion, [Validators.required]),
-      genero: new FormControl(this.persona.Genero_id, [Validators.required]),
-      estadoCivil: new FormControl(this.persona.EstadoCivil_id, [Validators.required]),
-      comuna: new FormControl(this.comunaPersona.id, [Validators.required]),
-      region: new FormControl(this.regionPersona.id, [Validators.required]),
-      provincia: new FormControl(this.provinciaPersona.id, [Validators.required])
+	      rut: new FormControl(this.persona.rut, [Validators.required]),
+	      primerNombre: new FormControl(this.persona.nombre1, [Validators.required]),
+	      segundoNombre: new FormControl(this.persona.nombre2, [Validators.required]),
+	      primerApellido: new FormControl(this.persona.apellido1, [Validators.required]),
+	      segundoApellido: new FormControl(this.persona.apellido2, [Validators.required]),
+	      fonoCasa: new FormControl(this.persona.fono_casa, [Validators.required]),
+	      fonoTrabajo: new FormControl(this.persona.fono_trabajo, [Validators.required]),
+	      fonoMovil: new FormControl(this.persona.movil, [Validators.required]),
+	      direccion: new FormControl(this.persona.direccion, [Validators.required]),
+	      genero: new FormControl(this.persona.Genero_id, [Validators.required]),
+	      estadoCivil: new FormControl(this.persona.EstadoCivil_id, [Validators.required]),
+	      comuna: new FormControl(this.comunaPersona.id, [Validators.required]),
+	      region: new FormControl(this.regionPersona.id, [Validators.required]),
+	      provincia: new FormControl(this.provinciaPersona.id, [Validators.required])
      
     });
 

@@ -72,7 +72,7 @@ export class EditarferiadoComponent implements OnInit {
 	      }
 	    
 	    //this.selectedDay = dia + ' ' + this.feriado.dia.split('/')[1] + ' ' + this.feriado.dia.split('/')[0].split(' ')[1] + ' ' + this.feriado.dia.split('/')[2];
-		
+		//console.log(this.selectedDay.date);
 	}
 
 	onNoClick()

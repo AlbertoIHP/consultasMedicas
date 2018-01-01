@@ -125,10 +125,20 @@ export class AgregarpersonaComponent implements OnInit{
     });
 
    this.firstFormGroup = new FormGroup({
-          firstCtrl: new FormControl ('', [Validators.required]),
           comuna: new FormControl('', [Validators.required]),
           region: new FormControl('', [Validators.required]),
-          provincia: new FormControl('', [Validators.required])
+          provincia: new FormControl('', [Validators.required]),
+          genero: new FormControl('', [Validators.required]),
+          estadocivil: new FormControl('', [Validators.required]),
+          celular: new FormControl('', [Validators.required]),
+          telefonotrabajo: new FormControl('', [Validators.required]),
+          telefonocasa: new FormControl('', [Validators.required]),
+          direccion: new FormControl('', [Validators.required]),
+          nombre_uno: new FormControl('', [Validators.required]),
+          nombre_dos: new FormControl('', [Validators.required]),
+          apellido_uno: new FormControl('', [Validators.required]),
+          apellido_dos: new FormControl('', [Validators.required]),
+          rut: new FormControl('', [Validators.required])
       });
 
        

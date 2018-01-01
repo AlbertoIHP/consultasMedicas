@@ -129,9 +129,10 @@ export class UsuariosComponent {
   	this.totalUsuarios = [];
   	this.actualizarRoles();
   	this.actualizarPersonas();
-  	this.actualizarUsuarios();
+  	//this.actualizarUsuarios();
     this.servicioEventos.seActivo.subscribe(() => {
-        this.actualizarUsuarios();
+        //this.actualizarUsuarios();
+        this.actualizarPersonas();
       });
 	}
 
@@ -152,6 +153,9 @@ export class UsuariosComponent {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalPersonas = todo;
+			console.log(this.totalPersonas)
+			console.log(data)
+			this.actualizarUsuarios();
 		});
 	}
 
@@ -254,7 +258,8 @@ export class UsuariosComponent {
 
   agregacionUsuario()
   {
-
+  	console.log(this.personasDisponibles)
+  	console.log(this.totalPersonas)
 	let dialogRef = this.dialog.open(AgregarusuarioComponent, {
 	  width: '700px',
 	data: {
@@ -303,11 +308,13 @@ export class UsuariosComponent {
 	{
 		for ( let i = 0 ; i < this.totalUsuarios.length ; i ++ )
 		{
+			console.log("Hola")
 			for ( let j = 0 ; j < this.personasDisponibles.length ; j ++ )
-			{
+			{	console.log("chao")
 				if (parseInt(this.totalUsuarios[i].Persona_id) === this.personasDisponibles[j].id)
 				{
 					this.personasDisponibles.splice(j, 1);
+					console.log(this.personasDisponibles)
 				}
 			}
 		}

@@ -4,11 +4,11 @@
 	<form [formGroup]="editarForm">
 
 	    <mat-form-field class="fullWidth">
-	     <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="EC.nombre">
+	     <input matInput placeholder="Nombre" required formControlName="nombre" [(ngModel)]="EC.nombre">
 	    </mat-form-field>
 
 	    <mat-form-field class="fullWidth">
-	     <input matInput placeholder="Descripción" formControlName="descripcion" [(ngModel)]="EC.descripcion">
+	     <input matInput placeholder="Descripción" required formControlName="descripcion" [(ngModel)]="EC.descripcion">
 	    </mat-form-field>
 	</form>
 

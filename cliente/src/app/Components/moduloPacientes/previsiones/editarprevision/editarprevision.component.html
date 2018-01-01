@@ -5,15 +5,15 @@
   <form [formGroup]="editarForm">
 
     <mat-form-field class="fullWidth">
-     <input matInput placeholder="Nombre"  formControlName="nombre" [(ngModel)]="prevision.nombre">
+     <input matInput placeholder="Nombre" required formControlName="nombre" [(ngModel)]="prevision.nombre">
     </mat-form-field>
 
     <mat-form-field class="fullWidth">
-     <input matInput placeholder="Descripción"  formControlName="descripcion" [(ngModel)]="prevision.descripcion">
+     <input matInput placeholder="Descripción" required formControlName="descripcion" [(ngModel)]="prevision.descripcion">
     </mat-form-field>
     
   <mat-form-field style="width: 100% !important;">
-    <mat-select placeholder="¿Esta previsión es ISAPRE?"  formControlName="isapre" [(ngModel)]="prevision.isapre" style="width: 100% !important;">
+    <mat-select placeholder="¿Esta previsión es ISAPRE?" required formControlName="isapre" [(ngModel)]="prevision.isapre" style="width: 100% !important;">
       <mat-option style="width: 100% !important;" [value]="1">
         Si
       </mat-option>

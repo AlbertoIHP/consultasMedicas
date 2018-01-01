@@ -4,11 +4,11 @@
 	<form [formGroup]="agregarForm">
 
 	    <mat-form-field class="fullWidth">
-	     <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="nuevoGenero.nombre">
+	     <input matInput placeholder="Nombre" required formControlName="nombre" [(ngModel)]="nuevoGenero.nombre">
 	    </mat-form-field>
 
 	    <mat-form-field class="fullWidth">
-	     <input matInput placeholder="Descripción" formControlName="descripcion" [(ngModel)]="nuevoGenero.descripcion">
+	     <input matInput placeholder="Descripción" required formControlName="descripcion" [(ngModel)]="nuevoGenero.descripcion">
 	    </mat-form-field>
 
 	</form>

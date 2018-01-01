@@ -5,15 +5,15 @@
 <form [formGroup]="editarForm">
 
     <mat-form-field class="fullWidth">
-     <input matInput placeholder="Email" formControlName="email" [(ngModel)]="usuario.email" (ngModelChange)="validateEmail(usuario.email)">
+     <input matInput placeholder="Email" formControlName="email" required [(ngModel)]="usuario.email" (ngModelChange)="validateEmail(usuario.email)">
     </mat-form-field>
 
     <mat-form-field class="fullWidth">
-     <input matInput placeholder="Password" formControlName="pass" [(ngModel)]="usuario.password" type="password">
+     <input matInput placeholder="Password" formControlName="pass" required [(ngModel)]="usuario.password" type="password">
     </mat-form-field>
 
   <mat-form-field style="width: 100% !important;">
-    <mat-select placeholder="Rol de usuario" formControlName="rol" [(ngModel)]="usuario.Role_id" style="width: 100% !important;">
+    <mat-select placeholder="Rol de usuario" formControlName="rol" required [(ngModel)]="usuario.Role_id" style="width: 100% !important;">
       <mat-option style="width: 100% !important;" *ngFor="let role of totalRoles" [value]="role.id">
         {{ role.nombre }}
       </mat-option>

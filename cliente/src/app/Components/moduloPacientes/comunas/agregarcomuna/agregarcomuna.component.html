@@ -5,11 +5,11 @@
 <form [formGroup]="agregarForm">
 
   <mat-form-field class="fullWidth">
-   <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="nuevaComuna.nombre">
+   <input matInput placeholder="Nombre" required formControlName="nombre" [(ngModel)]="nuevaComuna.nombre">
   </mat-form-field>
 
   <mat-form-field style="width: 100% !important;">
-    <mat-select placeholder="Provincia" formControlName="provincia" style="width: 100% !important;">
+    <mat-select placeholder="Provincia" required formControlName="provincia" style="width: 100% !important;">
       <mat-option style="width: 100% !important;" *ngFor="let provincia of totalProvincias" [value]="provincia.id" (click)="provinciaSeleccionada(provincia)">
         {{ provincia.nombre }}
       </mat-option>

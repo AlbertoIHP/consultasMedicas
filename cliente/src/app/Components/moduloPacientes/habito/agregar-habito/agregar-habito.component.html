@@ -5,7 +5,7 @@
 	<form [formGroup]="agregarForm">
 
 	    <mat-form-field class="fullWidth">
-	     <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="nuevoHabito.nombre">
+	     <input matInput placeholder="Nombre" required formControlName="nombre" [(ngModel)]="nuevoHabito.nombre">
 	    </mat-form-field>
 
 	</form>
