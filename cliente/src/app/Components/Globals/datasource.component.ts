@@ -157,22 +157,22 @@ export class buscadorPorNombre extends DataSource<any> {
 
         }else if(this.filtro == "VacunasPaciente"){
 
-           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           let searchStr = (item.rut.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "UsoMedicamento"){
 
-           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           let searchStr = (item.rut.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "HabitosPaciente"){
 
-           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           let searchStr = (item.rut.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "HabitosSexualesPaciente"){ 
 
-           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           let searchStr = (item.rut.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "Habito"){
@@ -186,12 +186,12 @@ export class buscadorPorNombre extends DataSource<any> {
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         }else if(this.filtro == "EnfermedadesCronicasPaciente"){ 
 
-           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           let searchStr = (item.rut.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "AlergiasComunesPaciente"){ 
 
-           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           let searchStr = (item.rut.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "Medicamento"){ 
@@ -201,7 +201,7 @@ export class buscadorPorNombre extends DataSource<any> {
 
         }else if(this.filtro == "AlergiasMedicamentosPaciente"){ 
 
-           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           let searchStr = (item.rut.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "VerAlergiasComunesPaciente"){ 
@@ -411,22 +411,22 @@ export class ExampleDataSource extends DataSource<any> {
 
         }else if(this.filtro == "VacunasPaciente"){
 
-           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           let searchStr = (item.rut.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "UsoMedicamento"){
 
-           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           let searchStr = (item.rut.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "HabitosPaciente"){
 
-           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           let searchStr = (item.rut.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
 
         }else if(this.filtro == "HabitosSexualesPaciente"){
 
-           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           let searchStr = (item.rut.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
            
         }else if(this.filtro == "Habito"){
@@ -440,12 +440,12 @@ export class ExampleDataSource extends DataSource<any> {
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         } else if(this.filtro == "EnfermedadesCronicasPaciente"){
 
-           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           let searchStr = (item.rut.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
            
         } else if(this.filtro == "AlergiasComunesPaciente"){
 
-           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           let searchStr = (item.rut.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
            
         }else if(this.filtro == "Medicamento"){
@@ -455,7 +455,7 @@ export class ExampleDataSource extends DataSource<any> {
            
         }else if(this.filtro == "AlergiasMedicamentosPaciente"){
 
-           let searchStr = (item.Persona_id.toString()).toLowerCase();
+           let searchStr = (item.rut.toString()).toLowerCase();
            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
            
 
