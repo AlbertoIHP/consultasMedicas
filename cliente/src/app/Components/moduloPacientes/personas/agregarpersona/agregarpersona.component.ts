@@ -242,8 +242,7 @@ export class AgregarpersonaComponent implements OnInit{
 	comunaSeleccionada(comuna)
 	{
 		this.persona.Comuna_id = comuna.id;
-    if(this.persona.rut != '' && this.validator(this.persona.rut) && this.persona.nombre1 != '' && this.persona.nombre2 != '' && this.persona.apellido1 != '' && this.persona.apellido2 != '' &&
-      this.persona.fono_casa != '' && this.persona.fono_trabajo != '' && this.persona.movil != '')
+    if(this.validator(this.persona.rut))
     {
       this.rutValido = false
     }
