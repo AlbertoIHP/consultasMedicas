@@ -482,7 +482,7 @@ actualizarPersonas()
       todo.estado = 0;
       this.servicioPersona.editPersona(todo, todo.id).subscribe(data => {
         console.log(data);
-        this.actualizarPersonas();
+        //this.actualizarPersonas();
 
         //El servicio con este metodo emite un evento que cualqueir componetne que este suscrito a dicho evento reaccionara
         console.log("Yo hice un cambio (SoyPaciente)")
@@ -501,7 +501,7 @@ actualizarPersonas()
       todo.estado = 1;
       this.servicioPersona.editPersona(todo, todo.id).subscribe(data => {
         console.log(data);
-        this.actualizarPersonas();
+       
         this.servicioEventos.hiceUnCambio();
       })
     });
