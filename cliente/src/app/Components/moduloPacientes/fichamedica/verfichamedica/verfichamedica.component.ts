@@ -37,7 +37,6 @@ export class VerFichaMedicaComponent{
          this.datosPaciente=this.arrayPaciente.data[0];
         console.log(this.datosPaciente);
         this.paciente=this.data.paciente;
-        
       });
 
   }
