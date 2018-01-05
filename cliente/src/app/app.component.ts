@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'
 import { Role } from './Models/Role.model';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -9,9 +10,9 @@ import {UsuarioActual} from './Components/Globals/usuarioactual.component';
 import { Ng2DeviceService } from 'ng2-device-detector';
 
 @Component({
-	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   public isLogeado: boolean = false
@@ -41,7 +42,7 @@ export class AppComponent {
       console.log(this.deviceInfo);
     }
 
-	constructor(private deviceService: Ng2DeviceService, public eventosService: EventosService,private router: Router,private iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
+  constructor(private deviceService: Ng2DeviceService, public eventosService: EventosService,private router: Router,private iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
      this.usuarioActual= new UsuarioActual();
     //iconos de toolbar
     this.iconRegistry

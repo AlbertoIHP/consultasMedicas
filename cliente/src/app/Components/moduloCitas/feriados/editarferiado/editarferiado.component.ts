@@ -1,35 +1,51 @@
+// Componentes generales
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Inject, OnInit  } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { Feriado } from '../../../../Models/Feriado.model';
-import { FeriadoService } from '../../../../Services/feriado/feriado.service';
-import { CalendarEvent, CalendarMonthViewDay } from 'angular-calendar';
+import { CustomDateFormatter } from '../../../Globals/custom-date-formatter';
+import { CalendarEvent, CalendarMonthViewDay, CalendarDateFormatter, DAYS_OF_WEEK } from 'angular-calendar';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
+//Modelos y servicios
+import { Feriado } from '../../../../Models/Feriado.model';
+import { FeriadoService } from '../../../../Services/feriado/feriado.service';
 
 @Component({
   selector: 'app-editarferiado',
   templateUrl: './editarferiado.component.html',
   styleUrls: ['./editarferiado.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [
+	  {
+	  	provide: CalendarDateFormatter,
+        useClass: CustomDateFormatter
+	  }
+  ]
 })
 export class EditarferiadoComponent implements OnInit {
 
+	//Inicialización de variable para manejar los formularios grupales
 	editarForm: FormGroup;
+
+	//Inicialización de el o los atributos que ocuparán	
 	public feriado: Feriado;
-	viewDate: Date = new Date()
-    selectedDay: CalendarMonthViewDay
-    events: CalendarEvent[] = []
-    protected fechaSeleccionada = false
+
+	//Atributos para manejar el calendario (idioma, distribución de los días)
+	viewDate: Date = new Date();
+	locale: string = 'es';
+	weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+	weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
+	selectedDay: CalendarMonthViewDay;
+	events: CalendarEvent[] = [];
+    protected fechaSeleccionada = true;
 
     ngOnInit(){
-
-      this.editarForm = new FormGroup({
+    	//Se crea el nuevo formulario grupal, dentro se agregan los atributos que se conrtrolarán    	
+      	this.editarForm = new FormGroup({
+      		//Los parámetros que se le dan, validan como se mostrarán al iniciar y que se use de forma correcta
             descripcion: new FormControl(this.feriado.descripcion, [Validators.required]),
-           
         });
     }
-
 
 	constructor(
 		public dialogRef: MatDialogRef<EditarferiadoComponent>,
@@ -37,6 +53,7 @@ export class EditarferiadoComponent implements OnInit {
 		public servicioFeriado: FeriadoService
 		)
 	{
+		// Se obtienen los datos provistos al dar click en el botón del feriado a editar
 		this.feriado = data.feriado;
 
 		let dia = this.feriado.dia.split(' ')[0];
@@ -70,9 +87,15 @@ export class EditarferiadoComponent implements OnInit {
 	      {
 	        dia = 'Sat'
 	      }
-	    
+
+	      //this.dia.date.setFullYear(parseInt(this.feriado.dia.split(' ')[0]), parseInt(this.feriado.dia.split(' ')[1], parseInt(this.feriado.dia.split(' ')[2])));
+	   	  
+	   	//this.selectedDay = new Date(this.feriado.dia);
+	   	//this.selectedDay.date = new Date(this.feriado.dia);
+	      console.log(this.selectedDay)
 	    //this.selectedDay = dia + ' ' + this.feriado.dia.split('/')[1] + ' ' + this.feriado.dia.split('/')[0].split(' ')[1] + ' ' + this.feriado.dia.split('/')[2];
 		//console.log(this.selectedDay.date);
+		//this.selectedDay.date.setFullYear(parseInt(this.feriado.dia.split(' ')[0]), parseInt(this.feriado.dia.split(' ')[1], parseInt(this.feriado.dia.split(' ')[2])));
 	}
 
 	onNoClick()
@@ -91,6 +114,8 @@ export class EditarferiadoComponent implements OnInit {
 
 	dayClicked(day: CalendarMonthViewDay): void
 	  {
+	  	this.selectedDay.date = new Date(this.feriado.dia);
+	  	console.log(this.selectedDay.date)
 	    if (this.selectedDay)
 	    {
 	      delete this.selectedDay.cssClass;

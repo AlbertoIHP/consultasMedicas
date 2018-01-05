@@ -1,7 +1,8 @@
 
-
 import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
 import { NgDatepickerModule } from 'ng2-datepicker';
+import { HttpClientModule } from '@angular/common/http'
+
 
 //GUARDS
 import { AuthGuard } from './Guards/auth.guard';
@@ -324,7 +325,6 @@ import {
   NgbTimepickerModule
 } from '@ng-bootstrap/ng-bootstrap';
 
-
 @NgModule({
   declarations:
   [
@@ -627,6 +627,7 @@ import {
     Ng2DeviceDetectorModule.forRoot(),
     NgDatepickerModule,
     NgxPaginationModule,
+    HttpClientModule,
   ],
 
   providers:

@@ -32,7 +32,7 @@ export class FeriadosComponent {
 
 	public totalFeriados: Feriado[];
 	public usuarioActual;
-
+  length: any;
 
   //DATATABLE
   exampleDatabase;
