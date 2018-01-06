@@ -25,6 +25,9 @@ export class EditarAlergiaComponent implements OnInit {
 	    this.editarForm = new FormGroup({
 	        nombre: new FormControl(this.alergia.nombre, [Validators.required]),     
 	    });
+
+	    // Se inicializa el evento en false
+	    this.servicioEvento.actualizacion(false);
   	}
 
 	constructor(
@@ -40,14 +43,15 @@ export class EditarAlergiaComponent implements OnInit {
 
 	//Cerrar el diálogo
 	onNoClick() {
-		//Se emite un evento para actualizar los datos
-		this.servicioEvento.actualizacion(true);
 		this.dialogRef.close();
 	}
 
 	editarAlergia() {
 		//Utilizando el id de la alergia a editar, se modifican sus parámetros
 		this.servicioAlergia.editAlergia(this.alergia, this.alergia.id).subscribe( data => {
+			//Se emite un evento para no actualizar la vista
+			this.servicioEvento.actualizacion(true);
+			
 			// Se cierra el diálogo
 			this.dialogRef.close();
 		});

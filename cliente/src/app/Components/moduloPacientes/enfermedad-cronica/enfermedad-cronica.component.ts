@@ -171,6 +171,12 @@ export class EnfermedadCronicaComponent {
 			 enfermedadcronica: enfermedadcronica
 			}
 		});
+
+    //Luego de cerrar el dialogo se ejecuta lo siguiente
+    dialogRef.afterClosed().subscribe(result => {
+          // Si recibe un 'false' se actualiza, si no, significa que se dio en editar
+            if (!this.actualizar) { this.actualizarEnfermedadCronicas();}
+    });
 	}
 
 	agregacionEnfermedadCronica() {

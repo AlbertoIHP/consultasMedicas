@@ -201,8 +201,8 @@ export class ComunasComponent {
 		
 		//Luego de cerrar el dialogo se ejecuta lo siguiente
 		dialogRef.afterClosed().subscribe(result => {
-        	// Si recibe un 'true' se actualiza, si no, significa que se dio en actualizar
-        	if (this.actualizar) { this.actualizarComunas();}
+        	// Si recibe un 'false' se actualiza, si no, significa que se dio en editar
+          	if (!this.actualizar) { this.actualizarComunas();}
 		});
 	}
 

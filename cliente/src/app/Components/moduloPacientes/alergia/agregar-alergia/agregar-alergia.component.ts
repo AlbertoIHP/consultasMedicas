@@ -35,6 +35,9 @@ export class AgregarAlergiaComponent implements OnInit {
 	    this.agregarForm = new FormGroup({
 	        nombre: new FormControl('', [Validators.required]), 
 	    });
+
+	    //Se inicializa el evento en false
+	    this.servicioEvento.actualizacion(false);
   	}
 
 	constructor(

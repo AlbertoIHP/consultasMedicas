@@ -26,6 +26,9 @@ export class AgregarcomunaComponent implements OnInit{
 	        nombre: new FormControl('', [Validators.required]),
 	        provincia: new FormControl('', [Validators.required]),
 	    });
+
+	   	//Se inicializa el evento en false
+	    this.servicioEvento.actualizacion(false);
 	}
 
 	constructor(
