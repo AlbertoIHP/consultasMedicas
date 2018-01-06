@@ -61,7 +61,7 @@ export class AgregarEnfermedadCronicaComponent implements OnInit {
 	}
 
 	agregarEnfermedadCronica() {
-		// Se registra  la nueva enfermedad con los datos obtenidos
+		// Se registra la nueva enfermedad con los datos obtenidos
 		this.servicioEnfermedadCronica.registerEnfermedadCronica(this.nuevaEnfermedadCronica).subscribe(data => {
 			// Se obtienen los pacientes	
 			this.servicioPacientes.getPacientes().subscribe(data=>{

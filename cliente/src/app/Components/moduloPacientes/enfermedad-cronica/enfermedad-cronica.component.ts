@@ -108,7 +108,7 @@ export class EnfermedadCronicaComponent {
 		this.usuarioActual=new UsuarioActual();
 		this.totalEnfermedadCronicas = [];
 
-    // Se obtienen los registros de aenfermedades crónicas a la base de datos
+    // Se obtienen los registros de enfermedades crónicas de la base de datos
 		this.actualizarEnfermedadCronicas();
 	}
 
@@ -174,8 +174,8 @@ export class EnfermedadCronicaComponent {
 
     //Luego de cerrar el dialogo se ejecuta lo siguiente
     dialogRef.afterClosed().subscribe(result => {
-          // Si recibe un 'false' se actualiza, si no, significa que se dio en editar
-            if (!this.actualizar) { this.actualizarEnfermedadCronicas();}
+      // Si recibe un 'false' se actualiza, si no, significa que se dio en editar
+        if (!this.actualizar) { this.actualizarEnfermedadCronicas();}
     });
 	}
 

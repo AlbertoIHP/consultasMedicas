@@ -1,14 +1,20 @@
+//Componentes generales
 import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
+import { Router } from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-
+//Modelos y servicios
 import { Genero } from '../../../Models/Genero.model';
 import { GeneroService } from '../../../Services/genero/genero.service';
 
+import { EventosService } from '../../../Services/eventos/eventos.service';
+
+//Componentes hijos
 import { AgregargeneroComponent } from './agregargenero/agregargenero.component';
 import { EditargeneroComponent } from './editargenero/editargenero.component';
-import {UsuarioActual} from '../../Globals/usuarioactual.component';
-import { Router } from '@angular/router';
 
+//Componente para verificación de roles
+import { UsuarioActual } from '../../Globals/usuarioactual.component';
 
 //DATATABLE
 import {DataSource} from '@angular/cdk/collections';
@@ -23,19 +29,19 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/debounceTime';
 import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.component';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
 
 @Component({
 	selector: 'app-generos',
 	templateUrl: './generos.component.html',
 	styleUrls: ['./generos.component.css']
 })
+
 export class GenerosComponent  {
+  //Se declaran los atributos
 	public totalGeneros: Genero[];
 	public buscarPorNombre: boolean;
 	public usuarioActual;
-
+  public actualizar;
 
   //DATATABLE
   exampleDatabase;
@@ -44,12 +50,10 @@ export class GenerosComponent  {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
-
 	displayedColumns = ['Acciones', 'Nombre', 'Descripcion'];
 
-
-  ngOnInit()
-  {
+  ngOnInit() {
+    // Se inicializa el datasource
     this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Genero');
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
         .debounceTime(150)
@@ -58,15 +62,14 @@ export class GenerosComponent  {
           if (!this.dataSource) { return; }
           this.dataSource.filter = this.filter.nativeElement.value;
         })
+    this.exampleDatabase = [];
 
-
-    this.exampleDatabase = []
-
+    // Se obtiene el evento emitido desde agregar
+    this.servicioEvento.actualizar.subscribe((data: any) => { this.actualizar = data; });
   }
 
 
-  isAllSelected(): boolean
-  {
+  isAllSelected(): boolean {
     if (!this.dataSource) { return false; }
     if (this.selection.isEmpty()) { return false; }
 
@@ -77,8 +80,7 @@ export class GenerosComponent  {
     }
   }
 
-  masterToggle()
-  {
+  masterToggle() {
     if (!this.dataSource) { return; }
 
     if (this.isAllSelected()) {
@@ -90,29 +92,30 @@ export class GenerosComponent  {
     }
   }
 
-
 	constructor (
     public servicioGenero: GeneroService,
     public dialog: MatDialog,
-    public router: Router
+    public router: Router,
+    public servicioEvento: EventosService
+    ) {
 
-
-    )
-  {
-    
+    // Se inicializan los atributos
 		this.usuarioActual=new UsuarioActual();
 		this.totalGeneros = [];
+
+    // Se obtienen los registros de generos de la base de datos
 		this.actualizarGeneros();
 	}
 
-	actualizarGeneros ()
-	{
+	actualizarGeneros () {
+    // Se obtienen todas los géneros desde la API    
 		this.servicioGenero.getGeneros().subscribe(data => {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalGeneros = todo;
 
       //DATATABLE
+      //Se asignan los datos obtenidos al datasource
       this.exampleDatabase  = new ExampleDatabase(this.totalGeneros);
 
       this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'Genero');
@@ -123,25 +126,23 @@ export class GenerosComponent  {
             if (!this.dataSource) { return; }
             this.dataSource.filter = this.filter.nativeElement.value;
           })
-
-
 		});
 	}
 
-	eliminarGenero (genero)
-	{
+  //Se obtiene el género desde la fila
+	eliminarGenero(genero) {
+    // Se elimina usando el id del género
 		this.servicioGenero.deleteGenero(genero.id).subscribe( data => {
-			console.log(data);
-			this.actualizarGeneros();
+			//Se actualiza la tabla
+      this.actualizarGeneros();
 		});
 	}
 
-
-
-	edicionGenero (genero)
-	{
-
+  // Se envía el género a modificar desde el frontend
+	edicionGenero(genero) {
+    //Se abre un dialogo para editar la género, se abre un componente hijo
 		let dialogRef = this.dialog.open(EditargeneroComponent, {
+      //Los parámetros se asignan y se envían los datos necesarios
 			width: '700px',
 			data:
 			{
@@ -149,21 +150,24 @@ export class GenerosComponent  {
 			}
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarGeneros();
-		});
+    //Luego de cerrar el dialogo se ejecuta lo siguiente
+    dialogRef.afterClosed().subscribe(result => {
+      // Si recibe un 'false' se actualiza, si no, significa que se dio en editar
+        if (!this.actualizar) { this.actualizarGeneros();}
+    });
 	}
 
-	agregacionGenero()
-	{
+	agregacionGenero() {
+    // Se abre un nuevo dialogo para agregar un género, se abre un componente hijo
 		let dialogRef = this.dialog.open(AgregargeneroComponent, {
+      //Se asignan los parámetros
 			width: '700px'
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarGeneros();
-		});
+    //Luego de cerrar el dialogo se ejecuta lo siguiente
+    dialogRef.afterClosed().subscribe(result => {
+      // Si recibe un 'true' se actualiza, si no, significa que se dio en cancelar
+      if (this.actualizar) { this.actualizarGeneros();}
+    });
 	}
 }
