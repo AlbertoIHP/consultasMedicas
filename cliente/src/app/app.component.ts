@@ -19,6 +19,8 @@ export class AppComponent {
   public usuarioActual
   private deviceInfo
 
+
+
   goPacMobile()
   {
     this.router.navigate(['mobile/mp'])
