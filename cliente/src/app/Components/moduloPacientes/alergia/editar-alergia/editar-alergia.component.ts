@@ -1,8 +1,13 @@
+// Componentes generales
 import { Component, Inject, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
+// Modelos y servicios
 import { Alergia } from '../../../../Models/Alergia.model';
 import { AlergiaService } from '../../../../Services/alergia/alergia.service';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
+import { EventosService } from '../../../../Services/eventos/eventos.service';
 
 @Component({
   selector: 'app-editar-alergia',
@@ -10,38 +15,41 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   styleUrls: ['./editar-alergia.component.css']
 })
 export class EditarAlergiaComponent implements OnInit {
+
+	// Se declaran los atributos a usar
 	editarForm: FormGroup;
 	public alergia: Alergia;
 
-	ngOnInit(){
-
+	ngOnInit() {
+		// Se inician las validaciones usando un FormGroup y se dan los parámetros
 	    this.editarForm = new FormGroup({
-	          nombre: new FormControl(this.alergia.nombre, [Validators.required]),
-	         
-	      });
+	        nombre: new FormControl(this.alergia.nombre, [Validators.required]),     
+	    });
   	}
 
 	constructor(
+		//Se declaran los servicios y componentes a utilizar
 		public dialogRef: MatDialogRef<EditarAlergiaComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
-		public servicioAlergia: AlergiaService
-		)
-	{
+		public servicioAlergia: AlergiaService,
+		public servicioEvento: EventosService
+		) {
+		// Se inicializan los atributos con los obtenidos en la base de datos		
 		this.alergia = data.alergia;
 	}
 
-	onNoClick()
-	{
+	//Cerrar el diálogo
+	onNoClick() {
+		//Se emite un evento para actualizar los datos
+		this.servicioEvento.actualizacion(true);
 		this.dialogRef.close();
 	}
 
-	editarAlergia()
-	{
+	editarAlergia() {
+		//Utilizando el id de la alergia a editar, se modifican sus parámetros
 		this.servicioAlergia.editAlergia(this.alergia, this.alergia.id).subscribe( data => {
-			console.log(data);
+			// Se cierra el diálogo
 			this.dialogRef.close();
-
 		});
 	}
-
 }

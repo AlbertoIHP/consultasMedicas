@@ -1,8 +1,11 @@
+// Componentes generales
 import { Component, Inject, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { Comuna } from '../../../../Models/Comuna.model';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
+// Modelos y servicios
+import { Comuna } from '../../../../Models/Comuna.model';
+import { EventosService } from '../../../../Services/eventos/eventos.service';
 
 @Component({
 	selector: 'app-agregarcomuna',
@@ -10,55 +13,46 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 	styleUrls: ['./agregarcomuna.component.css']
 })
 export class AgregarcomunaComponent implements OnInit{
-
+	// Se declaran los atributos
 	agregarForm: FormGroup;
 	public nuevaComuna: Comuna;
 	public totalProvincias: any;
 	public servicioProvincia: any;
 	public servicioComuna: any;
 
-  ngOnInit()
-  {
-    this.servicioProvincia.getProvincias().subscribe( data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalProvincias = todo;
-    });
-
-    this.agregarForm = new FormGroup({
-        nombre: new FormControl('', [Validators.required]),
-        provincia: new FormControl('', [Validators.required]),
-     
-    });
-  }
-
-	constructor(
-		public dialogRef: MatDialogRef<AgregarcomunaComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: any
-		)
-	{
-		this.nuevaComuna = new Comuna();
-		this.totalProvincias = data.provincias;
-    this.servicioProvincia = data.servicioProvincia;
-    this.servicioComuna = data.servicioComuna;
+	ngOnInit() {
+		// Se inician las validaciones usando un FormGroup y se dan los parámetros
+	    this.agregarForm = new FormGroup({
+	        nombre: new FormControl('', [Validators.required]),
+	        provincia: new FormControl('', [Validators.required]),
+	    });
 	}
 
-	onNoClick()
-	{
+	constructor(
+		//Se declaran los servicios y componentes a utilizar	
+		public dialogRef: MatDialogRef<AgregarcomunaComponent>,
+		@Inject(MAT_DIALOG_DATA) public data: any,
+		public servicioEvento: EventosService
+		) {
+		// Se inicializan los atributos
+		this.nuevaComuna = new Comuna();
+		this.totalProvincias = data.provincias;
+	    this.servicioComuna = data.servicioComuna;
+	}
+
+	//Cerrar el diálogo
+	onNoClick() {
 		this.dialogRef.close();
 	}
 
-	agregarComuna()
-	{
+	agregarComuna() {
+		//Se agrega la nueva comuna al dar click en el botón
 		this.servicioComuna.registerComuna(this.nuevaComuna).subscribe(data => {
-			console.log(data);
+			//Se emite un evento para actualizar los datos
+			this.servicioEvento.actualizacion(true);
+			
+			// Se cierra el diálogo
 			this.dialogRef.close();
 		});
 	}
-
-	provinciaSeleccionada(provincia)
-	{
-		this.nuevaComuna.Provincia_id = provincia.id;
-	}
-
 }

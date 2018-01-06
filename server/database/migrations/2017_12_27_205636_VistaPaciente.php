@@ -13,7 +13,7 @@ class VistaPaciente extends Migration
      */
     public function up()
     {
-        DB::statement("CREATE VIEW VistaPacientes AS (
+        DB::statement("CREATE VIEW VistaPaciente AS (
                         SELECT
                             Paciente.id,
                             Paciente.Persona_id,

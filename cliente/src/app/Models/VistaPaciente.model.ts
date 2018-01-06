@@ -21,6 +21,9 @@ export class VistaPaciente {
 	Ocupacion: string;
 	GrupoEtnico: string;
 	Prevision: string;
+	anho: string;
+	mes: string;
+	dia: string;
 
 	constructor()
 	{
@@ -46,6 +49,8 @@ export class VistaPaciente {
 		this.Ocupacion = "";
 		this.GrupoEtnico = "";
 		this.Prevision = "";
-		
+		this.anho = "";
+		this.mes = "";
+		this.dia = "";
 	}
 }
