@@ -1,12 +1,15 @@
-
+// Componentes generales
 import { Component, Inject, OnInit, LOCALE_ID } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, DateAdapter } from '@angular/material';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
+// Modelos y servicios
 import { Persona } from '../../../../Models/Persona.model';
 import { Provincia } from '../../../../Models/Provincia.model';
 import { Comuna } from '../../../../Models/Comuna.model';
 import { PersonaService } from '../../../../Services/persona/persona.service';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { EspDateAdapter } from '../../../Globals/EspDateAdapter';
+import { EventosService } from '../../../../Services/eventos/eventos.service';
 
 
 @Component({
@@ -19,6 +22,7 @@ import { EspDateAdapter } from '../../../Globals/EspDateAdapter';
 	],
 })
 export class EditarpersonaComponent implements OnInit{
+	//Se declaran los atributos a usar
 	editarForm: FormGroup;
 	public date;
 	public persona: any;
@@ -94,6 +98,7 @@ export class EditarpersonaComponent implements OnInit{
 
     });
 
+     // Se inician las validaciones usando un FormGroup y se dan los parámetros
       this.editarForm = new FormGroup({
       // tslint:disable-next-line
 	      rut: new FormControl(this.persona.rut, [Validators.required]),
@@ -113,6 +118,11 @@ export class EditarpersonaComponent implements OnInit{
      
     });
 
+    /*
+	    // Se inicializa el evento en false
+	    this.servicioEvento.actualizacion(false);
+	*/
+
       this.regionSeleccionadaInicial(this.regionPersona);
       this.provinciaSeleccionadaInicial(this.provinciaPersona);
       this.comunaSeleccionada(this.comunaPersona);
@@ -121,12 +131,15 @@ export class EditarpersonaComponent implements OnInit{
   }
 
 	constructor(
+		//Se declaran los servicios y componentes a utilizar
 		public dialogRef: MatDialogRef<EditarpersonaComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		public servicioPersona: PersonaService,
 		public dateAdapter: DateAdapter<any>,
+		public servicioEvento: EventosService
 		)
 	{
+		// Se inicializan los atributos
 		dateAdapter.setLocale('es-MX');
 
 		this.defaultValues();
@@ -137,8 +150,8 @@ export class EditarpersonaComponent implements OnInit{
 
 	}
 
-	defaultValues()
-	{
+	defaultValues(){
+
     this.servicioRegion = this.data.servicioRegion;
     this.servicioProvincia = this.data.servicioProvincia;
     this.servicioComuna = this.data.servicioComuna;
@@ -157,8 +170,9 @@ export class EditarpersonaComponent implements OnInit{
 		this.comunasMostrar = [];
 	}
 
-	onNoClick(): void
-	{
+	//Cerrar el diálogo
+	onNoClick(): void{
+
 	 this.dialogRef.close();
 	}
 
@@ -173,11 +187,9 @@ export class EditarpersonaComponent implements OnInit{
 		this.regionPersona=currentRegion[0];
 
 	
-
-
 	}
-	regionSeleccionada(region)
-	{
+	regionSeleccionada(region){
+
 		this.provinciasMostrar=[];
 		this.comunasMostrar=[];
 		this.editarForm.controls['provincia'].setValue('');
@@ -194,8 +206,8 @@ export class EditarpersonaComponent implements OnInit{
 
 	}
 
-	provinciaSeleccionada(provincia)
-	{
+	provinciaSeleccionada(provincia) {
+
 		this.comunasMostrar=[];
 		this.editarForm.controls['comuna'].setValue('');
 		for ( let i = 0 ; i < this.totalComunas.length ; i ++)
@@ -208,8 +220,8 @@ export class EditarpersonaComponent implements OnInit{
 
 		this.mostrarComunas = true;
 	}
-	regionSeleccionadaInicial(region)
-	{
+	regionSeleccionadaInicial(region) {
+
 		this.provinciasMostrar=[];
 		this.comunasMostrar=[];
 
@@ -225,8 +237,8 @@ export class EditarpersonaComponent implements OnInit{
 
 	}
 
-	provinciaSeleccionadaInicial(provincia)
-	{
+	provinciaSeleccionadaInicial(provincia) {
+
 		this.comunasMostrar=[];
 
 		for ( let i = 0 ; i < this.totalComunas.length ; i ++)
@@ -240,22 +252,26 @@ export class EditarpersonaComponent implements OnInit{
 		this.mostrarComunas = true;
 	}
 
-	actualizarPersona()
-	{
-		console.log(this.persona);
+	actualizarPersona() {
+
 		this.persona.fechaNacimiento = new Date(this.date.value).toISOString().slice(0, 19).replace('T', ' ');
-		
+		//Usando el id de la comuna, se actualiza con los nuevos datos
 		this.servicioPersona.editPersona(this.persona, this.persona.id).subscribe(data => {
-			this.onNoClick();
+			/*
+			//Se emite un evento para no actualizar la vista
+			this.servicioEvento.actualizacion(true);
+			*/
+			this.dialogRef.close();
 		});
 	}
 
 	nuevaProvincia(){
+
 		this.mostrarProvincias=true;
 	}
 
-	comunaSeleccionada(comuna)
-	{
+	comunaSeleccionada(comuna) {
+
 		this.persona.Comuna_id = comuna.id;
 	}
 

@@ -1,6 +1,8 @@
-import { Component, Inject } from '@angular/core';
+// Componentes generales
+import { Component, Inject, OnInit  } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
+// Modelos y servicios
 import { RoleService } from '../../../../Services/role/role.service';
 import { Role } from '../../../../Models/Role.model';
 
@@ -9,28 +11,28 @@ import { Modulo } from '../../../../Models/Modulo.model';
 
 import { PermisoModuloService } from '../../../../Services/permisomodulo/permisomodulo.service';
 import { PermisoModulo } from '../../../../Models/PermisoModulo.model';
-
-
-
-
-
-
+import { EventosService } from '../../../../Services/eventos/eventos.service';
 
 @Component({
 	selector: 'app-editarroles',
 	templateUrl: './editarroles.component.html',
 	styleUrls: ['./editarroles.component.css']
 })
-export class EditarrolesComponent{
-
-
-
+export class EditarrolesComponent implements OnInit{
+  //Se declaran los atributos a usar
 	public role: any;
 
   public displayedColumns = ['function', 'permissions'];
 
   public totalModulos: Modulo[]
   public totalPM: PermisoModulo[]
+
+
+  ngOnInit() {
+      // Se inicializa el evento en false
+      this.servicioEvento.actualizacion(false);
+  
+  }
 
 obtenerNombre():boolean{
     if(this.role.nombre!=""){
@@ -41,14 +43,16 @@ obtenerNombre():boolean{
   }
 
 	constructor(
+    //Se declaran los servicios y componentes a utilizar
 		public dialogRef: MatDialogRef<EditarrolesComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
     public servicioRole: RoleService,
     public servicioModulo: ModuloService,
-    public servicioPM: PermisoModuloService
+    public servicioPM: PermisoModuloService,
+    public servicioEvento: EventosService
 		)
   {
-
+    // Se inicializan los atributos
     this.totalPM = []
     this.role = data.role
 
@@ -62,12 +66,7 @@ obtenerNombre():boolean{
         var todo: any = data
         todo = todo.data
 
-        console.log(todo)
-        console.log(this.role.id)
-
         this.totalPM = todo.filter( permiso => parseInt(permiso.Role_id) === this.role.id )
-
-
 
 
         for( let i = 0 ; i < this.totalPM.length ; i ++ )
@@ -86,22 +85,19 @@ obtenerNombre():boolean{
           this.totalPM[i].view === 0 ? this.totalPM[i].view =  false: this.totalPM[i].view = true
 
         }
-        console.log(this.totalPM)
 
       })
     })
 
 
   }
-
-	onNoClick()
-	{
+  //Cerrar el diálogo
+	onNoClick(){
 		this.dialogRef.close();
 	}
 
-	editarRole()
-	{
-
+	editarRole(){
+    //Usando el id del rol, se actualiza con los nuevos datos
 		this.servicioRole.editRole(this.role, this.role.id).subscribe( data => {
 
       for( let j = 0 ; j < this.totalPM.length ; j ++ )
@@ -118,22 +114,18 @@ obtenerNombre():boolean{
           this.totalPM[j].view === true ? this.totalPM[j].view = 1: this.totalPM[j].view = 0
 
 
-        console.log(this.totalPM[j])
-
         this.servicioPM.editPermisoModulo(this.totalPM[j], this.totalPM[j].id).subscribe(data => {
-          console.log(data)
+          
+          //Se emite un evento para no actualizar la vista
+          this.servicioEvento.actualizacion(true);
+
+          this.dialogRef.close();
+
+
         })
 
-
-
       }
-
-
-
-			this.dialogRef.close();
-
-
-
+			
 		});
 	}
 

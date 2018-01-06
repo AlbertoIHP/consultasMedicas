@@ -1,6 +1,8 @@
+// Componentes generales
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
+// Modelos y servicios
 import { RoleService } from '../../../../Services/role/role.service';
 import { Role } from '../../../../Models/Role.model';
 
@@ -10,6 +12,8 @@ import { Modulo } from '../../../../Models/Modulo.model';
 import { PermisoModuloService } from '../../../../Services/permisomodulo/permisomodulo.service';
 import { PermisoModulo } from '../../../../Models/PermisoModulo.model';
 
+import { EventosService } from '../../../../Services/eventos/eventos.service';
+
 @Component({
 	selector: 'app-agregarroles',
 	templateUrl: './agregarroles.component.html',
@@ -18,9 +22,8 @@ import { PermisoModulo } from '../../../../Models/PermisoModulo.model';
 
 
 export class AgregarrolesComponent{
+  // Se declaran los atributos
 	public nuevoRole: any;
-
-
   public totalModulos: Modulo[]
   public totalPM: PermisoModulo[]
 
@@ -33,13 +36,16 @@ export class AgregarrolesComponent{
   }
 
 	constructor(
+    //Se declaran los servicios y componentes a utilizar  
 		public dialogRef: MatDialogRef<AgregarrolesComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		public servicioRole: RoleService,
     public servicioModulo: ModuloService,
-    public servicioPM: PermisoModuloService
+    public servicioPM: PermisoModuloService,
+    public servicioEvento: EventosService
 		)
 	{
+    // Se inicializan los atributos
     this.totalModulos = []
     this.totalPM = []
 
@@ -64,22 +70,17 @@ export class AgregarrolesComponent{
 
     })
 
-
-
-
 		this.nuevoRole = new Role();
 	}
 
-
-	onNoClick()
-	{
+  //Cerrar el diálogo
+	onNoClick(){
 		this.dialogRef.close();
 	}
 
-	agregarRole()
-	{
+	agregarRole(){
 
-
+    //Se agrega el nuevo rol al dar click en el botón
 		this.servicioRole.registerRole(this.nuevoRole).subscribe(data => {
 
       this.servicioRole.getRoles().subscribe(data => {
@@ -90,8 +91,7 @@ export class AgregarrolesComponent{
 
         console.log(current[0].id)
 
-        for ( let j = 0 ; j < this.totalPM.length ; j ++ )
-        {
+        for ( let j = 0 ; j < this.totalPM.length ; j ++ ){
 
 
           this.totalPM[j].Role_id = current[0].id
@@ -109,13 +109,13 @@ export class AgregarrolesComponent{
           this.totalPM[j].view === true ? this.totalPM[j].view = 1: this.totalPM[j].view = 0
 
 
-
-
-          console.log(this.totalPM[j])
-
-
           this.servicioPM.registerPermisoModulo(this.totalPM[j]).subscribe(data => {
-            console.log(data)
+              //Se emite un evento para actualizar los datos
+              this.servicioEvento.actualizacion(true);
+
+              // Se cierra el diálogo
+              this.dialogRef.close();
+
           })
 
 
@@ -123,46 +123,32 @@ export class AgregarrolesComponent{
 
       })
 
-			this.dialogRef.close();
 		});
 
 
 
 	}
 
+//Funciones para setear permisos de rol
 
-
-
-
-
-escribir(permiso)
-{
+escribir(permiso){
   permiso.write = !permiso.write
-  console.log(permiso)
 }
 
 
-leer(permiso)
-{
+leer(permiso){
   permiso.view = !permiso.view
-  console.log(permiso)
 }
 
 
-editar(permiso)
-{
+editar(permiso){
   permiso.update = !permiso.update
-  console.log(permiso)
 }
 
 
-borrar(permiso)
-{
+borrar(permiso){
   permiso.erase = !permiso.erase
-  console.log(permiso)
 }
-
-
 
 
 }

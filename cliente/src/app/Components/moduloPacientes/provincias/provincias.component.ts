@@ -1,17 +1,22 @@
+// Componentes generales
 import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 
+// Modelos y servicios
 import { Provincia } from '../../../Models/Provincia.model';
 import { ProvinciaService } from '../../../Services/provincia/provincia.service';
 
 import { Region } from '../../../Models/Region.model';
 import { RegionService } from '../../../Services/region/region.service';
 
+// Componentes hijos
 import { AgregarprovinciaComponent } from './agregarprovincia/agregarprovincia.component';
 import { EditarprovinciaComponent } from './editarprovincia/editarprovincia.component';
 
+// Componente para verificación de roles
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
-import { Router } from '@angular/router';
+import { EventosService } from '../../../Services/eventos/eventos.service';
 
 
 //DATATABLE
@@ -37,12 +42,12 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 	styleUrls: ['./provincias.component.css']
 })
 export class ProvinciasComponent {
-public totalRegiones: Region[];
+	//Se declaran los atributos a usar
+	public totalRegiones: Region[];
 	public totalProvincias: Provincia[];
 	public usuarioActual;
 	displayedColumns = ['Acciones', 'Nombre', 'Region'];
-
-
+	public actualizar;
 
   //DATATABLE
   exampleDatabase;
@@ -56,6 +61,7 @@ public totalRegiones: Region[];
 
   ngOnInit()
   {
+  	// Se inicializa el datasource
     this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Provincia');
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
         .debounceTime(150)
@@ -67,6 +73,10 @@ public totalRegiones: Region[];
 
 
     this.exampleDatabase = []
+
+     // Se obtiene el evento emitido desde agregar
+    this.servicioEvento.actualizar.subscribe((data: any) => { this.actualizar = data; });
+ 
 
   }
 
@@ -96,19 +106,16 @@ public totalRegiones: Region[];
     }
   }
 
-
-
-
-
-
-
-	constructor (
+constructor (
+	//Se declaran los servicios y componentes a utilizar
     public servicioRegion: RegionService,
     public servicioProvincia: ProvinciaService,
     public dialog: MatDialog,
-    public router: Router)
-  {
-    
+    public router: Router,
+    public servicioEvento: EventosService
+ 
+    ){
+    	// Se inicializan los atributos
 		this.usuarioActual=new UsuarioActual();
 		this.totalRegiones = [];
 		this.totalProvincias = [];
@@ -153,11 +160,12 @@ public totalRegiones: Region[];
 
 
 
-
+	//Se obtiene la provincia desde la fila para obtener su id
 	eliminarProvincia (provincia)
 	{
+		//Usando el id, de la provincia se elimina esta
 		this.servicioProvincia.deleteProvincia(provincia.id).subscribe( data => {
-			console.log(data);
+			//Se actualizan las provincias a mostrar
 			this.actualizarProvincias();
 		});
 	}
@@ -195,7 +203,7 @@ public totalRegiones: Region[];
 
 	}
 
-
+	// Se obtiene la provincia a modificar desde el frontend
 	edicionProvincia (provincia)
 	{
 
@@ -203,35 +211,46 @@ public totalRegiones: Region[];
 
 	this.pasarStringId(a);
 
-		let dialogRef = this.dialog.open(EditarprovinciaComponent, {
-			width: '700px',
-			data:
-			{
-			 provincia: a,
-			 regiones: this.totalRegiones,
-       servicioRegion: this.servicioRegion
-			}
-		});
+	//Se abre un dialogo para editar la provincia, se abre un componente hijo	
+	let dialogRef = this.dialog.open(EditarprovinciaComponent, {
+		//Los parámetros se asignan y se envían los datos necesarios
+		width: '700px',
+		data:
+		{
+		 provincia: a,
+		 regiones: this.totalRegiones,
+         servicioRegion: this.servicioRegion	
+		}
 
+	});
+
+		//Luego de cerrar el dialogo se ejecuta lo siguiente
 		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarProvincias();
+			/*
+        	// Si recibe un 'false' se actualiza, si no, significa que se dio en editar
+          	if (!this.actualizar) { this.actualizarComunas();}
+          	*/
+          	this.actualizarProvincias();
 		});
 	}
 
 	agregacionProvincia()
 	{
+	    // Se abre un nuevo dialogo para agregar una provincia, se abre un componente hijo		
 		let dialogRef = this.dialog.open(AgregarprovinciaComponent, {
+			//Los parámetros se asignan y se envían los datos necesarios
 			width: '700px',
 			data : {
-        regiones: this.totalRegiones,
-        servicioRegion: this.servicioRegion,
-        servicioProvincia: this.servicioProvincia }
+	        regiones: this.totalRegiones,
+	        servicioRegion: this.servicioRegion,
+	        servicioProvincia: this.servicioProvincia
+	         }
 		});
 
+		//Luego de cerrar el dialogo se ejecuta lo siguiente
 		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarProvincias();
+        	// Si recibe un 'true' se actualiza, si no, significa que se dio en cancelar
+        	if (this.actualizar) { this.actualizarProvincias();}
 		});
 	}
 

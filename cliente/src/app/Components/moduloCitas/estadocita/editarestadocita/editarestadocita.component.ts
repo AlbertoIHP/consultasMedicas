@@ -1,8 +1,13 @@
+// Componentes generales
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
+// Modelos y servicios
 import { EstadoCita } from '../../../../Models/EstadoCita.model';
 import { EstadoCitaService } from '../../../../Services/estadocita/estado-cita.service';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
+import { EventosService } from '../../../../Services/eventos/eventos.service';
 
 @Component({
   selector: 'app-editarestadocita',
@@ -10,37 +15,48 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   styleUrls: ['./editarestadocita.component.css']
 })
 export class EditarestadocitaComponent implements OnInit {
+	//Se declaran los atributos a usar
 	editarForm: FormGroup;
 	public estadocita: EstadoCita;
 
 	ngOnInit(){
-
+	  // Se inician las validaciones usando un FormGroup y se dan los parámetros
       this.editarForm = new FormGroup({
             nombre: new FormControl(this.estadocita.nombre, [Validators.required]),
             descripcion: new FormControl(this.estadocita.descripcion, [Validators.required]),
            
         });
+
+      // Se inicializa el evento en false
+      this.servicioEvento.actualizacion(false);
     }
 
 	constructor(
+		//Se declaran los servicios y componentes a utilizar
 		public dialogRef: MatDialogRef<EditarestadocitaComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
-		public servicioEstadoCita: EstadoCitaService
-		)
-	{
+		public servicioEstadoCita: EstadoCitaService,
+		public servicioEvento: EventosService
+	
+	){
+		// Se inicializan los atributos
 		this.estadocita = data.estadocita;
 	}
 
-	onNoClick()
-	{
+	//Cerrar el diálogo
+	onNoClick() {
+
 		this.dialogRef.close();
 	}
 
-	editarEstadoCita()
-	{
+	editarEstadoCita() {
+		//Usando el id del estado, se actualiza con los nuevos datos
 		this.servicioEstadoCita.editEstadoCita(this.estadocita, this.estadocita.id).subscribe( data => {
-			console.log(data);
-			this.dialogRef.close();
+			
+		    //Se emite un evento para no actualizar la vista
+		    this.servicioEvento.actualizacion(true);
+		      
+		    this.dialogRef.close();
 
 		});
 	}

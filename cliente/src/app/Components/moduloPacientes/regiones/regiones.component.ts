@@ -1,12 +1,19 @@
+// Componentes generales
 import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 
+// Modelos y servicios
 import { Region } from '../../../Models/Region.model';
 import { RegionService } from '../../../Services/region/region.service';
+import { EventosService } from '../../../Services/eventos/eventos.service';
 
+
+// Componentes hijos
 import { AgregarregionesComponent } from './agregarregiones/agregarregiones.component';
 import { EditarregionesComponent } from './editarregiones/editarregiones.component';
 
+// Componente para verificación de roles
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
+
 import { Router } from '@angular/router';
 
 
@@ -33,11 +40,11 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 	styleUrls: ['./regiones.component.css']
 })
 export class RegionesComponent {
-
+  //Se declaran los atributos a usar
 	public totalRegiones: Region[];
 	public usuarioActual;
 	displayedColumns = ['Acciones', 'Nombre'];
-
+  public actualizar;
 
   //DATATABLE
   exampleDatabase;
@@ -51,6 +58,7 @@ export class RegionesComponent {
 
   ngOnInit()
   {
+    // Se inicializa el datasource
     this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Region');
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
         .debounceTime(150)
@@ -62,6 +70,10 @@ export class RegionesComponent {
 
 
     this.exampleDatabase = []
+
+     // Se obtiene el evento emitido desde agregar
+    this.servicioEvento.actualizar.subscribe((data: any) => { this.actualizar = data; });
+  
 
   }
 
@@ -94,11 +106,13 @@ export class RegionesComponent {
 
 
 	constructor (
+    //Se declaran los servicios y componentes a utilizar
     public servicioRegion: RegionService,
     public dialog: MatDialog,
-    public router: Router)
-  {
-   
+    public router: Router,
+    public servicioEvento: EventosService
+    ){
+    // Se inicializan los atributos
 		this.usuarioActual=new UsuarioActual();
 		this.totalRegiones = [];
 		this.actualizarRegiones();
@@ -128,20 +142,23 @@ export class RegionesComponent {
 		});
 	}
 
+  //Se obtiene la región desde la fila para obtener su id
 	eliminarRegion (region)
 	{
+    //Usando el id, de la región se elimina esta
 		this.servicioRegion.deleteRegion(region.id).subscribe( data => {
-			console.log(data);
-			this.actualizarRegiones();
+      //Se actualizan las regiones a mostrar
+ 			this.actualizarRegiones();
 		});
 
 	}
 
-
+  // Se obtiene la región a modificar desde el frontend
 	edicionRegion (region)
 	{
-
+    //Se abre un dialogo para editar la región, se abre un componente hijo
 		let dialogRef = this.dialog.open(EditarregionesComponent, {
+      //Los parámetros se asignan y se envían los datos necesarios
 			width: '700px',
 			data:
 			{
@@ -149,22 +166,27 @@ export class RegionesComponent {
 			}
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarRegiones();
-		});
+		//Luego de cerrar el dialogo se ejecuta lo siguiente
+    dialogRef.afterClosed().subscribe(result => {
+      
+        // Si recibe un 'false' se actualiza, si no, significa que se dio en editar
+        if (!this.actualizar) { this.actualizarRegiones();}
+    });
 	}
 
 	agregacionRegion()
 	{
+    // Se abre un nuevo dialogo para agregar una región, se abre un componente hijo
 		let dialogRef = this.dialog.open(AgregarregionesComponent, {
+      //Los parámetros se asignan y se envían los datos necesarios
 			width: '700px'
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarRegiones();
-		});
+		//Luego de cerrar el dialogo se ejecuta lo siguiente
+    dialogRef.afterClosed().subscribe(result => {
+        // Si recibe un 'true' se actualiza, si no, significa que se dio en cancelar
+        if (this.actualizar) { this.actualizarRegiones();}
+    });
 	}
 
 
