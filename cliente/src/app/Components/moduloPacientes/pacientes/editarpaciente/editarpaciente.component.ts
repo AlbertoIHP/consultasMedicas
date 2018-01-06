@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-editarpaciente',
@@ -7,6 +8,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./editarpaciente.component.css']
 })
 export class EditarpacienteComponent implements OnInit {
+  editarForm: FormGroup;
   public paciente: any;
   public totalPacientes: any;
   public totalPersonas: any;
@@ -43,6 +45,12 @@ export class EditarpacienteComponent implements OnInit {
     this.actualizarPersonas();
     this.actualizarTS();
     this.actualizarPacientes();
+
+    this.editarForm = new FormGroup({
+      tipoSangre: new FormControl(this.paciente.TipoSangre_id, [Validators.required]),
+      grupoEtnico: new FormControl(this.paciente.GrupoEtnico_id, [Validators.required]),
+      ocupacion: new FormControl(this.paciente.Ocupacion_id, [Validators.required])
+    });
   }
 
   actualizarPersonas()

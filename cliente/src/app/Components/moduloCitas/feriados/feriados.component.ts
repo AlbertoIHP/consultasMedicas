@@ -8,8 +8,6 @@ import { AgregarferiadoComponent } from './agregarferiado/agregarferiado.compone
 import { Router } from '@angular/router';
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
-
-
 //DATATABLE
 import {DataSource} from '@angular/cdk/collections';
 import {MatPaginator, MatSort} from '@angular/material';
@@ -34,7 +32,7 @@ export class FeriadosComponent {
 
 	public totalFeriados: Feriado[];
 	public usuarioActual;
-
+  length: any;
 
   //DATATABLE
   exampleDatabase;

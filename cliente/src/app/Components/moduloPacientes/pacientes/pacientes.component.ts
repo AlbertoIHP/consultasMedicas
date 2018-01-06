@@ -28,6 +28,8 @@ import { EventosService } from '../../../Services/eventos/eventos.service';
 
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 import { Router } from '@angular/router';
+import { FichaAtencionComponent } from '../../moduloAtenciones/ficha-atencion/ficha-atencion.component'
+
 
 //DATATABLE
 import {DataSource} from '@angular/cdk/collections';
@@ -60,7 +62,7 @@ export class PacientesComponent implements OnInit {
   public totalOcupaciones: Ocupacion[];
 	public usuarioActual;
 
-	displayedColumns = ['Acciones', 'Rut', 'Nombre', 'Persona', 'Tipo Sangre', 'Grupo Etnico', 'Ocupacion'];
+	displayedColumns = ['Acciones', 'Rut', 'Nombre', 'Tipo Sangre', 'Grupo Etnico', 'Ocupacion'];
 
   //DATATABLE
   exampleDatabase;
@@ -174,6 +176,7 @@ actualizarPersonas()
     var todo: any = data;
     todo = todo.data;
     this.totalPersonas = todo;
+    console.log(this.totalPersonas)
 
     this.totalTS = [];
     this.servicioTS.getTipoSangres().subscribe( data => {
@@ -479,7 +482,7 @@ actualizarPersonas()
       todo.estado = 0;
       this.servicioPersona.editPersona(todo, todo.id).subscribe(data => {
         console.log(data);
-        this.actualizarPersonas();
+        //this.actualizarPersonas();
 
         //El servicio con este metodo emite un evento que cualqueir componetne que este suscrito a dicho evento reaccionara
         console.log("Yo hice un cambio (SoyPaciente)")
@@ -498,7 +501,7 @@ actualizarPersonas()
       todo.estado = 1;
       this.servicioPersona.editPersona(todo, todo.id).subscribe(data => {
         console.log(data);
-        this.actualizarPersonas();
+       
         this.servicioEventos.hiceUnCambio();
       })
     });
@@ -523,11 +526,23 @@ actualizarPersonas()
 
     dialogRef.afterClosed().subscribe(result => {
 
-     //this.actualizarPersonas();
     });
 
+  }
+//funcion temporal para desplegar una ficha editable
+  desplegarFichaAtencionPaciente(paciente)
+  {
 
+   var a = JSON.parse( JSON.stringify(paciente) );
+   this.pasarStringId(a);
 
+       let dialogRef = this.dialog.open(FichaAtencionComponent, {
+          width: '1000px',
+          height:'700px',
+          data: { paciente: a }
+        });
+
+ 
 
   }
 

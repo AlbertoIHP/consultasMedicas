@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
 import { BoxConsultaService } from '../../../../Services/boxconsulta/box-consulta.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-editarboxconsulta',
@@ -10,9 +10,19 @@ import { BoxConsultaService } from '../../../../Services/boxconsulta/box-consult
 })
 export class EditarboxconsultaComponent implements OnInit {
 
+  editarForm: FormGroup;
 	public boxConsulta: any;
 	public totalTipoBoxes: any;
 	public servicioTipoBox: any;
+
+  ngOnInit(){
+
+      this.editarForm = new FormGroup({
+            ubicacion: new FormControl(this.boxConsulta.ubicacion, [Validators.required]),
+            tipoBox: new FormControl(this.boxConsulta.TipoBox_id, [Validators.required]),
+           
+        });
+    }
 
   constructor(
   	public dialogRef: MatDialogRef<EditarboxconsultaComponent>,
@@ -28,15 +38,6 @@ export class EditarboxconsultaComponent implements OnInit {
   	console.log(this.boxConsulta);
   	console.log(this.totalTipoBoxes);
 
-  }
-
-  ngOnInit() {
-
-  	// this.servicioTipoBox.getTipoBoxes().subscribe( data => {
-   //    var todo: any = data;
-   //    todo = todo.data;
-   //    this.totalTipoBoxes = todo;
-   //  });
   }
 
   onNoClick()

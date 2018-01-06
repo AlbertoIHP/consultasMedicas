@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { EventosService } from '../../../../Services/eventos/eventos.service';
-import {FormControl} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
 
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
@@ -13,6 +14,7 @@ import {map} from 'rxjs/operators/map';
 	styleUrls: ['./agregarusuario.component.css']
 })
 export class AgregarusuarioComponent implements OnInit{
+	agregarForm: FormGroup;
 	public usuario: any;
 	public totalUsuarios: any;
 	public totalRoles: any;
@@ -21,10 +23,8 @@ export class AgregarusuarioComponent implements OnInit{
 	public servicioUsuario: any;
 	public servicioPersona: any;
 	public servicioRole: any;
-  public isPersona: boolean;
   public persona: any;
   public rolePersona: any;
-  public tienePersona: any;
   public emailValido = true;
 
   	// Necesarios para autocomplete
@@ -50,41 +50,42 @@ export class AgregarusuarioComponent implements OnInit{
     public servicioEventos: EventosService
 		)
 	{
-	this.tienePersona = false;
-	this.personasDisponibles = data.personasDisponibles;
-	this.servicioPersona = data.servicioPersona;
-	this.servicioUsuario = data.servicioUsuario;
-	this.servicioRole = data.servicioRole;
+		this.personasDisponibles = data.personasDisponibles;
+		console.log(this.personasDisponibles)
+		this.servicioPersona = data.servicioPersona;
+		this.servicioUsuario = data.servicioUsuario;
+		this.servicioRole = data.servicioRole;
 
 		this.usuario = data.usuario;
 		this.totalRoles = data.roles;
 		this.totalPersonas = data.personas;
+		console.log(this.totalPersonas)
 		this.totalUsuarios = data.usuarios;
-	if(data.persona)
-	{
-	   this.usuario.Persona_id = data.persona.id;
-	 this.persona = data.persona;
-	 this.tienePersona = true;
-	}
 
+		this.servicioRole.getRoles().subscribe(data => {
+		  var todo: any = data;
+		  todo = todo.data;
+		  this.totalRoles = todo;
 
+		});
 
+		this.actualizarPersonas();
+		console.log(this.totalPersonas)
 
 	}
 
   ngOnInit()
   {
-	this.servicioRole.getRoles().subscribe(data => {
-	  var todo: any = data;
-	  todo = todo.data;
-	  this.totalRoles = todo;
+	
+	  this.agregarForm = new FormGroup({
+	        email: new FormControl('', [Validators.required]),
+	        rol: new FormControl('', [Validators.required]),
+	        personaAsociada: new FormControl('', [Validators.required])
+    
+    	});
 
-	});
-
-	  this.actualizarPersonas();
-
-	  this.personaCtrl = new FormControl();
-		    this.filteredPersonas = this.personaCtrl.valueChanges
+	 
+		    this.filteredPersonas = this.agregarForm.controls['personaAsociada'].valueChanges
 		      .pipe(
 		        startWith(''),
 		        map(persona => persona ? this.filterPersonas(persona) : this.personasDisponibles.slice())
@@ -111,25 +112,6 @@ export class AgregarusuarioComponent implements OnInit{
 	  this.totalUsuarios = todo;
 	  this.filtrarUsuariosRegistrados();
 
-	if(this.tienePersona)
-	{
-	  this.isPersona = false;
-    this.usuario.password = this.GeneratePassword();
-	 for( let i = 0 ; i < this.totalUsuarios.length ; i ++)
-	 {
-	  if( parseInt(this.totalUsuarios[i].Persona_id) === this.persona.id)
-	  {
-
-		this.usuario = this.totalUsuarios[i];
-		this.servicioRole.getRole(this.usuario.Role_id).subscribe(data => { var todo: any = data; todo = todo.data; this.rolePersona = todo.nombre});
-
-    this.isPersona = true;
-
-		break;
-	  }
-	 }
-	}
-
 	});
   }
 
@@ -146,6 +128,8 @@ export class AgregarusuarioComponent implements OnInit{
 
 	agregarUsuario()
 	{
+		this.usuario.password = this.GeneratePassword();
+
 		this.servicioUsuario.registerUser(this.usuario).subscribe(data => {
 			this.dialogRef.close();
       this.servicioEventos.hiceUnCambio();

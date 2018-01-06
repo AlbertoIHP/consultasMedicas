@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, Inject, Input, OnInit } from '@angular/core';
 import { EventosService } from '../../../Services/eventos/eventos.service';
 
 import { Usuario } from '../../../Models/Usuario.model';
@@ -40,7 +40,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 	templateUrl: './usuarios.component.html',
 	styleUrls: ['./usuarios.component.css']
 })
-export class UsuariosComponent {
+export class UsuariosComponent implements OnInit{
 
 
 
@@ -127,11 +127,13 @@ export class UsuariosComponent {
   	this.totalPersonas = [];
   	this.personasDisponibles = [];
   	this.totalUsuarios = [];
-  	this.actualizarRoles();
+  	//this.actualizarRoles();
   	this.actualizarPersonas();
-  	this.actualizarUsuarios();
+  	//this.actualizarUsuarios();
     this.servicioEventos.seActivo.subscribe(() => {
-        this.actualizarUsuarios();
+        //this.actualizarUsuarios();
+        this.actualizarPersonas();
+        //this.actualizarRoles();
       });
 	}
 
@@ -142,6 +144,7 @@ export class UsuariosComponent {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalRoles = todo;
+			this.actualizarPersonas();
 		});
 	}
 
@@ -152,12 +155,22 @@ export class UsuariosComponent {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalPersonas = todo;
+			console.log(this.totalPersonas)
+			console.log(data)
+			this.totalRoles = [];
+			this.servicioRole.getRoles().subscribe(data => {
+				var todo: any = data;
+				todo = todo.data;
+				this.totalRoles = todo;
+				this.actualizarUsuarios();
+			});
+			
 		});
 	}
 
 	actualizarUsuarios ()
 	{
-	  this.totalUsuarios = [];
+	  	this.totalUsuarios = [];
 		this.servicioUsuario.getUsers().subscribe(data => {
 			var todo: any = data;
 			todo = todo.data;
@@ -168,19 +181,19 @@ export class UsuariosComponent {
 			this.filtrarUsuariosRegistrados();
 
 
-      //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalUsuarios);
+		    //DATATABLE
+		    this.exampleDatabase  = new ExampleDatabase(this.totalUsuarios);
 
-      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'Usuario');
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          })
+		    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'Usuario');
+		    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+		        .debounceTime(150)
+		        .distinctUntilChanged()
+		        .subscribe(() => {
+		        	if (!this.dataSource) { return; }
+		            this.dataSource.filter = this.filter.nativeElement.value;
+		        })
 
-	 });
+	 	});
 	}
 
 
@@ -254,7 +267,10 @@ export class UsuariosComponent {
 
   agregacionUsuario()
   {
-
+  	console.log(this.personasDisponibles)
+  	console.log(this.totalPersonas)
+  	console.log(this.totalUsuarios)
+  	console.log(this.totalRoles)
 	let dialogRef = this.dialog.open(AgregarusuarioComponent, {
 	  width: '700px',
 	data: {
@@ -303,11 +319,13 @@ export class UsuariosComponent {
 	{
 		for ( let i = 0 ; i < this.totalUsuarios.length ; i ++ )
 		{
+			console.log("Hola")
 			for ( let j = 0 ; j < this.personasDisponibles.length ; j ++ )
-			{
+			{	console.log("chao")
 				if (parseInt(this.totalUsuarios[i].Persona_id) === this.personasDisponibles[j].id)
 				{
 					this.personasDisponibles.splice(j, 1);
+					console.log(this.personasDisponibles)
 				}
 			}
 		}

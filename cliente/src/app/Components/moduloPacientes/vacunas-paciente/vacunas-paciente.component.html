@@ -2,7 +2,7 @@
 
 <div class="example-header" >
 
-    <label for="finder">Buscar por fecha...</label>
+    <label for="finder">Buscar por rut...</label>
     <input id="finder" matInput #filter >
 
 </div>
@@ -40,7 +40,7 @@
 
   <div class="example-no-results"
        [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
-       No hay registros con dicha fecha.
+       No hay registros con dicho rut.
   </div>
 
   <mat-paginator #paginator

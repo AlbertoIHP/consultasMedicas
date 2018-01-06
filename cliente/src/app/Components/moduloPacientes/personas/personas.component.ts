@@ -70,7 +70,9 @@ export class PersonaComponent{
   'Telefonos',
   'Sexo',
   'Estado Civil',
-  'Comuna'
+  'Comuna',
+  "Fecha Nacimiento",
+  "Direccion"
   ];
 
   public totalPacientes: Persona[];
@@ -226,7 +228,8 @@ export class PersonaComponent{
     this.pasarStringId(a);
 
   let dialogRef = this.dialog.open(EditarpersonaComponent, {
-    width: '500px',
+    width: '1000px',
+    height: '600px',
   data: {
   persona: a,
   regiones: this.totalRegiones,
@@ -258,7 +261,7 @@ export class PersonaComponent{
     this.pasarStringId(a);
 
   let dialogRef = this.dialog.open(VerPrevisionComponent, {
-    width: '700px',
+    width: '900px',
     data:
     {
      persona: a

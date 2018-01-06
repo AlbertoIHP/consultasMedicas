@@ -1,15 +1,25 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Vacuna } from '../../../../Models/Vacuna.model';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-editar-vacuna',
   templateUrl: './editar-vacuna.component.html',
   styleUrls: ['./editar-vacuna.component.css']
 })
-export class EditarVacunaComponent {
+export class EditarVacunaComponent implements OnInit {
+  editarForm: FormGroup;
   public vacuna: Vacuna;
   public servicioVacuna:any; 
+
+  ngOnInit(){
+
+      this.editarForm = new FormGroup({
+            nombre: new FormControl('', [Validators.required]),
+           
+        });
+    }
 
   constructor(
   		public dialogRef: MatDialogRef<EditarVacunaComponent>,
@@ -33,8 +43,5 @@ export class EditarVacunaComponent {
 		});
 	}
 
-
-  ngOnInit() {
-  }
 
 }

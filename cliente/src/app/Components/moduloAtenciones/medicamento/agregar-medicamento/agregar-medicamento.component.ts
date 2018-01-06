@@ -11,6 +11,8 @@ import { AlergiasMedicamentosPacienteService } from '../../../../Services/alergi
 import { Paciente } from '../../../../Models/Paciente.model';
 import { PacienteService } from '../../../../Services/paciente/paciente.service';
 
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-agregar-medicamento',
@@ -18,13 +20,22 @@ import { PacienteService } from '../../../../Services/paciente/paciente.service'
   styleUrls: ['./agregar-medicamento.component.css']
 })
 export class AgregarMedicamentoComponent implements OnInit {
-	
+	agregarForm: FormGroup;
   public nuevoMedicamento: Medicamento;
   public servicioMedicamento: any;
   public totalPacientes: Paciente[];
   public nuevaAlergiasMedicamentosPaciente: AlergiasMedicamentosPaciente;
   public nuevoUsoMedicamento: UsoMedicamento;
   public totalMedicamentos: Medicamento[];
+
+  ngOnInit(){
+
+      this.agregarForm = new FormGroup({
+            nombreComun: new FormControl('', [Validators.required]),
+            nombreCientifico: new FormControl('', [Validators.required]),
+           
+        });
+    }
 
    constructor(
   	public dialogRef: MatDialogRef<AgregarMedicamentoComponent>,
@@ -40,9 +51,6 @@ export class AgregarMedicamentoComponent implements OnInit {
     this.nuevaAlergiasMedicamentosPaciente= new AlergiasMedicamentosPaciente();
     this.nuevoUsoMedicamento=new UsoMedicamento();
     this.totalMedicamentos=[];
-  }
-
-  ngOnInit() {
   }
 
   onNoClick()

@@ -6,7 +6,7 @@
       <ng-template matStepLabel>Información General</ng-template>
 
       <mat-form-field style="width: 100% !important;" >
-        <mat-select placeholder="Especialidad" [(ngModel)]="medico.Especialidad_id" style="width: 100% !important;">
+        <mat-select placeholder="Especialidad" required [(ngModel)]="medico.Especialidad_id" style="width: 100% !important;">
           <mat-option style="width: 100% !important;" *ngFor="let especialidad of totalEspecialidades" [value]="especialidad.id">
             {{ especialidad.nombre }}
           </mat-option>
@@ -16,7 +16,7 @@
 
 
       <mat-form-field style="width: 100% !important;" >
-        <mat-select placeholder="Seleccione una Persona para asociar al Médico" [(ngModel)]="medico.Persona_id" style="width: 100% !important;">
+        <mat-select placeholder="Seleccione una Persona para asociar al Médico" required [(ngModel)]="medico.Persona_id" style="width: 100% !important;">
           <mat-option style="width: 100% !important;" *ngFor="let persona of personasDisponibles" [value]="persona.id">
            ( {{ persona.rut }} ) {{persona.nombre1 }} {{persona.apellido1}}
           </mat-option>

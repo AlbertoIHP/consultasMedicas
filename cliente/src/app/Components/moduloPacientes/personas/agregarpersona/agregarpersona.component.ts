@@ -1,18 +1,27 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Component, Inject, OnInit, LOCALE_ID } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, DateAdapter } from '@angular/material';
 import { Persona } from '../../../../Models/Persona.model';
 import { Usuario } from '../../../../Models/Usuario.model';
 import { UserService } from '../../../../Services/user/user.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
+import { EspDateAdapter } from '../../../Globals/EspDateAdapter';
 
 @Component({
 	selector: 'app-agregarpersona',
 	templateUrl: './agregarpersona.component.html',
-	styleUrls: ['./agregarpersona.component.css']
+	styleUrls: ['./agregarpersona.component.css'],
+  providers: [
+   
+    {provide: LOCALE_ID,useValue: 'es-MX'},
+    {provide: DateAdapter, useClass: EspDateAdapter},
+   
+  ],
 })
 
 export class AgregarpersonaComponent implements OnInit{
+
+  public date;
 	public persona: any;
 	public totalPersonas: any[];
 	public totalRegiones: any[];
@@ -29,6 +38,10 @@ export class AgregarpersonaComponent implements OnInit{
 
 	public provinciasMostrar: any[];
 	public comunasMostrar: any[];
+
+  public provinciaPersona:any;
+  public regionPersona:any;
+  public comunaPersona:any;
 
   public servicioComuna: any;
   public servicioEC: any;
@@ -49,10 +62,11 @@ export class AgregarpersonaComponent implements OnInit{
 		public dialogRef: MatDialogRef<AgregarpersonaComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
     private _formBuilder: FormBuilder,
-    public servicioUsuario: UserService
+    public servicioUsuario: UserService,
+    public dateAdapter: DateAdapter<any>, 
 		)
 	{
-
+    dateAdapter.setLocale('es-MX');
     this.servicioRegion = this.data.servicioRegion;
     this.servicioProvincia = this.data.servicioProvincia;
     this.servicioComuna = this.data.servicioComuna;
@@ -60,19 +74,12 @@ export class AgregarpersonaComponent implements OnInit{
     this.servicioEC = this.data.servicioEC;
     this.servicioPersona = this.data.servicioPersona;
     this.nuevoUsuario = new Usuario();
+    this.date = new FormControl(new Date());
 		this.defaultValues();
 	}
 
   ngOnInit()
   {
-
-        this.firstFormGroup = this._formBuilder.group({
-          firstCtrl: ['', Validators.required]
-        });
-        this.secondFormGroup = this._formBuilder.group({
-          secondCtrl: ['', Validators.required]
-        });
-
 
       this.servicioGenero.getGeneros().subscribe(data => {
           var todo: any;
@@ -117,6 +124,29 @@ export class AgregarpersonaComponent implements OnInit{
 
     });
 
+   this.firstFormGroup = new FormGroup({
+          comuna: new FormControl('', [Validators.required]),
+          region: new FormControl('', [Validators.required]),
+          provincia: new FormControl('', [Validators.required]),
+          genero: new FormControl('', [Validators.required]),
+          estadocivil: new FormControl('', [Validators.required]),
+          celular: new FormControl('', [Validators.required]),
+          telefonotrabajo: new FormControl('', [Validators.required]),
+          telefonocasa: new FormControl('', [Validators.required]),
+          direccion: new FormControl('', [Validators.required]),
+          nombre_uno: new FormControl('', [Validators.required]),
+          nombre_dos: new FormControl('', [Validators.required]),
+          apellido_uno: new FormControl('', [Validators.required]),
+          apellido_dos: new FormControl('', [Validators.required]),
+          rut: new FormControl('', [Validators.required])
+      });
+
+       
+
+        this.secondFormGroup = this._formBuilder.group({
+          secondCtrl: ['', Validators.required]
+        });
+
 
   }
 
@@ -141,39 +171,42 @@ export class AgregarpersonaComponent implements OnInit{
 	 this.dialogRef.close();
 	}
 
-	regionSeleccionada(region)
-	{
-		for ( let i = 0 ; i < this.totalProvincias.length ; i ++)
-		{
-			if(this.totalProvincias[i].Region_id === region.id)
-			{
-				this.provinciasMostrar.push(this.totalProvincias[i]);
-			}
-		}
+  regionSeleccionada(region)
+  {
+    this.provinciasMostrar=[];
+    this.comunasMostrar=[];
+    this.firstFormGroup.controls['provincia'].setValue('');
+    this.firstFormGroup.controls['comuna'].setValue('');
+    for ( let i = 0 ; i < this.totalProvincias.length ; i ++)
+    {
+      if(this.totalProvincias[i].Region_id === region.id)
+      {
+        this.provinciasMostrar.push(this.totalProvincias[i]);
+      }
+    }
 
-		this.mostrarRegiones = false;
-		this.mostrarProvincias = true;
-	}
+    this.mostrarProvincias = true;
 
-	provinciaSeleccionada(provincia)
-	{
-		for ( let i = 0 ; i < this.totalComunas.length ; i ++)
-		{
-			if(this.totalComunas[i].Provincia_id === provincia.id)
-			{
-				this.comunasMostrar.push(this.totalComunas[i]);
-			}
-		}
+  }
 
-		this.mostrarProvincias = false;
-		this.mostrarComunas = true;
-	}
+  provinciaSeleccionada(provincia)
+  {
+    this.comunasMostrar=[];
+    this.firstFormGroup.controls['comuna'].setValue('');
+    for ( let i = 0 ; i < this.totalComunas.length ; i ++)
+    {
+      if(this.totalComunas[i].Provincia_id === provincia.id)
+      {
+        this.comunasMostrar.push(this.totalComunas[i]);
+      }
+    }
+
+    this.mostrarComunas = true;
+  }
 
 	agregarPersona()
 	{
-    console.log(this.persona)
-    this.persona.direccion = "Direccion default 322";
-    this.persona.fechaNacimiento = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    this.persona.fechaNacimiento = new Date(this.date.value).toISOString().slice(0, 19).replace('T', ' ');
 		this.servicioPersona.registerPersona(this.persona).subscribe(data => {
 
       this.servicioPersona.getPersonas().subscribe(data => {
@@ -209,8 +242,7 @@ export class AgregarpersonaComponent implements OnInit{
 	comunaSeleccionada(comuna)
 	{
 		this.persona.Comuna_id = comuna.id;
-    if(this.persona.rut != '' && this.validator(this.persona.rut) && this.persona.nombre1 != '' && this.persona.nombre2 != '' && this.persona.apellido1 != '' && this.persona.apellido2 != '' &&
-      this.persona.fono_casa != '' && this.persona.fono_trabajo != '' && this.persona.movil != '')
+    if(this.validator(this.persona.rut))
     {
       this.rutValido = false
     }

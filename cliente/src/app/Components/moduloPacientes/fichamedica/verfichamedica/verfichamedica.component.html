@@ -19,16 +19,19 @@
               <th>Apellidos</th>
               <th>RUT</th>
               <th>Tipo sangre</th>
+              <th>Fecha nacimiento</th>
+              <th>Edad</th>
           </tr>
         </thead>
 
         <tbody>
           <tr >
-            <td>{{paciente.nombres}}</td>
-            <td>{{paciente.apellidos}}</td>
-            <td>{{paciente.rut}}</td>
-            <td>{{paciente.tipoSangrePaciente}}</td>
-            
+            <td>{{datosPaciente.nombre1}} {{datosPaciente.nombre2}}</td>
+            <td>{{datosPaciente.apellido1}} {{datosPaciente.apellido2}}</td>
+            <td>{{datosPaciente.rut}}</td>
+            <td>{{datosPaciente.TipoSangre}}</td>
+            <td>{{datosPaciente.fechaNacimiento}}</td>
+            <td>{{datosPaciente.anho}} año(s) {{datosPaciente.mes}} mes(es) {{datosPaciente.dia}} día(s)</td>
           </tr>
         </tbody>
       </table>
@@ -52,17 +55,18 @@
 
         <tbody>
           <tr >
-            <td>{{paciente.generoPaciente}}</td>
-            <td>{{paciente.estadoCivilPaciente}}</td>
+            <td>{{datosPaciente.Genero}}</td>
+            <td>{{datosPaciente.EstadoCivil}}</td>
 
-            <td *ngIf="personaActual.fono_casa!='none'">{{personaActual.fono_casa}}</td>
-            <td *ngIf="personaActual.fono_casa=='none'"><span class="letraAlerta">sin registro</span></td>
+            <td *ngIf="datosPaciente.fono_casa!='none'">{{datosPaciente.fono_casa}}</td>
+            <td *ngIf="datosPaciente.fono_casa=='none'"><span class="letraAlerta">sin registro</span></td>
 
-            <td *ngIf="personaActual.fono_trabajo!='none'">{{personaActual.fono_trabajo}}</td>
-            <td *ngIf="personaActual.fono_trabajo=='none'"><span class="letraAlerta">sin registro</span></td>
+            <td *ngIf="datosPaciente.fono_trabajo!='none'">{{datosPaciente.fono_trabajo}}</td>
+            <td *ngIf="datosPaciente.fono_trabajo=='none'"><span class="letraAlerta">sin registro</span></td>
             
-            <td *ngIf="personaActual.movil!='none'">{{personaActual.movil}}</td>
-            <td *ngIf="personaActual.movil=='none'"><span class="letraAlerta">sin registro</span></td>
+            <td *ngIf="datosPaciente.movil!='none'">{{datosPaciente.movil}}</td>
+            <td *ngIf="datosPaciente.movil=='none'"><span class="letraAlerta">sin registro</span></td>
+
             
           </tr>
         </tbody>
@@ -78,6 +82,7 @@
               <th>Comuna</th>
               <th>Provincia</th>
               <th>Región</th>
+              <th>Dirección</th>
               <th>Previsión</th>
               
              
@@ -87,11 +92,13 @@
 
         <tbody>
           <tr >
-            <td>{{paciente.comunaPaciente}}</td>
-            <td>{{paciente.provinciaPaciente}}</td>
-            <td>{{paciente.regionPaciente}}</td>
-            <td *ngIf="existePrevision">{{paciente.previsionPaciente}}</td>
-            <td *ngIf="existePrevision==false"><span class="letraAlerta">sin registro</span></td>
+            <td>{{datosPaciente.Comuna}}</td>
+            <td>{{datosPaciente.Provincia}}</td>
+            <td>{{datosPaciente.Region}}</td>
+            <td>{{datosPaciente.direccion}}</td>
+            <td>{{datosPaciente.Prevision}}</td>
+
+            
           </tr>
         </tbody>
       </table>

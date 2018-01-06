@@ -2,29 +2,29 @@
 
 <div mat-dialog-content>
 
+  <form [formGroup]="editarForm">
+
     <mat-form-field class="fullWidth">
-     <input matInput placeholder="Nombre" [(ngModel)]="prevision.nombre">
+     <input matInput placeholder="Nombre" required formControlName="nombre" [(ngModel)]="prevision.nombre">
     </mat-form-field>
 
     <mat-form-field class="fullWidth">
-     <input matInput placeholder="Descripción" [(ngModel)]="prevision.descripcion">
+     <input matInput placeholder="Descripción" required formControlName="descripcion" [(ngModel)]="prevision.descripcion">
     </mat-form-field>
     
   <mat-form-field style="width: 100% !important;">
-    <mat-select placeholder="¿Esta previsión es ISAPRE?" [(ngModel)]="prevision.isapre" style="width: 100% !important;">
-      <mat-option style="width: 100% !important;" [value]="1">
-        Si
-      </mat-option>
-
-      <mat-option style="width: 100% !important;" [value]="0">
-        No
+    <mat-select placeholder="¿Esta previsión es ISAPRE?" required formControlName="isapre" [(ngModel)]="prevision.isapre" style="width: 100% !important;">
+      <mat-option style="width: 100% !important;" *ngFor="let opcion of opciones" [value]="opcion.id">
+        {{opcion.nombre}}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
+</form>
+
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button class="boton-aceptar" (click)="editarPrevision()" tabindex="2">Editar Previsión <mat-icon>refresh</mat-icon></button>
+  <button mat-button class="boton-aceptar" [disabled]="!editarForm.valid" (click)="editarPrevision()" tabindex="2">Editar Previsión <mat-icon>refresh</mat-icon></button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

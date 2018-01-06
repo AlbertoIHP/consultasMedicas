@@ -1,17 +1,42 @@
-import { Component, Inject, OnInit,Input } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Component, Inject, OnInit,Input , ViewChild, ElementRef} from '@angular/core';
 import { AlergiasComunesPaciente } from '../../../../Models/AlergiasComunesPaciente.model';
 import { DatepickerOptions } from 'ng2-datepicker';
-import * as esLocale from 'date-fns/locale/es';
 
 import { AlergiasMedicamentosPacienteService } from '../../../../Services/alergiasmedicamentospaciente/alergias-medicamentos-paciente.service';
 import { MedicamentoService } from '../../../../Services/medicamento/medicamento.service';
 import { PacienteService } from '../../../../Services/paciente/paciente.service';
 
+
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { LOCALE_ID } from '@angular/core';
+import { DateAdapter } from '@angular/material';
+
+//DATATABLE
+import {DataSource} from '@angular/cdk/collections';
+import {MatPaginator, MatSort} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
+import { ExampleDatabase, ExampleDataSource } from '../../../Globals/datasource.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+
 @Component({
   selector: 'app-set-alergias-medicamentos-paciente',
   templateUrl: './set-alergias-medicamentos-paciente.component.html',
-  styleUrls: ['./set-alergias-medicamentos-paciente.component.css']
+  styleUrls: ['./set-alergias-medicamentos-paciente.component.css'],
+  providers: [
+   
+    {provide: LOCALE_ID,
+    useValue: 'es-MX'},
+
+  ],
 })
 export class SetAlergiasMedicamentosPacienteComponent implements OnInit {
 
@@ -24,15 +49,15 @@ export class SetAlergiasMedicamentosPacienteComponent implements OnInit {
   public totalMedicamentos: any;
   public totalAlergiasMedicamentosPaciente:any;
 
+ displayedColumns = ['Medicamento','Estado','Fecha deteccion'];
 
-    options: DatepickerOptions = {
-      minYear: 1970,
-      maxYear: new Date().getFullYear() + 1 ,
-      displayFormat: 'YYYY[-]MM[-]DD',
-      barTitleFormat: 'MMMM YYYY',
-      firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
-      locale: esLocale
-   };
+  //DATATABLE
+  exampleDatabase;
+  selection = new SelectionModel<string>(true, []);
+  dataSource: ExampleDataSource | null;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('filter') filter: ElementRef;
 
    ngOnInit()
   {
@@ -43,8 +68,53 @@ export class SetAlergiasMedicamentosPacienteComponent implements OnInit {
      this.totalMedicamentos=[];
      this.totalAlergiasMedicamentosPaciente=[];
 
+     this.actualizarAtributos();
+
+      this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'SetAlergiasMedicamentosPaciente');
+      Observable.fromEvent(this.filter.nativeElement, 'keyup')
+        .debounceTime(150)
+        .distinctUntilChanged()
+        .subscribe(() => {
+          if (!this.dataSource) { return; }
+          this.dataSource.filter = this.filter.nativeElement.value;
+        });
+
+
+    this.exampleDatabase = [];
+
    
-    this.servicioMedicamento.getMedicamentos().subscribe( data => {
+   
+  }
+
+
+    isAllSelected(): boolean
+  {
+    if (!this.dataSource) { return false; }
+    if (this.selection.isEmpty()) { return false; }
+
+    if (this.filter.nativeElement.value) {
+      return this.selection.selected.length == this.dataSource.renderedData.length;
+    } else {
+      return this.selection.selected.length == this.exampleDatabase.data.length;
+    }
+  }
+
+  masterToggle()
+  {
+    if (!this.dataSource) { return; }
+
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else if (this.filter.nativeElement.value) {
+      this.dataSource.renderedData.forEach(data => this.selection.select(data.id));
+    } else {
+      this.exampleDatabase.data.forEach(data => this.selection.select(data.id));
+    }
+  }
+
+
+  actualizarAtributos(){
+     this.servicioMedicamento.getMedicamentos().subscribe( data => {
       var todo: any = data;
       todo = todo.data;
       this.totalMedicamentos = todo;
@@ -61,6 +131,18 @@ export class SetAlergiasMedicamentosPacienteComponent implements OnInit {
 
             this.obtenerArrayInicio(this.paciente.id,this.arrayAlergiasMedicamentosPaciente,this.totalAlergiasMedicamentosPaciente);
             this.reemplazarIdPorString();
+
+             //DATATABLE
+                  this.exampleDatabase  = new ExampleDatabase(this.arrayAlergiasMedicamentosPaciente);
+
+                  this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'SetAlergiasMedicamentosPaciente');
+                  Observable.fromEvent(this.filter.nativeElement, 'keyup')
+                      .debounceTime(150)
+                      .distinctUntilChanged()
+                      .subscribe(() => {
+                        if (!this.dataSource) { return; }
+                        this.dataSource.filter = this.filter.nativeElement.value;
+                      });
         });
         
 
@@ -73,17 +155,19 @@ export class SetAlergiasMedicamentosPacienteComponent implements OnInit {
 
       if(total[i].Paciente_id===idPaciente){
 
+        if(total[i].fechaInicio != null){
+          total[i].fechaTemp = new Date(total[i].fechaInicio);
+          total[i].esVerdadero=true;
+
+        }else if(total[i].fechaInicio==null){
+          total[i].fechaTemp=null;
+          total[i].esVerdadero=false;
+        }
+
         array.push(total[i]);
       }
 
-      if(total[i].fechaInicio != null){
-
-        total[i].esVerdadero=true;
-
-      }else if(total[i].fechaInicio==null){
-
-        total[i].esVerdadero=false;
-      }
+     
     }
 
   }
@@ -107,11 +191,12 @@ export class SetAlergiasMedicamentosPacienteComponent implements OnInit {
 
     public servicioMedicamento:MedicamentoService,
     public servicioAlergiasMedicamentosPaciente:AlergiasMedicamentosPacienteService,
-    public servicioPaciente:PacienteService
-  
+    public servicioPaciente:PacienteService,
+    public dateAdapter: DateAdapter<any> 
+       
     ) 
   {
-      
+      dateAdapter.setLocale('es-MX');
       
 
      }
@@ -119,8 +204,11 @@ export class SetAlergiasMedicamentosPacienteComponent implements OnInit {
   
   obtenerFecha(alergiaMedicamentoPaciente){
     if(alergiaMedicamentoPaciente.esVerdadero){
-      alergiaMedicamentoPaciente.fechaInicio=new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+      alergiaMedicamentoPaciente.fechaTemp=new Date();
+
     }else if(alergiaMedicamentoPaciente.esVerdadero==false){
+
       alergiaMedicamentoPaciente.fechaInicio=null;
     }
 
@@ -133,11 +221,15 @@ export class SetAlergiasMedicamentosPacienteComponent implements OnInit {
 
     for(let i=0;i<this.arrayAlergiasMedicamentosPaciente.length;i++){
 
-      if(this.arrayAlergiasMedicamentosPaciente[i].fechaInicio!=null){
-      this.arrayAlergiasMedicamentosPaciente[i].fechaInicio=new Date(this.arrayAlergiasMedicamentosPaciente[i].fechaInicio).toISOString().slice(0, 19).replace('T', ' ');
+      if(this.arrayAlergiasMedicamentosPaciente[i].esVerdadero){
+
+        this.arrayAlergiasMedicamentosPaciente[i].fechaInicio=new Date(this.arrayAlergiasMedicamentosPaciente[i].fechaTemp).toISOString().slice(0, 19).replace('T', ' ');
+      
+      }else{
+        this.arrayAlergiasMedicamentosPaciente[i].fechaInicio=null;
+
       }
       this.servicioAlergiasMedicamentosPaciente.editAlergiasMedicamentosPaciente(this.arrayAlergiasMedicamentosPaciente[i], this.arrayAlergiasMedicamentosPaciente[i].id).subscribe( data => {
-        console.log(data);
 
       });
 

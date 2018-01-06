@@ -2,22 +2,26 @@
 
 <div mat-dialog-content>
 
-    <mat-form-field class="fullWidth">
-     <input matInput placeholder="Ubicación" [(ngModel)]="boxConsulta.ubicacion">
-    </mat-form-field>
+	<form [formGroup]="editarForm">
 
-	<mat-form-field style="width: 100% !important;">
-		<mat-select placeholder="Tipo box" [(ngModel)]="boxConsulta.TipoBox_id" style="width: 100% !important;">
-			<mat-option style="width: 100% !important;" *ngFor="let tipobox of totalTipoBoxes" [value]="tipobox.id">
-				{{ tipobox.nombre }}
-			</mat-option>
-		</mat-select>
-	</mat-form-field>
+	    <mat-form-field class="fullWidth">
+	     <input matInput placeholder="Ubicación" formControlName="ubicacion" [(ngModel)]="boxConsulta.ubicacion" required>
+	    </mat-form-field>
+
+		<mat-form-field style="width: 100% !important;">
+			<mat-select placeholder="Tipo box" formControlName="tipoBox" [(ngModel)]="boxConsulta.TipoBox_id" style="width: 100% !important;" required>
+				<mat-option style="width: 100% !important;" *ngFor="let tipobox of totalTipoBoxes" [value]="tipobox.id">
+					{{ tipobox.nombre }}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+	</form>
 
 </div>
 
 
 <div mat-dialog-actions>
-	<button mat-button class="boton-aceptar" (click)="editarBoxConsulta()" tabindex="2">Editar <mat-icon>refresh</mat-icon></button>
+	<button mat-button class="boton-aceptar" [disabled]="!editarForm.valid" (click)="editarBoxConsulta()" tabindex="2">Actualizar box <mat-icon>refresh</mat-icon></button>
 	<button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

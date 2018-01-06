@@ -1,44 +1,74 @@
 
-
-  <div class="row" style="margin-top: 25px !important;height: 375px !important;">
-
-  	 <div class="col s12">
+<div class="example-header" >
 
 
-      <table class="striped">
-        <thead>
-          <tr>
-              <th>Enfermedad</th>
-              <th>Estado</th>
-              <th>Fecha detección</th>
-          </tr>
-        </thead>
+    <label for="finder">Buscar por enfermedad...</label>
+    <input id="finder" matInput #filter >
 
-        <tbody>
-          <tr  *ngFor="let enfermedadPaciente of arrayEnfermedadesCronicasPaciente">
-            <td> {{enfermedadPaciente.nombreEnfermedad}}</td>
-            <td>
-
-	              	<mat-checkbox [(ngModel)]="enfermedadPaciente.esVerdadero" (ngModelChange)="obtenerFecha(enfermedadPaciente)">Posee</mat-checkbox>
-					 
-            </td>
-            <td>
-              
-                <div *ngIf="enfermedadPaciente.esVerdadero">
-                
-                 <ng-datepicker position='bottom-right' [options]="options" [(ngModel)]="enfermedadPaciente.fechaDeteccion" (ngModelChange)="editarEnfermedadesCronicasPaciente()"></ng-datepicker>
-               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+</div>
 
 
-    </div>
+<div class="example-container mat-elevation-z8">
 
-  	
+  <mat-table #table [dataSource]="dataSource" matSort  style="height: 270px !important;">
     
+    <ng-container matColumnDef="Medicamento">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Enfermedad</mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+
+      {{row.nombreEnfermedad}}
+
+      </mat-cell>
+    </ng-container>
+
+     <ng-container matColumnDef="Estado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Estado</mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+        
+        <mat-checkbox [(ngModel)]="row.esVerdadero" (ngModelChange)="obtenerFecha(row)">Posee</mat-checkbox>
+       
+      </mat-cell>
+    </ng-container>
+
+     <ng-container matColumnDef="Fecha deteccion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha detección</mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+
+         <div *ngIf="row.esVerdadero">
+  
+            <mat-form-field>
+
+              <input matInput [matDatepicker]="dp3" disabled [(ngModel)]="row.fechaTemp" (ngModelChange)="editarEnfermedadesCronicasPaciente()">
+              <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+              <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                
+            </mat-form-field>
+          </div>
+
+      </mat-cell>
+    </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+  <div class="example-no-results"
+       [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+       No hay registros con dicha enfermedad.
   </div>
+
+  <mat-paginator #paginator
+                [length]="dataSource.filteredData.length"
+                [pageIndex]="0"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>
+
+
 
 
 

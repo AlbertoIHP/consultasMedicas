@@ -1,26 +1,27 @@
 <mat-horizontal-stepper [linear]="isLinear">
 
   <mat-step [stepControl]="firstFormGroup">
-<form [formGroup]="firstFormGroup">
+
+  <form [formGroup]="firstFormGroup">
 
       <ng-template matStepLabel>Información personal</ng-template>
 
       <div class="row">
         <div class="col s4">
             <mat-form-field class="fullWidth">
-              <input matInput placeholder="Rut" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.rut" (ngModelChange)="buscarRut()"  (keyup.enter)="buscarRut()">
+              <input matInput placeholder="Rut" formControlName="rut" required [(ngModel)]="nuevaPersona.rut" (ngModelChange)="buscarRut()"  (keyup.enter)="buscarRut()">
             </mat-form-field>
         </div>
 
         <div class="col s4">
             <mat-form-field class="fullWidth">
-              <input matInput placeholder="Primer nombre" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.nombre1">
+              <input matInput placeholder="Primer nombre" formControlName="nombre_uno" required [(ngModel)]="nuevaPersona.nombre1">
             </mat-form-field>
         </div>
 
         <div class="col s4">
             <mat-form-field class="fullWidth">
-              <input matInput placeholder="Segundo nombre" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.nombre2">
+              <input matInput placeholder="Segundo nombre" formControlName="nombre_dos" required [(ngModel)]="nuevaPersona.nombre2">
             </mat-form-field>
         </div>
       </div>
@@ -30,34 +31,51 @@
 
         <div class="col s6">
             <mat-form-field class="fullWidth">
-              <input matInput placeholder="Primer apellido" formControlName="firstCtrl" required  [(ngModel)]="nuevaPersona.apellido1">
+              <input matInput placeholder="Primer apellido" formControlName="apellido_uno" required  [(ngModel)]="nuevaPersona.apellido1">
             </mat-form-field>
         </div>
 
         <div class="col s6">
             <mat-form-field class="fullWidth">
-              <input matInput placeholder="Segundo apellido" formControlName="firstCtrl" required  [(ngModel)]="nuevaPersona.apellido2">
+              <input matInput placeholder="Segundo apellido" formControlName="apellido_dos" required  [(ngModel)]="nuevaPersona.apellido2">
             </mat-form-field>
         </div>
 
       </div>
 
       <div class="row">
+        <div class="col s6">
+          <mat-form-field class="fullWidth">
+           <input matInput placeholder="Dirección" formControlName="direccion" required [(ngModel)]="nuevaPersona.direccion">
+          </mat-form-field>
+        </div>
+
+        <div class="col s6">
+          <mat-form-field class="fullWidth">
+            <input matInput placeholder="Elegir fecha de nacimiento" [formControl]="date" [matDatepicker]="dp3">
+            <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+            <mat-datepicker #dp3></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="row">
         <div class="col s4">
             <mat-form-field class="fullWidth">
-              <input matInput placeholder="Teléfono de casa" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.fono_casa">
+              <input matInput placeholder="Teléfono de casa" formControlName="telefonocasa" required [(ngModel)]="nuevaPersona.fono_casa">
             </mat-form-field>
         </div>
 
         <div class="col s4">
             <mat-form-field class="fullWidth">
-              <input matInput placeholder="Teléfono de trabajo" formControlName="firstCtrl" required [(ngModel)]="nuevaPersona.fono_trabajo">
+              <input matInput placeholder="Teléfono de trabajo" formControlName="telefonotrabajo" required [(ngModel)]="nuevaPersona.fono_trabajo">
             </mat-form-field>
         </div>
 
         <div class="col s4">
             <mat-form-field class="fullWidth">
-              <input matInput placeholder="Teléfono móvil" formControlName="firstCtrl" required  [(ngModel)]="nuevaPersona.movil">
+              <input matInput placeholder="Teléfono móvil" formControlName="celular" required  [(ngModel)]="nuevaPersona.movil">
             </mat-form-field>
         </div>
       </div>
@@ -67,7 +85,7 @@
 
         <div class="col s6">
           <mat-form-field style="width: 100% !important;">
-            <mat-select formControlName="firstCtrl" required placeholder="Género" style="width: 100% !important;">
+            <mat-select formControlName="genero" required placeholder="Género" style="width: 100% !important;">
               <mat-option style="width: 100% !important;" *ngFor="let genero of totalGeneros" [value]="genero.id" (click)="generoSeleccionado(genero)">
                 {{ genero.nombre }}
               </mat-option>
@@ -77,7 +95,7 @@
 
         <div class="col s6" >
           <mat-form-field style="width: 100% !important;">
-          <mat-select formControlName="firstCtrl" required placeholder="Estado Civil" style="width: 100% !important;">
+          <mat-select formControlName="estadocivil" required placeholder="Estado Civil" style="width: 100% !important;">
             <mat-option style="width: 100% !important;" *ngFor="let ec of totalEstadoCiviles" [value]="ec.id" (click)="ecSeleccionado(ec)">
             {{ ec.nombre }}
             </mat-option>
@@ -88,41 +106,46 @@
       </div>
 
 
-      <div class="row" >
-        <div class="col s12">
-
-          <mat-form-field style="width: 100% !important;" *ngIf="mostrarRegiones">
-          <mat-select formControlName="firstCtrl" required placeholder="Región" style="width: 100% !important;">
-          <mat-option style="width: 100% !important;" *ngFor="let region of totalRegiones" [value]="region.id" (click)="regionSeleccionada(region)">
-          {{ region.nombre }}
-          </mat-option>
-          </mat-select>
-          </mat-form-field>
-
-
-          <mat-form-field style="width: 100% !important;" *ngIf="mostrarProvincias">
-          <mat-select formControlName="firstCtrl" required placeholder="Provincia" style="width: 100% !important;">
-          <mat-option style="width: 100% !important;" *ngFor="let provincia of provinciasMostrar" [value]="provincia.id" (click)="provinciaSeleccionada(provincia)">
-          {{ provincia.nombre }}
-          </mat-option>
-          </mat-select>
-          </mat-form-field>
-
-
-
-          <mat-form-field style="width: 100% !important;" *ngIf="mostrarComunas">
-          <mat-select formControlName="firstCtrl" required placeholder="Comuna" style="width: 100% !important;" >
-          <mat-option style="width: 100% !important;" *ngFor="let comuna of comunasMostrar" [value]="comuna.id" (click)="comunaSeleccionada(comuna)">
-          {{ comuna.nombre }}
-          </mat-option>
-          </mat-select>
+       <div class="row">
+        <div class="col s4">
+          <mat-form-field style="width: 100% !important;">
+            <mat-select  required placeholder="Región" style="width: 100% !important;" formControlName="region">
+              <mat-option style="width: 100% !important;" *ngFor="let region of totalRegiones" [value]="region.id" (click)="regionSeleccionada(region)">
+              {{ region.nombre }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
+        
+        <div class="col s4">
+          <mat-form-field style="width: 100% !important;">
+            <mat-select  required placeholder="Provincia" style="width: 100% !important;" formControlName="provincia">
+              
+                <mat-option style="width: 100% !important;" *ngFor="let provincia of provinciasMostrar" [value]="provincia.id" (click)="provinciaSeleccionada(provincia)">
+                {{ provincia.nombre }}
+                </mat-option>
+              
+            </mat-select>
+          </mat-form-field>
+        </div>
+        
+        <div class="col s4">
+          <mat-form-field style="width: 100% !important;">
+            <mat-select  required placeholder="Comuna" style="width: 100% !important;" formControlName="comuna">
+
+                <mat-option  style="width: 100% !important;" *ngFor="let comuna of comunasMostrar" [value]="comuna.id" (click)="comunaSeleccionada(comuna)">
+                {{ comuna.nombre }}
+                </mat-option>
+       
+            </mat-select>
+          </mat-form-field>
+        </div>
+        
       </div>
 
       <div class="row">
       <div class="col s12">
-         <button disabled="{{puedeSeguir}}" mat-button matStepperNext style="width: 100%">Siguiente<mat-icon>arrow_forward</mat-icon></button>
+         <button [disabled]="puedeSeguir && !firstFormGroup.valid" mat-button matStepperNext style="width: 100%">Siguiente<mat-icon>arrow_forward</mat-icon></button>
       </div>
 
       </div>
@@ -145,7 +168,8 @@
 
         <div class="col s6">
             <mat-form-field class="fullWidth">
-              <input matInput placeholder="Contraseña" type="password" formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.password" (ngModelChange)="validateEmail(nuevoUsuario.email)">
+              <input matInput placeholder="Contraseña" type="password" [type]="hide ? 'password' : 'text'" formControlName="secondCtrl" required [(ngModel)]="nuevoUsuario.password" (ngModelChange)="validateEmail(nuevoUsuario.email)">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
             </mat-form-field>
         </div>
       </div>
@@ -165,7 +189,7 @@
 
 
   <mat-step style="text-align: center">
-    <ng-template matStepLabel style="text-align: center">Verificacion de cuenta</ng-template>
+    <ng-template matStepLabel style="text-align: center">Verificación de cuenta</ng-template>
 
     <div style="text-align: center !important">
           <img src="https://lh3.googleusercontent.com/Vct_XSpNfhherziE-h0mSSpbrJf2jYM1nvPO2PVkcIECnqqUHCf-2-5j8EObefEmS0o7=w300" style="max-width: 300px; max-height: 300px">

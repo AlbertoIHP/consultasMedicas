@@ -2,14 +2,18 @@
 
 <div mat-dialog-content>
 
-	<mat-form-field class="fullWidth">
-		<input matInput placeholder="Nombre" [(ngModel)]="nuevaAlergia.nombre">
-	</mat-form-field>
+	<form [formGroup]="agregarForm">
+
+		<mat-form-field class="fullWidth">
+			<input matInput placeholder="Nombre" required formControlName="nombre" [(ngModel)]="nuevaAlergia.nombre" required>
+		</mat-form-field>
+
+	</form>
 
 </div>
 
 
 <div mat-dialog-actions>
-	<button mat-button class="boton-aceptar" (click)="agregarAlergia()" tabindex="2">Agregar Alergia <mat-icon>add</mat-icon></button>
+	<button mat-button class="boton-aceptar" [disabled]="!agregarForm.valid" (click)="agregarAlergia()" tabindex="2">Agregar Alergia <mat-icon>add</mat-icon></button>
 	<button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

@@ -1,74 +1,125 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { LOCALE_ID } from '@angular/core';
+import { DateAdapter } from '@angular/material';
+//DATATABLE
+import {DataSource} from '@angular/cdk/collections';
+import {MatPaginator, MatSort} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
+import { ExampleDatabase, ExampleDataSource } from '../../../Globals/datasource.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { AlergiasComunesPaciente } from '../../../../Models/AlergiasComunesPaciente.model';
-import { Persona } from '../../../../Models/Persona.model';
-import { DatepickerOptions } from 'ng2-datepicker';
-import * as esLocale from 'date-fns/locale/es';
-
 
 @Component({
   selector: 'app-editar-alergias-comunes-paciente',
   templateUrl: './editar-alergias-comunes-paciente.component.html',
-  styleUrls: ['./editar-alergias-comunes-paciente.component.css']
+  styleUrls: ['./editar-alergias-comunes-paciente.component.css'],
+   providers: [
+   
+    {provide: LOCALE_ID,
+    useValue: 'es-MX'},
+
+  ],
 })
 export class EditarAlergiasComunesPacienteComponent implements OnInit {
 	public paciente:any;
   public arrayAlergiasComunesPaciente: any;
 
-	public totalPacientes: any;
 	public totalAlergiasComunes: any;
-	public totalPersonas: any;
-  public totalPersonasTemp:any;
 
-  public servicioPaciente: any;
   public servicioAlergiaComun: any;
-  public servicioPersona: any;
   public servicioAlergiasComunesPaciente:any;
 
-    options: DatepickerOptions = {
-      minYear: 1970,
-      maxYear: new Date().getFullYear() + 1 ,
-      displayFormat: 'YYYY[-]MM[-]DD',
-      barTitleFormat: 'MMMM YYYY',
-      firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
-      locale: esLocale
-   };
+  displayedColumns = ['Alergias','Estado','Fecha deteccion'];
+
+  //DATATABLE
+  exampleDatabase;
+  selection = new SelectionModel<string>(true, []);
+  dataSource: ExampleDataSource | null;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('filter') filter: ElementRef;
 
    ngOnInit()
   {
+     this.actualizarAtributos();
+
+        this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'SetAlergiasComunesPaciente');
+      Observable.fromEvent(this.filter.nativeElement, 'keyup')
+        .debounceTime(150)
+        .distinctUntilChanged()
+        .subscribe(() => {
+          if (!this.dataSource) { return; }
+          this.dataSource.filter = this.filter.nativeElement.value;
+        });
+
+
+    this.exampleDatabase = [];
+  }
+
+  actualizarAtributos(){
+
     this.servicioAlergiaComun.getAlergias().subscribe( data => {
       var todo: any = data;
       todo = todo.data;
       this.totalAlergiasComunes = todo;
 
-      this.servicioPaciente.getPacientes().subscribe(data=>{
-        var todo: any = data;
-        todo = todo.data;
-        this.totalPacientes = todo;
+     
         this.reemplazarIdPorString();
-      });
+
+          //DATATABLE
+                  this.exampleDatabase  = new ExampleDatabase(this.arrayAlergiasComunesPaciente);
+
+                  this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'SetAlergiasComunesPaciente');
+                  Observable.fromEvent(this.filter.nativeElement, 'keyup')
+                      .debounceTime(150)
+                      .distinctUntilChanged()
+                      .subscribe(() => {
+                        if (!this.dataSource) { return; }
+                        this.dataSource.filter = this.filter.nativeElement.value;
+                      });
+
+     
     });
+
+  }
+
+    isAllSelected(): boolean
+  {
+    if (!this.dataSource) { return false; }
+    if (this.selection.isEmpty()) { return false; }
+
+    if (this.filter.nativeElement.value) {
+      return this.selection.selected.length == this.dataSource.renderedData.length;
+    } else {
+      return this.selection.selected.length == this.exampleDatabase.data.length;
+    }
+  }
+
+  masterToggle()
+  {
+    if (!this.dataSource) { return; }
+
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else if (this.filter.nativeElement.value) {
+      this.dataSource.renderedData.forEach(data => this.selection.select(data.id));
+    } else {
+      this.exampleDatabase.data.forEach(data => this.selection.select(data.id));
+    }
   }
 
 
   reemplazarIdPorString()
   {
-      var arrayTemp=[];
-      for (let i =0; i < this.totalPersonas.length; i++) {
-       
-        for(let j = 0 ; j < this.totalPacientes.length ; j++)
-
-        {
-          if(this.totalPacientes[j].Persona_id===this.totalPersonas[i].id){
-            //se puede agregar un nuevo elemento (paciente_id) ya que es del ipo any
-            //esto permitirá acceder de inmediado al paciente, sin necesidad de otro método
-            this.totalPersonas[i].Paciente_id=this.totalPacientes[j].id;
-            arrayTemp.push(this.totalPersonas[i]);
-          }
-          //let currentPersona = this.totalPersonas.filter( persona => persona.id === this.totalPacientes[j].Persona_id);
-          
-        }
-    }
+     
 
     for(let i=0;i<this.totalAlergiasComunes.length;i++){
       for(let j=0;j<this.arrayAlergiasComunesPaciente.length;j++){
@@ -77,28 +128,29 @@ export class EditarAlergiasComunesPacienteComponent implements OnInit {
         }
       }
     }
-      this.totalPersonasTemp=arrayTemp;
 
     
   }
 
   constructor(
   	public dialogRef: MatDialogRef<EditarAlergiasComunesPacienteComponent>,
-	@Inject(MAT_DIALOG_DATA) public data: any
+	@Inject(MAT_DIALOG_DATA) public data: any,
+  public dateAdapter: DateAdapter<any> 
   	) {
+
+      dateAdapter.setLocale('es-MX'); 
+      
       this.paciente = data.paciente;
       
       this.arrayAlergiasComunesPaciente = data.arrayAlergiasComunesPaciente;
 
-  		this.totalPacientes=data.pacientes;
+  		
   		this.totalAlergiasComunes=data.alergiasComunes;
-  		this.totalPersonas=data.personas;
-      	this.totalPersonasTemp=[];
-
-  		this.servicioPaciente=data.servicioPaciente;
+  	
   		this.servicioAlergiaComun=data.servicioAlergiaComun;
-  		this.servicioPersona=data.servicioPersona;
-      	this.servicioAlergiasComunesPaciente=data.servicioAlergiasComunesPaciente;
+      this.servicioAlergiasComunesPaciente=data.servicioAlergiasComunesPaciente;
+
+      
 
   	 }
 
@@ -107,12 +159,14 @@ export class EditarAlergiasComunesPacienteComponent implements OnInit {
       this.dialogRef.close();
     }
 
-  obtenerFecha(alergiaPaciente){
+   obtenerFecha(alergiaPaciente){
     if(alergiaPaciente.esVerdadero){
-      alergiaPaciente.fechaDeteccion=new Date().toISOString().slice(0, 19).replace('T', ' ');
+      alergiaPaciente.fechaTemp=new Date();
     }else if(alergiaPaciente.esVerdadero==false){
       alergiaPaciente.fechaDeteccion=null;
     }
+
+
 
   }
   editarAlergiasComunesPaciente()
@@ -120,12 +174,13 @@ export class EditarAlergiasComunesPacienteComponent implements OnInit {
 
     for(let i=0;i<this.arrayAlergiasComunesPaciente.length;i++){
 
-      if(this.arrayAlergiasComunesPaciente[i].fechaDeteccion!=null){
-      this.arrayAlergiasComunesPaciente[i].fechaDeteccion=new Date(this.arrayAlergiasComunesPaciente[i].fechaDeteccion).toISOString().slice(0, 19).replace('T', ' ');
+      if(this.arrayAlergiasComunesPaciente[i].esVerdadero){
+      this.arrayAlergiasComunesPaciente[i].fechaDeteccion=new Date(this.arrayAlergiasComunesPaciente[i].fechaTemp).toISOString().slice(0, 19).replace('T', ' ');
+      }else{
+        this.arrayAlergiasComunesPaciente[i].fechaDeteccion=null;
       }
       this.servicioAlergiasComunesPaciente.editAlergiasComunesPaciente(this.arrayAlergiasComunesPaciente[i], this.arrayAlergiasComunesPaciente[i].id).subscribe( data => {
-        console.log(data);
-        this.dialogRef.close();
+          this.onNoClick();
 
       });
 

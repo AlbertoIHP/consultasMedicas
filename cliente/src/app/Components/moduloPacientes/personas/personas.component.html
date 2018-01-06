@@ -14,8 +14,8 @@
   <mat-table #table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="Acciones">
-      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-      <mat-cell *matCellDef="let row">
+      <mat-header-cell *matHeaderCellDef [ngClass]="'customWidthButtonsClass'"> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customWidthButtonsClass'">
 
              <button *ngIf="row.estado === 1 && usuarioActual.obtenerPermisoUpdate('Personas')" class="btn boton-editar" type="button" (click) = "editarPersona(row)" matTooltip="Editar" >
                 <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
@@ -40,47 +40,46 @@
        </mat-cell>
     </ng-container>
 
-    <!-- Progress Column -->
     <ng-container matColumnDef="Rut">
       <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customWidthClass'"> Rut </mat-header-cell>
       <mat-cell *matCellDef="let row" [ngClass]="'customWidthClass'"> {{row.rut}} </mat-cell>
     </ng-container>
 
-  <!-- Name Column -->
   <ng-container matColumnDef="Nombre">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
     <mat-cell *matCellDef="let row"> {{row.nombre1}} {{row.nombre2}} {{row.apellido1}} {{row.apellido2}}</mat-cell>
   </ng-container>
 
-    <!-- Color Column -->
     <ng-container matColumnDef="Telefonos" >
       <mat-header-cell *matHeaderCellDef mat-sort-header> Teléfonos</mat-header-cell>
       <mat-cell *matCellDef="let row" > {{row.fono_casa}} <br> {{row.fono_trabajo}} <br>  {{row.movil}}</mat-cell>
     </ng-container>
 
-    <!-- Color Column -->
     <ng-container matColumnDef="Sexo" >
       <mat-header-cell *matHeaderCellDef mat-sort-header> Género </mat-header-cell>
       <mat-cell *matCellDef="let row" > {{row.Genero_id}} </mat-cell>
     </ng-container>
 
-    <!-- Color Column -->
     <ng-container matColumnDef="Estado Civil" >
       <mat-header-cell *matHeaderCellDef mat-sort-header> Estado Civil </mat-header-cell>
       <mat-cell *matCellDef="let row" > {{row.EstadoCivil_id}} </mat-cell>
     </ng-container>
 
-    <!-- Color Column -->
     <ng-container matColumnDef="Comuna" >
       <mat-header-cell *matHeaderCellDef mat-sort-header> Comuna </mat-header-cell>
       <mat-cell *matCellDef="let row" > {{row.Comuna_id}} </mat-cell>
     </ng-container>
-<!--
+
      <ng-container matColumnDef="Fecha Nacimiento" >
       <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Nacimiento </mat-header-cell>
       <mat-cell *matCellDef="let row" > {{row.fechaNacimiento}} </mat-cell>
     </ng-container>
-    -->
+
+    <ng-container matColumnDef="Direccion" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.direccion}} </mat-cell>
+    </ng-container>
+    
 
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -1,15 +1,26 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Habito } from '../../../../Models/Habito.model';
 import { HabitoService } from '../../../../Services/habito/habito.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-editar-habito',
   templateUrl: './editar-habito.component.html',
   styleUrls: ['./editar-habito.component.css']
 })
-export class EditarHabitoComponent {
+export class EditarHabitoComponent implements OnInit {
+	editarForm: FormGroup;
 	public habito: Habito;
+
+	ngOnInit(){
+
+	    this.editarForm = new FormGroup({
+	          nombre: new FormControl(this.habito.nombre, [Validators.required]),
+	         
+	      });
+  	}
 
 	constructor(
 		public dialogRef: MatDialogRef<EditarHabitoComponent>,

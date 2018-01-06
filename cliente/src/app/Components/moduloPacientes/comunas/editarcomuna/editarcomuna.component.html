@@ -2,22 +2,26 @@
 
 <div mat-dialog-content>
 
+  <form [formGroup]="editarForm">
+
     <mat-form-field class="fullWidth">
-     <input matInput placeholder="Nombre" [(ngModel)]="comuna.nombre">
+     <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="comuna.nombre" required>
     </mat-form-field>
 
 	<mat-form-field style="width: 100% !important;">
-		<mat-select placeholder="Provincia" [(ngModel)]="comuna.Provincia_id" style="width: 100% !important;">
+		<mat-select placeholder="Provincia" formControlName="provincia" [(ngModel)]="comuna.Provincia_id" style="width: 100% !important;" required>
 			<mat-option style="width: 100% !important;" *ngFor="let provincia of totalProvincias" [value]="provincia.id">
 				{{ provincia.nombre }}
 			</mat-option>
 		</mat-select>
 	</mat-form-field>
 
+</form>
+
 </div>
 
 
 <div mat-dialog-actions>
-	<button mat-button class="boton-aceptar" (click)="editarComuna()" tabindex="2">Actualizar Comuna<mat-icon>refresh</mat-icon></button>
+	<button mat-button class="boton-aceptar" [disabled]="!editarForm.valid" (click)="editarComuna()" tabindex="2">Actualizar Comuna<mat-icon>refresh</mat-icon></button>
 	<button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

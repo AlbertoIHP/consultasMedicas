@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Inject, LOCALE_ID } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, DateAdapter } from '@angular/material';
 import { Usuario } from '../../../Models/Usuario.model';
 import { UserService } from '../../../Services/user/user.service';
 
@@ -28,15 +28,24 @@ import { ProvinciaService } from '../../../Services/provincia/provincia.service'
 import { Comuna } from '../../../Models/Comuna.model';
 import { ComunaService } from '../../../Services/comuna/comuna.service';
 
+import { EspDateAdapter } from '../../Globals/EspDateAdapter';
 
 
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
+  styleUrls: ['./registro.component.css'],
+  providers: [
+   
+    {provide: LOCALE_ID,useValue: 'es-MX'},
+    {provide: DateAdapter, useClass: EspDateAdapter},
+   
+  ],
 })
 export class RegistroComponent implements OnInit {
+  hide = true;
+  public date;
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -78,11 +87,16 @@ export class RegistroComponent implements OnInit {
     public router: Router,
     public servicioEventos: EventosService,
     public servicioUsuario: UserService,
-    public servicioRole: RoleService
+    public servicioRole: RoleService,
+    public dateAdapter: DateAdapter<any>, 
     )
   {
+    dateAdapter.setLocale('es-MX');
+
     this.nuevoUsuario = new Usuario();
     this.nuevaPersona = new Persona();
+    this.date = new FormControl(new Date());
+
     this.actualizarRegiones();
 
     this.actualizarProvincias();
@@ -160,9 +174,25 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit() {
 
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
+    
+     this.firstFormGroup = new FormGroup({
+          comuna: new FormControl('', [Validators.required]),
+          region: new FormControl('', [Validators.required]),
+          provincia: new FormControl('', [Validators.required]),
+          genero: new FormControl('', [Validators.required]),
+          estadocivil: new FormControl('', [Validators.required]),
+          celular: new FormControl('', [Validators.required]),
+          telefonotrabajo: new FormControl('', [Validators.required]),
+          telefonocasa: new FormControl('', [Validators.required]),
+          direccion: new FormControl('', [Validators.required]),
+          nombre_uno: new FormControl('', [Validators.required]),
+          nombre_dos: new FormControl('', [Validators.required]),
+          apellido_uno: new FormControl('', [Validators.required]),
+          apellido_dos: new FormControl('', [Validators.required]),
+          rut: new FormControl('', [Validators.required])
+      });
+
+    
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
@@ -176,8 +206,12 @@ export class RegistroComponent implements OnInit {
    this.dialogRef.close();
   }
 
-  regionSeleccionada(region)
+   regionSeleccionada(region)
   {
+    this.provinciasMostrar=[];
+    this.comunasMostrar=[];
+    this.firstFormGroup.controls['provincia'].setValue('');
+    this.firstFormGroup.controls['comuna'].setValue('');
     for ( let i = 0 ; i < this.totalProvincias.length ; i ++)
     {
       if(this.totalProvincias[i].Region_id === region.id)
@@ -186,12 +220,14 @@ export class RegistroComponent implements OnInit {
       }
     }
 
-    this.mostrarRegiones = false;
     this.mostrarProvincias = true;
+
   }
 
   provinciaSeleccionada(provincia)
   {
+    this.comunasMostrar=[];
+    this.firstFormGroup.controls['comuna'].setValue('');
     for ( let i = 0 ; i < this.totalComunas.length ; i ++)
     {
       if(this.totalComunas[i].Provincia_id === provincia.id)
@@ -200,7 +236,6 @@ export class RegistroComponent implements OnInit {
       }
     }
 
-    this.mostrarProvincias = false;
     this.mostrarComunas = true;
   }
 
@@ -221,9 +256,7 @@ export class RegistroComponent implements OnInit {
     if( !this.seEncontro )
     {
 
-      this.nuevaPersona.direccion = "Direccion default 322";
-      this.nuevaPersona.fechaNacimiento = new Date().toISOString().slice(0, 19).replace('T', ' ');
-      console.log(this.nuevaPersona)
+      this.nuevaPersona.fechaNacimiento = new Date(this.date.value).toISOString().slice(0, 19).replace('T', ' ');      console.log(this.nuevaPersona)
 
       this.servicioPersona.registerPersona(this.nuevaPersona).subscribe(data => {
 
@@ -277,10 +310,7 @@ export class RegistroComponent implements OnInit {
   comunaSeleccionada(comuna)
   {
     this.nuevaPersona.Comuna_id = comuna.id;
-    if( this.nuevaPersona.rut != '' && this.nuevaPersona.nombre1 != '' && this.nuevaPersona.nombre2 != '' && this.nuevaPersona.apellido1 != '' && this.nuevaPersona.apellido2 != '' && this.nuevaPersona.fono_casa != '' && this.nuevaPersona.fono_trabajo != '' && this.nuevaPersona.movil )
-    {
-      this.puedeSeguir = false
-    }
+ 
   }
 
   ecSeleccionado(ec)
@@ -301,12 +331,15 @@ export class RegistroComponent implements OnInit {
     if( this.nuevaPersona.rut != '' )
     {
 
-
-      if(this.validator(this.nuevaPersona.rut))
-      {
-        this.puedeSeguir = true
-      }
-
+       if(this.validator(this.nuevaPersona.rut))
+        {
+          this.puedeSeguir = false
+        }
+        else
+        {
+          this.puedeSeguir = true
+        }
+        
       for( let i = 0 ; i < this.totalPersonas.length ; i ++)
       {
         if(this.totalPersonas[i].rut === this.nuevaPersona.rut)

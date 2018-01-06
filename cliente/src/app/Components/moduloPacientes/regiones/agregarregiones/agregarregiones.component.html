@@ -1,14 +1,17 @@
 <h1 mat-dialog-title style="text-align: center;">Creación de Región</h1>
 
 <div mat-dialog-content>
+	<form [formGroup]="agregarForm">
 
-    <mat-form-field class="fullWidth">
-     <input matInput placeholder="Nombre" [(ngModel)]="nuevaRegion.nombre">
-    </mat-form-field>
+	    <mat-form-field class="fullWidth">
+	     <input matInput placeholder="Nombre" required formControlName="nombre" [(ngModel)]="nuevaRegion.nombre">
+	    </mat-form-field>
+
+	</form>
 
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button class="boton-aceptar" (click)="agregarRegion()" tabindex="2">Agregar Región <mat-icon>add</mat-icon></button>
+  <button mat-button class="boton-aceptar" [disabled]="!agregarForm.valid" (click)="agregarRegion()" tabindex="2">Agregar Región <mat-icon>add</mat-icon></button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
 </div>

@@ -6,7 +6,8 @@ export class EventosService {
     public isSingIn: any;
     public isSingOut: any;
     public isSingUp: any;
-    public seActivoFicha:any;
+    public seActivoFicha: any;
+    public actualizar: any;
 
     constructor() {
         this.seActivo = new EventEmitter();
@@ -14,33 +15,30 @@ export class EventosService {
         this.isSingOut = new EventEmitter();
         this.isSingUp = new EventEmitter();
         this.seActivoFicha = new EventEmitter();
-
+        this.actualizar = new EventEmitter();
     }
 
-    public activarFicha(paciente){
+    public activarFicha(paciente) {
         this.seActivoFicha.emit(paciente);
-
     }
 
-    public hiceUnCambio()
-    {
+    public hiceUnCambio() {
       this.seActivo.emit();
     }
 
+    public actualizacion(boolean) {
+        this.actualizar.emit(boolean);
+    }
 
-    public singIn()
-    {
+    public singIn() {
       this.isSingIn.emit();
     }
 
-    public singOut()
-    {
+    public singOut() {
       this.isSingOut.emit();
     }
 
-    public singUp(newUser)
-    {
+    public singUp(newUser) {
       this.isSingUp.emit(newUser);
     }
-
 }
