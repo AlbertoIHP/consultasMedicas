@@ -17,13 +17,16 @@ class VistaUsuario extends Migration
                         SELECT
                             Usuario.id,
                             Usuario.email,
+                            Usuario.password,
                             Usuario.Role_id,
                             Role.nombre as Role,
                             Usuario.Persona_id
                         FROM 
                             Usuario
                         INNER JOIN 
-                            Role ON Role.id = Usuario.Role_id 
+                            Role ON Role.id = Usuario.Role_id
+                        WHERE
+                            Usuario.deleted_at IS NULL
                         )");
     }
 

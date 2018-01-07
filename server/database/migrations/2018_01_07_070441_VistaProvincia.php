@@ -22,7 +22,9 @@ class VistaProvincia extends Migration
                         FROM 
                             Provincia
                         INNER JOIN 
-                            Region ON Region.id = Provincia.Region_id 
+                            Region ON Region.id = Provincia.Region_id
+                        WHERE
+                            Provincia.deleted_at IS NULL
                         )");
     }
 

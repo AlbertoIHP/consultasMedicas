@@ -323,9 +323,9 @@ export class ExampleDataSource extends DataSource<any> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
       this._exampleDatabase.dataChange,
+      this._paginator.page,
       this._sort.sortChange,
       this._filterChange,
-      this._paginator.page,
     ];
 
     return Observable.merge(...displayDataChanges).map(() => {

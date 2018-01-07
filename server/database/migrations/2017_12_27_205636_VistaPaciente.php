@@ -67,6 +67,8 @@ class VistaPaciente extends Migration
                             PrevisionActual ON Persona.id = PrevisionActual.Persona_id and activado = 1
                         INNER JOIN
                             Prevision ON PrevisionActual.Prevision_id = Prevision.id
+                        WHERE
+                            Paciente.deleted_at IS NULL
                         )");
     }
 

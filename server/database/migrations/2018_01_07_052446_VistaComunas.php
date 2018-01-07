@@ -22,7 +22,9 @@ class VistaComunas extends Migration
                         FROM 
                             Comuna
                         INNER JOIN 
-                            Provincia ON Provincia.id = Comuna.Provincia_id 
+                            Provincia ON Provincia.id = Comuna.Provincia_id
+                        WHERE
+                            Comuna.deleted_at IS NULL 
                         )");
     }
 

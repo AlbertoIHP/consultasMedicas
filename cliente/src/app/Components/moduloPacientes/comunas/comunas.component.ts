@@ -20,7 +20,7 @@ import { AgregarcomunaComponent } from './agregarcomuna/agregarcomuna.component'
 import { EditarcomunaComponent } from './editarcomuna/editarcomuna.component';
 
 // Componente para verificación de roles
-import {UsuarioActual} from '../../Globals/usuarioactual.component';
+import { UsuarioActual } from '../../Globals/usuarioactual.component';
 
 //DATATABLE
 import { DataSource } from '@angular/cdk/collections';
