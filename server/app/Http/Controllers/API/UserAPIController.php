@@ -121,7 +121,8 @@ public function store(Request $request){
 	$input = $request->all();
 
 	$rules = [
-	  'email' => 'required|unique:Usuario',
+	 // 'email' => 'required|unique:Usuario',
+	  'email' => 'required',	
 	  'password' => 'required',
 	];
 

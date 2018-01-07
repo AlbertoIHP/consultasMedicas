@@ -286,7 +286,7 @@ export class UsuariosComponent implements OnInit{
 
 	  dialogRef.afterClosed().subscribe(result => {
 
-		this.actualizarUsuarios();
+		
 	  });
 
 	});
@@ -296,6 +296,7 @@ export class UsuariosComponent implements OnInit{
 
   	filtrarUsuariosRegistrados()
 	{
+		console.log(this.totalUsuarios);
 		for ( let i = 0 ; i < this.totalUsuarios.length ; i ++ )
 		{
 			for ( let j = 0 ; j < this.personasDisponibles.length ; j ++ )
@@ -305,7 +306,7 @@ export class UsuariosComponent implements OnInit{
 				}
 			}
 		}
-	}
+	
 
 
 

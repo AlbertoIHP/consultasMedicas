@@ -1,1 +1,0 @@
-{"version":3,"file":"Medico.model.js","sourceRoot":"","sources":["../../../../src/app/Models/Medico.model.ts"],"names":[],"mappings":";;AAAA;IAOE;QAED,IAAI,CAAC,EAAE,GAAG,CAAC,CAAC;QACZ,IAAI,CAAC,eAAe,GAAG,EAAE,CAAC;QAC1B,IAAI,CAAC,UAAU,GAAG,EAAE,CAAC;QACrB,IAAI,CAAC,GAAG,GAAG,EAAE,CAAC;QACX,IAAI,CAAC,QAAQ,GAAG,CAAC,CAAC;IACpB,CAAC;IACH,aAAC;AAAD,CAAC,AAfD,IAeC;AAfY,wBAAM"}
