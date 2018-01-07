@@ -20,17 +20,16 @@ export class AgregargeneroComponent implements OnInit {
 	public nuevoGenero: Genero;
 
 	ngOnInit() {
-    // Se inician las validaciones usando un FormGroup y se dan los parámetros		
+    	// Se inician las validaciones usando un FormGroup y se dan los parámetros		
     	this.agregarForm = new FormGroup({
 	        nombre: new FormControl('', [Validators.required]),
 	        descripcion: new FormControl('', [Validators.required]),
 	   	});
 
-    //Se inicializa el evento en false
-    this.servicioEvento.actualizacion(false);
+	    //Se inicializa el evento en false
+	    this.servicioEvento.actualizacion(false);
  	}
 
-	
 	constructor(
 		//Se declaran los servicios y componentes a utilizar
 		public dialogRef: MatDialogRef<AgregargeneroComponent>,

@@ -1,11 +1,12 @@
+//Componentes generales
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { startWith } from 'rxjs/operators/startWith';
+import { map } from 'rxjs/operators/map';
 
-import {Observable} from 'rxjs/Observable';
-import {startWith} from 'rxjs/operators/startWith';
-import {map} from 'rxjs/operators/map';
-
+//Modelos y servicios
 import { HabitosSexualesPaciente } from '../../../../Models/HabitosSexualesPaciente.model';
 import { HabitosSexualesPacienteService } from '../../../../Services/habitossexualespaciente/habitos-sexuales-paciente.service';
 
@@ -45,12 +46,15 @@ import { VacunasPacienteService } from '../../../../Services/vacunaspaciente/vac
 import { Vacuna } from '../../../../Models/Vacuna.model';
 import { VacunaService } from '../../../../Services/vacuna/vacuna.service';
 
+import { EventosService } from '../../../../Services/eventos/eventos.service';
+
 @Component({
 	selector: 'app-agregarpaciente',
 	templateUrl: './agregarpaciente.component.html',
 	styleUrls: ['./agregarpaciente.component.css']
 })
 export class AgregarpacienteComponent implements OnInit {
+	//Se declaran los atributos
 	editarForm: FormGroup;
 	public paciente: any;
 	public totalPacientes: any;
@@ -87,7 +91,6 @@ export class AgregarpacienteComponent implements OnInit {
 	public personaCtrl: FormControl;
   	public filteredPersonas: Observable<any[]>;
 
-
 	constructor(
 		public dialogRef: MatDialogRef<AgregarpacienteComponent>,
 		public servicioHabitosSexualesPaciente: HabitosSexualesPacienteService,
@@ -103,126 +106,129 @@ export class AgregarpacienteComponent implements OnInit {
   		public servicioUsoMedicamento: UsoMedicamentoService,
   		public servicioVacuna: VacunaService,
   		public servicioVacunasPaciente: VacunasPacienteService,
-		@Inject(MAT_DIALOG_DATA) public data: any
+		@Inject(MAT_DIALOG_DATA) public data: any,
+    	public servicioEvento: EventosService
 		) {
-			this.personasDisponibles = [];
-			this.paciente = data.paciente;
-			this.totalPacientes = data.pacientes;
-			this.totalPersonas = data.personas;
-			this.totalTS = data.tipoSangres;
-			this.totalGruposEtnicos = data.gruposEtnicos;
-			this.totalOcupaciones = data.ocupaciones;
-			this.servicioPaciente = data.servicioPaciente;
-			this.servicioPersona = data.servicioPersona;
-			this.servicioTS = data.servicioTS;
-			this.personasDisponibles = data.personasDisponibles;
-			
-			this.habitosSexuales = [];
-			this.nuevoHabitosSexualesPaciente = new HabitosSexualesPaciente();
-			
-			this.alergias = [];
-			this.nuevaAlergiaComunPaciente = new AlergiasComunesPaciente();
-			
-			this.medicamentos = [];
-			this.nuevaAlergiaMedicamentoPaciente = new AlergiasMedicamentosPaciente();
+		//Se inicializan los atributos
+		this.personasDisponibles = [];
+		this.paciente = data.paciente;
+		this.totalPacientes = data.pacientes;
+		this.totalPersonas = data.personas;
+		this.totalTS = data.tipoSangres;
+		this.totalGruposEtnicos = data.gruposEtnicos;
+		this.totalOcupaciones = data.ocupaciones;
+		this.servicioPaciente = data.servicioPaciente;
+		this.servicioPersona = data.servicioPersona;
+		this.servicioTS = data.servicioTS;
+		this.personasDisponibles = data.personasDisponibles;
+		
+		this.habitosSexuales = [];
+		this.nuevoHabitosSexualesPaciente = new HabitosSexualesPaciente();
+		
+		this.alergias = [];
+		this.nuevaAlergiaComunPaciente = new AlergiasComunesPaciente();
+		
+		this.medicamentos = [];
+		this.nuevaAlergiaMedicamentoPaciente = new AlergiasMedicamentosPaciente();
 
-			this.enfermedadescronicas = [];
-			this.nuevaEnfermedadCronicaPaciente = new EnfermedadesCronicasPaciente();
+		this.enfermedadescronicas = [];
+		this.nuevaEnfermedadCronicaPaciente = new EnfermedadesCronicasPaciente();
 
-			this.habitos = [];
-			this.nuevoHabitosPaciente = new HabitosPaciente();
+		this.habitos = [];
+		this.nuevoHabitosPaciente = new HabitosPaciente();
 
-			this.nuevoUsoMedicamento = new UsoMedicamento();
+		this.nuevoUsoMedicamento = new UsoMedicamento();
 
-			this.vacunas = [];
-			this.nuevaVacunaPaciente = new VacunasPaciente();
+		this.vacunas = [];
+		this.nuevaVacunaPaciente = new VacunasPaciente();
 
-			this.actualizarAtributos();
+		//Se actualizan los atributos a utilizar
+		this.actualizarAtributos();
+	}
 
-		 }
-
-	ngOnInit()
-	{
-		 this.editarForm = new FormGroup({
+	ngOnInit() {
+		// Se inician las validaciones usando un FormGroup y se dan los parámetros
+		this.editarForm = new FormGroup({
 	      // tslint:disable-next-line
 	      tipoSangre: new FormControl('', [Validators.required]),
 	      personaAsociada: new FormControl('', [Validators.required]),
 	      grupoEtnico: new FormControl('', [Validators.required]),
 	      ocupacion: new FormControl('', [Validators.required])
-	     
-     
     	});
-		    this.filteredPersonas = this.editarForm.controls['personaAsociada'].valueChanges
-		      .pipe(
-		        startWith(''),
-		        map(persona => persona ? this.filterPersonas(persona) : this.personasDisponibles.slice())
+
+    	//Se filtran las personas que se mostrarán en el autocomplete
+	    this.filteredPersonas = this.editarForm.controls['personaAsociada'].valueChanges
+	      .pipe(
+	        startWith(''),
+	        map(persona => persona ? this.filterPersonas(persona) : this.personasDisponibles.slice())
 		);
+
+	    //Se inicializa el evento en false
+	    this.servicioEvento.actualizacion(false);
 	}
 
+	//Se filtran las personas usando el rut como variable
 	filterPersonas(rut: string) {
-	    return this.personasDisponibles.filter(persona =>
-	      persona.rut.toLowerCase().indexOf(rut.toLowerCase()) === 0);
+	    return this.personasDisponibles.filter(persona => 
+	    	persona.rut.toLowerCase().indexOf(rut.toLowerCase()) === 0);
     }
 
-	onNoClick()
-	{
-
+	// Se cierra el diálogo
+	onNoClick() {
 		this.dialogRef.close();
 	}
 
-	actualizarAtributos()
- 	{
+	//Se actualizan los atributos en general que se utilizarán para asignarlos al nuevo paciente
+	actualizarAtributos() {
 	    this.servicioHabitoSexual.getHabitoSexuales().subscribe(data => {
-	      var todo: any = data;
-	      todo = todo.data;
-	      this.habitosSexuales = todo;
+	    	var todo: any = data;
+	    	todo = todo.data;
+	    	this.habitosSexuales = todo;
 
-	      this.servicioAlergia.getAlergias().subscribe(data => {
-		      var todo: any = data;
-		      todo = todo.data;
-		      this.alergias = todo;
+	    	this.servicioAlergia.getAlergias().subscribe(data => {
+		    	var todo: any = data;
+		    	todo = todo.data;
+		    	this.alergias = todo;
 
-		      this.servicioMedicamento.getMedicamentos().subscribe(data => {
-			      var todo: any = data;
-			      todo = todo.data;
-			      this.medicamentos = todo;
+		    	this.servicioMedicamento.getMedicamentos().subscribe(data => {
+			    	var todo: any = data;
+			    	todo = todo.data;
+			    	this.medicamentos = todo;
 
-			      this.servicioEnfermedadCronica.getEnfermedadesCronicas().subscribe(data => {
-				      var todo: any = data;
-				      todo = todo.data;
-				      this.enfermedadescronicas = todo;
+			    	this.servicioEnfermedadCronica.getEnfermedadesCronicas().subscribe(data => {
+				    	var todo: any = data;
+				    	todo = todo.data;
+				    	this.enfermedadescronicas = todo;
 
-				      this.servicioHabito.getHabitos().subscribe(data => {
-					      var todo: any = data;
-					      todo = todo.data;
-					      this.habitos = todo;
+				    	this.servicioHabito.getHabitos().subscribe(data => {
+					  		var todo: any = data;
+					    	todo = todo.data;
+					    	this.habitos = todo;
 
-					      this.servicioVacuna.getVacunas().subscribe(data => {
-						      var todo: any = data;
-						      todo = todo.data;
-						      this.vacunas = todo;
-
+					    	this.servicioVacuna.getVacunas().subscribe(data => {
+						    	var todo: any = data;
+						    	todo = todo.data;
+						    	this.vacunas = todo;
 				    	  });
-
 			    	  });
-
 		    	  });
-
 	    	  });
 	      });
 	    });
  	}
 
-	agregarPaciente()
-	{
+	agregarPaciente() {
+		//Se registra el nuevo paciente
 		this.servicioPaciente.registerPaciente(this.paciente).subscribe(data => {
 			let pacienteAgregado: any;
 
+			//Se obtienen todos los nuevos pacientes
 			this.servicioPaciente.getPacientes().subscribe(data=>{
-	          var todo: any = data;
-	          todo = todo.data;
-	          this.totalPacientes = todo;
+	        	var todo: any = data;
+	        	todo = todo.data;
+	        	this.totalPacientes = todo;
 
+	        	//Se obtiene el paciente recién agregado
 				pacienteAgregado = this.totalPacientes.filter(paciente => paciente.Persona_id === this.paciente.Persona_id);
 				
 				// Crear habitos sexuales del paciente en null
@@ -273,19 +279,19 @@ export class AgregarpacienteComponent implements OnInit {
 					this.nuevaVacunaPaciente.Vacuna_id = this.vacunas[i].id;
 					this.servicioVacunasPaciente.registerVacunaPaciente(this.nuevaVacunaPaciente).subscribe(data => {});
 				}
-
 			});
 			
-			this.dialogRef.close();
-
+			//Se emite un evento para actualizar los datos
+    		this.servicioEvento.actualizacion(true);
+      
+      		// Se cierra el diálogo
+      		this.dialogRef.close();
 		},
 		//Verificamos si es que se ha catcheado algun error y desplegamos alguna alerta
 		(err) => {
-		if (err === 'Used') {
-		alert("Esta persona ya tiene asignado un paciente")
-		}
-
-	});
+			if (err === 'Used') {
+				alert("Esta persona ya tiene asignado un paciente")
+			}
+		});
 	}
-
 }

@@ -1,6 +1,10 @@
+//Componentes generales
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
+//Servicio
+//import { EventosService } from '../../../../Services/eventos/eventos.service';
 
 @Component({
   selector: 'app-editarpaciente',
@@ -8,6 +12,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   styleUrls: ['./editarpaciente.component.css']
 })
 export class EditarpacienteComponent implements OnInit {
+  //Declaración de los atributos
   editarForm: FormGroup;
   public paciente: any;
   public totalPacientes: any;
@@ -23,103 +28,53 @@ export class EditarpacienteComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<EditarpacienteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
+    //public servicioEvento: EventosService
     ) {
-      this.personasDisponibles = [];
-      this.paciente = data.paciente;
-      this.totalPacientes = data.pacientes;
-      this.totalPersonas = data.personas;
-      this.totalTS = data.tipoSangres;
-      this.totalGruposEtnicos = data.gruposEtnicos;
-      this.totalOcupaciones = data.ocupaciones;
-      this.servicioPaciente = data.servicioPaciente;
-      this.servicioPersona = data.servicioPersona;
-      this.servicioTS = data.servicioTS;
-      this.personasDisponibles = this.totalPersonas;
+    // Se inicializan los atributos con los obtenidos en la base de datos
+    this.personasDisponibles = [];
+    this.paciente = data.paciente;
+    this.totalPacientes = data.pacientes;
+    this.totalPersonas = data.personas;
+    this.totalTS = data.tipoSangres;
+    this.totalGruposEtnicos = data.gruposEtnicos;
+    this.totalOcupaciones = data.ocupaciones;
+    this.servicioPaciente = data.servicioPaciente;
+    this.servicioPersona = data.servicioPersona;
+    this.servicioTS = data.servicioTS;
+    this.personasDisponibles = this.totalPersonas;
+  }
 
-     }
-
-
-
-  ngOnInit()
-  {
-    this.actualizarPersonas();
-    this.actualizarTS();
-    this.actualizarPacientes();
-
+  ngOnInit() {
+    // Se inician las validaciones usando un FormGroup y se dan los parámetros
     this.editarForm = new FormGroup({
       tipoSangre: new FormControl(this.paciente.TipoSangre_id, [Validators.required]),
       grupoEtnico: new FormControl(this.paciente.GrupoEtnico_id, [Validators.required]),
       ocupacion: new FormControl(this.paciente.Ocupacion_id, [Validators.required])
     });
+
+    // Se inicializa el evento en false
+    //this.servicioEvento.actualizacion(false);
   }
 
-  actualizarPersonas()
-  {
-    this.servicioPersona.getPersonas().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalPersonas = todo;
-      this.personasDisponibles = this.totalPersonas;
-      this.actualizarPacientes();
-    });
-  }
-
-  onNoClick()
-  {
-
+  //Cerrar el diálogo
+  onNoClick() {
     this.dialogRef.close();
   }
 
-  actualizarTS ()
-  {
-    this.servicioTS.getTipoSangres().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalTS = todo;
-    });
-  }
-
-  actualizarPacientes()
-  {
-    this.servicioPaciente.getPacientes().subscribe(data => {
-    var todo: any = data;
-    todo = todo.data;
-    this.totalPacientes = todo;
-    this.filtrarPacientesRegistrados();
-
-    });
-  }
-
-
-  editarPaciente()
-  {
+  editarPaciente() {
+    //Utilizando el id del paciente a editar, se modifican sus parámetros
     this.servicioPaciente.editPaciente(this.paciente, this.paciente.id).subscribe(data => {
+      //Se emite un evento para no actualizar la vista
+      //this.servicioEvento.actualizacion(true);
+      
+      // Se cierra el diálogo
       this.dialogRef.close();
-
     },
     //Verificamos si es que se ha catcheado algun error y desplegamos alguna alerta
     (err) => {
-    if (err === 'Used') {
-    alert("Esta persona ya tiene asignado un paciente")
-    }
-
-  });
-  }
-
-
-  filtrarPacientesRegistrados()
-  {
-    for ( let i = 0 ; i < this.totalPacientes.length ; i ++ )
-    {
-      for ( let j = 0 ; j < this.personasDisponibles.length ; j ++ )
-      {
-        if (this.totalPacientes[i].Persona_id === this.personasDisponibles[j].id)
-        {
-          this.personasDisponibles.splice(j, 1);
-        }
+      if (err === 'Used') {
+        alert("Esta persona ya tiene asignado un paciente")
       }
-    }
+    });
   }
-
-
 }

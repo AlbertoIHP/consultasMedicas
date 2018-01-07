@@ -1,7 +1,7 @@
 //Componentes generales
 import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 //Modelos y servicios
 import { Genero } from '../../../Models/Genero.model';
@@ -17,11 +17,11 @@ import { EditargeneroComponent } from './editargenero/editargenero.component';
 import { UsuarioActual } from '../../Globals/usuarioactual.component';
 
 //DATATABLE
-import {DataSource} from '@angular/cdk/collections';
-import {MatPaginator, MatSort} from '@angular/material';
-import {SelectionModel} from '@angular/cdk/collections';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
+import { DataSource } from '@angular/cdk/collections';
+import { MatPaginator, MatSort } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/observable/fromEvent';
@@ -61,7 +61,7 @@ export class GenerosComponent  {
         .subscribe(() => {
           if (!this.dataSource) { return; }
           this.dataSource.filter = this.filter.nativeElement.value;
-        })
+        });
     this.exampleDatabase = [];
 
     // Se obtiene el evento emitido desde agregar
@@ -140,7 +140,7 @@ export class GenerosComponent  {
 
   // Se envía el género a modificar desde el frontend
 	edicionGenero(genero) {
-    //Se abre un dialogo para editar la género, se abre un componente hijo
+    //Se abre un diálogo para editar la género, se abre un componente hijo
 		let dialogRef = this.dialog.open(EditargeneroComponent, {
       //Los parámetros se asignan y se envían los datos necesarios
 			width: '700px',
@@ -150,7 +150,7 @@ export class GenerosComponent  {
 			}
 		});
 
-    //Luego de cerrar el dialogo se ejecuta lo siguiente
+    //Luego de cerrar el diálogo se ejecuta lo siguiente
     dialogRef.afterClosed().subscribe(result => {
       // Si recibe un 'false' se actualiza, si no, significa que se dio en editar
         if (!this.actualizar) { this.actualizarGeneros();}
@@ -158,13 +158,13 @@ export class GenerosComponent  {
 	}
 
 	agregacionGenero() {
-    // Se abre un nuevo dialogo para agregar un género, se abre un componente hijo
+    // Se abre un nuevo diálogo para agregar un género, se abre un componente hijo
 		let dialogRef = this.dialog.open(AgregargeneroComponent, {
       //Se asignan los parámetros
 			width: '700px'
 		});
 
-    //Luego de cerrar el dialogo se ejecuta lo siguiente
+    //Luego de cerrar el diálogo se ejecuta lo siguiente
     dialogRef.afterClosed().subscribe(result => {
       // Si recibe un 'true' se actualiza, si no, significa que se dio en cancelar
       if (this.actualizar) { this.actualizarGeneros();}

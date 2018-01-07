@@ -1,23 +1,30 @@
+//Componentes generales
 import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
+//Modelos y servicios
 import { HabitosPaciente } from '../../../Models/HabitosPaciente.model';
 import { HabitosPacienteService } from '../../../Services/habitospaciente/habitos-paciente.service';
 
 import { Habito } from '../../../Models/Habito.model';
 import { HabitoService } from '../../../Services/habito/habito.service';
 
+import { EventosService } from '../../../Services/eventos/eventos.service';
+
+//Componentes hijos
 import { AgregarHabitoComponent } from './agregar-habito/agregar-habito.component';
 import { EditarHabitoComponent } from './editar-habito/editar-habito.component';
-import {UsuarioActual} from '../../Globals/usuarioactual.component';
-import { Router } from '@angular/router';
 
+//Componente para verificación de roles
+import { UsuarioActual } from '../../Globals/usuarioactual.component';
 
 //DATATABLE
-import {DataSource} from '@angular/cdk/collections';
-import {MatPaginator, MatSort} from '@angular/material';
-import {SelectionModel} from '@angular/cdk/collections';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
+import { DataSource } from '@angular/cdk/collections';
+import { MatPaginator, MatSort } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/observable/fromEvent';
@@ -25,7 +32,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/debounceTime';
 import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.component';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-habito',
@@ -33,10 +39,11 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
   styleUrls: ['./habito.component.css']
 })
 export class HabitoComponent {
-	public totalHabitos: Habito[];
+	//Se declaran los atributos
+  public totalHabitos: Habito[];
 	public buscarPorNombre: boolean;
 	public usuarioActual;
-
+  public actualizar;
 
   //DATATABLE
   exampleDatabase;
@@ -45,12 +52,10 @@ export class HabitoComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
-
 	displayedColumns = ['Acciones', 'Nombre'];
 
-
-  ngOnInit()
-  {
+  ngOnInit() {
+    // Se inicializa el datasource
     this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Habito');
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
         .debounceTime(150)
@@ -58,16 +63,14 @@ export class HabitoComponent {
         .subscribe(() => {
           if (!this.dataSource) { return; }
           this.dataSource.filter = this.filter.nativeElement.value;
-        })
+        });
+    this.exampleDatabase = [];
 
-
-    this.exampleDatabase = []
-
+    // Se obtiene el evento emitido desde agregar
+    this.servicioEvento.actualizar.subscribe((data: any) => { this.actualizar = data; });
   }
 
-
-  isAllSelected(): boolean
-  {
+  isAllSelected(): boolean {
     if (!this.dataSource) { return false; }
     if (this.selection.isEmpty()) { return false; }
 
@@ -78,8 +81,7 @@ export class HabitoComponent {
     }
   }
 
-  masterToggle()
-  {
+  masterToggle() {
     if (!this.dataSource) { return; }
 
     if (this.isAllSelected()) {
@@ -91,30 +93,30 @@ export class HabitoComponent {
     }
   }
 
-
 	constructor (
     public servicioHabitosPaciente: HabitosPacienteService,
     public servicioHabito: HabitoService,
     public dialog: MatDialog,
-    public router: Router
-
-
-    )
-  {
-    
+    public router: Router,
+    public servicioEvento: EventosService
+    ) {
+    // Se inicializan los atributos
 		this.usuarioActual=new UsuarioActual();
 		this.totalHabitos = [];
+
+    //Se obtienen los registros de hábitos de la base de datos
 		this.actualizarHabitos();
 	}
 
-	actualizarHabitos ()
-	{
+	actualizarHabitos() {
+    //Se obtienen todos los hábitos desde la API
 		this.servicioHabito.getHabitos().subscribe(data => {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalHabitos = todo;
 
       //DATATABLE
+      //Se asignan los datos obtenidos al datasource
       this.exampleDatabase  = new ExampleDatabase(this.totalHabitos);
 
       this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'Habito');
@@ -125,42 +127,37 @@ export class HabitoComponent {
             if (!this.dataSource) { return; }
             this.dataSource.filter = this.filter.nativeElement.value;
           })
-
-
 		});
 	}
 
-  eliminarHabito (habito)
-  {
-
-   this.servicioHabitosPaciente.getHabitosPacientes().subscribe(data=>{
+  //Se obtiene el hábito desde la fila
+  eliminarHabito(habito) {
+    //Se eliminan primero los que estén asociados con algún paciente
+    this.servicioHabitosPaciente.getHabitosPacientes().subscribe(data=>{
       var todo: any = data;
       todo = todo.data;
       var totalHabitosPaciente = todo;
 
+      //Se comparan las coincidencias y se eliminan
       for(let i=0; i<totalHabitosPaciente.length;i++){
         if(totalHabitosPaciente[i].Habito_id===habito.id){
-          this.servicioHabitosPaciente.deleteHabitosPaciente(totalHabitosPaciente[i].id).subscribe(data=>{
-
-          });
+          this.servicioHabitosPaciente.deleteHabitosPaciente(totalHabitosPaciente[i].id).subscribe(data=>{});
         }
       }
 
-     this.servicioHabito.deleteHabito(habito.id).subscribe( data => {
-      console.log(data);
-      this.actualizarHabitos();
-    });
-
-   });
-    
+      //Se elimina usando la id
+      this.servicioHabito.deleteHabito(habito.id).subscribe( data => {
+        //Se actualiza la tabla
+        this.actualizarHabitos();
+      });
+    });    
   }
 
-
-
-	edicionHabito (habito)
-	{
-
+  // Se envía el hábito para modificar desde el frontend
+	edicionHabito(habito) {
+    //Se abre un diálogo para editar el hábito, se abre un componente hijo
 		let dialogRef = this.dialog.open(EditarHabitoComponent, {
+      //Los parámetros se asignan y se envían los datos necesarios
 			width: '700px',
 			data:
 			{
@@ -168,21 +165,24 @@ export class HabitoComponent {
 			}
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarHabitos();
-		});
+    //Luego de cerrar el diálogo se ejecuta lo siguiente
+    dialogRef.afterClosed().subscribe(result => {
+      // Si recibe un 'false' se actualiza, si no, significa que se dio en editar
+        if (!this.actualizar) { this.actualizarHabitos(); }
+    });
 	}
 
-	agregacionHabito()
-	{
+	agregacionHabito() {
+    // Se abre un nuevo diálogo para agregar un hábito, se abre un componente hijo
 		let dialogRef = this.dialog.open(AgregarHabitoComponent, {
-			width: '700px'
+			//Se asignan los parámetros
+      width: '700px'
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarHabitos();
-		});
+    //Luego de cerrar el diálogo se ejecuta lo siguiente
+    dialogRef.afterClosed().subscribe(result => {
+      // Si recibe un 'true' se actualiza, si no, significa que se dio en cancelar
+      if (this.actualizar) { this.actualizarHabitos(); }
+    });
 	}
 }

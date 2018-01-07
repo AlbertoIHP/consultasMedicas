@@ -1,5 +1,9 @@
+//Componentes generales
 import { Component, ElementRef, ViewChild, Inject, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
+//Modelos y servicios
 import { Persona } from '../../../Models/Persona.model';
 import { PersonaService } from '../../../Services/persona/persona.service';
 
@@ -17,26 +21,24 @@ import { PacienteService } from '../../../Services/paciente/paciente.service';
 
 import { Role } from '../../../Models/Role.model';
 
-import { VerpersonaComponent } from '../personas/verpersona/verpersona.component';
-
-import { AgregarpacienteComponent } from './agregarpaciente/agregarpaciente.component';
-import { EditarpacienteComponent } from './editarpaciente/editarpaciente.component';
-
-
-import { VerFichaMedicaComponent } from '../fichamedica/verfichamedica/verfichamedica.component'
 import { EventosService } from '../../../Services/eventos/eventos.service';
 
-import {UsuarioActual} from '../../Globals/usuarioactual.component';
-import { Router } from '@angular/router';
+//Componentes hijos
+import { VerpersonaComponent } from '../personas/verpersona/verpersona.component';
+import { AgregarpacienteComponent } from './agregarpaciente/agregarpaciente.component';
+import { EditarpacienteComponent } from './editarpaciente/editarpaciente.component';
+import { VerFichaMedicaComponent } from '../fichamedica/verfichamedica/verfichamedica.component'
 import { FichaAtencionComponent } from '../../moduloAtenciones/ficha-atencion/ficha-atencion.component'
 
+//Componente para verificación de roles
+import { UsuarioActual } from '../../Globals/usuarioactual.component';
 
 //DATATABLE
-import {DataSource} from '@angular/cdk/collections';
-import {MatPaginator, MatSort} from '@angular/material';
-import {SelectionModel} from '@angular/cdk/collections';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
+import { DataSource } from '@angular/cdk/collections';
+import { MatPaginator, MatSort } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/observable/fromEvent';
@@ -44,9 +46,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/debounceTime';
 import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.component';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
-
 
 @Component({
 	selector: 'app-pacientes',
@@ -54,6 +53,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 	styleUrls: ['./pacientes.component.css']
 })
 export class PacientesComponent implements OnInit {
+  //Se declaran los atributos
 	public totalPersonas: Persona[];
   public personasDisponibles: Persona[];
 	public totalPacientes: any;
@@ -61,8 +61,7 @@ export class PacientesComponent implements OnInit {
   public totalGruposEtnicos: GrupoEtnico[];
   public totalOcupaciones: Ocupacion[];
 	public usuarioActual;
-
-	displayedColumns = ['Acciones', 'Rut', 'Nombre', 'Tipo Sangre', 'Grupo Etnico', 'Ocupacion'];
+  public actualizar;
 
   //DATATABLE
   exampleDatabase;
@@ -70,12 +69,11 @@ export class PacientesComponent implements OnInit {
   dataSource: ExampleDataSource | null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('filter') filter: ElementRef;
+  @ViewChild('filter') filter: ElementRef;  
+  displayedColumns = ['Acciones', 'Rut', 'Nombre', 'Tipo Sangre', 'Grupo Etnico', 'Ocupacion'];
 
-
-
-  ngOnInit()
-  {
+  ngOnInit() {
+    //Se inicializa el datasource
     this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Paciente');
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
         .debounceTime(150)
@@ -83,16 +81,14 @@ export class PacientesComponent implements OnInit {
         .subscribe(() => {
           if (!this.dataSource) { return; }
           this.dataSource.filter = this.filter.nativeElement.value;
-        })
+        });
+    this.exampleDatabase = [];
 
-
-    this.exampleDatabase = []
-
+    // Se obtiene el evento emitido desde agregar
+    this.servicioEvento.actualizar.subscribe((data: any) => { this.actualizar = data; });
   }
 
-
-  isAllSelected(): boolean
-  {
+  isAllSelected(): boolean {
     if (!this.dataSource) { return false; }
     if (this.selection.isEmpty()) { return false; }
 
@@ -103,8 +99,7 @@ export class PacientesComponent implements OnInit {
     }
   }
 
-  masterToggle()
-  {
+  masterToggle() {
     if (!this.dataSource) { return; }
 
     if (this.isAllSelected()) {
@@ -116,26 +111,18 @@ export class PacientesComponent implements OnInit {
     }
   }
 
-
-
-
-
-
-
-
-
 	constructor(
-		public servicioPersona: PersonaService,
+	  public servicioPersona: PersonaService,
 		public servicioTS: TipoSangreService,
 		public servicioPaciente: PacienteService,
 		public dialog: MatDialog,
     public servicioEventos: EventosService,
     public router: Router,
     public servicioGrupoEtnico: GrupoEtnicoService,
-    public servicioOcupacion: OcupacionService
-    )
-  {
-    
+    public servicioOcupacion: OcupacionService,
+    public servicioEvento: EventosService
+    ) {
+    // Se inicializan los atributos
 		this.usuarioActual=new UsuarioActual();
 		this.totalTS = [];
     this.totalGruposEtnicos=[];
@@ -152,65 +139,39 @@ export class PacientesComponent implements OnInit {
 
 	}
 
-
-/*
-	actualizarPersonas()
-	{
-		this.totalPersonas = [];
-		this.servicioPersona.getPersonas().subscribe( data => {
-			var todo: any = data;
-			todo = todo.data;
-			this.totalPersonas = todo;
-      this.actualizarPacientes();
-
-		});
-
-	}
-*/
-
-
-actualizarPersonas()
-{
-  this.totalPersonas = [];
-  this.servicioPersona.getPersonas().subscribe( data => {
-    var todo: any = data;
-    todo = todo.data;
-    this.totalPersonas = todo;
-    console.log(this.totalPersonas)
-
-    this.totalTS = [];
-    this.servicioTS.getTipoSangres().subscribe( data => {
+  actualizarPersonas() {
+    this.totalPersonas = [];
+    this.servicioPersona.getPersonas().subscribe( data => {
       var todo: any = data;
       todo = todo.data;
-      this.totalTS = todo;
+      this.totalPersonas = todo;
+      console.log(this.totalPersonas)
 
-      this.totalGruposEtnicos=[];
-      this.servicioGrupoEtnico.getGrupoEtnicos().subscribe( data=>{
+      this.totalTS = [];
+      this.servicioTS.getTipoSangres().subscribe( data => {
         var todo: any = data;
         todo = todo.data;
-        this.totalGruposEtnicos = todo;
+        this.totalTS = todo;
 
-        this.totalOcupaciones=[]
-        this.servicioOcupacion.getOcupacions().subscribe(data=>{
+        this.totalGruposEtnicos=[];
+        this.servicioGrupoEtnico.getGrupoEtnicos().subscribe( data=>{
           var todo: any = data;
           todo = todo.data;
-          this.totalOcupaciones = todo;
-          this.actualizarPacientes();
+          this.totalGruposEtnicos = todo;
+
+          this.totalOcupaciones=[]
+          this.servicioOcupacion.getOcupacions().subscribe(data=>{
+            var todo: any = data;
+            todo = todo.data;
+            this.totalOcupaciones = todo;
+            this.actualizarPacientes();
+          });
         });
       });
-
     });
+  }
 
-
-  });
-
-
-}
-
-
-	actualizarTotales ()
-	{
-
+	actualizarTotales() {
 		this.totalTS = [];
 		this.servicioTS.getTipoSangres().subscribe( data => {
 			var todo: any = data;
@@ -234,8 +195,7 @@ actualizarPersonas()
 	}
 
 
-	actualizarPacientes()
-	{
+	actualizarPacientes() {
 		this.totalPacientes = [];
 		this.servicioPaciente.getPacientes().subscribe( data => {
 			var todo: any = data;
@@ -253,7 +213,9 @@ actualizarPersonas()
       this.personasDisponibles = this.totalPersonas;
 
       this.filtrarPacientesRegistrados();
+
       //DATATABLE
+      //Se asignan los datos obtenidos al datasource
       this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
 
       this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'Paciente');
@@ -264,26 +226,14 @@ actualizarPersonas()
             if (!this.dataSource) { return; }
             this.dataSource.filter = this.filter.nativeElement.value;
           })
-
-
-      
-
-
-
-
 		});
 	}
 
 
-  reconocerActivado ()
-  {
-     for ( let i = 0 ; i < this.totalPacientes.length ; i ++)
-    {
-      for( let j = 0 ; j < this.totalPersonas.length ; j ++)
-      {
-        if( parseInt(this.totalPacientes[i].Persona_id) === this.totalPersonas[j].id )
-        {
-
+  reconocerActivado () {
+    for(let i = 0; i < this.totalPacientes.length; i ++) {
+      for(let j = 0; j < this.totalPersonas.length; j ++) {
+        if(parseInt(this.totalPacientes[i].Persona_id) === this.totalPersonas[j].id) {
           this.totalPersonas[j].estado === 0 ? this.totalPacientes[i].activado = 0 : this.totalPacientes[i].activado = 1;
           console.log(this.totalPacientes)
           break;
@@ -292,15 +242,10 @@ actualizarPersonas()
     }
   }
 
-
-  asignarRut()
-  {
-    for ( let i = 0 ; i < this.totalPacientes.length ; i ++)
-    {
-      for( let j = 0 ; j < this.totalPersonas.length ; j ++)
-      {
-        if( parseInt(this.totalPacientes[i].Persona_id) === this.totalPersonas[j].id)
-        {
+  asignarRut() {
+    for (let i = 0; i < this.totalPacientes.length; i ++) {
+      for(let j = 0; j < this.totalPersonas.length; j ++) {
+        if(parseInt(this.totalPacientes[i].Persona_id) === this.totalPersonas[j].id) {
           console.log(this.totalPersonas[j].rut)
           this.totalPacientes[i].rut = this.totalPersonas[j].rut;
           console.log(this.totalPacientes[i]);
@@ -310,97 +255,77 @@ actualizarPersonas()
     }
   }
 
+  //Se envía el paciente desde el frontend para modiicar
+	edicionPaciente(paciente) {
+  	var a = JSON.parse(JSON.stringify(paciente));
 
+  	this.pasarStringId(a);
 
-	eliminarPaciente (paciente)
-	{
-		this.servicioPaciente.deletePaciente(paciente.id).subscribe( data => {
-			this.actualizarPersonas();
-		});
+    //Se abre un diálogo para editar el paciente, se abre un componente hijo
+  	let dialogRef = this.dialog.open(EditarpacienteComponent, {
+      //Los parámetros se asignan y se envían los datos necesarios
+  		width: '700px',
+  		data:
+  		{
+        pacientes: this.totalPacientes,
+    		paciente: a,
+    		personas: this.totalPersonas,
+    	  tipoSangres:this.totalTS,
+        gruposEtnicos:this.totalGruposEtnicos,
+        ocupaciones: this.totalOcupaciones,
+    		servicioPaciente: this.servicioPaciente,
+    		servicioPersona: this.servicioPersona,
+    		servicioTS: this.servicioTS
+  		}
+  	});
+
+    //Por el momento así, pero se debe cambiar para que actualice solo cuando se cancela
+  	dialogRef.afterClosed().subscribe(result => {
+  		this.actualizarPersonas();
+  	});
 	}
 
-
-
-
-	edicionPaciente (paciente)
-	{
-	var a = JSON.parse(JSON.stringify(paciente));
-
-	this.pasarStringId(a);
-
-	console.log(a);
-	let dialogRef = this.dialog.open(EditarpacienteComponent, {
-		width: '700px',
-		data:
-		{
-     pacientes: this.totalPacientes,
-		 paciente: a,
-		 personas: this.totalPersonas,
-		 tipoSangres:this.totalTS,
-     gruposEtnicos:this.totalGruposEtnicos,
-     ocupaciones: this.totalOcupaciones,
-		 servicioPaciente: this.servicioPaciente,
-		 servicioPersona: this.servicioPersona,
-		 servicioTS: this.servicioTS
-
-		}
-	});
-
-	dialogRef.afterClosed().subscribe(result => {
-
-		this.actualizarPersonas();
-	});
-	}
-
-	agregacionPaciente()
-	{
-
+	agregacionPaciente() {
+    // Se abre un nuevo diálogo para agregar un paciente, se abre un componente hijo
 		let dialogRef = this.dialog.open(AgregarpacienteComponent, {
+      //Los parámetros se asignan y se envían los datos necesarios
 			width: '700px',
-		data: {
-			 paciente: new Paciente(),
-			 personas: this.totalPersonas,
-       personasDisponibles: this.personasDisponibles,
-			 tipoSangres:this.totalTS,
-       gruposEtnicos:this.totalGruposEtnicos,
-       ocupaciones: this.totalOcupaciones,
-			 servicioPaciente: this.servicioPaciente,
-			 servicioPersona: this.servicioPersona,
-			 servicioTS: this.servicioTS
-			 }
+		  data:
+      {
+  			paciente: new Paciente(),
+  			personas: this.totalPersonas,
+        personasDisponibles: this.personasDisponibles,
+  			tipoSangres:this.totalTS,
+        gruposEtnicos:this.totalGruposEtnicos,
+        ocupaciones: this.totalOcupaciones,
+  			servicioPaciente: this.servicioPaciente,
+  			servicioPersona: this.servicioPersona,
+  			servicioTS: this.servicioTS
+			}
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarPersonas();
-		});
+    //Luego de cerrar el diálogo se ejecuta lo siguiente
+    dialogRef.afterClosed().subscribe(result => {
+      // Si recibe un 'true' se actualiza, si no, significa que se dio en cancelar
+      if (this.actualizar) { this.actualizarPacientes(); }
+    });
 	}
 
-	desplegarPersona(paciente)
-	{
-	this.servicioPersona.getPersona(parseInt(paciente.Persona_id)).subscribe(data => {
+  //Se obtiene el paciente desde la fila para desplegar los datos de la persona
+	desplegarPersona(paciente) {
+    //Se obtiene la persona específica usando su id
+  	this.servicioPersona.getPersona(parseInt(paciente.Persona_id)).subscribe(data => {
+  		var persona: any = data;
+  		persona = persona.data;
 
-		var persona: any = data;
-		persona = persona.data;
-
-		console.log(persona);
-
-		let dialogRef = this.dialog.open(VerpersonaComponent, {
-		width: '700px',
-		data: { persona: persona }
-		});
-
-		dialogRef.afterClosed().subscribe(result => {
-
-		//this.actualizarPersonas();
-		});
-
-	});
-
-
+      //Se abre un nuvo diálogo para mostrar los datos de la persona
+  		let dialogRef = this.dialog.open(VerpersonaComponent, {
+        //Los parámetros se asignan y se envían los datos necesarios
+    		width: '700px',
+    		data: { persona: persona }
+    	});
+  	});
 	}
-
-
 
 	reemplazarIdPorString()
 	{
@@ -446,7 +371,6 @@ actualizarPersonas()
 		}
 	}
 
-
 	pasarStringId(paciente)
 	{
 		for ( let i = 0 ; i < this.totalTS.length ; i ++)
@@ -474,12 +398,17 @@ actualizarPersonas()
     }
 	}
 
-  desactivarPaciente(paciente)
-  {
+  //Desde la fila se obtiene el paciente que se desactivará
+  desactivarPaciente(paciente) {
+    //Se obtiene la persona específica usando su id
     this.servicioPersona.getPersona(paciente.Persona_id).subscribe(data => {
       var todo: any = data;
       todo = todo.data;
+      
+      //Se modifica el estado de la persona (inactivo = 0)
       todo.estado = 0;
+
+      //Se actualiza la persona usando el servicio
       this.servicioPersona.editPersona(todo, todo.id).subscribe(data => {
         console.log(data);
         //this.actualizarPersonas();
@@ -490,60 +419,54 @@ actualizarPersonas()
 
       })
     });
-
   }
 
- activarPaciente(paciente)
- {
+  //Desde la fila se obtiene el paciente que se activará
+  activarPaciente(paciente) {
+    //Se obtiene la persona específica usando su id
     this.servicioPersona.getPersona(paciente.Persona_id).subscribe(data => {
       var todo: any = data;
       todo = todo.data;
+
+      //Se modifica el estado de la persona (activo = 0)
       todo.estado = 1;
+
+      //Se actualiza la persona usando el servicio
       this.servicioPersona.editPersona(todo, todo.id).subscribe(data => {
-        console.log(data);
-       
         this.servicioEventos.hiceUnCambio();
       })
     });
  }
 
-//función para mostrar la ficha médica del paciente correspondiente
- desplegarFichaPaciente(paciente)
-  {
+  //Función para mostrar la ficha médica del paciente correspondiente
+  desplegarFichaPaciente(paciente) {
 
-   var a = JSON.parse(JSON.stringify(paciente));
+    var a = JSON.parse(JSON.stringify(paciente));
 
-  this.pasarStringId(a);
+    this.pasarStringId(a);
 
-   let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
-    width: '1000px',
-    height:'700px',
-    data: { 
-     
-      paciente: a 
-    }
+    //Abrir un diálogo para mostrar la ficha médica
+    let dialogRef = this.dialog.open(VerFichaMedicaComponent, {
+      //Se asignan los parámetros y envían los datos necesarios
+      width: '1000px',
+      height:'700px',
+      data: { paciente: a }
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-    });
-
   }
-//funcion temporal para desplegar una ficha editable
-  desplegarFichaAtencionPaciente(paciente)
-  {
 
-   var a = JSON.parse( JSON.stringify(paciente) );
-   this.pasarStringId(a);
+  //funcion temporal para desplegar una ficha editable
+  desplegarFichaAtencionPaciente(paciente) {
 
-       let dialogRef = this.dialog.open(FichaAtencionComponent, {
-          width: '1000px',
-          height:'700px',
-          data: { paciente: a }
-        });
+    var a = JSON.parse( JSON.stringify(paciente) );
+    this.pasarStringId(a);
 
- 
-
+    //Abrir un diálogo para mostrar la ficha de atención de paciente
+    let dialogRef = this.dialog.open(FichaAtencionComponent, {
+      //Se asignan los parámetros y envían los datos necesarios
+      width: '1000px',
+      height:'700px',
+      data: { paciente: a }
+    });
   }
 
   filtrarPacientesRegistrados()
@@ -559,5 +482,4 @@ actualizarPersonas()
       }
     }
   }
-
 }
