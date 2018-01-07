@@ -25,8 +25,7 @@ export class VistaPaciente {
 	mes: string;
 	dia: string;
 
-	constructor()
-	{
+	constructor() {
 		this.id = 0;
 		this.Paciente_id = "";
 		this.rut = "";

@@ -9,10 +9,10 @@ import { base } from '../const'
 import { AuthenticationService } from '../authentication/authentication.service';
 
 //Se importan los modelos a utilizar
-import { VistaPaciente } from '../../Models/VistaPaciente.model';
+import { VistaComuna } from '../../Models/VistaComuna.model';
 
 @Injectable()
-export class VistaPacienteService {
+export class VistaComunaService {
 	public base: string = base.api;
 	public options: RequestOptions;
 	public headers: Headers;
@@ -30,15 +30,15 @@ export class VistaPacienteService {
 
 	}
 	//GET
-	getVistaPacientes(): Observable<VistaPaciente[]>
+	getVistaComunas(): Observable<VistaComuna[]>
 	{
-		return this.http.get(this.base+'vistaPacientes', this.options).map((res: Response) => res.json());
+		return this.http.get(this.base+'vistaComunas', this.options).map((res: Response) => res.json());
 	}
 
 	//GET
-	getVistaPaciente(id) : Observable<VistaPaciente>
+	getVistaComuna(id) : Observable<VistaComuna>
 	{
-		return this.http.get(this.base+'vistaPacientes/'+id, this.options).map((res: Response) => res.json());
+		return this.http.get(this.base+'vistaComunas/'+id, this.options).map((res: Response) => res.json());
 	}
 
 }

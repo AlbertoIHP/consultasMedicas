@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 
 // Modelos y servicios
 import { Comuna } from '../../../../Models/Comuna.model';
+
 import { EventosService } from '../../../../Services/eventos/eventos.service';
 
 @Component({
@@ -17,7 +18,6 @@ export class AgregarcomunaComponent implements OnInit{
 	agregarForm: FormGroup;
 	public nuevaComuna: Comuna;
 	public totalProvincias: any;
-	public servicioProvincia: any;
 	public servicioComuna: any;
 
 	ngOnInit() {
@@ -39,7 +39,7 @@ export class AgregarcomunaComponent implements OnInit{
 		) {
 		// Se inicializan los atributos
 		this.nuevaComuna = new Comuna();
-		this.totalProvincias = data.provincias;
+		this.totalProvincias = data.totalProvincias;
 	    this.servicioComuna = data.servicioComuna;
 	}
 

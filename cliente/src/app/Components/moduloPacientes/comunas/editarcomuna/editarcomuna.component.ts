@@ -18,7 +18,6 @@ export class EditarcomunaComponent implements OnInit{
 	editarForm: FormGroup;
 	public comuna: Comuna;
 	public totalProvincias: any;
-    public servicioProvincia: any;
     public servicioComuna: any;
 
 	ngOnInit() {
@@ -27,10 +26,9 @@ export class EditarcomunaComponent implements OnInit{
 	        nombre: new FormControl(this.comuna.nombre, [Validators.required]),
 	        provincia: new FormControl(this.comuna.Provincia_id, [Validators.required]),
 	    });
-	/*
+	
 	    // Se inicializa el evento en false
 	    this.servicioEvento.actualizacion(false);
-	*/
 	}
 
 	constructor(
@@ -41,7 +39,7 @@ export class EditarcomunaComponent implements OnInit{
 		) {
 		// Se inicializan los atributos
 		this.comuna = data.comuna;
-		this.totalProvincias = data.provincias;
+		this.totalProvincias = data.totalProvincias;
 	    this.servicioComuna = data.servicioComuna;
 		}
 
@@ -53,10 +51,9 @@ export class EditarcomunaComponent implements OnInit{
 	editarComuna() {
 		//Usando el id de la comuna, se actualiza con los nuevos datos
 		this.servicioComuna.editComuna(this.comuna, this.comuna.id).subscribe( data => {
-			/*
 			//Se emite un evento para no actualizar la vista
 			this.servicioEvento.actualizacion(true);
-			*/
+			
 			this.dialogRef.close();
 		});
 	}

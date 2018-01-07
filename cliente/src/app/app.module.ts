@@ -44,8 +44,9 @@ import { UsoMedicamentoService } from './Services/usomedicamento/uso-medicamento
 import { AlergiaService } from './Services/alergia/alergia.service';
 import { AlergiasComunesPacienteService } from './Services/alergiascomunespaciente/alergias-comunes-paciente.service';
 
+//Vistas
 import { VistaPacienteService } from './Services/vistas/vista-paciente.service';
-
+import { VistaComunaService } from './Services/vistas/vista-comuna.service';
 
 // SERVICIOS MODULO CITAS
 import { BoxConsultaService } from './Services/boxconsulta/box-consulta.service';
@@ -684,6 +685,7 @@ import {
     FeriadoService,
     { provide: MatPaginatorIntl, useValue: getEspPaginatorIntl() },
     VistaPacienteService,
+    VistaComunaService,
   ],
 
   bootstrap:

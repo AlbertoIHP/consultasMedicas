@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject,AfterViewInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Paciente } from '../../../../Models/Paciente.model';
-import { VistaPaciente } from '../../../../Models/VistaPaciente.model';
 
-import {VistaPacienteService} from '../../../../Services/vistas/vista-paciente.service';
+import { VistaPaciente } from '../../../../Models/VistaPaciente.model';
+import { VistaPacienteService } from '../../../../Services/vistas/vista-paciente.service';
 
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';

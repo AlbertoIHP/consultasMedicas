@@ -1,7 +1,7 @@
 //Componentes generales
 import { Component, ElementRef, ViewChild, Inject, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 //Modelos y servicios
 import { Persona } from '../../../Models/Persona.model';

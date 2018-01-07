@@ -10,6 +10,9 @@ import { ComunaService } from '../../../Services/comuna/comuna.service';
 import { Provincia } from '../../../Models/Provincia.model';
 import { ProvinciaService } from '../../../Services/provincia/provincia.service';
 
+import { VistaComuna } from '../../../Models/VistaComuna.model';
+import { VistaComunaService } from '../../../Services/vistas/vista-comuna.service';
+
 import { EventosService } from '../../../Services/eventos/eventos.service';
 
 // Componentes hijos
@@ -41,8 +44,8 @@ import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.com
 
 export class ComunasComponent {
   	//Se declaran los atributos a usar
+	public datosComunas: VistaComuna[];
 	public totalProvincias: Provincia[];
-	public totalComunas: Comuna[];
 	public usuarioActual;
 	public actualizar;
 
@@ -55,85 +58,86 @@ export class ComunasComponent {
 	@ViewChild('filter') filter: ElementRef;
   	displayedColumns = ['Acciones', 'Nombre', 'Provincia'];
 
-  ngOnInit() {
-  	// Se inicializa el datasource
-    this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Comuna');
-    Observable.fromEvent(this.filter.nativeElement, 'keyup')
-        .debounceTime(150)
-        .distinctUntilChanged()
-        .subscribe(() => {
-          if (!this.dataSource) { return; }
-          this.dataSource.filter = this.filter.nativeElement.value;
-        })
+	ngOnInit() {
+		// Se inicializa el datasource
+		this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Comuna');
+		Observable.fromEvent(this.filter.nativeElement, 'keyup')
+		    .debounceTime(150)
+		    .distinctUntilChanged()
+		    .subscribe(() => {
+		      if (!this.dataSource) { return; }
+		      this.dataSource.filter = this.filter.nativeElement.value;
+		    });
 
-    this.exampleDatabase = []
+		this.exampleDatabase = [];
 
-    // Se obtiene el evento emitido desde agregar
-    this.servicioEvento.actualizar.subscribe((data: any) => { this.actualizar = data; });
-  }
+		// Se obtiene el evento emitido desde agregar
+		this.servicioEvento.actualizar.subscribe((data: any) => { this.actualizar = data; });
+	}
 
 
-  isAllSelected(): boolean {
-    if (!this.dataSource) { return false; }
-    if (this.selection.isEmpty()) { return false; }
+	isAllSelected(): boolean {
+		if (!this.dataSource) { return false; }
+		if (this.selection.isEmpty()) { return false; }
 
-    if (this.filter.nativeElement.value) {
-      return this.selection.selected.length == this.dataSource.renderedData.length;
-    } else {
-      return this.selection.selected.length == this.exampleDatabase.data.length;
-    }
-  }
+		if (this.filter.nativeElement.value) {
+		  return this.selection.selected.length == this.dataSource.renderedData.length;
+		} else {
+		  return this.selection.selected.length == this.exampleDatabase.data.length;
+		}
+	}
 
-  masterToggle() {
-    if (!this.dataSource) { return; }
+	masterToggle() {
+		if (!this.dataSource) { return; }
 
-    if (this.isAllSelected()) {
-      this.selection.clear();
-    } else if (this.filter.nativeElement.value) {
-      this.dataSource.renderedData.forEach(data => this.selection.select(data.id));
-    } else {
-      this.exampleDatabase.data.forEach(data => this.selection.select(data.id));
-    }
-  }
+		if (this.isAllSelected()) {
+		  this.selection.clear();
+		} else if (this.filter.nativeElement.value) {
+		  this.dataSource.renderedData.forEach(data => this.selection.select(data.id));
+		} else {
+		  this.exampleDatabase.data.forEach(data => this.selection.select(data.id));
+		}
+	}
 
-  actualizarComunas () {
-    this.servicioComuna.getComunas().subscribe(data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalComunas = todo;
-      this.reemplazarIdPorString();
+    actualizarComunas () {
+	    this.servicioVistaComuna.getVistaComunas().subscribe(data => {
+	      var todo: any = data;
+	      todo = todo.data;
+	      this.datosComunas = todo;
 
-      //DATATABLE
-      this.exampleDatabase  = new ExampleDatabase(this.totalComunas);
+	      //DATATABLE
+	      this.exampleDatabase  = new ExampleDatabase(this.datosComunas);
 
-      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'Comuna');
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-          .debounceTime(150)
-          .distinctUntilChanged()
-          .subscribe(() => {
-            if (!this.dataSource) { return; }
-            this.dataSource.filter = this.filter.nativeElement.value;
-          })
-    });
-  }
+	      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'Comuna');
+	      Observable.fromEvent(this.filter.nativeElement, 'keyup')
+	          .debounceTime(150)
+	          .distinctUntilChanged()
+	          .subscribe(() => {
+	            if (!this.dataSource) { return; }
+	            this.dataSource.filter = this.filter.nativeElement.value;
+	          })
+    	});
+	}
 
 	constructor (
-    //Se declaran los servicios y componentes a utilizar		
-    public servicioProvincia: ProvinciaService,
-    public servicioComuna: ComunaService,
-    public dialog: MatDialog,
-    public router: Router,
-    public servicioEvento: EventosService) {
+	    //Se declaran los servicios y componentes a utilizar		
+	    public servicioVistaComuna: VistaComunaService,
+	    public servicioProvincia: ProvinciaService,
+	    public servicioComuna: ComunaService,
+	    public dialog: MatDialog,
+	    public router: Router,
+	    public servicioEvento: EventosService) {
       	// Se inicializan los atributos
 		this.usuarioActual=new UsuarioActual();
+		this.datosComunas = [];
 		this.totalProvincias = [];
-		this.totalComunas = [];
+		//Se actualizan los datos de la tabla
 		this.actualizarProvincias();
 		this.actualizarComunas();
 	}
 
-	actualizarProvincias ()
-	{
+	//Se actualizan las provincias a ser enviadas en los diálogos
+	actualizarProvincias() {
 		this.servicioProvincia.getProvincias().subscribe(data => {
 			var todo: any = data;
 			todo = todo.data;
@@ -150,62 +154,24 @@ export class ComunasComponent {
 		});
 	}
 
-
-	reemplazarIdPorString()
-	{
-		for(let i = 0 ; i < this.totalComunas.length ; i ++)
-		{
-
-			for(let j = 0 ; j < this.totalProvincias.length ; j++)
-			{
-				if( parseInt(this.totalComunas[i].Provincia_id) === this.totalProvincias[j].id)
-				{
-					this.totalComunas[i].Provincia_id = this.totalProvincias[j].nombre;
-					break;
-				}
-			}
-
-		}
-	}
-
-	pasarStringId(comuna)
-	{
-		for ( let i = 0 ; i < this.totalProvincias.length ; i ++)
-		{
-		if(comuna.Provincia_id === this.totalProvincias[i].nombre)
-		{
-			comuna.Provincia_id = this.totalProvincias[i].id;
-		}
-		}
-
-	}
-
 	// Se obtiene la comuna a modificar desde el frontend
 	edicionComuna(comuna) {
-
-		var a = JSON.parse( JSON.stringify(comuna) );
-
-		this.pasarStringId(a);
-
 		//Se abre un dialogo para editar la comuna, se abre un componente hijo
 		let dialogRef = this.dialog.open(EditarcomunaComponent, {
 			//Los parámetros se asignan y se envían los datos necesarios
 			width: '700px',
 			data:
 			{
-				comuna: a,
-				provincias: this.totalProvincias,
-		        servicioComuna: this.servicioComuna
+				comuna: comuna,
+		        servicioComuna: this.servicioComuna,
+		        totalProvincias: this.totalProvincias
 			}
 		});
 		
 		//Luego de cerrar el dialogo se ejecuta lo siguiente
 		dialogRef.afterClosed().subscribe(result => {
-			/*
         	// Si recibe un 'false' se actualiza, si no, significa que se dio en editar
-          	if (!this.actualizar) { this.actualizarComunas();}
-          	*/
-          	this.actualizarComunas();
+          	if (!this.actualizar) { this.actualizarComunas();}	
 		});
 	}
 
@@ -216,8 +182,8 @@ export class ComunasComponent {
 			width: '700px',
 			data: 
 			{
-		        provincias: this.totalProvincias,
-		        servicioComuna: this.servicioComuna
+		        servicioComuna: this.servicioComuna,
+		        totalProvincias: this.totalProvincias
       		}
 		});
 
