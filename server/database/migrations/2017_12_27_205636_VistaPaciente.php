@@ -44,21 +44,21 @@ class VistaPaciente extends Migration
                         WHEN 1 THEN day(NOW())-day(fechaNacimiento) 
                         ELSE (DAY(STR_TO_DATE(DATE_FORMAT(fechaNacimiento + INTERVAL 1 MONTH,'%Y-%m-01'),'%Y-%m-%d')-INTERVAL 1 DAY)-day(fechaNacimiento)+day(NOW())) END as dia
                         FROM 
-                        Paciente 
+                            Paciente 
                         INNER JOIN 
-                        Persona ON Persona.id = Paciente.Persona_id 
+                            Persona ON Persona.id = Paciente.Persona_id 
                         INNER JOIN 
-                        TipoSangre ON TipoSangre.id = Paciente.TipoSangre_id 
+                            TipoSangre ON TipoSangre.id = Paciente.TipoSangre_id 
                         INNER JOIN
-                        Ocupacion ON Ocupacion.id = Paciente.Ocupacion_id 
+                            Ocupacion ON Ocupacion.id = Paciente.Ocupacion_id 
                         INNER JOIN 
-                        GrupoEtnico ON GrupoEtnico.id = Paciente.GrupoEtnico_id
+                            GrupoEtnico ON GrupoEtnico.id = Paciente.GrupoEtnico_id
                         INNER JOIN
-                        Genero ON Genero.id = Persona.Genero_id
+                            Genero ON Genero.id = Persona.Genero_id
                         INNER JOIN
-                        Comuna ON Comuna.id = Persona.Comuna_id
+                            Comuna ON Comuna.id = Persona.Comuna_id
                         INNER JOIN
-                        Provincia ON Provincia.id = Comuna.Provincia_id
+                            Provincia ON Provincia.id = Comuna.Provincia_id
                         INNER JOIN
                             Region ON Region.id = Provincia.Region_id
                         INNER JOIN

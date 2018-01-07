@@ -131,4 +131,8 @@ Route::group(['middleware' => ['cors']], function(){
     Route::resource('v1/vistaPacientes', 'VistaPacienteAPIController');
 
     Route::resource('v1/vistaComunas', 'VistaComunaAPIController');
+
+    Route::resource('v1/vistaProvincias', 'VistaProvinciaAPIController');
+
+    Route::resource('v1/vistaUsuarios', 'VistaUsuarioAPIController');
 });

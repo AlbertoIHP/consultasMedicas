@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class VistaComunas extends Migration
+class VistaUsuario extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class VistaComunas extends Migration
      */
     public function up()
     {
-        DB::statement("CREATE VIEW VistaComuna AS (
+        DB::statement("CREATE VIEW VistaUsuario AS (
                         SELECT
-                            Comuna.id,
-                            Comuna.nombre,
-                            Comuna.Provincia_id,
-                            Provincia.nombre AS Provincia
+                            Usuario.id,
+                            Usuario.email,
+                            Usuario.Role_id,
+                            Role.nombre as Role,
+                            Usuario.Persona_id
                         FROM 
-                            Comuna
+                            Usuario
                         INNER JOIN 
-                            Provincia ON Provincia.id = Comuna.Provincia_id 
+                            Role ON Role.id = Usuario.Role_id 
                         )");
     }
 
@@ -33,6 +34,6 @@ class VistaComunas extends Migration
      */
     public function down()
     {
-        DB::statement("DROP VIEW VistaComuna");
+        DB::statement("DROP VIEW VistaUsuario");
     }
 }
