@@ -145,7 +145,7 @@
 
       <div class="row">
       <div class="col s12">
-         <button [disabled]="puedeSeguir && !firstFormGroup.valid" mat-button matStepperNext style="width: 100%">Siguiente<mat-icon>arrow_forward</mat-icon></button>
+         <button [disabled]="puedeSeguir || !firstFormGroup.valid" mat-button matStepperNext style="width: 100%">Siguiente<mat-icon>arrow_forward</mat-icon></button>
       </div>
 
       </div>

@@ -9,19 +9,19 @@
 
         <div class="col s4">
           <mat-form-field class="fullWidth">
-           <input matInput placeholder="Rut" formControlName="rut" required [(ngModel)]="persona.rut" (ngModelChange)="verificarRut()" >
+           <input matInput placeholder="Rut" formControlName="rut" required [(ngModel)]="persona.rut" (ngModelChange)="verificarRut(persona.rut)" >
           </mat-form-field>
         </div>
 
         <div class="col s4">
           <mat-form-field class="fullWidth">
-           <input matInput placeholder="Primer Nombre" formControlName="nombre_uno" required [(ngModel)]="persona.nombre1" (ngModelChange)="verificarRut()">
+           <input matInput placeholder="Primer Nombre" formControlName="nombre_uno" required [(ngModel)]="persona.nombre1">
           </mat-form-field>
         </div>
 
         <div class="col s4">
           <mat-form-field class="fullWidth">
-           <input matInput placeholder="Segundo Nombre" formControlName="nombre_dos" required [(ngModel)]="persona.nombre2" (ngModelChange)="verificarRut()" >
+           <input matInput placeholder="Segundo Nombre" formControlName="nombre_dos" required [(ngModel)]="persona.nombre2" >
           </mat-form-field>
         </div>
       </div>
@@ -29,13 +29,13 @@
       <div class="row">
         <div class="col s6">
           <mat-form-field class="fullWidth">
-           <input matInput placeholder="Primer Apellido" formControlName="apellido_uno" required [(ngModel)]="persona.apellido1" (ngModelChange)="verificarRut()" >
+           <input matInput placeholder="Primer Apellido" formControlName="apellido_uno" required [(ngModel)]="persona.apellido1">
           </mat-form-field>
         </div>
 
         <div class="col s6">
           <mat-form-field class="fullWidth">
-           <input matInput placeholder="Segundo Apellido" formControlName="apellido_dos" required [(ngModel)]="persona.apellido2" (ngModelChange)="verificarRut()" >
+           <input matInput placeholder="Segundo Apellido" formControlName="apellido_dos" required [(ngModel)]="persona.apellido2">
           </mat-form-field>
         </div>
       </div>
@@ -59,19 +59,19 @@
       <div class="row">
         <div class="col s4">
           <mat-form-field class="fullWidth">
-           <input matInput placeholder="Teléfono de Casa" formControlName="telefonocasa" required [(ngModel)]="persona.fono_casa" (ngModelChange)="verificarRut()" >
+           <input matInput placeholder="Teléfono de Casa" formControlName="telefonocasa" required [(ngModel)]="persona.fono_casa">
           </mat-form-field>
         </div>
 
         <div class="col s4">
           <mat-form-field class="fullWidth">
-           <input matInput placeholder="Teléfono de Trabajo" formControlName="telefonotrabajo" required [(ngModel)]="persona.fono_trabajo" (ngModelChange)="verificarRut()" >
+           <input matInput placeholder="Teléfono de Trabajo" formControlName="telefonotrabajo" required [(ngModel)]="persona.fono_trabajo">
           </mat-form-field>
         </div>
 
         <div class="col s4">
           <mat-form-field class="fullWidth">
-           <input matInput placeholder="Teléfono Celular" formControlName="celular" required [(ngModel)]="persona.movil" (ngModelChange)="verificarRut()" >
+           <input matInput placeholder="Teléfono Celular" formControlName="celular" required [(ngModel)]="persona.movil">
           </mat-form-field>
         </div>
       </div>
@@ -136,7 +136,8 @@
       </div>
       <div class="row">
         <div class="col s12">
-          <button mat-button matStepperNext style="width: 100%" [disabled]="rutValido && !firstFormGroup.valid ">Siguiente <mat-icon>arrow_forward</mat-icon> </button>
+          <button mat-button matStepperNext style="width: 100%" [disabled]="rutValido || !firstFormGroup.valid ">Siguiente <mat-icon>arrow_forward</mat-icon> </button>
+          
         </div>
 
       </div>

@@ -253,14 +253,7 @@ export class AgregarpersonaComponent implements OnInit{
 	comunaSeleccionada(comuna) {
 
 		this.persona.Comuna_id = comuna.id;
-    if(this.validator(this.persona.rut))
-    {
-      this.rutValido = false
-    }
-    else
-    {
-      this.rutValido = true
-    }
+    
 	}
 
   GeneratePassword() {
@@ -318,9 +311,17 @@ export class AgregarpersonaComponent implements OnInit{
     }
   }
 
-  verificarRut() {
-
-    console.log("Esta funcion hasta ahora no tiene ninguna utilidad, deprecada en las proximas actualizacioens")
+  verificarRut(rut) {
+    if(this.validator(rut))
+    {
+      this.rutValido = false
+      
+    }
+    else
+    {
+      this.rutValido = true
+      
+    }
   }
 
 }
