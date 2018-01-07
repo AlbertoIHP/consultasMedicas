@@ -1,18 +1,23 @@
+// Componentes generales
 import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
 
-
+// Modelos y servicios
 import { Especialidad } from '../../../Models/Especialidad.model';
 import { EspecialidadService } from '../../../Services/especialidad/especialidad.service';
 
 import { Medico } from '../../../Models/Medico.model';
 import { MedicoService } from '../../../Services/medico/medico.service';
 
+// Componentes hijos
 import { AgregarespecialidadComponent } from './agregarespecialidad/agregarespecialidad.component';
 import { EditarespecialidadComponent } from './editarespecialidad/editarespecialidad.component';
 
 import { MensajeErrorComponent } from '../../Globals/mensaje-error/mensaje-error.component';
 
+// Componente para verificación de roles
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
+
+import { EventosService } from '../../../Services/eventos/eventos.service';
 
 
 
@@ -38,9 +43,11 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./especialidad.component.css']
 })
 export class EspecialidadComponent {
+	//Se declaran los atributos a usar
 	public totalEspecialidades: Especialidad[];
 	public buscarPorNombre: boolean;
 	public usuarioActual;
+	public actualizar;
 
 	// Temporal para validación
 	public totalMedicos: Medico[];
@@ -59,6 +66,7 @@ export class EspecialidadComponent {
 
   ngOnInit()
   {
+  	// Se inicializa el datasource
     this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Especialidad');
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
         .debounceTime(150)
@@ -70,6 +78,10 @@ export class EspecialidadComponent {
 
 
     this.exampleDatabase = []
+
+    // Se obtiene el evento emitido desde agregar
+    this.servicioEvento.actualizar.subscribe((data: any) => { this.actualizar = data; });
+ 
 
   }
 
@@ -99,16 +111,15 @@ export class EspecialidadComponent {
     }
   }
 
-
-
-
-
-
-
-
-
-	constructor (public servicioEspecialidad: EspecialidadService, public servicioMedico: MedicoService, public dialog: MatDialog)
-	{
+	constructor (
+		//Se declaran los servicios y componentes a utilizar	
+		public servicioEspecialidad: EspecialidadService, 
+		public servicioMedico: MedicoService, 
+		public dialog: MatDialog,
+		public servicioEvento: EventosService
+	
+	){
+		// Se inicializan los atributos
 		this.usuarioActual=new UsuarioActual();
 		this.totalEspecialidades = [];
 		this.actualizarEspecialidades();
@@ -161,17 +172,17 @@ export class EspecialidadComponent {
 		return false;
 	}
 
-
+	//Se obtiene la especialidad desde la fila para obtener su id
 	eliminarEspecialidad (especialidad)
 	{
-		console.log('click');
 		if(this.verificarUsoEspecialidad(especialidad)==true){
 
 			this.mostrarMensaje("Esta especialidad está siendo usada por un médico.");
 
 		}else{
+			//Usando el id, de la especialidad se elimina esta
 			this.servicioEspecialidad.deleteEspecialidad(especialidad.id).subscribe( data => {
-				console.log(data);
+			    //Se actualizan las especialidades a mostrar
 				this.actualizarEspecialidades();
 			});
 		}
@@ -179,11 +190,12 @@ export class EspecialidadComponent {
 	}
 
 
-
+	// Se obtiene la especialidad a modificar desde el frontend
 	edicionEspecialidad (especialidad)
 	{
-
+		//Se abre un dialogo para editar la especialidad, se abre un componente hijo
 		let dialogRef = this.dialog.open(EditarespecialidadComponent, {
+			//Los parámetros se asignan y se envían los datos necesarios
 			width: '700px',
 			data:
 			{
@@ -191,21 +203,27 @@ export class EspecialidadComponent {
 			}
 		});
 
+		//Luego de cerrar el dialogo se ejecuta lo siguiente
 		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarEspecialidades();
+			
+        	// Si recibe un 'false' se actualiza, si no, significa que se dio en editar
+          	if (!this.actualizar) { this.actualizarEspecialidades();}
+          	
 		});
 	}
 
 	agregacionEspecialidad()
 	{
+		// Se abre un nuevo dialogo para agregar una especialidad, se abre un componente hijo
 		let dialogRef = this.dialog.open(AgregarespecialidadComponent, {
+			//Los parámetros se asignan y se envían los datos necesarios
 			width: '700px'
 		});
 
+		//Luego de cerrar el dialogo se ejecuta lo siguiente
 		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarEspecialidades();
+        	// Si recibe un 'true' se actualiza, si no, significa que se dio en cancelar
+        	if (this.actualizar) { this.actualizarEspecialidades();}
 		});
 	}
 
@@ -219,7 +237,7 @@ export class EspecialidadComponent {
 
 		dialogRef.afterClosed().subscribe(result => {
 
-			this.actualizarEspecialidades();
+			
 		});
 
 	}

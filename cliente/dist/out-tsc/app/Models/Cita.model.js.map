@@ -1,0 +1,1 @@
+{"version":3,"file":"Cita.model.js","sourceRoot":"","sources":["../../../../src/app/Models/Cita.model.ts"],"names":[],"mappings":";;AAAA;IAOE;QAED,IAAI,CAAC,EAAE,GAAG,CAAC,CAAC;QACZ,IAAI,CAAC,aAAa,GAAG,EAAE,CAAC;QACxB,IAAI,CAAC,cAAc,GAAG,EAAE,CAAC;QACzB,IAAI,CAAC,WAAW,GAAG,EAAE,CAAC;QACtB,IAAI,CAAC,iBAAiB,GAAG,EAAE,CAAC;IAC3B,CAAC;IACH,WAAC;AAAD,CAAC,AAfD,IAeC;AAfY,oBAAI"}

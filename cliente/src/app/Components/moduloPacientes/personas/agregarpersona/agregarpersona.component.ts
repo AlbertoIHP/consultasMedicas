@@ -1,9 +1,13 @@
+// Componentes generales
 import { Component, Inject, OnInit, LOCALE_ID } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, DateAdapter } from '@angular/material';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
+// Modelos y servicios
 import { Persona } from '../../../../Models/Persona.model';
 import { Usuario } from '../../../../Models/Usuario.model';
 import { UserService } from '../../../../Services/user/user.service';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { EventosService } from '../../../../Services/eventos/eventos.service';
 
 import { EspDateAdapter } from '../../../Globals/EspDateAdapter';
 
@@ -20,7 +24,7 @@ import { EspDateAdapter } from '../../../Globals/EspDateAdapter';
 })
 
 export class AgregarpersonaComponent implements OnInit{
-
+  // Se declaran los atributos
   public date;
 	public persona: any;
 	public totalPersonas: any[];
@@ -59,13 +63,16 @@ export class AgregarpersonaComponent implements OnInit{
   public nuevoUsuario: Usuario;
 
 	constructor(
+    //Se declaran los servicios y componentes a utilizar  
 		public dialogRef: MatDialogRef<AgregarpersonaComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
     private _formBuilder: FormBuilder,
     public servicioUsuario: UserService,
-    public dateAdapter: DateAdapter<any>, 
+    public dateAdapter: DateAdapter<any>,
+    public servicioEvento: EventosService 
 		)
 	{
+    // Se inicializan los atributos
     dateAdapter.setLocale('es-MX');
     this.servicioRegion = this.data.servicioRegion;
     this.servicioProvincia = this.data.servicioProvincia;
@@ -78,8 +85,7 @@ export class AgregarpersonaComponent implements OnInit{
 		this.defaultValues();
 	}
 
-  ngOnInit()
-  {
+  ngOnInit(){
 
       this.servicioGenero.getGeneros().subscribe(data => {
           var todo: any;
@@ -124,6 +130,7 @@ export class AgregarpersonaComponent implements OnInit{
 
     });
 
+   // Se inician las validaciones usando un FormGroup y se dan los parámetros
    this.firstFormGroup = new FormGroup({
           comuna: new FormControl('', [Validators.required]),
           region: new FormControl('', [Validators.required]),
@@ -143,16 +150,19 @@ export class AgregarpersonaComponent implements OnInit{
 
        
 
-        this.secondFormGroup = this._formBuilder.group({
-          secondCtrl: ['', Validators.required]
-        });
+    this.secondFormGroup = this._formBuilder.group({
+        secondCtrl: ['', Validators.required]
+    });
+
+    //Se inicializa el evento en false
+    this.servicioEvento.actualizacion(false);
 
 
   }
 
 
-	defaultValues()
-	{
+	defaultValues(){
+
 		this.mostrarComunas = false;
 		this.mostrarProvincias = false;
 		this.mostrarRegiones = true;
@@ -166,13 +176,15 @@ export class AgregarpersonaComponent implements OnInit{
 		this.comunasMostrar = [];
 	}
 
-	onNoClick(): void
-	{
+  //Cerrar el diálogo
+	onNoClick(): void {
+
 	 this.dialogRef.close();
+
 	}
 
-  regionSeleccionada(region)
-  {
+  regionSeleccionada(region){
+
     this.provinciasMostrar=[];
     this.comunasMostrar=[];
     this.firstFormGroup.controls['provincia'].setValue('');
@@ -189,8 +201,8 @@ export class AgregarpersonaComponent implements OnInit{
 
   }
 
-  provinciaSeleccionada(provincia)
-  {
+  provinciaSeleccionada(provincia) {
+
     this.comunasMostrar=[];
     this.firstFormGroup.controls['comuna'].setValue('');
     for ( let i = 0 ; i < this.totalComunas.length ; i ++)
@@ -204,8 +216,8 @@ export class AgregarpersonaComponent implements OnInit{
     this.mostrarComunas = true;
   }
 
-	agregarPersona()
-	{
+	agregarPersona() {
+    //Se agrega la nueva persona al dar click en el botón
     this.persona.fechaNacimiento = new Date(this.date.value).toISOString().slice(0, 19).replace('T', ' ');
 		this.servicioPersona.registerPersona(this.persona).subscribe(data => {
 
@@ -215,18 +227,17 @@ export class AgregarpersonaComponent implements OnInit{
 
         var persona: any = todo.filter( persona =>  persona.rut === this.persona.rut)
 
-        console.log(persona)
-
         this.nuevoUsuario.Persona_id = persona[0].id ;
         this.nuevoUsuario.Role_id = '4';
         this.nuevoUsuario.password = this.GeneratePassword();
 
-        console.log(this.nuevoUsuario)
-
         this.servicioUsuario.registerUser(this.nuevoUsuario).subscribe( data => {
-
-          console.log(data)
           this.defaultValues();
+          //Se emite un evento para actualizar los datos
+          this.servicioEvento.actualizacion(true);
+          
+          // Se cierra el diálogo
+          this.dialogRef.close();
 
         })
 
@@ -239,8 +250,8 @@ export class AgregarpersonaComponent implements OnInit{
 		});
 	}
 
-	comunaSeleccionada(comuna)
-	{
+	comunaSeleccionada(comuna) {
+
 		this.persona.Comuna_id = comuna.id;
     if(this.validator(this.persona.rut))
     {
@@ -252,8 +263,8 @@ export class AgregarpersonaComponent implements OnInit{
     }
 	}
 
-  GeneratePassword()
-  {
+  GeneratePassword() {
+
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -263,8 +274,8 @@ export class AgregarpersonaComponent implements OnInit{
     return text;
   }
 
-  validator (rutComplete)
-  {
+  validator (rutComplete) {
+
     if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutComplete)) {
       return false
     }
@@ -281,8 +292,8 @@ export class AgregarpersonaComponent implements OnInit{
 
 
 
-  verifyNumber (T)
-  {
+  verifyNumber (T) {
+
     let M = 0
     let S = 1
     for (; T; T = Math.floor(T / 10)) {
@@ -292,8 +303,8 @@ export class AgregarpersonaComponent implements OnInit{
   }
 
 
-  validateEmail(email)
-  {
+  validateEmail(email) {
+
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     console.log(re.test(email))
 
@@ -307,8 +318,8 @@ export class AgregarpersonaComponent implements OnInit{
     }
   }
 
-  verificarRut()
-  {
+  verificarRut() {
+
     console.log("Esta funcion hasta ahora no tiene ninguna utilidad, deprecada en las proximas actualizacioens")
   }
 

@@ -1,18 +1,23 @@
+// Componentes generales
 import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
 
-
+// Modelos y servicios
 import { EstadoCita } from '../../../Models/EstadoCita.model';
 import { EstadoCitaService } from '../../../Services/estadocita/estado-cita.service';
 
 import { Cita } from '../../../Models/Cita.model';
 import { CitaService } from '../../../Services/cita/cita.service';
 
+// Componentes hijos
 import { AgregarestadocitaComponent } from './agregarestadocita/agregarestadocita.component';
 import { EditarestadocitaComponent } from './editarestadocita/editarestadocita.component';
 
 import { MensajeErrorComponent } from '../../Globals/mensaje-error/mensaje-error.component';
 
+// Componente para verificación de roles
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
+
+import { EventosService } from '../../../Services/eventos/eventos.service';
 
 
 //DATATABLE
@@ -37,9 +42,11 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
   styleUrls: ['./estadocita.component.css']
 })
 export class EstadocitaComponent {
+	//Se declaran los atributos a usar
 	public totalEstadocitas: EstadoCita[];
 	public buscarPorNombre: boolean;
 	public usuarioActual;
+	public actualizar;
 
 	// Temporal para validación
 	public totalCitas: Cita[];
@@ -56,8 +63,8 @@ export class EstadocitaComponent {
 
 
 
-  ngOnInit()
-  {
+  ngOnInit() {
+  	// Se inicializa el datasource
     this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'EstadoCita');
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
         .debounceTime(150)
@@ -69,6 +76,10 @@ export class EstadocitaComponent {
 
 
     this.exampleDatabase = []
+
+     // Se obtiene el evento emitido desde agregar
+    this.servicioEvento.actualizar.subscribe((data: any) => { this.actualizar = data; });
+ 
 
   }
 
@@ -98,14 +109,16 @@ export class EstadocitaComponent {
     }
   }
 
+	constructor (
+		//Se declaran los servicios y componentes a utilizar
+		public servicioEstadoCita: EstadoCitaService,
+		public servicioCita: CitaService,
+		public dialog: MatDialog,
+		public servicioEvento: EventosService
 
+	){
 
-
-
-
-
-	constructor (public servicioEstadoCita: EstadoCitaService, public servicioCita: CitaService, public dialog: MatDialog)
-	{
+		// Se inicializan los atributos
 		this.usuarioActual=new UsuarioActual();
 		this.totalEstadocitas = [];
 		this.actualizarEstadoCitas();
@@ -158,28 +171,29 @@ export class EstadocitaComponent {
 		return false;
 	}
 
-
+	//Se obtiene el estado desde la fila para obtener su id
 	eliminarEstadoCita (estadocita)
 	{
-		console.log('click');
 		if(this.verificarUsoEstadoCita(estadocita)==true){
 
 			this.mostrarMensaje("Esta estado cita está siendo usada por un médico.");
 
 		}else{
+			//Usando el id, del estado se elimina esta
 			this.servicioEstadoCita.deleteEstadoCita(estadocita.id).subscribe( data => {
-				console.log(data);
+				//Se actualizan los estados a mostrar
 				this.actualizarEstadoCitas();
 			});
 		}
 
 	}
 
+	// Se obtiene el estado a modificar desde el frontend
+	edicionEstadoCita (estadocita) {
 
-	edicionEstadoCita (estadocita)
-	{
-
+		//Se abre un dialogo para editar el estado, se abre un componente hijo
 		let dialogRef = this.dialog.open(EditarestadocitaComponent, {
+			//Los parámetros se asignan y se envían los datos necesarios
 			width: '700px',
 			data:
 			{
@@ -187,21 +201,27 @@ export class EstadocitaComponent {
 			}
 		});
 
+		//Luego de cerrar el dialogo se ejecuta lo siguiente
 		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarEstadoCitas();
+			
+        	// Si recibe un 'false' se actualiza, si no, significa que se dio en editar
+          	if (!this.actualizar) { this.actualizarEstadoCitas();}
+          
 		});
 	}
 
-	agregacionEstadoCita()
-	{
+	agregacionEstadoCita() {
+
+		// Se abre un nuevo dialogo para agregar un estado, se abre un componente hijo
 		let dialogRef = this.dialog.open(AgregarestadocitaComponent, {
+			//Los parámetros se asignan y se envían los datos necesarios
 			width: '700px'
 		});
 
+		//Luego de cerrar el dialogo se ejecuta lo siguiente
 		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarEstadoCitas();
+        	// Si recibe un 'true' se actualiza, si no, significa que se dio en cancelar
+        	if (this.actualizar) { this.actualizarEstadoCitas();}
 		});
 	}
 
@@ -215,7 +235,6 @@ export class EstadocitaComponent {
 
 		dialogRef.afterClosed().subscribe(result => {
 
-			this.actualizarEstadoCitas();
 		});
 
 	}

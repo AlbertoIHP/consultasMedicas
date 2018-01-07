@@ -1,6 +1,8 @@
+// Componentes generales
 import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
+// Modelos y servicios
 import { Persona } from '../../../Models/Persona.model';
 import { PersonaService } from '../../../Services/persona/persona.service';
 
@@ -19,11 +21,12 @@ import { ProvinciaService } from '../../../Services/provincia/provincia.service'
 import { Comuna } from '../../../Models/Comuna.model';
 import { ComunaService } from '../../../Services/comuna/comuna.service';
 
+
+// Componentes hijos
 import { AgregarpersonaComponent } from './agregarpersona/agregarpersona.component';
 import { EditarpersonaComponent } from './editarpersona/editarpersona.component';
 
 import { VerPrevisionComponent } from '../previsiones/verprevision/verprevision.component';
-
 
 import { EventosService } from '../../../Services/eventos/eventos.service';
 
@@ -33,6 +36,7 @@ import { Usuario } from '../../../Models/Usuario.model';
 import { UserService } from '../../../Services/user/user.service';
 import { RoleService } from '../../../Services/role/role.service';
 
+// Componente para verificación de roles
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
 
@@ -51,18 +55,13 @@ import 'rxjs/add/operator/debounceTime';
 import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-
-
-
-
-
-
 @Component({
   selector: 'app-personas',
   templateUrl: './personas.component.html',
   styleUrls: ['./personas.component.css']
 })
-export class PersonaComponent{
+export class PersonaComponent implements OnInit {
+  //Se declaran los atributos a usar
   displayedColumns = [
   'Acciones',
   'Rut',
@@ -82,7 +81,7 @@ export class PersonaComponent{
   public totalGeneros: Genero[];
   public totalEstadoCiviles: EstadoCivil[];
   public usuarioActual;
-
+  public actualizar;
 
 
   //DATATABLE
@@ -97,6 +96,7 @@ export class PersonaComponent{
 
   ngOnInit()
   {
+    // Se inicializa el datasource
     this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Persona');
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
         .debounceTime(150)
@@ -109,6 +109,9 @@ export class PersonaComponent{
 
     this.exampleDatabase = []
 
+    // Se obtiene el evento emitido desde agregar
+    this.servicioEvento.actualizar.subscribe((data: any) => { this.actualizar = data; });
+  
   }
 
 
@@ -138,20 +141,8 @@ export class PersonaComponent{
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   constructor(
+    //Se declaran los servicios y componentes a utilizar    
     public servicioPersona: PersonaService,
     public servicioRegion: RegionService,
     public servicioProvincia: ProvinciaService,
@@ -162,11 +153,13 @@ export class PersonaComponent{
     public dialog: MatDialog,
     public servicioEventos: EventosService,
     public servicioUsuario: UserService,
-    public servicioRole: RoleService
+    public servicioRole: RoleService,
+    public servicioEvento: EventosService
 
     )
   {
-    
+    // Se inicializan los atributos
+
     this.usuarioActual=new UsuarioActual();
 
     this.totalPacientes = [];
@@ -185,15 +178,12 @@ export class PersonaComponent{
 
     this.actualizarPersonas();
 
-    this.servicioEventos.seActivo.subscribe(() => {
-      this.actualizarPersonas();
-    });
-
   }
 
   crearPersona(): void {
-
+    // Se abre un nuevo dialogo para agregar una persona, se abre un componente hijo  
     let dialogRef = this.dialog.open(AgregarpersonaComponent, {
+      //Los parámetros se asignan y se envían los datos necesarios
       width: '700px',
     data:
     {
@@ -211,48 +201,63 @@ export class PersonaComponent{
     }
     });
 
+    //Luego de cerrar el dialogo se ejecuta lo siguiente
     dialogRef.afterClosed().subscribe(result => {
-    this.actualizarGeneros();
-    this.actualizarRegiones();
-    this.actualizarComunas();
-    this.actualizarProvincias();
-    this.actualizarEstadoCiviles();
-      this.actualizarPersonas();
+        // Si recibe un 'true' se actualiza, si no, significa que se dio en cancelar
+        if (this.actualizar) { 
+
+          this.actualizarGeneros();
+          this.actualizarRegiones();
+          this.actualizarComunas();
+          this.actualizarProvincias();
+          this.actualizarEstadoCiviles();
+          this.actualizarPersonas();
+        }
     });
+   
   }
 
+  // Se obtiene la comuna a modificar desde el frontend
   editarPersona (persona)
   {
   var a = JSON.parse( JSON.stringify(persona) );
 
     this.pasarStringId(a);
 
+  //Se abre un dialogo para editar la persona, se abre un componente hijo
   let dialogRef = this.dialog.open(EditarpersonaComponent, {
+    //Los parámetros se asignan y se envían los datos necesarios
     width: '1000px',
     height: '600px',
   data: {
-  persona: a,
-  regiones: this.totalRegiones,
-  provincias: this.totalProvincias,
-  comunas: this.totalComunas,
-  ec: this.totalEstadoCiviles,
-  generos: this.totalGeneros,
-  servicioGenero: this.servicioGenero,
-  servicioEC: this.servicioEstadoCivil,
-  servicioComuna: this.servicioComuna,
-  servicioProvincia: this.servicioProvincia,
-  servicioRegion: this.servicioRegion
+    persona: a,
+    regiones: this.totalRegiones,
+    provincias: this.totalProvincias,
+    comunas: this.totalComunas,
+    ec: this.totalEstadoCiviles,
+    generos: this.totalGeneros,
+    servicioGenero: this.servicioGenero,
+    servicioEC: this.servicioEstadoCivil,
+    servicioComuna: this.servicioComuna,
+    servicioProvincia: this.servicioProvincia,
+    servicioRegion: this.servicioRegion
   }
   });
 
-  dialogRef.afterClosed().subscribe(result => {
-    this.actualizarGeneros();
-    this.actualizarRegiones();
-    this.actualizarComunas();
-    this.actualizarProvincias();
-    this.actualizarEstadoCiviles();
-    this.actualizarPersonas();
-  });
+  //Luego de cerrar el dialogo se ejecuta lo siguiente
+    dialogRef.afterClosed().subscribe(result => {
+        /*
+          // Si recibe un 'false' se actualiza, si no, significa que se dio en editar
+          if (!this.actualizar) { this.actualizarComunas();}
+        */
+        this.actualizarGeneros();
+        this.actualizarRegiones();
+        this.actualizarComunas();
+        this.actualizarProvincias();
+        this.actualizarEstadoCiviles();
+        this.actualizarPersonas();
+    });
+
   }
 
   previsionPersona (persona)
@@ -269,9 +274,6 @@ export class PersonaComponent{
   });
 
   }
-
-
-
 
   pasarStringId(paciente)
   {

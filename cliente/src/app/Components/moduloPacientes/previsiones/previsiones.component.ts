@@ -1,17 +1,19 @@
-
+// Componentes generales
 import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 
-
+// Modelos y servicios
 import { Prevision } from '../../../Models/Prevision.model';
 import { PrevisionService } from '../../../Services/prevision/prevision.service';
 
-
+// Componentes hijos
 import { AgregarprevisionComponent } from './agregarprevision/agregarprevision.component';
 import { EditarprevisionComponent } from './editarprevision/editarprevision.component';
 
+// Componente para verificación de roles
 import {UsuarioActual} from '../../Globals/usuarioactual.component';
 
 import { Router } from '@angular/router';
+import { EventosService } from '../../../Services/eventos/eventos.service';
 
 //DATATABLE
 import {DataSource} from '@angular/cdk/collections';
@@ -36,9 +38,12 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 	styleUrls: ['./previsiones.component.css']
 })
 export class PrevisionesComponent{
+
+	//Se declaran los atributos a usar
 	public totalPrevisiones: Prevision[];
 	public usuarioActual;
 	displayedColumns = ['Acciones', 'Nombre', 'Descripcion', 'Isapre'];
+	public actualizar;
 
 
   //DATATABLE
@@ -50,9 +55,9 @@ export class PrevisionesComponent{
   @ViewChild('filter') filter: ElementRef;
 
 
+  ngOnInit(){
 
-  ngOnInit()
-  {
+  	// Se inicializa el datasource
     this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Prevision');
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
         .debounceTime(150)
@@ -64,6 +69,10 @@ export class PrevisionesComponent{
 
 
     this.exampleDatabase = []
+
+    // Se obtiene el evento emitido desde agregar
+    this.servicioEvento.actualizar.subscribe((data: any) => { this.actualizar = data; });
+  
 
   }
 
@@ -93,18 +102,14 @@ export class PrevisionesComponent{
     }
   }
 
-
-
-
-
-
-
 	constructor (
-    public servicioPrevisiones: PrevisionService,
-    public dialog: MatDialog,
-    public router: Router)
-  {
-    
+		//Se declaran los servicios y componentes a utilizar		
+	    public servicioPrevisiones: PrevisionService,
+	    public dialog: MatDialog,
+	    public router: Router,
+     	public servicioEvento: EventosService
+    ){
+    	// Se inicializan los atributos
 		this.usuarioActual=new UsuarioActual();
 		this.totalPrevisiones = [];
 		this.actualizarPrevisiones();
@@ -133,10 +138,12 @@ export class PrevisionesComponent{
 		});
 	}
 
+	//Se obtiene la previsión desde la fila para obtener su id
 	eliminarPrevision (prevision)
 	{
+		//Usando el id, de la previsión se elimina esta
 		this.servicioPrevisiones.deletePrevision(prevision.id).subscribe( data => {
-			console.log(data);
+			//Se actualizan las previsiones a mostrar
 			this.actualizarPrevisiones();
 		});
 	}
@@ -168,13 +175,15 @@ export class PrevisionesComponent{
 		}
 	}
 
-	edicionPrevision (prevision)
-	{
+	// Se obtiene la comuna a modificar desde el frontend
+	edicionPrevision (prevision){
 
 		var a = JSON.parse( JSON.stringify(prevision));
 		this.pasarStringId(a);
 
+		//Se abre un dialogo para editar la previsión, se abre un componente hijo
 		let dialogRef = this.dialog.open(EditarprevisionComponent, {
+			//Los parámetros se asignan y se envían los datos necesarios
 			width: '700px',
 			data:
 			{
@@ -182,21 +191,27 @@ export class PrevisionesComponent{
 			}
 		});
 
+		//Luego de cerrar el dialogo se ejecuta lo siguiente
 		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarPrevisiones();
+			/*
+        	// Si recibe un 'false' se actualiza, si no, significa que se dio en editar
+          	if (!this.actualizar) { this.actualizarComunas();}
+          	*/
+          	this.actualizarPrevisiones();
 		});
 	}
 
-	agregacionPrevision()
-	{
+	agregacionPrevision(){
+		// Se abre un nuevo dialogo para agregar una previsión, se abre un componente hijo	
 		let dialogRef = this.dialog.open(AgregarprevisionComponent, {
+			//Los parámetros se asignan y se envían los datos necesarios
 			width: '700px'
 		});
 
+		//Luego de cerrar el dialogo se ejecuta lo siguiente
 		dialogRef.afterClosed().subscribe(result => {
-
-			this.actualizarPrevisiones();
+        	// Si recibe un 'true' se actualiza, si no, significa que se dio en cancelar
+        	if (this.actualizar) { this.actualizarPrevisiones();}
 		});
 	}
 

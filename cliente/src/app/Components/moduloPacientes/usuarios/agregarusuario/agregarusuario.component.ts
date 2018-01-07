@@ -1,12 +1,15 @@
+// Componentes generales
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { EventosService } from '../../../../Services/eventos/eventos.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-
 
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
+
+// Modelos y servicios
+import { EventosService } from '../../../../Services/eventos/eventos.service';
+
 
 @Component({
 	selector: 'app-agregarusuario',
@@ -23,9 +26,9 @@ export class AgregarusuarioComponent implements OnInit{
 	public servicioUsuario: any;
 	public servicioPersona: any;
 	public servicioRole: any;
-  public persona: any;
-  public rolePersona: any;
-  public emailValido = true;
+	public persona: any;
+	public rolePersona: any;
+	public emailValido = true;
 
   	// Necesarios para autocomplete
 	public personaCtrl: FormControl;
@@ -45,13 +48,14 @@ export class AgregarusuarioComponent implements OnInit{
 
 
 	constructor(
+		//Se declaran los servicios y componentes a utilizar
 		public dialogRef: MatDialogRef<AgregarusuarioComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
-    public servicioEventos: EventosService
+    	public servicioEvento: EventosService
 		)
 	{
+		// Se inicializan los atributos
 		this.personasDisponibles = data.personasDisponibles;
-		console.log(this.personasDisponibles)
 		this.servicioPersona = data.servicioPersona;
 		this.servicioUsuario = data.servicioUsuario;
 		this.servicioRole = data.servicioRole;
@@ -59,7 +63,6 @@ export class AgregarusuarioComponent implements OnInit{
 		this.usuario = data.usuario;
 		this.totalRoles = data.roles;
 		this.totalPersonas = data.personas;
-		console.log(this.totalPersonas)
 		this.totalUsuarios = data.usuarios;
 
 		this.servicioRole.getRoles().subscribe(data => {
@@ -70,22 +73,21 @@ export class AgregarusuarioComponent implements OnInit{
 		});
 
 		this.actualizarPersonas();
-		console.log(this.totalPersonas)
 
 	}
 
   ngOnInit()
   {
-	
-	  this.agregarForm = new FormGroup({
+		//Se inician las validaciones usando un FormGroup y se dan los parámetros
+	  	this.agregarForm = new FormGroup({
 	        email: new FormControl('', [Validators.required]),
 	        rol: new FormControl('', [Validators.required]),
 	        personaAsociada: new FormControl('', [Validators.required])
     
     	});
 
-	 
-		    this.filteredPersonas = this.agregarForm.controls['personaAsociada'].valueChanges
+	 	//Se hace un filtro de personas para obtener aquellas que estén disponibles
+		this.filteredPersonas = this.agregarForm.controls['personaAsociada'].valueChanges
 		      .pipe(
 		        startWith(''),
 		        map(persona => persona ? this.filterPersonas(persona) : this.personasDisponibles.slice())
@@ -97,6 +99,7 @@ export class AgregarusuarioComponent implements OnInit{
 	      persona.rut.toLowerCase().indexOf(rut.toLowerCase()) === 0);
     }
 
+    //Cerrar el diálogo
 	onNoClick()
 	{
 
@@ -129,10 +132,14 @@ export class AgregarusuarioComponent implements OnInit{
 	agregarUsuario()
 	{
 		this.usuario.password = this.GeneratePassword();
-
+		 // Se registra  la el nuevo usuario  con los datos obtenidos
 		this.servicioUsuario.registerUser(this.usuario).subscribe(data => {
-			this.dialogRef.close();
-      this.servicioEventos.hiceUnCambio();
+
+      		 //Se emite un evento para actualizar los datos
+        	this.servicioEvento.actualizacion(true);
+
+        	// Se cierra el diálogo        
+        	this.dialogRef.close();
 
 		});
 	//   //Verificamos si es que se ha catcheado algun error y desplegamos alguna alerta
@@ -159,6 +166,7 @@ export class AgregarusuarioComponent implements OnInit{
 		}
 	}
 
+//Función para validar correos electrónicos a través de una exprexión regular
   validateEmail(email)
   {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
