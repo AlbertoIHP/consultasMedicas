@@ -49,6 +49,8 @@ import { VistaPacienteService } from './Services/vistas/vista-paciente.service';
 import { VistaComunaService } from './Services/vistas/vista-comuna.service';
 import { VistaProvinciaService } from './Services/vistas/vista-provincia.service';
 import { VistaUsuarioService } from './Services/vistas/vista-usuario.service';
+import { VistaBoxConsultaService } from './Services/vistas/vista-box-consulta.service';
+
 
 // SERVICIOS MODULO CITAS
 import { BoxConsultaService } from './Services/boxconsulta/box-consulta.service';
@@ -690,6 +692,7 @@ import {
     VistaComunaService,
     VistaProvinciaService,
     VistaUsuarioService,
+    VistaBoxConsultaService,
   ],
 
   bootstrap:

@@ -45,5 +45,33 @@ class modulocitas extends Seeder
         	'nombre' => 'Reumatología',
         ]);
 
+
+
+        DB::table('BoxConsulta')->insert([
+            'ubicacion' => 'Piso 1',
+            'TipoBox_id' => 1
+        ]);
+
+         DB::table('BoxConsulta')->insert([
+            'ubicacion' => 'Piso 2',
+            'TipoBox_id' => 2
+        ]);
+
+        DB::table('BoxConsulta')->insert([
+            'ubicacion' => 'Piso 3',
+            'TipoBox_id' => 3
+        ]);
+
+        DB::table('BoxConsulta')->insert([
+            'ubicacion' => 'Piso 4',
+            'TipoBox_id' => 4
+        ]);
+
+        DB::table('BoxConsulta')->insert([
+            'ubicacion' => 'Piso 5',
+            'TipoBox_id' => 5
+        ]);
+
+       
     }
 }

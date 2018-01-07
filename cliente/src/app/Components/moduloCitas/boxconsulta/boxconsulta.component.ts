@@ -2,6 +2,10 @@
 import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
 
 // Modelos y servicios
+
+import { VistaBoxConsulta } from '../../../Models/VistaBoxConsulta.model';
+import { VistaBoxConsultaService } from '../../../Services/vistas/vista-box-consulta.service';
+
 import { BoxConsulta } from '../../../Models/BoxConsulta.model';
 import { BoxConsultaService } from '../../../Services/boxconsulta/box-consulta.service';
 
@@ -122,7 +126,8 @@ export class BoxconsultaComponent {
   	public servicioTipoBox: TipoBoxService,
   	public servicioCita: CitaService,
   	public dialog: MatDialog,
-  	public servicioEvento: EventosService
+  	public servicioEvento: EventosService,
+  	public servicioVistaBoxConsulta: VistaBoxConsultaService
   	
   	){
 
@@ -155,11 +160,11 @@ actualizarTipoBoxes ()
 
  actualizarBoxConsultas(){
 
- 	this.servicioBoxConsulta.getBoxConsultas().subscribe(data => {
+ 	this.servicioVistaBoxConsulta.getVistaBoxConsultas().subscribe(data => {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalBoxConsultas = todo;
-			this.reemplazarIdPorString();
+			
 
       //DATATABLE
       this.exampleDatabase  = new ExampleDatabase(this.totalBoxConsultas);
@@ -223,18 +228,16 @@ actualizarTipoBoxes ()
 	edicionBoxConsulta (boxconsulta)
 	{
 
-		var a = JSON.parse( JSON.stringify(boxconsulta) );
-
-		this.pasarStringId(a);
 		//Se abre un dialogo para editar el box, se abre un componente hijo
 		let dialogRef = this.dialog.open(EditarboxconsultaComponent, {
 			//Los parámetros se asignan y se envían los datos necesarios
 			width: '700px',
 			data:
 			{
-			 boxconsulta: a,
+			 boxconsulta: boxconsulta,
 			 tipoboxes: this.totalTipoBoxes,
-			 servicioTipoBox: this.servicioTipoBox
+			 servicioTipoBox: this.servicioTipoBox,
+			 servicioBoxConsulta:this.servicioBoxConsulta
 			}
 		});
 
@@ -283,35 +286,6 @@ actualizarTipoBoxes ()
 		});
 	}
 
-reemplazarIdPorString()
-	{
-		for(let i = 0 ; i < this.totalBoxConsultas.length ; i ++)
-		{
-
-			for(let j = 0 ; j < this.totalTipoBoxes.length ; j++)
-			{
-				if( parseInt(this.totalBoxConsultas[i].TipoBox_id) === this.totalTipoBoxes[j].id)
-				{
-					this.totalBoxConsultas[i].TipoBox_id = this.totalTipoBoxes[j].nombre;
-					break;
-				}
-			}
-
-		}
-	}
-
-
-	pasarStringId(boxconsulta)
-	{
-		for ( let i = 0 ; i < this.totalTipoBoxes.length ; i ++)
-		{
-		if(boxconsulta.TipoBox_id === this.totalTipoBoxes[i].nombre)
-		{
-			boxconsulta.TipoBox_id = this.totalTipoBoxes[i].id;
-		}
-		}
-
-	}
 
 
 

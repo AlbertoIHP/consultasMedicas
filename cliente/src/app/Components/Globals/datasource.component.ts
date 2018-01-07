@@ -617,7 +617,7 @@ export class ExampleDataSource extends DataSource<any> {
           switch (this._sort.active)
           {
             case 'Ubicacion': [propertyA, propertyB] = [a.ubicacion, b.ubicacion]; break;
-            case 'TipoBox': [propertyA, propertyB] = [a.TipoBox_id, b.TipoBox_id]; break;
+            case 'TipoBox': [propertyA, propertyB] = [a.tipoBox, b.tipoBox]; break;
           }
         }
         else if(this.filtro === "Region")
