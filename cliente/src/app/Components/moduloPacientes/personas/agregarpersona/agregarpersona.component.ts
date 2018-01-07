@@ -221,6 +221,9 @@ export class AgregarpersonaComponent implements OnInit{
     this.persona.fechaNacimiento = new Date(this.date.value).toISOString().slice(0, 19).replace('T', ' ');
 		this.servicioPersona.registerPersona(this.persona).subscribe(data => {
 
+      //Se emite un evento para actualizar los datos
+      this.servicioEvento.actualizacion(true);
+
       this.servicioPersona.getPersonas().subscribe(data => {
         var todo: any = data
         todo = todo.data
@@ -233,15 +236,12 @@ export class AgregarpersonaComponent implements OnInit{
 
         this.servicioUsuario.registerUser(this.nuevoUsuario).subscribe( data => {
           this.defaultValues();
-          //Se emite un evento para actualizar los datos
-          this.servicioEvento.actualizacion(true);
-          
-          // Se cierra el diálogo
-          this.dialogRef.close();
-
+        
         })
 
 
+          
+       
 
       })
 

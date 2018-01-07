@@ -135,11 +135,13 @@ export class AgregarusuarioComponent implements OnInit{
 		 // Se registra  la el nuevo usuario  con los datos obtenidos
 		this.servicioUsuario.registerUser(this.usuario).subscribe(data => {
 
-      		 //Se emite un evento para actualizar los datos
+			// Se cierra el diálogo        
+        	this.dialogRef.close();
+
+      		//Se emite un evento para actualizar los datos
         	this.servicioEvento.actualizacion(true);
 
-        	// Se cierra el diálogo        
-        	this.dialogRef.close();
+        
 
 		});
 	//   //Verificamos si es que se ha catcheado algun error y desplegamos alguna alerta
@@ -172,7 +174,9 @@ export class AgregarusuarioComponent implements OnInit{
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     console.log(re.test(email))
 
-    if( re.test(email) )
+    var emailUnico = this.totalUsuarios.filter( usuario =>  usuario.rut === this.usuario.rut)
+
+    if( re.test(email) && emailUnico )
     {
       this.emailValido = false
     }
