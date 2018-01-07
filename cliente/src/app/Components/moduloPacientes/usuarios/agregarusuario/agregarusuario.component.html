@@ -46,7 +46,7 @@
 
   <div class="row">
     <div class="col s6">
-      <button class="boton-aceptar" mat-button [disabled]="emailValido && !agregarForm.valid" (click)="agregarUsuario()" style="width: 100%">Agregar Usuario <mat-icon>add</mat-icon></button>
+      <button class="boton-aceptar" mat-button [disabled]="emailValido || !agregarForm.valid" (click)="agregarUsuario()" style="width: 100%">Agregar Usuario <mat-icon>add</mat-icon></button>
     </div>
     <div class="col s6">
      <button mat-button (click)="onNoClick()" style="width: 100%" tabindex="-1">Cancelar</button>
