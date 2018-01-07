@@ -1,10 +1,11 @@
 // Componentes generales
 import { Component, Inject, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 // Modelos y servicios
 import { Provincia } from '../../../../Models/Provincia.model';
+
 import { EventosService } from '../../../../Services/eventos/eventos.service';
 
 @Component({
@@ -15,54 +16,41 @@ import { EventosService } from '../../../../Services/eventos/eventos.service';
 export class AgregarprovinciaComponent implements OnInit{
 	// Se declaran los atributos
 	agregarForm: FormGroup;
-	public nuevaProvincia: any;
+	public nuevaProvincia: Provincia;
 	public totalRegiones: any;
-	public servicioRegion: any;
 	public servicioProvincia: any;
 
-  ngOnInit(){
-	// Se inician las validaciones usando un FormGroup y se dan los parámetros
-    this.servicioRegion.getRegions().subscribe( data => {
-      var todo: any = data;
-      todo = todo.data;
-      this.totalRegiones = todo;
-    });
+	ngOnInit() {
+		// Se inician las validaciones usando un FormGroup y se dan los parámetros
+		this.agregarForm = new FormGroup({
+		    nombre: new FormControl('', [Validators.required]),
+		    region: new FormControl('', [Validators.required]),
+		});
 
-    // Se inician las validaciones usando un FormGroup y se dan los parámetros
-    this.agregarForm = new FormGroup({
-        nombre: new FormControl('', [Validators.required]),
-        region: new FormControl('', [Validators.required]),
-     
-    });
-
-    //Se inicializa el evento en false
-	this.servicioEvento.actualizacion(false);
-  }
+		//Se inicializa el evento en false
+		this.servicioEvento.actualizacion(false);
+	}
 
 	constructor(
 		//Se declaran los servicios y componentes a utilizar
 		public dialogRef: MatDialogRef<AgregarprovinciaComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		public servicioEvento: EventosService
-		)
-	{
+		) {
 		// Se inicializan los atributos
 		this.nuevaProvincia = new Provincia();
-		this.totalRegiones = data.regiones;
-	    this.servicioRegion = data.servicioRegion;
+		this.totalRegiones = data.totalRegiones;
 	    this.servicioProvincia = data.servicioProvincia;
 	}
 
 	//Cerrar el diálogo
-	onNoClick(){
+	onNoClick() {
 		this.dialogRef.close();
 	}
 
-	agregarProvincia(){
-
+	agregarProvincia() {
 		//Se agrega la nueva provincia al dar click en el botón
 		this.servicioProvincia.registerProvincia(this.nuevaProvincia).subscribe(data => {
-			
 			//Se emite un evento para actualizar los datos
 			this.servicioEvento.actualizacion(true);
 			
@@ -70,5 +58,4 @@ export class AgregarprovinciaComponent implements OnInit{
 			this.dialogRef.close();
 		});
 	}
-
 }

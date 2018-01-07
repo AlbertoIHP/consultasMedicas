@@ -6,8 +6,6 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 // Modelos y servicios
 import { Comuna } from '../../../../Models/Comuna.model';
 
-import { EventosService } from '../../../../Services/eventos/eventos.service';
-
 @Component({
 	selector: 'app-editarcomuna',
 	templateUrl: './editarcomuna.component.html',
@@ -26,19 +24,18 @@ export class EditarcomunaComponent implements OnInit{
 	        nombre: new FormControl(this.comuna.nombre, [Validators.required]),
 	        provincia: new FormControl(this.comuna.Provincia_id, [Validators.required]),
 	    });
-	
-	    // Se inicializa el evento en false
-	    this.servicioEvento.actualizacion(false);
 	}
 
 	constructor(
 		//Se declaran los servicios y componentes a utilizar
 		public dialogRef: MatDialogRef<EditarcomunaComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: any,
-		public servicioEvento: EventosService
+		@Inject(MAT_DIALOG_DATA) public data: any
 		) {
 		// Se inicializan los atributos
-		this.comuna = data.comuna;
+		this.comuna = new Comuna();
+		this.comuna.nombre = data.comuna.nombre;
+		this.comuna.Provincia_id = data.comuna.Provincia_id;
+		this.comuna.id = data.comuna.id;
 		this.totalProvincias = data.totalProvincias;
 	    this.servicioComuna = data.servicioComuna;
 		}
@@ -50,10 +47,8 @@ export class EditarcomunaComponent implements OnInit{
 
 	editarComuna() {
 		//Usando el id de la comuna, se actualiza con los nuevos datos
-		this.servicioComuna.editComuna(this.comuna, this.comuna.id).subscribe( data => {
-			//Se emite un evento para no actualizar la vista
-			this.servicioEvento.actualizacion(true);
-			
+		this.servicioComuna.editComuna(this.comuna, this.comuna.id).subscribe( data => {		
+			//Se cierra el diálogo
 			this.dialogRef.close();
 		});
 	}

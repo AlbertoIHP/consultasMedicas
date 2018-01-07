@@ -17,8 +17,7 @@ export class VistaProvinciaService {
 	public options: RequestOptions;
 	public headers: Headers;
 
-	constructor(private http: Http, private authenticationService: AuthenticationService)
-	{
+	constructor(private http: Http, private authenticationService: AuthenticationService) {
 		this.headers = new Headers(
 		{
 			'Authorization': 'Bearer ' + this.authenticationService.token,
@@ -27,18 +26,14 @@ export class VistaProvinciaService {
 
 		this.options = new RequestOptions({ headers: this.headers });
 
-
 	}
 	//GET
-	getVistaProvincias(): Observable<VistaProvincia[]>
-	{
+	getVistaProvincias(): Observable<VistaProvincia[]> {
 		return this.http.get(this.base+'vistaProvincias', this.options).map((res: Response) => res.json());
 	}
 
 	//GET
-	getVistaProvincia(id) : Observable<VistaProvincia>
-	{
+	getVistaProvincia(id) : Observable<VistaProvincia> {
 		return this.http.get(this.base+'vistaProvincias/'+id, this.options).map((res: Response) => res.json());
 	}
-
 }

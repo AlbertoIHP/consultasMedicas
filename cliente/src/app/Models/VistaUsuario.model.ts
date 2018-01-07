@@ -1,4 +1,4 @@
-export class Usuario {
+export class VistaUsuario {
 	id: number;
 	email: string;
 	Role_id: string;

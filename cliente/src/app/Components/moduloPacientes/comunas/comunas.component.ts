@@ -156,7 +156,7 @@ export class ComunasComponent {
 
 	// Se obtiene la comuna a modificar desde el frontend
 	edicionComuna(comuna) {
-		//Se abre un dialogo para editar la comuna, se abre un componente hijo
+		//Se abre un diálogo para editar la comuna, se abre un componente hijo
 		let dialogRef = this.dialog.open(EditarcomunaComponent, {
 			//Los parámetros se asignan y se envían los datos necesarios
 			width: '700px',
@@ -168,15 +168,14 @@ export class ComunasComponent {
 			}
 		});
 		
-		//Luego de cerrar el dialogo se ejecuta lo siguiente
+		//Luego de cerrar el diálogo se ejecuta lo siguiente
 		dialogRef.afterClosed().subscribe(result => {
-        	// Si recibe un 'false' se actualiza, si no, significa que se dio en editar
-          	if (!this.actualizar) { this.actualizarComunas();}	
+        	this.actualizarComunas();
 		});
 	}
 
 	agregacionComuna() {
-		// Se abre un nuevo dialogo para agregar una comuna, se abre un componente hijo		
+		// Se abre un nuevo diálogo para agregar una comuna, se abre un componente hijo		
 		let dialogRef = this.dialog.open(AgregarcomunaComponent, {
 			//Los parámetros se asignan y se envían los datos necesarios
 			width: '700px',
@@ -187,7 +186,7 @@ export class ComunasComponent {
       		}
 		});
 
-		//Luego de cerrar el dialogo se ejecuta lo siguiente
+		//Luego de cerrar el diálogo se ejecuta lo siguiente
 		dialogRef.afterClosed().subscribe(result => {
         	// Si recibe un 'true' se actualiza, si no, significa que se dio en cancelar
         	if (this.actualizar) { this.actualizarComunas();}
