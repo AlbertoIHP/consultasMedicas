@@ -36,9 +36,8 @@
   </mat-step>
 
 
-
   <mat-step >
-      <ng-template matStepLabel>Horarios de Atención</ng-template>
+      <ng-template matStepLabel>Horarios de Atención Constante</ng-template>
 
       <div class="container" style="height: 350px; overflow-y: scroll;">
           <table class="striped">
@@ -84,13 +83,99 @@
                   </mat-select>
                 </mat-form-field>
               </td>
-
+ 
             </tr>
           </tbody>
         </table>
   
       <div style="text-align: center">
         <button mat-button style="width: 100%" (click)="agregarHorario()"><mat-icon>add</mat-icon>  </button>
+      </div>
+
+      </div>
+
+
+
+
+
+      <div class="row">
+        <div class="col s6">
+          <button mat-button matStepperPrevious style="width: 100%"><mat-icon>arrow_back</mat-icon>  Volver</button>
+        </div>
+
+        <div class="col s6">
+         <button mat-button matStepperNext style="width: 100%" >Siguiente <mat-icon>arrow_forward</mat-icon> </button>
+        </div>
+      </div>
+  </mat-step>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <mat-step >
+      <ng-template matStepLabel>Horarios de Atención Especificos</ng-template>
+
+      <div class="container" style="height: 350px; overflow-y: scroll;">
+          <table class="striped">
+          <thead>
+            <tr>
+                <th>Día Atencion</th>
+                <th>Hora Inicio </th>
+                <th>Hora Termino</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let hora of horariosEspecificos">
+
+              <td>
+
+
+                <mat-form-field>
+                  <input matInput [(ngModel)]="hora.dia" [matDatepicker]="picker" placeholder="Seleccione un dia">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>              
+
+              </td>
+
+              <td>
+                <mat-form-field style="width: 100% !important;">
+                  <mat-select placeholder="Inicio" style="width: 100% !important;"  [(ngModel)]="hora.horaInicio">
+                    <mat-option style="width: 100% !important;" *ngFor="let hora of horasDia" [value]="hora">
+                      {{ hora }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+
+
+              <td>
+                <mat-form-field style="width: 100% !important;">
+                  <mat-select placeholder="Termino" style="width: 100% !important;" [(ngModel)]="hora.horaFin">
+                    <mat-option style="width: 100% !important;" *ngFor="let hora of horasDia" [value]="hora">
+                      {{ hora }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+  
+      <div style="text-align: center">
+        <button mat-button style="width: 100%" (click)="agregarHorarioEspecifico()"><mat-icon>add</mat-icon>  </button>
       </div>
 
       </div>

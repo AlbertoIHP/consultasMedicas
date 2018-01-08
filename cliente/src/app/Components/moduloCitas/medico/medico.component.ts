@@ -87,7 +87,7 @@ export class MedicoComponent  {
 
 
       let dialogRef = this.dialog.open(DisponibilidadComponent, {
-        width: '700px',
+        width: '1100px',
         data:
         {
           disponibilidad: disponibilidadMedico
@@ -284,7 +284,7 @@ export class MedicoComponent  {
 
 	console.log(a);
 	let dialogRef = this.dialog.open(EditarmedicoComponent, {
-		width: '700px',
+		width: '1100px',
 		data:
 		{
        medicos: this.totalMedicos,
@@ -308,7 +308,7 @@ export class MedicoComponent  {
 	{
 
 		let dialogRef = this.dialog.open(AgregarmedicoComponent, {
-			width: '700px',
+			width: '1100px',
 		data: {
 			 medico: new Medico(),
 			 personas: this.totalPersonas,
@@ -336,7 +336,7 @@ export class MedicoComponent  {
 		console.log(persona);
 
 		let dialogRef = this.dialog.open(VerpersonaComponent, {
-		width: '700px',
+		width: '1100px',
 		data: { persona: persona }
 		});
 
