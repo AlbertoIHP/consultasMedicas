@@ -57,17 +57,17 @@
 
     <ng-container matColumnDef="Sexo" >
       <mat-header-cell *matHeaderCellDef mat-sort-header> Género </mat-header-cell>
-      <mat-cell *matCellDef="let row" > {{row.Genero_id}} </mat-cell>
+      <mat-cell *matCellDef="let row" > {{row.genero}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Estado Civil" >
       <mat-header-cell *matHeaderCellDef mat-sort-header> Estado Civil </mat-header-cell>
-      <mat-cell *matCellDef="let row" > {{row.EstadoCivil_id}} </mat-cell>
+      <mat-cell *matCellDef="let row" > {{row.estadoCivil}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Comuna" >
       <mat-header-cell *matHeaderCellDef mat-sort-header> Comuna </mat-header-cell>
-      <mat-cell *matCellDef="let row" > {{row.Comuna_id}} </mat-cell>
+      <mat-cell *matCellDef="let row" > {{row.comuna}} </mat-cell>
     </ng-container>
 
      <ng-container matColumnDef="Fecha Nacimiento" >
