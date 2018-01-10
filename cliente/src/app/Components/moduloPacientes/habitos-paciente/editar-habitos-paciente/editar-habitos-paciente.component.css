@@ -57,4 +57,10 @@
 .mat-table {
   overflow: auto;
   max-height: 500px;
+  transform: perspective(1px);
+}
+
+.mat-paginator{
+  transform: perspective(1px);
+
 }
