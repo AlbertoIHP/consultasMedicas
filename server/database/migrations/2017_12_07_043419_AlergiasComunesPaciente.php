@@ -16,6 +16,7 @@ class AlergiasComunesPaciente extends Migration
         Schema::create('AlergiasComunesPaciente', function (Blueprint $table) {
         $table->increments('id');
         $table->date("fechaDeteccion")->nullable();
+        $table->text('observacion')->nullable();
 
         $table->integer('Alergia_id')->unsigned()->nullable();
         $table->integer('Paciente_id')->unsigned()->nullable();        

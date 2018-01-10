@@ -73,6 +73,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="nombreApodo",
+ *          description="nombreApodo",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="Genero_id",
  *          description="Genero_id",
  *          type="integer",
@@ -117,6 +122,7 @@ class Persona extends Model
         'estado',
         'fechaNacimiento',
         'direccion',
+        'nombreApodo',
         'Genero_id',
         'Comuna_id',
         'EstadoCivil_id'
@@ -140,6 +146,7 @@ class Persona extends Model
         'estado' => 'integer',
         'fechaNacimiento' => 'date',
         'direccion' => 'string',
+        'nombreApodo'=>'string',
         'Genero_id' => 'integer',
         'Comuna_id' => 'integer',
         'EstadoCivil_id' => 'integer'

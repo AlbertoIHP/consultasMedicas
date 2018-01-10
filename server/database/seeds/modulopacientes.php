@@ -2173,6 +2173,7 @@ class modulopacientes extends Seeder
 			'estado' => 1,
 			'fechaNacimiento' => Carbon::create('1996', '04', '05'),
 			'direccion' => 'Javiera Carrera 123',
+			'nombreApodo' =>'ApodoTest',
 		]);
 
 		DB::table('Persona')->insert([
@@ -2190,6 +2191,7 @@ class modulopacientes extends Seeder
 			'estado' => 1,
 			'fechaNacimiento' => Carbon::create('1995', '04', '05'),
 			'direccion' => 'Javiera Carrera 121',
+			'nombreApodo' =>'ApodoTest',
 		]);
 
 		DB::table('Persona')->insert([
@@ -2207,6 +2209,7 @@ class modulopacientes extends Seeder
 			'estado' => 1,
 			'fechaNacimiento' => Carbon::create('1994', '04', '05'),
 			'direccion' => 'Javiera Carrera 021',
+			'nombreApodo' =>'ApodoTest',
 		]);
 
 
@@ -2225,6 +2228,7 @@ class modulopacientes extends Seeder
 			'estado' => 1,
 			'fechaNacimiento' => Carbon::create('1990', '04', '05'),
 			'direccion' => 'Javiera Carrera 243',
+			'nombreApodo' =>'ApodoTest',
 		]);
 
 		DB::table('Persona')->insert([
@@ -2242,6 +2246,7 @@ class modulopacientes extends Seeder
 			'estado' => 1,
 			'fechaNacimiento' => Carbon::create('1977', '04', '05'),
 			'direccion' => 'Javiera Carrera 323',
+			'nombreApodo' =>'ApodoTest',
 		]);
 
 
@@ -3674,6 +3679,41 @@ class modulopacientes extends Seeder
 			'update' => 0,
 			'view' => 1,
 		]);
+
+
+		DB::table('GrupoEtareo')->insert([
+            'nombre' => 'Adulto joven',
+            'edadMinima' => 18,
+            'edadMaxima' => 35
+        ]);
+
+        DB::table('GrupoEtareo')->insert([
+            'nombre' => 'Adulto maduro',
+            'edadMinima' => 35,
+            'edadMaxima' => 65
+        ]);
+
+        DB::table('GrupoEtareoVacuna')->insert([
+            'GrupoEtareo_id' => 1,
+            'Vacuna_id' => 1
+        ]);
+
+         DB::table('GrupoEtareoVacuna')->insert([
+            'GrupoEtareo_id' => 1,
+            'Vacuna_id' => 2
+        ]);
+
+
+        DB::table('GrupoEtareoVacuna')->insert([
+            'GrupoEtareo_id' => 2,
+            'Vacuna_id' => 3
+        ]);
+
+        DB::table('GrupoEtareoVacuna')->insert([
+            'GrupoEtareo_id' => 2,
+            'Vacuna_id' => 4
+        ]);
+
 
 	}
 }

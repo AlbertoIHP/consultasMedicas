@@ -16,6 +16,7 @@ class AlergiasMedicamentosPaciente extends Migration
         Schema::create('AlergiasMedicamentosPaciente', function (Blueprint $table) {
         $table->increments('id');
         $table->date('fechaInicio')->nullable();
+        $table->text('observacion')->nullable();
 
         $table->integer('Medicamento_id')->unsigned()->nullable();
         $table->integer('Paciente_id')->unsigned()->nullable();

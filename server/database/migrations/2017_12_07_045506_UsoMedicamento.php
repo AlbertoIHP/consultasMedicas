@@ -16,6 +16,8 @@ class UsoMedicamento extends Migration
         Schema::create('UsoMedicamento', function (Blueprint $table) {
         $table->increments('id');
         $table->date("fechaInicio")->nullable();
+        $table->boolean('fueraConsulta')->default(false);
+        $table->text('observacion')->nullable();
 
         $table->integer('Medicamento_id')->unsigned()->nullable();
         $table->integer('Paciente_id')->unsigned()->nullable();        

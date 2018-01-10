@@ -21,6 +21,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string",
  *          format="date"
  *      ),
+ *       @SWG\Property(
+ *          property="fueraConsulta",
+ *          description="fueraConsulta",
+ *          type="boolean"
+ *      ),
+ *      @SWG\Property(
+ *          property="observacion",
+ *          description="observacion",
+ *          type="string"
+ *      ),
  *      @SWG\Property(
  *          property="Medicamento_id",
  *          description="Medicamento_id",
@@ -50,6 +60,8 @@ class UsoMedicamento extends Model
 
     public $fillable = [
         'fechaInicio',
+        'fueraConsulta',
+        'observacion',
         'Medicamento_id',
         'Paciente_id'
     ];
@@ -61,7 +73,9 @@ class UsoMedicamento extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'fechaInicio' => 'date',
+        'fechaInicio' => 'date'
+        'fueraConsulta' => 'boolean',
+        'observacion' => 'string',
         'Medicamento_id' => 'integer',
         'Paciente_id' => 'integer'
     ];

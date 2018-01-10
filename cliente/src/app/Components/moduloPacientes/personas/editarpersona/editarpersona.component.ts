@@ -152,15 +152,33 @@ export class EditarpersonaComponent implements OnInit{
 
 	defaultValues(){
 
-    this.servicioRegion = this.data.servicioRegion;
-    this.servicioProvincia = this.data.servicioProvincia;
-    this.servicioComuna = this.data.servicioComuna;
-    this.servicioGenero  = this.data.servicioGenero;
-    this.servicioEC = this.data.servicioEC;
+	    this.servicioRegion = this.data.servicioRegion;
+	    this.servicioProvincia = this.data.servicioProvincia;
+	    this.servicioComuna = this.data.servicioComuna;
+	    this.servicioGenero  = this.data.servicioGenero;
+	    this.servicioEC = this.data.servicioEC;
 		this.mostrarComunas = false;
 		this.mostrarProvincias = false;
 		this.mostrarRegiones = true;
-		this.persona = this.data.persona;
+
+		this.persona = new Persona();
+		this.persona.id = this.data.persona.id;
+		this.persona.rut = this.data.persona.rut
+		this.persona.nombre1 = this.data.persona.nombre1;
+		this.persona.nombre2 = this.data.persona.nombre2;
+		this.persona.apellido1 = this.data.persona.apellido1;
+		this.persona.apellido2 = this.data.persona.apellido2;
+		this.persona.fono_casa = this.data.persona.fono_casa;
+		this.persona.fono_trabajo = this.data.persona.fono_trabajo;
+		this.persona.movil = this.data.persona.movil;
+		this.persona.Genero_id = this.data.persona.Genero_id;
+		this.persona.EstadoCivil_id = this.data.persona.EstadoCivil_id;
+		this.persona.Comuna_id = this.data.persona.Comuna_id;
+		this.persona.estado= this.data.persona.estado;
+		this.persona.fechaNacimiento=this.data.persona.fechaNacimiento;
+		this.persona.direccion=this.data.persona.direccion;
+		
+
 		this.totalRegiones = this.data.regiones;
 		this.totalProvincias = this.data.provincias;
 		this.totalComunas = this.data.comunas;
@@ -177,6 +195,7 @@ export class EditarpersonaComponent implements OnInit{
 	}
 
 	obtenerUbicacionPersona(){
+		console.log(this.persona);
 		var currentComuna=this.totalComunas.filter( comuna => comuna.id === this.persona.Comuna_id);
 		this.comunaPersona=currentComuna[0];
 		

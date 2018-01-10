@@ -1,0 +1,123 @@
+[
+    {
+        "name": "id",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "GrupoEtareo_id",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "Vacuna_id",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,GrupoEtareo"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Vacuna"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,AlergiasComunesPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,AlergiasMedicamentosPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,DiagnosticosAtencion"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,DiagnosticosReceta"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Disponibilidad"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,EnfermedadesCronicasPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,HabitosPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,HabitosSexualesPaciente"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,InterConsultaAtencion"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Medico"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,OrdenExamen"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,OrdenExamenAtencion"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,OrdenesInternas"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,PermisoModulo"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Persona_has_Prevision"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,PrevisionActual"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Receta"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,UsoMedicamento"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,Usuario"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,,VacunasPaciente"
+    }
+]

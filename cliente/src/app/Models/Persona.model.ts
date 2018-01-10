@@ -8,9 +8,9 @@ export class Persona {
 	fono_casa: string;
 	fono_trabajo: string;
 	movil: string;
-	Genero_id: string;
-	EstadoCivil_id: string;
-	Comuna_id: string;
+	Genero_id: number;
+	EstadoCivil_id: number;
+	Comuna_id: number;
 	estado: number;
 	fechaNacimiento: string;
 	direccion: string;
@@ -26,9 +26,9 @@ export class Persona {
 		this.fono_casa = "";
 		this.fono_trabajo = "";
 		this.movil = "";
-		this.Genero_id = "";
-		this.EstadoCivil_id = "";
-		this.Comuna_id = "";
+		this.Genero_id = 0;
+		this.EstadoCivil_id = 0;
+		this.Comuna_id = 0;
 		this.estado = 1;
 		this.fechaNacimiento = "";
 		this.direccion = "";

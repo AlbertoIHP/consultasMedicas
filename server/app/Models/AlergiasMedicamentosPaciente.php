@@ -22,6 +22,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="date"
  *      ),
  *      @SWG\Property(
+ *          property="observacion",
+ *          description="observacion",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="Medicamento_id",
  *          description="Medicamento_id",
  *          type="integer",

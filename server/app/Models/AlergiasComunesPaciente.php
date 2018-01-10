@@ -21,6 +21,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string",
  *          format="date"
  *      ),
+*       @SWG\Property(
+ *          property="observacion",
+ *          description="observacion",
+ *          type="string"
+ *      ),
  *      @SWG\Property(
  *          property="Alergia_id",
  *          description="Alergia_id",
@@ -50,6 +55,7 @@ class AlergiasComunesPaciente extends Model
 
     public $fillable = [
         'fechaDeteccion',
+        'observacion',
         'Alergia_id',
         'Paciente_id'
     ];
@@ -62,6 +68,7 @@ class AlergiasComunesPaciente extends Model
     protected $casts = [
         'id' => 'integer',
         'fechaDeteccion' => 'date',
+        'observacion' => 'string',
         'Alergia_id' => 'integer',
         'Paciente_id' => 'integer'
     ];

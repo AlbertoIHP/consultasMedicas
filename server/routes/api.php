@@ -135,4 +135,14 @@ Route::group(['middleware' => ['cors']], function(){
     Route::resource('v1/vistaProvincias', 'VistaProvinciaAPIController');
 
     Route::resource('v1/vistaUsuarios', 'VistaUsuarioAPIController');
+
+    Route::resource('v1/vistaBoxConsulta', 'VistaBoxConsultaAPIController');
+
+    Route::resource('v1/vistaPersona', 'VistaPersonaAPIController');
+
+    Route::resource('v1/grupoEtareo', 'GrupoEtareoAPIController');
+
+    Route::resource('v1/grupoEtareoVacunas', 'GrupoEtareoVacunaAPIController');
 });
+
+

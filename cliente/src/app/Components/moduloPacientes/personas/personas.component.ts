@@ -21,6 +21,8 @@ import { ProvinciaService } from '../../../Services/provincia/provincia.service'
 import { Comuna } from '../../../Models/Comuna.model';
 import { ComunaService } from '../../../Services/comuna/comuna.service';
 
+import { VistaPersona } from '../../../Models/VistaPersona.model';
+import { VistaPersonaService } from '../../../Services/vistas/vista-persona.service';
 
 // Componentes hijos
 import { AgregarpersonaComponent } from './agregarpersona/agregarpersona.component';
@@ -154,7 +156,8 @@ export class PersonaComponent implements OnInit {
     public servicioEventos: EventosService,
     public servicioUsuario: UserService,
     public servicioRole: RoleService,
-    public servicioEvento: EventosService
+    public servicioEvento: EventosService,
+    public servicioVistaPersona:VistaPersonaService
 
     )
   {
@@ -220,9 +223,6 @@ export class PersonaComponent implements OnInit {
   // Se obtiene la comuna a modificar desde el frontend
   editarPersona (persona)
   {
-  var a = JSON.parse( JSON.stringify(persona) );
-
-    this.pasarStringId(a);
 
   //Se abre un dialogo para editar la persona, se abre un componente hijo
   let dialogRef = this.dialog.open(EditarpersonaComponent, {
@@ -230,7 +230,7 @@ export class PersonaComponent implements OnInit {
     width: '1000px',
     height: '600px',
   data: {
-    persona: a,
+    persona: persona,
     regiones: this.totalRegiones,
     provincias: this.totalProvincias,
     comunas: this.totalComunas,
@@ -260,84 +260,38 @@ export class PersonaComponent implements OnInit {
 
   }
 
-  previsionPersona (persona)
+  previsionPersona (paciente)
   {
-    var a = JSON.parse(JSON.stringify(persona));
-    this.pasarStringId(a);
 
+    var persona;
+    persona = new Persona();
+    persona.id = paciente.id;
+    persona.rut = paciente.rut
+    persona.nombre1 = paciente.nombre1;
+    persona.nombre2 = paciente.nombre2;
+    persona.apellido1 = paciente.apellido1;
+    persona.apellido2 = paciente.apellido2;
+    persona.fono_casa = paciente.fono_casa;
+    persona.fono_trabajo = paciente.fono_trabajo;
+    persona.movil = paciente.movil;
+    persona.Genero_id = paciente.Genero_id;
+    persona.EstadoCivil_id = paciente.EstadoCivil_id;
+    persona.Comuna_id = paciente.Comuna_id;
+    persona.estado= paciente.estado;
+    persona.fechaNacimiento=paciente.fechaNacimiento;
+    persona.direccion=paciente.direccion;
+  
   let dialogRef = this.dialog.open(VerPrevisionComponent, {
     width: '900px',
     data:
     {
-     persona: a
+     persona: persona
     }
   });
 
   }
 
-  pasarStringId(paciente)
-  {
-    for ( let i = 0 ; i < this.totalComunas.length ; i ++)
-    {
-    if(paciente.Comuna_id === this.totalComunas[i].nombre)
-    {
-      paciente.Comuna_id = this.totalComunas[i].id;
-    }
-    }
-
-    for ( let i = 0 ; i < this.totalGeneros.length ; i ++)
-    {
-    if(paciente.Genero_id === this.totalGeneros[i].nombre)
-    {
-      paciente.Genero_id = this.totalGeneros[i].id;
-    }
-    }
-
-    for ( let i = 0 ; i < this.totalEstadoCiviles.length ; i ++)
-    {
-    if(paciente.EstadoCivil_id === this.totalEstadoCiviles[i].nombre)
-    {
-      paciente.EstadoCivil_id = this.totalEstadoCiviles[i].id;
-    }
-    }
-  }
-
-  reemplazarIdPorString()
-  {
-    for(let i = 0 ; i < this.totalPacientes.length ; i ++)
-    {
-
-      for(let j = 0 ; j < this.totalGeneros.length ; j++)
-      {
-        if( parseInt(this.totalPacientes[i].Genero_id) === this.totalGeneros[j].id)
-        {
-          this.totalPacientes[i].Genero_id = this.totalGeneros[j].nombre;
-          break;
-        }
-      }
-
-      for(let j = 0 ; j < this.totalEstadoCiviles.length ; j++)
-      {
-        if( parseInt(this.totalPacientes[i].EstadoCivil_id) === this.totalEstadoCiviles[j].id)
-        {
-          this.totalPacientes[i].EstadoCivil_id = this.totalEstadoCiviles[j].nombre;
-          break;
-        }
-      }
-
-
-      for(let j = 0 ; j < this.totalComunas.length ; j++)
-      {
-        if( parseInt(this.totalPacientes[i].Comuna_id) === this.totalComunas[j].id)
-        {
-          this.totalPacientes[i].Comuna_id = this.totalComunas[j].nombre;
-          break;
-        }
-      }
-
-    }
-  }
-
+  
   actualizarRegiones()
   {
     this.servicioRegion.getRegions().subscribe(data => {
@@ -349,11 +303,12 @@ export class PersonaComponent implements OnInit {
 
   actualizarPersonas()
   {
-    this.servicioPersona.getPersonas().subscribe( data => {
+    this.servicioVistaPersona.getVistaPersonas().subscribe( data => {
       var todo: any = data;
       todo = todo.data;
       this.totalPacientes = todo;
-      this.reemplazarIdPorString();
+     
+      console.log(this.totalPacientes);
 
       //DATATABLE
       this.exampleDatabase  = new ExampleDatabase(this.totalPacientes);
@@ -422,8 +377,27 @@ export class PersonaComponent implements OnInit {
   activarPaciente (paciente)
   {
     paciente.estado = 1;
-    this.pasarStringId(paciente);
-    this.servicioPersona.editPersona(paciente, paciente.id).subscribe(data => {
+
+    var persona;
+    persona = new Persona();
+    persona.id = paciente.id;
+    persona.rut = paciente.rut
+    persona.nombre1 = paciente.nombre1;
+    persona.nombre2 = paciente.nombre2;
+    persona.apellido1 = paciente.apellido1;
+    persona.apellido2 = paciente.apellido2;
+    persona.fono_casa = paciente.fono_casa;
+    persona.fono_trabajo = paciente.fono_trabajo;
+    persona.movil = paciente.movil;
+    persona.Genero_id = paciente.Genero_id;
+    persona.EstadoCivil_id = paciente.EstadoCivil_id;
+    persona.Comuna_id = paciente.Comuna_id;
+    persona.estado= paciente.estado;
+    persona.fechaNacimiento=paciente.fechaNacimiento;
+    persona.direccion=paciente.direccion;
+    
+
+    this.servicioPersona.editPersona(persona, persona.id).subscribe(data => {
       this.servicioEventos.hiceUnCambio();
     });
   }
@@ -431,23 +405,58 @@ export class PersonaComponent implements OnInit {
   desactivarPaciente (paciente)
   {
     paciente.estado = 0;
-    this.pasarStringId(paciente);
-    this.servicioPersona.editPersona(paciente, paciente.id).subscribe(data => {
+
+    var persona;
+    persona = new Persona();
+    persona.id = paciente.id;
+    persona.rut = paciente.rut
+    persona.nombre1 = paciente.nombre1;
+    persona.nombre2 = paciente.nombre2;
+    persona.apellido1 = paciente.apellido1;
+    persona.apellido2 = paciente.apellido2;
+    persona.fono_casa = paciente.fono_casa;
+    persona.fono_trabajo = paciente.fono_trabajo;
+    persona.movil = paciente.movil;
+    persona.Genero_id = paciente.Genero_id;
+    persona.EstadoCivil_id = paciente.EstadoCivil_id;
+    persona.Comuna_id = paciente.Comuna_id;
+    persona.estado= paciente.estado;
+    persona.fechaNacimiento=paciente.fechaNacimiento;
+    persona.direccion=paciente.direccion;
+
+
+    this.servicioPersona.editPersona(persona, persona.id).subscribe(data => {
       this.servicioEventos.hiceUnCambio();
     });
   }
 
 
-  agregarUsuario(persona)
+  agregarUsuario(paciente)
   {
-    var a: any = JSON.parse(JSON.stringify(persona));
-   this.pasarStringId(a);
+
+    var persona;
+    persona = new Persona();
+    persona.id = paciente.id;
+    persona.rut = paciente.rut
+    persona.nombre1 = paciente.nombre1;
+    persona.nombre2 = paciente.nombre2;
+    persona.apellido1 = paciente.apellido1;
+    persona.apellido2 = paciente.apellido2;
+    persona.fono_casa = paciente.fono_casa;
+    persona.fono_trabajo = paciente.fono_trabajo;
+    persona.movil = paciente.movil;
+    persona.Genero_id = paciente.Genero_id;
+    persona.EstadoCivil_id = paciente.EstadoCivil_id;
+    persona.Comuna_id = paciente.Comuna_id;
+    persona.estado= paciente.estado;
+    persona.fechaNacimiento=paciente.fechaNacimiento;
+    persona.direccion=paciente.direccion;
 
   let dialogRef = this.dialog.open(AgregarusuarioComponent, {
     width: '700px',
     data:
     {
-     persona: a,
+     persona: persona,
      servicioPersona: this.servicioPersona,
      servicioUsuario: this.servicioUsuario,
      servicioRole: this.servicioRole,

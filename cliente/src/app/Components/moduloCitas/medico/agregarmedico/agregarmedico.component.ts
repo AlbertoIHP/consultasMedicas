@@ -23,9 +23,11 @@ export class AgregarmedicoComponent implements OnInit {
      private horario: any
      private horasInicio: any;
      private horasFin: any;
+     private horariosEspecificos: any = []
 
      agregarHorario()
      {
+
 
       let validacion = [];
       validacion = this.verificarHoras();
@@ -37,9 +39,13 @@ export class AgregarmedicoComponent implements OnInit {
       } else {
         this.horarios.push({id: 0, Medico_id: 0, dia: '', horaInicio: '', horaFin: ''})
       }
-         
-         //this.horasInicio = this.horasDia;
-         //this.horasFin = this.horasDia;
+
+     }
+
+
+     agregarHorarioEspecifico()
+     {
+       this.horariosEspecificos.push({id: 0, Medico_id: 0, dia: '', horaInicio: '', horaFin: ''})
      }
 
 
@@ -49,6 +55,9 @@ export class AgregarmedicoComponent implements OnInit {
         )
   {
       this.horarios = [{id: 0, Medico_id: 0, dia: '', horaInicio: '', horaFin: ''}]
+
+
+      this.horariosEspecificos = [{id: 0, Medico_id: 0, dia: '', horaInicio: '', horaFin: ''}]
 
 
       this.dias = [
@@ -171,6 +180,16 @@ export class AgregarmedicoComponent implements OnInit {
             console.log(this.medico)
 
             for ( let horario of this.horarios)
+            {
+                horario.Medico_id = this.medico.id
+
+                this.servicioDisponibilidad.registerDisponibilidad(horario).subscribe( data => {
+                    console.log(data)
+                })
+
+            }
+
+            for ( let horario of this.horariosEspecificos)
             {
                 horario.Medico_id = this.medico.id
 
