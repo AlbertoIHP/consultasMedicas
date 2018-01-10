@@ -1,19 +1,25 @@
+//Componentes generales
 import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
+import { Router } from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
+//Modelos y servicios
 import { Feriado } from '../../../Models/Feriado.model';
 import { FeriadoService } from '../../../Services/feriado/feriado.service';
 
+//Componentes hijos
 import { EditarferiadoComponent } from './editarferiado/editarferiado.component';
 import { AgregarferiadoComponent } from './agregarferiado/agregarferiado.component';
-import { Router } from '@angular/router';
-import {UsuarioActual} from '../../Globals/usuarioactual.component';
+
+//Componente verificador de roles
+import { UsuarioActual } from '../../Globals/usuarioactual.component';
 
 //DATATABLE
-import {DataSource} from '@angular/cdk/collections';
-import {MatPaginator, MatSort} from '@angular/material';
-import {SelectionModel} from '@angular/cdk/collections';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
+import { DataSource } from '@angular/cdk/collections';
+import { MatPaginator, MatSort } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/observable/fromEvent';
@@ -21,7 +27,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/debounceTime';
 import { ExampleDatabase, ExampleDataSource } from '../../Globals/datasource.component';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-feriados',
@@ -44,8 +49,7 @@ export class FeriadosComponent {
 	displayedColumns = ['Acciones', 'Fecha', 'Descripcion'];
 
 
-  ngOnInit()
-  {
+  ngOnInit() {
     this.dataSource = new ExampleDataSource(new ExampleDatabase([]), this.paginator, this.sort, 'Feriado');
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
         .debounceTime(150)
@@ -53,16 +57,12 @@ export class FeriadosComponent {
         .subscribe(() => {
           if (!this.dataSource) { return; }
           this.dataSource.filter = this.filter.nativeElement.value;
-        })
-
-
-    this.exampleDatabase = []
-
+        });
+    this.exampleDatabase = [];
   }
 
 
-  isAllSelected(): boolean
-  {
+  isAllSelected(): boolean {
     if (!this.dataSource) { return false; }
     if (this.selection.isEmpty()) { return false; }
 
@@ -73,8 +73,7 @@ export class FeriadosComponent {
     }
   }
 
-  masterToggle()
-  {
+  masterToggle() {
     if (!this.dataSource) { return; }
 
     if (this.isAllSelected()) {
@@ -86,32 +85,23 @@ export class FeriadosComponent {
     }
   }
 
-
-
-
-
-
 	constructor (
     public servicioFeriado: FeriadoService,
     public dialog: MatDialog,
-    public router: Router)
-  {
-   
+    public router: Router
+    ) {
 		this.usuarioActual=new UsuarioActual();
 		this.totalFeriados = [];
 		this.actualizarFeriados();
 	}
 
-	actualizarFeriados ()
-	{
+	actualizarFeriados() {
 		this.servicioFeriado.getFeriados().subscribe(data => {
 			var todo: any = data;
 			todo = todo.data;
 			this.totalFeriados = todo;
 
-
       //DATATABLE
-
       this.exampleDatabase  = new ExampleDatabase(this.totalFeriados);
 
       this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort, 'Feriado');
@@ -122,45 +112,40 @@ export class FeriadosComponent {
             if (!this.dataSource) { return; }
             this.dataSource.filter = this.filter.nativeElement.value;
           })
-
 		});
 	}
 
-	eliminarFeriado (feriado)
-	{
+  //Se obtiene el feriado desde la fila
+	eliminarFeriado(feriado) {
+    //Se elimina el feriado usando su id
 		this.servicioFeriado.deleteFeriado(feriado.id).subscribe( data => {
-			console.log(data);
+			//Se actualiza la tabla
 			this.actualizarFeriados();
 		});
 	}
 
-	edicionFeriado (feriado)
-	{
+	edicionFeriado(feriado) {
 
 		let dialogRef = this.dialog.open(EditarferiadoComponent, {
 			width: '700px',
 			data:
 			{
-			 feriado: feriado
+			  feriado: feriado
 			}
 		});
 
 		dialogRef.afterClosed().subscribe(result => {
-
 			this.actualizarFeriados();
 		});
 	}
 
-	agregacionFeriado()
-	{
+	agregacionFeriado() {
 		let dialogRef = this.dialog.open(AgregarferiadoComponent, {
 			width: '700px'
 		});
 
 		dialogRef.afterClosed().subscribe(result => {
-
 			this.actualizarFeriados();
 		});
 	}
-	
 }

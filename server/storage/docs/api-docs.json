@@ -3588,6 +3588,404 @@
                 }
             }
         },
+        "/grupoEtareos": {
+            "get": {
+                "tags": [
+                    "GrupoEtareo"
+                ],
+                "summary": "Get a listing of the GrupoEtareos.",
+                "description": "Get all GrupoEtareos",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/GrupoEtareo"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "GrupoEtareo"
+                ],
+                "summary": "Store a newly created GrupoEtareo in storage",
+                "description": "Store GrupoEtareo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "GrupoEtareo that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/GrupoEtareo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/GrupoEtareo"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/grupoEtareos/{id}": {
+            "get": {
+                "tags": [
+                    "GrupoEtareo"
+                ],
+                "summary": "Display the specified GrupoEtareo",
+                "description": "Get GrupoEtareo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of GrupoEtareo",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/GrupoEtareo"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "GrupoEtareo"
+                ],
+                "summary": "Update the specified GrupoEtareo in storage",
+                "description": "Update GrupoEtareo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of GrupoEtareo",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "GrupoEtareo that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/GrupoEtareo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/GrupoEtareo"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "GrupoEtareo"
+                ],
+                "summary": "Remove the specified GrupoEtareo from storage",
+                "description": "Delete GrupoEtareo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of GrupoEtareo",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/grupoEtareoVacunas": {
+            "get": {
+                "tags": [
+                    "GrupoEtareoVacuna"
+                ],
+                "summary": "Get a listing of the GrupoEtareoVacunas.",
+                "description": "Get all GrupoEtareoVacunas",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/GrupoEtareoVacuna"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "GrupoEtareoVacuna"
+                ],
+                "summary": "Store a newly created GrupoEtareoVacuna in storage",
+                "description": "Store GrupoEtareoVacuna",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "GrupoEtareoVacuna that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/GrupoEtareoVacuna"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/GrupoEtareoVacuna"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/grupoEtareoVacunas/{id}": {
+            "get": {
+                "tags": [
+                    "GrupoEtareoVacuna"
+                ],
+                "summary": "Display the specified GrupoEtareoVacuna",
+                "description": "Get GrupoEtareoVacuna",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of GrupoEtareoVacuna",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/GrupoEtareoVacuna"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "GrupoEtareoVacuna"
+                ],
+                "summary": "Update the specified GrupoEtareoVacuna in storage",
+                "description": "Update GrupoEtareoVacuna",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of GrupoEtareoVacuna",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "GrupoEtareoVacuna that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/GrupoEtareoVacuna"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/GrupoEtareoVacuna"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "GrupoEtareoVacuna"
+                ],
+                "summary": "Remove the specified GrupoEtareoVacuna from storage",
+                "description": "Delete GrupoEtareoVacuna",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of GrupoEtareoVacuna",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/grupoEtnicos": {
             "get": {
                 "tags": [
@@ -8994,6 +9392,10 @@
                     "type": "string",
                     "format": "date"
                 },
+                "observacion": {
+                    "description": "observacion",
+                    "type": "string"
+                },
                 "Alergia_id": {
                     "description": "Alergia_id",
                     "type": "integer",
@@ -9020,6 +9422,10 @@
                     "description": "fechaInicio",
                     "type": "string",
                     "format": "date"
+                },
+                "observacion": {
+                    "description": "observacion",
+                    "type": "string"
                 },
                 "Medicamento_id": {
                     "description": "Medicamento_id",
@@ -9257,6 +9663,10 @@
                     "type": "string",
                     "format": "date"
                 },
+                "observacion": {
+                    "description": "observacion",
+                    "type": "string"
+                },
                 "EnfermedadCronica_id": {
                     "description": "EnfermedadCronica_id",
                     "type": "integer",
@@ -9389,6 +9799,54 @@
                 "nombre": {
                     "description": "nombre",
                     "type": "string"
+                }
+            }
+        },
+        "GrupoEtareo": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nombre": {
+                    "description": "nombre",
+                    "type": "string"
+                },
+                "edadMinima": {
+                    "description": "edadMinima",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "edadMaxima": {
+                    "description": "edadMaxima",
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "GrupoEtareoVacuna": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "GrupoEtareo_id": {
+                    "description": "GrupoEtareo_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Vacuna_id": {
+                    "description": "Vacuna_id",
+                    "type": "integer",
+                    "format": "int32"
                 }
             }
         },
@@ -9776,6 +10234,10 @@
                     "description": "direccion",
                     "type": "string"
                 },
+                "nombreApodo": {
+                    "description": "nombreApodo",
+                    "type": "string"
+                },
                 "Genero_id": {
                     "description": "Genero_id",
                     "type": "integer",
@@ -10008,6 +10470,14 @@
                     "description": "fechaInicio",
                     "type": "string",
                     "format": "date"
+                },
+                "fueraConsulta": {
+                    "description": "fueraConsulta",
+                    "type": "boolean"
+                },
+                "observacion": {
+                    "description": "observacion",
+                    "type": "string"
                 },
                 "Medicamento_id": {
                     "description": "Medicamento_id",

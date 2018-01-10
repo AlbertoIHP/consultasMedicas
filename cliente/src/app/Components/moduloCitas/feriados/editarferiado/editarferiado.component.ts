@@ -2,7 +2,7 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Inject, OnInit  } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { CustomDateFormatter } from '../../../Globals/custom-date-formatter';
-import { CalendarEvent, CalendarMonthViewDay, CalendarDateFormatter, DAYS_OF_WEEK } from 'angular-calendar';
+import { CalendarEvent, CalendarMonthViewDay, CalendarDateFormatter, DAYS_OF_WEEK, CalendarAngularDateFormatter } from 'angular-calendar';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 //Modelos y servicios
@@ -29,6 +29,7 @@ export class EditarferiadoComponent implements OnInit {
 
 	//Inicialización de el o los atributos que ocuparán	
 	public feriado: Feriado;
+	dateFormatter: CalendarDateFormatter;
 
 	//Atributos para manejar el calendario (idioma, distribución de los días)
 	viewDate: Date = new Date();
@@ -56,7 +57,7 @@ export class EditarferiadoComponent implements OnInit {
 		// Se obtienen los datos provistos al dar click en el botón del feriado a editar
 		this.feriado = data.feriado;
 
-		let dia = this.feriado.dia.split(' ')[0];
+		/*let dia = this.feriado.dia.split(' ')[0];
 		console.log(dia);
 
 		if( dia === 'Domingo')
@@ -86,10 +87,16 @@ export class EditarferiadoComponent implements OnInit {
 	      else if( dia === 'Sabado' )
 	      {
 	        dia = 'Sat'
-	      }
+	      }*/
 
 	      //this.dia.date.setFullYear(parseInt(this.feriado.dia.split(' ')[0]), parseInt(this.feriado.dia.split(' ')[1], parseInt(this.feriado.dia.split(' ')[2])));
 	   	  
+	       this.dateFormatter.monthViewTitle({
+			        date: new Date('2018-02-02'),
+			        locale: 'es'
+			      })
+
+	       this.selectedDay = this.dateFormatter;
 	   	//this.selectedDay = new Date(this.feriado.dia);
 	   	//this.selectedDay.date = new Date(this.feriado.dia);
 	      console.log(this.selectedDay)

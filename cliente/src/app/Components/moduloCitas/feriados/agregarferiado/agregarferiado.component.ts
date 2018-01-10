@@ -35,8 +35,8 @@ export class AgregarferiadoComponent implements OnInit {
 	locale: string = 'es';
 	weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
 	weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
-	selectedDay: CalendarMonthViewDay
-	events: CalendarEvent[] = []
+	selectedDay: CalendarMonthViewDay;
+	events: CalendarEvent[] = [];
     protected fechaSeleccionada = true;
 
     ngOnInit() {
@@ -51,8 +51,7 @@ export class AgregarferiadoComponent implements OnInit {
 		public dialogRef: MatDialogRef<AgregarferiadoComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		public servicioFeriado: FeriadoService
-		)
-	{	
+		) {	
 		// Se crea el nuevo Feriado con los valores por defecto del modelo
 		this.nuevoFeriado = new Feriado();
 	}
@@ -64,30 +63,26 @@ export class AgregarferiadoComponent implements OnInit {
 	//Se agrega el nuevo feriado, usando los parámetros adquiridos en el formulario
 	agregarFeriado() {
 		this.servicioFeriado.registerFeriado(this.nuevoFeriado).subscribe(data => {
-			// Se cierra el dialogo cuando se realiza de forma exitosa el agregar
+			// Se cierra el diálogo cuando se realiza de forma exitosa el agregar
 			this.dialogRef.close();
 		});
 	}
 
-	dayClicked(day: CalendarMonthViewDay): void
-	  {
-	    if (this.selectedDay)
-	    {
+	dayClicked(day: CalendarMonthViewDay): void {
+	    if (this.selectedDay) {
 	      delete this.selectedDay.cssClass;
 	    }
 
-	    this.selectedDay = day
+	    this.selectedDay = day;
 
-	    if( this.selectedDay.isFuture )
-	    {
+	    if( this.selectedDay.isFuture ) {
 	      this.fechaSeleccionada = false
 	      day.cssClass = 'cal-day-selected'
 
 	      let dia = this.selectedDay.date.toString().split(' ')[0]
 
 
-	      if( dia === 'Sun')
-	      {
+	      if( dia === 'Sun') {
 	        dia = 'Domingo'
 	      }
 	      else if( dia === 'Mon' )
@@ -116,14 +111,9 @@ export class AgregarferiadoComponent implements OnInit {
 	      }
 
 	      //this.nuevoFeriado.dia = dia+' '+this.selectedDay.date.toString().split(' ')[2]+'/'+this.selectedDay.date.toString().split(' ')[1]+'/'+this.selectedDay.date.toString().split(' ')[3]
-	      //this.nuevoFeriado.dia = this.selectedDay.date.getFullYear().toString() + ' ' + this.selectedDay.date.getMonth().toString() + ' ' + this.selectedDay.date.getDate().toString();
+	      this.nuevoFeriado.dia = this.selectedDay.date.getFullYear().toString() + ' ' + this.selectedDay.date.getMonth().toString() + ' ' + this.selectedDay.date.getDate().toString();
 	      //this.nu
-	      this.nuevoFeriado.dia = this.selectedDay.date.toDateString();
-	      console.log(this.selectedDay.date.toDateString())
-	      console.log(this.selectedDay.date.getFullYear())
-	      console.log(this.selectedDay.date.getDate())
-	      console.log(this.selectedDay.date.getMonth())
-	      console.log(this.selectedDay.date.getTime())
+	      //this.nuevoFeriado.dia = this.selectedDay.date.toDateString();
 	      //console.log(this.selectedDay.date.setFullYear())
 	    }
 	    else

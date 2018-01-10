@@ -26,7 +26,7 @@ class Persona extends Migration
         $table->integer('estado')->default(1);
         $table->date('fechaNacimiento');
         $table->string('direccion');
-        $table->string('nombreApodo');
+        $table->string('nombreApodo')->nullable();
 
         $table->integer('Genero_id')->unsigned()->nullable();
         $table->integer('Comuna_id')->unsigned()->nullable();
