@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="AlergiasComunesPaciente",
+ *      definition="GrupoEtareoVacuna",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,35 +16,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="fechaDeteccion",
- *          description="fechaDeteccion",
- *          type="string",
- *          format="date"
- *      ),
-*       @SWG\Property(
- *          property="observacion",
- *          description="observacion",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="Alergia_id",
- *          description="Alergia_id",
+ *          property="GrupoEtareo_id",
+ *          description="GrupoEtareo_id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="Paciente_id",
- *          description="Paciente_id",
+ *          property="Vacuna_id",
+ *          description="Vacuna_id",
  *          type="integer",
  *          format="int32"
  *      )
  * )
  */
-class AlergiasComunesPaciente extends Model
+class GrupoEtareoVacuna extends Model
 {
     use SoftDeletes;
 
-    public $table = 'AlergiasComunesPaciente';
+    public $table = 'GrupoEtareoVacuna';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -54,10 +43,8 @@ class AlergiasComunesPaciente extends Model
 
 
     public $fillable = [
-        'fechaDeteccion',
-        'observacion',
-        'Alergia_id',
-        'Paciente_id'
+        'GrupoEtareo_id',
+        'Vacuna_id'
     ];
 
     /**
@@ -67,10 +54,8 @@ class AlergiasComunesPaciente extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'fechaDeteccion' => 'date',
-        'observacion' => 'string',
-        'Alergia_id' => 'integer',
-        'Paciente_id' => 'integer'
+        'GrupoEtareo_id' => 'integer',
+        'Vacuna_id' => 'integer'
     ];
 
     /**
@@ -85,19 +70,16 @@ class AlergiasComunesPaciente extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function alergium()
+    public function grupoEtareo()
     {
-        return $this->belongsTo(\App\Models\Alergium::class);
+        return $this->belongsTo(\App\Models\GrupoEtareo::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function paciente()
+    public function vacuna()
     {
-        return $this->belongsTo(\App\Models\Paciente::class);
+        return $this->belongsTo(\App\Models\Vacuna::class);
     }
-    
-    protected $hidden = ['remember_token', 'updated_at', 'created_at', 'deleted_at'];
-
 }

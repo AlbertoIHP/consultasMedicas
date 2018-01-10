@@ -85,3 +85,7 @@ Route::resource('citas', 'CitaController');
 Route::resource('citas', 'CitaController');
 
 Route::resource('horarios', 'HorarioController');
+
+Route::resource('grupoEtareos', 'GrupoEtareoController');
+
+Route::resource('grupoEtareoVacunas', 'GrupoEtareoVacunaController');

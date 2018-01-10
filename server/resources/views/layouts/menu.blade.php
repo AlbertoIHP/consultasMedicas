@@ -574,3 +574,11 @@
     <a href="{!! route('horarios.index') !!}"><i class="fa fa-edit"></i><span>Horarios</span></a>
 </li>
 
+<li class="{{ Request::is('grupoEtareos*') ? 'active' : '' }}">
+    <a href="{!! route('grupoEtareos.index') !!}"><i class="fa fa-edit"></i><span>Grupo Etareos</span></a>
+</li>
+
+<li class="{{ Request::is('grupoEtareoVacunas*') ? 'active' : '' }}">
+    <a href="{!! route('grupoEtareoVacunas.index') !!}"><i class="fa fa-edit"></i><span>Grupo Etareo Vacunas</span></a>
+</li>
+
